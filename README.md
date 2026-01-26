@@ -5,9 +5,8 @@ Bienvenue sur mon portfolio technique. Voici mes documentations et projets.
 
 ### 📂 Mes Procédures et Documentations
 
-* [📄 Installation et Sécurisation Serveur Linux](Procedure_Linux.pdf)
-* [📄 Mise en place d'un Firewall pfSense](Procedure_Firewall.pdf)
-* [📄 Audit de sécurité Wi-Fi](Audit_Wifi.pdf)
+* [📄 Installation et Sécurisation Serveur Linux](Documentation/Mise-en-place-du-réseau-TechNova.pdf)
+
 
 ---
 📧 Contact : mon.email@gmail.com
