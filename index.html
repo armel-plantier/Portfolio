@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header">
     <nav class="navbar">
         <a href="#hero" class="logo">Armel Plantier</a>
@@ -21,6 +22,7 @@
     </nav>
 </header>
 
+<!-- HERO -->
 <section id="hero" class="hero">
     <div class="hero-text">
         <h1>Bonjour, je suis Armel Plantier</h1>
@@ -29,6 +31,7 @@
     </div>
 </section>
 
+<!-- PROJETS -->
 <section id="projets" class="section">
     <h2>Projets</h2>
     <div class="project-grid">
@@ -37,14 +40,10 @@
             <h3>Technova</h3>
             <p>Conception d'une infrastructure d'entreprise virtuelle avec administration réseau et sécurité.</p>
         </div>
-        <div class="project-card">
-            <img src="https://via.placeholder.com/400x250" alt="Projet 2">
-            <h3>Projet 2</h3>
-            <p>Exemple d’un autre projet avec compétences techniques.</p>
-        </div>
     </div>
 </section>
 
+<!-- COMPETENCES -->
 <section id="competences" class="section">
     <h2>Compétences</h2>
     <div class="skills-grid">
@@ -75,13 +74,15 @@
     </div>
 </section>
 
+<!-- PROCEDURES -->
 <section id="procedures" class="section">
     <h2>Procédures</h2>
-    <ul id="procedures-list">
-        <li>Chargement...</li>
-    </ul>
+    <div id="procedures-list">
+        <p>Chargement...</p>
+    </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="section contact-section">
     <h2>Contact</h2>
     <div class="contact-info">
@@ -96,36 +97,47 @@
     </form>
 </section>
 
+<!-- FOOTER -->
 <footer class="footer">
     <p>© 2026 Armel Plantier</p>
 </footer>
 
-<!-- Script pour lister les PDF dans le dossier procedures -->
+<!-- SCRIPT pour afficher les PDF dans la page -->
 <script>
-const user = "armel-plantier";  // <-- Remplace par ton nom GitHub
-const repo = "Technova";          // <-- Remplace par ton nom de repo
+const user = "armel-plantier";  // Nom GitHub
+const repo = "armel-plantier";  // Nom du repo
 const folder = "procedures";
 
 fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`)
   .then(res => res.json())
   .then(files => {
-    const ul = document.getElementById('procedures-list');
-    ul.innerHTML = "";
+    const container = document.getElementById('procedures-list');
+    container.innerHTML = "";
+
     files.forEach(file => {
-        if(file.name.endsWith(".pdf")) { // ne liste que les PDF
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = file.download_url;
-            a.textContent = file.name.replace(".pdf", "");
-            a.target = "_blank";
-            li.appendChild(a);
-            ul.appendChild(li);
+        if(file.name.endsWith(".pdf")) {
+            const pdfDiv = document.createElement('div');
+            pdfDiv.classList.add('pdf-container');
+
+            const title = document.createElement('h3');
+            title.textContent = file.name.replace(".pdf", "");
+            pdfDiv.appendChild(title);
+
+            const embed = document.createElement('embed');
+            embed.src = file.download_url;
+            embed.type = "application/pdf";
+            embed.width = "100%";
+            embed.height = "500px";
+            pdfDiv.appendChild(embed);
+
+            container.appendChild(pdfDiv);
         }
     });
+
   })
   .catch(err => {
     console.error(err);
-    document.getElementById('procedures-list').innerHTML = "<li>Impossible de charger les fichiers</li>";
+    document.getElementById('procedures-list').innerHTML = "<p>Impossible de charger les fichiers. Vérifie que le repo est public et que le dossier procedures existe.</p>";
   });
 </script>
 
