@@ -1,4 +1,6 @@
-/* Reset et Base */
+/* =========================================
+   1. RESET ET BASE (Style Terminal)
+   ========================================= */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,40 +8,40 @@
 }
 
 body {
-    background-color: #0d1117; /* Fond sombre GitHub/Terminal */
-    color: #c9d1d9; /* Texte gris clair lisible */
-    font-family: 'Fira Code', monospace; /* Police type Code */
+    background-color: #0d1117; /* Fond sombre GitHub */
+    color: #c9d1d9; /* Texte gris clair */
+    font-family: 'Fira Code', monospace; /* Police Code */
     line-height: 1.6;
     padding: 20px;
 }
 
-/* Conteneur principal */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
-/* Typographie */
+/* =========================================
+   2. TYPOGRAPHIE
+   ========================================= */
 h1 {
     color: #58a6ff; /* Bleu Tech */
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
 }
 
 h2 {
     color: #8b949e;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-bottom: 20px;
 }
 
 h3 {
     color: #7ee787; /* Vert Terminal */
-    margin-bottom: 20px;
-    margin-top: 30px;
+    margin: 30px 0 15px 0;
     border-bottom: 1px solid #30363d;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .intro {
@@ -50,10 +52,10 @@ h3 {
 hr {
     border: 0;
     border-top: 1px solid #30363d;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
-/* Effet curseur clignotant */
+/* Animation du curseur qui clignote */
 .cursor {
     animation: blink 1s infinite;
 }
@@ -64,57 +66,101 @@ hr {
     100% { opacity: 0; }
 }
 
-/* Grille des projets */
+/* =========================================
+   3. CARTES PROJETS (ACCORDÉON)
+   ========================================= */
+
+/* Grille verticale */
 .grid {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 15px;
 }
 
-/* Carte Projet (Le lien) */
-.card {
-    display: flex;
-    align-items: center;
+/* Le conteneur global d'un projet */
+.project-card {
     background-color: #161b22;
     border: 1px solid #30363d;
-    padding: 20px;
-    text-decoration: none;
     border-radius: 6px;
-    transition: all 0.2s ease;
+    overflow: hidden; /* Important pour les coins arrondis */
+    transition: border-color 0.2s;
 }
 
-.card:hover {
-    border-color: #58a6ff;
-    transform: translateX(5px); /* Petit décalage vers la droite */
+/* L'en-tête sur lequel on clique */
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.card-header:hover {
     background-color: #1f242c;
+    border-color: #58a6ff;
 }
 
+/* État actif (quand le PDF est ouvert) */
+.card-header.active {
+    background-color: #1f242c;
+    border-bottom: 1px solid #30363d;
+}
+
+/* Rotation de la flèche quand actif */
+.card-header.active .arrow {
+    transform: rotate(180deg);
+    color: #58a6ff;
+}
+
+/* Icônes et Textes */
 .icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-right: 20px;
 }
 
-.content h4 {
-    color: #c9d1d9;
-    margin-bottom: 5px;
+.meta {
+    flex-grow: 1; /* Prend toute la place dispo */
 }
 
-.content p {
+.meta h4 {
+    color: #c9d1d9;
+    margin-bottom: 4px;
+}
+
+.meta p {
     color: #8b949e;
     font-size: 0.9rem;
 }
 
-/* Footer */
+.arrow {
+    color: #8b949e;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* =========================================
+   4. ZONE D'AFFICHAGE PDF
+   ========================================= */
+.pdf-container {
+    display: none; /* Caché par défaut */
+    background-color: #fff; /* Fond blanc derrière le PDF */
+    height: 600px; /* Hauteur de lecture confortable */
+    width: 100%;
+}
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
 footer {
     text-align: center;
     margin-top: 50px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #8b949e;
 }
 
 footer a {
     color: #58a6ff;
     text-decoration: none;
-    margin: 0 10px;
 }
 
 footer a:hover {
