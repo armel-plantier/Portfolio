@@ -1,82 +1,70 @@
-/* --- OPTION 1 : NEON CYBERPUNK --- */
+/* --- OPTION 3 : GLASSMORPHISM --- */
 
 /* RESET ET BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #0b0c10; /* Fond très sombre */
-    color: #c5c6c7;
-    font-family: 'Fira Code', monospace;
+    /* Dégradé de fond subtil */
+    background: radial-gradient(circle at top left, #232526, #414345);
+    min-height: 100vh;
+    color: #e0e0e0;
+    font-family: 'Fira Code', sans-serif; /* Fira Code passe bien aussi ici */
     line-height: 1.6;
     padding: 20px;
 }
 
-.container { max-width: 900px; margin: 0 auto; padding-top: 30px; }
+.container { max-width: 900px; margin: 0 auto; padding-top: 40px; }
 
-/* TYPOGRAPHIE NEON */
-h1 { 
-    color: #66fcf1; 
-    font-size: 1.8rem; 
-    text-shadow: 0 0 10px rgba(102, 252, 241, 0.6); /* Glow */
-    margin-bottom: 5px; 
-}
-h2 { color: #45a29e; font-size: 1rem; font-weight: 400; margin-bottom: 20px; }
-h3 { 
-    color: #c5c6c7; 
-    border-bottom: 1px solid #45a29e; 
-    padding-bottom: 5px; 
-    margin: 30px 0 15px 0;
-}
-.intro { color: #8b949e; margin-bottom: 30px; }
-hr { border: 0; border-top: 1px solid #1f2833; margin: 20px 0; }
+/* TYPOGRAPHIE CLEAN */
+h1 { color: #fff; font-size: 2rem; font-weight: 600; margin-bottom: 5px; letter-spacing: 1px; }
+h2 { color: #a0a0a0; font-size: 1rem; font-weight: 300; margin-bottom: 30px; }
+h3 { color: #fff; margin: 40px 0 20px 0; font-weight: 500; }
+.intro { color: #ccc; margin-bottom: 30px; font-size: 1.1rem; }
+hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0; }
 
-/* CARTES PROJETS */
-.grid { display: flex; flex-direction: column; gap: 15px; }
+/* CARTES EN VERRE DÉPOLI */
+.grid { display: flex; flex-direction: column; gap: 20px; }
 
 .project-card {
-    background-color: #1f2833;
-    border: 1px solid #0b0c10;
-    border-radius: 4px;
+    /* L'effet Verre */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.2s, background 0.2s;
 }
 
 .card-header {
-    display: flex; align-items: center; padding: 20px; cursor: pointer;
-    transition: background 0.3s ease;
+    display: flex; align-items: center; padding: 25px; cursor: pointer;
 }
 
-/* EFFET HOVER PUISSANT */
-.card-header:hover { 
-    background-color: #26303d; 
-    box-shadow: 0 0 15px rgba(102, 252, 241, 0.2); /* Halo lumineux */
-    border-left: 4px solid #66fcf1;
+.card-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
-.card-header.active { 
-    background-color: #1f2833; 
-    border-bottom: 1px solid #66fcf1;
-    border-left: 4px solid #66fcf1;
+.card-header.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.icon { font-size: 1.8rem; margin-right: 20px; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
+.icon { font-size: 2rem; margin-right: 25px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
 .meta { flex-grow: 1; }
-.meta h4 { color: #fff; margin-bottom: 4px; }
-.meta p { color: #8b949e; font-size: 0.9rem; }
+.meta h4 { color: #fff; font-size: 1.1rem; margin-bottom: 5px; }
+.meta p { color: #aaa; font-size: 0.95rem; }
 
-.arrow { transition: transform 0.3s; color: #45a29e; }
-.card-header.active .arrow { transform: rotate(180deg); color: #66fcf1; }
+.arrow { color: rgba(255,255,255,0.5); transition: transform 0.3s; }
+.card-header.active .arrow { transform: rotate(180deg); color: #fff; }
 
 /* BOUTON EXTERNE */
-.external-btn {
-    text-decoration: none; font-size: 1.2rem; margin-right: 20px;
-    color: #45a29e; transition: all 0.2s;
-}
-.external-btn:hover { color: #66fcf1; transform: scale(1.2); text-shadow: 0 0 8px #66fcf1; }
+.external-btn { text-decoration: none; font-size: 1.3rem; margin-right: 25px; filter: grayscale(1); transition: 0.2s; }
+.external-btn:hover { filter: grayscale(0); transform: scale(1.1); }
 
-/* CURSEUR ET PDF */
+/* PDF ET FOOTER */
 .cursor { animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-.pdf-container { display: none; background: #fff; height: 600px; width: 100%; }
-footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #45a29e; }
-footer a { color: #66fcf1; text-decoration: none; }
+.pdf-container { display: none; background: #fff; height: 650px; width: 100%; }
+footer { text-align: center; margin-top: 60px; color: rgba(255,255,255,0.3); font-size: 0.9rem; }
+footer a { color: #fff; text-decoration: none; border-bottom: 1px dotted #fff; }
