@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. GÉNÉRATION DES PROJETS ---
     const grid = document.getElementById("project-grid");
-    const baseUrl = `https://${config.githubUser}.github.io/`;
+    const baseUrl = `https://armel-plantier.github.io/Technova/`;
 
     config.projects.forEach((project, index) => {
         const viewerId = `viewer_${index}`;
