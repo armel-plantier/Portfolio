@@ -1,92 +1,38 @@
-/* =========================================
-   1. RESET ET BASE (Style Terminal)
-   ========================================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* RESET ET BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #0d1117; /* Fond sombre GitHub */
-    color: #c9d1d9; /* Texte gris clair */
-    font-family: 'Fira Code', monospace; /* Police Code */
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Fira Code', monospace;
     line-height: 1.6;
     padding: 20px;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 30px;
-}
+.container { max-width: 900px; margin: 0 auto; padding-top: 30px; }
 
-/* =========================================
-   2. TYPOGRAPHIE
-   ========================================= */
-h1 {
-    color: #58a6ff; /* Bleu Tech */
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
+/* TYPOGRAPHIE */
+h1 { color: #58a6ff; font-size: 1.8rem; margin-bottom: 5px; }
+h2 { color: #8b949e; font-size: 1rem; font-weight: 400; margin-bottom: 20px; }
+h3 { color: #7ee787; margin: 30px 0 15px 0; border-bottom: 1px solid #30363d; padding-bottom: 5px; }
+.intro { color: #8b949e; margin-bottom: 30px; }
+hr { border: 0; border-top: 1px solid #30363d; margin: 20px 0; }
 
-h2 {
-    color: #8b949e;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
+/* CURSEUR CLIGNOTANT */
+.cursor { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
-h3 {
-    color: #7ee787; /* Vert Terminal */
-    margin: 30px 0 15px 0;
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 5px;
-}
+/* CARTES PROJETS (ACCORDÉON) */
+.grid { display: flex; flex-direction: column; gap: 15px; }
 
-.intro {
-    color: #8b949e;
-    margin-bottom: 30px;
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid #30363d;
-    margin: 20px 0;
-}
-
-/* Animation du curseur qui clignote */
-.cursor {
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-/* =========================================
-   3. CARTES PROJETS (ACCORDÉON)
-   ========================================= */
-
-/* Grille verticale */
-.grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Le conteneur global d'un projet */
 .project-card {
     background-color: #161b22;
     border: 1px solid #30363d;
     border-radius: 6px;
-    overflow: hidden; /* Important pour les coins arrondis */
+    overflow: hidden;
     transition: border-color 0.2s;
 }
 
-/* L'en-tête sur lequel on clique */
 .card-header {
     display: flex;
     align-items: center;
@@ -95,74 +41,26 @@ hr {
     transition: background-color 0.2s;
 }
 
-.card-header:hover {
-    background-color: #1f242c;
-    border-color: #58a6ff;
-}
+.card-header:hover { background-color: #1f242c; border-color: #58a6ff; }
 
-/* État actif (quand le PDF est ouvert) */
-.card-header.active {
-    background-color: #1f242c;
-    border-bottom: 1px solid #30363d;
-}
+/* État Actif */
+.card-header.active { background-color: #1f242c; border-bottom: 1px solid #30363d; }
+.card-header.active .arrow { transform: rotate(180deg); color: #58a6ff; }
 
-/* Rotation de la flèche quand actif */
-.card-header.active .arrow {
-    transform: rotate(180deg);
-    color: #58a6ff;
-}
+.icon { font-size: 1.8rem; margin-right: 20px; }
+.meta { flex-grow: 1; }
+.meta h4 { color: #c9d1d9; margin-bottom: 4px; }
+.meta p { color: #8b949e; font-size: 0.9rem; }
+.arrow { color: #8b949e; font-weight: bold; transition: transform 0.3s ease; }
 
-/* Icônes et Textes */
-.icon {
-    font-size: 1.8rem;
-    margin-right: 20px;
-}
-
-.meta {
-    flex-grow: 1; /* Prend toute la place dispo */
-}
-
-.meta h4 {
-    color: #c9d1d9;
-    margin-bottom: 4px;
-}
-
-.meta p {
-    color: #8b949e;
-    font-size: 0.9rem;
-}
-
-.arrow {
-    color: #8b949e;
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
-
-/* =========================================
-   4. ZONE D'AFFICHAGE PDF
-   ========================================= */
+/* ZONE PDF */
 .pdf-container {
-    display: none; /* Caché par défaut */
-    background-color: #fff; /* Fond blanc derrière le PDF */
-    height: 600px; /* Hauteur de lecture confortable */
+    display: none;
+    background-color: #fff;
+    height: 600px;
     width: 100%;
 }
 
-/* =========================================
-   5. FOOTER
-   ========================================= */
-footer {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 0.8rem;
-    color: #8b949e;
-}
-
-footer a {
-    color: #58a6ff;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+/* FOOTER */
+footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #8b949e; }
+footer a { color: #58a6ff; text-decoration: none; }
