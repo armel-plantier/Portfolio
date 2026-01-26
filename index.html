@@ -102,11 +102,10 @@
     <p>© 2026 Armel Plantier</p>
 </footer>
 
-<!-- SCRIPT pour afficher les PDF dans la page -->
 <script>
-const user = "armel-plantier";  // Nom GitHub
-const repo = "armel-plantier";  // Nom du repo
-const folder = "procedures";
+const user = "armel-plantier";  // ton utilisateur GitHub
+const repo = "Technova";         // le vrai nom du repo
+const folder = "procedures";     // dossier contenant tes PDF
 
 fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`)
   .then(res => res.json())
@@ -123,8 +122,9 @@ fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`)
             title.textContent = file.name.replace(".pdf", "");
             pdfDiv.appendChild(title);
 
+            // Utilisation de raw.githubusercontent.com pour éviter les problèmes de permissions
             const embed = document.createElement('embed');
-            embed.src = file.download_url;
+            embed.src = `https://raw.githubusercontent.com/${user}/${repo}/main/${folder}/${file.name}`;
             embed.type = "application/pdf";
             embed.width = "100%";
             embed.height = "500px";
@@ -137,7 +137,7 @@ fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`)
   })
   .catch(err => {
     console.error(err);
-    document.getElementById('procedures-list').innerHTML = "<p>Impossible de charger les fichiers. Vérifie que le repo est public et que le dossier procedures existe.</p>";
+    document.getElementById('procedures-list').innerHTML = "<p>Impossible de charger les fichiers. Vérifie que le dossier procedures existe sur la branche main.</p>";
   });
 </script>
 
