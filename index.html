@@ -13,53 +13,102 @@
         <header>
             <h1>armel_plantier<span class="cursor">_</span></h1>
             <h2>> Admin Sys & Réseau | Cybersécurité</h2>
-            <p class="intro">Bienvenue dans mon environnement. Voici mes documentations techniques et projets d'infrastructure.</p>
+            <p class="intro">Documentation technique. Cliquez sur un projet pour le déployer.</p>
         </header>
 
         <hr>
 
         <main>
             <h3>~/Documents/Projets</h3>
-            
             <div class="grid">
                 
-                <a href="Documentation/Mise-en-place-du-reseau-TechNova.pdf" target="_blank" class="card">
-                    <div class="icon">📄</div>
-                    <div class="content">
-                        <h4>Mise en place du réseau</h4></h4>
-                        <p>Hardening SSH, Fail2Ban et IPTables.</p>
+                <div class="project-card">
+                    <div class="card-header" onclick="togglePDF('viewer1', 'Documentation/Mise-en-place-du-reseau-TechNova.pdf')">
+                        <div class="icon">🌐</div>
+                        <div class="meta">
+                            <h4>Mise en place réseau TechNova</h4>
+                            <p>Architecture, VLANs et documentation technique.</p>
+                        </div>
+                        <div class="arrow">▼</div>
                     </div>
-                </a>
+                    <div id="viewer1" class="pdf-container"></div>
+                </div>
 
-                <a href="Documentation/architecture_reseau.pdf" target="_blank" class="card">
-                    <div class="icon">🌐</div>
-                    <div class="content">
-                        <h4>Architecture Réseau TechNova</h4>
-                        <p>Segmentation VLANs et déploiement PfSense.</p>
+                <div class="project-card">
+                    <div class="card-header" onclick="togglePDF('viewer2', 'Documentation/audit_wifi.pdf')">
+                        <div class="icon">🛡️</div>
+                        <div class="meta">
+                            <h4>Audit Sécurité Wi-Fi (Exemple)</h4>
+                            <p>Pentest WPA3 et rapport de vulnérabilité.</p>
+                        </div>
+                        <div class="arrow">▼</div>
                     </div>
-                </a>
+                    <div id="viewer2" class="pdf-container"></div>
+                </div>
 
-                <a href="Documentation/audit_wifi.pdf" target="_blank" class="card">
-                    <div class="icon">🛡️</div>
-                    <div class="content">
-                        <h4>Audit Sécurité Wi-Fi</h4>
-                        <p>Pentest WPA3 et rapport de vulnérabilité.</p>
+                <div class="project-card">
+                    <div class="card-header" onclick="togglePDF('viewer3', 'Documentation/linux_hardening.pdf')">
+                        <div class="icon">🐧</div>
+                        <div class="meta">
+                            <h4>Hardening Linux (Exemple)</h4>
+                            <p>Sécurisation SSH et Firewalling.</p>
+                        </div>
+                        <div class="arrow">▼</div>
                     </div>
-                </a>
+                    <div id="viewer3" class="pdf-container"></div>
+                </div>
 
             </div>
         </main>
 
-        <hr>
-
         <footer>
-            <p>
-                <a href="mailto:mon.email@gmail.com">Contact Email</a> | 
-                <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a>
-            </p>
-            <p class="copyright">© 2026 Armel Plantier - Hébergé sur GitHub Pages</p>
+            <p>© 2026 Armel Plantier - <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
         </footer>
     </div>
+
+    <script>
+        // CONFIGURATION : Ton URL GitHub Pages exacte
+        const githubUrl = "https://armel-plantier.github.io/";
+
+        function togglePDF(containerId, pdfPath) {
+            const container = document.getElementById(containerId);
+            const header = container.previousElementSibling; 
+            
+            // Si c'est déjà ouvert, on ferme
+            if (container.style.display === "block") {
+                container.style.display = "none";
+                container.innerHTML = ""; // On nettoie pour libérer la mémoire
+                header.classList.remove("active");
+                return;
+            }
+
+            // Sinon, on ouvre
+            // 1. On ferme les autres onglets ouverts pour garder ça propre
+            document.querySelectorAll('.pdf-container').forEach(el => {
+                el.style.display = 'none';
+                el.innerHTML = '';
+            });
+            document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
+
+            // 2. Construction de l'URL Google Viewer
+            const fullPdfUrl = githubUrl + pdfPath;
+            console.log("Chargement de : " + fullPdfUrl); // Pour le debug dans la console F12
+            
+            const viewerUrl = "https://docs.google.com/viewer?url=" + fullPdfUrl + "&embedded=true";
+
+            // 3. Création de l'iframe
+            const iframe = document.createElement('iframe');
+            iframe.src = viewerUrl;
+            iframe.width = "100%";
+            iframe.height = "600px";
+            iframe.style.border = "none";
+
+            // 4. Injection
+            container.appendChild(iframe);
+            container.style.display = "block";
+            header.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
