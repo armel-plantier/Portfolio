@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. ANIMATION MACHINE À ÉCRIRE (Manquait dans ton code) ---
+    // --- 1. ANIMATION MACHINE À ÉCRIRE ---
     const textElement = document.querySelector("h2");
     const textToType = "> Admin Sys & Réseau | Passionné de Cybersécurité";
     
@@ -45,15 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         grid.innerHTML += cardHTML;
     });
+
+    // --- 3. ÉCOUTEUR POUR OUVRIR LE POPUP EMAIL ---
+    const emailTrigger = document.getElementById("email-trigger");
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", function(e) {
+            e.preventDefault(); // Empêche le comportement par défaut
+            document.getElementById("email-modal").style.display = "flex";
+        });
+    }
 });
 
-// --- 3. FONCTION D'OUVERTURE PDF ---
+// --- 4. FONCTION D'OUVERTURE PDF ---
 window.togglePDF = function(containerId, pdfPath) {
     const container = document.getElementById(containerId);
     const header = container.previousElementSibling;
     const githubUrl = `https://${config.githubUser}.github.io/`;
 
-    // Si ouvert, on ferme
     if (container.style.display === "block") {
         container.style.display = "none";
         container.innerHTML = "";
@@ -61,14 +69,12 @@ window.togglePDF = function(containerId, pdfPath) {
         return;
     }
 
-    // Sinon, on ferme les autres d'abord
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
     });
     document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
 
-    // Et on ouvre le courant via Google Viewer
     const fullPdfUrl = githubUrl + pdfPath;
     const viewerUrl = "https://docs.google.com/viewer?url=" + fullPdfUrl + "&embedded=true";
 
@@ -81,4 +87,36 @@ window.togglePDF = function(containerId, pdfPath) {
     container.appendChild(iframe);
     container.style.display = "block";
     header.classList.add("active");
+};
+
+// --- 5. FONCTIONS POPUP EMAIL ---
+
+// Fermer le modal
+window.closeModal = function() {
+    document.getElementById("email-modal").style.display = "none";
+    const feedback = document.getElementById("copy-feedback");
+    if(feedback) feedback.innerText = "";
+};
+
+// Fermer en cliquant en dehors
+window.onclick = function(event) {
+    const modal = document.getElementById("email-modal");
+    if (event.target == modal) {
+        closeModal();
+    }
+};
+
+// Copier l'email
+window.copyEmail = function() {
+    const emailText = document.getElementById("email-text").innerText;
+    
+    navigator.clipboard.writeText(emailText).then(() => {
+        const feedback = document.getElementById("copy-feedback");
+        if(feedback) {
+            feedback.innerText = "Adresse copiée ! ✅";
+            setTimeout(closeModal, 2000); // Ferme auto après 2s
+        }
+    }).catch(err => {
+        console.error('Erreur copie :', err);
+    });
 };
