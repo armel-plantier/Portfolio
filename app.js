@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Armel Plantier</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>armel_plantier<span class="cursor">_</span></h1>
+            <h2>> Admin Sys & Réseau | Cybersécurité</h2>
+            <p class="intro">Documentation technique. Cliquez sur un projet pour le déployer.</p>
+        </header>
+
+        <hr>
+
+        <main>
+            <h3>~/Documents/Projets</h3>
+            
+            <div id="project-grid" class="grid"></div>
+            
+        </main>
+
+        <footer>
+            <p>© 2026 Armel Plantier - <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+
+</body>
+</html>
