@@ -1,9 +1,11 @@
+/* --- OPTION 1 : NEON CYBERPUNK --- */
+
 /* RESET ET BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background-color: #0d1117;
-    color: #c9d1d9;
+    background-color: #0b0c10; /* Fond très sombre */
+    color: #c5c6c7;
     font-family: 'Fira Code', monospace;
     line-height: 1.6;
     padding: 20px;
@@ -11,56 +13,70 @@ body {
 
 .container { max-width: 900px; margin: 0 auto; padding-top: 30px; }
 
-/* TYPOGRAPHIE */
-h1 { color: #58a6ff; font-size: 1.8rem; margin-bottom: 5px; }
-h2 { color: #8b949e; font-size: 1rem; font-weight: 400; margin-bottom: 20px; }
-h3 { color: #7ee787; margin: 30px 0 15px 0; border-bottom: 1px solid #30363d; padding-bottom: 5px; }
+/* TYPOGRAPHIE NEON */
+h1 { 
+    color: #66fcf1; 
+    font-size: 1.8rem; 
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.6); /* Glow */
+    margin-bottom: 5px; 
+}
+h2 { color: #45a29e; font-size: 1rem; font-weight: 400; margin-bottom: 20px; }
+h3 { 
+    color: #c5c6c7; 
+    border-bottom: 1px solid #45a29e; 
+    padding-bottom: 5px; 
+    margin: 30px 0 15px 0;
+}
 .intro { color: #8b949e; margin-bottom: 30px; }
-hr { border: 0; border-top: 1px solid #30363d; margin: 20px 0; }
+hr { border: 0; border-top: 1px solid #1f2833; margin: 20px 0; }
 
-/* CURSEUR CLIGNOTANT */
-.cursor { animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-
-/* CARTES PROJETS (ACCORDÉON) */
+/* CARTES PROJETS */
 .grid { display: flex; flex-direction: column; gap: 15px; }
 
 .project-card {
-    background-color: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 6px;
+    background-color: #1f2833;
+    border: 1px solid #0b0c10;
+    border-radius: 4px;
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: all 0.3s ease;
 }
 
 .card-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    display: flex; align-items: center; padding: 20px; cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.card-header:hover { background-color: #1f242c; border-color: #58a6ff; }
+/* EFFET HOVER PUISSANT */
+.card-header:hover { 
+    background-color: #26303d; 
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.2); /* Halo lumineux */
+    border-left: 4px solid #66fcf1;
+}
 
-/* État Actif */
-.card-header.active { background-color: #1f242c; border-bottom: 1px solid #30363d; }
-.card-header.active .arrow { transform: rotate(180deg); color: #58a6ff; }
+.card-header.active { 
+    background-color: #1f2833; 
+    border-bottom: 1px solid #66fcf1;
+    border-left: 4px solid #66fcf1;
+}
 
-.icon { font-size: 1.8rem; margin-right: 20px; }
+.icon { font-size: 1.8rem; margin-right: 20px; text-shadow: 0 0 8px rgba(255,255,255,0.3); }
 .meta { flex-grow: 1; }
-.meta h4 { color: #c9d1d9; margin-bottom: 4px; }
+.meta h4 { color: #fff; margin-bottom: 4px; }
 .meta p { color: #8b949e; font-size: 0.9rem; }
-.arrow { color: #8b949e; font-weight: bold; transition: transform 0.3s ease; }
 
-/* ZONE PDF */
-.pdf-container {
-    display: none;
-    background-color: #fff;
-    height: 600px;
-    width: 100%;
+.arrow { transition: transform 0.3s; color: #45a29e; }
+.card-header.active .arrow { transform: rotate(180deg); color: #66fcf1; }
+
+/* BOUTON EXTERNE */
+.external-btn {
+    text-decoration: none; font-size: 1.2rem; margin-right: 20px;
+    color: #45a29e; transition: all 0.2s;
 }
+.external-btn:hover { color: #66fcf1; transform: scale(1.2); text-shadow: 0 0 8px #66fcf1; }
 
-/* FOOTER */
-footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #8b949e; }
-footer a { color: #58a6ff; text-decoration: none; }
+/* CURSEUR ET PDF */
+.cursor { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.pdf-container { display: none; background: #fff; height: 600px; width: 100%; }
+footer { text-align: center; margin-top: 50px; font-size: 0.8rem; color: #45a29e; }
+footer a { color: #66fcf1; text-decoration: none; }
