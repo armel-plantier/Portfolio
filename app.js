@@ -1,9 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const grid = document.getElementById("project-grid");
     
-    // On génère le HTML pour chaque projet dans la config
+    // --- 1. ANIMATION MACHINE À ÉCRIRE (Manquait dans ton code) ---
+    const textElement = document.querySelector("h2");
+    const textToType = "> Admin Sys & Réseau | Passionné de Cybersécurité";
+    
+    if(textElement) {
+        textElement.innerText = ""; 
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                textElement.innerHTML += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50); // Vitesse de frappe
+            }
+        }
+        setTimeout(typeWriter, 500);
+    }
+
+    // --- 2. GÉNÉRATION DES PROJETS ---
+    const grid = document.getElementById("project-grid");
+    const baseUrl = `https://${config.githubUser}.github.io/`;
+
     config.projects.forEach((project, index) => {
         const viewerId = `viewer_${index}`;
+        const fullPdfUrl = baseUrl + project.path;
         
         const cardHTML = `
             <div class="project-card">
@@ -13,6 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4>${project.title}</h4>
                         <p>${project.description}</p>
                     </div>
+                    
+                    <a href="${fullPdfUrl}" target="_blank" class="external-btn" onclick="event.stopPropagation()" title="Ouvrir le PDF">
+                        ↗
+                    </a>
+                    
                     <div class="arrow">▼</div>
                 </div>
                 <div id="${viewerId}" class="pdf-container"></div>
@@ -22,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Fonction globale pour ouvrir/fermer le PDF
+// --- 3. FONCTION D'OUVERTURE PDF ---
 window.togglePDF = function(containerId, pdfPath) {
     const container = document.getElementById(containerId);
     const header = container.previousElementSibling;
