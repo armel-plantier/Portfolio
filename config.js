@@ -8,7 +8,7 @@ const config = {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             // Chemin EXACT vérifié ensemble
-            path: "Technova/Documentation/Mise-en-place-du-reseau-TechNova.pdf",
+            path: "Technova/Documentation/reseau_technova.pdf",
             icon: "🌐"
         },
         {
