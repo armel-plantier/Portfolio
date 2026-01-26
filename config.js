@@ -8,7 +8,7 @@ const config = {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             // Chemin EXACT vérifié ensemble
-            path: "https://github.com/armel-plantier/Technova/blob/main/Documents/Mise%20en%20place%20du%20r%C3%A9seau%20TechNova.pdf",
+            path: "reseau-technova.pdf",
             icon: "🌐"
         },
         {
