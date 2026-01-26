@@ -1,37 +1,177 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Armel Plantier</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+/* --- OPTION : SECOPS PRO (Blue Team / SysAdmin) --- */
 
-    <div class="container">
-        <header>
-            <h1>armel_plantier<span class="cursor">_</span></h1>
-            <h2>> Admin Sys & Réseau | Cybersécurité</h2>
-            <p class="intro">Documentation technique. Cliquez sur un projet pour le déployer.</p>
-        </header>
+/* 1. CONFIGURATION GÉNÉRALE */
+:root {
+    --bg-color: #0d1117;       /* Fond très sombre (GitHub Dimmed) */
+    --card-bg: #161b22;        /* Fond des cartes */
+    --border-color: #30363d;   /* Bordures subtiles */
+    --text-main: #c9d1d9;      /* Texte lisible (pas blanc pur) */
+    --text-muted: #8b949e;     /* Texte secondaire */
+    --accent-color: #58a6ff;   /* Bleu Pro (Lien/Action) */
+    --success-color: #238636;  /* Vert discret (Status) */
+}
 
-        <hr>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <main>
-            <h3>~Documentation du projet Technova</h3>
-            
-            <div id="project-grid" class="grid"></div>
-            
-        </main>
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Fira Code', 'Consolas', monospace; /* Police code mais propre */
+    line-height: 1.6;
+    font-size: 15px;
+    padding: 20px;
+}
 
-        <footer>
-            <p>© 2026 Armel Plantier - <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
-        </footer>
-    </div>
+.container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding-top: 40px; 
+}
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+/* 2. EN-TÊTE (Style Prompt Terminal) */
+h1 { 
+    color: var(--text-main); 
+    font-size: 1.6rem; 
+    font-weight: 600; 
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
 
-</body>
-</html>
+/* Simulation du prompt root */
+h1::before {
+    content: "root@portfolio:~# ";
+    color: var(--success-color);
+    font-size: 1rem;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+
+h2 { 
+    color: var(--text-muted); 
+    font-size: 1rem; 
+    font-weight: 400; 
+    margin-bottom: 30px; 
+    padding-left: 2px;
+}
+
+.intro { 
+    border-left: 3px solid var(--border-color);
+    padding-left: 15px;
+    margin-bottom: 40px;
+    color: var(--text-muted);
+}
+
+h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* 3. GRILLE DE PROJETS (Style Dashboard) */
+.grid { display: flex; flex-direction: column; gap: 10px; }
+
+.project-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-header {
+    display: flex; 
+    align-items: center; 
+    padding: 18px 25px; 
+    cursor: pointer;
+    border-left: 3px solid transparent; /* Prêt pour le hover */
+}
+
+/* Effet Hover Professionnel : Juste une barre colorée et un fond légèrement plus clair */
+.card-header:hover {
+    background-color: #1c2128;
+    border-left: 3px solid var(--accent-color);
+}
+
+.card-header.active {
+    background-color: #1c2128;
+    border-bottom: 1px solid var(--border-color);
+    border-left: 3px solid var(--success-color); /* Vert quand ouvert */
+}
+
+.icon { 
+    font-size: 1.4rem; 
+    margin-right: 20px; 
+    opacity: 0.8; 
+}
+
+.meta { flex-grow: 1; }
+
+.meta h4 { 
+    color: var(--text-main); 
+    font-size: 1rem; 
+    margin-bottom: 4px;
+    font-weight: 600; 
+}
+
+.meta p { 
+    color: var(--text-muted); 
+    font-size: 0.85rem; 
+    font-family: sans-serif; /* Plus lisible pour les descriptions */
+}
+
+/* 4. BOUTONS ET NAVIGATION */
+.arrow { 
+    color: var(--text-muted); 
+    font-size: 0.8rem;
+    transition: transform 0.3s; 
+}
+.card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
+
+.external-btn {
+    text-decoration: none; 
+    color: var(--accent-color);
+    font-size: 1.1rem; 
+    margin-right: 20px; 
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.external-btn:hover {
+    opacity: 1;
+    background-color: rgba(88, 166, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+/* 5. PDF ET FOOTER */
+.cursor { 
+    display: inline-block; 
+    width: 8px; 
+    height: 18px; 
+    background-color: var(--accent-color);
+    animation: blink 1s infinite; 
+    vertical-align: middle;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.pdf-container { 
+    display: none; 
+    background: #fff; /* Le PDF a besoin de blanc */
+    height: 650px; 
+    width: 100%; 
+}
+
+footer { 
+    text-align: center; 
+    margin-top: 60px; 
+    color: var(--border-color); 
+    font-size: 0.8rem; 
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
