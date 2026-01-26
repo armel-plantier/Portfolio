@@ -1,37 +1,59 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Armel Plantier</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("project-grid");
+    
+    // On génère le HTML pour chaque projet dans la config
+    config.projects.forEach((project, index) => {
+        const viewerId = `viewer_${index}`;
+        
+        const cardHTML = `
+            <div class="project-card">
+                <div class="card-header" onclick="togglePDF('${viewerId}', '${project.path}')">
+                    <div class="icon">${project.icon}</div>
+                    <div class="meta">
+                        <h4>${project.title}</h4>
+                        <p>${project.description}</p>
+                    </div>
+                    <div class="arrow">▼</div>
+                </div>
+                <div id="${viewerId}" class="pdf-container"></div>
+            </div>
+        `;
+        grid.innerHTML += cardHTML;
+    });
+});
 
-    <div class="container">
-        <header>
-            <h1>armel_plantier<span class="cursor">_</span></h1>
-            <h2>> Admin Sys & Réseau | Cybersécurité</h2>
-            <p class="intro">Documentation technique. Cliquez sur un projet pour le déployer.</p>
-        </header>
+// Fonction globale pour ouvrir/fermer le PDF
+window.togglePDF = function(containerId, pdfPath) {
+    const container = document.getElementById(containerId);
+    const header = container.previousElementSibling;
+    const githubUrl = `https://${config.githubUser}.github.io/`;
 
-        <hr>
+    // Si ouvert, on ferme
+    if (container.style.display === "block") {
+        container.style.display = "none";
+        container.innerHTML = "";
+        header.classList.remove("active");
+        return;
+    }
 
-        <main>
-            <h3>~/Documents/Projets</h3>
-            
-            <div id="project-grid" class="grid"></div>
-            
-        </main>
+    // Sinon, on ferme les autres d'abord
+    document.querySelectorAll('.pdf-container').forEach(el => {
+        el.style.display = 'none';
+        el.innerHTML = '';
+    });
+    document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
 
-        <footer>
-            <p>© 2026 Armel Plantier - <a href="https://linkedin.com/in/tonprofil" target="_blank">LinkedIn</a></p>
-        </footer>
-    </div>
+    // Et on ouvre le courant via Google Viewer
+    const fullPdfUrl = githubUrl + pdfPath;
+    const viewerUrl = "https://docs.google.com/viewer?url=" + fullPdfUrl + "&embedded=true";
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+    const iframe = document.createElement('iframe');
+    iframe.src = viewerUrl;
+    iframe.width = "100%";
+    iframe.height = "600px";
+    iframe.style.border = "none";
 
-</body>
-</html>
+    container.appendChild(iframe);
+    container.style.display = "block";
+    header.classList.add("active");
+};
