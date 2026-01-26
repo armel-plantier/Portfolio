@@ -1,2 +1,14 @@
-# Projet Technova
-Conception d'une infrastructure d'entreprise virtuelle. Ce projet met en pratique mes compétences en administration système et réseau, tout en intégrant les principes fondamentaux de sécurité.
+# Portfolio de Armel PLANTIER
+## Administrateur Système & Réseau / Cybersécurité
+
+Bienvenue sur mon portfolio technique. Voici mes documentations et projets.
+
+### 📂 Mes Procédures et Documentations
+
+* [📄 Installation et Sécurisation Serveur Linux](Procedure_Linux.pdf)
+* [📄 Mise en place d'un Firewall pfSense](Procedure_Firewall.pdf)
+* [📄 Audit de sécurité Wi-Fi](Audit_Wifi.pdf)
+
+---
+📧 Contact : mon.email@gmail.com
+🔗 [Mon LinkedIn](https://linkedin.com/in/votreprofil)
