@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (charIndex < textToType.length) {
                 textElement.innerHTML += textToType.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 50); // Vitesse de frappe
+                setTimeout(typeWriter, 50);
             }
         }
         setTimeout(typeWriter, 500);
@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. GÉNÉRATION DES PROJETS ---
     const grid = document.getElementById("project-grid");
-    const baseUrl = `https://armel-plantier.github.io/Technova/Documents`;
+    // CORRECTION ICI : Ajout du "/" à la fin
+    const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
 
     config.projects.forEach((project, index) => {
         const viewerId = `viewer_${index}`;
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         const cardHTML = `
             <div class="project-card">
-                <div class="card-header" onclick="togglePDF('${viewerId}', '${project.path}')">
+                <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
                     <div class="icon">${project.icon}</div>
                     <div class="meta">
                         <h4>${project.title}</h4>
@@ -50,18 +51,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault(); // Empêche le comportement par défaut
+            e.preventDefault();
             document.getElementById("email-modal").style.display = "flex";
         });
     }
 });
 
-// --- 4. FONCTION D'OUVERTURE PDF ---
-window.togglePDF = function(containerId, pdfPath) {
+// --- 4. FONCTION D'OUVERTURE PDF (CORRIGÉE) ---
+// Note : Le 2ème argument est maintenant 'url' complète, pas juste le chemin partiel
+window.togglePDF = function(containerId, url) {
     const container = document.getElementById(containerId);
     const header = container.previousElementSibling;
-    const githubUrl = `https://${config.githubUser}.github.io/`;
 
+    // Fermeture si déjà ouvert
     if (container.style.display === "block") {
         container.style.display = "none";
         container.innerHTML = "";
@@ -69,14 +71,16 @@ window.togglePDF = function(containerId, pdfPath) {
         return;
     }
 
+    // Ferme les autres
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
     });
     document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
 
-    const fullPdfUrl = githubUrl + pdfPath;
-    const viewerUrl = "https://docs.google.com/viewer?url=" + fullPdfUrl + "&embedded=true";
+    // CORRECTION ICI : On utilise directement l'URL passée en paramètre
+    // Plus de "githubUrl + path" qui cassait le lien vers Technova
+    const viewerUrl = "https://docs.google.com/viewer?url=" + url + "&embedded=true";
 
     const iframe = document.createElement('iframe');
     iframe.src = viewerUrl;
@@ -90,15 +94,12 @@ window.togglePDF = function(containerId, pdfPath) {
 };
 
 // --- 5. FONCTIONS POPUP EMAIL ---
-
-// Fermer le modal
 window.closeModal = function() {
     document.getElementById("email-modal").style.display = "none";
     const feedback = document.getElementById("copy-feedback");
     if(feedback) feedback.innerText = "";
 };
 
-// Fermer en cliquant en dehors
 window.onclick = function(event) {
     const modal = document.getElementById("email-modal");
     if (event.target == modal) {
@@ -106,7 +107,6 @@ window.onclick = function(event) {
     }
 };
 
-// Copier l'email
 window.copyEmail = function() {
     const emailText = document.getElementById("email-text").innerText;
     
@@ -114,7 +114,7 @@ window.copyEmail = function() {
         const feedback = document.getElementById("copy-feedback");
         if(feedback) {
             feedback.innerText = "Adresse copiée ! ✅";
-            setTimeout(closeModal, 2000); // Ferme auto après 2s
+            setTimeout(closeModal, 2000);
         }
     }).catch(err => {
         console.error('Erreur copie :', err);
