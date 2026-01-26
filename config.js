@@ -1,26 +1,26 @@
 const config = {
-    // Ton pseudo GitHub (pour construire les liens absolus)
+    // Ton utilisateur GitHub pour les liens
     githubUser: "armel-plantier",
 
-    // La liste de tes projets. Copie-colle un bloc {} pour ajouter un nouveau PDF.
+    // Liste des projets
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
-            // Le chemin EXACT depuis la racine de ton dépôt GitHub
+            // Chemin EXACT vérifié ensemble
             path: "TechNova/Documentation/Mise-en-place-du-reseau-TechNova.pdf",
-            icon: "🌐" 
+            icon: "🌐"
         },
         {
-            title: "Audit Sécurité Wi-Fi",
-            description: "Pentest WPA3 et rapport de vulnérabilité.",
-            path: "TechNova/Documentation/audit_wifi.pdf", // Exemple à modifier
+            title: "Audit Sécurité Wi-Fi (Exemple)",
+            description: "Test d'intrusion WPA3.",
+            path: "TechNova/Documentation/audit_wifi.pdf", 
             icon: "🛡️"
         },
         {
-            title: "Hardening Serveur Linux",
-            description: "Sécurisation SSH, Fail2Ban et IPTables.",
-            path: "TechNova/Documentation/linux_hardening.pdf", // Exemple à modifier
+            title: "Hardening Linux (Exemple)",
+            description: "Sécurisation SSH et Firewall.",
+            path: "TechNova/Documentation/linux_hardening.pdf",
             icon: "🐧"
         }
     ]
