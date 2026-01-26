@@ -65,30 +65,49 @@ h2 {
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-/* --- NOUVEAU : GESTION DES LIENS SOCIAUX SVG --- */
-.social-links { margin-bottom: 30px; }
+
+/* --- GESTION DES LIENS SOCIAUX (CORRIGÉ & ROBUSTE) --- */
+.social-links { 
+    display: flex;           /* Force l'alignement horizontal */
+    align-items: center;     /* Centre verticalement */
+    gap: 25px;               /* Espace entre les groupes */
+    margin-bottom: 30px; 
+}
 
 .social-link {
-    display: inline-flex;    /* Alignement icône + texte */
-    align-items: center;     
-    gap: 8px;                /* Espace icône/texte */
-    margin-right: 25px;
+    display: inline-flex;    /* Colle l'icône au texte */
+    align-items: center;     /* Centre l'icône face au texte */
     color: var(--text-muted);
     border-bottom: 1px dashed transparent; 
     transition: all 0.2s;
     cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .social-link:hover {
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
-    text-decoration: none; /* On gère le soulignement nous-mêmes */
 }
 
-/* Le SVG prend la couleur du texte */
+/* Configuration des Logos SVG */
 .social-link svg {
-    stroke: currentColor;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;         /* Empêche l'écrasement */
+    margin-right: 8px;       /* Espace avec le texte */
+    
+    /* Par défaut, on remplit (pour GitHub et LinkedIn) */
+    fill: currentColor;
 }
+
+/* Exception pour l'Email (qui est un contour) */
+.social-link svg.feather-mail {
+    fill: none;              /* Pas de remplissage */
+    stroke: currentColor;    /* Couleur du trait */
+    stroke-width: 2;
+}
+
 
 /* Compétences */
 .skills-section { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
@@ -156,7 +175,7 @@ footer {
     display: none; /* Caché par défaut */
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Fond sombre */
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
     z-index: 1000;
     justify-content: center;
