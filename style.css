@@ -65,29 +65,40 @@ h2 {
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-/* --- NOUVEAU : GESTION DES LIENS SOCIAUX SVG --- */
-.social-links { margin-bottom: 30px; }
+/* --- GESTION DES LIENS SOCIAUX (CORRIGÉ) --- */
+.social-links { 
+    display: flex;           /* Force les 3 liens à être sur une ligne */
+    align-items: center;     /* Centre verticalement les liens entre eux */
+    gap: 20px;               /* Espace entre les groupes (Github / Linkedin / Email) */
+    margin-bottom: 30px; 
+}
 
 .social-link {
-    display: inline-flex;    /* Alignement icône + texte */
-    align-items: center;     
-    gap: 8px;                /* Espace icône/texte */
-    margin-right: 25px;
+    display: inline-flex;    /* INDISPENSABLE : Aligne l'icône et le texte */
+    align-items: center;     /* Centre l'icône face au texte */
+    gap: 8px;                /* Espace entre le logo et le mot */
+    
     color: var(--text-muted);
-    border-bottom: 1px dashed transparent; 
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
     transition: all 0.2s;
-    cursor: pointer;
+    padding-bottom: 2px;
 }
 
 .social-link:hover {
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
-    text-decoration: none; /* On gère le soulignement nous-mêmes */
 }
 
-/* Le SVG prend la couleur du texte */
+/* Force l'affichage des icônes SVG */
 .social-link svg {
-    stroke: currentColor;
+    width: 20px;             /* Taille forcée */
+    height: 20px;            /* Taille forcée */
+    stroke: currentColor;    /* Prend la couleur du texte */
+    stroke-width: 2;         /* Épaisseur du trait */
+    fill: none;              /* Pas de remplissage */
+    display: block;          /* Évite les décalages bizarres */
 }
 
 /* Compétences */
