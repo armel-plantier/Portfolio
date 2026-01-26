@@ -1,70 +1,177 @@
-/* --- OPTION 3 : GLASSMORPHISM --- */
+/* --- OPTION : SECOPS PRO (Blue Team / SysAdmin) --- */
 
-/* RESET ET BASE */
+/* 1. CONFIGURATION GÉNÉRALE */
+:root {
+    --bg-color: #0d1117;       /* Fond très sombre (GitHub Dimmed) */
+    --card-bg: #161b22;        /* Fond des cartes */
+    --border-color: #30363d;   /* Bordures subtiles */
+    --text-main: #c9d1d9;      /* Texte lisible (pas blanc pur) */
+    --text-muted: #8b949e;     /* Texte secondaire */
+    --accent-color: #58a6ff;   /* Bleu Pro (Lien/Action) */
+    --success-color: #238636;  /* Vert discret (Status) */
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    /* Dégradé de fond subtil */
-    background: radial-gradient(circle at top left, #232526, #414345);
-    min-height: 100vh;
-    color: #e0e0e0;
-    font-family: 'Fira Code', sans-serif; /* Fira Code passe bien aussi ici */
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Fira Code', 'Consolas', monospace; /* Police code mais propre */
     line-height: 1.6;
+    font-size: 15px;
     padding: 20px;
 }
 
-.container { max-width: 900px; margin: 0 auto; padding-top: 40px; }
+.container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding-top: 40px; 
+}
 
-/* TYPOGRAPHIE CLEAN */
-h1 { color: #fff; font-size: 2rem; font-weight: 600; margin-bottom: 5px; letter-spacing: 1px; }
-h2 { color: #a0a0a0; font-size: 1rem; font-weight: 300; margin-bottom: 30px; }
-h3 { color: #fff; margin: 40px 0 20px 0; font-weight: 500; }
-.intro { color: #ccc; margin-bottom: 30px; font-size: 1.1rem; }
-hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0; }
+/* 2. EN-TÊTE (Style Prompt Terminal) */
+h1 { 
+    color: var(--text-main); 
+    font-size: 1.6rem; 
+    font-weight: 600; 
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
 
-/* CARTES EN VERRE DÉPOLI */
-.grid { display: flex; flex-direction: column; gap: 20px; }
+/* Simulation du prompt root */
+h1::before {
+    content: "root@portfolio:~# ";
+    color: var(--success-color);
+    font-size: 1rem;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+
+h2 { 
+    color: var(--text-muted); 
+    font-size: 1rem; 
+    font-weight: 400; 
+    margin-bottom: 30px; 
+    padding-left: 2px;
+}
+
+.intro { 
+    border-left: 3px solid var(--border-color);
+    padding-left: 15px;
+    margin-bottom: 40px;
+    color: var(--text-muted);
+}
+
+h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+/* 3. GRILLE DE PROJETS (Style Dashboard) */
+.grid { display: flex; flex-direction: column; gap: 10px; }
 
 .project-card {
-    /* L'effet Verre */
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, background 0.2s;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
 }
 
 .card-header {
-    display: flex; align-items: center; padding: 25px; cursor: pointer;
+    display: flex; 
+    align-items: center; 
+    padding: 18px 25px; 
+    cursor: pointer;
+    border-left: 3px solid transparent; /* Prêt pour le hover */
 }
 
+/* Effet Hover Professionnel : Juste une barre colorée et un fond légèrement plus clair */
 .card-header:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+    background-color: #1c2128;
+    border-left: 3px solid var(--accent-color);
 }
 
 .card-header.active {
-    background: rgba(255, 255, 255, 0.15);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #1c2128;
+    border-bottom: 1px solid var(--border-color);
+    border-left: 3px solid var(--success-color); /* Vert quand ouvert */
 }
 
-.icon { font-size: 2rem; margin-right: 25px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2)); }
+.icon { 
+    font-size: 1.4rem; 
+    margin-right: 20px; 
+    opacity: 0.8; 
+}
+
 .meta { flex-grow: 1; }
-.meta h4 { color: #fff; font-size: 1.1rem; margin-bottom: 5px; }
-.meta p { color: #aaa; font-size: 0.95rem; }
 
-.arrow { color: rgba(255,255,255,0.5); transition: transform 0.3s; }
-.card-header.active .arrow { transform: rotate(180deg); color: #fff; }
+.meta h4 { 
+    color: var(--text-main); 
+    font-size: 1rem; 
+    margin-bottom: 4px;
+    font-weight: 600; 
+}
 
-/* BOUTON EXTERNE */
-.external-btn { text-decoration: none; font-size: 1.3rem; margin-right: 25px; filter: grayscale(1); transition: 0.2s; }
-.external-btn:hover { filter: grayscale(0); transform: scale(1.1); }
+.meta p { 
+    color: var(--text-muted); 
+    font-size: 0.85rem; 
+    font-family: sans-serif; /* Plus lisible pour les descriptions */
+}
 
-/* PDF ET FOOTER */
-.cursor { animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.pdf-container { display: none; background: #fff; height: 650px; width: 100%; }
-footer { text-align: center; margin-top: 60px; color: rgba(255,255,255,0.3); font-size: 0.9rem; }
-footer a { color: #fff; text-decoration: none; border-bottom: 1px dotted #fff; }
+/* 4. BOUTONS ET NAVIGATION */
+.arrow { 
+    color: var(--text-muted); 
+    font-size: 0.8rem;
+    transition: transform 0.3s; 
+}
+.card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
+
+.external-btn {
+    text-decoration: none; 
+    color: var(--accent-color);
+    font-size: 1.1rem; 
+    margin-right: 20px; 
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.external-btn:hover {
+    opacity: 1;
+    background-color: rgba(88, 166, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+/* 5. PDF ET FOOTER */
+.cursor { 
+    display: inline-block; 
+    width: 8px; 
+    height: 18px; 
+    background-color: var(--accent-color);
+    animation: blink 1s infinite; 
+    vertical-align: middle;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.pdf-container { 
+    display: none; 
+    background: #fff; /* Le PDF a besoin de blanc */
+    height: 650px; 
+    width: 100%; 
+}
+
+footer { 
+    text-align: center; 
+    margin-top: 60px; 
+    color: var(--border-color); 
+    font-size: 0.8rem; 
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
