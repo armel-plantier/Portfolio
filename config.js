@@ -1,26 +1,22 @@
 const config = {
-    // Ton utilisateur GitHub pour les liens
     githubUser: "armel-plantier",
-
-    // Liste des projets
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
-            // Chemin EXACT vérifié ensemble
-            path: "reseau-technova.pdf",
+            path: "reseau-technova.pdf", // Juste le nom du fichier
             icon: "🌐"
         },
         {
-            title: "Audit Sécurité Wi-Fi (Exemple)",
+            title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3.",
-            path: "TechNova/Documentation/audit_wifi.pdf", 
+            path: "audit_wifi.pdf",      // Juste le nom du fichier
             icon: "🛡️"
         },
         {
-            title: "Hardening Linux (Exemple)",
+            title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
-            path: "TechNova/Documentation/linux_hardening.pdf",
+            path: "linux_hardening.pdf", // Juste le nom du fichier
             icon: "🐧"
         }
     ]
