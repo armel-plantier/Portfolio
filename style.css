@@ -65,10 +65,30 @@ h2 {
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-/* Liens */
+/* --- NOUVEAU : GESTION DES LIENS SOCIAUX SVG --- */
 .social-links { margin-bottom: 30px; }
-.social-links a { margin-right: 20px; color: var(--text-main); border-bottom: 1px dashed var(--border-color); }
-.social-links a:hover { color: var(--accent-color); border-bottom-style: solid; }
+
+.social-link {
+    display: inline-flex;    /* Alignement icône + texte */
+    align-items: center;     
+    gap: 8px;                /* Espace icône/texte */
+    margin-right: 25px;
+    color: var(--text-muted);
+    border-bottom: 1px dashed transparent; 
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.social-link:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    text-decoration: none; /* On gère le soulignement nous-mêmes */
+}
+
+/* Le SVG prend la couleur du texte */
+.social-link svg {
+    stroke: currentColor;
+}
 
 /* Compétences */
 .skills-section { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
@@ -130,3 +150,62 @@ footer {
     text-align: center; margin-top: 60px; color: var(--border-color); 
     font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 20px; 
 }
+
+/* --- EMAIL POPUP (MODAL) --- */
+.modal-overlay {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Fond sombre */
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    width: 90%; max-width: 400px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background: rgba(255,255,255,0.05);
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: monospace; color: var(--success-color);
+}
+
+.close-btn {
+    background: none; border: none; color: var(--text-muted);
+    font-size: 1.5rem; cursor: pointer;
+}
+.close-btn:hover { color: #ff5555; }
+
+.modal-body { padding: 20px; text-align: center; }
+
+.email-box {
+    background: #0d1117;
+    border: 1px dashed var(--border-color);
+    padding: 10px; margin: 10px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    border-radius: 4px;
+}
+
+#email-text { color: var(--accent-color); font-weight: bold; font-size: 0.9rem;}
+
+.copy-btn {
+    background: none; border: 1px solid var(--border-color);
+    color: var(--text-main); cursor: pointer; padding: 5px 10px;
+    border-radius: 4px; transition: 0.2s;
+}
+.copy-btn:hover { background: var(--accent-color); color: #000; }
