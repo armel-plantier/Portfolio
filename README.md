@@ -5,8 +5,7 @@ Bienvenue sur mon portfolio technique. Voici mes documentations et projets.
 
 ### 📂 Mes Procédures et Documentations
 
-* 📄 <a href="Documentation/Mise-en-place-du-reseau-TechNova.pdf" target="_blank">Installation et Sécurisation Serveur Linux</a>
-
+* 📄 <a href="Documentation/Mise-en-place-du-reseau-TechNova.pdf" target="_blank" type="application/pdf">Installation et Sécurisation Serveur Linux</a>
 
 ---
 📧 Contact : mon.email@gmail.com
