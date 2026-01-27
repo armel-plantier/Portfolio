@@ -49,7 +49,7 @@ const config = {
         {
             name: "🐧 Administration Système",
             details: [
-                "Linux Hardening (Debian/RHEL)",
+                "Linux Hardening",
                 "Windows Server & AD",
                 "Gestion des droits (chmod/chown)",
                 "Virtualisation (Proxmox/VMware)"
