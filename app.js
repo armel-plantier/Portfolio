@@ -61,9 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================
     // 2. ANIMATION MACHINE À ÉCRIRE (Adaptée au config.js)
     // ============================================
-    // Note : J'ai changé le sélecteur pour viser l'ID précis du nouveau HTML
     const textElement = document.getElementById("typewriter-area");
-    const textToType = config.profile.typewriterText; // Le texte vient du config !
+    const textToType = config.profile.typewriterText; 
     
     if(textElement) {
         textElement.innerText = ""; 
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================
-    // 3. GÉNÉRATION DES PROJETS (Ta logique corrigée)
+    // 3. GÉNÉRATION DES PROJETS
     // ============================================
     const grid = document.getElementById("project-grid");
     
@@ -91,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Construction de l'URL complète
         const fullPdfUrl = baseUrl + project.path;
         
+        // --- MODIFICATION : RETRAIT DU LIEN EXTERNE ---
         const cardHTML = `
             <div class="project-card">
                 <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
@@ -99,10 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4>${project.title}</h4>
                         <p>${project.description}</p>
                     </div>
-                    
-                    <a href="${fullPdfUrl}" target="_blank" class="external-btn" onclick="event.stopPropagation()" title="Ouvrir le PDF">
-                        ↗
-                    </a>
                     
                     <div class="arrow">▼</div>
                 </div>
