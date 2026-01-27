@@ -11,7 +11,7 @@ const config = {
 
     social: {
         github: "https://github.com/armel-plantier",
-        linkedin: "https://linkedin.com/in/armel-plantier",
+        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
     // --- 2. TAGS HEADER (Aperçu) ---
