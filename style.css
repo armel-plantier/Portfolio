@@ -25,7 +25,14 @@ body {
 a { color: var(--accent-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* HEADER & PROFIL */
+/* --- HEADER & PROFIL (CENTRÉ) --- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre tout le contenu du header */
+    text-align: center;
+}
+
 .avatar {
     width: 100px; height: 100px; border-radius: 50%;
     border: 2px solid var(--border-color); margin-bottom: 20px;
@@ -34,7 +41,10 @@ a:hover { text-decoration: underline; }
 
 h1 { 
     color: var(--text-main); font-size: 1.8rem; font-weight: 600; 
-    margin-bottom: 5px; display: flex; align-items: center;
+    margin-bottom: 5px; 
+    display: flex; 
+    justify-content: center; /* Centre le texte flex */
+    align-items: center;
 }
 h1::before {
     content: "root@portfolio:~# "; color: var(--success-color);
@@ -42,6 +52,9 @@ h1::before {
 }
 
 /* Badge Open To Work */
+.status-wrapper {
+    display: flex; justify-content: center; width: 100%;
+}
 .status-badge {
     display: inline-flex; align-items: center; color: var(--success-color);
     font-size: 0.9rem; margin-bottom: 15px; font-weight: 600;
@@ -54,61 +67,52 @@ h1::before {
 
 h2 { 
     color: var(--text-muted); font-size: 1rem; font-weight: 400; 
-    margin-bottom: 25px; min-height: 1.6em; /* Évite le saut quand vide */
+    margin-bottom: 25px; min-height: 1.6em; 
 }
 
-/* Bio Terminal */
+/* Bio Terminal (La boite est centrée, le texte dedans reste à gauche pour faire "terminal") */
 .terminal-bio {
     background: #010409; padding: 15px; border-radius: 6px;
     border: 1px solid var(--border-color); margin-bottom: 30px; font-size: 0.95rem;
+    text-align: left; /* Important pour garder l'aspect console */
+    width: 100%;
 }
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
 
-/* --- GESTION DES LIENS SOCIAUX (CORRIGÉ & ROBUSTE) --- */
+/* --- LIENS SOCIAUX (CENTRÉS) --- */
 .social-links { 
-    display: flex;           /* Force l'alignement horizontal */
-    align-items: center;     /* Centre verticalement */
-    gap: 25px;               /* Espace entre les groupes */
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;
+    gap: 25px;
     margin-bottom: 30px; 
+    flex-wrap: wrap;
 }
 
 .social-link {
-    display: inline-flex;    /* Colle l'icône au texte */
-    align-items: center;     /* Centre l'icône face au texte */
-    color: var(--text-muted);
-    border-bottom: 1px dashed transparent; 
-    transition: all 0.2s;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: 500;
+    display: inline-flex; align-items: center; color: var(--text-muted);
+    border-bottom: 1px dashed transparent; transition: all 0.2s;
+    cursor: pointer; text-decoration: none; font-weight: 500;
 }
+.social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
 
-.social-link:hover {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
-}
-
-/* Configuration des Logos SVG */
 .social-link svg {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;         /* Empêche l'écrasement */
-    margin-right: 8px;       /* Espace avec le texte */
-    fill: currentColor;
+    width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor;
+}
+.social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
+
+
+/* --- SKILLS (CENTRÉS) --- */
+.skills-section { 
+    display: flex; 
+    justify-content: center; /* Centre les bulles */
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin-bottom: 30px; 
 }
 
-/* Exception pour l'Email (qui est un contour) */
-.social-link svg.feather-mail {
-    fill: none;              /* Pas de remplissage */
-    stroke: currentColor;    /* Couleur du trait */
-    stroke-width: 2;
-}
-
-
-/* Compétences */
-.skills-section { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
 .skill-tag {
     background-color: rgba(88, 166, 255, 0.05); color: var(--accent-color);
     border: 1px solid var(--border-color); padding: 5px 12px;
@@ -121,20 +125,39 @@ h2 {
 
 hr { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; }
 
-/* Certifications */
+/* --- TITRES (H3) --- */
+/* Par défaut aligné gauche pour les projets, modifié pour certs */
 h3 {
     font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
     color: var(--text-muted); margin-bottom: 15px;
     border-bottom: 1px solid var(--border-color); padding-bottom: 10px;
 }
-.cert-list { list-style: none; color: var(--text-muted); margin-bottom: 0px;}
-.cert-list li { margin-bottom: 8px; font-size: 0.9rem; }
 
+/* --- CERTIFICATIONS (CENTRÉES) --- */
+.certs-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.certs-section h3 {
+    text-align: center; /* Titre centré */
+    border-bottom: none; /* On retire la ligne si tu veux full centré propre, ou on laisse */
+}
+.cert-list { 
+    list-style: none; 
+    color: var(--text-muted); 
+    padding: 0;
+}
+.cert-list li { 
+    margin-bottom: 8px; font-size: 0.9rem; 
+}
+
+/* --- PROJETS (ALIGNEMENT GAUCHE / DEFAULT) --- */
 /* Grid Projets */
 .grid { display: flex; flex-direction: column; gap: 12px; }
 .project-card {
     background-color: var(--card-bg); border: 1px solid var(--border-color);
     border-radius: 6px;
+    text-align: left; /* Force gauche */
 }
 .card-header {
     display: flex; align-items: center; padding: 18px 25px; cursor: pointer;
@@ -152,13 +175,6 @@ h3 {
 .arrow { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.3s; }
 .card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
 
-/* Bouton Externe (Supprimé du JS mais gardé ici au cas où) */
-.external-btn {
-    font-size: 1.1rem; margin-right: 20px; opacity: 0.7;
-    border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 4px;
-}
-.external-btn:hover { opacity: 1; border-color: var(--accent-color); }
-
 /* Footer & Anim */
 .cursor { display: inline-block; width: 8px; height: 18px; background-color: var(--accent-color); animation: blink 1s infinite; vertical-align: middle; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -170,82 +186,30 @@ footer {
 
 /* --- EMAIL POPUP (MODAL) --- */
 .modal-overlay {
-    display: none; /* Caché par défaut */
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
+    justify-content: center; align-items: center;
 }
-
 .modal-content {
-    background: var(--card-bg);
-    border: 1px solid var(--accent-color);
-    width: 90%; max-width: 400px;
-    border-radius: 6px;
-    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2);
-    animation: slideDown 0.3s ease-out;
+    background: var(--card-bg); border: 1px solid var(--accent-color);
+    width: 90%; max-width: 400px; border-radius: 6px;
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); animation: slideDown 0.3s ease-out;
 }
-
-@keyframes slideDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .modal-header {
-    background: rgba(255,255,255,0.05);
-    padding: 10px 15px;
-    border-bottom: 1px solid var(--border-color);
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: monospace; color: var(--success-color);
+    background: rgba(255,255,255,0.05); padding: 10px 15px; border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: space-between; align-items: center; font-family: monospace; color: var(--success-color);
 }
-
-.close-btn {
-    background: none; border: none; color: var(--text-muted);
-    font-size: 1.5rem; cursor: pointer;
-}
+.close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
 .close-btn:hover { color: #ff5555; }
-
 .modal-body { padding: 20px; text-align: center; }
-
 .email-box {
-    background: #0d1117;
-    border: 1px dashed var(--border-color);
-    padding: 10px; margin: 10px 0;
-    display: flex; justify-content: space-between; align-items: center;
-    border-radius: 4px;
+    background: #0d1117; border: 1px dashed var(--border-color); padding: 10px; margin: 10px 0;
+    display: flex; justify-content: space-between; align-items: center; border-radius: 4px;
 }
-
 #email-text { color: var(--accent-color); font-weight: bold; font-size: 0.9rem;}
-
 .copy-btn {
-    background: none; border: 1px solid var(--border-color);
-    color: var(--text-main); cursor: pointer; padding: 5px 10px;
+    background: none; border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; padding: 5px 10px;
     border-radius: 4px; transition: 0.2s;
 }
 .copy-btn:hover { background: var(--accent-color); color: #000; }
-
-/* --- DISTINCTION DES SECTIONS --- 
-   Ajouté pour mieux séparer visuellement sans toucher au style des projets 
-*/
-
-.main-separator {
-    margin: 40px 0;
-    opacity: 0.6;
-}
-
-/* Encadrement subtil pour les certifications */
-.certs-container {
-    background-color: #161b22; /* Même que card-bg */
-    border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 50px; /* Grand espace avant les projets */
-}
-
-/* Le titre des projets est repoussé un peu */
-.project-title {
-    margin-top: 10px;
-}
