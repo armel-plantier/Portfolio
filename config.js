@@ -44,7 +44,7 @@ const config = {
         }
     ],
 
-    // --- 4. COMPÉTENCES DÉTAILLÉES (Position 2 - Menu) ---
+    // --- 4. COMPÉTENCES DÉTAILLÉES (Position 3) ---
     competences: [
         {
             name: "🐧 Administration Système",
@@ -84,7 +84,7 @@ const config = {
         }
     ],
 
-    // --- 5. CERTIFICATIONS (Position 3) ---
+    // --- 5. CERTIFICATIONS (Position 4) ---
     certifications: [
         { 
             name: "✅ Cisco CCNA 1 (En cours)", 
@@ -97,6 +97,28 @@ const config = {
         { 
             name: "✅ Certification Pix", 
             url: "https://pix.fr/" 
+        }
+    ],
+
+    // --- 6. EXPÉRIENCES (NOUVEAU - System Logs) ---
+    experiences: [
+        {
+            date: "2023 - Présent",
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
+        },
+        {
+            date: "2022 - 2023",
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
     ]
 };
