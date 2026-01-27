@@ -36,12 +36,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. EXPÉRIENCES (System Logs) - NOUVEAU ---
+    // --- 3. PROJETS (Limite : 3) ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `${window.location.origin}${path}Documents/`; 
+    const PROJECT_LIMIT = 3;
+
+    config.projects.forEach((project, index) => {
+        const viewerId = `viewer_${index}`;
+        const fullPdfUrl = baseUrl + project.path;
+        
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "project-card";
+        if (index >= PROJECT_LIMIT) cardDiv.classList.add("hidden-item"); // Cache si > 3
+
+        cardDiv.innerHTML = `
+            <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
+                <div class="icon">${project.icon}</div>
+                <div class="meta">
+                    <h4>${project.title}</h4>
+                    <p>${project.description}</p>
+                </div>
+                <div class="arrow">▼</div>
+            </div>
+            <div id="${viewerId}" class="pdf-container"></div>
+        `;
+        grid.appendChild(cardDiv);
+    });
+
+    // Bouton Voir Plus pour Projets
+    if (config.projects.length > PROJECT_LIMIT) {
+        createLoadMoreBtn(grid, PROJECT_LIMIT, "Voir tous les projets 📂");
+    }
+
+    // --- 4. EXPÉRIENCES / LOGS (Limite : 3) ---
     const expList = document.getElementById("exp-list");
+    const EXP_LIMIT = 3;
     if(expList && config.experiences) {
-        config.experiences.forEach(exp => {
+        config.experiences.forEach((exp, index) => {
             const li = document.createElement("li");
             li.className = "timeline-item";
+            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+
             li.innerHTML = `
                 <span class="timeline-date">${exp.date}</span>
                 <h4 class="timeline-title">${exp.role} <span class="timeline-company">@ ${exp.company}</span></h4>
@@ -49,27 +85,21 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             expList.appendChild(li);
         });
+
+        if (config.experiences.length > EXP_LIMIT) {
+            createLoadMoreBtn(expList, EXP_LIMIT, "Afficher l'historique complet 📜");
+        }
     }
 
-    // --- 4. CERTIFICATIONS ---
-    const certList = document.getElementById("cert-list");
-    if(certList) {
-        config.certifications.forEach(cert => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <span class="cert-name">${cert.name}</span>
-                <a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>
-            `;
-            certList.appendChild(li);
-        });
-    }
-
-    // --- 5. COMPÉTENCES (Dropdown) ---
+    // --- 5. COMPÉTENCES (Limite : 4 = 2 lignes) ---
     const compList = document.getElementById("comp-list");
+    const COMP_LIMIT = 4;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li");
             li.className = "comp-card-container"; 
+            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+
             const detailsHTML = comp.details.map(d => `<li>• ${d}</li>`).join('');
             li.innerHTML = `
                 <span class="cert-name">${comp.name}</span>
@@ -82,9 +112,33 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             compList.appendChild(li);
         });
+
+        if (config.competences.length > COMP_LIMIT) {
+            createLoadMoreBtn(compList, COMP_LIMIT, "Voir toutes les compétences 💻");
+        }
     }
 
-    // --- 6. TYPEWRITER ---
+    // --- 6. CERTIFICATIONS (Limite : 4 = 2 lignes) ---
+    const certList = document.getElementById("cert-list");
+    const CERT_LIMIT = 4;
+    if(certList) {
+        config.certifications.forEach((cert, index) => {
+            const li = document.createElement("li");
+            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+
+            li.innerHTML = `
+                <span class="cert-name">${cert.name}</span>
+                <a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>
+            `;
+            certList.appendChild(li);
+        });
+
+        if (config.certifications.length > CERT_LIMIT) {
+            createLoadMoreBtn(certList, CERT_LIMIT, "Voir toutes les certifications 🎓");
+        }
+    }
+
+    // --- 7. TYPEWRITER ---
     const textElement = document.getElementById("typewriter-area");
     const textToType = config.profile.typewriterText;
     if(textElement) {
@@ -100,31 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-    // --- 7. PROJETS & DOCUMENTS ---
-    const grid = document.getElementById("project-grid");
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
-
-    config.projects.forEach((project, index) => {
-        const viewerId = `viewer_${index}`;
-        const fullPdfUrl = baseUrl + project.path;
-        
-        const cardHTML = `
-            <div class="project-card">
-                <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
-                    <div class="icon">${project.icon}</div>
-                    <div class="meta">
-                        <h4>${project.title}</h4>
-                        <p>${project.description}</p>
-                    </div>
-                    <div class="arrow">▼</div>
-                </div>
-                <div id="${viewerId}" class="pdf-container"></div>
-            </div>
-        `;
-        grid.innerHTML += cardHTML;
-    });
-
     // --- 8. DETECTION OS CLIENT ---
     const osElement = document.getElementById("client-os");
     if (osElement) {
@@ -138,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
         osElement.innerText = os;
     }
 
-    // --- MODAL EVENTS ---
+    // --- EVENTS ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -155,7 +184,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTIONS GLOBALES ---
+// --- FONCTIONS UTILITAIRES ---
+
+// Fonction magique pour créer le bouton "Voir plus"
+function createLoadMoreBtn(container, limit, text) {
+    const btnContainer = document.createElement("div");
+    btnContainer.className = "load-more-container";
+    
+    const btn = document.createElement("button");
+    btn.className = "load-more-btn";
+    btn.innerHTML = `[+] ${text}`;
+    
+    btn.onclick = function() {
+        // Trouve tous les items cachés DANS ce container spécifique
+        const hiddenItems = container.querySelectorAll(".hidden-item");
+        hiddenItems.forEach(item => {
+            item.classList.remove("hidden-item");
+            // Petite animation d'apparition
+            item.style.opacity = 0;
+            setTimeout(() => item.style.opacity = 1, 50);
+        });
+        // Cache le bouton après clic
+        btnContainer.style.display = "none";
+    };
+
+    btnContainer.appendChild(btn);
+    // Insère le bouton juste après la liste/grille
+    container.parentNode.insertBefore(btnContainer, container.nextSibling);
+}
+
 window.toggleComp = function(event, id) {
     event.stopPropagation(); 
     const menu = document.getElementById(id);
