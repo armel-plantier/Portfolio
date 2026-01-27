@@ -31,7 +31,7 @@ const config = {
     certifications: [
         "✅ Cisco CCNA 1 (En cours)",
         "✅ MOOC ANSSI - SecNumAcadémie",
-        "✅ Certification Pix"
+        "✅ Certification Pix",
         "✅ Root-Me"
 
     ],
