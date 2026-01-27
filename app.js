@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // VÉRIFICATION : Est-ce que la config est chargée ?
+    // VÉRIFICATION DE SÉCURITÉ
     if (typeof config === 'undefined') {
         console.error("ERREUR : config.js n'est pas chargé !");
         return;
@@ -36,7 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. CERTIFICATIONS ---
+    // --- 3. EXPÉRIENCES (System Logs) - NOUVEAU ---
+    const expList = document.getElementById("exp-list");
+    if(expList && config.experiences) {
+        config.experiences.forEach(exp => {
+            const li = document.createElement("li");
+            li.className = "timeline-item";
+            li.innerHTML = `
+                <span class="timeline-date">${exp.date}</span>
+                <h4 class="timeline-title">${exp.role} <span class="timeline-company">@ ${exp.company}</span></h4>
+                <p class="timeline-desc">${exp.description}</p>
+            `;
+            expList.appendChild(li);
+        });
+    }
+
+    // --- 4. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     if(certList) {
         config.certifications.forEach(cert => {
@@ -49,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. COMPÉTENCES (Dropdown) ---
+    // --- 5. COMPÉTENCES (Dropdown) ---
     const compList = document.getElementById("comp-list");
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
@@ -69,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 5. TYPEWRITER (Machine à écrire) ---
+    // --- 6. TYPEWRITER ---
     const textElement = document.getElementById("typewriter-area");
     const textToType = config.profile.typewriterText;
     if(textElement) {
@@ -85,10 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-    // --- 6. PROJETS & DOCUMENTS ---
+    // --- 7. PROJETS & DOCUMENTS ---
     const grid = document.getElementById("project-grid");
-    
-    // Détection du chemin pour trouver le dossier "Documents"
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
 
@@ -112,7 +125,20 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML += cardHTML;
     });
 
-    // --- 7. MODAL EMAIL ---
+    // --- 8. DETECTION OS CLIENT ---
+    const osElement = document.getElementById("client-os");
+    if (osElement) {
+        let os = "Unknown OS";
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf("Win") !== -1) os = "Windows";
+        else if (ua.indexOf("Mac") !== -1) os = "macOS";
+        else if (ua.indexOf("Linux") !== -1) os = "Linux";
+        else if (ua.indexOf("Android") !== -1) os = "Android";
+        else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS";
+        osElement.innerText = os;
+    }
+
+    // --- MODAL EVENTS ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -121,22 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 8. DETECTION OS CLIENT (Nouvelle Fonction) ---
-    const osElement = document.getElementById("client-os");
-    if (osElement) {
-        let os = "Unknown OS";
-        const ua = window.navigator.userAgent;
-
-        if (ua.indexOf("Win") !== -1) os = "Windows";
-        else if (ua.indexOf("Mac") !== -1) os = "macOS";
-        else if (ua.indexOf("Linux") !== -1) os = "Linux";
-        else if (ua.indexOf("Android") !== -1) os = "Android";
-        else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS";
-
-        osElement.innerText = os;
-    }
-
-    // Fermeture des menus si on clique ailleurs
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.comp-dropdown-wrapper')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
@@ -146,80 +156,36 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- FONCTIONS GLOBALES ---
-
 window.toggleComp = function(event, id) {
     event.stopPropagation(); 
     const menu = document.getElementById(id);
     const btn = event.currentTarget;
-    
-    // Ferme les autres menus ouverts
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
-        if(el.id !== id) el.style.display = 'none';
-    });
-    document.querySelectorAll('.comp-toggle').forEach(el => {
-        if(el !== btn) el.classList.remove('active');
-    });
-
-    // Ouvre ou ferme le menu actuel
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-        btn.classList.remove('active');
-    } else {
-        menu.style.display = "block";
-        btn.classList.add('active');
-    }
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); });
+    if (menu.style.display === "block") { menu.style.display = "none"; btn.classList.remove('active'); } 
+    else { menu.style.display = "block"; btn.classList.add('active'); }
 };
 
 window.togglePDF = function(containerId, url) {
     const container = document.getElementById(containerId);
     const header = container.previousElementSibling;
-    
-    // Si c'est déjà ouvert, on ferme
     if (container.style.display === "block") {
-        container.style.display = "none";
-        container.innerHTML = "";
-        header.classList.remove("active");
+        container.style.display = "none"; container.innerHTML = ""; header.classList.remove("active");
         return;
     }
-
-    // On ferme les autres PDF ouverts pour éviter le bazar
-    document.querySelectorAll('.pdf-container').forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-    });
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
-
-    // On crée l'iframe Google Docs
     const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
-    const iframe = document.createElement('iframe');
-    iframe.src = viewerUrl;
-    iframe.width = "100%";
-    iframe.height = "600px";
-    iframe.style.border = "none";
-    
-    container.appendChild(iframe);
+    container.innerHTML = `<iframe src="${viewerUrl}" width="100%" height="600px" style="border:none;"></iframe>`;
     container.style.display = "block";
     header.classList.add("active");
 };
 
-window.closeModal = function() {
-    document.getElementById("email-modal").style.display = "none";
-    const feedback = document.getElementById("copy-feedback");
-    if(feedback) feedback.innerText = "";
-};
-
-window.onclick = function(event) {
-    const modal = document.getElementById("email-modal");
-    if (event.target == modal) closeModal();
-};
-
+window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
+window.onclick = function(event) { if (event.target == document.getElementById("email-modal")) window.closeModal(); };
 window.copyEmail = function() {
-    const emailText = document.getElementById("email-text").innerText;
-    navigator.clipboard.writeText(emailText).then(() => {
-        const feedback = document.getElementById("copy-feedback");
-        if(feedback) {
-            feedback.innerText = "Adresse copiée ! ✅";
-            setTimeout(closeModal, 2000); 
-        }
+    navigator.clipboard.writeText(document.getElementById("email-text").innerText).then(() => {
+        const fb = document.getElementById("copy-feedback");
+        if(fb) { fb.innerText = "Adresse copiée ! ✅"; setTimeout(window.closeModal, 2000); }
     });
 };
