@@ -14,7 +14,7 @@ const config = {
         linkedin: "https://linkedin.com/in/armel-plantier",
     },
 
-    // --- 2. TAGS HEADER (Aperçu rapide) ---
+    // --- 2. TAGS HEADER (Aperçu) ---
     skills: [
         "🐧 Linux",
         "🪟 Windows",
@@ -22,7 +22,29 @@ const config = {
         "🛡️ Sécurité"
     ],
 
-    // --- 3. NOUVEAU : COMPÉTENCES DÉTAILLÉES (Menu Déroulant) ---
+    // --- 3. PROJETS (Position 1) ---
+    projects: [
+        {
+            title: "Mise en place réseau TechNova",
+            description: "Architecture, VLANs et documentation technique.",
+            path: "reseau-technova.pdf", 
+            icon: "🌐"
+        },
+        {
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3.",
+            path: "audit_wifi.pdf",      
+            icon: "🛡️"
+        },
+        {
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
+            icon: "🐧"
+        }
+    ],
+
+    // --- 4. COMPÉTENCES DÉTAILLÉES (Position 2 - Menu) ---
     competences: [
         {
             name: "🐧 Administration Système",
@@ -62,7 +84,7 @@ const config = {
         }
     ],
 
-    // --- 4. CERTIFICATIONS ---
+    // --- 5. CERTIFICATIONS (Position 3) ---
     certifications: [
         { 
             name: "✅ Cisco CCNA 1 (En cours)", 
@@ -75,28 +97,6 @@ const config = {
         { 
             name: "✅ Certification Pix", 
             url: "https://pix.fr/" 
-        }
-    ],
-
-    // --- 5. PROJETS ---
-    projects: [
-        {
-            title: "Mise en place réseau TechNova",
-            description: "Architecture, VLANs et documentation technique.",
-            path: "reseau-technova.pdf", 
-            icon: "🌐"
-        },
-        {
-            title: "Audit Sécurité Wi-Fi",
-            description: "Test d'intrusion WPA3.",
-            path: "audit_wifi.pdf",      
-            icon: "🛡️"
-        },
-        {
-            title: "Hardening Linux",
-            description: "Sécurisation SSH et Firewall.",
-            path: "linux_hardening.pdf", 
-            icon: "🐧"
         }
     ]
 };
