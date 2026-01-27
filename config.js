@@ -32,6 +32,8 @@ const config = {
         "✅ Cisco CCNA 1 (En cours)",
         "✅ MOOC ANSSI - SecNumAcadémie",
         "✅ Certification Pix"
+        "✅ Root-Me"
+
     ],
 
     // --- 4. PROJETS (PDFs) ---
