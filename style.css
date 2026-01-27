@@ -96,8 +96,6 @@ h2 {
     height: 20px;
     min-width: 20px;         /* Empêche l'écrasement */
     margin-right: 8px;       /* Espace avec le texte */
-    
-    /* Par défaut, on remplit (pour GitHub et LinkedIn) */
     fill: currentColor;
 }
 
@@ -129,7 +127,7 @@ h3 {
     color: var(--text-muted); margin-bottom: 15px;
     border-bottom: 1px solid var(--border-color); padding-bottom: 10px;
 }
-.cert-list { list-style: none; color: var(--text-muted); margin-bottom: 40px;}
+.cert-list { list-style: none; color: var(--text-muted); margin-bottom: 0px;}
 .cert-list li { margin-bottom: 8px; font-size: 0.9rem; }
 
 /* Grid Projets */
@@ -154,7 +152,7 @@ h3 {
 .arrow { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.3s; }
 .card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
 
-/* Bouton Externe */
+/* Bouton Externe (Supprimé du JS mais gardé ici au cas où) */
 .external-btn {
     font-size: 1.1rem; margin-right: 20px; opacity: 0.7;
     border: 1px solid var(--border-color); padding: 4px 8px; border-radius: 4px;
@@ -228,3 +226,26 @@ footer {
     border-radius: 4px; transition: 0.2s;
 }
 .copy-btn:hover { background: var(--accent-color); color: #000; }
+
+/* --- DISTINCTION DES SECTIONS --- 
+   Ajouté pour mieux séparer visuellement sans toucher au style des projets 
+*/
+
+.main-separator {
+    margin: 40px 0;
+    opacity: 0.6;
+}
+
+/* Encadrement subtil pour les certifications */
+.certs-container {
+    background-color: #161b22; /* Même que card-bg */
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 50px; /* Grand espace avant les projets */
+}
+
+/* Le titre des projets est repoussé un peu */
+.project-title {
+    margin-top: 10px;
+}
