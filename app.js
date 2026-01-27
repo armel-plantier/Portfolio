@@ -121,6 +121,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- 8. DETECTION OS CLIENT (Nouvelle Fonction) ---
+    const osElement = document.getElementById("client-os");
+    if (osElement) {
+        let os = "Unknown OS";
+        const ua = window.navigator.userAgent;
+
+        if (ua.indexOf("Win") !== -1) os = "Windows";
+        else if (ua.indexOf("Mac") !== -1) os = "macOS";
+        else if (ua.indexOf("Linux") !== -1) os = "Linux";
+        else if (ua.indexOf("Android") !== -1) os = "Android";
+        else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS";
+
+        osElement.innerText = os;
+    }
+
     // Fermeture des menus si on clique ailleurs
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.comp-dropdown-wrapper')) {
@@ -130,12 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTIONS GLOBALES (C'est ici que ton fichier était coupé) ---
+// --- FONCTIONS GLOBALES ---
 
 window.toggleComp = function(event, id) {
     event.stopPropagation(); 
     const menu = document.getElementById(id);
-    const btn = event.currentTarget; // C'est ça qui manquait !
+    const btn = event.currentTarget;
     
     // Ferme les autres menus ouverts
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
@@ -204,7 +219,7 @@ window.copyEmail = function() {
         const feedback = document.getElementById("copy-feedback");
         if(feedback) {
             feedback.innerText = "Adresse copiée ! ✅";
-            setTimeout(closeModal, 2000); // Ferme auto après 2 secondes
+            setTimeout(closeModal, 2000); 
         }
     });
 };
