@@ -58,7 +58,7 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 .social-link svg { width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor; }
 .social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
 
-/* --- SKILLS --- */
+/* --- SKILLS HEADER --- */
 .skills-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
 .skill-tag {
     background-color: rgba(88, 166, 255, 0.05); color: var(--accent-color);
@@ -72,101 +72,98 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 
 /* --- STYLE TITRES (AGRANDIS) --- */
 h3 {
-    font-size: 1.3rem;        /* Agrandissement (avant 0.9rem) */
-    font-weight: 600;         /* Plus gras */
-    text-transform: uppercase; 
-    letter-spacing: 2px;      /* Espacement plus large */
-    color: var(--text-main);  /* Plus lumineux (avant text-muted) */
-    margin-bottom: 20px;
+    font-size: 1.3rem; font-weight: 600; text-transform: uppercase; 
+    letter-spacing: 2px; color: var(--text-main); margin-bottom: 20px;
 }
 
-/* --- CERTIFICATIONS (GRILLE 2 COLONNES AVEC BOUTON) --- */
+/* --- CERTIFICATIONS & COMPÉTENCES (GRILLE 2 COLONNES) --- */
 .certs-section {
-    text-align: center; 
-    margin-bottom: 50px;
-    width: 100%;
+    text-align: center; margin-bottom: 50px; width: 100%;
 }
 .certs-section h3 {
-    display: inline-block;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+    display: inline-block; border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px; margin-bottom: 25px;
 }
 
 .cert-list { 
     list-style: none; padding: 0;
-    display: grid; grid-template-columns: 1fr 1fr; /* 2 colonnes égales */
+    display: grid; grid-template-columns: 1fr 1fr; 
     gap: 15px; width: 100%; text-align: left;
 }
 
-/* LA CARTE (Conteneur) */
+/* CARTES (LI) */
 .cert-list li { 
-    display: flex; 
-    justify-content: space-between; /* Texte à gauche, Bouton à droite */
-    align-items: center; /* Centré verticalement */
-    
-    font-size: 0.9rem; 
-    color: var(--text-muted);
-    background: rgba(22, 27, 34, 0.5); 
-    padding: 15px 20px; 
-    border-radius: 6px; 
-    border: 1px solid transparent;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.9rem; color: var(--text-muted);
+    background: rgba(22, 27, 34, 0.5); padding: 15px 20px; 
+    border-radius: 6px; border: 1px solid transparent;
     transition: all 0.2s ease;
+    position: relative; /* Nécessaire pour le dropdown */
 }
+.cert-list li:hover { border-color: var(--border-color); background: var(--card-bg); }
 
-.cert-list li:hover {
-    border-color: var(--border-color);
-    background: var(--card-bg);
-}
+.cert-name { font-weight: 500; }
 
-.cert-name {
-    font-weight: 500;
-}
-
-/* LE BOUTON DANS LA CARTE */
+/* BOUTON STANDARD */
 .cert-btn {
-    display: inline-block;
-    font-size: 0.75rem;
-    padding: 5px 12px;
+    display: inline-block; font-size: 0.75rem; padding: 5px 12px;
+    border: 1px solid var(--border-color); border-radius: 4px;
+    background-color: #0d1117; color: var(--accent-color);
+    text-transform: uppercase; font-weight: 600; white-space: nowrap;
+    transition: all 0.2s ease; cursor: pointer;
+}
+.cert-btn:hover, .cert-btn.active {
+    background-color: var(--accent-color); color: #000; border-color: var(--accent-color); text-decoration: none; transform: translateY(-1px);
+}
+
+/* --- DROPDOWN COMPÉTENCES --- */
+.comp-card-container {
+    /* Hérite du style flex de .cert-list li */
+}
+
+.comp-dropdown-wrapper {
+    position: relative;
+}
+
+/* Le menu caché */
+.comp-dropdown-menu {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    top: 120%; /* Juste en dessous du bouton */
+    right: 0;
+    width: 250px; /* Largeur du menu */
+    background-color: #1c2128;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background-color: #0d1117;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 100;
+    list-style: none;
+    text-align: left;
+}
+.comp-dropdown-menu li {
+    background: none; /* Reset du style de carte */
+    border: none;
+    padding: 5px 10px;
+    display: block; /* Liste verticale */
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+.comp-dropdown-menu li:hover {
+    background: rgba(88, 166, 255, 0.1);
     color: var(--accent-color);
-    text-transform: uppercase;
-    font-weight: 600;
-    white-space: nowrap; /* Empêche le bouton de se casser sur 2 lignes */
-    transition: all 0.2s ease;
+    border: none;
 }
 
-.cert-btn:hover {
-    background-color: var(--accent-color);
-    color: #000;
-    border-color: var(--accent-color);
-    text-decoration: none;
-    transform: translateY(-1px);
-}
-
-/* --- PROJETS (TITRE CENTRÉ + LIGNE AU DESSUS) --- */
+/* --- PROJETS --- */
 .projects-section {
-    border-top: 1px solid var(--border-color);
-    padding-top: 30px;
-    margin-top: 20px;
-    text-align: center; 
+    border-top: 1px solid var(--border-color); padding-top: 30px; margin-top: 20px; text-align: center; 
 }
-
 .projects-section h3 {
-    display: inline-block;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+    display: inline-block; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px;
 }
 
-/* Grid Projets */
-.grid { 
-    display: flex; flex-direction: column; gap: 12px; 
-    text-align: left; 
-}
-
+.grid { display: flex; flex-direction: column; gap: 12px; text-align: left; }
 .project-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; text-align: left; }
 .card-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; border-left: 3px solid transparent; }
 .card-header:hover { background-color: #1c2128; border-left: 3px solid var(--accent-color); }
