@@ -1,7 +1,7 @@
 const config = {
     // --- 1. PROFIL & RÉSEAUX ---
     profile: {
-        avatar: "https://github.com/armel-plantier.png",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "armel_plantier",
         typewriterText: "> Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
