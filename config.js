@@ -3,9 +3,7 @@ const config = {
     profile: {
         avatar: "https://github.com/armel-plantier.png",
         name: "armel_plantier",
-        // Le texte qui s'écrit tout seul
         typewriterText: "> Admin Sys & Réseau | Passionné de Cybersécurité",
-        // La bio style terminal
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance / CDD",
         email: "armel.plantier@protonmail.com"
@@ -13,7 +11,7 @@ const config = {
 
     social: {
         github: "https://github.com/armel-plantier",
-        linkedin: "https://linkedin.com/in/armel-plantier", // Change ton lien ici !
+        linkedin: "https://linkedin.com/in/armel-plantier",
     },
 
     // --- 2. COMPÉTENCES (Tags) ---
@@ -27,15 +25,23 @@ const config = {
         "📜 Bash Scripting"
     ],
 
-    // --- 3. CERTIFICATIONS ---
+    // --- 3. CERTIFICATIONS (AVEC LIENS) ---
     certifications: [
-        "✅ Cisco CCNA 1 (En cours)",
-        "✅ MOOC ANSSI - SecNumAcadémie",
-        "✅ Certification Pix"
+        { 
+            name: "✅ Cisco CCNA 1 (En cours)", 
+            url: "https://www.cisco.com/c/fr_fr/training-events/training-certifications/certifications/associate/ccna.html" 
+        },
+        { 
+            name: "✅ MOOC ANSSI - SecNum", 
+            url: "https://secnumacademie.gouv.fr/" 
+        },
+        { 
+            name: "✅ Certification Pix", 
+            url: "https://pix.fr/" 
+        }
     ],
 
     // --- 4. PROJETS (PDFs) ---
-    // Rappel : Les fichiers doivent être dans le repo Technova/Documents/
     projects: [
         {
             title: "Mise en place réseau TechNova",
