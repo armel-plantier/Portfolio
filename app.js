@@ -261,3 +261,23 @@ window.copyEmail = function() {
         if(fb) { fb.innerText = "Adresse copiée ! ✅"; setTimeout(window.closeModal, 2000); }
     });
 };
+
+// AJOUT DYNAMIQUE : SCROLL REVEAL
+    // On observe les éléments avec la classe .reveal
+    const observerOptions = {
+        threshold: 0.1 // L'animation se lance quand 10% de l'élément est visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active'); // Ajoute la classe qui fait remonter l'élément
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
+
+}); // <-- Fin du document.addEventListener
