@@ -38,15 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Certifications
+    // --- MODIFICATION ICI POUR LES CERTIFS ---
     const certList = document.getElementById("cert-list");
     if(certList) {
         config.certifications.forEach(cert => {
             const li = document.createElement("li");
-            li.innerText = cert;
+            // On crée un lien qui prend tout l'espace
+            li.innerHTML = `<a href="${cert.url}" target="_blank" class="cert-link">${cert.name}</a>`;
             certList.appendChild(li);
         });
     }
+    // -----------------------------------------
 
     // 2. Typewriter
     const textElement = document.getElementById("typewriter-area");
@@ -66,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Projets
     const grid = document.getElementById("project-grid");
+    // Adapter cette URL de base selon ton vrai repo
     const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
 
     config.projects.forEach((project, index) => {
