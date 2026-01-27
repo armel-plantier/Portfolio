@@ -23,12 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const linkedinLink = document.getElementById("link-linkedin");
     if(linkedinLink) linkedinLink.href = config.social.linkedin;
 
-    // --- 2. INJECTION DES TITRES DE SECTION (Nouveau) ---
+    // --- 2. INJECTION DES TITRES DE SECTION (CORRIGÉ) ---
+    // On affiche directement ce qu'il y a dans le config, sans rajouter d'icône en dur
     const titleCerts = document.getElementById("title-certs");
-    if(titleCerts) titleCerts.innerHTML = `<span class="icon">🎓</span> ${config.titles.certifications}`;
+    if(titleCerts) titleCerts.innerHTML = config.titles.certifications;
 
     const titleProjects = document.getElementById("title-projects");
-    if(titleProjects) titleProjects.innerHTML = `<span class="icon">📂</span> ${config.titles.projects}`;
+    if(titleProjects) titleProjects.innerHTML = config.titles.projects;
 
     // --- 3. SKILLS & CERTIFS ---
     const skillsContainer = document.getElementById("skills-section");
@@ -95,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 6. MODAL EMAIL ---
     const emailTrigger = document.getElementById("email-trigger");
     const emailText = document.getElementById("email-text");
-    if(emailText) emailText.innerText = config.profile.email; // Injection email
+    if(emailText) emailText.innerText = config.profile.email; 
 
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
