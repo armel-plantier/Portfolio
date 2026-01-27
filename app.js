@@ -79,9 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-    // Projets
+// --- PROJETS ---
     const grid = document.getElementById("project-grid");
-    const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
+
+    // DÉTECTION AUTOMATIQUE DE L'URL
+    // On prend l'URL de base et on ajoute le dossier "Documents"
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    
+    // ATTENTION : "Documents" avec une majuscule ici
+    const baseUrl = `${window.location.origin}${path}Documents/`;
 
     config.projects.forEach((project, index) => {
         const viewerId = `viewer_${index}`;
