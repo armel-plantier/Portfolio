@@ -3,7 +3,9 @@ const config = {
     profile: {
         avatar: "https://github.com/armel-plantier.png",
         name: "armel_plantier",
+        // Le texte qui s'écrit tout seul
         typewriterText: "> Admin Sys & Réseau | Passionné de Cybersécurité",
+        // La bio style terminal
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance / CDD",
         email: "armel.plantier@protonmail.com"
@@ -11,17 +13,10 @@ const config = {
 
     social: {
         github: "https://github.com/armel-plantier",
-        linkedin: "https://linkedin.com/in/armel-plantier"
+        linkedin: "https://linkedin.com/in/armel-plantier", // Change ton lien ici !
     },
 
-    // --- 2. TITRES DES SECTIONS (CORRIGÉ) ---
-    // Tu mets exactement ce que tu veux voir s'afficher ici
-    titles: {
-        certifications: "🎓 Certifications & Formations",
-        projects: "📂 /var/www/projects"
-    },
-
-    // --- 3. COMPÉTENCES (Tags) ---
+    // --- 2. COMPÉTENCES (Tags) ---
     skills: [
         "🐧 Linux Hardening",
         "🪟 Windows Server",
@@ -32,14 +27,15 @@ const config = {
         "📜 Bash Scripting"
     ],
 
-    // --- 4. CERTIFICATIONS ---
+    // --- 3. CERTIFICATIONS ---
     certifications: [
         "✅ Cisco CCNA 1 (En cours)",
         "✅ MOOC ANSSI - SecNumAcadémie",
         "✅ Certification Pix"
     ],
 
-    // --- 5. PROJETS (PDFs) ---
+    // --- 4. PROJETS (PDFs) ---
+    // Rappel : Les fichiers doivent être dans le repo Technova/Documents/
     projects: [
         {
             title: "Mise en place réseau TechNova",
