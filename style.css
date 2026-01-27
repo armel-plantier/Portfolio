@@ -73,14 +73,12 @@ h3 {
     letter-spacing: 2px; color: var(--text-main); margin-bottom: 20px;
 }
 
-/* --- SECTION COMMUNE (Projets, Compétences, Certifs) --- 
-   On applique la ligne de séparation ici pour tout le monde 
-*/
+/* --- SECTIONS --- */
 .projects-section, .certs-section {
     border-top: 1px solid var(--border-color);
     padding-top: 30px;
-    margin-top: 40px; /* Plus d'espace entre les sections */
-    text-align: center; /* Centre les titres */
+    margin-top: 40px;
+    text-align: center;
 }
 
 .projects-section h3, .certs-section h3 {
@@ -151,21 +149,30 @@ h3 {
 .arrow { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.3s; }
 .card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
 
+/* --- CONTACT FORM --- */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto; 
+    text-align: left;
+}
+.form-group { margin-bottom: 15px; }
+.form-group label {
+    display: block; color: var(--text-muted); font-size: 0.9rem;
+    margin-bottom: 5px; font-family: 'Fira Code', monospace;
+}
+.contact-form input, .contact-form textarea {
+    width: 100%; background-color: #0d1117; 
+    border: 1px solid var(--border-color); border-radius: 6px;
+    padding: 10px; color: var(--text-main); font-family: inherit; font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--accent-color); box-shadow: 0 0 5px rgba(88, 166, 255, 0.2);
+}
+::placeholder { color: #484f58; opacity: 1; }
+
 /* Footer & Anim */
 .cursor { display: inline-block; width: 8px; height: 18px; background-color: var(--accent-color); animation: blink 1s infinite; vertical-align: middle; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 .pdf-container { display: none; background: #fff; height: 650px; width: 100%; }
-footer { text-align: center; margin-top: 60px; color: var(--border-color); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 20px; }
-
-/* Modal */
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
-.modal-content { background: var(--card-bg); border: 1px solid var(--accent-color); width: 90%; max-width: 400px; border-radius: 6px; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); animation: slideDown 0.3s ease-out; }
-@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-header { background: rgba(255,255,255,0.05); padding: 10px 15px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-family: monospace; color: var(--success-color); }
-.close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
-.close-btn:hover { color: #ff5555; }
-.modal-body { padding: 20px; text-align: center; }
-.email-box { background: #0d1117; border: 1px dashed var(--border-color); padding: 10px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; }
-#email-text { color: var(--accent-color); font-weight: bold; font-size: 0.9rem;}
-.copy-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: 0.2s; }
-.copy-btn:hover { background: var(--accent-color); color: #000; }
+footer { text-align: center; margin-top: 60px; color: var(--border-color); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-
