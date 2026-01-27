@@ -14,12 +14,17 @@
         <button id="theme-toggle" class="theme-btn" title="Switch Theme">☀️</button>
 
         <header>
-            <img id="profile-avatar" src="" alt="Avatar" class="avatar">
-            <h1 id="profile-name"></h1>
-            <div class="status-wrapper">
-                <span id="profile-status" class="status-badge"></span>
+            <div class="profile-container">
+                <img id="profile-avatar" src="" alt="Avatar" class="avatar">
+                
+                <div class="profile-info">
+                    <h1 id="profile-name"></h1>
+                    <h2 class="job-title"><span id="typewriter-area"></span><span class="cursor">|</span></h2>
+                    <div class="status-wrapper">
+                        <span id="profile-status" class="status-badge"></span>
+                    </div>
+                </div>
             </div>
-            <h2><span id="typewriter-area"></span><span class="cursor">|</span></h2>
 
             <div class="terminal-bio">
                 <span class="prompt">user@bio:~$</span> cat description.txt<br>
