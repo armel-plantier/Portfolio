@@ -14,18 +14,55 @@ const config = {
         linkedin: "https://linkedin.com/in/armel-plantier",
     },
 
-    // --- 2. COMPÉTENCES (Tags) ---
+    // --- 2. TAGS HEADER (Aperçu rapide) ---
     skills: [
-        "🐧 Linux Hardening",
-        "🪟 Windows Server",
-        "🕸️ Architecture Réseau",
-        "🔌 Cisco (VLAN/OSPF)",
-        "🛡️ Firewalling",
-        "🦈 Wireshark",
-        "📜 Bash Scripting"
+        "🐧 Linux",
+        "🪟 Windows",
+        "🕸️ Réseau",
+        "🛡️ Sécurité"
     ],
 
-    // --- 3. CERTIFICATIONS (AVEC LIENS) ---
+    // --- 3. NOUVEAU : COMPÉTENCES DÉTAILLÉES (Menu Déroulant) ---
+    competences: [
+        {
+            name: "🐧 Administration Système",
+            details: [
+                "Linux Hardening (Debian/RHEL)",
+                "Windows Server & AD",
+                "Gestion des droits (chmod/chown)",
+                "Virtualisation (Proxmox/VMware)"
+            ]
+        },
+        {
+            name: "🕸️ Réseau & Infrastructure",
+            details: [
+                "Architecture LAN/WAN",
+                "Cisco IOS (VLAN, OSPF, STP)",
+                "Wireshark (Analyse de paquets)",
+                "Supervision (Nagios/Zabbix)"
+            ]
+        },
+        {
+            name: "🛡️ Cybersécurité",
+            details: [
+                "Firewalling (iptables, pfsense)",
+                "Analyse de vulnérabilités",
+                "Durcissement SSH & Web",
+                "SIEM & Logs"
+            ]
+        },
+        {
+            name: "📜 Scripting & DevOps",
+            details: [
+                "Bash Scripting",
+                "Python pour le réseau",
+                "Git & GitHub",
+                "Docker Basics"
+            ]
+        }
+    ],
+
+    // --- 4. CERTIFICATIONS ---
     certifications: [
         { 
             name: "✅ Cisco CCNA 1 (En cours)", 
@@ -41,7 +78,7 @@ const config = {
         }
     ],
 
-    // --- 4. PROJETS (PDFs) ---
+    // --- 5. PROJETS ---
     projects: [
         {
             title: "Mise en place réseau TechNova",
