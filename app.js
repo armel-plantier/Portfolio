@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(certList) {
         config.certifications.forEach(cert => {
             const li = document.createElement("li");
-            // On sépare le Nom et le Bouton
+            // On sépare le Nom (span) et le Bouton (a)
             li.innerHTML = `
                 <span class="cert-name">${cert.name}</span>
                 <a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>
