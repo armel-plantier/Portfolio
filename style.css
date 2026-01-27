@@ -29,16 +29,16 @@ body {
     font-size: 15px;
     padding: 20px;
     transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden; /* Empêche le scroll horizontal pendant les animations */
+    overflow-x: hidden;
 }
 
-/* CONTAINER */
+/* CONTAINER LARGE */
 .container { max-width: 1100px; margin: 0 auto; padding-top: 20px; position: relative; }
 
 a { color: var(--accent-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* --- HEADER NAVBAR STYLE --- */
+/* --- HEADER NAVBAR --- */
 header { margin-bottom: 40px; }
 
 .top-bar {
@@ -89,14 +89,14 @@ h1::before {
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-/* LIENS SOCIAUX (Mise à jour SVG) */
+/* LIENS SOCIAUX */
 .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; flex-wrap: wrap; }
 .social-link { 
-    display: inline-flex; align-items: center; gap: 8px; /* Espace icône/texte */
+    display: inline-flex; align-items: center; gap: 8px; 
     color: var(--text-muted); border-bottom: 1px dashed transparent; 
     font-weight: 500; padding: 5px 0; transition: all 0.2s ease;
 }
-.social-link svg { width: 18px; height: 18px; fill: currentColor; } /* Taille icônes */
+.social-link svg { width: 18px; height: 18px; fill: currentColor; }
 
 .social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); transform: translateY(-3px); }
 
@@ -117,7 +117,7 @@ h3 { font-size: 1.3rem; font-weight: 600; text-transform: uppercase; letter-spac
 .projects-section, .certs-section { border-top: 1px solid var(--border-color); padding-top: 30px; margin-top: 40px; text-align: center; }
 .projects-section h3, .certs-section h3 { display: inline-block; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px; }
 
-/* --- GRILLES & LISTES (DYNAMIQUE) --- */
+/* --- GRILLES & LISTES --- */
 .cert-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; text-align: left; }
 .cert-list li { 
     display: flex; justify-content: space-between; align-items: center;
@@ -185,12 +185,6 @@ h3 { font-size: 1.3rem; font-weight: 600; text-transform: uppercase; letter-spac
 .modal-body { padding: 25px; text-align: center; }
 .email-box { background: var(--bg-color); border: 1px dashed var(--border-color); padding: 10px; margin: 15px 0; color: var(--accent-color); display: flex; justify-content: space-between; }
 .close-btn, .copy-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.2rem; }
-
-/* VOIR PLUS / MOINS */
-.hidden-item { display: none !important; }
-.load-more-container { margin-top: 15px; width: 100%; }
-.load-more-btn { background: none; border: 1px dashed var(--border-color); color: var(--text-muted); padding: 8px 20px; font-size: 0.85rem; cursor: pointer; border-radius: 4px; transition: 0.2s; }
-.load-more-btn:hover { color: var(--accent-color); border-color: var(--accent-color); transform: scale(1.02); }
 
 /* --- ANIMATIONS SCROLL REVEAL --- */
 .reveal {
