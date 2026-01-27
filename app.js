@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const footerEl = document.getElementById("footer-copy");
     if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - GitHub Pages`;
 
-    // --- SKILLS HEADER ---
+    // Skills Header
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer) {
         config.skills.forEach(skill => {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- CERTIFICATIONS ---
+    // Certifications
     const certList = document.getElementById("cert-list");
     if(certList) {
         config.certifications.forEach(cert => {
@@ -43,16 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- NOUVEAU : COMPÉTENCES (Menu Déroulant) ---
+    // Compétences (Dropdown)
     const compList = document.getElementById("comp-list");
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li");
-            li.className = "comp-card-container"; // Classe spécifique pour le positionnement
-            
-            // Génération de la liste HTML interne
+            li.className = "comp-card-container"; 
             const detailsHTML = comp.details.map(d => `<li>• ${d}</li>`).join('');
-
             li.innerHTML = `
                 <span class="cert-name">${comp.name}</span>
                 <div class="comp-dropdown-wrapper">
@@ -66,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- TYPEWRITER ---
+    // Typewriter
     const textElement = document.getElementById("typewriter-area");
     const textToType = config.profile.typewriterText;
     if(textElement) {
@@ -82,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-    // --- PROJETS ---
+    // Projets
     const grid = document.getElementById("project-grid");
     const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
 
@@ -106,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML += cardHTML;
     });
 
-    // --- MODAL EMAIL ---
+    // Modal
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -115,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Fermeture des menus au clic ailleurs
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.comp-dropdown-wrapper')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
@@ -124,23 +120,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTIONS ---
-
-// Nouvelle fonction pour gérer les dropdowns de compétences
 window.toggleComp = function(event, id) {
-    event.stopPropagation(); // Empêche la fermeture immédiate
+    event.stopPropagation(); 
     const menu = document.getElementById(id);
     const btn = event.currentTarget;
-    
-    // Ferme tous les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
         if(el.id !== id) el.style.display = 'none';
     });
     document.querySelectorAll('.comp-toggle').forEach(el => {
         if(el !== btn) el.classList.remove('active');
     });
-
-    // Toggle courant
     if (menu.style.display === "block") {
         menu.style.display = "none";
         btn.classList.remove('active');
@@ -153,27 +142,23 @@ window.toggleComp = function(event, id) {
 window.togglePDF = function(containerId, url) {
     const container = document.getElementById(containerId);
     const header = container.previousElementSibling;
-
     if (container.style.display === "block") {
         container.style.display = "none";
         container.innerHTML = "";
         header.classList.remove("active");
         return;
     }
-
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
     });
     document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
-
     const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
     const iframe = document.createElement('iframe');
     iframe.src = viewerUrl;
     iframe.width = "100%";
     iframe.height = "600px";
     iframe.style.border = "none";
-
     container.appendChild(iframe);
     container.style.display = "block";
     header.classList.add("active");
