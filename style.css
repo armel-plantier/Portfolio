@@ -70,10 +70,14 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 /* --- SEPARATEUR HEADER / BODY --- */
 .main-separator { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; opacity: 0.5;}
 
-/* --- STYLE TITRES (BASE) --- */
+/* --- STYLE TITRES (AGRANDIS) --- */
 h3 {
-    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
-    color: var(--text-muted); margin-bottom: 15px;
+    font-size: 1.3rem;        /* Agrandissement (avant 0.9rem) */
+    font-weight: 600;         /* Plus gras */
+    text-transform: uppercase; 
+    letter-spacing: 2px;      /* Espacement plus large */
+    color: var(--text-main);  /* Plus lumineux (avant text-muted) */
+    margin-bottom: 20px;
 }
 
 /* --- CERTIFICATIONS (GRILLE 2 COLONNES AVEC BOUTON) --- */
