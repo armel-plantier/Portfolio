@@ -104,7 +104,7 @@ h3 {
     font-size: 0.9rem; 
     color: var(--text-muted);
     background: rgba(22, 27, 34, 0.5); 
-    padding: 15px 20px; /* Un peu plus d'espace */
+    padding: 15px 20px; 
     border-radius: 6px; 
     border: 1px solid transparent;
     transition: all 0.2s ease;
@@ -131,6 +131,7 @@ h3 {
     text-transform: uppercase;
     font-weight: 600;
     white-space: nowrap; /* Empêche le bouton de se casser sur 2 lignes */
+    transition: all 0.2s ease;
 }
 
 .cert-btn:hover {
@@ -138,6 +139,7 @@ h3 {
     color: #000;
     border-color: var(--accent-color);
     text-decoration: none;
+    transform: translateY(-1px);
 }
 
 /* --- PROJETS (TITRE CENTRÉ + LIGNE AU DESSUS) --- */
