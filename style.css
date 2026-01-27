@@ -24,7 +24,7 @@ body {
 a { color: var(--accent-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-/* --- HEADER & PROFIL (CENTRÉ) --- */
+/* --- HEADER & PROFIL --- */
 header { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
 .avatar { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--border-color); margin-bottom: 20px; }
@@ -51,14 +51,14 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 .terminal-bio .prompt { color: var(--accent-color); }
 .terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-/* --- LIENS SOCIAUX --- */
+/* Liens Sociaux */
 .social-links { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 30px; flex-wrap: wrap; }
 .social-link { display: inline-flex; align-items: center; color: var(--text-muted); border-bottom: 1px dashed transparent; transition: all 0.2s; cursor: pointer; text-decoration: none; font-weight: 500; }
 .social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
 .social-link svg { width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor; }
 .social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
 
-/* --- SKILLS HEADER --- */
+/* Skills Header */
 .skills-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
 .skill-tag {
     background-color: rgba(88, 166, 255, 0.05); color: var(--accent-color);
@@ -67,44 +67,49 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 }
 .skill-tag:hover { background-color: rgba(88, 166, 255, 0.15); border-color: var(--accent-color); transform: translateY(-2px); }
 
-/* --- SEPARATEUR HEADER / BODY --- */
-.main-separator { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; opacity: 0.5;}
-
-/* --- STYLE TITRES (AGRANDIS) --- */
+/* --- STYLE GÉNÉRAL DES TITRES H3 --- */
 h3 {
     font-size: 1.3rem; font-weight: 600; text-transform: uppercase; 
     letter-spacing: 2px; color: var(--text-main); margin-bottom: 20px;
 }
 
-/* --- CERTIFICATIONS & COMPÉTENCES (GRILLE 2 COLONNES) --- */
-.certs-section {
-    text-align: center; margin-bottom: 50px; width: 100%;
-}
-.certs-section h3 {
-    display: inline-block; border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px; margin-bottom: 25px;
+/* --- SECTION COMMUNE (Projets, Compétences, Certifs) --- 
+   On applique la ligne de séparation ici pour tout le monde 
+*/
+.projects-section, .certs-section {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    margin-top: 40px; /* Plus d'espace entre les sections */
+    text-align: center; /* Centre les titres */
 }
 
+.projects-section h3, .certs-section h3 {
+    display: inline-block;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* --- GRILLE 2 COLONNES (Pour Compétences & Certifs) --- */
 .cert-list { 
     list-style: none; padding: 0;
     display: grid; grid-template-columns: 1fr 1fr; 
     gap: 15px; width: 100%; text-align: left;
 }
 
-/* CARTES (LI) */
 .cert-list li { 
     display: flex; justify-content: space-between; align-items: center;
     font-size: 0.9rem; color: var(--text-muted);
     background: rgba(22, 27, 34, 0.5); padding: 15px 20px; 
     border-radius: 6px; border: 1px solid transparent;
     transition: all 0.2s ease;
-    position: relative; /* Nécessaire pour le dropdown */
+    position: relative;
 }
 .cert-list li:hover { border-color: var(--border-color); background: var(--card-bg); }
 
 .cert-name { font-weight: 500; }
 
-/* BOUTON STANDARD */
+/* BOUTON (Certifs & Dropdown) */
 .cert-btn {
     display: inline-block; font-size: 0.75rem; padding: 5px 12px;
     border: 1px solid var(--border-color); border-radius: 4px;
@@ -116,53 +121,24 @@ h3 {
     background-color: var(--accent-color); color: #000; border-color: var(--accent-color); text-decoration: none; transform: translateY(-1px);
 }
 
-/* --- DROPDOWN COMPÉTENCES --- */
-.comp-card-container {
-    /* Hérite du style flex de .cert-list li */
-}
+/* --- DROPDOWN (Compétences) --- */
+.comp-dropdown-wrapper { position: relative; }
 
-.comp-dropdown-wrapper {
-    position: relative;
-}
-
-/* Le menu caché */
 .comp-dropdown-menu {
-    display: none; /* Caché par défaut */
-    position: absolute;
-    top: 120%; /* Juste en dessous du bouton */
-    right: 0;
-    width: 250px; /* Largeur du menu */
-    background-color: #1c2128;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 100;
-    list-style: none;
-    text-align: left;
+    display: none; position: absolute;
+    top: 120%; right: 0; width: 250px;
+    background-color: #1c2128; border: 1px solid var(--border-color);
+    border-radius: 6px; padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100;
+    list-style: none; text-align: left;
 }
 .comp-dropdown-menu li {
-    background: none; /* Reset du style de carte */
-    border: none;
-    padding: 5px 10px;
-    display: block; /* Liste verticale */
-    color: var(--text-main);
-    font-size: 0.85rem;
+    background: none; border: none; padding: 5px 10px; display: block;
+    color: var(--text-main); font-size: 0.85rem;
 }
-.comp-dropdown-menu li:hover {
-    background: rgba(88, 166, 255, 0.1);
-    color: var(--accent-color);
-    border: none;
-}
+.comp-dropdown-menu li:hover { background: rgba(88, 166, 255, 0.1); color: var(--accent-color); border: none; }
 
-/* --- PROJETS --- */
-.projects-section {
-    border-top: 1px solid var(--border-color); padding-top: 30px; margin-top: 20px; text-align: center; 
-}
-.projects-section h3 {
-    display: inline-block; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px;
-}
-
+/* --- PROJETS GRILLE --- */
 .grid { display: flex; flex-direction: column; gap: 12px; text-align: left; }
 .project-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; text-align: left; }
 .card-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; border-left: 3px solid transparent; }
