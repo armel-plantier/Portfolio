@@ -6,6 +6,26 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    // --- GESTION DU THEME (Light / Dark) ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        if(themeBtn) themeBtn.innerText = "🌙"; 
+    }
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) {
+                themeBtn.innerText = "🌙"; 
+                localStorage.setItem("theme", "light");
+            } else {
+                themeBtn.innerText = "☀️"; 
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+
     // --- 1. PROFIL ---
     document.title = `root@portfolio:~# ${config.profile.name}`;
     const avatarEl = document.getElementById("profile-avatar");
@@ -46,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((project, index) => {
             const viewerId = `viewer_${index}`;
             const fullPdfUrl = baseUrl + project.path;
-            
             const cardDiv = document.createElement("div");
             cardDiv.className = "project-card";
             if (index >= PROJECT_LIMIT) cardDiv.classList.add("hidden-item");
@@ -78,7 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li");
             li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-
             li.innerHTML = `
                 <span class="timeline-date">${exp.date}</span>
                 <h4 class="timeline-title">${exp.role} <span class="timeline-company">@ ${exp.company}</span></h4>
@@ -86,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             expList.appendChild(li);
         });
-
         if (config.experiences.length > EXP_LIMIT) {
             createToggleBtn(expList, EXP_LIMIT, "Afficher l'historique complet");
         }
@@ -100,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li");
             li.className = "comp-card-container"; 
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
-
             const detailsHTML = comp.details.map(d => `<li>• ${d}</li>`).join('');
             li.innerHTML = `
                 <span class="cert-name">${comp.name}</span>
@@ -113,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             compList.appendChild(li);
         });
-
         if (config.competences.length > COMP_LIMIT) {
             createToggleBtn(compList, COMP_LIMIT, "Voir toutes les compétences");
         }
@@ -126,14 +141,12 @@ document.addEventListener("DOMContentLoaded", () => {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li");
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-
             li.innerHTML = `
                 <span class="cert-name">${cert.name}</span>
                 <a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>
             `;
             certList.appendChild(li);
         });
-
         if (config.certifications.length > CERT_LIMIT) {
             createToggleBtn(certList, CERT_LIMIT, "Voir toutes les certifications");
         }
@@ -187,42 +200,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // --- FONCTIONS UTILITAIRES ---
 
-// Nouvelle fonction "Toggle" (Ouvrir / Fermer)
 function createToggleBtn(container, limit, textMore) {
     const btnContainer = document.createElement("div");
     btnContainer.className = "load-more-container";
-    
     const btn = document.createElement("button");
     btn.className = "load-more-btn";
     btn.innerHTML = `[+] ${textMore}`;
     
     let isExpanded = false;
-
     btn.onclick = function() {
-        isExpanded = !isExpanded; // On inverse l'état
+        isExpanded = !isExpanded; 
         const items = container.children;
-
-        // On parcourt tous les enfants
         for (let i = 0; i < items.length; i++) {
-            // Si c'est un item qui dépasse la limite
             if (i >= limit) {
                 if (isExpanded) {
-                    // On montre
                     items[i].classList.remove("hidden-item");
-                    // Petite animation
                     items[i].style.opacity = 0;
                     setTimeout(() => items[i].style.opacity = 1, 50);
                 } else {
-                    // On cache
                     items[i].classList.add("hidden-item");
                 }
             }
         }
-
-        // On change le texte du bouton
         btn.innerHTML = isExpanded ? `[-] Voir moins` : `[+] ${textMore}`;
     };
-
     btnContainer.appendChild(btn);
     container.parentNode.insertBefore(btnContainer, container.nextSibling);
 }
