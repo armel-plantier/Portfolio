@@ -37,6 +37,12 @@ const config = {
             icon: "🛡️"
         },
         {
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3.",
+            path: "audit_wifi.pdf",      
+            icon: "🛡️"
+        },
+        {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
