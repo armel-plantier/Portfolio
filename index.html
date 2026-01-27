@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Chargement...</title>
+    <title>Portfolio | System Ready</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -11,63 +11,58 @@
 
     <div class="container">
         
-        <button id="theme-toggle" class="theme-btn" title="Switch Theme">☀️</button>
-
         <header>
-            <div class="profile-container">
-                <img id="profile-avatar" src="" alt="Avatar" class="avatar">
+            <div class="top-bar">
                 
-                <div class="profile-info">
-                    <h1 id="profile-name"></h1>
-                    <h2 class="job-title"><span id="typewriter-area"></span><span class="cursor">|</span></h2>
-                    <div class="status-wrapper">
-                        <span id="profile-status" class="status-badge"></span>
+                <div class="identity-group">
+                    <img id="profile-avatar" src="" alt="Avatar" class="avatar">
+                    <div class="identity-text">
+                        <h1 id="profile-name"></h1>
+                        <div class="sub-info">
+                            <span id="typewriter-area" class="job-title"></span>
+                            <span class="cursor">|</span>
+                            <span id="profile-status" class="status-badge"></span>
+                        </div>
                     </div>
                 </div>
+
+                <button id="theme-toggle" class="theme-btn" title="Switch Theme">☀️</button>
             </div>
 
-            <div class="terminal-bio">
-                <span class="prompt">user@bio:~$</span> cat description.txt<br>
-                <span id="profile-bio" class="output"></span>
-            </div>
+            <div class="header-content">
+                <div class="terminal-bio">
+                    <span class="prompt">user@bio:~$</span> cat description.txt<br>
+                    <span id="profile-bio" class="output"></span>
+                </div>
 
-            <div class="social-links">
-                <a id="link-github" href="#" target="_blank" class="social-link">
-                    GitHub
-                </a>
-                <a id="link-linkedin" href="#" target="_blank" class="social-link">
-                    LinkedIn
-                </a>
-                <a id="email-trigger" href="#" class="social-link">
-                    Email
-                </a>
-            </div>
+                <div class="social-links">
+                    <a id="link-github" href="#" target="_blank" class="social-link">GitHub</a>
+                    <a id="link-linkedin" href="#" target="_blank" class="social-link">LinkedIn</a>
+                    <a id="email-trigger" href="#" class="social-link">Email</a>
+                </div>
 
-            <div id="skills-section" class="skills-section"></div>
+                <div id="skills-section" class="skills-section"></div>
+            </div>
         </header>
 
         <section class="projects-section">
             <h3>Projets Réalisés</h3>
-            <div id="project-grid" class="grid">
-                </div>
+            <div id="project-grid" class="grid"></div>
         </section>
 
         <section class="projects-section">
             <h3>Historique Système (Parcours)</h3>
-            <ul id="exp-list" class="timeline-list">
-                </ul>
+            <ul id="exp-list" class="timeline-list"></ul>
         </section>
 
         <section class="projects-section">
             <h3>Modules Installés (Compétences)</h3>
-            <ul id="comp-list" class="cert-list">
-                </ul>
+            <ul id="comp-list" class="cert-list"></ul>
         </section>
 
         <section class="certs-section">
             <h3>Certificats SSL/TLS (Diplômes)</h3>
-            <ul id="cert-list" class="cert-list">
-                </ul>
+            <ul id="cert-list" class="cert-list"></ul>
         </section>
 
         <footer>
