@@ -76,7 +76,7 @@ h3 {
     color: var(--text-muted); margin-bottom: 15px;
 }
 
-/* --- CERTIFICATIONS (GRILLE 2 COLONNES AVEC LIENS) --- */
+/* --- CERTIFICATIONS (GRILLE 2 COLONNES AVEC BOUTON) --- */
 .certs-section {
     text-align: center; 
     margin-bottom: 50px;
@@ -95,32 +95,50 @@ h3 {
     gap: 15px; width: 100%; text-align: left;
 }
 
-/* Le LI sert juste de conteneur */
+/* LA CARTE (Conteneur) */
 .cert-list li { 
-    padding: 0; margin: 0;
-}
-
-/* Le LIEN devient la carte cliquable */
-.cert-link {
-    display: block; /* Prend toute la place */
+    display: flex; 
+    justify-content: space-between; /* Texte à gauche, Bouton à droite */
+    align-items: center; /* Centré verticalement */
+    
     font-size: 0.9rem; 
     color: var(--text-muted);
     background: rgba(22, 27, 34, 0.5); 
-    padding: 12px; /* Padding déplacé ici */
+    padding: 15px 20px; /* Un peu plus d'espace */
     border-radius: 6px; 
     border: 1px solid transparent;
-    text-decoration: none; /* Pas de soulignement par défaut */
     transition: all 0.2s ease;
 }
 
-.cert-link:hover {
+.cert-list li:hover {
     border-color: var(--border-color);
     background: var(--card-bg);
-    color: var(--accent-color); /* Texte change de couleur au survol */
-    text-decoration: none;
-    transform: translateY(-2px); /* Petit effet de levée */
 }
 
+.cert-name {
+    font-weight: 500;
+}
+
+/* LE BOUTON DANS LA CARTE */
+.cert-btn {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: #0d1117;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap; /* Empêche le bouton de se casser sur 2 lignes */
+}
+
+.cert-btn:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    text-decoration: none;
+}
 
 /* --- PROJETS (TITRE CENTRÉ + LIGNE AU DESSUS) --- */
 .projects-section {
