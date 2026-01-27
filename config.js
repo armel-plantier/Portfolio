@@ -3,9 +3,9 @@ const config = {
     profile: {
         avatar: "https://github.com/armel-plantier.png",
         name: "armel_plantier",
-        typewriterText: "> Admin Sys & Réseau | Passionné de Cybersécurité",
+        typewriterText: "> Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
-        status: "Recherche active d'alternance / CDD",
+        status: "Recherche active d'alternance concernant la Cybersécuritée.",
         email: "armel.plantier@protonmail.com"
     },
 
