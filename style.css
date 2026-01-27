@@ -29,7 +29,7 @@ a:hover { text-decoration: underline; }
 header {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre tout le contenu du header */
+    align-items: center;
     text-align: center;
 }
 
@@ -42,19 +42,14 @@ header {
 h1 { 
     color: var(--text-main); font-size: 1.8rem; font-weight: 600; 
     margin-bottom: 5px; 
-    display: flex; 
-    justify-content: center; /* Centre le texte flex */
-    align-items: center;
+    display: flex; justify-content: center; align-items: center;
 }
 h1::before {
     content: "root@portfolio:~# "; color: var(--success-color);
     font-size: 1rem; margin-right: 10px; opacity: 0.8;
 }
 
-/* Badge Open To Work */
-.status-wrapper {
-    display: flex; justify-content: center; width: 100%;
-}
+.status-wrapper { display: flex; justify-content: center; width: 100%; }
 .status-badge {
     display: inline-flex; align-items: center; color: var(--success-color);
     font-size: 0.9rem; margin-bottom: 15px; font-weight: 600;
@@ -70,11 +65,11 @@ h2 {
     margin-bottom: 25px; min-height: 1.6em; 
 }
 
-/* Bio Terminal (La boite est centrée, le texte dedans reste à gauche pour faire "terminal") */
+/* Bio Terminal */
 .terminal-bio {
     background: #010409; padding: 15px; border-radius: 6px;
     border: 1px solid var(--border-color); margin-bottom: 30px; font-size: 0.95rem;
-    text-align: left; /* Important pour garder l'aspect console */
+    text-align: left; /* Le contenu du terminal reste à gauche */
     width: 100%;
 }
 .terminal-bio .prompt { color: var(--accent-color); }
@@ -83,12 +78,8 @@ h2 {
 
 /* --- LIENS SOCIAUX (CENTRÉS) --- */
 .social-links { 
-    display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 30px; 
-    flex-wrap: wrap;
+    display: flex; justify-content: center; align-items: center;
+    gap: 25px; margin-bottom: 30px; flex-wrap: wrap;
 }
 
 .social-link {
@@ -97,20 +88,14 @@ h2 {
     cursor: pointer; text-decoration: none; font-weight: 500;
 }
 .social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
-
-.social-link svg {
-    width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor;
-}
+.social-link svg { width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor; }
 .social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
 
 
 /* --- SKILLS (CENTRÉS) --- */
 .skills-section { 
-    display: flex; 
-    justify-content: center; /* Centre les bulles */
-    flex-wrap: wrap; 
-    gap: 10px; 
-    margin-bottom: 30px; 
+    display: flex; justify-content: center; flex-wrap: wrap; 
+    gap: 10px; margin-bottom: 30px; 
 }
 
 .skill-tag {
@@ -123,41 +108,67 @@ h2 {
     transform: translateY(-2px);
 }
 
-hr { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; }
+/* Séparateur Principal */
+.main-separator { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; }
 
-/* --- TITRES (H3) --- */
-/* Par défaut aligné gauche pour les projets, modifié pour certs */
+/* --- STYLE TITRES GLOBAUX --- */
 h3 {
     font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
     color: var(--text-muted); margin-bottom: 15px;
     border-bottom: 1px solid var(--border-color); padding-bottom: 10px;
 }
 
-/* --- CERTIFICATIONS (CENTRÉES) --- */
+/* --- CERTIFICATIONS (SECTION) --- */
 .certs-section {
-    text-align: center;
-    margin-bottom: 40px;
+    text-align: center; /* Centre le titre et le wrapper */
+    margin-bottom: 50px; /* Espace avant les projets */
 }
 .certs-section h3 {
     text-align: center; /* Titre centré */
-    border-bottom: none; /* On retire la ligne si tu veux full centré propre, ou on laisse */
+    display: inline-block; /* Le soulignement s'adapte à la largeur du titre (optionnel, sinon retirer) */
+    width: 100%; /* Si on veut que la ligne fasse toute la largeur */
+    border-bottom: none; /* On retire la ligne globale pour ce titre spécifique si on veut */
+}
+/* On remet la ligne pour qu'elle soit propre */
+.certs-section h3 {
+    border-bottom: 1px solid var(--border-color);
+    display: block;
+}
+
+/* Astuce : Le wrapper centre le bloc UL, mais UL aligne le texte à gauche */
+.cert-list-wrapper {
+    display: flex;
+    justify-content: center;
 }
 .cert-list { 
     list-style: none; 
     color: var(--text-muted); 
     padding: 0;
+    text-align: left; /* CONTENU ALIGNÉ À GAUCHE */
+    display: inline-block; /* Le bloc s'adapte au contenu */
 }
 .cert-list li { 
     margin-bottom: 8px; font-size: 0.9rem; 
+    padding-left: 10px; /* Petit retrait */
+    border-left: 2px solid var(--border-color); /* Joli effet visuel à gauche des items */
+}
+.cert-list li:hover {
+    border-left-color: var(--accent-color);
 }
 
-/* --- PROJETS (ALIGNEMENT GAUCHE / DEFAULT) --- */
+
+/* --- PROJETS (SECTION) --- */
+.projects-section {
+    margin-top: 20px; /* Séparation nette */
+    text-align: left; /* Retour à l'alignement standard */
+}
+
 /* Grid Projets */
 .grid { display: flex; flex-direction: column; gap: 12px; }
 .project-card {
     background-color: var(--card-bg); border: 1px solid var(--border-color);
     border-radius: 6px;
-    text-align: left; /* Force gauche */
+    text-align: left;
 }
 .card-header {
     display: flex; align-items: center; padding: 18px 25px; cursor: pointer;
@@ -184,7 +195,7 @@ footer {
     font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 20px; 
 }
 
-/* --- EMAIL POPUP (MODAL) --- */
+/* --- MODAL EMAIL --- */
 .modal-overlay {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
