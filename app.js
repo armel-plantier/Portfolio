@@ -1,154 +1,174 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // 1. Profil
-    document.title = `root@portfolio:~# ${config.profile.name}`;
-    
-    const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
+/* --- THEME : SECOPS PRO --- */
+:root {
+    --bg-color: #0d1117;       
+    --card-bg: #161b22;        
+    --border-color: #30363d;   
+    --text-main: #c9d1d9;      
+    --text-muted: #8b949e;     
+    --accent-color: #58a6ff;   
+    --success-color: #238636;  
+}
 
-    const nameEl = document.getElementById("profile-name");
-    if(nameEl) nameEl.innerHTML = `${config.profile.name}<span class="cursor">_</span>`;
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    const statusEl = document.getElementById("profile-status");
-    if(statusEl) statusEl.innerText = config.profile.status;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Fira Code', 'Consolas', monospace;
+    line-height: 1.6;
+    font-size: 15px;
+    padding: 20px;
+}
 
-    const bioEl = document.getElementById("profile-bio");
-    if(bioEl) bioEl.innerText = config.profile.bio;
+.container { max-width: 900px; margin: 0 auto; padding-top: 40px; }
+a { color: var(--accent-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-    const githubLink = document.getElementById("link-github");
-    if(githubLink) githubLink.href = config.social.github;
+/* --- HEADER & PROFIL (CENTRÉ) --- */
+header { display: flex; flex-direction: column; align-items: center; text-align: center; }
 
-    const linkedinLink = document.getElementById("link-linkedin");
-    if(linkedinLink) linkedinLink.href = config.social.linkedin;
+.avatar { width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--border-color); margin-bottom: 20px; }
+.avatar:hover { border-color: var(--accent-color); }
 
-    const emailText = document.getElementById("email-text");
-    if(emailText) emailText.innerText = config.profile.email;
+h1 { 
+    color: var(--text-main); font-size: 1.8rem; font-weight: 600; 
+    margin-bottom: 5px; display: flex; justify-content: center; align-items: center;
+}
+h1::before { content: "root@portfolio:~# "; color: var(--success-color); font-size: 1rem; margin-right: 10px; opacity: 0.8; }
 
-    const footerEl = document.getElementById("footer-copy");
-    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - GitHub Pages`;
+.status-wrapper { display: flex; justify-content: center; width: 100%; }
+.status-badge { display: inline-flex; align-items: center; color: var(--success-color); font-size: 0.9rem; margin-bottom: 15px; font-weight: 600; }
+.status-dot { height: 10px; width: 10px; background-color: var(--success-color); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 5px var(--success-color); animation: blink 2s infinite; }
 
-    // Skills
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer) {
-        config.skills.forEach(skill => {
-            const span = document.createElement("span");
-            span.className = "skill-tag";
-            span.innerText = skill;
-            skillsContainer.appendChild(span);
-        });
-    }
+h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom: 25px; min-height: 1.6em; }
 
-    // --- MODIFICATION ICI POUR LES CERTIFS ---
-    const certList = document.getElementById("cert-list");
-    if(certList) {
-        config.certifications.forEach(cert => {
-            const li = document.createElement("li");
-            // On crée un lien qui prend tout l'espace
-            li.innerHTML = `<a href="${cert.url}" target="_blank" class="cert-link">${cert.name}</a>`;
-            certList.appendChild(li);
-        });
-    }
-    // -----------------------------------------
+/* Bio Terminal */
+.terminal-bio {
+    background: #010409; padding: 15px; border-radius: 6px;
+    border: 1px solid var(--border-color); margin-bottom: 30px; font-size: 0.95rem;
+    text-align: left; width: 100%;
+}
+.terminal-bio .prompt { color: var(--accent-color); }
+.terminal-bio .output { color: var(--text-muted); display: block; margin-top: 5px; }
 
-    // 2. Typewriter
-    const textElement = document.getElementById("typewriter-area");
-    const textToType = config.profile.typewriterText;
-    if(textElement) {
-        textElement.innerText = ""; 
-        let charIndex = 0;
-        function typeWriter() {
-            if (charIndex < textToType.length) {
-                textElement.innerHTML += textToType.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        setTimeout(typeWriter, 500);
-    }
+/* --- LIENS SOCIAUX --- */
+.social-links { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 30px; flex-wrap: wrap; }
+.social-link { display: inline-flex; align-items: center; color: var(--text-muted); border-bottom: 1px dashed transparent; transition: all 0.2s; cursor: pointer; text-decoration: none; font-weight: 500; }
+.social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+.social-link svg { width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor; }
+.social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
 
-    // 3. Projets
-    const grid = document.getElementById("project-grid");
-    // Adapter cette URL de base selon ton vrai repo
-    const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
+/* --- SKILLS --- */
+.skills-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.skill-tag {
+    background-color: rgba(88, 166, 255, 0.05); color: var(--accent-color);
+    border: 1px solid var(--border-color); padding: 5px 12px;
+    border-radius: 20px; font-size: 0.85rem; cursor: default; transition: all 0.2s;
+}
+.skill-tag:hover { background-color: rgba(88, 166, 255, 0.15); border-color: var(--accent-color); transform: translateY(-2px); }
 
-    config.projects.forEach((project, index) => {
-        const viewerId = `viewer_${index}`;
-        const fullPdfUrl = baseUrl + project.path;
-        
-        const cardHTML = `
-            <div class="project-card">
-                <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
-                    <div class="icon">${project.icon}</div>
-                    <div class="meta">
-                        <h4>${project.title}</h4>
-                        <p>${project.description}</p>
-                    </div>
-                    
-                    <div class="arrow">▼</div>
-                </div>
-                <div id="${viewerId}" class="pdf-container"></div>
-            </div>
-        `;
-        grid.innerHTML += cardHTML;
-    });
+/* --- SEPARATEUR HEADER / BODY --- */
+.main-separator { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; opacity: 0.5;}
 
-    // 4. Modal
-    const emailTrigger = document.getElementById("email-trigger");
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            document.getElementById("email-modal").style.display = "flex";
-        });
-    }
-});
+/* --- STYLE TITRES (BASE) --- */
+h3 {
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-muted); margin-bottom: 15px;
+}
 
-window.togglePDF = function(containerId, url) {
-    const container = document.getElementById(containerId);
-    const header = container.previousElementSibling;
+/* --- CERTIFICATIONS (GRILLE 2 COLONNES AVEC LIENS) --- */
+.certs-section {
+    text-align: center; 
+    margin-bottom: 50px;
+    width: 100%;
+}
+.certs-section h3 {
+    display: inline-block;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
 
-    if (container.style.display === "block") {
-        container.style.display = "none";
-        container.innerHTML = "";
-        header.classList.remove("active");
-        return;
-    }
+.cert-list { 
+    list-style: none; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; /* 2 colonnes égales */
+    gap: 15px; width: 100%; text-align: left;
+}
 
-    document.querySelectorAll('.pdf-container').forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-    });
-    document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
+/* Le LI sert juste de conteneur */
+.cert-list li { 
+    padding: 0; margin: 0;
+}
 
-    const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
-    const iframe = document.createElement('iframe');
-    iframe.src = viewerUrl;
-    iframe.width = "100%";
-    iframe.height = "600px";
-    iframe.style.border = "none";
+/* Le LIEN devient la carte cliquable */
+.cert-link {
+    display: block; /* Prend toute la place */
+    font-size: 0.9rem; 
+    color: var(--text-muted);
+    background: rgba(22, 27, 34, 0.5); 
+    padding: 12px; /* Padding déplacé ici */
+    border-radius: 6px; 
+    border: 1px solid transparent;
+    text-decoration: none; /* Pas de soulignement par défaut */
+    transition: all 0.2s ease;
+}
 
-    container.appendChild(iframe);
-    container.style.display = "block";
-    header.classList.add("active");
-};
+.cert-link:hover {
+    border-color: var(--border-color);
+    background: var(--card-bg);
+    color: var(--accent-color); /* Texte change de couleur au survol */
+    text-decoration: none;
+    transform: translateY(-2px); /* Petit effet de levée */
+}
 
-window.closeModal = function() {
-    document.getElementById("email-modal").style.display = "none";
-    const feedback = document.getElementById("copy-feedback");
-    if(feedback) feedback.innerText = "";
-};
 
-window.onclick = function(event) {
-    const modal = document.getElementById("email-modal");
-    if (event.target == modal) closeModal();
-};
+/* --- PROJETS (TITRE CENTRÉ + LIGNE AU DESSUS) --- */
+.projects-section {
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    margin-top: 20px;
+    text-align: center; 
+}
 
-window.copyEmail = function() {
-    const emailText = document.getElementById("email-text").innerText;
-    navigator.clipboard.writeText(emailText).then(() => {
-        const feedback = document.getElementById("copy-feedback");
-        if(feedback) {
-            feedback.innerText = "Adresse copiée ! ✅";
-            setTimeout(closeModal, 2000);
-        }
-    });
-};
+.projects-section h3 {
+    display: inline-block;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* Grid Projets */
+.grid { 
+    display: flex; flex-direction: column; gap: 12px; 
+    text-align: left; 
+}
+
+.project-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; text-align: left; }
+.card-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; border-left: 3px solid transparent; }
+.card-header:hover { background-color: #1c2128; border-left: 3px solid var(--accent-color); }
+.card-header.active { background-color: #1c2128; border-bottom: 1px solid var(--border-color); border-left: 3px solid var(--success-color); }
+.icon { font-size: 1.4rem; margin-right: 20px; opacity: 0.8; }
+.meta { flex-grow: 1; }
+.meta h4 { color: var(--text-main); font-size: 1rem; margin-bottom: 4px; font-weight: 600; }
+.meta p { color: var(--text-muted); font-size: 0.85rem; font-family: sans-serif; }
+.arrow { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.3s; }
+.card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
+
+/* Footer & Anim */
+.cursor { display: inline-block; width: 8px; height: 18px; background-color: var(--accent-color); animation: blink 1s infinite; vertical-align: middle; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.pdf-container { display: none; background: #fff; height: 650px; width: 100%; }
+footer { text-align: center; margin-top: 60px; color: var(--border-color); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 20px; }
+
+/* Modal */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
+.modal-content { background: var(--card-bg); border: 1px solid var(--accent-color); width: 90%; max-width: 400px; border-radius: 6px; box-shadow: 0 0 20px rgba(88, 166, 255, 0.2); animation: slideDown 0.3s ease-out; }
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-header { background: rgba(255,255,255,0.05); padding: 10px 15px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-family: monospace; color: var(--success-color); }
+.close-btn { background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+.close-btn:hover { color: #ff5555; }
+.modal-body { padding: 20px; text-align: center; }
+.email-box { background: #0d1117; border: 1px dashed var(--border-color); padding: 10px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; }
+#email-text { color: var(--accent-color); font-weight: bold; font-size: 0.9rem;}
+.copy-btn { background: none; border: 1px solid var(--border-color); color: var(--text-main); cursor: pointer; padding: 5px 10px; border-radius: 4px; transition: 0.2s; }
+.copy-btn:hover { background: var(--accent-color); color: #000; }
