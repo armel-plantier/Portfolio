@@ -1,22 +1,58 @@
 const config = {
-    githubUser: "armel-plantier",
+    // --- 1. PROFIL & RÉSEAUX ---
+    profile: {
+        avatar: "https://github.com/armel-plantier.png",
+        name: "armel_plantier",
+        // Le texte qui s'écrit tout seul
+        typewriterText: "> Admin Sys & Réseau | Passionné de Cybersécurité",
+        // La bio style terminal
+        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        status: "Recherche active d'alternance / CDD",
+        email: "armel.plantier@protonmail.com"
+    },
+
+    social: {
+        github: "https://github.com/armel-plantier",
+        linkedin: "https://linkedin.com/in/armel-plantier", // Change ton lien ici !
+    },
+
+    // --- 2. COMPÉTENCES (Tags) ---
+    skills: [
+        "🐧 Linux Hardening",
+        "🪟 Windows Server",
+        "🕸️ Architecture Réseau",
+        "🔌 Cisco (VLAN/OSPF)",
+        "🛡️ Firewalling",
+        "🦈 Wireshark",
+        "📜 Bash Scripting"
+    ],
+
+    // --- 3. CERTIFICATIONS ---
+    certifications: [
+        "✅ Cisco CCNA 1 (En cours)",
+        "✅ MOOC ANSSI - SecNumAcadémie",
+        "✅ Certification Pix"
+    ],
+
+    // --- 4. PROJETS (PDFs) ---
+    // Rappel : Les fichiers doivent être dans le repo Technova/Documents/
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
-            path: "reseau-technova.pdf", // Juste le nom du fichier
+            path: "reseau-technova.pdf", 
             icon: "🌐"
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3.",
-            path: "audit_wifi.pdf",      // Juste le nom du fichier
+            path: "audit_wifi.pdf",      
             icon: "🛡️"
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
-            path: "linux_hardening.pdf", // Juste le nom du fichier
+            path: "linux_hardening.pdf", 
             icon: "🐧"
         }
     ]
