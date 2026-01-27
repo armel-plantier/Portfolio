@@ -70,71 +70,59 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 /* --- SEPARATEUR HEADER / BODY --- */
 .main-separator { border: 0; border-top: 1px solid var(--border-color); margin: 30px 0; opacity: 0.5;}
 
-/* --- TITRES SECTION --- */
+/* --- STYLE TITRES (BASE) --- */
 h3 {
     font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
     color: var(--text-muted); margin-bottom: 15px;
-    /* Pas de bordure par défaut ici, géré par section */
 }
 
 /* --- CERTIFICATIONS (GRILLE 2 COLONNES) --- */
 .certs-section {
-    text-align: center; /* Pour centrer le TITRE */
+    text-align: center; /* Centre le TITRE */
     margin-bottom: 50px;
     width: 100%;
 }
 .certs-section h3 {
-    display: inline-block; /* Le titre reste compact au milieu */
+    display: inline-block; /* Le titre prend juste la place du texte */
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 25px;
 }
 
-/* LA GRILLE MAGIQUE */
 .cert-list { 
-    list-style: none; 
-    padding: 0;
-    
-    /* Configuration Grid */
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 colonnes égales */
-    gap: 15px; /* Espace entre les cases */
-    
-    width: 100%; /* Prend toute la largeur */
-    text-align: left; /* Le texte à l'intérieur est à gauche */
+    list-style: none; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; /* 2 colonnes égales */
+    gap: 15px; width: 100%; text-align: left;
 }
-
 .cert-list li { 
-    font-size: 0.9rem; 
-    color: var(--text-muted);
-    /* Style optionnel "carte légère" pour bien voir les cases */
-    background: rgba(22, 27, 34, 0.5); 
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid transparent;
+    font-size: 0.9rem; color: var(--text-muted);
+    background: rgba(22, 27, 34, 0.5); padding: 12px;
+    border-radius: 6px; border: 1px solid transparent;
 }
-.cert-list li:hover {
-    border-color: var(--border-color);
-    background: var(--card-bg);
-}
+.cert-list li:hover { border-color: var(--border-color); background: var(--card-bg); }
 
 
-/* --- PROJETS (MODIFIÉ : LIGNE AU DESSUS DU TITRE) --- */
+/* --- PROJETS (TITRE CENTRÉ + LIGNE AU DESSUS) --- */
 .projects-section {
-    /* C'est ici qu'on met la ligne pour qu'elle soit AVANT le contenu */
-    border-top: 1px solid var(--border-color);
-    padding-top: 30px; /* Espace entre la ligne et le titre */
+    border-top: 1px solid var(--border-color); /* La ligne avant tout */
+    padding-top: 30px;
     margin-top: 20px;
-    text-align: left;
+    text-align: center; /* Centre le titre H3 */
 }
 
 .projects-section h3 {
-    border-bottom: none; /* On retire la ligne du titre lui-même */
-    margin-bottom: 20px;
+    display: inline-block; /* Même style que certs */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 /* Grid Projets */
-.grid { display: flex; flex-direction: column; gap: 12px; }
+.grid { 
+    display: flex; flex-direction: column; gap: 12px; 
+    text-align: left; /* On force le retour à gauche pour les cartes */
+}
+
 .project-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; text-align: left; }
 .card-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; border-left: 3px solid transparent; }
 .card-header:hover { background-color: #1c2128; border-left: 3px solid var(--accent-color); }
