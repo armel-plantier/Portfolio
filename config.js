@@ -25,13 +25,13 @@ const config = {
     // --- 3. PROJETS (Position 1) ---
     projects: [
         {
-            title: "Mise en place réseau TechNova",
+            title: "Partie 1 : Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐"
         },
         {
-            title: "Audit Sécurité Wi-Fi",
+            title: "Partie 2 : Gestion de l'Active Directory",
             description: "Test d'intrusion WPA3.",
             path: "audit_wifi.pdf",      
             icon: "🛡️"
