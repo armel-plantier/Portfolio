@@ -1,5 +1,6 @@
-/* --- THEME : SECOPS PRO --- */
+/* --- THEME : DEFINITION DES VARIABLES --- */
 :root {
+    /* MODE SOMBRE (Défaut) */
     --bg-color: #0d1117;        
     --card-bg: #161b22;         
     --border-color: #30363d;    
@@ -7,6 +8,17 @@
     --text-muted: #8b949e;      
     --accent-color: #58a6ff;    
     --success-color: #238636;   
+}
+
+/* --- THEME LIGHT (Mode Clair) --- */
+body.light-mode {
+    --bg-color: #ffffff;        
+    --card-bg: #f6f8fa;         
+    --border-color: #d0d7de;    
+    --text-main: #24292f;       
+    --text-muted: #57606a;      
+    --accent-color: #0969da;    
+    --success-color: #1a7f37;   
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,11 +30,22 @@ body {
     line-height: 1.6;
     font-size: 15px;
     padding: 20px;
+    transition: background-color 0.3s, color 0.3s; /* Transition douce pour le switch */
 }
 
-.container { max-width: 900px; margin: 0 auto; padding-top: 40px; }
+.container { max-width: 900px; margin: 0 auto; padding-top: 40px; position: relative; }
 a { color: var(--accent-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
+
+/* BOUTON SWITCH THEME */
+.theme-btn {
+    position: absolute; top: 0; right: 0;
+    background: transparent; border: 1px solid var(--border-color);
+    color: var(--text-muted); font-size: 1.2rem;
+    padding: 5px 10px; border-radius: 6px; cursor: pointer;
+    transition: all 0.2s; z-index: 100;
+}
+.theme-btn:hover { background-color: var(--card-bg); border-color: var(--accent-color); }
 
 /* --- HEADER & PROFIL --- */
 header { display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -44,7 +67,7 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 
 /* Bio Terminal */
 .terminal-bio {
-    background: #010409; padding: 15px; border-radius: 6px;
+    background: var(--card-bg); padding: 15px; border-radius: 6px; /* Changé pour s'adapter au light mode */
     border: 1px solid var(--border-color); margin-bottom: 30px; font-size: 0.95rem;
     text-align: left; width: 100%;
 }
@@ -55,8 +78,6 @@ h2 { color: var(--text-muted); font-size: 1rem; font-weight: 400; margin-bottom:
 .social-links { display: flex; justify-content: center; align-items: center; gap: 25px; margin-bottom: 30px; flex-wrap: wrap; }
 .social-link { display: inline-flex; align-items: center; color: var(--text-muted); border-bottom: 1px dashed transparent; transition: all 0.2s; cursor: pointer; text-decoration: none; font-weight: 500; }
 .social-link:hover { color: var(--accent-color); border-bottom-color: var(--accent-color); }
-.social-link svg { width: 20px; height: 20px; min-width: 20px; margin-right: 8px; fill: currentColor; }
-.social-link svg.feather-mail { fill: none; stroke: currentColor; stroke-width: 2; }
 
 /* Skills Header */
 .skills-section { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
@@ -76,16 +97,11 @@ h3 {
 /* --- SECTIONS --- */
 .projects-section, .certs-section {
     border-top: 1px solid var(--border-color);
-    padding-top: 30px;
-    margin-top: 40px;
-    text-align: center;
+    padding-top: 30px; margin-top: 40px; text-align: center;
 }
-
 .projects-section h3, .certs-section h3 {
-    display: inline-block;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+    display: inline-block; border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px; margin-bottom: 25px;
 }
 
 /* --- GRILLE 2 COLONNES (Compétences & Certifs) --- */
@@ -94,39 +110,34 @@ h3 {
     display: grid; grid-template-columns: 1fr 1fr; 
     gap: 15px; width: 100%; text-align: left;
 }
-@media (max-width: 600px) { .cert-list { grid-template-columns: 1fr; } }
 
 .cert-list li { 
     display: flex; justify-content: space-between; align-items: center;
     font-size: 0.9rem; color: var(--text-muted);
-    background: rgba(22, 27, 34, 0.5); padding: 15px 20px; 
+    background: var(--card-bg); padding: 15px 20px; 
     border-radius: 6px; border: 1px solid transparent;
-    transition: all 0.2s ease;
-    position: relative;
+    transition: all 0.2s ease; position: relative;
 }
-.cert-list li:hover { border-color: var(--border-color); background: var(--card-bg); }
+.cert-list li:hover { border-color: var(--border-color); transform: translateX(5px); }
 
 .cert-name { font-weight: 500; }
 .cert-btn {
     display: inline-block; font-size: 0.75rem; padding: 5px 12px;
     border: 1px solid var(--border-color); border-radius: 4px;
-    background-color: #0d1117; color: var(--accent-color);
+    background-color: var(--bg-color); color: var(--accent-color);
     text-transform: uppercase; font-weight: 600; white-space: nowrap;
     transition: all 0.2s ease; cursor: pointer;
 }
 .cert-btn:hover, .cert-btn.active {
-    background-color: var(--accent-color); color: #000; border-color: var(--accent-color); text-decoration: none; transform: translateY(-1px);
+    background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); transform: translateY(-1px);
 }
 
 /* --- EXPÉRIENCES (SYSTEM LOGS) --- */
 .timeline-list {
     list-style: none; padding: 0; text-align: left;
-    border-left: 2px solid var(--border-color);
-    margin-left: 20px;
+    border-left: 2px solid var(--border-color); margin-left: 20px;
 }
-.timeline-item {
-    margin-bottom: 30px; padding-left: 20px; position: relative;
-}
+.timeline-item { margin-bottom: 30px; padding-left: 20px; position: relative; }
 .timeline-item::before {
     content: ''; position: absolute; left: -6px; top: 5px;
     width: 10px; height: 10px; background: var(--bg-color);
@@ -136,38 +147,32 @@ h3 {
     display: inline-block; font-size: 0.8rem; color: var(--accent-color);
     font-weight: 600; margin-bottom: 5px;
 }
-.timeline-title {
-    color: var(--text-main); font-size: 1rem; margin-bottom: 5px;
-}
-.timeline-company {
-    color: var(--text-muted); font-weight: 400; font-style: italic;
-}
-.timeline-desc {
-    color: var(--text-muted); font-size: 0.9rem;
-}
+.timeline-title { color: var(--text-main); font-size: 1rem; margin-bottom: 5px; }
+.timeline-company { color: var(--text-muted); font-weight: 400; font-style: italic; }
+.timeline-desc { color: var(--text-muted); font-size: 0.9rem; }
 
 /* --- DROPDOWN (Compétences) --- */
 .comp-dropdown-wrapper { position: relative; }
 .comp-dropdown-menu {
     display: none; position: absolute;
     top: 120%; right: 0; width: 250px;
-    background-color: #1c2128; border: 1px solid var(--border-color);
+    background-color: var(--bg-color); border: 1px solid var(--border-color);
     border-radius: 6px; padding: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 100;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 100;
     list-style: none; text-align: left;
 }
 .comp-dropdown-menu li {
     background: none; border: none; padding: 5px 10px; display: block;
     color: var(--text-main); font-size: 0.85rem;
 }
-.comp-dropdown-menu li:hover { background: rgba(88, 166, 255, 0.1); color: var(--accent-color); border: none; }
+.comp-dropdown-menu li:hover { background: rgba(88, 166, 255, 0.1); color: var(--accent-color); border: none; transform: none; }
 
 /* --- PROJETS GRILLE --- */
 .grid { display: flex; flex-direction: column; gap: 12px; text-align: left; }
 .project-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 6px; text-align: left; }
 .card-header { display: flex; align-items: center; padding: 18px 25px; cursor: pointer; border-left: 3px solid transparent; }
-.card-header:hover { background-color: #1c2128; border-left: 3px solid var(--accent-color); }
-.card-header.active { background-color: #1c2128; border-bottom: 1px solid var(--border-color); border-left: 3px solid var(--success-color); }
+.card-header:hover { border-left: 3px solid var(--accent-color); }
+.card-header.active { border-bottom: 1px solid var(--border-color); border-left: 3px solid var(--success-color); }
 .icon { font-size: 1.4rem; margin-right: 20px; opacity: 0.8; }
 .meta { flex-grow: 1; }
 .meta h4 { color: var(--text-main); font-size: 1rem; margin-bottom: 4px; font-weight: 600; }
@@ -175,19 +180,6 @@ h3 {
 .arrow { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.3s; }
 .card-header.active .arrow { transform: rotate(180deg); color: var(--text-main); }
 .pdf-container { display: none; background: #fff; height: 650px; width: 100%; border-radius: 0 0 6px 6px; }
-
-/* --- CONTACT FORM --- */
-.contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; font-family: 'Fira Code', monospace; }
-.contact-form input, .contact-form textarea {
-    width: 100%; background-color: #0d1117; 
-    border: 1px solid var(--border-color); border-radius: 6px;
-    padding: 10px; color: var(--text-main); font-family: inherit; font-size: 0.95rem;
-    outline: none; transition: border-color 0.2s;
-}
-.contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent-color); box-shadow: 0 0 5px rgba(88, 166, 255, 0.2); }
-::placeholder { color: #484f58; opacity: 1; }
 
 /* --- FOOTER & ANIM --- */
 .cursor { display: inline-block; width: 8px; height: 18px; background-color: var(--accent-color); animation: blink 1s infinite; vertical-align: middle; }
@@ -210,13 +202,13 @@ footer {
     box-shadow: 0 15px 30px rgba(0,0,0,0.5); animation: fadeIn 0.3s ease;
 }
 .modal-header {
-    background: #0d1117; padding: 15px; border-bottom: 1px solid var(--border-color);
+    background: var(--bg-color); padding: 15px; border-bottom: 1px solid var(--border-color);
     display: flex; justify-content: space-between; align-items: center;
     border-radius: 8px 8px 0 0; font-family: monospace; color: var(--success-color);
 }
 .modal-body { padding: 25px; text-align: center; }
 .email-box {
-    background: #0d1117; border: 1px dashed var(--border-color); padding: 10px; margin: 15px 0;
+    background: var(--bg-color); border: 1px dashed var(--border-color); padding: 10px; margin: 15px 0;
     border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
     font-family: monospace; color: var(--accent-color);
 }
@@ -226,67 +218,31 @@ footer {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* --- GESTION DE L'AFFICHAGE "VOIR PLUS" --- */
-.hidden-item {
-    display: none !important;
-}
+.hidden-item { display: none !important; }
 
-.load-more-container {
-    margin-top: 15px;
-    display: block;
-    width: 100%;
-}
+.load-more-container { margin-top: 15px; display: block; width: 100%; }
 
 .load-more-btn {
-    background: none;
-    border: 1px dashed var(--border-color);
-    color: var(--text-muted);
-    padding: 8px 20px;
-    font-family: inherit;
-    font-size: 0.85rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s;
+    background: none; border: 1px dashed var(--border-color);
+    color: var(--text-muted); padding: 8px 20px;
+    font-family: inherit; font-size: 0.85rem; cursor: pointer;
+    border-radius: 4px; transition: all 0.2s;
 }
-
 .load-more-btn:hover {
-    color: var(--accent-color);
-    border-color: var(--accent-color);
+    color: var(--accent-color); border-color: var(--accent-color);
     background: rgba(88, 166, 255, 0.05);
 }
 
 /* --- 📱 RESPONSIVE & MOBILE --- */
 @media (max-width: 768px) {
-    
-    /* 1. Marges plus fines pour gagner de la place */
     body { padding: 10px; }
     .container { padding-top: 20px; width: 100%; }
-
-    /* 2. Le Titre : On passe le "root@..." au dessus du nom */
-    h1 { 
-        flex-direction: column; 
-        gap: 5px;
-        font-size: 1.5rem;
-    }
-    h1::before { 
-        content: "root@portfolio:~#"; /* On enlève l'espace final */
-        margin-right: 0;
-        font-size: 0.9rem;
-    }
-
-    /* 3. Texte machine à écrire plus petit */
+    h1 { flex-direction: column; gap: 5px; font-size: 1.5rem; }
+    h1::before { content: "root@portfolio:~#"; margin-right: 0; font-size: 0.9rem; }
     h2 { font-size: 0.9rem; min-height: 3em; }
-
-    /* 4. Grilles : Tout en une seule colonne */
     .cert-list { grid-template-columns: 1fr; }
-    
-    /* 5. Timeline : On réduit l'espace à gauche */
     .timeline-list { margin-left: 10px; }
     .timeline-item { padding-left: 15px; }
-
-    /* 6. Formulaire prend toute la largeur */
-    .contact-form { width: 100%; }
-
-    /* 7. Ajustement des boutons sociaux */
     .social-links { gap: 15px; }
     .social-link { font-size: 0.9rem; }
 }
