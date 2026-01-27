@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if(githubLink) githubLink.href = config.social.github;
     const linkedinLink = document.getElementById("link-linkedin");
     if(linkedinLink) linkedinLink.href = config.social.linkedin;
-    const emailText = document.getElementById("email-text");
-    if(emailText) emailText.innerText = config.profile.email;
+    
+    // Note: L'email est maintenant géré par Formspree directement dans le HTML
+
     const footerEl = document.getElementById("footer-copy");
     if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - GitHub Pages`;
 
@@ -255,9 +256,3 @@ window.togglePDF = function(containerId, url) {
 
 window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
 window.onclick = function(event) { if (event.target == document.getElementById("email-modal")) window.closeModal(); };
-window.copyEmail = function() {
-    navigator.clipboard.writeText(document.getElementById("email-text").innerText).then(() => {
-        const fb = document.getElementById("copy-feedback");
-        if(fb) { fb.innerText = "Adresse copiée ! ✅"; setTimeout(window.closeModal, 2000); }
-    });
-};
