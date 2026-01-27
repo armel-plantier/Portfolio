@@ -253,3 +253,40 @@ footer {
     border-color: var(--accent-color);
     background: rgba(88, 166, 255, 0.05);
 }
+
+/* --- 📱 RESPONSIVE & MOBILE --- */
+@media (max-width: 768px) {
+    
+    /* 1. Marges plus fines pour gagner de la place */
+    body { padding: 10px; }
+    .container { padding-top: 20px; width: 100%; }
+
+    /* 2. Le Titre : On passe le "root@..." au dessus du nom */
+    h1 { 
+        flex-direction: column; 
+        gap: 5px;
+        font-size: 1.5rem;
+    }
+    h1::before { 
+        content: "root@portfolio:~#"; /* On enlève l'espace final */
+        margin-right: 0;
+        font-size: 0.9rem;
+    }
+
+    /* 3. Texte machine à écrire plus petit */
+    h2 { font-size: 0.9rem; min-height: 3em; }
+
+    /* 4. Grilles : Tout en une seule colonne */
+    .cert-list { grid-template-columns: 1fr; }
+    
+    /* 5. Timeline : On réduit l'espace à gauche */
+    .timeline-list { margin-left: 10px; }
+    .timeline-item { padding-left: 15px; }
+
+    /* 6. Formulaire prend toute la largeur */
+    .contact-form { width: 100%; }
+
+    /* 7. Ajustement des boutons sociaux */
+    .social-links { gap: 15px; }
+    .social-link { font-size: 0.9rem; }
+}
