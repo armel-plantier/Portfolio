@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ============================================
-    // 1. CHARGEMENT DU PROFIL
-    // ============================================
-    
+    // 1. Profil
     document.title = `root@portfolio:~# ${config.profile.name}`;
     
     const avatarEl = document.getElementById("profile-avatar");
@@ -30,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const footerEl = document.getElementById("footer-copy");
     if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - GitHub Pages`;
 
+    // Skills
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer) {
         config.skills.forEach(skill => {
@@ -40,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Certifications
     const certList = document.getElementById("cert-list");
     if(certList) {
         config.certifications.forEach(cert => {
@@ -49,12 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ============================================
-    // 2. MACHINE À ÉCRIRE
-    // ============================================
+    // 2. Typewriter
     const textElement = document.getElementById("typewriter-area");
     const textToType = config.profile.typewriterText;
-    
     if(textElement) {
         textElement.innerText = ""; 
         let charIndex = 0;
@@ -68,9 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-    // ============================================
-    // 3. PROJETS (SANS BOUTON EXTERNE)
-    // ============================================
+    // 3. Projets
     const grid = document.getElementById("project-grid");
     const baseUrl = `https://armel-plantier.github.io/Technova/Documents/`;
 
@@ -78,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const viewerId = `viewer_${index}`;
         const fullPdfUrl = baseUrl + project.path;
         
-        // J'ai retiré la balise <a> qui faisait le bouton
         const cardHTML = `
             <div class="project-card">
                 <div class="card-header" onclick="togglePDF('${viewerId}', '${fullPdfUrl}')">
@@ -96,9 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.innerHTML += cardHTML;
     });
 
-    // ============================================
-    // 4. POPUP EMAIL
-    // ============================================
+    // 4. Modal
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -107,10 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-// ============================================
-// 5. FONCTIONS GLOBALES
-// ============================================
 
 window.togglePDF = function(containerId, url) {
     const container = document.getElementById(containerId);
