@@ -14,9 +14,9 @@ const config = {
         linkedin: "https://linkedin.com/in/armel-plantier"
     },
 
-    // --- 2. TITRES DES SECTIONS (Nouveau !) ---
+    // --- 2. TITRES DES SECTIONS (CORRIGÉ) ---
+    // Tu mets exactement ce que tu veux voir s'afficher ici
     titles: {
-        skills: "⚡ Compétences Techniques",
         certifications: "🎓 Certifications & Formations",
         projects: "📂 /var/www/projects"
     },
@@ -40,7 +40,6 @@ const config = {
     ],
 
     // --- 5. PROJETS (PDFs) ---
-    // URL de base gérée dans app.js (vers Technova/Documents/)
     projects: [
         {
             title: "Mise en place réseau TechNova",
