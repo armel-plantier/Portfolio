@@ -79,15 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(typeWriter, 500);
     }
 
-// --- PROJETS ---
+    // --- PROJETS (AVEC FIX DOCUMENTS) ---
     const grid = document.getElementById("project-grid");
 
-    // DÉTECTION AUTOMATIQUE DE L'URL
-    // On prend l'URL de base et on ajoute le dossier "Documents"
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    
-    // ATTENTION : "Documents" avec une majuscule ici
-    const baseUrl = `${window.location.origin}${path}Documents/`;
+    const baseUrl = `${window.location.origin}${path}Documents/`; // <-- Majuscule ici
 
     config.projects.forEach((project, index) => {
         const viewerId = `viewer_${index}`;
@@ -129,65 +125,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.toggleComp = function(event, id) {
     event.stopPropagation(); 
     const menu = document.getElementById(id);
-    const btn = event.currentTarget;
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
-        if(el.id !== id) el.style.display = 'none';
-    });
-    document.querySelectorAll('.comp-toggle').forEach(el => {
-        if(el !== btn) el.classList.remove('active');
-    });
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-        btn.classList.remove('active');
-    } else {
-        menu.style.display = "block";
-        btn.classList.add('active');
-    }
-};
-
-window.togglePDF = function(containerId, url) {
-    const container = document.getElementById(containerId);
-    const header = container.previousElementSibling;
-    if (container.style.display === "block") {
-        container.style.display = "none";
-        container.innerHTML = "";
-        header.classList.remove("active");
-        return;
-    }
-    document.querySelectorAll('.pdf-container').forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-    });
-    document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
-    const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
-    const iframe = document.createElement('iframe');
-    iframe.src = viewerUrl;
-    iframe.width = "100%";
-    iframe.height = "600px";
-    iframe.style.border = "none";
-    container.appendChild(iframe);
-    container.style.display = "block";
-    header.classList.add("active");
-};
-
-window.closeModal = function() {
-    document.getElementById("email-modal").style.display = "none";
-    const feedback = document.getElementById("copy-feedback");
-    if(feedback) feedback.innerText = "";
-};
-
-window.onclick = function(event) {
-    const modal = document.getElementById("email-modal");
-    if (event.target == modal) closeModal();
-};
-
-window.copyEmail = function() {
-    const emailText = document.getElementById("email-text").innerText;
-    navigator.clipboard.writeText(emailText).then(() => {
-        const feedback = document.getElementById("copy-feedback");
-        if(feedback) {
-            feedback.innerText = "Adresse copiée ! ✅";
-            setTimeout(closeModal, 2000);
-        }
-    });
-};
+    const
