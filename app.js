@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
+    // Ajout FAVICON
+    const favLink = document.getElementById("favicon-link");
+    if(favLink && config.profile.favicon) favLink.href = config.profile.favicon;
+
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
