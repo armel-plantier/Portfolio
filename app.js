@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- GESTION DU THEME (Light / Dark) ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
+    
+    // Vérification du stockage local
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-mode");
         if(themeBtn) themeBtn.innerText = "🌙"; 
     }
+
     if (themeBtn) {
         themeBtn.addEventListener("click", () => {
             body.classList.toggle("light-mode");
@@ -27,26 +30,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 1. PROFIL ---
-    document.title = `root@portfolio:~# ${config.profile.name}`;
+    // Titre de l'onglet du navigateur
+    document.title = `${config.profile.name} | Portfolio`;
+
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
+
     const nameEl = document.getElementById("profile-name");
-    if(nameEl) nameEl.innerHTML = `${config.profile.name}<span class="cursor">_</span>`;
+    if(nameEl) nameEl.innerText = config.profile.name;
+
     const statusEl = document.getElementById("profile-status");
     if(statusEl) statusEl.innerText = config.profile.status;
+
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
+
     const githubLink = document.getElementById("link-github");
     if(githubLink) githubLink.href = config.social.github;
+
     const linkedinLink = document.getElementById("link-linkedin");
     if(linkedinLink) linkedinLink.href = config.social.linkedin;
     
-    // Note: L'email est maintenant géré par Formspree directement dans le HTML
-
     const footerEl = document.getElementById("footer-copy");
-    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - GitHub Pages`;
+    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}. Tous droits réservés.`;
 
-    // --- 2. HEADER SKILLS ---
+    // --- 2. HEADER SKILLS (Tags en haut) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer) {
         config.skills.forEach(skill => {
@@ -59,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 3. PROJETS (Limite : 3) ---
     const grid = document.getElementById("project-grid");
+    // Calcul du chemin pour les PDF
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 3;
@@ -66,9 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (grid && config.projects) {
         config.projects.forEach((project, index) => {
             const viewerId = `viewer_${index}`;
+            // On s'assure que le PDF pointe vers le bon dossier
             const fullPdfUrl = baseUrl + project.path;
+            
             const cardDiv = document.createElement("div");
             cardDiv.className = "project-card";
+            
+            // Masquer les projets au-delà de la limite
             if (index >= PROJECT_LIMIT) cardDiv.classList.add("hidden-item");
 
             cardDiv.innerHTML = `
@@ -78,19 +91,19 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h4>${project.title}</h4>
                         <p>${project.description}</p>
                     </div>
-                    <div class="arrow">▼</div>
                 </div>
                 <div id="${viewerId}" class="pdf-container"></div>
             `;
             grid.appendChild(cardDiv);
         });
 
+        // Ajouter le bouton "Voir plus" si nécessaire
         if (config.projects.length > PROJECT_LIMIT) {
             createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
         }
     }
 
-    // --- 4. EXPÉRIENCES (Limite : 3) ---
+    // --- 4. EXPÉRIENCES (Timeline) ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 3;
     if(expList && config.experiences) {
@@ -100,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
             li.innerHTML = `
                 <span class="timeline-date">${exp.date}</span>
-                <h4 class="timeline-title">${exp.role} <span class="timeline-company">@ ${exp.company}</span></h4>
+                <h4 class="timeline-title">${exp.role} <span style="font-weight:400; opacity:0.8;">@ ${exp.company}</span></h4>
                 <p class="timeline-desc">${exp.description}</p>
             `;
             expList.appendChild(li);
@@ -110,23 +123,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- 5. COMPÉTENCES (Limite : 4) ---
+    // --- 5. COMPÉTENCES (Nouveau design Carte) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 4;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li");
-            li.className = "comp-card-container"; 
+            li.className = "comp-card-container"; // Classe adaptée au nouveau CSS
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+            
             const detailsHTML = comp.details.map(d => `<li>• ${d}</li>`).join('');
+            
+            // Structure mise à jour pour le design moderne
             li.innerHTML = `
-                <span class="cert-name">${comp.name}</span>
-                <div class="comp-dropdown-wrapper">
+                <div class="comp-header">
+                    <span class="cert-name">${comp.name}</span>
                     <button class="cert-btn comp-toggle" onclick="toggleComp(event, 'comp-drop-${index}')">▼</button>
-                    <ul id="comp-drop-${index}" class="comp-dropdown-menu">
-                        ${detailsHTML}
-                    </ul>
                 </div>
+                <ul id="comp-drop-${index}" class="comp-dropdown-menu">
+                    ${detailsHTML}
+                </ul>
             `;
             compList.appendChild(li);
         });
@@ -135,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- 6. CERTIFICATIONS (Limite : 4) ---
+    // --- 6. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 4;
     if(certList && config.certifications) {
@@ -153,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- 7. TYPEWRITER ---
+    // --- 7. TYPEWRITER EFFECT (Effet machine à écrire) ---
     const textElement = document.getElementById("typewriter-area");
     if(textElement && config.profile.typewriterText) {
         const textToType = config.profile.typewriterText;
@@ -163,26 +179,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (charIndex < textToType.length) {
                 textElement.innerHTML += textToType.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 50); // Vitesse de frappe
             }
         }
-        setTimeout(typeWriter, 500);
+        setTimeout(typeWriter, 500); // Délai avant démarrage
     }
 
-    // --- 8. DETECTION OS CLIENT ---
-    const osElement = document.getElementById("client-os");
-    if (osElement) {
-        let os = "Unknown OS";
-        const ua = window.navigator.userAgent;
-        if (ua.indexOf("Win") !== -1) os = "Windows";
-        else if (ua.indexOf("Mac") !== -1) os = "macOS";
-        else if (ua.indexOf("Linux") !== -1) os = "Linux";
-        else if (ua.indexOf("Android") !== -1) os = "Android";
-        else if (ua.indexOf("iPhone") !== -1 || ua.indexOf("iPad") !== -1) os = "iOS";
-        osElement.innerText = os;
-    }
-
-    // --- EVENTS ---
+    // --- 8. MODALE DE CONTACT ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -191,22 +194,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Fermeture des dropdowns si on clique ailleurs
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.comp-dropdown-wrapper')) {
+        if (!event.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
     });
 });
 
-// --- FONCTIONS UTILITAIRES ---
+// --- FONCTIONS UTILITAIRES GLOBALES ---
 
+// Fonction pour créer le bouton "Voir plus / Voir moins"
 function createToggleBtn(container, limit, textMore) {
     const btnContainer = document.createElement("div");
     btnContainer.className = "load-more-container";
     const btn = document.createElement("button");
     btn.className = "load-more-btn";
-    btn.innerHTML = `[+] ${textMore}`;
+    btn.innerHTML = `↓ ${textMore}`;
     
     let isExpanded = false;
     btn.onclick = function() {
@@ -216,6 +221,7 @@ function createToggleBtn(container, limit, textMore) {
             if (i >= limit) {
                 if (isExpanded) {
                     items[i].classList.remove("hidden-item");
+                    // Petit effet d'apparition
                     items[i].style.opacity = 0;
                     setTimeout(() => items[i].style.opacity = 1, 50);
                 } else {
@@ -223,36 +229,64 @@ function createToggleBtn(container, limit, textMore) {
                 }
             }
         }
-        btn.innerHTML = isExpanded ? `[-] Voir moins` : `[+] ${textMore}`;
+        btn.innerHTML = isExpanded ? `↑ Voir moins` : `↓ ${textMore}`;
     };
     btnContainer.appendChild(btn);
     container.parentNode.insertBefore(btnContainer, container.nextSibling);
 }
 
+// Fonction pour ouvrir/fermer les détails des compétences
 window.toggleComp = function(event, id) {
     event.stopPropagation(); 
     const menu = document.getElementById(id);
     const btn = event.currentTarget;
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); });
-    if (menu.style.display === "block") { menu.style.display = "none"; btn.classList.remove('active'); } 
-    else { menu.style.display = "block"; btn.classList.add('active'); }
+    
+    // Fermer les autres ouverts
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { 
+        if(el.id !== id) el.style.display = 'none'; 
+    });
+    
+    // Basculer l'état
+    if (menu.style.display === "block") { 
+        menu.style.display = "none"; 
+        btn.classList.remove('active'); 
+    } else { 
+        menu.style.display = "block"; 
+        btn.classList.add('active'); 
+    }
 };
 
+// Fonction pour afficher le PDF
 window.togglePDF = function(containerId, url) {
     const container = document.getElementById(containerId);
-    const header = container.previousElementSibling;
+    
+    // Si déjà ouvert, on ferme
     if (container.style.display === "block") {
-        container.style.display = "none"; container.innerHTML = ""; header.classList.remove("active");
+        container.style.display = "none"; 
+        container.innerHTML = ""; 
         return;
     }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    document.querySelectorAll('.card-header').forEach(el => el.classList.remove('active'));
+    
+    // Fermer tous les autres PDF ouverts pour éviter la surcharge
+    document.querySelectorAll('.pdf-container').forEach(el => { 
+        el.style.display = 'none'; 
+        el.innerHTML = ''; 
+    });
+
+    // Utilisation du viewer Google Docs pour l'intégration facile
     const viewerUrl = "https://docs.google.com/viewer?url=" + encodeURIComponent(url) + "&embedded=true";
-    container.innerHTML = `<iframe src="${viewerUrl}" width="100%" height="600px" style="border:none;"></iframe>`;
+    container.innerHTML = `<iframe src="${viewerUrl}" width="100%" height="500px" style="border:none;"></iframe>`;
     container.style.display = "block";
-    header.classList.add("active");
 };
 
-window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
-window.onclick = function(event) { if (event.target == document.getElementById("email-modal")) window.closeModal(); };
+// Fonctions pour la modale
+window.closeModal = function() { 
+    document.getElementById("email-modal").style.display = "none"; 
+};
+
+// Fermer la modale si on clique sur le fond sombre
+window.onclick = function(event) { 
+    if (event.target == document.getElementById("email-modal")) {
+        window.closeModal(); 
+    }
+};
