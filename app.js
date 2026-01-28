@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // Vérification de sécurité
     if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
 
-    // THEME
+    // --- 1. GESTION DU THÈME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
-    // Vérification du thème stocké
+
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-mode");
         if(themeBtn) themeBtn.innerText = "🌙"; 
@@ -24,31 +25,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- MISE A JOUR HEADER (DROITE) ---
+    // --- 2. NAVIGATION DYNAMIQUE (Config) ---
+    const navList = document.getElementById("nav-list");
+    if (navList && config.navigation) {
+        config.navigation.forEach(navItem => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${navItem.link}">${navItem.title}</a>`;
+            navList.appendChild(li);
+        });
+    }
+
+    // --- 3. REMPLISSAGE INFOS PROFIL (Gauche) ---
     const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar; // Assure-toi que l'URL est bonne dans config.js
+    if(avatarEl) avatarEl.src = config.profile.avatar;
     
     const nameEl = document.getElementById("profile-name");
     if(nameEl) nameEl.innerText = config.profile.name;
     
     const statusEl = document.getElementById("profile-status");
-    if(statusEl) statusEl.innerText = config.profile.status;
+    // On force l'affichage du statut si dispo dans config, sinon "En recherche..." par défaut
+    if(statusEl) statusEl.innerText = config.profile.status || "En recherche d'alternance";
 
-    // --- RESTE DU JS (Inchangé) ---
+    // --- 4. HERO & BIO ---
     document.title = `${config.profile.name} | Portfolio`;
     document.getElementById("profile-bio").innerText = config.profile.bio;
     document.getElementById("link-github").href = config.social.github;
     document.getElementById("link-linkedin").href = config.social.linkedin;
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}. All rights reserved.`;
 
+    // Tags sous le héros
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer) config.skills.forEach(s => {
         const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s;
         skillsContainer.appendChild(span);
     });
 
+    // --- 5. CHARGEMENT PROJETS ---
     const grid = document.getElementById("project-grid");
-    // URL relative pour les PDF
+    // URL relative pour les PDF (Dossier 'Documents' à la racine)
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 3;
@@ -70,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
     }
 
+    // --- 6. CHARGEMENT EXPÉRIENCES ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 3;
     if(expList && config.experiences) {
@@ -82,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Historique complet");
     }
 
+    // --- 7. CHARGEMENT COMPÉTENCES (Dropdown) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 4;
     if(compList && config.competences) {
@@ -101,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir toutes");
     }
 
+    // --- 8. CHARGEMENT CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 4;
     if(certList && config.certifications) {
@@ -113,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
     }
 
+    // --- 9. TYPEWRITER EFFECT ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -120,16 +138,18 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
+    // --- 10. MODAL EMAIL ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
+            emailSpan.innerText = config.profile.email || "ton.email@exemple.com";
             document.getElementById("email-modal").style.display = "flex";
         });
     }
 
+    // Fermeture dropdowns au clic ailleurs
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
@@ -137,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// --- FONCTIONS UTILITAIRES (Accessibles globalement) ---
 
 function createToggleBtn(container, limit, txt) {
     const div = document.createElement("div"); div.className = "load-more-container";
