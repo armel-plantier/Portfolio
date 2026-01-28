@@ -2,19 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
 
-    // --- 0. NAVIGATION (AJOUTÉ) ---
-    const navContainer = document.getElementById("nav-list");
-    if (navContainer && config.navigation) {
-        config.navigation.forEach(link => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.innerText = link.title;
-            a.href = link.link;
-            li.appendChild(a);
-            navContainer.appendChild(li);
-        });
-    }
-
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
@@ -39,10 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
-    // Ajout FAVICON
-    const favLink = document.getElementById("favicon-link");
-    if(favLink && config.profile.favicon) favLink.href = config.profile.favicon;
-
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
@@ -71,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
-    
-    // Calcul de l'URL absolue nécessaire pour Google Viewer
+    // URL relative au dossier Documents
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
@@ -137,9 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
             
             li.innerHTML = `
-                <div class="comp-header">
+                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
                     <span class="cert-name">${comp.name}</span>
-                    <button class="cert-btn comp-toggle" onclick="toggleComp(event, 'comp-drop-${index}')">▼</button>
+                    <button class="cert-btn comp-toggle">▼</button>
                 </div>
                 <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
@@ -223,17 +205,19 @@ function createToggleBtn(container, limit, txt) {
 window.toggleComp = function(e, id) {
     e.stopPropagation(); 
     const menu = document.getElementById(id); 
-    const btn = e.currentTarget;
+    // Trouver le bouton à l'intérieur du header cliqué
+    const btn = e.currentTarget.querySelector('.comp-toggle');
     
+    // Fermer les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
     
     if(menu.style.display==='block') { 
         menu.style.display='none'; 
-        btn.classList.remove('active'); 
+        if(btn) btn.classList.remove('active'); 
     } else { 
         menu.style.display='block'; 
-        btn.classList.add('active'); 
+        if(btn) btn.classList.add('active'); 
     }
 };
 
@@ -258,29 +242,4 @@ window.closeModal = function() {
 
 window.onclick = function(e) { 
     if(e.target == document.getElementById("email-modal")) window.closeModal(); 
-};
-
-window.copyEmail = function() {
-    const emailSpan = document.getElementById("email-text");
-    const email = emailSpan.innerText;
-    
-    navigator.clipboard.writeText(email).then(() => {
-        const fb = document.getElementById("copy-feedback");
-        if (fb) {
-            fb.innerText = "Adresse copiée ! ✅";
-            setTimeout(() => {
-                fb.innerText = "";
-                window.closeModal();
-            }, 1500);
-        } else {
-            const original = emailSpan.innerText;
-            emailSpan.innerText = "Copié ! ✅";
-            emailSpan.style.color = "#10b981";
-            setTimeout(() => {
-                emailSpan.innerText = original;
-                emailSpan.style.color = "";
-                window.closeModal();
-            }, 1500);
-        }
-    });
 };
