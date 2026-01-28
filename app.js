@@ -2,6 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
 
+    // --- 0. NAVIGATION (AJOUTÉ) ---
+    const navContainer = document.getElementById("nav-list");
+    if (navContainer && config.navigation) {
+        config.navigation.forEach(link => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = link.title;
+            a.href = link.link;
+            li.appendChild(a);
+            navContainer.appendChild(li);
+        });
+    }
+
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
@@ -56,12 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. PROJETS (TA MÉTHODE REMISE EN PLACE) ---
+    // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
     
     // Calcul de l'URL absolue nécessaire pour Google Viewer
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    // On ajoute le dossier "Documents/" ici
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
     const PROJECT_LIMIT = 3;
@@ -74,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
             
-            // On construit l'URL complète
             const fullPdfUrl = baseUrl + proj.path;
 
             div.innerHTML = `
@@ -165,7 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            // Fallback si config.profile.email est vide
             emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
             document.getElementById("email-modal").style.display = "flex";
         });
@@ -227,29 +237,21 @@ window.toggleComp = function(e, id) {
     }
 };
 
-// --- TA FONCTION PDF ORIGINALE (Google Docs Viewer) ---
 window.togglePDF = function(id, url) {
     const c = document.getElementById(id);
-    
-    // Fermeture si déjà ouvert
     if(c.style.display==='block') { 
         c.style.display='none'; 
         c.innerHTML=''; 
         return; 
     }
-    
-    // Fermeture des autres
     document.querySelectorAll('.pdf-container').forEach(el => { 
         el.style.display='none'; 
         el.innerHTML=''; 
     });
-    
-    // Affichage via Google Docs Viewer
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="500px" style="border:none;"></iframe>`;
     c.style.display='block';
 };
 
-// --- MODALE EMAIL ---
 window.closeModal = function() { 
     document.getElementById("email-modal").style.display = "none"; 
 };
@@ -263,7 +265,6 @@ window.copyEmail = function() {
     const email = emailSpan.innerText;
     
     navigator.clipboard.writeText(email).then(() => {
-        // Feedback visuel (si l'élément copy-feedback existe, sinon on change le texte)
         const fb = document.getElementById("copy-feedback");
         if (fb) {
             fb.innerText = "Adresse copiée ! ✅";
