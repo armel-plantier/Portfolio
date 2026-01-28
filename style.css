@@ -42,7 +42,7 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
 .header-left { display: flex; align-items: center; gap: 16px; }
 
 .id-avatar { 
-    width: 54px; /* Plus grand */
+    width: 54px; 
     height: 54px; 
     border-radius: 12px; 
     object-fit: cover; 
@@ -54,7 +54,7 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
 .id-name { 
     font-weight: 800; 
     font-family: 'Outfit', sans-serif; 
-    font-size: 1.3rem; /* Nom plus gros */
+    font-size: 1.3rem; 
     line-height: 1.1;
     color: var(--text);
 }
@@ -63,7 +63,7 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
     display: flex; 
     align-items: center; 
     gap: 8px; 
-    font-size: 0.9rem; /* Statut plus lisible */
+    font-size: 0.9rem; 
     color: var(--muted); 
     margin-top: 4px;
 }
@@ -81,8 +81,6 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
     border: 1px solid var(--border);
     padding: 10px 30px; 
     border-radius: 50px;
-    
-    /* Force le centrage parfait au milieu de l'écran */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -120,12 +118,33 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
 @keyframes blink { 50% { opacity: 0; } }
 
 .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+
+/* MODIF BOUTONS SOCIAUX (ICONES + TEXTE) */
 .social-btn { 
-    padding: 10px 20px; background: var(--card); border-radius: 8px; 
-    border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; transition: 0.2s;
+    display: flex; /* Active Flexbox pour aligner icone et texte */
+    align-items: center;
+    gap: 8px; /* Espace entre icone et texte */
+    padding: 10px 20px; 
+    background: var(--card); 
+    border-radius: 8px; 
+    border: 1px solid var(--border); 
+    font-weight: 600; 
+    font-size: 0.9rem; 
+    transition: 0.2s;
+    color: var(--muted); /* Couleur par défaut */
 }
-.social-btn:hover { border-color: var(--primary); color: var(--primary); }
-.social-btn.email { background: var(--primary); color: white; border: none; }
+.social-btn svg {
+    transition: 0.2s; /* Animation sur l'icône aussi */
+}
+.social-btn:hover { 
+    border-color: var(--primary); 
+    color: var(--primary); /* L'icône prendra aussi cette couleur grâce au currentColor */
+}
+.social-btn.email { 
+    background: var(--primary); 
+    color: white; 
+    border: none; 
+}
 .social-btn.email:hover { opacity: 0.9; }
 
 .skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
@@ -209,10 +228,9 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
     .two-column-layout { grid-template-columns: 1fr; gap: 0; }
     
     .app-header { flex-direction: column; height: auto; padding: 15px; gap: 15px; }
-    .header-left { width: 100%; justify-content: flex-start; } /* Identité à gauche */
-    .header-right { position: absolute; top: 20px; right: 15px; } /* Bouton thème en haut à droite */
+    .header-left { width: 100%; justify-content: flex-start; } 
+    .header-right { position: absolute; top: 20px; right: 15px; } 
     
-    /* On annule le centrage absolu sur mobile pour que ça s'empile */
     .nav-capsule { 
         position: relative; 
         left: auto; 
@@ -222,5 +240,5 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
     .nav-capsule ul { padding: 5px 10px; }
     
     .hero-title { font-size: 2rem; }
-    .hero-section { margin-top: 140px; } /* Pousse le contenu sous le header mobile */
+    .hero-section { margin-top: 140px; }
 }
