@@ -1,16 +1,14 @@
 /* --- VARIABLES & THEME --- */
 :root {
-    --bg-color: #0b0d14; /* Un noir légèrement plus profond */
+    --bg-color: #0b0d14;
     --card-bg: #151925;
     --card-hover: #1e2333;
     --text-main: #f1f5f9;
     --text-muted: #94a3b8;
     --border-color: #2d3748;
-    
-    --primary-color: #6366f1; /* Indigo */
-    --accent-color: #8b5cf6;  /* Violet */
-    --gradient-main: linear-gradient(135deg, #6366f1 0%, #d946ef 100%); /* Gradient plus "punchy" */
-    
+    --primary-color: #6366f1;
+    --accent-color: #8b5cf6;
+    --gradient-main: linear-gradient(135deg, #6366f1 0%, #d946ef 100%);
     --radius-sm: 10px;
     --radius-lg: 20px;
     --header-height: 90px;
@@ -46,7 +44,7 @@ body {
     z-index: -1; pointer-events: none;
 }
 
-/* --- APP HEADER (LE DESIGN "COOKÉ") --- */
+/* --- APP HEADER --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
     z-index: 1000;
@@ -54,25 +52,55 @@ body {
     grid-template-columns: 1fr auto 1fr; /* Gauche | Centre | Droite */
     align-items: center;
     padding: 0 40px;
-    
-    /* On enlève le fond global pour laisser flotter la nav */
     background: linear-gradient(to bottom, var(--bg-color) 0%, rgba(0,0,0,0) 100%);
 }
 
-/* 1. GAUCHE - THEME */
-.header-left { display: flex; align-items: center; }
-.theme-icon {
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);
-    color: var(--text-main); font-size: 1.2rem; cursor: pointer;
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: 0.3s;
+/* 1. GAUCHE - IDENTITÉ */
+.header-left { 
+    display: flex; align-items: center; gap: 15px;
+    /* On aligne le contenu à gauche */
+    justify-content: flex-start;
 }
-.theme-icon:hover { background: var(--card-hover); transform: rotate(15deg); }
+
+.id-avatar {
+    width: 48px; height: 48px; border-radius: 12px; object-fit: cover;
+    border: 2px solid var(--border-color);
+    transition: transform 0.3s;
+}
+.id-avatar:hover { transform: scale(1.05); border-color: var(--primary-color); }
+
+.identity-info { 
+    text-align: left; /* Texte aligné à gauche */
+    display: flex; flex-direction: column; justify-content: center; 
+}
+
+.id-name {
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main);
+    line-height: 1.2;
+}
+
+.id-status-wrapper {
+    display: flex; align-items: center; justify-content: flex-start; gap: 8px;
+    margin-top: 2px;
+}
+
+.id-status { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+.status-dot {
+    width: 8px; height: 8px; background-color: #10b981; border-radius: 50%;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
 
 /* 2. CENTRE - NAV CAPSULE */
 .nav-capsule {
-    background: rgba(15, 20, 30, 0.7); /* Sombre transparent */
+    background: rgba(15, 20, 30, 0.7);
     backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255,255,255,0.08);
     padding: 12px 30px;
@@ -94,53 +122,46 @@ body.light-mode .nav-capsule {
 }
 .nav-capsule a:hover { color: var(--primary-color); }
 
-/* 3. DROITE - IDENTITÉ */
-.header-right { display: flex; justify-content: flex-end; align-items: center; gap: 15px; }
 
-.identity-info { text-align: right; display: flex; flex-direction: column; justify-content: center; }
-.id-name {
-    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main);
-    line-height: 1.2;
-}
-.id-status-wrapper {
-    display: flex; align-items: center; justify-content: flex-end; gap: 6px;
-    margin-top: 2px;
-}
-.id-status { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+/* 3. DROITE - THEME */
+.header-right { display: flex; justify-content: flex-end; align-items: center; }
 
-/* Point vert qui pulse */
-.status-dot {
-    width: 8px; height: 8px; background-color: #10b981; border-radius: 50%;
-    box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
-    animation: pulse 2s infinite;
+.theme-icon {
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);
+    color: var(--text-main); font-size: 1.2rem; cursor: pointer;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s;
 }
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.id-avatar {
-    width: 48px; height: 48px; border-radius: 12px; object-fit: cover;
-    border: 2px solid var(--border-color);
-    transition: transform 0.3s;
-}
-.id-avatar:hover { transform: scale(1.05); border-color: var(--primary-color); }
+.theme-icon:hover { background: var(--card-hover); transform: rotate(15deg); }
 
 
 /* --- MOBILE ADAPTATION --- */
 @media (max-width: 900px) {
     .app-header { 
         padding: 10px 20px; height: auto; 
-        display: flex; flex-direction: column-reverse; gap: 15px;
+        display: flex; flex-direction: column; /* Empilement vertical */
+        gap: 15px;
         background: var(--bg-color); border-bottom: 1px solid var(--border-color);
     }
-    .header-left { display: none; } /* On cache le theme btn en mobile pour simplifier ou on le déplace */
-    .nav-capsule { width: 100%; display: flex; justify-content: center; border-radius: 12px; padding: 10px; }
+    
+    /* En mobile, on remet une ligne horizontale pour Identité + Thème */
+    .header-left { 
+        width: 100%; justify-content: space-between; 
+        order: 1; /* Identité en premier */
+    }
+    .header-right {
+        order: 1; /* On triche pour mettre le bouton thème à côté de l'identité en utilisant position absolute ou flex trick */
+        position: absolute; top: 15px; right: 20px;
+    }
+
+    .nav-capsule { 
+        width: 100%; display: flex; justify-content: center; 
+        order: 2; /* Nav en dessous */
+        padding: 8px;
+    }
     .nav-capsule ul { gap: 15px; font-size: 0.8rem; }
-    .header-right { width: 100%; justify-content: space-between; flex-direction: row-reverse; }
-    .identity-info { text-align: left; }
-    .id-status-wrapper { justify-content: flex-start; }
+    
     body { padding-top: 140px; }
 }
 
@@ -165,7 +186,7 @@ a { text-decoration: none; }
     font-size: 1.15rem; color: var(--text-muted); line-height: 1.7;
 }
 
-/* BOUTONS SOCIAL (Flat & Clean) */
+/* BOUTONS SOCIAL */
 .social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
 .social-btn { 
     display: inline-flex; align-items: center; gap: 10px;
@@ -187,8 +208,7 @@ a { text-decoration: none; }
 }
 .skill-tag:hover { border-color: var(--primary-color); color: var(--primary-color); background: rgba(99, 102, 241, 0.1); }
 
-
-/* --- TITRES SECTIONS --- */
+/* TITRES SECTIONS */
 h3 { 
     font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: var(--text-main); 
     margin-bottom: 30px; display: flex; align-items: center; gap: 10px;
@@ -200,7 +220,7 @@ h3::before {
 .section-wrapper { margin-bottom: 100px; scroll-margin-top: 120px; }
 
 
-/* --- CARDS PROJETS --- */
+/* CARDS PROJETS */
 .grid { display: grid; grid-template-columns: 1fr; gap: 25px; max-width: 850px; margin: 0 auto; }
 .project-card { 
     background-color: var(--card-bg); border-radius: var(--radius-lg); 
@@ -218,7 +238,7 @@ h3::before {
 .pdf-container { display: none; height: 600px; width: 100%; border-top: 1px solid var(--border-color); }
 
 
-/* --- TIMELINE & CERTIFS --- */
+/* TIMELINE & CERTIFS */
 .two-column-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 @media (max-width: 768px) { .two-column-layout { grid-template-columns: 1fr; } }
 
@@ -246,13 +266,13 @@ h3::before {
 }
 .cert-btn:hover { background: var(--primary-color); color: white; }
 
-/* DROPDOWN COMPETENCES */
+/* DROPDOWN */
 .comp-card-container { flex-direction: column !important; align-items: flex-start !important; }
 .comp-header { display: flex; justify-content: space-between; width: 100%; align-items: center; }
 .comp-dropdown-menu { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); width: 100%; }
 .comp-dropdown-menu li { background: none; border: none; padding: 5px 0; color: var(--text-muted); font-size: 0.9rem; }
 
-/* MODAL & FOOTER (Minimal updates) */
+/* MODAL & FOOTER */
 footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.9rem; opacity: 0.6; }
 
 .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
