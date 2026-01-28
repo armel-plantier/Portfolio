@@ -1,549 +1,198 @@
-/* =========================================
-   1. VARIABLES & THÈMES
-   ========================================= */
 :root {
-    /* Thème SOMBRE (Par défaut) */
-    --bg-main: #0f172a;       /* Bleu nuit très foncé */
-    --bg-secondary: #1e293b;  /* Un peu plus clair pour les cartes */
-    --bg-glass: rgba(15, 23, 42, 0.85); /* Pour la navbar */
-    
-    --text-main: #f8fafc;     /* Blanc cassé */
-    --text-muted: #94a3b8;    /* Gris bleuté */
-    
-    --primary: #6366f1;       /* Indigo vibrant */
-    --primary-hover: #4f46e5;
-    
-    --border-color: #334155;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-    
-    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --bg: #0b0d14;
+    --card: #151925;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #2d3748;
+    --primary: #6366f1;
+    --header-h: 90px;
 }
 
-/* Thème CLAIR (Activé via JS) */
 body.light-mode {
-    --bg-main: #f1f5f9;
-    --bg-secondary: #ffffff;
-    --bg-glass: rgba(255, 255, 255, 0.85);
-    
-    --text-main: #1e293b;
-    --text-muted: #64748b;
-    
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
 }
 
-/* =========================================
-   2. RESET & BASES
-   ========================================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    background: var(--bg); 
+    color: var(--text); 
+    font-family: 'Inter', sans-serif; 
+    padding-top: var(--header-h); 
+    transition: 0.3s; 
+}
+a { text-decoration: none; color: inherit; }
+
+/* --- HEADER --- */
+.app-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px; 
+    background: rgba(11, 13, 20, 0.85); 
+    backdrop-filter: blur(12px);
+    z-index: 1000; 
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-color: rgba(0,0,0,0.05); }
+
+.header-left { display: flex; align-items: center; gap: 16px; }
+
+.id-avatar { 
+    width: 54px; height: 54px; 
+    border-radius: 12px; object-fit: cover; 
+    border: 1px solid var(--border); 
 }
 
-html {
-    scroll-behavior: smooth;
+.identity-info { display: flex; flex-direction: column; align-items: flex-start; }
+
+.id-name { 
+    font-weight: 800; font-family: 'Outfit', sans-serif; 
+    font-size: 1.3rem; line-height: 1.1; color: var(--text);
 }
 
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    overflow-x: hidden;
+.status-wrapper { 
+    display: flex; align-items: center; gap: 8px; 
+    font-size: 0.9rem; color: var(--muted); margin-top: 4px;
+}
+.status-dot { 
+    width: 8px; height: 8px; background: #10b981; 
+    border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s;
+.header-right { display: flex; align-items: center; }
+.theme-icon {
+    background: transparent; border: 1px solid var(--border); color: var(--text);
+    width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
 }
+.theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-ul {
-    list-style: none;
+/* --- CONTAINER & HERO --- */
+.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+.hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
+.hero-title { 
+    font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; 
+    background: linear-gradient(to right, #6366f1, #a855f7); 
+    -webkit-background-clip: text; color: transparent; 
 }
-
-section {
-    padding: 4rem 1rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-/* Titres de sections */
-h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    border-left: 5px solid var(--primary);
-    padding-left: 1rem;
-    color: var(--text-main);
-}
-
-/* =========================================
-   3. NAVIGATION (Capsule flottante)
-   ========================================= */
-.nav-capsule {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    z-index: 1000;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    width: 90%;
-    max-width: 800px;
-    justify-content: center;
-}
-
-#nav-list {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#nav-list li a {
-    font-weight: 500;
-    font-size: 0.95rem;
-    opacity: 0.8;
-}
-
-#nav-list li a:hover {
-    color: var(--primary);
-    opacity: 1;
-}
-
-/* Bouton Thème */
-#theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--text-main);
-    margin-left: auto; /* Pousse le bouton à droite si possible */
-}
-
-/* =========================================
-   4. HEADER / PROFIL
-   ========================================= */
-header {
-    margin-top: 120px; /* Espace pour la nav */
-    text-align: center;
-    padding-bottom: 2rem;
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid var(--primary);
-    object-fit: cover;
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-#profile-status {
-    background-color: var(--primary);
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 1rem;
-}
-
-.typewriter {
-    font-family: 'Courier New', monospace;
-    font-size: 1.1rem;
-    color: var(--primary);
-    min-height: 1.5em;
-}
-
-.typewriter::after {
-    content: '|';
-    animation: blink 1s infinite;
-}
-
+.bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
+.cursor { animation: blink 1s infinite; font-weight: 100; color: var(--muted); }
 @keyframes blink { 50% { opacity: 0; } }
 
-#profile-bio {
-    max-width: 600px;
-    margin: 1rem auto;
-    color: var(--text-muted);
+.social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.social-btn { 
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 20px; background: var(--card); border-radius: 8px; 
+    border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; 
+    transition: 0.2s; color: var(--muted);
+}
+.social-btn svg { transition: 0.2s; }
+.social-btn:hover { border-color: var(--primary); color: var(--primary); }
+.social-btn.email { background: var(--primary); color: white; border: none; }
+.social-btn.email:hover { opacity: 0.9; }
+
+.skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.skill-tag { 
+    background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; 
+    font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
 }
 
-.social-links {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+/* --- SECTIONS GENERALES --- */
+.section-wrapper { margin-bottom: 60px; scroll-margin-top: 100px; }
+h3 { 
+    margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
+    border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-.btn-social {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-weight: 600;
-    background: var(--bg-secondary);
+/* --- PROJETS --- */
+.grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+.project-card { 
+    background: var(--card); border: 1px solid var(--border); 
+    border-radius: 16px; overflow: hidden; transition: transform 0.2s;
 }
+.project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+.card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
+.card-header .icon { font-size: 2rem; }
+.card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
+.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
+.pdf-container { display: none; height: 500px; border-top: 1px solid var(--border); background: #000; }
 
-.btn-social:hover {
-    border-color: var(--primary);
-    color: var(--primary);
+/* --- LAYOUT 2 COLONNES --- */
+.two-column-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+
+/* Timeline (Parcours) */
+.timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
+.timeline-item { margin-bottom: 35px; position: relative; }
+.timeline-item::before { 
+    content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; 
+    background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; 
 }
+.timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.timeline-title { font-size: 1rem; margin-bottom: 5px; }
+.timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* Tags compétences header */
-#skills-section {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
+/* COMPÉTENCES & CERTIFS (Cleaned) */
+.cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+/* Utilisation de .comp-card-container (match JS) */
+.comp-card-container { 
+    background: var(--card); border-radius: 12px; border: 1px solid var(--border); 
+    overflow: hidden; transition: all 0.3s ease;
 }
-
-.skill-tag {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--primary);
-    padding: 0.3rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
+.comp-header { 
+    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; 
+    cursor: pointer; font-weight: 600; transition: background 0.2s;
 }
+.comp-header:hover { background: rgba(255,255,255,0.02); }
 
-/* =========================================
-   5. PROJETS (GRID & PDF)
-   ========================================= */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+/* Menu déroulant compétences */
+.comp-dropdown-menu { 
+    padding: 15px 20px; background: rgba(0,0,0,0.1); 
+    border-top: 1px solid var(--border); list-style: none;
 }
+.comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 
-.project-card {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+/* Boutons communs (Certifs et Toggle Skills) */
+.cert-name { font-weight: 600; font-size: 0.95rem; }
+.cert-btn { 
+    display: flex; align-items: center; gap: 6px; background: transparent; color: var(--primary);
+    border: 1px solid var(--primary); padding: 6px 14px; border-radius: 20px;
+    font-size: 0.8rem; font-weight: 600; transition: 0.2s; cursor: pointer;
 }
+.cert-btn:hover, .cert-btn.active { background: var(--primary); color: #fff; }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-    border-color: var(--primary);
-}
-
-.card-header {
-    padding: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-
-.card-header .icon {
-    font-size: 2rem;
-}
-
-.card-header h4 {
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-}
-
-.card-header p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-/* Viewer PDF */
-.pdf-container {
-    display: none; /* Caché par défaut */
-    border-top: 1px solid var(--border-color);
-    background: #000;
-}
-
-/* =========================================
-   6. PARCOURS (TIMELINE)
-   ========================================= */
-.timeline {
-    list-style: none;
-    position: relative;
-    padding-left: 2rem;
-    border-left: 2px solid var(--border-color);
-}
-
-.timeline-item {
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -2.6rem; /* Ajuster selon le border */
-    top: 5px;
-    width: 1rem;
-    height: 1rem;
-    background: var(--primary);
-    border-radius: 50%;
-    border: 3px solid var(--bg-main);
-}
-
-.timeline-date {
-    font-size: 0.85rem;
-    color: var(--primary);
-    font-weight: bold;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.3rem;
-}
-
-.timeline-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.timeline-desc {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* =========================================
-   7. COMPÉTENCES (DROPDOWN)
-   ========================================= */
-#comp-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.comp-card-container {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.comp-header {
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(99, 102, 241, 0.05);
-}
-
-.comp-header .cert-name {
-    font-weight: bold;
-}
-
-.comp-toggle {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: transform 0.3s;
-}
-
-.comp-toggle.active {
-    transform: rotate(180deg);
-    color: var(--primary);
-}
-
-.comp-dropdown-menu {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-}
-
-.comp-dropdown-menu li {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 0.4rem;
-}
-
-/* =========================================
-   8. CERTIFICATIONS (NOUVEAU DESIGN)
-   ========================================= */
-#cert-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    /* Grille responsive : s'adapte à la largeur */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
+/* Items de liste simples pour certifs */
 #cert-list li {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
+    transition: 0.2s;
 }
+#cert-list li:hover { transform: translateX(5px); border-color: var(--primary); }
 
-#cert-list li:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+/* --- FOOTER & MODAL --- */
+footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
+
+.modal-overlay { 
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; 
 }
+.modal-content { background: var(--card); width: 90%; max-width: 400px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+.close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+.modal-body { padding: 30px; text-align: center; }
+.email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
 
-.cert-name {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text-main);
-    padding-right: 10px;
-}
-
-.cert-btn {
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: var(--primary);
-    background-color: rgba(99, 102, 241, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    white-space: nowrap;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.cert-btn:hover {
-    background-color: var(--primary);
-    color: #fff;
-}
-
-/* =========================================
-   9. MODALE & UTILS
-   ========================================= */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background: var(--bg-secondary);
-    padding: 2rem;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    position: relative;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.modal-content h3 {
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.email-box {
-    background: var(--bg-main);
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-family: monospace;
-    margin: 1rem 0;
-    border: 1px dashed var(--border-color);
-    word-break: break-all;
-}
-
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-muted);
-}
-
-/* Boutons "Voir plus" */
-.load-more-container {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-.load-more-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-}
-
-.load-more-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.hidden-item {
-    display: none !important;
-}
-
-footer {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: 4rem;
-}
-
-/* =========================================
-   10. MEDIA QUERIES (Mobile)
-   ========================================= */
-@media (max-width: 768px) {
-    .nav-capsule {
-        width: 95%;
-        padding: 0.8rem 1rem;
-        flex-direction: column;
-        gap: 0.5rem;
-        border-radius: 20px;
-    }
-    
-    #nav-list {
-        font-size: 0.85rem;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-    
-    #cert-list {
-        grid-template-columns: 1fr;
-    }
+/* --- RESPONSIVE --- */
+@media(max-width: 768px) { 
+    .two-column-layout { grid-template-columns: 1fr; gap: 0; }
+    .app-header { flex-direction: column; height: auto; padding: 15px; gap: 15px; }
+    .header-left { width: 100%; justify-content: flex-start; } 
+    .header-right { position: absolute; top: 20px; right: 15px; } 
+    .hero-title { font-size: 2rem; }
+    .hero-section { margin-top: 140px; }
 }
