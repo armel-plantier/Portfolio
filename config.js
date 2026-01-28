@@ -1,110 +1,138 @@
 const config = {
-    // 1. PROFIL & IDENTITÉ
-    profile: {
-        name: "Armel Plantier",
-        // C'est ce texte qui s'affichera sous le point vert
-        status: "En recherche d'alternance", 
-        // Le texte qui s'écrit tout seul (machine à écrire)
-        typewriterText: "Développeur Web & Mobile", 
-        bio: "Passionné par le développement d'interfaces modernes et performantes. J'aime transformer des problèmes complexes en solutions simples et élégantes.",
-        avatar: "assets/avatar.jpg", // ⚠️ Assure-toi d'avoir une image ici ou change le chemin
-        email: "armel.plantier@email.com"
-    },
-
-    // 2. BARRE DE NAVIGATION (DYNAMIQUE)
-    // Tu peux changer l'ordre ou les titres ici
+    // --- 1. NAVIGATION (AJOUTÉ POUR LA DEMANDE) ---
     navigation: [
         { title: "Projets", link: "#projets" },
         { title: "Parcours", link: "#parcours" },
-        { title: "Skills", link: "#competences" },
+        { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" }
     ],
 
-    // 3. LIENS RÉSEAUX SOCIAUX
-    social: {
-        github: "https://github.com/ton-pseudo",
-        linkedin: "https://linkedin.com/in/ton-profil"
+    // --- 2. PROFIL & RÉSEAUX ---
+    profile: {
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
+        name: "Armel Plantier",
+        typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
+        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        status: "Recherche active d'alternance",
+        email: "armel.plantier@protonmail.com"
     },
 
-    // 4. TAGS (Affichés sous la bio)
-    skills: ["React", "JavaScript", "HTML/CSS", "Node.js", "Git", "UI/UX"],
+    social: {
+        github: "https://github.com/armel-plantier",
+        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
+    },
 
-    // 5. SECTION PROJETS
-    // ⚠️ IMPORTANT : Crée un dossier nommé "Documents" à la racine du site pour tes PDF
+    // --- 3. TAGS HEADER ---
+    skills: [
+        "🐧 Linux",
+        "🪟 Windows",
+        "🕸️ Réseau",
+        "🛡️ Sécurité"
+    ],
+
+    // --- 4. PROJETS (Documents PDF) ---
     projects: [
         {
-            title: "Site E-Commerce",
-            description: "Plateforme de vente en ligne avec gestion de panier et paiement Stripe.",
-            icon: "🛍️", 
-            path: "projet1.pdf" // Doit correspondre au fichier dans le dossier Documents/
+            title: "Mise en place réseau TechNova",
+            description: "Architecture, VLANs et documentation technique.",
+            path: "reseau-technova.pdf", 
+            icon: "🌐"
         },
         {
-            title: "Application Météo",
-            description: "App consommant une API externe pour afficher les prévisions en temps réel.",
-            icon: "☀️",
-            path: "projet2.pdf"
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            path: "active_directory.pdf", 
+            icon: "🖥️"
         },
         {
-            title: "Portfolio Personnel",
-            description: "Conception et développement d'un portfolio interactif et responsive.",
-            icon: "🎨",
-            path: "projet3.pdf"
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
+            path: "audit_wifi.pdf",      
+            icon: "🛡️"
+        },
+        {
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
+            icon: "🐧"
         }
     ],
 
-    // 6. SECTION PARCOURS (TIMELINE)
+    // --- 5. EXPÉRIENCES ---
     experiences: [
         {
-            date: "2023 - PRÉSENT",
-            role: "Développeur Freelance",
-            company: "Indépendant",
-            description: "Création de sites vitrines et maintenance web pour divers clients locaux."
+            date: "2023 - Présent",
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
         },
         {
             date: "2022 - 2023",
-            role: "Stage Développeur Front-End",
-            company: "Agence WebTech",
-            description: "Intégration de maquettes Figma et optimisation des performances web."
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
     ],
 
-    // 7. SECTION COMPÉTENCES (MENU DÉROULANT)
+    // --- 6. COMPÉTENCES DÉTAILLÉES ---
     competences: [
         {
-            name: "Langages Web",
+            name: "🐧 Administration Système",
             details: [
-                "HTML5 & CSS3 (Sass)",
-                "JavaScript (ES6+)",
-                "TypeScript"
+                "Linux Hardening (Debian/RHEL)",
+                "Windows Server & AD",
+                "Gestion des droits (chmod/chown)",
+                "Virtualisation (Proxmox/VMware)"
             ]
         },
         {
-            name: "Frameworks & Outils",
+            name: "🕸️ Réseau & Infrastructure",
             details: [
-                "React.js / Vue.js",
-                "Node.js / Express",
-                "Git / GitHub"
+                "Architecture LAN/WAN",
+                "Cisco IOS (VLAN, OSPF, STP)",
+                "Wireshark (Analyse de paquets)",
+                "Supervision (Nagios/Zabbix)"
             ]
         },
         {
-            name: "Design & UX",
+            name: "🛡️ Cybersécurité",
             details: [
-                "Figma / Adobe XD",
-                "Design Responsive",
-                "Accessibilité Web"
+                "Firewalling (iptables, pfsense)",
+                "Analyse de vulnérabilités",
+                "Durcissement SSH & Web",
+                "SIEM & Logs"
+            ]
+        },
+        {
+            name: "📜 Scripting & DevOps",
+            details: [
+                "Bash Scripting",
+                "Python pour le réseau",
+                "Git & GitHub",
+                "Docker Basics"
             ]
         }
     ],
 
-    // 8. SECTION CERTIFICATIONS
+    // --- 7. CERTIFICATIONS ---
     certifications: [
-        {
-            name: "Certification OpenClassrooms - JS",
-            url: "https://openclassrooms.com"
+        { 
+            name: "✅ Cisco CCNA 1 (En cours)", 
+            url: "https://www.cisco.com/c/fr_fr/training-events/training-certifications/certifications/associate/ccna.html" 
         },
-        {
-            name: "FreeCodeCamp - Responsive Design",
-            url: "https://freecodecamp.org"
+        { 
+            name: "✅ MOOC ANSSI - SecNum", 
+            url: "https://secnumacademie.gouv.fr/" 
+        },
+        { 
+            name: "✅ Certification Pix", 
+            url: "https://pix.fr/" 
         }
     ]
 };
