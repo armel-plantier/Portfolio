@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 2.5 NAVIGATION (NOUVEAU) ---
+    // --- 2.5 NAVIGATION (CORRIGÉ) ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -50,27 +50,38 @@ document.addEventListener("DOMContentLoaded", () => {
             a.innerText = item.title;
             a.href = item.link;
             
-            // Scroll fluide
+            // Gestion du clic corrigée
             a.addEventListener('click', (e) => {
                 if(item.link.startsWith('#')) {
-                    e.preventDefault();
+                    e.preventDefault(); 
+                    
+                    // CAS 1 : Retour tout en haut (Accueil)
+                    if (item.link === "#") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        return;
+                    }
+
+                    // CAS 2 : Navigation vers une section spécifique
                     const target = document.querySelector(item.link);
                     if(target) {
-                        const headerOffset = 100;
+                        const headerOffset = 100; // Marge pour le menu fixe
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    } else if (item.link === "#") {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
                     }
                 }
             });
+
             li.appendChild(a);
             navList.appendChild(li);
         });
     }
 
-    // --- 3. HEADER SKILLS ---
+    // --- 3. TAGS HEADER ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => {
@@ -83,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
+    // Calcul du chemin pour les PDF (suppose un dossier "Documents" à la racine)
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 3;
