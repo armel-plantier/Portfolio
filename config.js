@@ -1,6 +1,8 @@
 const config = {
-    // --- 1. NAVIGATION (AJOUTÉ POUR LA DEMANDE) ---
+    // --- 1. NAVIGATION ---
     navigation: [
+        // AJOUT DE LA SECTION ACCUEIL ICI (Lien "#" = Haut de page)
+        { title: "Accueil", link: "#" }, 
         { title: "Projets", link: "#projets" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
