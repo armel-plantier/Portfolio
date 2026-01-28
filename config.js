@@ -1,16 +1,8 @@
 const config = {
-    // --- 1. NAVIGATION ---
-    navigation: [
-        { title: "Accueil", link: "#" },
-        { title: "Projets", link: "#projets" },
-        { title: "Parcours", link: "#parcours" },
-        { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifications" }
-    ],
-
-    // --- 2. PROFIL & RÉSEAUX ---
+    // --- 1. PROFIL & RÉSEAUX ---
     profile: {
         favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
+
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
         typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
@@ -24,7 +16,7 @@ const config = {
         linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
-    // --- 3. TAGS HEADER (Supprimé de l'affichage mais gardé en config si besoin plus tard) ---
+    // --- 2. TAGS HEADER ---
     skills: [
         "🐧 Linux",
         "🪟 Windows",
@@ -32,7 +24,7 @@ const config = {
         "🛡️ Sécurité"
     ],
 
-    // --- 4. PROJETS (Documents PDF) ---
+    // --- 3. PROJETS (Documents PDF) ---
     projects: [
         {
             title: "Mise en place réseau TechNova",
@@ -60,7 +52,7 @@ const config = {
         }
     ],
 
-    // --- 5. EXPÉRIENCES ---
+    // --- 4. EXPÉRIENCES ---
     experiences: [
         {
             date: "2023 - Présent",
@@ -82,7 +74,7 @@ const config = {
         }
     ],
 
-    // --- 6. COMPÉTENCES DÉTAILLÉES ---
+    // --- 5. COMPÉTENCES DÉTAILLÉES ---
     competences: [
         {
             name: "🐧 Administration Système",
@@ -122,7 +114,7 @@ const config = {
         }
     ],
 
-    // --- 7. CERTIFICATIONS ---
+    // --- 6. CERTIFICATIONS ---
     certifications: [
         { 
             name: "✅ Cisco CCNA 1 (En cours)", 
