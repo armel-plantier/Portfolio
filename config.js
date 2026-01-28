@@ -49,6 +49,13 @@ const config = {
             isNew: false
         },
         {
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            path: "active_directory.pdf", 
+            icon: "🖥️",
+            isNew: false
+        },
+        {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",      
