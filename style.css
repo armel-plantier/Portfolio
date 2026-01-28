@@ -75,10 +75,17 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
     box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* CENTRE : Nav Capsule */
+/* CENTRE : Nav Capsule (CENTRAGE ABSOLU) */
 .nav-capsule {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 10px 30px; border-radius: 50px;
+    background: var(--card); 
+    border: 1px solid var(--border);
+    padding: 10px 30px; 
+    border-radius: 50px;
+    
+    /* Force le centrage parfait au milieu de l'écran */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .nav-capsule ul { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
 .nav-capsule a { font-size: 0.9rem; font-weight: 500; color: var(--muted); transition: 0.2s; }
@@ -205,7 +212,13 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
     .header-left { width: 100%; justify-content: flex-start; } /* Identité à gauche */
     .header-right { position: absolute; top: 20px; right: 15px; } /* Bouton thème en haut à droite */
     
-    .nav-capsule { order: 2; width: 100%; overflow-x: auto; white-space: nowrap; border-radius: 12px; }
+    /* On annule le centrage absolu sur mobile pour que ça s'empile */
+    .nav-capsule { 
+        position: relative; 
+        left: auto; 
+        transform: none;
+        order: 2; width: 100%; overflow-x: auto; white-space: nowrap; border-radius: 12px; 
+    }
     .nav-capsule ul { padding: 5px 10px; }
     
     .hero-title { font-size: 2rem; }
