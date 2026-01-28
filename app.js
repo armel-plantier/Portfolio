@@ -39,15 +39,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("link-github").href = config.social.github;
     document.getElementById("link-linkedin").href = config.social.linkedin;
 
-    // --- 4. PROJETS (AVEC GOOGLE DOCS VIEWER) ---
+    // (Note: La section Tags/Skills a été supprimée comme demandé)
+
+    // --- 4. PROJETS (DOSSIER DOCUMENTS) ---
     const projectGrid = document.getElementById("project-grid");
     config.projects.forEach((proj, index) => {
         const card = document.createElement("div");
         card.className = "project-card";
 
-        // On utilise l'API Google Docs Viewer pour afficher le PDF
-        // Note : Le PDF doit être accessible publiquement sur internet pour que ça marche
-        const googleViewerUrl = `https://docs.google.com/gview?url=${proj.path}&embedded=true`;
+        // IMPORTANT : On pointe vers le dossier "Documents"
+        // On utilise l'affichage natif (iframe direct) car Google Docs Viewer
+        // ne peut pas lire tes fichiers s'ils sont sur ton ordinateur (localhost).
+        const pdfPath = `Documents/${proj.path}`;
 
         card.innerHTML = `
             <div class="card-header" onclick="togglePDF(${index})">
@@ -58,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
             <div id="pdf-${index}" class="pdf-container">
-                <iframe src="${googleViewerUrl}" width="100%" height="100%" style="border:none;"></iframe>
+                <iframe src="${pdfPath}" width="100%" height="100%" style="border:none;"></iframe>
             </div>
         `;
         projectGrid.appendChild(card);
@@ -168,14 +171,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// FONCTIONS GLOBALES
+// --- FONCTIONS GLOBALES (Accessibles via onclick dans le HTML) ---
+
 window.togglePDF = (index) => {
     const pdfDiv = document.getElementById(`pdf-${index}`);
-    // Ferme tous les autres avant d'ouvrir celui-ci
+    
+    // Ferme tous les autres PDF ouverts pour éviter l'encombrement
     document.querySelectorAll('.pdf-container').forEach(el => {
         if(el !== pdfDiv) el.style.display = 'none';
     });
 
+    // Bascule l'affichage du PDF actuel
     if (pdfDiv.style.display === "block") {
         pdfDiv.style.display = "none";
     } else {
@@ -186,8 +192,11 @@ window.togglePDF = (index) => {
 window.toggleComp = (index) => {
     const details = document.getElementById(`comp-details-${index}`);
     const isClosed = details.style.display === '' || details.style.display === 'none';
+    
+    // Ouvre/Ferme le menu
     details.style.display = isClosed ? 'block' : 'none';
 
+    // Ajoute/Enlève la classe pour l'animation de la flèche
     const parentItem = document.getElementById(`comp-item-${index}`);
     if (isClosed) {
         parentItem.classList.add('open');
