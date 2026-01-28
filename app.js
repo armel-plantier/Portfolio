@@ -79,20 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. PROJETS ---
+    // --- 4. PROJETS (LIMIT 4) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
-    // MODIF : Limite fixée à 4
-    const PROJECT_LIMIT = 4;
+    const PROJECT_LIMIT = 4; // <--- C'est ici que ça se joue
 
     if (grid && config.projects) {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const div = document.createElement("div"); 
             div.className = "project-card";
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+            
+            // Si l'index est 4 ou plus (donc le 5ème élément), on ajoute la classe hidden-item
+            if (index >= PROJECT_LIMIT) {
+                div.classList.add("hidden-item");
+            }
             
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
@@ -110,14 +113,15 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             grid.appendChild(div);
         });
-        // Bouton si plus de 4 éléments
-        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+        
+        // Si on a plus de 4 projets, on affiche le bouton
+        if (config.projects.length > PROJECT_LIMIT) {
+            createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+        }
     }
 
-    // --- 5. PARCOURS ---
+    // --- 5. PARCOURS (LIMIT 5) ---
     const expList = document.getElementById("exp-list");
-    
-    // MODIF : Limite fixée à 5
     const EXP_LIMIT = 5;
     
     if(expList && config.experiences) {
@@ -136,10 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 6. COMPETENCES ---
+    // --- 6. COMPETENCES (LIMIT 5) ---
     const compList = document.getElementById("comp-list");
-    
-    // MODIF : Limite fixée à 5
     const COMP_LIMIT = 5;
 
     if(compList && config.competences) {
@@ -162,10 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. CERTIFICATIONS ---
+    // --- 7. CERTIFICATIONS (LIMIT 5) ---
     const certList = document.getElementById("cert-list");
-    
-    // MODIF : Limite fixée à 5
     const CERT_LIMIT = 5;
 
     if(certList && config.certifications) {
@@ -206,32 +206,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTION BOUTON REDESSINÉ ---
+// --- FONCTIONS UTILS ---
+
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
-    div.className = "load-more-container"; // Nouveau conteneur centré
+    div.className = "load-more-container"; 
     
     const btn = document.createElement("button"); 
-    btn.className = "load-more-btn"; // Nouvelle classe CSS
-    btn.innerHTML = `<span>↓</span> ${txtMore}`; // Flèche ajoutée
+    btn.className = "load-more-btn";
+    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
     
     let expanded = false;
     
     btn.onclick = () => {
         expanded = !expanded;
         const children = container.children;
+        // On parcourt les enfants directs (les cartes projets)
+        // Attention : il ne faut pas compter le bouton "load-more-container" qui est hors du conteneur dans mon code précédent,
+        // MAIS ici "container" est "project-grid".
+        
         for(let i=0; i<children.length; i++) {
-            if(i>=limit) {
+            // On ne touche qu'aux éléments qui ont potentiellement la classe hidden-item ou qui devraient l'avoir
+            // On vérifie simplement l'index
+            if(i >= limit) {
                 if(expanded) { 
                     children[i].classList.remove("hidden-item"); 
                     children[i].style.opacity=0; 
                     setTimeout(()=>children[i].style.opacity=1, 50); 
                 } else { 
                     children[i].classList.add("hidden-item"); 
+                    children[i].style.opacity=0; // Reset opacity pour animation
                 }
             }
         }
-        // Texte dynamique : Masquer / Voir la suite
         btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     };
     div.appendChild(btn); 
