@@ -38,25 +38,29 @@ const config = {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
-            icon: "🌐"
+            icon: "🌐",
+            isNew: true // <--- AFFICHERA LE BADGE "NOUVEAU"
         },
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
-            icon: "🖥️"
+            icon: "🖥️",
+            isNew: false
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",      
-            icon: "🛡️"
+            icon: "🛡️",
+            isNew: false
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
-            icon: "🐧"
+            icon: "🐧",
+            isNew: false
         }
     ],
 
