@@ -35,24 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("profile-bio").textContent = config.profile.bio;
     
-    // LIENS SOCIAUX (Mise à jour des href uniquement)
+    // LIENS SOCIAUX
     document.getElementById("link-github").href = config.social.github;
     document.getElementById("link-linkedin").href = config.social.linkedin;
 
-    // SKILLS TAGS
-    const skillsSection = document.getElementById("skills-section");
-    config.skills.forEach(skill => {
-        const span = document.createElement("span");
-        span.className = "skill-tag";
-        span.textContent = skill;
-        skillsSection.appendChild(span);
-    });
-
-    // --- 4. PROJETS (GRID) ---
+    // --- 4. PROJETS (AVEC GOOGLE DOCS VIEWER) ---
     const projectGrid = document.getElementById("project-grid");
     config.projects.forEach((proj, index) => {
         const card = document.createElement("div");
         card.className = "project-card";
+
+        // On utilise l'API Google Docs Viewer pour afficher le PDF
+        // Note : Le PDF doit être accessible publiquement sur internet pour que ça marche
+        const googleViewerUrl = `https://docs.google.com/gview?url=${proj.path}&embedded=true`;
+
         card.innerHTML = `
             <div class="card-header" onclick="togglePDF(${index})">
                 <div class="icon">${proj.icon}</div>
@@ -62,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
             <div id="pdf-${index}" class="pdf-container">
-                <iframe src="${proj.path}" width="100%" height="100%" style="border:none;"></iframe>
+                <iframe src="${googleViewerUrl}" width="100%" height="100%" style="border:none;"></iframe>
             </div>
         `;
         projectGrid.appendChild(card);
@@ -81,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         expList.appendChild(li);
     });
 
-    // --- 6. COMPÉTENCES (ACCORDÉON ANIMÉ) ---
+    // --- 6. COMPÉTENCES (ACCORDÉON) ---
     const compList = document.getElementById("comp-list");
     if(compList && config.competences) {
         config.competences.forEach((comp, i) => {
@@ -104,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. CERTIFICATIONS (BOUTONS) ---
+    // --- 7. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     if(certList && config.certifications) {
         config.certifications.forEach(cert => {
@@ -124,20 +120,43 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 8. FOOTER ---
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - Tous droits réservés.`;
 
-    // --- 9. MODALE EMAIL ---
+    // --- 9. MODALE EMAIL + COPIE AUTO ---
     const modal = document.getElementById("email-modal");
+    const emailBox = document.getElementById("email-box-action");
+    const emailText = document.getElementById("email-text");
+
+    // Ouvrir la modale
     document.getElementById("email-trigger").addEventListener("click", (e) => {
         e.preventDefault();
-        document.getElementById("email-text").textContent = config.profile.email;
+        emailText.textContent = config.profile.email;
+        emailText.style.color = "var(--primary)"; // Reset couleur normale
         modal.style.display = "flex";
     });
 
+    // Fermer la modale
     window.closeModal = () => {
         modal.style.display = "none";
     };
 
     modal.addEventListener("click", (e) => {
         if (e.target === modal) closeModal();
+    });
+
+    // COPIER AU CLIC + FERMETURE AUTO
+    emailBox.addEventListener("click", () => {
+        const email = config.profile.email;
+        navigator.clipboard.writeText(email).then(() => {
+            // Feedback visuel "Copié"
+            emailText.textContent = "Copié avec succès ! ✅";
+            emailText.style.color = "#10b981"; // Vert
+            
+            // Fermer automatiquement après 1.2 seconde
+            setTimeout(() => {
+                closeModal();
+            }, 1200);
+        }).catch(err => {
+            console.error('Erreur copie', err);
+        });
     });
 
     // --- 10. THÈME SOMBRE/CLAIR ---
@@ -149,24 +168,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// FONCTIONS GLOBALES (Accessibles via onclick HTML)
+// FONCTIONS GLOBALES
 window.togglePDF = (index) => {
     const pdfDiv = document.getElementById(`pdf-${index}`);
+    // Ferme tous les autres avant d'ouvrir celui-ci
+    document.querySelectorAll('.pdf-container').forEach(el => {
+        if(el !== pdfDiv) el.style.display = 'none';
+    });
+
     if (pdfDiv.style.display === "block") {
         pdfDiv.style.display = "none";
     } else {
-        document.querySelectorAll('.pdf-container').forEach(el => el.style.display = 'none');
         pdfDiv.style.display = "block";
     }
 };
 
 window.toggleComp = (index) => {
-    // 1. Gérer l'affichage
     const details = document.getElementById(`comp-details-${index}`);
     const isClosed = details.style.display === '' || details.style.display === 'none';
     details.style.display = isClosed ? 'block' : 'none';
 
-    // 2. Gérer l'animation (Classe .open)
     const parentItem = document.getElementById(`comp-item-${index}`);
     if (isClosed) {
         parentItem.classList.add('open');
