@@ -39,10 +39,16 @@ body {
     overflow-x: hidden;
 }
 
+/* --- FIX BACKGROUND --- */
 .background-gradient {
-    position: fixed; top: 0; left: 0; width: 100%; height: 50vh;
-    background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-    z-index: -1; pointer-events: none;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh; /* Prend tout l'écran, plus de coupure */
+    background: radial-gradient(circle at 50% -10%, rgba(99, 102, 241, 0.18) 0%, transparent 60%);
+    z-index: -1; 
+    pointer-events: none;
 }
 
 .container { max-width: 1000px; margin: 0 auto; padding-top: 40px; }
@@ -117,13 +123,13 @@ h3::after {
 }
 .section-wrapper { margin-bottom: 60px; }
 
-/* --- PROJETS (MODIFICATION : 1 COLONNE) --- */
+/* --- PROJETS (1 seule colonne) --- */
 .grid { 
     display: grid; 
     grid-template-columns: 1fr; /* Une seule colonne */
     gap: 20px; 
-    max-width: 850px; /* Largeur max pour que ça reste joli */
-    margin: 0 auto;   /* Centrer */
+    max-width: 850px; 
+    margin: 0 auto; 
 }
 
 .project-card { 
