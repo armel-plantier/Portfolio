@@ -20,12 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // PROFIL
-    document.title = `${config.profile.name} | Portfolio`;
+    // PROFIL - HEADER (Mini)
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
-    document.getElementById("profile-name").innerText = config.profile.name;
-    document.getElementById("profile-status").innerText = config.profile.status;
+    
+    const nameEl = document.getElementById("profile-name");
+    if(nameEl) nameEl.innerText = config.profile.name;
+    
+    const statusEl = document.getElementById("profile-status");
+    if(statusEl) statusEl.innerText = config.profile.status;
+
+    // PROFIL - HERO SECTION
+    document.title = `${config.profile.name} | Portfolio`;
     document.getElementById("profile-bio").innerText = config.profile.bio;
     document.getElementById("link-github").href = config.social.github;
     document.getElementById("link-linkedin").href = config.social.linkedin;
@@ -107,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
     }
 
-    // TYPEWRITER
+    // TYPEWRITER (Modifié pour le titre H1)
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -121,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            // Utilise l'email du config si dispo, sinon fallback
             emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
             document.getElementById("email-modal").style.display = "flex";
         });
@@ -173,16 +178,14 @@ window.togglePDF = function(id, url) {
 window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
 window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
 
-// Modification : Fermeture automatique après 1.5 seconde
 window.copyEmail = function() {
     const email = document.getElementById("email-text").innerText;
     navigator.clipboard.writeText(email).then(() => {
         const fb = document.getElementById("copy-feedback");
         fb.innerText = "Adresse copiée ! ✅";
-        
         setTimeout(() => {
             fb.innerText = "";
-            window.closeModal(); // Ferme la modale
+            window.closeModal();
         }, 1500);
     });
 };
