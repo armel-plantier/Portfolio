@@ -39,21 +39,7 @@ const config = {
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐",
-            isNew: true // <--- AFFICHERA LE BADGE "NOUVEAU"
-        },
-        {
-            title: "Gestion de l'Active Directory",
-            description: "GPO, gestion des utilisateurs et DNS.", 
-            path: "active_directory.pdf", 
-            icon: "🖥️",
-            isNew: false
-        },
-        {
-            title: "Gestion de l'Active Directory",
-            description: "GPO, gestion des utilisateurs et DNS.", 
-            path: "active_directory.pdf", 
-            icon: "🖥️",
-            isNew: false
+            isNew: true
         },
         {
             title: "Gestion de l'Active Directory",
@@ -74,6 +60,20 @@ const config = {
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
             icon: "🐧",
+            isNew: false
+        },
+        {
+            title: "Projet Serveur Web",
+            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            path: "web_server.pdf", 
+            icon: "🌍",
+            isNew: false
+        },
+        {
+            title: "Scripting Python Automation",
+            description: "Automatisation des sauvegardes via API.",
+            path: "python_script.pdf", 
+            icon: "🐍",
             isNew: false
         }
     ],
