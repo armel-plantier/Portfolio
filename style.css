@@ -6,6 +6,7 @@
     --border: #2d3748;
     --primary: #6366f1;
     --header-h: 90px;
+    --badge-bg: #10b981; /* Vert pour le badge nouveau */
 }
 
 body.light-mode {
@@ -135,17 +136,37 @@ h3 {
 
 /* --- PROJETS --- */
 .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+
+/* MODIF : Ajout de position: relative pour placer le badge */
 .project-card { 
+    position: relative; /* Important pour le badge */
     background: var(--card); border: 1px solid var(--border); 
     border-radius: 16px; overflow: hidden; transition: transform 0.2s;
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+
+/* STYLE DU BADGE "NOUVEAU" */
+.new-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--badge-bg);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+    pointer-events: none; /* Le clic passe au travers */
+}
+
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
-.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
+.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; } /* Padding-right pour éviter que le texte passe sous le badge */
 
-/* MODIF : Hauteur du PDF augmentée à 850px */
 .pdf-container { 
     display: none; 
     height: 850px; 
