@@ -1,3 +1,10 @@
+/* AJOUT CRITIQUE POUR LE FONCTIONNEMENT DES BOUTONS "VOIR LA SUITE" */
+.hidden-item {
+    display: none !important;
+}
+
+/* ... Le reste du CSS (inchangé, je remets le tout pour être sûr) ... */
+
 :root {
     --bg: #0b0d14;
     --card: #151925;
@@ -208,36 +215,20 @@ h3 {
 }
 #cert-list li:hover { transform: translateX(5px); border-color: var(--primary); }
 
-/* --- BOUTON REDESSINÉ (LOAD MORE) --- */
+/* --- BOUTON LOAD MORE --- */
 .load-more-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    width: 100%; display: flex; justify-content: center;
+    margin-top: 25px; margin-bottom: 10px;
 }
-
 .load-more-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 10px 28px;
-    border-radius: 30px; /* Forme de pillule */
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
 }
-
 .load-more-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    background: rgba(99, 102, 241, 0.05); /* Fond subtil au survol */
-    transform: translateY(-2px); /* Léger mouvement vers le haut */
+    border-color: var(--primary); color: var(--primary);
+    background: rgba(99, 102, 241, 0.05); transform: translateY(-2px);
 }
 
 /* --- FOOTER & MODAL --- */
@@ -253,12 +244,10 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .modal-body { padding: 30px; text-align: center; }
 .email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
 
-/* --- RESPONSIVE MOBILE --- */
 @media(max-width: 900px) { 
     .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
     .header-left { width: 100%; justify-content: flex-start; } 
     .header-right { position: absolute; top: 20px; right: 15px; } 
-    
     .nav-capsule {
         position: static; transform: none; order: 3; width: 100%;
         margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
