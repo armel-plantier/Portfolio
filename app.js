@@ -5,24 +5,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // THEME
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
+    // Vérification du thème stocké
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-mode");
         if(themeBtn) themeBtn.innerText = "🌙"; 
     }
+
     if (themeBtn) {
         themeBtn.addEventListener("click", () => {
             body.classList.toggle("light-mode");
             if (body.classList.contains("light-mode")) {
-                themeBtn.innerText = "🌙"; localStorage.setItem("theme", "light");
+                themeBtn.innerText = "🌙";
+                localStorage.setItem("theme", "light");
             } else {
-                themeBtn.innerText = "☀️"; localStorage.setItem("theme", "dark");
+                themeBtn.innerText = "☀️";
+                localStorage.setItem("theme", "dark");
             }
         });
     }
 
-    // PROFIL - HEADER (Mini)
+    // --- MISE A JOUR HEADER (DROITE) ---
     const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
+    if(avatarEl) avatarEl.src = config.profile.avatar; // Assure-toi que l'URL est bonne dans config.js
     
     const nameEl = document.getElementById("profile-name");
     if(nameEl) nameEl.innerText = config.profile.name;
@@ -30,22 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusEl = document.getElementById("profile-status");
     if(statusEl) statusEl.innerText = config.profile.status;
 
-    // PROFIL - HERO SECTION
+    // --- RESTE DU JS (Inchangé) ---
     document.title = `${config.profile.name} | Portfolio`;
     document.getElementById("profile-bio").innerText = config.profile.bio;
     document.getElementById("link-github").href = config.social.github;
     document.getElementById("link-linkedin").href = config.social.linkedin;
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
+    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}. All rights reserved.`;
 
-    // HEADER SKILLS
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer) config.skills.forEach(s => {
         const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s;
         skillsContainer.appendChild(span);
     });
 
-    // PROJETS
     const grid = document.getElementById("project-grid");
+    // URL relative pour les PDF
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 3;
@@ -67,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
     }
 
-    // PARCOURS
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 3;
     if(expList && config.experiences) {
@@ -80,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Historique complet");
     }
 
-    // COMPETENCES
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 4;
     if(compList && config.competences) {
@@ -100,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir toutes");
     }
 
-    // CERTIFICATIONS
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 4;
     if(certList && config.certifications) {
@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
     }
 
-    // TYPEWRITER (Modifié pour le titre H1)
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -121,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // EVENTS MODALE
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -140,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// UTILS
 function createToggleBtn(container, limit, txt) {
     const div = document.createElement("div"); div.className = "load-more-container";
     const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerText = `↓ ${txt}`;
@@ -171,21 +168,16 @@ window.togglePDF = function(id, url) {
     const c = document.getElementById(id);
     if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="500px" style="border:none;"></iframe>`;
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display='block';
 };
 
 window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
 window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
-
 window.copyEmail = function() {
     const email = document.getElementById("email-text").innerText;
     navigator.clipboard.writeText(email).then(() => {
-        const fb = document.getElementById("copy-feedback");
-        fb.innerText = "Adresse copiée ! ✅";
-        setTimeout(() => {
-            fb.innerText = "";
-            window.closeModal();
-        }, 1500);
+        const fb = document.getElementById("copy-feedback"); fb.innerText = "Adresse copiée ! ✅";
+        setTimeout(() => { fb.innerText = ""; window.closeModal(); }, 1500);
     });
 };
