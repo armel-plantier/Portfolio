@@ -2,8 +2,8 @@ const config = {
     // --- 1. PROFIL & RÉSEAUX ---
     profile: {
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
-        name: "armel_plantier",
-        typewriterText: "> Etudiant Administrateur Système & Réseau | Passionné de Cybersécurit",
+        name: "Armel Plantier",
+        typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
         email: "armel.plantier@protonmail.com"
@@ -14,7 +14,7 @@ const config = {
         linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
-    // --- 2. TAGS HEADER (Aperçu) ---
+    // --- 2. TAGS HEADER (Compétences clés) ---
     skills: [
         "🐧 Linux",
         "🪟 Windows",
@@ -22,23 +22,24 @@ const config = {
         "🛡️ Sécurité"
     ],
 
-    // --- 3. PROJETS (Position 1) ---
+    // --- 3. PROJETS (Documents PDF) ---
+    // ⚠️ IMPORTANT : Assure-toi que ces fichiers PDF sont bien dans le dossier "Documents" sur GitHub
     projects: [
         {
-            title: "Partie 1 : Mise en place réseau TechNova",
+            title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐"
         },
         {
-            title: "Partie 2 : Gestion de l'Active Directory",
-            description: "Test d'intrusion WPA3.",
-            path: "audit_wifi.pdf",      
-            icon: "🛡️"
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", // J'ai corrigé la description (c'était WPA3 avant)
+            path: "active_directory.pdf", // ⚠️ Pense à mettre le bon nom de fichier ici
+            icon: "🖥️"
         },
         {
             title: "Audit Sécurité Wi-Fi",
-            description: "Test d'intrusion WPA3.",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",      
             icon: "🛡️"
         },
@@ -50,7 +51,29 @@ const config = {
         }
     ],
 
-    // --- 4. COMPÉTENCES DÉTAILLÉES (Position 3) ---
+    // --- 4. EXPÉRIENCES ---
+    experiences: [
+        {
+            date: "2023 - Présent",
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
+        },
+        {
+            date: "2022 - 2023",
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
+        }
+    ],
+
+    // --- 5. COMPÉTENCES DÉTAILLÉES ---
     competences: [
         {
             name: "🐧 Administration Système",
@@ -90,7 +113,7 @@ const config = {
         }
     ],
 
-    // --- 5. CERTIFICATIONS (Position 4) ---
+    // --- 6. CERTIFICATIONS ---
     certifications: [
         { 
             name: "✅ Cisco CCNA 1 (En cours)", 
@@ -103,28 +126,6 @@ const config = {
         { 
             name: "✅ Certification Pix", 
             url: "https://pix.fr/" 
-        }
-    ],
-
-    // --- 6. EXPÉRIENCES (NOUVEAU - System Logs) ---
-    experiences: [
-        {
-            date: "2023 - Présent",
-            role: "Administrateur Système Junior",
-            company: "Entreprise A",
-            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
-        },
-        {
-            date: "2022 - 2023",
-            role: "Technicien Support",
-            company: "Entreprise B",
-            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
-        },
-        {
-            date: "2020 - 2022",
-            role: "Projets Personnels",
-            company: "Home Lab",
-            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
     ]
 };
