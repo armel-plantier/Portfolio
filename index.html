@@ -11,9 +11,16 @@
 
     <div class="background-gradient"></div>
 
-    <div class="container">
-        
-        <header>
+    <nav class="floating-nav">
+        <ul>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#parcours">Parcours</a></li>
+            <li><a href="#competences">Compétences</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="profil"> <header>
             <div class="top-bar">
                 <div class="identity-group">
                     <img id="profile-avatar" src="" alt="Avatar" class="avatar">
@@ -53,18 +60,18 @@
             </div>
         </header>
 
-        <section class="section-wrapper">
+        <section id="projets" class="section-wrapper">
             <h3>Projets Réalisés</h3>
             <div id="project-grid" class="grid"></div>
         </section>
 
         <div class="two-column-layout">
-            <section class="section-wrapper">
+            <section id="parcours" class="section-wrapper">
                 <h3>Parcours</h3>
                 <ul id="exp-list" class="timeline-list"></ul>
             </section>
 
-            <section class="section-wrapper">
+            <section id="competences" class="section-wrapper">
                 <h3>Compétences</h3>
                 <ul id="comp-list" class="cert-list"></ul>
             </section>
