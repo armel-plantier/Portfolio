@@ -21,7 +21,7 @@
                         <h1 id="profile-name"></h1>
                         <div class="sub-info">
                             <span id="typewriter-area" class="job-title"></span>
-                            </div>
+                        </div>
                         <span id="profile-status" class="status-badge"></span>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     </a>
                     <a id="email-trigger" href="#" class="social-btn email">
                         <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-11.179l4.623 5.467zm-4.484-6.069h20.366l-9.932 11.232-10.434-11.232zm16.108 5.483l4.753-5.228v10.966l-4.753-5.738zm-4.417 1.734l-1.897 2.146-1.879-2.128-4.939 5.837h13.682l-4.967-5.855z"/></svg>
-                        Me Contacter
+                        Mail
                     </a>
                 </div>
 
@@ -72,7 +72,7 @@
 
         <section class="section-wrapper">
             <h3>Certifications</h3>
-            <ul id="cert-list" class="cert-list horizontal-scroll"></ul>
+            <ul id="cert-list" class="cert-list"></ul>
         </section>
 
         <footer>
@@ -84,17 +84,18 @@
     <div id="email-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <span>Nouveau Message</span>
+                <span>Contact</span>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
             <div class="modal-body">
-                <p style="margin-bottom:15px; color:var(--text-muted);">Laissez-moi un message, je vous répondrai rapidement.</p>
+                <p style="margin-bottom:15px; color:var(--text-muted);">Voici mon adresse email directe :</p>
                 
-                <form action="https://formspree.io/f/mnjdowkg" method="POST" class="contact-form">
-                    <input type="email" name="email" placeholder="Votre email" required>
-                    <textarea name="message" rows="4" placeholder="Votre message..." required></textarea>
-                    <button type="submit">Envoyer le message</button>
-                </form>
+                <div class="email-box">
+                    <span id="email-text"></span>
+                    <button class="copy-btn" onclick="copyEmail()">Copier</button>
+                </div>
+                
+                <p id="copy-feedback" style="color: #10b981; margin-top: 10px; font-weight: 500; height: 20px;"></p>
             </div>
         </div>
     </div>
