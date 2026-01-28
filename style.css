@@ -28,6 +28,9 @@ body.light-mode {
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* IMPORTANT : Pour le défilement fluide */
+html { scroll-behavior: smooth; }
+
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
@@ -41,17 +44,49 @@ body {
 
 /* --- FIX BACKGROUND --- */
 .background-gradient {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100vh; /* Prend tout l'écran, plus de coupure */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     background: radial-gradient(circle at 50% -10%, rgba(99, 102, 241, 0.18) 0%, transparent 60%);
-    z-index: -1; 
-    pointer-events: none;
+    z-index: -1; pointer-events: none;
 }
 
-.container { max-width: 1000px; margin: 0 auto; padding-top: 40px; }
+/* --- NAVBAR FLOTTANTE --- */
+.floating-nav {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: rgba(26, 29, 45, 0.6); /* Semi-transparent */
+    backdrop-filter: blur(12px); /* Effet flou "Verre" */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 30px; border-radius: 50px;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+/* Version Light Mode de la Nav */
+body.light-mode .floating-nav {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.floating-nav ul {
+    display: flex; gap: 25px; list-style: none; margin: 0; padding: 0;
+}
+
+.floating-nav a {
+    color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+}
+
+.floating-nav a:hover { color: var(--primary-color); }
+
+/* Cache la nav sur très petit mobile si besoin, ou on réduit l'écart */
+@media (max-width: 500px) {
+    .floating-nav { padding: 8px 15px; width: 90%; }
+    .floating-nav ul { gap: 15px; justify-content: center; }
+    .floating-nav a { font-size: 0.8rem; }
+}
+
+
+.container { max-width: 1000px; margin: 0 auto; padding-top: 80px; /* Plus d'espace pour la nav */ }
 
 a { color: var(--primary-color); text-decoration: none; font-weight: 500; transition: color 0.2s; }
 a:hover { color: var(--accent-color); }
@@ -121,7 +156,10 @@ h3::after {
     content: ''; display: block; width: 40px; height: 4px; 
     background: var(--gradient-main); border-radius: 2px; margin-top: 5px;
 }
-.section-wrapper { margin-bottom: 60px; }
+.section-wrapper { 
+    margin-bottom: 60px; 
+    scroll-margin-top: 100px; /* Important : pour que le titre ne soit pas caché par la nav lors du clic */
+}
 
 /* --- PROJETS (1 seule colonne) --- */
 .grid { 
