@@ -144,7 +144,14 @@ h3 {
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
-.pdf-container { display: none; height: 500px; border-top: 1px solid var(--border); background: #000; }
+
+/* MODIF : Hauteur du PDF augmentée à 850px */
+.pdf-container { 
+    display: none; 
+    height: 850px; 
+    border-top: 1px solid var(--border); 
+    background: #000; 
+}
 
 /* Timeline (Parcours) */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
