@@ -26,7 +26,7 @@ const config = {
         linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
-    // --- 3. TAGS HEADER ---
+    // --- 3. TAGS HEADER (Supprimé de l'affichage mais gardé en config si besoin plus tard) ---
     skills: [
         "🐧 Linux",
         "🪟 Windows",
@@ -35,6 +35,8 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
+    // IMPORTANT : Dans 'path', mets juste le NOM du fichier (ex: "mon-fichier.pdf")
+    // Le code ira chercher automatiquement dans le dossier "Documents/"
     projects: [
         {
             title: "Mise en place réseau TechNova",
