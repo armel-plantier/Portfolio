@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 2.5 NAVIGATION (CORRIGÉ) ---
+    // --- 2.5 NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -55,16 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(item.link.startsWith('#')) {
                     e.preventDefault(); 
                     
-                    // CAS 1 : Retour tout en haut (Accueil)
                     if (item.link === "#") {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                         return;
                     }
 
-                    // CAS 2 : Navigation vers une section spécifique
                     const target = document.querySelector(item.link);
                     if(target) {
-                        const headerOffset = 100; // Marge pour le menu fixe
+                        const headerOffset = 100;
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     
@@ -94,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
-    // Calcul du chemin pour les PDF (suppose un dossier "Documents" à la racine)
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 3;
@@ -265,7 +262,8 @@ window.togglePDF = function(id, url) {
         el.style.display='none'; 
         el.innerHTML=''; 
     });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="500px" style="border:none;"></iframe>`;
+    // MODIF : Augmentation de la hauteur à 850px dans l'iframe aussi
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
 };
 
