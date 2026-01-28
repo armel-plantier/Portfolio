@@ -1,245 +1,97 @@
-document.addEventListener("DOMContentLoaded", () => {
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | SysAdmin & Réseau</title>
     
-    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
+    <link id="favicon-link" rel="icon" href="">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
-    // --- 1. THEME ---
-    const themeBtn = document.getElementById("theme-toggle");
-    const body = document.body;
-    
-    if (localStorage.getItem("theme") === "light") {
-        body.classList.add("light-mode");
-        if(themeBtn) themeBtn.innerText = "🌙"; 
-    }
-    
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            body.classList.toggle("light-mode");
-            if (body.classList.contains("light-mode")) {
-                themeBtn.innerText = "🌙"; 
-                localStorage.setItem("theme", "light");
-            } else {
-                themeBtn.innerText = "☀️"; 
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    }
+    <div class="background-gradient"></div>
 
-    // --- 2. PROFIL ---
-    document.title = `${config.profile.name} | Portfolio`;
-    const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
-    
-    document.getElementById("profile-name").innerText = config.profile.name;
-    document.getElementById("profile-status").innerText = config.profile.status;
-    document.getElementById("profile-bio").innerText = config.profile.bio;
-    
-    const gh = document.getElementById("link-github");
-    if(gh) gh.href = config.social.github;
-    
-    const lk = document.getElementById("link-linkedin");
-    if(lk) lk.href = config.social.linkedin;
-    
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
-
-    // --- 3. HEADER SKILLS ---
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer && config.skills) {
-        config.skills.forEach(s => {
-            const span = document.createElement("span"); 
-            span.className = "skill-tag"; 
-            span.innerText = s;
-            skillsContainer.appendChild(span);
-        });
-    }
-
-    // --- 4. PROJETS ---
-    const grid = document.getElementById("project-grid");
-    // URL relative au dossier Documents
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
-    
-    const PROJECT_LIMIT = 3;
-
-    if (grid && config.projects) {
-        config.projects.forEach((proj, index) => {
-            const vid = `viewer_${index}`;
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
-            
-            const fullPdfUrl = baseUrl + proj.path;
-
-            div.innerHTML = `
-                <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
-                    <div class="icon">${proj.icon}</div>
-                    <div class="meta">
-                        <h4>${proj.title}</h4>
-                        <p>${proj.description}</p>
-                    </div>
+    <header class="app-header">
+        <div class="header-left">
+            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
+            <div class="identity-info">
+                <span id="profile-name" class="id-name"></span>
+                <div class="status-wrapper">
+                    <span class="status-dot"></span>
+                    <span id="profile-status" class="id-status"></span>
                 </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
-            grid.appendChild(div);
-        });
+            </div>
+        </div>
+
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-icon">☀️</button>
+        </div>
+    </header>
+
+    <div class="container">
         
-        if (config.projects.length > PROJECT_LIMIT) {
-            createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
-        }
-    }
+        <section class="hero-section">
+            <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
+            <p id="profile-bio" class="bio-text"></p>
 
-    // --- 5. PARCOURS ---
-    const expList = document.getElementById("exp-list");
-    const EXP_LIMIT = 3;
-    if(expList && config.experiences) {
-        config.experiences.forEach((exp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "timeline-item";
-            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+            <div class="social-links">
+                <a id="link-github" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                
+                <a id="link-linkedin" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                
+                <a id="email-trigger" href="#" class="social-btn email">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Contact
+                </a>
+            </div>
             
-            li.innerHTML = `
-                <span class="timeline-date">${exp.date}</span>
-                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
-                <p class="timeline-desc">${exp.description}</p>
-            `;
-            expList.appendChild(li);
-        });
-        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Historique complet");
-    }
+            <div id="skills-section" class="skills-section"></div>
+        </section>
 
-    // --- 6. COMPETENCES ---
-    const compList = document.getElementById("comp-list");
-    const COMP_LIMIT = 4;
-    if(compList && config.competences) {
-        config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container";
-            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
-            
-            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
-            
-            li.innerHTML = `
-                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
-                    <span class="cert-name">${comp.name}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
-                </div>
-                <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
-            `;
-            compList.appendChild(li);
-        });
-        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir toutes");
-    }
+        <section id="projets" class="section-wrapper">
+            <h3>Projets & Labs</h3>
+            <div id="project-grid" class="grid"></div>
+        </section>
 
-    // --- 7. CERTIFICATIONS ---
-    const certList = document.getElementById("cert-list");
-    const CERT_LIMIT = 4;
-    if(certList && config.certifications) {
-        config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li");
-            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
-            li.innerHTML = `<span class="cert-name">${cert.name}</span><a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>`;
-            certList.appendChild(li);
-        });
-        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
-    }
+        <div class="two-column-layout">
+            <section id="parcours" class="section-wrapper">
+                <h3>Parcours</h3>
+                <ul id="exp-list" class="timeline-list"></ul>
+            </section>
 
-    // --- 8. TYPEWRITER ---
-    const textEl = document.getElementById("typewriter-area");
-    if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
-        function type() { if(i<txt.length) { textEl.innerHTML += txt.charAt(i); i++; setTimeout(type, 50); } }
-        setTimeout(type, 500);
-    }
+            <section id="competences" class="section-wrapper">
+                <h3>Compétences</h3>
+                <ul id="comp-list" class="cert-list"></ul>
+            </section>
+        </div>
 
-    // --- 9. MODALE EMAIL ---
-    const emailTrigger = document.getElementById("email-trigger");
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
-            document.getElementById("email-modal").style.display = "flex";
-        });
-    }
+        <section id="certifications" class="section-wrapper">
+            <h3>Certifications</h3>
+            <ul id="cert-list" class="cert-list"></ul>
+        </section>
 
-    // Clic extérieur pour fermer les menus compétences
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.comp-card-container')) {
-            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
-        }
-    });
-});
+        <footer><p id="footer-copy"></p></footer>
+    </div>
 
-// --- FONCTIONS UTILS ---
+    <div id="email-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><span>Contact</span><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <p>Mon adresse email :</p>
+                <div class="email-box"><span id="email-text"></span></div>
+            </div>
+        </div>
+    </div>
 
-function createToggleBtn(container, limit, txt) {
-    const div = document.createElement("div"); 
-    div.className = "load-more-container";
-    const btn = document.createElement("button"); 
-    btn.className = "load-more-btn"; 
-    btn.innerText = `↓ ${txt}`;
-    let expanded = false;
-    
-    btn.onclick = () => {
-        expanded = !expanded;
-        const children = container.children;
-        for(let i=0; i<children.length; i++) {
-            if(i>=limit) {
-                if(expanded) { 
-                    children[i].classList.remove("hidden-item"); 
-                    children[i].style.opacity=0; 
-                    setTimeout(()=>children[i].style.opacity=1, 50); 
-                } else { 
-                    children[i].classList.add("hidden-item"); 
-                }
-            }
-        }
-        btn.innerText = expanded ? `↑ Voir moins` : `↓ ${txt}`;
-    };
-    div.appendChild(btn); 
-    container.parentNode.insertBefore(div, container.nextSibling);
-}
-
-window.toggleComp = function(e, id) {
-    e.stopPropagation(); 
-    const menu = document.getElementById(id); 
-    // Trouver le bouton à l'intérieur du header cliqué
-    const btn = e.currentTarget.querySelector('.comp-toggle');
-    
-    // Fermer les autres
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
-    
-    if(menu.style.display==='block') { 
-        menu.style.display='none'; 
-        if(btn) btn.classList.remove('active'); 
-    } else { 
-        menu.style.display='block'; 
-        if(btn) btn.classList.add('active'); 
-    }
-};
-
-window.togglePDF = function(id, url) {
-    const c = document.getElementById(id);
-    if(c.style.display==='block') { 
-        c.style.display='none'; 
-        c.innerHTML=''; 
-        return; 
-    }
-    document.querySelectorAll('.pdf-container').forEach(el => { 
-        el.style.display='none'; 
-        el.innerHTML=''; 
-    });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="500px" style="border:none;"></iframe>`;
-    c.style.display='block';
-};
-
-window.closeModal = function() { 
-    document.getElementById("email-modal").style.display = "none"; 
-};
-
-window.onclick = function(e) { 
-    if(e.target == document.getElementById("email-modal")) window.closeModal(); 
-};
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
