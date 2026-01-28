@@ -1,88 +1,105 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. FAVICON ---
+    // --- 1. CONFIGURATION GÉNÉRALE ---
+    // Favicon
     const faviconLink = document.getElementById("favicon-link");
-    if(config.profile.favicon && faviconLink) {
-        faviconLink.href = config.profile.favicon;
-    }
+    if(config.profile.favicon && faviconLink) faviconLink.href = config.profile.favicon;
 
-    // --- 2. HEADER & PROFIL ---
-    document.getElementById("profile-avatar").src = config.profile.avatar;
-    document.getElementById("profile-name").textContent = config.profile.name;
-    document.getElementById("profile-status").textContent = config.profile.status;
-    
-    // NAVIGATION
+    // Header & Identité
+    const avatar = document.getElementById("profile-avatar");
+    if(avatar) avatar.src = config.profile.avatar;
+
+    const name = document.getElementById("profile-name");
+    if(name) name.textContent = config.profile.name;
+
+    const status = document.getElementById("profile-status");
+    if(status) status.textContent = config.profile.status;
+
+    const bio = document.getElementById("profile-bio");
+    if(bio) bio.textContent = config.profile.bio;
+
+    // Footer
+    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - Tous droits réservés.`;
+
+    // --- 2. NAVIGATION DYNAMIQUE ---
     const navList = document.getElementById("nav-list");
-    config.navigation.forEach(item => {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
-        navList.appendChild(li);
-    });
-
-    // --- 3. HERO SECTION ---
-    const typewriterElement = document.getElementById("typewriter-area");
-    const textToType = config.profile.typewriterText;
-    let charIndex = 0;
-    
-    function typeWriter() {
-        if (charIndex < textToType.length) {
-            typewriterElement.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, 50);
-        }
+    if (navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
+            navList.appendChild(li);
+        });
     }
-    typeWriter();
 
-    document.getElementById("profile-bio").textContent = config.profile.bio;
-    
-    // LIENS SOCIAUX
-    document.getElementById("link-github").href = config.social.github;
-    document.getElementById("link-linkedin").href = config.social.linkedin;
+    // --- 3. EFFET MACHINE À ÉCRIRE (Hero) ---
+    const typewriterElement = document.getElementById("typewriter-area");
+    if (typewriterElement && config.profile.typewriterText) {
+        const textToType = config.profile.typewriterText;
+        let charIndex = 0;
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                typewriterElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        typeWriter();
+    }
 
-    // (Note: La section Tags/Skills a été supprimée comme demandé)
+    // --- 4. LIENS SOCIAUX ---
+    if(config.social) {
+        const gh = document.getElementById("link-github");
+        if(gh) gh.href = config.social.github;
+        
+        const li = document.getElementById("link-linkedin");
+        if(li) li.href = config.social.linkedin;
+    }
 
-    // --- 4. PROJETS (DOSSIER DOCUMENTS) ---
+    // --- 5. PROJETS & PDF ---
     const projectGrid = document.getElementById("project-grid");
-    config.projects.forEach((proj, index) => {
-        const card = document.createElement("div");
-        card.className = "project-card";
+    if (projectGrid && config.projects) {
+        config.projects.forEach((proj, index) => {
+            const card = document.createElement("div");
+            card.className = "project-card";
 
-        // IMPORTANT : On pointe vers le dossier "Documents"
-        // On utilise l'affichage natif (iframe direct) car Google Docs Viewer
-        // ne peut pas lire tes fichiers s'ils sont sur ton ordinateur (localhost).
-        const pdfPath = `Documents/${proj.path}`;
+            // --- C'EST ICI QUE CA SE PASSE ---
+            // On prend le dossier "Documents" + le nom du fichier défini dans config.js
+            const pdfPath = `Documents/${proj.path}`;
 
-        card.innerHTML = `
-            <div class="card-header" onclick="togglePDF(${index})">
-                <div class="icon">${proj.icon}</div>
-                <div class="meta">
-                    <h4>${proj.title}</h4>
-                    <p>${proj.description}</p>
+            card.innerHTML = `
+                <div class="card-header" onclick="togglePDF(${index})">
+                    <div class="icon">${proj.icon}</div>
+                    <div class="meta">
+                        <h4>${proj.title}</h4>
+                        <p>${proj.description}</p>
+                    </div>
                 </div>
-            </div>
-            <div id="pdf-${index}" class="pdf-container">
-                <iframe src="${pdfPath}" width="100%" height="100%" style="border:none;"></iframe>
-            </div>
-        `;
-        projectGrid.appendChild(card);
-    });
+                <div id="pdf-${index}" class="pdf-container" style="display:none;">
+                    <iframe src="${pdfPath}" width="100%" height="100%" style="border:none;"></iframe>
+                </div>
+            `;
+            projectGrid.appendChild(card);
+        });
+    }
 
-    // --- 5. PARCOURS (TIMELINE) ---
+    // --- 6. PARCOURS (TIMELINE) ---
     const expList = document.getElementById("exp-list");
-    config.experiences.forEach(exp => {
-        const li = document.createElement("li");
-        li.className = "timeline-item";
-        li.innerHTML = `
-            <span class="timeline-date">${exp.date}</span>
-            <h4 class="timeline-title">${exp.role} <span style="color:var(--muted)">@ ${exp.company}</span></h4>
-            <p class="timeline-desc">${exp.description}</p>
-        `;
-        expList.appendChild(li);
-    });
+    if (expList && config.experiences) {
+        config.experiences.forEach(exp => {
+            const li = document.createElement("li");
+            li.className = "timeline-item";
+            li.innerHTML = `
+                <span class="timeline-date">${exp.date}</span>
+                <h4 class="timeline-title">${exp.role} <span style="color:var(--muted)">@ ${exp.company}</span></h4>
+                <p class="timeline-desc">${exp.description}</p>
+            `;
+            expList.appendChild(li);
+        });
+    }
 
-    // --- 6. COMPÉTENCES (ACCORDÉON) ---
+    // --- 7. COMPÉTENCES (ACCORDÉON) ---
     const compList = document.getElementById("comp-list");
-    if(compList && config.competences) {
+    if (compList && config.competences) {
         config.competences.forEach((comp, i) => {
             const li = document.createElement("li");
             li.className = "comp-item"; 
@@ -103,9 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. CERTIFICATIONS ---
+    // --- 8. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
-    if(certList && config.certifications) {
+    if (certList && config.certifications) {
         config.certifications.forEach(cert => {
             const li = document.createElement("li");
             li.className = "cert-item";
@@ -120,68 +137,75 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 8. FOOTER ---
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name} - Tous droits réservés.`;
-
     // --- 9. MODALE EMAIL + COPIE AUTO ---
     const modal = document.getElementById("email-modal");
     const emailBox = document.getElementById("email-box-action");
     const emailText = document.getElementById("email-text");
 
-    // Ouvrir la modale
-    document.getElementById("email-trigger").addEventListener("click", (e) => {
-        e.preventDefault();
-        emailText.textContent = config.profile.email;
-        emailText.style.color = "var(--primary)"; // Reset couleur normale
-        modal.style.display = "flex";
-    });
+    // Ouvrir
+    const emailTrigger = document.getElementById("email-trigger");
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            if(emailText) {
+                emailText.textContent = config.profile.email;
+                emailText.style.color = "var(--primary)";
+            }
+            if(modal) modal.style.display = "flex";
+        });
+    }
 
-    // Fermer la modale
+    // Fermer
     window.closeModal = () => {
-        modal.style.display = "none";
+        if(modal) modal.style.display = "none";
     };
 
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    // COPIER AU CLIC + FERMETURE AUTO
-    emailBox.addEventListener("click", () => {
-        const email = config.profile.email;
-        navigator.clipboard.writeText(email).then(() => {
-            // Feedback visuel "Copié"
-            emailText.textContent = "Copié avec succès ! ✅";
-            emailText.style.color = "#10b981"; // Vert
-            
-            // Fermer automatiquement après 1.2 seconde
-            setTimeout(() => {
-                closeModal();
-            }, 1200);
-        }).catch(err => {
-            console.error('Erreur copie', err);
+    if(modal) {
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
         });
-    });
+    }
 
-    // --- 10. THÈME SOMBRE/CLAIR ---
+    // Action Copier
+    if(emailBox) {
+        emailBox.addEventListener("click", () => {
+            const email = config.profile.email;
+            navigator.clipboard.writeText(email).then(() => {
+                if(emailText) {
+                    emailText.textContent = "Copié avec succès ! ✅";
+                    emailText.style.color = "#10b981"; // Vert
+                }
+                // Fermeture auto après 1.2s
+                setTimeout(() => {
+                    closeModal();
+                }, 1200);
+            }).catch(err => console.error("Erreur copie", err));
+        });
+    }
+
+    // --- 10. THÈME DARK/LIGHT ---
     const themeBtn = document.getElementById("theme-toggle");
-    themeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light-mode");
-        const isLight = document.body.classList.contains("light-mode");
-        themeBtn.textContent = isLight ? "🌙" : "☀️";
-    });
+    if(themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            const isLight = document.body.classList.contains("light-mode");
+            themeBtn.textContent = isLight ? "🌙" : "☀️";
+        });
+    }
 });
 
-// --- FONCTIONS GLOBALES (Accessibles via onclick dans le HTML) ---
+// --- FONCTIONS GLOBALES ---
 
 window.togglePDF = (index) => {
     const pdfDiv = document.getElementById(`pdf-${index}`);
-    
-    // Ferme tous les autres PDF ouverts pour éviter l'encombrement
+    if(!pdfDiv) return;
+
+    // Ferme tous les autres PDF
     document.querySelectorAll('.pdf-container').forEach(el => {
         if(el !== pdfDiv) el.style.display = 'none';
     });
 
-    // Bascule l'affichage du PDF actuel
+    // Bascule celui cliqué
     if (pdfDiv.style.display === "block") {
         pdfDiv.style.display = "none";
     } else {
@@ -191,16 +215,14 @@ window.togglePDF = (index) => {
 
 window.toggleComp = (index) => {
     const details = document.getElementById(`comp-details-${index}`);
-    const isClosed = details.style.display === '' || details.style.display === 'none';
-    
-    // Ouvre/Ferme le menu
+    if(!details) return;
+
+    const isClosed = (details.style.display === '' || details.style.display === 'none');
     details.style.display = isClosed ? 'block' : 'none';
 
-    // Ajoute/Enlève la classe pour l'animation de la flèche
     const parentItem = document.getElementById(`comp-item-${index}`);
-    if (isClosed) {
-        parentItem.classList.add('open');
-    } else {
-        parentItem.classList.remove('open');
+    if(parentItem) {
+        if (isClosed) parentItem.classList.add('open');
+        else parentItem.classList.remove('open');
     }
 };
