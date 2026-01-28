@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. PROJETS ---
+    // --- 4. PROJETS (AVEC GESTION DU BADGE NEW) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -105,7 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const fullPdfUrl = baseUrl + proj.path;
 
+            // Ajout du badge si proj.isNew est true
+            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+
             div.innerHTML = `
+                ${badgeHTML}
                 <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
                     <div class="icon">${proj.icon}</div>
                     <div class="meta">
@@ -262,7 +266,7 @@ window.togglePDF = function(id, url) {
         el.style.display='none'; 
         el.innerHTML=''; 
     });
-    // MODIF : Augmentation de la hauteur à 850px dans l'iframe aussi
+    // Hauteur fixée à 850px
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
 };
