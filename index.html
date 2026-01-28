@@ -13,35 +13,36 @@
 
     <header class="app-header">
         
-        <div class="header-left-spacer"></div>
+        <div class="header-left">
+            <button id="theme-toggle" class="theme-icon" title="Changer de thème">☀️</button>
+        </div>
 
-        <nav class="central-nav">
+        <nav class="nav-capsule">
             <ul>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#competences">Skills</a></li>
                 <li><a href="#certifications">Certifs</a></li>
             </ul>
         </nav>
 
         <div class="header-right">
-            <button id="theme-toggle" class="theme-btn-mini" title="Changer de thème">☀️</button>
-            
-            <div class="mini-identity">
-                <span id="profile-name" class="mini-name"></span>
-                <span id="profile-status" class="mini-status"></span>
+            <div class="identity-info">
+                <span id="profile-name" class="id-name"></span>
+                <div class="id-status-wrapper">
+                    <span class="status-dot"></span>
+                    <span id="profile-status" class="id-status"></span>
+                </div>
             </div>
-            
-            <img id="profile-avatar" src="" alt="Avatar" class="mini-avatar">
+            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
         </div>
     </header>
-
 
     <div class="container">
         
         <section class="hero-section">
             <h1 class="hero-title">
-                <span id="typewriter-area"></span>
+                <span id="typewriter-area"></span><span class="cursor">|</span>
             </h1>
             
             <div class="bio-card">
@@ -88,23 +89,15 @@
             <ul id="cert-list" class="cert-list"></ul>
         </section>
 
-        <footer>
-            <p id="footer-copy"></p>
-        </footer>
+        <footer><p id="footer-copy"></p></footer>
     </div>
 
     <div id="email-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <span>Contact</span>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><span>Contact</span><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
                 <p style="margin-bottom:15px; color:var(--text-muted);">Voici mon adresse email directe :</p>
-                <div class="email-box">
-                    <span id="email-text"></span>
-                    <button class="copy-btn" onclick="copyEmail()">Copier</button>
-                </div>
+                <div class="email-box"><span id="email-text"></span><button class="copy-btn" onclick="copyEmail()">Copier</button></div>
                 <p id="copy-feedback" style="color: #10b981; margin-top: 10px; font-weight: 500; height: 20px;"></p>
             </div>
         </div>
