@@ -50,30 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
             a.innerText = item.title;
             a.href = item.link;
             
-            // Gestion du clic corrigée
             a.addEventListener('click', (e) => {
                 if(item.link.startsWith('#')) {
                     e.preventDefault(); 
-                    
-                    if (item.link === "#") {
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                        return;
-                    }
-
+                    if (item.link === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
                     const target = document.querySelector(item.link);
                     if(target) {
                         const headerOffset = 100;
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                     }
                 }
             });
-
             li.appendChild(a);
             navList.appendChild(li);
         });
@@ -90,11 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. PROJETS (AVEC GESTION DU BADGE NEW) ---
+    // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
-    const PROJECT_LIMIT = 3;
+    
+    // MODIF : Limite fixée à 4
+    const PROJECT_LIMIT = 4;
 
     if (grid && config.projects) {
         config.projects.forEach((proj, index) => {
@@ -104,8 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
             
             const fullPdfUrl = baseUrl + proj.path;
-
-            // Ajout du badge si proj.isNew est true
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
             div.innerHTML = `
@@ -121,12 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             grid.appendChild(div);
         });
-        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
+        // Bouton si plus de 4 éléments
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
     // --- 5. PARCOURS ---
     const expList = document.getElementById("exp-list");
-    const EXP_LIMIT = 3;
+    
+    // MODIF : Limite fixée à 5
+    const EXP_LIMIT = 5;
+    
     if(expList && config.experiences) {
         config.experiences.forEach((exp, index) => {
             const li = document.createElement("li"); 
@@ -140,12 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             expList.appendChild(li);
         });
-        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Historique complet");
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
     // --- 6. COMPETENCES ---
     const compList = document.getElementById("comp-list");
-    const COMP_LIMIT = 4;
+    
+    // MODIF : Limite fixée à 5
+    const COMP_LIMIT = 5;
+
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li"); 
@@ -163,12 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             compList.appendChild(li);
         });
-        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir toutes");
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
     // --- 7. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
-    const CERT_LIMIT = 4;
+    
+    // MODIF : Limite fixée à 5
+    const CERT_LIMIT = 5;
+
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li");
@@ -177,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
             li.innerHTML = `<span class="cert-name">${cert.name}</span><a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>`;
             certList.appendChild(li);
         });
-        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
     // --- 8. TYPEWRITER ---
@@ -199,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Clic extérieur pour fermer les menus compétences
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
@@ -208,14 +206,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTIONS UTILS ---
-
-function createToggleBtn(container, limit, txt) {
+// --- FONCTION BOUTON REDESSINÉ ---
+function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
-    div.className = "load-more-container";
+    div.className = "load-more-container"; // Nouveau conteneur centré
+    
     const btn = document.createElement("button"); 
-    btn.className = "load-more-btn"; 
-    btn.innerText = `↓ ${txt}`;
+    btn.className = "load-more-btn"; // Nouvelle classe CSS
+    btn.innerHTML = `<span>↓</span> ${txtMore}`; // Flèche ajoutée
+    
     let expanded = false;
     
     btn.onclick = () => {
@@ -232,7 +231,8 @@ function createToggleBtn(container, limit, txt) {
                 }
             }
         }
-        btn.innerText = expanded ? `↑ Voir moins` : `↓ ${txt}`;
+        // Texte dynamique : Masquer / Voir la suite
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     };
     div.appendChild(btn); 
     container.parentNode.insertBefore(div, container.nextSibling);
@@ -242,39 +242,19 @@ window.toggleComp = function(e, id) {
     e.stopPropagation(); 
     const menu = document.getElementById(id); 
     const btn = e.currentTarget.querySelector('.comp-toggle');
-    
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
-    
-    if(menu.style.display==='block') { 
-        menu.style.display='none'; 
-        if(btn) btn.classList.remove('active'); 
-    } else { 
-        menu.style.display='block'; 
-        if(btn) btn.classList.add('active'); 
-    }
+    if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
+    else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
 };
 
 window.togglePDF = function(id, url) {
     const c = document.getElementById(id);
-    if(c.style.display==='block') { 
-        c.style.display='none'; 
-        c.innerHTML=''; 
-        return; 
-    }
-    document.querySelectorAll('.pdf-container').forEach(el => { 
-        el.style.display='none'; 
-        el.innerHTML=''; 
-    });
-    // Hauteur fixée à 850px
+    if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
 };
 
-window.closeModal = function() { 
-    document.getElementById("email-modal").style.display = "none"; 
-};
-
-window.onclick = function(e) { 
-    if(e.target == document.getElementById("email-modal")) window.closeModal(); 
-};
+window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
+window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
