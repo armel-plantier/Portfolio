@@ -11,16 +11,9 @@
 
     <div class="background-gradient"></div>
 
-    <nav class="floating-nav">
-        <ul>
-            <li><a href="#profil">Profil</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#parcours">Parcours</a></li>
-            <li><a href="#competences">Compétences</a></li>
-        </ul>
-    </nav>
-
-    <div class="container" id="profil"> <header>
+    <div class="container" id="profil">
+        
+        <header>
             <div class="top-bar">
                 <div class="identity-group">
                     <img id="profile-avatar" src="" alt="Avatar" class="avatar">
@@ -60,6 +53,15 @@
             </div>
         </header>
 
+        <nav class="sticky-nav">
+            <ul>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </nav>
+
         <section id="projets" class="section-wrapper">
             <h3>Projets Réalisés</h3>
             <div id="project-grid" class="grid"></div>
@@ -77,7 +79,7 @@
             </section>
         </div>
 
-        <section class="section-wrapper">
+        <section id="certifications" class="section-wrapper">
             <h3>Certifications</h3>
             <ul id="cert-list" class="cert-list"></ul>
         </section>
@@ -96,12 +98,10 @@
             </div>
             <div class="modal-body">
                 <p style="margin-bottom:15px; color:var(--text-muted);">Voici mon adresse email directe :</p>
-                
                 <div class="email-box">
                     <span id="email-text"></span>
                     <button class="copy-btn" onclick="copyEmail()">Copier</button>
                 </div>
-                
                 <p id="copy-feedback" style="color: #10b981; margin-top: 10px; font-weight: 500; height: 20px;"></p>
             </div>
         </div>
