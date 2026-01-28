@@ -33,8 +33,8 @@ const config = {
         },
         {
             title: "Gestion de l'Active Directory",
-            description: "GPO, gestion des utilisateurs et DNS.", // J'ai corrigé la description (c'était WPA3 avant)
-            path: "active_directory.pdf", // ⚠️ Pense à mettre le bon nom de fichier ici
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            path: "active_directory.pdf", // Mets le vrai nom du fichier
             icon: "🖥️"
         },
         {
