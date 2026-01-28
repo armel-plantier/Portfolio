@@ -41,6 +41,35 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
+    // --- 2.5 NAVIGATION (NOUVEAU) ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = item.title;
+            a.href = item.link;
+            
+            // Scroll fluide
+            a.addEventListener('click', (e) => {
+                if(item.link.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(item.link);
+                    if(target) {
+                        const headerOffset = 100;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    } else if (item.link === "#") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                }
+            });
+            li.appendChild(a);
+            navList.appendChild(li);
+        });
+    }
+
     // --- 3. HEADER SKILLS ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
@@ -54,10 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 4. PROJETS ---
     const grid = document.getElementById("project-grid");
-    // URL relative au dossier Documents
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
-    
     const PROJECT_LIMIT = 3;
 
     if (grid && config.projects) {
@@ -65,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const div = document.createElement("div"); 
             div.className = "project-card";
-            
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
             
             const fullPdfUrl = baseUrl + proj.path;
@@ -82,10 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             grid.appendChild(div);
         });
-        
-        if (config.projects.length > PROJECT_LIMIT) {
-            createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
-        }
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
     }
 
     // --- 5. PARCOURS ---
@@ -205,10 +228,8 @@ function createToggleBtn(container, limit, txt) {
 window.toggleComp = function(e, id) {
     e.stopPropagation(); 
     const menu = document.getElementById(id); 
-    // Trouver le bouton à l'intérieur du header cliqué
     const btn = e.currentTarget.querySelector('.comp-toggle');
     
-    // Fermer les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
     
