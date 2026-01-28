@@ -173,11 +173,16 @@ window.togglePDF = function(id, url) {
 window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
 window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
 
+// Modification : Fermeture automatique après 1.5 seconde
 window.copyEmail = function() {
     const email = document.getElementById("email-text").innerText;
     navigator.clipboard.writeText(email).then(() => {
         const fb = document.getElementById("copy-feedback");
         fb.innerText = "Adresse copiée ! ✅";
-        setTimeout(() => fb.innerText = "", 2000);
+        
+        setTimeout(() => {
+            fb.innerText = "";
+            window.closeModal(); // Ferme la modale
+        }, 1500);
     });
 };
