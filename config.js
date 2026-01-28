@@ -1,8 +1,7 @@
 const config = {
     // --- 1. NAVIGATION ---
     navigation: [
-        // AJOUT DE LA SECTION ACCUEIL ICI (Lien "#" = Haut de page)
-        { title: "Accueil", link: "#" }, 
+        { title: "Accueil", link: "#" },
         { title: "Projets", link: "#projets" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
@@ -11,6 +10,9 @@ const config = {
 
     // --- 2. PROFIL & RÉSEAUX ---
     profile: {
+        // FAVICON : Tu peux mettre une URL d'image (png/ico) ou ce code pour un emoji Pingouin
+        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>",
+        
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
         typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
