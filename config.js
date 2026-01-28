@@ -1,140 +1,266 @@
-const config = {
-    // --- 1. NAVIGATION ---
-    navigation: [
-        { title: "Accueil", link: "#" },
-        { title: "Projets", link: "#projets" },
-        { title: "Parcours", link: "#parcours" },
-        { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifications" }
-    ],
+document.addEventListener("DOMContentLoaded", () => {
+    
+    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
 
-    // --- 2. PROFIL & RÉSEAUX ---
-    profile: {
-        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
-        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
-        name: "Armel Plantier",
-        typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
-        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
-        status: "Recherche active d'alternance",
-        email: "armel.plantier@protonmail.com"
-    },
+    // --- 1. THEME ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        if(themeBtn) themeBtn.innerText = "🌙"; 
+    }
+    
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) {
+                themeBtn.innerText = "🌙"; 
+                localStorage.setItem("theme", "light");
+            } else {
+                themeBtn.innerText = "☀️"; 
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
 
-    social: {
-        github: "https://github.com/armel-plantier",
-        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
-    },
+    // --- 2. PROFIL ---
+    document.title = `${config.profile.name} | Portfolio`;
+    const avatarEl = document.getElementById("profile-avatar");
+    if(avatarEl) avatarEl.src = config.profile.avatar;
+    
+    document.getElementById("profile-name").innerText = config.profile.name;
+    document.getElementById("profile-status").innerText = config.profile.status;
+    document.getElementById("profile-bio").innerText = config.profile.bio;
+    
+    const gh = document.getElementById("link-github");
+    if(gh) gh.href = config.social.github;
+    
+    const lk = document.getElementById("link-linkedin");
+    if(lk) lk.href = config.social.linkedin;
+    
+    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 3. TAGS HEADER ---
-    skills: [
-        "🐧 Linux",
-        "🪟 Windows",
-        "🕸️ Réseau",
-        "🛡️ Sécurité"
-    ],
+    // --- 2.5 NAVIGATION (NOUVEAU) ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = item.title;
+            a.href = item.link;
+            
+            // Scroll fluide
+            a.addEventListener('click', (e) => {
+                if(item.link.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(item.link);
+                    if(target) {
+                        const headerOffset = 100;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    } else if (item.link === "#") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                }
+            });
+            li.appendChild(a);
+            navList.appendChild(li);
+        });
+    }
 
-    // --- 4. PROJETS (Documents PDF) ---
-    projects: [
-        {
-            title: "Mise en place réseau TechNova",
-            description: "Architecture, VLANs et documentation technique.",
-            path: "reseau-technova.pdf", 
-            icon: "🌐"
-        },
-        {
-            title: "Gestion de l'Active Directory",
-            description: "GPO, gestion des utilisateurs et DNS.", 
-            path: "active_directory.pdf", 
-            icon: "🖥️"
-        },
-        {
-            title: "Audit Sécurité Wi-Fi",
-            description: "Test d'intrusion WPA3 et analyse de trames.",
-            path: "audit_wifi.pdf",      
-            icon: "🛡️"
-        },
-        {
-            title: "Hardening Linux",
-            description: "Sécurisation SSH et Firewall.",
-            path: "linux_hardening.pdf", 
-            icon: "🐧"
-        }
-    ],
+    // --- 3. HEADER SKILLS ---
+    const skillsContainer = document.getElementById("skills-section");
+    if(skillsContainer && config.skills) {
+        config.skills.forEach(s => {
+            const span = document.createElement("span"); 
+            span.className = "skill-tag"; 
+            span.innerText = s;
+            skillsContainer.appendChild(span);
+        });
+    }
 
-    // --- 5. EXPÉRIENCES ---
-    experiences: [
-        {
-            date: "2023 - Présent",
-            role: "Administrateur Système Junior",
-            company: "Entreprise A",
-            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
-        },
-        {
-            date: "2022 - 2023",
-            role: "Technicien Support",
-            company: "Entreprise B",
-            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
-        },
-        {
-            date: "2020 - 2022",
-            role: "Projets Personnels",
-            company: "Home Lab",
-            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
-        }
-    ],
+    // --- 4. PROJETS ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `${window.location.origin}${path}Documents/`; 
+    const PROJECT_LIMIT = 3;
 
-    // --- 6. COMPÉTENCES DÉTAILLÉES ---
-    competences: [
-        {
-            name: "🐧 Administration Système",
-            details: [
-                "Linux Hardening (Debian/RHEL)",
-                "Windows Server & AD",
-                "Gestion des droits (chmod/chown)",
-                "Virtualisation (Proxmox/VMware)"
-            ]
-        },
-        {
-            name: "🕸️ Réseau & Infrastructure",
-            details: [
-                "Architecture LAN/WAN",
-                "Cisco IOS (VLAN, OSPF, STP)",
-                "Wireshark (Analyse de paquets)",
-                "Supervision (Nagios/Zabbix)"
-            ]
-        },
-        {
-            name: "🛡️ Cybersécurité",
-            details: [
-                "Firewalling (iptables, pfsense)",
-                "Analyse de vulnérabilités",
-                "Durcissement SSH & Web",
-                "SIEM & Logs"
-            ]
-        },
-        {
-            name: "📜 Scripting & DevOps",
-            details: [
-                "Bash Scripting",
-                "Python pour le réseau",
-                "Git & GitHub",
-                "Docker Basics"
-            ]
-        }
-    ],
+    if (grid && config.projects) {
+        config.projects.forEach((proj, index) => {
+            const vid = `viewer_${index}`;
+            const div = document.createElement("div"); 
+            div.className = "project-card";
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+            
+            const fullPdfUrl = baseUrl + proj.path;
+
+            div.innerHTML = `
+                <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
+                    <div class="icon">${proj.icon}</div>
+                    <div class="meta">
+                        <h4>${proj.title}</h4>
+                        <p>${proj.description}</p>
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+            grid.appendChild(div);
+        });
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir tous les projets");
+    }
+
+    // --- 5. PARCOURS ---
+    const expList = document.getElementById("exp-list");
+    const EXP_LIMIT = 3;
+    if(expList && config.experiences) {
+        config.experiences.forEach((exp, index) => {
+            const li = document.createElement("li"); 
+            li.className = "timeline-item";
+            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+            
+            li.innerHTML = `
+                <span class="timeline-date">${exp.date}</span>
+                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
+                <p class="timeline-desc">${exp.description}</p>
+            `;
+            expList.appendChild(li);
+        });
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Historique complet");
+    }
+
+    // --- 6. COMPETENCES ---
+    const compList = document.getElementById("comp-list");
+    const COMP_LIMIT = 4;
+    if(compList && config.competences) {
+        config.competences.forEach((comp, index) => {
+            const li = document.createElement("li"); 
+            li.className = "comp-card-container";
+            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+            
+            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
+            
+            li.innerHTML = `
+                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
+                    <span class="cert-name">${comp.name}</span>
+                    <button class="cert-btn comp-toggle">▼</button>
+                </div>
+                <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
+            `;
+            compList.appendChild(li);
+        });
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir toutes");
+    }
 
     // --- 7. CERTIFICATIONS ---
-    certifications: [
-        { 
-            name: "✅ Cisco CCNA 1 (En cours)", 
-            url: "https://www.cisco.com/c/fr_fr/training-events/training-certifications/certifications/associate/ccna.html" 
-        },
-        { 
-            name: "✅ MOOC ANSSI - SecNum", 
-            url: "https://secnumacademie.gouv.fr/" 
-        },
-        { 
-            name: "✅ Certification Pix", 
-            url: "https://pix.fr/" 
+    const certList = document.getElementById("cert-list");
+    const CERT_LIMIT = 4;
+    if(certList && config.certifications) {
+        config.certifications.forEach((cert, index) => {
+            const li = document.createElement("li");
+            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+            
+            li.innerHTML = `<span class="cert-name">${cert.name}</span><a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>`;
+            certList.appendChild(li);
+        });
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir toutes");
+    }
+
+    // --- 8. TYPEWRITER ---
+    const textEl = document.getElementById("typewriter-area");
+    if(textEl && config.profile.typewriterText) {
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+        function type() { if(i<txt.length) { textEl.innerHTML += txt.charAt(i); i++; setTimeout(type, 50); } }
+        setTimeout(type, 500);
+    }
+
+    // --- 9. MODALE EMAIL ---
+    const emailTrigger = document.getElementById("email-trigger");
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", function(e) {
+            e.preventDefault();
+            const emailSpan = document.getElementById("email-text");
+            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
+            document.getElementById("email-modal").style.display = "flex";
+        });
+    }
+
+    // Clic extérieur pour fermer les menus compétences
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.comp-card-container')) {
+            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
-    ]
+    });
+});
+
+// --- FONCTIONS UTILS ---
+
+function createToggleBtn(container, limit, txt) {
+    const div = document.createElement("div"); 
+    div.className = "load-more-container";
+    const btn = document.createElement("button"); 
+    btn.className = "load-more-btn"; 
+    btn.innerText = `↓ ${txt}`;
+    let expanded = false;
+    
+    btn.onclick = () => {
+        expanded = !expanded;
+        const children = container.children;
+        for(let i=0; i<children.length; i++) {
+            if(i>=limit) {
+                if(expanded) { 
+                    children[i].classList.remove("hidden-item"); 
+                    children[i].style.opacity=0; 
+                    setTimeout(()=>children[i].style.opacity=1, 50); 
+                } else { 
+                    children[i].classList.add("hidden-item"); 
+                }
+            }
+        }
+        btn.innerText = expanded ? `↑ Voir moins` : `↓ ${txt}`;
+    };
+    div.appendChild(btn); 
+    container.parentNode.insertBefore(div, container.nextSibling);
+}
+
+window.toggleComp = function(e, id) {
+    e.stopPropagation(); 
+    const menu = document.getElementById(id); 
+    const btn = e.currentTarget.querySelector('.comp-toggle');
+    
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
+    
+    if(menu.style.display==='block') { 
+        menu.style.display='none'; 
+        if(btn) btn.classList.remove('active'); 
+    } else { 
+        menu.style.display='block'; 
+        if(btn) btn.classList.add('active'); 
+    }
+};
+
+window.togglePDF = function(id, url) {
+    const c = document.getElementById(id);
+    if(c.style.display==='block') { 
+        c.style.display='none'; 
+        c.innerHTML=''; 
+        return; 
+    }
+    document.querySelectorAll('.pdf-container').forEach(el => { 
+        el.style.display='none'; 
+        el.innerHTML=''; 
+    });
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="500px" style="border:none;"></iframe>`;
+    c.style.display='block';
+};
+
+window.closeModal = function() { 
+    document.getElementById("email-modal").style.display = "none"; 
+};
+
+window.onclick = function(e) { 
+    if(e.target == document.getElementById("email-modal")) window.closeModal(); 
 };
