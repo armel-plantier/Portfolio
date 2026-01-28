@@ -64,7 +64,7 @@ body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-colo
 
 /* --- NAVIGATION CAPSULE --- */
 .nav-capsule {
-    position: absolute; /* Sort du flux pour se centrer */
+    position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -146,9 +146,6 @@ h3 {
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
 .pdf-container { display: none; height: 500px; border-top: 1px solid var(--border); background: #000; }
 
-/* --- LAYOUT 2 COLONNES --- */
-.two-column-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-
 /* Timeline (Parcours) */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
 .timeline-item { margin-bottom: 35px; position: relative; }
@@ -210,7 +207,6 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 
 /* --- RESPONSIVE MOBILE --- */
 @media(max-width: 900px) { 
-    .two-column-layout { grid-template-columns: 1fr; gap: 0; }
     
     .app-header { 
         flex-wrap: wrap; /* Autorise le retour à la ligne */
