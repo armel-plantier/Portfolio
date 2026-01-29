@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
             a.innerText = item.title;
             a.href = item.link; 
             
-            // Fermeture menu mobile au clic
             a.addEventListener('click', () => {
                  const header = document.querySelector('.app-header');
                  if(header) header.classList.remove('menu-open');
@@ -79,10 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 5. PROJETS (LIMIT 4) ---
     const grid = document.getElementById("project-grid");
-    // Calcul du chemin relatif pour Documents/
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
-    
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
@@ -133,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. COMPETENCES (LIMIT 5) ---
+    // --- 7. COMPETENCES (LIMIT 5) - MIS A JOUR ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -145,8 +142,10 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
             
+            // On utilise cert-icon-box pour le même style que les certifs
             li.innerHTML = `
                 <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
+                    <div class="cert-icon-box">${comp.icon}</div>
                     <span class="cert-name">${comp.name}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
@@ -157,10 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 8. CERTIFICATIONS (V2 : Double Boutons) ---
+    // --- 8. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
-    // Chemin pour les Certifs : Documents/Certifs/
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
 
     if(certList && config.certifications) {
@@ -174,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
-            // Bouton Lien
             let buttonsHtml = '';
             if (cert.url) {
                 buttonsHtml += `
@@ -183,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     </a>`;
             }
 
-            // Bouton PDF
             if (cert.pdf) {
                 buttonsHtml += `
                     <button onclick="toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
@@ -209,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 9. TYPEWRITER ---
+    // --- 9. TYPEWRITER & EMAIL ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -217,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 10. MODALE EMAIL ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -235,26 +230,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 11. GESTION DU SCROLL ET MENU MOBILE ---
+    // --- 10. SCROLL & MENU ---
     const header = document.querySelector('.app-header');
     const navCapsule = document.querySelector('.nav-capsule');
     const menuIcon = document.querySelector('.menu-icon'); 
 
     if (header) {
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { 
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-                header.classList.remove('menu-open');
-            }
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); }
         });
 
         if (menuIcon) {
-            menuIcon.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                header.classList.toggle('menu-open');
-            });
+            menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); });
         }
 
         document.addEventListener('click', (e) => {
@@ -263,42 +251,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});
 
-}); // Fin DOMContentLoaded
-
-
-// --- FONCTIONS UTILITAIRES ---
-
+// --- HELPER FUNCTIONS ---
 function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div"); 
-    div.className = "load-more-container"; 
-    
-    const btn = document.createElement("button"); 
-    btn.className = "load-more-btn";
+    const div = document.createElement("div"); div.className = "load-more-container"; 
+    const btn = document.createElement("button"); btn.className = "load-more-btn";
     btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    
     let expanded = false;
-    
     btn.onclick = () => {
         expanded = !expanded;
         const children = container.children;
-        
         for(let i=0; i<children.length; i++) {
             if(i >= limit) {
-                if(expanded) { 
-                    children[i].classList.remove("hidden-item"); 
-                    children[i].style.opacity=0; 
-                    setTimeout(()=>children[i].style.opacity=1, 50); 
-                } else { 
-                    children[i].classList.add("hidden-item"); 
-                    children[i].style.opacity=0; 
-                }
+                if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity=0; setTimeout(()=>children[i].style.opacity=1, 50); } 
+                else { children[i].classList.add("hidden-item"); children[i].style.opacity=0; }
             }
         }
         btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     };
-    div.appendChild(btn); 
-    container.parentNode.insertBefore(div, container.nextSibling);
+    div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
 }
 
 window.toggleComp = function(e, id) {
@@ -319,12 +291,9 @@ window.togglePDF = function(id, url) {
     c.style.display='block';
 };
 
-// Nouvelle fonction pour les certifications (ferme les autres avant d'ouvrir)
 window.toggleCertPDF = function(id, url) {
     const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') {
-        viewer.style.display = 'none'; viewer.innerHTML = ''; return;
-    }
+    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
     viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
