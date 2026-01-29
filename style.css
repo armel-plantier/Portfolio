@@ -6,7 +6,7 @@
     --muted: #94a3b8;
     --border: #2d3748;
     --primary: #6366f1;
-    --header-h: 90px;
+    --header-h: 90px; /* Hauteur totale du header */
     --badge-bg: #10b981;
     
     /* Dimensions pour le positionnement dynamique */
@@ -47,7 +47,7 @@ a { text-decoration: none; color: inherit; }
     border: none !important;
     box-shadow: none !important;
     
-    pointer-events: none; /* Laisse passer les clics */
+    pointer-events: none; /* Laisse passer les clics au travers du vide */
     z-index: 1000;
 }
 
@@ -106,12 +106,16 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
 
 /* -- NAVIGATION CAPSULE (ELEMENT DYNAMIQUE) -- */
 .nav-capsule {
-    position: fixed; /* Fixed permet de changer l'ancrage left/right */
-    top: 50%;
+    position: fixed; 
     
-    /* ETAT INITIAL : CENTRÉ */
+    /* POSITIONNEMENT VERTICAL : Au centre du header (90px / 2 = 45px) */
+    top: calc(var(--header-h) / 2); 
+    
+    /* POSITIONNEMENT HORIZONTAL INITIAL : CENTRÉ */
     left: 50%; 
     right: auto;
+    
+    /* Centrage parfait (X et Y) */
     transform: translate(-50%, -50%);
     
     background: rgba(20, 20, 30, 0.4); 
@@ -155,15 +159,17 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 
 /* --- ETAT SCROLLÉ : LA FUSION --- */
 .app-header.scrolled .nav-capsule {
-    /* 1. On casse le centrage */
+    /* 1. On casse le centrage horizontal (X) */
     left: auto; 
-    transform: translateY(-50%); /* On garde juste le centrage vertical */
     
-    /* 2. On ancre à DROITE, collé au bouton thème */
+    /* 2. On garde le centrage vertical (Y) */
+    transform: translateY(-50%);
+    
+    /* 3. On ancre à DROITE, collé au bouton thème */
     /* Padding Header + Taille Bouton Theme + Marge (15px) */
     right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
     
-    /* 3. On réduit la forme en bouton rond */
+    /* 4. On réduit la forme en bouton rond */
     width: var(--theme-btn-size); 
     height: var(--theme-btn-size);
     padding: 0;
