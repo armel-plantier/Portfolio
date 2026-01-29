@@ -1,7 +1,6 @@
 :root {
-    /* MODIF : Dégradé subtil du noir vers un violet profond */
+    /* Dégradé subtil du noir vers un violet profond */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
-    /* Ancienne valeur pour info : #0b0d14 */
     
     --card: #151925;
     --text: #f1f5f9;
@@ -13,24 +12,21 @@
 }
 
 body.light-mode {
-    /* MODIF : Dégradé subtil pour le mode clair aussi */
+    /* Dégradé subtil pour le mode clair */
     --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
-    /* Ancienne valeur : #f8fafc */
-
+    
     --card: #ffffff;
     --text: #0f172a;
     --muted: #64748b;
     --border: #e2e8f0;
 }
 
-/* Le reste du fichier ne change pas, mais il est nécessaire pour que tout fonctionne */
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-/* Important : on s'assure que le background couvre bien toute la hauteur même s'il y a peu de contenu */
-html, body { min-height: 100%; } 
+html, body { min-height: 100%; }
+
 body { 
-    background: var(--bg); /* Applique le dégradé défini plus haut */
-    background-attachment: fixed; /* Le dégradé reste fixe quand on scrolle, effet sympa */
+    background: var(--bg);
+    background-attachment: fixed; /* Fixe le dégradé pour qu'il ne bouge pas au scroll */
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
@@ -38,17 +34,34 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER --- */
+/* --- HEADER DYNAMIQUE (GLASSMORPHISM) --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 40px; 
-    background: rgba(11, 13, 20, 0.85); 
-    backdrop-filter: blur(12px);
+    
+    /* Transparent par défaut */
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    
     z-index: 1000; 
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.4s ease; 
 }
-body.light-mode .app-header { background: rgba(255, 255, 255, 0.85); border-color: rgba(0,0,0,0.05); }
+
+/* Classe ajoutée en JS au scroll */
+.app-header.scrolled {
+    background: rgba(11, 13, 20, 0.70);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .app-header { background: transparent; border-color: transparent; }
+body.light-mode .app-header.scrolled { 
+    background: rgba(255, 255, 255, 0.75); 
+    border-color: rgba(0,0,0,0.05); 
+}
 
 .header-left { display: flex; align-items: center; gap: 16px; }
 
@@ -163,9 +176,8 @@ h3 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
 }
 
-.hidden-item {
-    display: none !important;
-}
+/* CLASSE IMPORTANTE POUR CACHER LES ÉLÉMENTS */
+.hidden-item { display: none !important; }
 
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
 .card-header .icon { font-size: 2rem; }
