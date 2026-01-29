@@ -51,7 +51,7 @@ const config = {
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
-            path: "audit_wifi.pdf",      
+            path: "audit_wifi.pdf",       
             icon: "🛡️",
             isNew: false
         },
@@ -105,54 +105,43 @@ const config = {
         {
             name: "🐧 Administration Système",
             details: [
-                "Linux Hardening (Debian/RHEL)",
-                "Windows Server & AD",
-                "Gestion des droits (chmod/chown)",
-                "Virtualisation (Proxmox/VMware)"
+                "Linux Hardening (Debian, RHEL)",
+                "Windows Server (AD, DNS, DHCP)",
+                "Virtualisation (Proxmox, VMware)",
+                "Scripting (Bash, Python)"
             ]
         },
         {
-            name: "🕸️ Réseau & Infrastructure",
+            name: "🕸️ Réseau & Sécurité",
             details: [
-                "Architecture LAN/WAN",
-                "Cisco IOS (VLAN, OSPF, STP)",
-                "Wireshark (Analyse de paquets)",
-                "Supervision (Nagios/Zabbix)"
+                "Modèle OSI / TCP-IP",
+                "Switching (VLAN, STP)",
+                "Routing (OSPF, Static)",
+                "Firewalling (pfSense, iptables)"
             ]
         },
         {
-            name: "🛡️ Cybersécurité",
+            name: "🛠️ Outils & DevOps",
             details: [
-                "Firewalling (iptables, pfsense)",
-                "Analyse de vulnérabilités",
-                "Durcissement SSH & Web",
-                "SIEM & Logs"
-            ]
-        },
-        {
-            name: "📜 Scripting & DevOps",
-            details: [
-                "Bash Scripting",
-                "Python pour le réseau",
+                "Docker & Docker Compose",
                 "Git & GitHub",
-                "Docker Basics"
+                "Ansible (Basiques)",
+                "Monitoring (Zabbix)"
+            ]
+        },
+        {
+            name: "🇬🇧 Langues",
+            details: [
+                "Anglais : B2 (Technique)",
+                "Français : Langue maternelle"
             ]
         }
     ],
 
     // --- 7. CERTIFICATIONS ---
     certifications: [
-        { 
-            name: "✅ Cisco CCNA 1 (En cours)", 
-            url: "https://www.cisco.com/c/fr_fr/training-events/training-certifications/certifications/associate/ccna.html" 
-        },
-        { 
-            name: "✅ MOOC ANSSI - SecNum", 
-            url: "https://secnumacademie.gouv.fr/" 
-        },
-        { 
-            name: "✅ Certification Pix", 
-            url: "https://pix.fr/" 
-        }
+        { name: "Cisco CCNA (En cours)", url: "#" },
+        { name: "ANSSI - SecNumAcadémie", url: "#" },
+        { name: "Pix Certif", url: "#" }
     ]
 };
