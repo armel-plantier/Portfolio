@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 3. NAVIGATION ---
+    // --- 3. NAVIGATION (CORRECTION SCROLL) ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (item.link === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
                     const target = document.querySelector(item.link);
                     if(target) {
-                        const headerOffset = 100;
+                        // J'ai augmenté cette valeur à 120 pour éviter que le titre soit caché par le header
+                        const headerOffset = 120; 
                         const elementPosition = target.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
@@ -196,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "ton.email@exemple.com";
+            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
             document.getElementById("email-modal").style.display = "flex";
         });
     }
@@ -208,41 +209,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 11. GESTION DU SCROLL ET MENU MOBILE (MIS A JOUR) ---
+    // --- 11. GESTION DU SCROLL ET MENU MOBILE ---
     const header = document.querySelector('.app-header');
     const navCapsule = document.querySelector('.nav-capsule');
-    const menuIcon = document.querySelector('.menu-icon'); // S'assure de cibler l'icône burger
+    const menuIcon = document.querySelector('.menu-icon'); 
 
     if (header) {
-        // A. Scroll Logic (Apparition du fond flou et du header compact)
+        // A. Scroll Logic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { 
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
-                // Si on remonte tout en haut, on ferme le menu proprement
                 header.classList.remove('menu-open');
             }
         });
 
-        // B. Click Logic (Ouverture du menu au clic sur le bouton rond)
+        // B. Click Logic
         if (menuIcon) {
             menuIcon.addEventListener('click', (e) => {
-                e.stopPropagation(); // Empêche la fermeture immédiate
+                e.stopPropagation(); 
                 header.classList.toggle('menu-open');
             });
         }
 
-        // C. Click Outside (Fermeture si on clique ailleurs)
+        // C. Click Outside
         document.addEventListener('click', (e) => {
-            // Si le menu est ouvert ET qu'on clique en dehors de la capsule
             if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
                 header.classList.remove('menu-open');
             }
         });
         
-        // D. Navigation Click (Fermeture quand on clique sur un lien)
-        // On attend un petit peu que le DOM soit bien généré (Section 3)
+        // D. Navigation Click (Fermeture menu + petit délai)
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-capsule a');
             navLinks.forEach(link => {
