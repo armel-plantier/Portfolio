@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 11. NAVBAR DYNAMIQUE (SCROLL) ---
     const header = document.querySelector('.app-header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
+        if (window.scrollY > 50) { // Se déclenche un peu plus tard (50px)
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
