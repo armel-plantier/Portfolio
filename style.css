@@ -83,6 +83,7 @@ a { text-decoration: none; color: inherit; }
 .header-right { 
     display: flex; align-items: center; position: absolute; 
     right: var(--header-padding); top: 50%; transform: translateY(-50%);
+    transition: all 0.4s ease; /* Transition fluide pour le déplacement */
 }
 .theme-icon {
     width: var(--theme-btn-size); height: var(--theme-btn-size);
@@ -129,7 +130,7 @@ body.light-mode .nav-capsule {
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 body.light-mode .nav-capsule a { color: #1e293b; }
 
-/* ETAT SCROLLÉ : FUSION */
+/* ETAT SCROLLÉ : FUSION (Base Large Screen) */
 .app-header.scrolled .nav-capsule {
     left: auto; 
     transform: translateY(-50%);
@@ -149,7 +150,28 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
 .app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
 .app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
 
-/* MOBILE (Max 900px) */
+
+/* --- RESPONSIVE INTERMÉDIAIRE (TABLETTE / PETIT PC) --- */
+/* Entre 900px et 1250px : On empile verticalement au scroll */
+@media (max-width: 1250px) {
+    
+    /* 1. La Capsule Menu prend la place "En haut à droite" */
+    .app-header.scrolled .nav-capsule {
+        right: var(--header-padding); /* Collé à droite (padding standard) */
+        top: 30px; /* En haut */
+        transform: none; /* Pas de centrage vertical */
+    }
+
+    /* 2. Le Bouton Thème passe en dessous */
+    .app-header.scrolled .header-right {
+        top: 85px; /* On le pousse vers le bas (sous le menu) */
+        right: var(--header-padding);
+        transform: none;
+    }
+}
+
+
+/* --- MOBILE (Max 900px) --- */
 @media(max-width: 900px) {
     .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
     .header-left { width: 100%; justify-content: flex-start; } 
@@ -256,7 +278,7 @@ h3 {
 /* CONTAINER PDF (Modifié : -25% de hauteur) */
 .pdf-container { 
     display: none; 
-    height: 640px; /* Réduit de 850px à 640px */
+    height: 640px; 
     border-top: 1px solid var(--border); background: #000; 
 }
 
