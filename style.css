@@ -1,5 +1,5 @@
 :root {
-    /* Couleurs */
+    /* --- COULEURS & THEME --- */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
     --card: #151925;
     --text: #f1f5f9;
@@ -9,7 +9,7 @@
     --header-h: 90px;
     --badge-bg: #10b981;
     
-    /* Dimensions */
+    /* --- DIMENSIONS --- */
     --header-padding: 40px; 
     --theme-btn-size: 42px;
 }
@@ -31,28 +31,32 @@ body {
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
-    transition: 0.3s; 
+    transition: background 0.3s, color 0.3s; 
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER PRINCIPAL --- */
+
+/* =========================================
+   HEADER PRINCIPAL (STRUCTURE DE BASE)
+   ========================================= */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 var(--header-padding); 
-    background: transparent !important;
-    pointer-events: none; z-index: 1000;
+    background: transparent !important; /* Toujours transparent, les enfants gèrent leur fond */
+    pointer-events: none; /* Laisse passer les clics autour */
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .header-left, .nav-capsule, .header-right { pointer-events: auto; }
 
-/* -- IDENTITÉ (GAUCHE) -- */
+/* -- 1. GAUCHE : IDENTITÉ -- */
 .header-left { 
     display: flex; align-items: center; gap: 16px; 
     transition: all 0.4s ease;
     opacity: 1; transform: translateY(0);
 }
-
 /* Disparition au scroll */
 .app-header.scrolled .header-left {
     opacity: 0; transform: translateY(-20px); pointer-events: none;
@@ -79,11 +83,12 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* -- BOUTON THEME (DROITE) -- */
+/* -- 2. DROITE : BOUTON THEME -- */
 .header-right { 
     display: flex; align-items: center; position: absolute; 
     right: var(--header-padding); top: 50%; transform: translateY(-50%);
     transition: all 0.4s ease; 
+    z-index: 1002;
 }
 .theme-icon {
     width: var(--theme-btn-size); height: var(--theme-btn-size);
@@ -97,32 +102,37 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
 
-/* --- NAV CAPSULE (COMPORTEMENT GÉNÉRAL) --- */
+/* -- 3. CENTRE : CAPSULE DE NAVIGATION -- */
 .nav-capsule {
     position: fixed; 
     top: calc(var(--header-h) / 2); 
     left: 50%; right: auto;
     transform: translate(-50%, -50%);
-    background: rgba(20, 20, 30, 0.4); 
+    
+    background: rgba(20, 20, 30, 0.6); 
     backdrop-filter: blur(50px) saturate(180%);
     -webkit-backdrop-filter: blur(50px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    
     padding: 10px 30px;
     border-radius: 50px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; height: 50px; z-index: 1001;
 }
 body.light-mode .nav-capsule {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.5);
     border-color: rgba(255, 255, 255, 0.6);
 }
+
 .nav-capsule ul {
     display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
     transition: opacity 0.3s; opacity: 1;
 }
 .menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
+
 .nav-capsule a {
     font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
     transition: 0.2s ease; white-space: nowrap;
@@ -132,8 +142,12 @@ body.light-mode .nav-capsule {
 body.light-mode .nav-capsule a { color: #1e293b; }
 
 
-/* --- ETAT SCROLLÉ : PC LARGE (> 1250px) --- */
-/* Sur grand écran, la capsule se met à GAUCHE du bouton thème */
+/* =========================================
+   COMPORTEMENT RESPONSIVE & SCROLL
+   ========================================= */
+
+/* --- CAS 1 : GRANDS ÉCRANS (> 1250px) --- */
+/* Au scroll, la capsule se range à gauche du bouton thème */
 @media (min-width: 1251px) {
     .app-header.scrolled .nav-capsule {
         left: auto; 
@@ -142,11 +156,11 @@ body.light-mode .nav-capsule a { color: #1e293b; }
         width: var(--theme-btn-size); height: var(--theme-btn-size);
         padding: 0; border-radius: 50%;
         background: rgba(20, 20, 30, 0.8);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
     .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
     .app-header.scrolled .nav-capsule .menu-icon { display: block; }
 
+    /* Hover sur PC */
     .app-header.scrolled .nav-capsule:hover {
         width: auto; padding: 0 30px; border-radius: 50px;
     }
@@ -155,90 +169,98 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 }
 
 
-/* --- RESPONSIVE INTERMÉDIAIRE (900px - 1250px) --- */
-/* C'est ici que tu avais le problème. On force le mode "Bouton" vertical */
-@media (max-width: 1250px) and (min-width: 901px) {
+/* --- CAS 2 : TABLETTES & MOBILES (< 1250px) --- */
+/* C'est ici que ça corrige ton problème. On force le mode "Bouton Burger" */
+
+@media (max-width: 1250px) {
     
-    /* 1. La Capsule devient FORCÉMENT un petit rond */
+    /* A. Si on a SCROLLÉ : Force le petit rond en haut à droite */
     .app-header.scrolled .nav-capsule {
-        width: 42px !important;       /* On force la largeur */
-        height: 42px !important;      /* On force la hauteur */
-        padding: 0 !important;        /* Pas de marge interne */
-        border-radius: 50% !important; /* Rond parfait */
+        width: 45px !important;
+        height: 45px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
         
         position: fixed !important;
-        right: 40px !important;       /* Collé à droite */
-        top: 25px !important;         /* En haut */
+        top: 20px !important;
+        right: 20px !important;
         left: auto !important;
         transform: none !important;
+        
+        background: rgba(20, 20, 30, 0.95) !important;
+        z-index: 5000 !important;
         
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        background: rgba(20, 20, 30, 0.9) !important;
     }
 
-    /* 2. On cache FORCÉMENT la liste de texte */
-    .app-header.scrolled .nav-capsule ul { 
-        display: none !important; 
-        width: 0 !important;
-    }
-
-    /* 3. On affiche FORCÉMENT l'icône burger */
-    .app-header.scrolled .nav-capsule .menu-icon { 
-        display: block !important; 
-    }
-
-    /* 4. On déplace le bouton lune/soleil en dessous */
-    .app-header.scrolled .header-right {
-        top: 85px !important; /* ~ 25px (top nav) + 42px (nav) + 18px (espace) */
-        right: 40px !important;
-        transform: none !important;
-    }
+    /* Cache le texte */
+    .app-header.scrolled .nav-capsule ul { display: none !important; }
     
-    /* Si on survole, ça peut s'ouvrir, mais par défaut c'est fermé */
-    .app-header.scrolled .nav-capsule:hover {
-         width: auto !important; padding: 0 30px !important; border-radius: 50px !important;
-         z-index: 2000; /* Passe au dessus de la lune si ouvert */
+    /* Montre le burger */
+    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; }
+
+    /* Déplace la lune/soleil en dessous pour ne pas gêner */
+    .app-header.scrolled .header-right {
+        position: fixed !important;
+        top: 75px !important; /* 20px (top) + 45px (nav) + 10px (gap) */
+        right: 22px !important;
+        transform: none !important;
+        z-index: 4999 !important;
     }
-    .app-header.scrolled .nav-capsule:hover ul { display: flex !important; width: auto !important; }
+
+    /* Interaction au clic/survol sur mobile */
+    .app-header.scrolled .nav-capsule:hover,
+    .app-header.scrolled .nav-capsule:active {
+         width: auto !important; height: auto !important;
+         padding: 0 25px !important; border-radius: 50px !important;
+         right: 20px !important;
+    }
+    .app-header.scrolled .nav-capsule:hover ul { display: flex !important; gap: 15px !important; }
     .app-header.scrolled .nav-capsule:hover .menu-icon { display: none !important; }
 }
 
 
-/* --- MOBILE (Max 900px) --- */
-@media(max-width: 900px) {
-    .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
-    .header-left { width: 100%; justify-content: flex-start; } 
-    .header-right { right: 15px; top: 20px; transform: none; }
+/* --- CAS 3 : LAYOUT MOBILE STANDARD (NON SCROLLÉ) --- */
+/* Quand on est tout en haut de la page sur un petit écran */
+@media (max-width: 900px) {
+    body { padding-top: 150px; } /* On pousse le contenu */
     
+    .app-header {
+        flex-wrap: wrap; height: auto; padding: 15px; 
+        background: transparent !important;
+        gap: 10px;
+    }
+    
+    .header-left { width: 100%; justify-content: flex-start; margin-bottom: 5px; }
+    
+    /* La barre normale prend toute la largeur */
     .nav-capsule {
-        position: static; transform: none; order: 3; width: 100%;
-        margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
-        background: var(--card); height: auto; transition: none; 
+        position: relative; top: 0; left: 0; transform: none;
+        width: 100%; margin: 5px 0;
+        background: var(--card); border-radius: 12px;
+        overflow-x: auto;
+        justify-content: flex-start; 
+        padding: 10px 15px; height: auto;
     }
     
-    .app-header.scrolled .nav-capsule {
-        position: static; width: 100%; height: auto; border-radius: 12px; padding: 10px 15px;
-        right: auto; left: auto; transform: none; background: var(--card);
+    .header-right {
+        position: absolute; top: 20px; right: 15px; transform: none;
     }
-    .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
-    .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
-    
-    .hero-title { font-size: 2rem; }
-    .hero-section { margin-top: 140px; }
 }
 
 
-/* --- LAYOUT GLOBAL & SECTIONS --- */
+/* =========================================
+   RESTE DU SITE (LAYOUT & CONTENU)
+   ========================================= */
 
 .container { 
     max-width: 100%; margin: 0 auto; padding: 40px 20px; 
 }
-@media (min-width: 1024px) {
-    .container { max-width: 1200px; padding: 60px 40px; }
-}
+@media (min-width: 1024px) { .container { max-width: 1200px; padding: 60px 40px; } }
 
+/* Hero */
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
 .hero-title { 
     font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; 
@@ -270,25 +292,18 @@ body.light-mode .nav-capsule a { color: #1e293b; }
     font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
 }
 
-/* SECTIONS */
-.section-wrapper { margin-bottom: 60px; scroll-margin-top: 100px; }
+/* Sections Global */
+.section-wrapper { margin-bottom: 60px; scroll-margin-top: 120px; }
 h3 { 
     margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
     border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-/* PROJETS */
-.grid { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: 30px; 
-}
-
+/* Projets Grid */
+.grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 .project-card { 
-    position: relative; 
-    background: var(--card); border: 1px solid var(--border); 
-    border-radius: 16px; overflow: hidden; transition: transform 0.2s;
-    height: fit-content; 
+    position: relative; background: var(--card); border: 1px solid var(--border); 
+    border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; 
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
@@ -306,14 +321,10 @@ h3 {
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
-/* CONTAINER PDF (640px) */
-.pdf-container { 
-    display: none; 
-    height: 640px; 
-    border-top: 1px solid var(--border); background: #000; 
-}
+/* PDF Viewer */
+.pdf-container { display: none; height: 640px; border-top: 1px solid var(--border); background: #000; }
 
-/* TIMELINE */
+/* Timeline (Parcours) */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
 .timeline-item { margin-bottom: 35px; position: relative; }
 .timeline-item::before { 
@@ -324,13 +335,9 @@ h3 {
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* COMPETENCES */
-.cert-list { 
-    list-style: none; display: flex; flex-direction: column; gap: 12px; 
-}
-@media (min-width: 1024px) {
-    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-}
+/* Compétences */
+.cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+@media (min-width: 1024px) { .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } }
 
 .comp-card-container { 
     background: var(--card); border-radius: 12px; border: 1px solid var(--border); 
@@ -357,29 +364,15 @@ h3 {
 }
 .cert-btn:hover, .cert-btn.active { background: var(--primary); color: #fff; }
 
-#cert-list li {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-    transition: 0.2s;
-}
-#cert-list li:hover { transform: translateX(5px); border-color: var(--primary); }
-
-/* Load More Btn */
-.load-more-container {
-    width: 100%; display: flex; justify-content: center;
-    margin-top: 25px; margin-bottom: 10px;
-    grid-column: 1 / -1; 
-}
+/* Load More */
+.load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
 .load-more-btn {
     background: transparent; border: 1px solid var(--border); color: var(--muted);
     padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif;
     font-size: 0.9rem; font-weight: 600; cursor: pointer;
     transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
 }
-.load-more-btn:hover {
-    border-color: var(--primary); color: var(--primary);
-    background: rgba(99, 102, 241, 0.05); transform: translateY(-2px);
-}
+.load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); }
 
 /* Footer & Modal */
 footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
