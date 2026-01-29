@@ -301,18 +301,24 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
 /* =========================================
-   CERTIFICATIONS & COMPETENCES (NOUVEAU DESIGN)
+   CERTIFICATIONS (V2 : Double Boutons)
    ========================================= */
-.cert-list, #comp-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
-@media (min-width: 768px) { .cert-list, #comp-list { grid-template-columns: repeat(2, 1fr); } }
+.cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
 
-/* Cartes Certifs */
+@media (min-width: 768px) { 
+    .cert-list { grid-template-columns: repeat(2, 1fr); } 
+}
+
+/* Conteneur principal */
 .cert-card-container {
     background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px; position: relative; display: flex; align-items: center; gap: 15px;
+    padding: 20px; position: relative; display: flex; flex-direction: column;
     transition: all 0.3s ease; overflow: hidden;
 }
 .cert-card-container:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+/* Entête */
+.cert-header-row { display: flex; align-items: center; gap: 15px; width: 100%; }
 .cert-icon-box {
     width: 45px; height: 45px; background: rgba(99, 102, 241, 0.1); color: var(--primary);
     border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
@@ -320,14 +326,25 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .cert-info { flex-grow: 1; }
 .cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
 .cert-issuer { display: block; font-size: 0.85rem; color: var(--muted); }
-.cert-link {
-    width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; color: var(--muted);
-    transition: all 0.2s; font-size: 0.9rem; text-decoration: none;
-}
-.cert-card-container:hover .cert-link { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-/* Cartes Compétences */
+/* Actions (Boutons) */
+.cert-actions { display: flex; gap: 8px; }
+.cert-btn {
+    width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border);
+    background: transparent; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); transition: all 0.2s; font-size: 0.9rem; text-decoration: none; cursor: pointer;
+}
+.cert-btn:hover { color: #fff; border-color: transparent; }
+.cert-btn.link-btn:hover { background: var(--primary); }
+.cert-btn.pdf-btn:hover { background: #10b981; } 
+
+/* PDF Viewer */
+.cert-pdf-viewer { display: none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 10px; background: #000; width: 100%; height: 500px; }
+
+
+/* =========================================
+   COMPETENCES (Dropdown)
+   ========================================= */
 .comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; height: fit-content; }
 .comp-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; transition: background 0.2s; }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
