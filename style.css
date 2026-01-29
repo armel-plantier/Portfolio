@@ -9,7 +9,7 @@
     --header-h: 90px;
     --badge-bg: #10b981;
     
-    /* Dimensions dynamiques */
+    /* Dimensions */
     --header-padding: 40px; 
     --theme-btn-size: 42px;
 }
@@ -83,7 +83,7 @@ a { text-decoration: none; color: inherit; }
 .header-right { 
     display: flex; align-items: center; position: absolute; 
     right: var(--header-padding); top: 50%; transform: translateY(-50%);
-    transition: all 0.4s ease; /* Transition fluide pour le déplacement */
+    transition: all 0.4s ease; 
 }
 .theme-icon {
     width: var(--theme-btn-size); height: var(--theme-btn-size);
@@ -96,7 +96,8 @@ a { text-decoration: none; color: inherit; }
 body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-/* --- NAV CAPSULE (FUSION SYSTEM) --- */
+
+/* --- NAV CAPSULE (COMPORTEMENT GÉNÉRAL) --- */
 .nav-capsule {
     position: fixed; 
     top: calc(var(--header-h) / 2); 
@@ -130,64 +131,78 @@ body.light-mode .nav-capsule {
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 body.light-mode .nav-capsule a { color: #1e293b; }
 
-/* ETAT SCROLLÉ : FUSION (Comportement de base PC) */
-.app-header.scrolled .nav-capsule {
-    left: auto; 
-    transform: translateY(-50%);
-    right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
-    width: var(--theme-btn-size); height: var(--theme-btn-size);
-    padding: 0; border-radius: 50%;
-    background: rgba(20, 20, 30, 0.8);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+
+/* --- ETAT SCROLLÉ : PC LARGE (> 1250px) --- */
+/* Sur grand écran, la capsule se met à GAUCHE du bouton thème */
+@media (min-width: 1251px) {
+    .app-header.scrolled .nav-capsule {
+        left: auto; 
+        transform: translateY(-50%);
+        right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
+        width: var(--theme-btn-size); height: var(--theme-btn-size);
+        padding: 0; border-radius: 50%;
+        background: rgba(20, 20, 30, 0.8);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: block; }
+
+    .app-header.scrolled .nav-capsule:hover {
+        width: auto; padding: 0 30px; border-radius: 50px;
+    }
+    .app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
+    .app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
 }
-body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 255, 0.85); }
-.app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
-.app-header.scrolled .nav-capsule .menu-icon { display: block; }
-
-.app-header.scrolled .nav-capsule:hover {
-    width: auto; padding: 0 30px; border-radius: 50px;
-}
-.app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
-.app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
 
 
-/* --- RESPONSIVE INTERMÉDIAIRE (TABLETTE / PETIT PC) --- */
-/* C'est ici que l'on gère la superposition */
+/* --- RESPONSIVE INTERMÉDIAIRE (900px - 1250px) --- */
+/* C'est ici que tu avais le problème. On force le mode "Bouton" vertical */
 @media (max-width: 1250px) and (min-width: 901px) {
     
-    /* 1. FORCE LA BULLE (Dimensions fixes) */
+    /* 1. La Capsule devient FORCÉMENT un petit rond */
     .app-header.scrolled .nav-capsule {
-        /* On force les dimensions d'un bouton rond */
-        width: var(--theme-btn-size);
-        height: var(--theme-btn-size);
-        padding: 0;
-        border-radius: 50%;
+        width: 42px !important;       /* On force la largeur */
+        height: 42px !important;      /* On force la hauteur */
+        padding: 0 !important;        /* Pas de marge interne */
+        border-radius: 50% !important; /* Rond parfait */
         
-        /* Positionnement en haut à droite */
-        position: fixed;
-        right: var(--header-padding);
-        top: 24px; /* Un peu d'espace depuis le haut */
+        position: fixed !important;
+        right: 40px !important;       /* Collé à droite */
+        top: 25px !important;         /* En haut */
+        left: auto !important;
+        transform: none !important;
         
-        /* Annulation des centrages précédents */
-        left: auto;
-        transform: none; 
-        
-        /* On s'assure que le contenu texte est caché */
-        display: flex; 
-        align-items: center; 
-        justify-content: center;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        background: rgba(20, 20, 30, 0.9) !important;
     }
 
-    /* On s'assure que l'icône menu est visible et la liste cachée */
-    .app-header.scrolled .nav-capsule ul { display: none !important; }
-    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; }
+    /* 2. On cache FORCÉMENT la liste de texte */
+    .app-header.scrolled .nav-capsule ul { 
+        display: none !important; 
+        width: 0 !important;
+    }
 
-    /* 2. DÉPLACE LA LUNE EN DESSOUS */
+    /* 3. On affiche FORCÉMENT l'icône burger */
+    .app-header.scrolled .nav-capsule .menu-icon { 
+        display: block !important; 
+    }
+
+    /* 4. On déplace le bouton lune/soleil en dessous */
     .app-header.scrolled .header-right {
-        top: 80px; /* ~ 24px (top bulle) + 42px (taille bulle) + 14px (marge) */
-        right: var(--header-padding);
-        transform: none;
+        top: 85px !important; /* ~ 25px (top nav) + 42px (nav) + 18px (espace) */
+        right: 40px !important;
+        transform: none !important;
     }
+    
+    /* Si on survole, ça peut s'ouvrir, mais par défaut c'est fermé */
+    .app-header.scrolled .nav-capsule:hover {
+         width: auto !important; padding: 0 30px !important; border-radius: 50px !important;
+         z-index: 2000; /* Passe au dessus de la lune si ouvert */
+    }
+    .app-header.scrolled .nav-capsule:hover ul { display: flex !important; width: auto !important; }
+    .app-header.scrolled .nav-capsule:hover .menu-icon { display: none !important; }
 }
 
 
@@ -215,18 +230,15 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
 }
 
 
-/* --- RESPONSIVE LAYOUT (PC WIDE) --- */
+/* --- LAYOUT GLOBAL & SECTIONS --- */
 
-/* Base container */
 .container { 
     max-width: 100%; margin: 0 auto; padding: 40px 20px; 
 }
-/* PC Large (>1024px) */
 @media (min-width: 1024px) {
     .container { max-width: 1200px; padding: 60px 40px; }
 }
 
-/* HERO */
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
 .hero-title { 
     font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; 
@@ -234,7 +246,6 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     -webkit-background-clip: text; color: transparent; 
 }
 .bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
-/* PC Text Adjustments */
 @media (min-width: 1024px) {
     .hero-title { font-size: 3.5rem; }
     .bio-text { font-size: 1.1rem; max-width: 700px; }
@@ -266,7 +277,7 @@ h3 {
     border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-/* PROJETS (1 COLONNE LARGE) */
+/* PROJETS */
 .grid { 
     display: grid; 
     grid-template-columns: 1fr; 
@@ -295,7 +306,7 @@ h3 {
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
-/* CONTAINER PDF (-25% height = 640px) */
+/* CONTAINER PDF (640px) */
 .pdf-container { 
     display: none; 
     height: 640px; 
@@ -313,7 +324,7 @@ h3 {
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* COMPETENCES & CERTIFS (2 COLONNES SUR PC) */
+/* COMPETENCES */
 .cert-list { 
     list-style: none; display: flex; flex-direction: column; gap: 12px; 
 }
