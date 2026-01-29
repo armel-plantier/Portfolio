@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 3. NAVIGATION (CORRECTION SCROLL) ---
+    // --- 3. NAVIGATION (CORRECTION SCROLL DYNAMIQUE) ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -59,12 +59,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(item.link.startsWith('#')) {
                     e.preventDefault(); 
                     if (item.link === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+                    
                     const target = document.querySelector(item.link);
                     if(target) {
-                        // J'ai augmenté cette valeur à 120 pour éviter que le titre soit caché par le header
-                        const headerOffset = 120; 
+                        // Récupère la hauteur réelle du header s'il existe, sinon prend 100px par défaut
+                        const headerEl = document.querySelector('.app-header');
+                        const headerHeight = headerEl ? headerEl.offsetHeight : 100;
+                        
+                        // Ajoute une marge supplémentaire de 50px pour l'aération
+                        const totalOffset = headerHeight + 50; 
+
                         const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        const offsetPosition = elementPosition + window.scrollY - totalOffset;
+
                         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                     }
                 }
@@ -240,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         
-        // D. Navigation Click (Fermeture menu + petit délai)
+        // D. Navigation Click
         setTimeout(() => {
             const navLinks = document.querySelectorAll('.nav-capsule a');
             navLinks.forEach(link => {
