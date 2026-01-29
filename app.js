@@ -46,36 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 3. NAVIGATION (CORRECTION SCROLL DYNAMIQUE) ---
+    // --- 3. NAVIGATION (SIMPLIFIÉE GRÂCE AU CSS) ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
             const li = document.createElement("li");
             const a = document.createElement("a");
             a.innerText = item.title;
-            a.href = item.link;
+            a.href = item.link; // Le CSS (scroll-margin-top) gère le positionnement
             
-            a.addEventListener('click', (e) => {
-                if(item.link.startsWith('#')) {
-                    e.preventDefault(); 
-                    if (item.link === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
-                    
-                    const target = document.querySelector(item.link);
-                    if(target) {
-                        // Récupère la hauteur réelle du header s'il existe, sinon prend 100px par défaut
-                        const headerEl = document.querySelector('.app-header');
-                        const headerHeight = headerEl ? headerEl.offsetHeight : 100;
-                        
-                        // Ajoute une marge supplémentaire de 50px pour l'aération
-                        const totalOffset = headerHeight + 50; 
-
-                        const elementPosition = target.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.scrollY - totalOffset;
-
-                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    }
-                }
+            // Fermeture du menu mobile au clic
+            a.addEventListener('click', () => {
+                 const header = document.querySelector('.app-header');
+                 if(header) header.classList.remove('menu-open');
             });
+
             li.appendChild(a);
             navList.appendChild(li);
         });
@@ -105,9 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const div = document.createElement("div"); 
             div.className = "project-card";
             
-            if (index >= PROJECT_LIMIT) {
-                div.classList.add("hidden-item");
-            }
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
             
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
@@ -126,9 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.appendChild(div);
         });
         
-        if (config.projects.length > PROJECT_LIMIT) {
-            createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
-        }
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
     // --- 6. PARCOURS (LIMIT 5) ---
@@ -175,16 +156,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 8. CERTIFICATIONS (LIMIT 5) ---
+    // --- 8. CERTIFICATIONS (NOUVEAU DESIGN) ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
 
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li");
+            li.className = "cert-card-container"; // Nouvelle classe CSS
+            
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
             
-            li.innerHTML = `<span class="cert-name">${cert.name}</span><a href="${cert.url}" target="_blank" class="cert-btn">Voir ➜</a>`;
+            // On vérifie si "issuer" existe dans la config
+            const issuer = cert.issuer ? cert.issuer : "Certification"; 
+
+            li.innerHTML = `
+                <div class="cert-icon-box">🏆</div>
+                <div class="cert-info">
+                    <span class="cert-name">${cert.name}</span>
+                    <span class="cert-issuer">${issuer}</span>
+                </div>
+                <a href="${cert.url}" target="_blank" class="cert-link" title="Voir le certificat">➜</a>
+            `;
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
@@ -246,16 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 header.classList.remove('menu-open');
             }
         });
-        
-        // D. Navigation Click
-        setTimeout(() => {
-            const navLinks = document.querySelectorAll('.nav-capsule a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    header.classList.remove('menu-open');
-                });
-            });
-        }, 100);
     }
 
 }); // Fin DOMContentLoaded
