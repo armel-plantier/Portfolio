@@ -2,10 +2,10 @@ const config = {
     // --- 1. NAVIGATION ---
     navigation: [
         { title: "Accueil", link: "#" },
-        { title: "Projets", link: "#projets" },
+        { title: "Projets", link: "#projects" }, // J'ai corrigé #projets -> #projects pour correspondre aux ID du HTML/JS
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifications" }
+        { title: "Certifs", link: "#certifs" }   // J'ai corrigé #certifications -> #certifs pour correspondre aux ID
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
@@ -13,7 +13,7 @@ const config = {
         favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
-        typewriterText: "Etudiant Administrateur Système & Réseau | Passionné de Cybersécurité",
+        typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
         email: "armel.plantier@protonmail.com"
@@ -51,7 +51,7 @@ const config = {
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
-            path: "audit_wifi.pdf",       
+            path: "audit_wifi.pdf",        
             icon: "🛡️",
             isNew: false
         },
@@ -139,9 +139,22 @@ const config = {
     ],
 
     // --- 7. CERTIFICATIONS ---
+    // Ajout du champ "issuer" pour le nouveau design
     certifications: [
-        { name: "Cisco CCNA (En cours)", url: "#" },
-        { name: "ANSSI - SecNumAcadémie", url: "#" },
-        { name: "Pix Certif", url: "#" }
+        { 
+            name: "CCNA (En cours)", 
+            issuer: "Cisco", 
+            url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html" 
+        },
+        { 
+            name: "SecNumAcadémie", 
+            issuer: "ANSSI", 
+            url: "https://secnumacademie.gouv.fr/" 
+        },
+        { 
+            name: "Certification Pix", 
+            issuer: "Gouv.fr", 
+            url: "https://pix.fr/" 
+        }
     ]
 };
