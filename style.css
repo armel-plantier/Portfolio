@@ -1,159 +1,10 @@
-:root {
-    /* --- COULEURS & THEME --- */
-    --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
-    --card: #151925;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --border: #2d3748;
-    --primary: #6366f1;
-    --header-h: 90px; /* Hauteur PC uniquement */
-    --badge-bg: #10b981;
-    
-    /* --- DIMENSIONS --- */
-    --header-padding: 40px; 
-    --theme-btn-size: 42px;
-}
-
-body.light-mode {
-    --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
-    --card: #ffffff;
-    --text: #0f172a;
-    --muted: #64748b;
-    --border: #e2e8f0;
-}
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { min-height: 100%; }
-
-body { 
-    background: var(--bg);
-    background-attachment: fixed;
-    color: var(--text); 
-    font-family: 'Inter', sans-serif; 
-    
-    /* PC : On garde l'espace pour la barre fixe */
-    padding-top: var(--header-h); 
-    
-    transition: background 0.3s, color 0.3s; 
-    overflow-x: hidden; 
-}
-a { text-decoration: none; color: inherit; }
-
-
-/* =========================================
-   HEADER PRINCIPAL (Version PC > 1200px)
-   ========================================= */
-.app-header {
-    /* Sur PC, il flotte au dessus */
-    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 var(--header-padding); 
-    background: transparent; 
-    pointer-events: none; 
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.header-left, .nav-capsule, .header-right { pointer-events: auto; }
-
-/* -- 1. GAUCHE : IDENTITÉ -- */
-.header-left { 
-    display: flex; align-items: center; gap: 16px; 
-    transition: all 0.4s ease;
-    opacity: 1; transform: translateY(0);
-}
-/* Animation scroll PC uniquement */
-.app-header.scrolled .header-left {
-    opacity: 0; transform: translateY(-20px); pointer-events: none;
-}
-
-.id-avatar { 
-    width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px);
-}
-.identity-info { display: flex; flex-direction: column; align-items: flex-start; }
-.id-name { 
-    font-weight: 800; font-family: 'Outfit', sans-serif; 
-    font-size: 1.3rem; line-height: 1.1; color: var(--text);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
-}
-.status-wrapper { 
-    display: flex; align-items: center; gap: 8px; 
-    font-size: 0.9rem; color: var(--muted); margin-top: 4px;
-}
-.status-dot { 
-    width: 8px; height: 8px; background: #10b981; 
-    border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
-}
-
-/* -- 2. DROITE : BOUTON THEME -- */
-.header-right { 
-    display: flex; align-items: center; position: absolute; 
-    right: var(--header-padding); top: 50%; transform: translateY(-50%);
-    transition: all 0.4s ease; 
-    z-index: 1002;
-}
-.theme-icon {
-    width: var(--theme-btn-size); height: var(--theme-btn-size);
-    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px);
-    color: var(--text); cursor: pointer; font-size: 1.2rem;
-    display: flex; align-items: center; justify-content: center; transition: 0.3s;
-}
-body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
-.theme-icon:hover { background: var(--card); border-color: var(--primary); }
-
-
-/* -- 3. CENTRE : CAPSULE DE NAVIGATION -- */
-.nav-capsule {
-    position: fixed; 
-    top: calc(var(--header-h) / 2); 
-    left: 50%; right: auto;
-    transform: translate(-50%, -50%);
-    
-    background: rgba(20, 20, 30, 0.6); 
-    backdrop-filter: blur(50px) saturate(180%);
-    -webkit-backdrop-filter: blur(50px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    
-    padding: 10px 30px;
-    border-radius: 50px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; height: 50px; z-index: 1001;
-}
-body.light-mode .nav-capsule {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-.nav-capsule ul {
-    display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
-    transition: opacity 0.3s; opacity: 1;
-}
-.menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
-
-.nav-capsule a {
-    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
-    transition: 0.2s ease; white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
-}
-.nav-capsule a:hover { color: var(--primary); text-shadow: none; }
-body.light-mode .nav-capsule a { color: #1e293b; }
-
-
 /* =========================================
    MEDIA QUERIES (RESPONSIVE)
    ========================================= */
 
 /* --- 1. GRANDS ECRANS (> 1200px) --- */
+/* (Inchangé : comportement PC standard) */
 @media (min-width: 1201px) {
-    /* Comportement scroll "boule" uniquement sur PC */
     .app-header.scrolled .nav-capsule {
         left: auto; 
         transform: translateY(-50%);
@@ -174,56 +25,82 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 
 
 /* --- 2. TABLETTES & MOBILES (< 1200px) --- */
-/* FIX RADICAL DU CHEVAUCHEMENT */
+/* C'EST ICI LA MODIFICATION MAJEURE */
 @media (max-width: 1200px) {
     
-    /* A. SUPPRESSION DU PADDING BODY */
-    /* Le contenu commence tout en haut, le header va le pousser */
-    body { padding-top: 0 !important; }
+    /* A. ÉTAT INITIAL (Tout en haut de page) */
+    /* On garde ton affichage actuel empilé qui fonctionne bien */
+    body { padding-top: 240px; } /* Espace réservé pour le header empilé */
 
-    /* B. HEADER RELATIF ET SOLIDE */
     .app-header {
-        position: relative !important; /* PLUS DE FIXED ! */
-        top: 0; left: 0; transform: none;
-        
-        display: flex;
-        flex-direction: column; 
-        gap: 20px;
-        height: auto !important; /* S'adapte au contenu */
-        padding: 20px 15px 30px 15px; 
-        
-        /* Fond visible obligatoire pour pas voir le scroll */
-        background: var(--bg); 
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        position: absolute !important; /* Relatif au début */
+        top: 0; left: 0; width: 100%;
+        flex-direction: column; /* Empilé */
+        height: auto !important; 
+        padding: 20px 15px; gap: 15px;
+        background: transparent; /* Fond transparent au début */
     }
-
-    /* Empêcher JS de cacher des trucs au scroll sur mobile */
-    .app-header.scrolled .header-left { opacity: 1 !important; transform: none !important; display: flex !important;}
     
     /* Identité centrée */
-    .header-left { 
-        width: 100%; justify-content: center; 
-        margin-top: 10px; opacity: 1; pointer-events: auto;
-    }
+    .header-left { width: 100%; justify-content: center; margin-bottom: 0; opacity: 1; }
     
-    /* Navigation centrée, normale */
+    /* Barre de nav large et ouverte */
     .nav-capsule {
-        position: relative !important; 
-        top: 0 !important; left: 0 !important; transform: none !important;
+        position: relative !important; top: 0 !important; left: 0 !important; transform: none !important;
         width: 100%; max-width: 500px; margin: 0 auto;
-        
         background: var(--card); border-radius: 12px;
-        height: auto; padding: 12px 10px;
-        
-        overflow-x: auto; /* Scroll horizontal si menu trop large */
-        display: flex; justify-content: center;
+        padding: 12px 10px; height: auto;
+        display: flex; justify-content: center; overflow-x: auto;
     }
     .nav-capsule ul { display: flex !important; opacity: 1 !important; gap: 15px; }
-    .nav-capsule .menu-icon { display: none !important; }
+    .nav-capsule .menu-icon { display: none !important; } /* Cache le burger au début */
 
-    /* Bouton thème en haut à droite absolu par rapport au header */
-    .header-right { 
-        position: absolute; top: 25px; right: 20px; transform: none; 
+    /* Bouton thème en absolu */
+    .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
+
+
+    /* B. ÉTAT SCROLLÉ (Quand on descend) -> LA DEMANDE */
+    .app-header.scrolled {
+        position: fixed !important; /* 1. Redevient Fixe */
+        top: 0; left: 0; width: 100%;
+        height: 70px !important; /* Hauteur compacte */
+        flex-direction: row; /* Reviens sur une seule ligne */
+        justify-content: space-between; align-items: center;
+        padding: 0 15px; gap: 0;
+
+        /* 2. LE FLOU (Blur) */
+        background: rgba(15, 20, 30, 0.85) !important; /* Fond sombre semi-transparent */
+        backdrop-filter: blur(15px); /* Effet de flou */
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        z-index: 9999;
+    }
+
+    /* Identité compacte au scroll */
+    .app-header.scrolled .header-left { 
+        width: auto; margin: 0; opacity: 1 !important; transform: none !important; pointer-events: auto;
+    }
+    .app-header.scrolled .id-avatar { width: 40px; height: 40px; } /* Avatar plus petit */
+    /* Décommente la ligne dessous si tu veux cacher le nom et ne garder que l'avatar pour gagner de la place */
+    /* .app-header.scrolled .identity-info { display: none; } */ 
+
+    /* 3. L'ANIMATION BOUTON DE LA BARRE */
+    .app-header.scrolled .nav-capsule {
+        width: 42px !important; height: 42px !important; /* Devient un rond */
+        padding: 0 !important; border-radius: 50% !important;
+        background: rgba(255,255,255,0.1) !important;
+        position: static !important; /* Rentre dans le flux normal */
+        margin: 0 10px;
+        display: flex; justify-content: center; align-items: center;
+    }
+    /* On cache les liens textes */
+    .app-header.scrolled .nav-capsule ul { display: none !important; }
+    /* On affiche l'icône burger */
+    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; font-size: 1.2rem; }
+
+    /* Bouton thème compact au scroll */
+    .app-header.scrolled .header-right {
+        position: static; /* Rentre dans le flux normal */
+        transform: none; top: auto; right: auto;
     }
 }
 
@@ -271,7 +148,7 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 }
 
 /* Sections Global */
-.section-wrapper { width: 100%; margin-bottom: 60px; scroll-margin-top: 280px; }
+.section-wrapper { width: 100%; margin-bottom: 60px; scroll-margin-top: 100px; /* Ajusté pour le nouveau header compact */ }
 h3 { 
     margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
     border-left: 4px solid var(--primary); padding-left: 15px; 
