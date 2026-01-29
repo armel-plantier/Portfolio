@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
-    // AJOUT : Injection du favicon
+    // Injection du Favicon et de l'Avatar si c'est un SVG
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) {
         faviconEl.href = config.profile.favicon;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 2.5 NAVIGATION ---
+    // --- 3. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 3. TAGS HEADER ---
+    // --- 4. TAGS HEADER ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => {
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. PROJETS (LIMIT 4) ---
+    // --- 5. PROJETS (LIMIT 4) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- 5. PARCOURS (LIMIT 5) ---
+    // --- 6. PARCOURS (LIMIT 5) ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 6. COMPETENCES (LIMIT 5) ---
+    // --- 7. COMPETENCES (LIMIT 5) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. CERTIFICATIONS (LIMIT 5) ---
+    // --- 8. CERTIFICATIONS (LIMIT 5) ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
 
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 8. TYPEWRITER ---
+    // --- 9. TYPEWRITER ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 9. MODALE EMAIL ---
+    // --- 10. MODALE EMAIL ---
     const emailTrigger = document.getElementById("email-trigger");
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
@@ -208,9 +208,20 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
     });
+
+    // --- 11. NAVBAR DYNAMIQUE (SCROLL) ---
+    const header = document.querySelector('.app-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 });
 
-// --- FONCTION BOUTON REDESSINÉ ---
+// --- FONCTIONS UTILS ---
+
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
     div.className = "load-more-container"; 
