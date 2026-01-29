@@ -6,10 +6,10 @@
     --muted: #94a3b8;
     --border: #2d3748;
     --primary: #6366f1;
-    --header-h: 90px; /* Hauteur totale du header */
+    --header-h: 90px;
     --badge-bg: #10b981;
     
-    /* Dimensions pour le positionnement dynamique */
+    /* Dimensions dynamiques */
     --header-padding: 40px; 
     --theme-btn-size: 42px;
 }
@@ -35,44 +35,31 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER PRINCIPAL (SYSTEME FUSION) --- */
+/* --- HEADER PRINCIPAL --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 var(--header-padding); 
-    
-    /* Invisible pour laisser passer le fond */
     background: transparent !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    
-    pointer-events: none; /* Laisse passer les clics au travers du vide */
-    z-index: 1000;
+    pointer-events: none; z-index: 1000;
 }
 
-/* On réactive la souris sur les éléments interactifs */
 .header-left, .nav-capsule, .header-right { pointer-events: auto; }
 
-/* -- IDENTITÉ (GAUCHE) -- */
+/* Identité */
 .header-left { display: flex; align-items: center; gap: 16px; }
-
 .id-avatar { 
     width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    backdrop-filter: blur(40px);
 }
-
 .identity-info { display: flex; flex-direction: column; align-items: flex-start; }
-
 .id-name { 
     font-weight: 800; font-family: 'Outfit', sans-serif; 
     font-size: 1.3rem; line-height: 1.1; color: var(--text);
     text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
 }
-
 .status-wrapper { 
     display: flex; align-items: center; gap: 8px; 
     font-size: 0.9rem; color: var(--muted); margin-top: 4px;
@@ -82,72 +69,48 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* -- BOUTON THEME (FIXE A DROITE) -- */
+/* Bouton Thème */
 .header-right { 
-    display: flex; align-items: center; 
-    position: absolute; 
-    right: var(--header-padding); /* Toujours calé à droite */
-    top: 50%; transform: translateY(-50%);
+    display: flex; align-items: center; position: absolute; 
+    right: var(--header-padding); top: 50%; transform: translateY(-50%);
 }
-
 .theme-icon {
     width: var(--theme-btn-size); height: var(--theme-btn-size);
     border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
-    
+    backdrop-filter: blur(40px);
     color: var(--text); cursor: pointer; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center; transition: 0.3s;
 }
 body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-
-/* -- NAVIGATION CAPSULE (ELEMENT DYNAMIQUE) -- */
+/* --- NAV CAPSULE (FUSION SYSTEM) --- */
 .nav-capsule {
     position: fixed; 
-    
-    /* POSITIONNEMENT VERTICAL : Au centre du header (90px / 2 = 45px) */
     top: calc(var(--header-h) / 2); 
-    
-    /* POSITIONNEMENT HORIZONTAL INITIAL : CENTRÉ */
-    left: 50%; 
-    right: auto;
-    
-    /* Centrage parfait (X et Y) */
+    left: 50%; right: auto;
     transform: translate(-50%, -50%);
-    
     background: rgba(20, 20, 30, 0.4); 
     backdrop-filter: blur(50px) saturate(180%);
     -webkit-backdrop-filter: blur(50px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    
     padding: 10px 30px;
     border-radius: 50px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    
-    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Mouvement fluide */
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-    height: 50px;
-    z-index: 1001; /* Au-dessus du reste */
+    overflow: hidden; height: 50px; z-index: 1001;
 }
-
-/* Mode clair pour la capsule */
 body.light-mode .nav-capsule {
     background: rgba(255, 255, 255, 0.4);
     border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
-
 .nav-capsule ul {
     display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
     transition: opacity 0.3s; opacity: 1;
 }
-
 .menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
-
 .nav-capsule a {
     font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
     transition: 0.2s ease; white-space: nowrap;
@@ -156,83 +119,59 @@ body.light-mode .nav-capsule {
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 body.light-mode .nav-capsule a { color: #1e293b; }
 
-
-/* --- ETAT SCROLLÉ : LA FUSION --- */
+/* ETAT SCROLLÉ : FUSION */
 .app-header.scrolled .nav-capsule {
-    /* 1. On casse le centrage horizontal (X) */
     left: auto; 
-    
-    /* 2. On garde le centrage vertical (Y) */
     transform: translateY(-50%);
-    
-    /* 3. On ancre à DROITE, collé au bouton thème */
-    /* Padding Header + Taille Bouton Theme + Marge (15px) */
     right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
-    
-    /* 4. On réduit la forme en bouton rond */
-    width: var(--theme-btn-size); 
-    height: var(--theme-btn-size);
-    padding: 0;
-    border-radius: 50%;
-    
+    width: var(--theme-btn-size); height: var(--theme-btn-size);
+    padding: 0; border-radius: 50%;
     background: rgba(20, 20, 30, 0.8);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 255, 0.85); }
-
-/* Cacher la liste et montrer l'icône */
 .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
 .app-header.scrolled .nav-capsule .menu-icon { display: block; }
 
-/* --- INTERACTION AU SURVOL (QUAND FUSIONNÉ) --- */
 .app-header.scrolled .nav-capsule:hover {
-    /* On l'agrandit pour afficher le menu */
-    width: auto; 
-    padding: 0 30px;
-    border-radius: 50px;
-    
-    /* Comme il est ancré à RIGHT, il s'agrandit vers la GAUCHE */
+    width: auto; padding: 0 30px; border-radius: 50px;
 }
-
 .app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
 .app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
 
-
-/* --- MEDIA QUERY MOBILE --- */
+/* MOBILE (Max 900px) */
 @media(max-width: 900px) {
     .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
     .header-left { width: 100%; justify-content: flex-start; } 
-    /* Positionnement absolu simple pour le bouton thème sur mobile */
     .header-right { right: 15px; top: 20px; transform: none; }
-    
     .nav-capsule {
         position: static; transform: none; order: 3; width: 100%;
         margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
-        background: var(--card); height: auto;
-        /* Désactiver les transitions de position sur mobile */
-        transition: none; 
+        background: var(--card); height: auto; transition: none; 
     }
-    .nav-capsule::-webkit-scrollbar { display: none; }
-    
-    /* On annule l'effet "Fusion" au scroll sur mobile */
     .app-header.scrolled .nav-capsule {
         position: static; width: 100%; height: auto; border-radius: 12px; padding: 10px 15px;
-        right: auto; left: auto; transform: none;
-        background: var(--card);
+        right: auto; left: auto; transform: none; background: var(--card);
     }
-    
     .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
     .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
-    
     .hero-title { font-size: 2rem; }
     .hero-section { margin-top: 140px; }
 }
 
 
-/* --- RESTE DU SITE (HERO, CONTENU, FOOTER) --- */
+/* --- RESPONSIVE LAYOUT (CONTAINER & GRID) --- */
 
-.container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+/* Base container */
+.container { 
+    max-width: 100%; margin: 0 auto; padding: 40px 20px; 
+}
+/* PC Large (>1024px) : On élargit tout */
+@media (min-width: 1024px) {
+    .container { max-width: 1200px; padding: 60px 40px; }
+}
 
+/* HERO */
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
 .hero-title { 
     font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; 
@@ -240,6 +179,12 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     -webkit-background-clip: text; color: transparent; 
 }
 .bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
+/* PC Text Adjustments */
+@media (min-width: 1024px) {
+    .hero-title { font-size: 3.5rem; }
+    .bio-text { font-size: 1.1rem; max-width: 700px; }
+}
+
 .cursor { animation: blink 1s infinite; font-weight: 100; color: var(--muted); }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -250,10 +195,8 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; 
     transition: 0.2s; color: var(--muted);
 }
-.social-btn svg { transition: 0.2s; }
 .social-btn:hover { border-color: var(--primary); color: var(--primary); }
 .social-btn.email { background: var(--primary); color: white; border: none; }
-.social-btn.email:hover { opacity: 0.9; }
 
 .skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .skill-tag { 
@@ -261,20 +204,29 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
 }
 
-/* Sections */
+/* SECTIONS */
 .section-wrapper { margin-bottom: 60px; scroll-margin-top: 100px; }
 h3 { 
     margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
     border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-/* Projets */
-.grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+/* PROJETS (GRID RESPONSIVE) */
+.grid { 
+    display: grid; 
+    grid-template-columns: 1fr; /* Mobile : 1 colonne */
+    gap: 30px; 
+}
+/* Tablette/PC : 2 colonnes */
+@media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 .project-card { 
     position: relative; 
     background: var(--card); border: 1px solid var(--border); 
     border-radius: 16px; overflow: hidden; transition: transform 0.2s;
+    height: fit-content; /* S'adapte au contenu */
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
@@ -285,7 +237,6 @@ h3 {
     border-radius: 20px; text-transform: uppercase;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
 }
-
 .hidden-item { display: none !important; }
 
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
@@ -294,11 +245,11 @@ h3 {
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
 .pdf-container { 
-    display: none; height: 850px; 
+    display: none; height: 600px; /* Un peu moins haut sur la grille */
     border-top: 1px solid var(--border); background: #000; 
 }
 
-/* Timeline */
+/* TIMELINE */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
 .timeline-item { margin-bottom: 35px; position: relative; }
 .timeline-item::before { 
@@ -309,8 +260,14 @@ h3 {
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* Compétences */
-.cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+/* COMPETENCES & CERTIFS */
+.cert-list { 
+    list-style: none; display: flex; flex-direction: column; gap: 12px; 
+}
+/* PC : 2 Colonnes pour les certifs/compétences */
+@media (min-width: 1024px) {
+    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+}
 
 .comp-card-container { 
     background: var(--card); border-radius: 12px; border: 1px solid var(--border); 
@@ -348,6 +305,7 @@ h3 {
 .load-more-container {
     width: 100%; display: flex; justify-content: center;
     margin-top: 25px; margin-bottom: 10px;
+    grid-column: 1 / -1; /* Permet au bouton de prendre toute la largeur en mode Grid */
 }
 .load-more-btn {
     background: transparent; border: 1px solid var(--border); color: var(--muted);
