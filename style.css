@@ -49,17 +49,13 @@ a { text-decoration: none; color: inherit; }
 /* -- IDENTITÉ (GAUCHE) -- */
 .header-left { 
     display: flex; align-items: center; gap: 16px; 
-    /* AJOUT : Transition pour l'effacement fluide au scroll */
     transition: all 0.4s ease;
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; transform: translateY(0);
 }
 
-/* NOUVEAU : Quand on scroll, l'identité disparait */
+/* Disparition au scroll */
 .app-header.scrolled .header-left {
-    opacity: 0;
-    transform: translateY(-20px); /* Remonte un peu en disparaissant */
-    pointer-events: none; /* On ne peut plus cliquer dessus quand c'est invisible */
+    opacity: 0; transform: translateY(-20px); pointer-events: none;
 }
 
 .id-avatar { 
@@ -172,9 +168,6 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
     .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
     
-    /* Sur mobile, on garde l'identité visible ou non ? 
-       Souvent on la garde car le header défile avec la page si position sticky n'est pas utilisé.
-       Si tu veux que ça disparaisse aussi sur mobile au scroll, laisse tel quel. */
     .hero-title { font-size: 2rem; }
     .hero-section { margin-top: 140px; }
 }
@@ -186,7 +179,7 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
 .container { 
     max-width: 100%; margin: 0 auto; padding: 40px 20px; 
 }
-/* PC Large (>1024px) : On élargit tout */
+/* PC Large (>1024px) */
 @media (min-width: 1024px) {
     .container { max-width: 1200px; padding: 60px 40px; }
 }
@@ -234,7 +227,7 @@ h3 {
 /* PROJETS (1 COLONNE LARGE) */
 .grid { 
     display: grid; 
-    grid-template-columns: 1fr; /* 1 colonne uniquement */
+    grid-template-columns: 1fr; /* Toujours 1 colonne */
     gap: 30px; 
 }
 
@@ -260,8 +253,10 @@ h3 {
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
+/* CONTAINER PDF (Modifié : -25% de hauteur) */
 .pdf-container { 
-    display: none; height: 850px; 
+    display: none; 
+    height: 640px; /* Réduit de 850px à 640px */
     border-top: 1px solid var(--border); background: #000; 
 }
 
