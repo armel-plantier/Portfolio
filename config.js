@@ -2,10 +2,10 @@ const config = {
     // --- 1. NAVIGATION ---
     navigation: [
         { title: "Accueil", link: "#" },
-        { title: "Projets", link: "#projects" }, // J'ai corrigé #projets -> #projects pour correspondre aux ID du HTML/JS
+        { title: "Projets", link: "#projects" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifs" }   // J'ai corrigé #certifications -> #certifs pour correspondre aux ID
+        { title: "Certifs", link: "#certifs" }
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
@@ -139,22 +139,25 @@ const config = {
     ],
 
     // --- 7. CERTIFICATIONS ---
-    // Ajout du champ "issuer" pour le nouveau design
+    // url: Site officiel | pdf: Nom du fichier dans Documents/Certifs/
     certifications: [
         { 
             name: "CCNA (En cours)", 
             issuer: "Cisco", 
-            url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html" 
+            url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
+            pdf: "" // Laisser vide si pas encore de diplôme
         },
         { 
             name: "SecNumAcadémie", 
             issuer: "ANSSI", 
-            url: "https://secnumacademie.gouv.fr/" 
+            url: "https://secnumacademie.gouv.fr/",
+            pdf: "secnum_anssi.pdf" 
         },
         { 
             name: "Certification Pix", 
             issuer: "Gouv.fr", 
-            url: "https://pix.fr/" 
+            url: "https://pix.fr/",
+            pdf: "resultats_pix.pdf"
         }
     ]
 };
