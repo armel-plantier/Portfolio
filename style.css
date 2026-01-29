@@ -12,9 +12,7 @@
 }
 
 body.light-mode {
-    /* Dégradé subtil pour le mode clair */
     --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
-    
     --card: #ffffff;
     --text: #0f172a;
     --muted: #64748b;
@@ -26,7 +24,7 @@ html, body { min-height: 100%; }
 
 body { 
     background: var(--bg);
-    background-attachment: fixed; /* Fixe le dégradé */
+    background-attachment: fixed;
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
@@ -34,129 +32,168 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER (INVISIBLE CONTAINER) --- */
+/* --- HEADER INVISIBLE --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 40px; 
-    
-    /* TOTALEMENT TRANSPARENT ET INVISIBLE */
     background: transparent !important;
-    backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    
-    z-index: 1000; 
-    pointer-events: none;
+    pointer-events: none; /* Laisse passer les clics */
+    z-index: 1000;
 }
 
-/* On réactive les clics uniquement sur les éléments réels du menu */
-.header-left, .nav-capsule, .header-right {
-    pointer-events: auto;
-}
+.header-left, .nav-capsule, .header-right { pointer-events: auto; }
 
+/* --- AVATAR & IDENTITÉ --- */
 .header-left { display: flex; align-items: center; gap: 16px; }
 
-/* MODIF : Effet verre très marqué sur l'avatar */
 .id-avatar { 
     width: 54px; height: 54px; 
     border-radius: 12px; object-fit: cover; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
-    
-    background: rgba(255, 255, 255, 0.05); /* Très transparent */
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
-}
-
-.identity-info { display: flex; flex-direction: column; align-items: flex-start; }
-
-.id-name { 
-    font-weight: 800; font-family: 'Outfit', sans-serif; 
-    font-size: 1.3rem; line-height: 1.1; color: var(--text);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
-}
-
-.status-wrapper { 
-    display: flex; align-items: center; gap: 8px; 
-    font-size: 0.9rem; color: var(--muted); margin-top: 4px;
-}
-.status-dot { 
-    width: 8px; height: 8px; background: #10b981; 
-    border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
-}
-
-/* --- NAVIGATION CAPSULE (Glassmorphism ULTIME) --- */
-.nav-capsule {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    
-    /* 1. Fond beaucoup plus transparent pour voir le flou */
-    background: rgba(20, 20, 30, 0.4); 
-    
-    /* 2. Flou très puissant + Saturation pour faire ressortir les couleurs derrière */
-    backdrop-filter: blur(50px) saturate(180%);
-    -webkit-backdrop-filter: blur(50px) saturate(180%);
-    
-    /* 3. Bordure un peu plus visible pour l'effet "vitre" */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    
-    padding: 10px 30px;
-    border-radius: 50px;
-    
-    /* 4. Ombre douce pour décoller du fond */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    
-    transition: all 0.3s ease;
-}
-
-.nav-capsule ul {
-    display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
-}
-
-.nav-capsule a {
-    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; /* Texte un peu plus clair */
-    transition: 0.2s ease; white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Lisibilité sur effet verre */
-}
-
-.nav-capsule a:hover { color: var(--primary); text-shadow: none; }
-
-/* --- ETAT SCROLLÉ --- */
-.app-header.scrolled .nav-capsule {
-    /* Un tout petit peu plus foncé au scroll, mais toujours très flou */
-    background: rgba(20, 20, 30, 0.6); 
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-}
-
-/* Adaptation Light Mode */
-body.light-mode .nav-capsule {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-body.light-mode .nav-capsule a { color: #1e293b; }
-
-
-.header-right { display: flex; align-items: center; }
-
-/* MODIF : Effet verre aussi sur le bouton thème */
-.theme-icon {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(40px) saturate(150%);
     -webkit-backdrop-filter: blur(40px) saturate(150%);
+    transition: 0.3s;
+}
+
+/* On cache l'avatar et le texte au scroll pour épurer encore plus ? 
+   (Optionnel, ici je les laisse visibles) */
+.identity-info { display: flex; flex-direction: column; align-items: flex-start; }
+.id-name { font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; line-height: 1.1; color: var(--text); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.status-wrapper { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
+.status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); }
+
+/* --- NAVIGATION CAPSULE (ANIMATION COMPLEXE) --- */
+.nav-capsule {
+    position: absolute;
+    top: 50%;
     
+    /* POSITION INITIALE : CENTRÉE */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Design Verre */
+    background: rgba(20, 20, 30, 0.5); 
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Taille et Forme initiales */
+    height: 48px;
+    padding: 0 30px; /* Espace pour les liens */
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; /* Important pour cacher ce qui dépasse pendant l'anim */
+    
+    /* Animation fluide de 0.6s */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links {
+    display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a {
+    font-size: 0.9rem; font-weight: 500; color: #e2e8f0;
+    transition: 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--primary); }
+
+/* Icône du menu burger (cachée au début) */
+.menu-icon {
+    position: absolute;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+}
+
+/* --- ÉTAT SCROLLÉ : LE BOUTON MAGIQUE --- */
+.app-header.scrolled .nav-capsule {
+    /* 1. DÉPLACEMENT : On le pousse à droite */
+    left: 100%;
+    /* Ajustement précis : -100px pour se caler à gauche du bouton thème */
+    transform: translate(-95px, -50%); 
+    
+    /* 2. TAILLE : On le transforme en rond */
+    width: 38px; 
+    height: 38px;
+    padding: 0; /* Plus de padding */
+    
+    /* Style un peu plus bouton */
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* Cacher les liens quand c'est scrollé */
+.app-header.scrolled .nav-links {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute; /* Pour ne pas qu'ils prennent de la place */
+}
+
+/* Afficher l'icône burger quand c'est scrollé */
+.app-header.scrolled .menu-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* --- INTERACTION HOVER : RÉOUVERTURE --- */
+/* Si on survole le petit bouton scrollé, il se rouvre ! */
+.app-header.scrolled .nav-capsule:hover {
+    width: auto; /* Reprend sa taille auto */
+    height: 48px;
+    padding: 0 30px;
+    background: rgba(20, 20, 30, 0.8); /* Fond plus opaque pour lire */
+    transform: translate(-150px, -50%); /* On le décale un peu plus à gauche pour l'étendre */
+}
+
+.app-header.scrolled .nav-capsule:hover .nav-links {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    transition-delay: 0.2s; /* Petit délai pour l'élégance */
+}
+
+.app-header.scrolled .nav-capsule:hover .menu-icon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
+/* --- BOUTON THEME (Reste à sa place) --- */
+.header-right { display: flex; align-items: center; }
+.theme-icon {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px) saturate(150%);
     border: 1px solid rgba(255,255,255,0.15); 
     color: var(--text);
     width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center; transition: 0.3s;
 }
-body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-/* --- CONTAINER & HERO --- */
+/* --- LIGHT MODE ADAPTATION --- */
+body.light-mode .nav-capsule {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+body.light-mode .nav-links a { color: #1e293b; }
+body.light-mode .app-header.scrolled .nav-capsule {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0,0,0,0.1);
+}
+body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
+
+
+/* --- LE RESTES DU CSS (HERO, GRID, ETC.) --- */
 .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
@@ -176,10 +213,8 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
     border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; 
     transition: 0.2s; color: var(--muted);
 }
-.social-btn svg { transition: 0.2s; }
 .social-btn:hover { border-color: var(--primary); color: var(--primary); }
 .social-btn.email { background: var(--primary); color: white; border: none; }
-.social-btn.email:hover { opacity: 0.9; }
 
 .skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .skill-tag { 
@@ -187,113 +222,38 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
     font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
 }
 
-/* --- SECTIONS GENERALES --- */
 .section-wrapper { margin-bottom: 60px; scroll-margin-top: 100px; }
-h3 { 
-    margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
-    border-left: 4px solid var(--primary); padding-left: 15px; 
-}
+h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
 
-/* --- PROJETS --- */
 .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-
-.project-card { 
-    position: relative; 
-    background: var(--card); border: 1px solid var(--border); 
-    border-radius: 16px; overflow: hidden; transition: transform 0.2s;
-}
+.project-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s; }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-
-.new-badge {
-    position: absolute; top: 15px; right: 15px;
-    background: var(--badge-bg); color: #fff;
-    font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
-    border-radius: 20px; text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
-}
-
-/* CLASSE IMPORTANTE POUR CACHER LES ÉLÉMENTS */
+.new-badge { position: absolute; top: 15px; right: 15px; background: var(--badge-bg); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; }
 .hidden-item { display: none !important; }
-
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
+.pdf-container { display: none; height: 850px; border-top: 1px solid var(--border); background: #000; }
 
-.pdf-container { 
-    display: none; height: 850px; 
-    border-top: 1px solid var(--border); background: #000; 
-}
-
-/* Timeline (Parcours) */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
 .timeline-item { margin-bottom: 35px; position: relative; }
-.timeline-item::before { 
-    content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; 
-    background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; 
-}
+.timeline-item::before { content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; }
 .timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.timeline-title { font-size: 1rem; margin-bottom: 5px; }
-.timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* COMPÉTENCES & CERTIFS */
 .cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-
-.comp-card-container { 
-    background: var(--card); border-radius: 12px; border: 1px solid var(--border); 
-    overflow: hidden; transition: all 0.3s ease;
-}
-.comp-header { 
-    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; 
-    cursor: pointer; font-weight: 600; transition: background 0.2s;
-}
-.comp-header:hover { background: rgba(255,255,255,0.02); }
-
-.comp-dropdown-menu { 
-    padding: 15px 20px; background: rgba(0,0,0,0.1); 
-    border-top: 1px solid var(--border); list-style: none;
-}
+.comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.comp-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; }
+.comp-dropdown-menu { padding: 15px 20px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); list-style: none; }
 .comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 
-.cert-name { font-weight: 600; font-size: 0.95rem; }
-.cert-btn { 
-    display: flex; align-items: center; gap: 6px; background: transparent; color: var(--primary);
-    border: 1px solid var(--primary); padding: 6px 14px; border-radius: 20px;
-    font-size: 0.8rem; font-weight: 600; transition: 0.2s; cursor: pointer;
-}
-.cert-btn:hover, .cert-btn.active { background: var(--primary); color: #fff; }
+.load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; }
+.load-more-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 10px 28px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+.load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); }
 
-#cert-list li {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 20px; display: flex; justify-content: space-between; align-items: center;
-    transition: 0.2s;
-}
-#cert-list li:hover { transform: translateX(5px); border-color: var(--primary); }
-
-/* --- BOUTON LOAD MORE --- */
-.load-more-container {
-    width: 100%; display: flex; justify-content: center;
-    margin-top: 25px; margin-bottom: 10px;
-}
-.load-more-btn {
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif;
-    font-size: 0.9rem; font-weight: 600; cursor: pointer;
-    transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
-}
-.load-more-btn:hover {
-    border-color: var(--primary); color: var(--primary);
-    background: rgba(99, 102, 241, 0.05); transform: translateY(-2px);
-}
-
-/* --- FOOTER & MODAL --- */
-footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
-
-.modal-overlay { 
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; 
-}
+footer { text-align: center; color: var(--muted); padding: 40px; border-top: 1px solid var(--border); margin-top: 40px; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
 .modal-content { background: var(--card); width: 90%; max-width: 400px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
 .modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
@@ -301,15 +261,27 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
 
 @media(max-width: 900px) { 
-    .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
+    .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; pointer-events: none; }
     .header-left { width: 100%; justify-content: flex-start; } 
     .header-right { position: absolute; top: 20px; right: 15px; } 
+    /* Sur mobile, on désactive l'animation complexe, on garde la pilule en bas ou fixe */
     .nav-capsule {
-        position: static; transform: none; order: 3; width: 100%;
-        margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
-        -ms-overflow-style: none; scrollbar-width: none;
-        background: var(--card); 
+        position: fixed; bottom: 20px; left: 50%; top: auto;
+        transform: translate(-50%, 0); 
+        width: 90%; max-width: 350px;
+        background: var(--card); border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
+    .app-header.scrolled .nav-capsule {
+        /* Pas d'animation bouton sur mobile, ça reste en bas */
+        left: 50%; transform: translate(-50%, 0);
+        width: 90%; height: auto; padding: 10px 20px;
+        background: var(--card);
+    }
+    .app-header.scrolled .nav-links { opacity: 1; pointer-events: auto; position: static; }
+    .app-header.scrolled .menu-icon { display: none; }
+    
+    .nav-capsule ul { overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
     .nav-capsule::-webkit-scrollbar { display: none; }
     .hero-title { font-size: 2rem; }
     .hero-section { margin-top: 140px; }
