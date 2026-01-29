@@ -130,7 +130,7 @@ body.light-mode .nav-capsule {
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 body.light-mode .nav-capsule a { color: #1e293b; }
 
-/* ETAT SCROLLÉ : FUSION (Base Large Screen) */
+/* ETAT SCROLLÉ : FUSION (Comportement de base PC) */
 .app-header.scrolled .nav-capsule {
     left: auto; 
     transform: translateY(-50%);
@@ -152,19 +152,39 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
 
 
 /* --- RESPONSIVE INTERMÉDIAIRE (TABLETTE / PETIT PC) --- */
-/* Entre 900px et 1250px : On empile verticalement au scroll */
-@media (max-width: 1250px) {
+/* C'est ici que l'on gère la superposition */
+@media (max-width: 1250px) and (min-width: 901px) {
     
-    /* 1. La Capsule Menu prend la place "En haut à droite" */
+    /* 1. FORCE LA BULLE (Dimensions fixes) */
     .app-header.scrolled .nav-capsule {
-        right: var(--header-padding); /* Collé à droite (padding standard) */
-        top: 30px; /* En haut */
-        transform: none; /* Pas de centrage vertical */
+        /* On force les dimensions d'un bouton rond */
+        width: var(--theme-btn-size);
+        height: var(--theme-btn-size);
+        padding: 0;
+        border-radius: 50%;
+        
+        /* Positionnement en haut à droite */
+        position: fixed;
+        right: var(--header-padding);
+        top: 24px; /* Un peu d'espace depuis le haut */
+        
+        /* Annulation des centrages précédents */
+        left: auto;
+        transform: none; 
+        
+        /* On s'assure que le contenu texte est caché */
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
     }
 
-    /* 2. Le Bouton Thème passe en dessous */
+    /* On s'assure que l'icône menu est visible et la liste cachée */
+    .app-header.scrolled .nav-capsule ul { display: none !important; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; }
+
+    /* 2. DÉPLACE LA LUNE EN DESSOUS */
     .app-header.scrolled .header-right {
-        top: 85px; /* On le pousse vers le bas (sous le menu) */
+        top: 80px; /* ~ 24px (top bulle) + 42px (taille bulle) + 14px (marge) */
         right: var(--header-padding);
         transform: none;
     }
@@ -249,7 +269,7 @@ h3 {
 /* PROJETS (1 COLONNE LARGE) */
 .grid { 
     display: grid; 
-    grid-template-columns: 1fr; /* Toujours 1 colonne */
+    grid-template-columns: 1fr; 
     gap: 30px; 
 }
 
@@ -275,7 +295,7 @@ h3 {
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
-/* CONTAINER PDF (Modifié : -25% de hauteur) */
+/* CONTAINER PDF (-25% height = 640px) */
 .pdf-container { 
     display: none; 
     height: 640px; 
