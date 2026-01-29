@@ -101,9 +101,11 @@ const config = {
     ],
 
     // --- 6. COMPÉTENCES DÉTAILLÉES ---
+    // Note: J'ai séparé l'icône du nom pour le nouveau design
     competences: [
         {
-            name: "🐧 Administration Système",
+            icon: "🐧",
+            name: "Administration Système",
             details: [
                 "Linux Hardening (Debian, RHEL)",
                 "Windows Server (AD, DNS, DHCP)",
@@ -112,7 +114,8 @@ const config = {
             ]
         },
         {
-            name: "🕸️ Réseau & Sécurité",
+            icon: "🕸️",
+            name: "Réseau & Sécurité",
             details: [
                 "Modèle OSI / TCP-IP",
                 "Switching (VLAN, STP)",
@@ -121,7 +124,8 @@ const config = {
             ]
         },
         {
-            name: "🛠️ Outils & DevOps",
+            icon: "🛠️",
+            name: "Outils & DevOps",
             details: [
                 "Docker & Docker Compose",
                 "Git & GitHub",
@@ -130,7 +134,8 @@ const config = {
             ]
         },
         {
-            name: "🇬🇧 Langues",
+            icon: "🇬🇧",
+            name: "Langues",
             details: [
                 "Anglais : B2 (Technique)",
                 "Français : Langue maternelle"
@@ -139,13 +144,12 @@ const config = {
     ],
 
     // --- 7. CERTIFICATIONS ---
-    // url: Site officiel | pdf: Nom du fichier dans Documents/Certifs/
     certifications: [
         { 
             name: "CCNA (En cours)", 
             issuer: "Cisco", 
             url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
-            pdf: "" // Laisser vide si pas encore de diplôme
+            pdf: "" 
         },
         { 
             name: "SecNumAcadémie", 
