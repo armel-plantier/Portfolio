@@ -30,18 +30,14 @@ body {
     background-attachment: fixed;
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
-    
-    /* Padding standard PC */
-    padding-top: var(--header-h); 
-    
+    padding-top: var(--header-h); /* Espace pour desktop */
     transition: background 0.3s, color 0.3s; 
     overflow-x: hidden; 
 }
 a { text-decoration: none; color: inherit; }
 
-
 /* =========================================
-   HEADER PRINCIPAL (Version PC)
+   HEADER PRINCIPAL (Desktop Base)
    ========================================= */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
@@ -61,7 +57,7 @@ a { text-decoration: none; color: inherit; }
     transition: all 0.4s ease;
     opacity: 1; transform: translateY(0);
 }
-/* PC : On cache l'identité au scroll */
+/* Sur PC, l'identité disparaît au scroll */
 .app-header.scrolled .header-left {
     opacity: 0; transform: translateY(-20px); pointer-events: none;
 }
@@ -105,7 +101,6 @@ a { text-decoration: none; color: inherit; }
 }
 body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
-
 
 /* -- 3. CENTRE : CAPSULE DE NAVIGATION -- */
 .nav-capsule {
@@ -153,6 +148,7 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 
 /* --- 1. GRANDS ECRANS (> 1200px) --- */
 @media (min-width: 1201px) {
+    /* Comportement "bulle" au scroll sur PC */
     .app-header.scrolled .nav-capsule {
         left: auto; 
         transform: translateY(-50%);
@@ -175,7 +171,7 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 /* --- 2. TABLETTES & MOBILES (< 1200px) --- */
 @media (max-width: 1200px) {
     
-    /* A. ETAT INITIAL (Haut de page) - INCHANGÉ */
+    /* A. ETAT INITIAL (Haut de page) - MENU OUVERT & EMPILÉ */
     body { padding-top: 240px; } 
 
     .app-header {
@@ -205,15 +201,13 @@ body.light-mode .nav-capsule a { color: #1e293b; }
     .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
 
 
-    /* B. ETAT SCROLLÉ (MODIFIÉ POUR NOM CENTRÉ + BOUTONS DROITE) */
+    /* B. ETAT SCROLLÉ (FIXE & FLOU) - NOM CENTRÉ / BOUTONS DROITE */
     .app-header.scrolled {
         position: fixed !important;
         top: 0; left: 0; width: 100%;
         height: 70px !important;
-        flex-direction: row; /* Une seule ligne */
-        
-        /* ALIGNEMENT CLÉ : Tout le flux va à DROITE */
-        justify-content: flex-end; 
+        flex-direction: row; 
+        justify-content: flex-end; /* Pousse tout à droite */
         align-items: center;
         padding: 0 15px; gap: 0;
 
@@ -226,42 +220,71 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 
     /* 1. NOM CENTRÉ (POSITION ABSOLUE) */
     .app-header.scrolled .header-left {
-        position: absolute; /* Sort du flux normal */
+        position: absolute; 
         left: 50%; top: 50%;
         transform: translate(-50%, -50%) !important;
         width: auto; margin: 0; 
         opacity: 1 !important; pointer-events: auto;
-        z-index: 1; /* Reste en dessous si menu ouvert */
+        z-index: 1; 
     }
-    .app-header.scrolled .id-avatar { width: 34px; height: 34px; } /* Avatar discret */
+    .app-header.scrolled .id-avatar { width: 34px; height: 34px; } 
     .app-header.scrolled .id-name { font-size: 1rem; } 
-    .app-header.scrolled .status-wrapper { display: none; } /* On épure */
+    .app-header.scrolled .status-wrapper { display: none; } 
 
 
     /* 2. MENU BOUTON (BURGER) - À DROITE */
     .app-header.scrolled .nav-capsule {
-        /* Devient un petit rond */
         width: 42px !important; height: 42px !important;
         padding: 0 !important; border-radius: 50% !important;
         background: rgba(255,255,255,0.08) !important;
         
-        position: static !important; /* Rentre dans le flux à droite */
-        margin-right: 10px; /* Espace entre burger et thème */
+        position: static !important; /* Dans le flux */
+        margin-right: 10px; 
         transform: none !important;
         
         display: flex; justify-content: center; align-items: center;
-        z-index: 10;
+        z-index: 10; cursor: pointer;
     }
     .app-header.scrolled .nav-capsule ul { display: none !important; }
     .app-header.scrolled .nav-capsule .menu-icon { display: block !important; font-size: 1.1rem; }
 
-
-    /* 3. BOUTON THÈME - TOUT À DROITE */
+    /* 3. BOUTON THÈME */
     .app-header.scrolled .header-right {
-        position: static; /* Rentre dans le flux */
-        transform: none; top: auto; right: auto;
-        margin: 0;
-        z-index: 10;
+        position: static; transform: none; top: auto; right: auto; margin: 0; z-index: 10;
+    }
+
+
+    /* C. ETAT "ANIMATION" : QUAND ON CLIQUE SUR LE MENU */
+    /* Tout bouge : Nom à gauche, Menu au centre */
+    
+    /* 1. Nom glisse à gauche */
+    .app-header.scrolled.menu-open .header-left {
+        position: static !important; 
+        transform: none !important;
+        margin-right: auto; 
+        opacity: 1 !important;
+    }
+    
+    /* 2. Menu s'ouvre au centre */
+    .app-header.scrolled.menu-open .nav-capsule {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        
+        width: auto !important; height: 50px !important;
+        border-radius: 50px !important;
+        padding: 0 25px !important;
+        margin: 0 !important;
+        background: rgba(20, 20, 30, 0.95) !important;
+        z-index: 2000;
+        cursor: default;
+    }
+    .app-header.scrolled.menu-open .nav-capsule ul { display: flex !important; gap: 15px; }
+    .app-header.scrolled.menu-open .nav-capsule .menu-icon { display: none !important; }
+
+    /* 3. Thème reste à droite */
+    .app-header.scrolled.menu-open .header-right {
+        margin-left: auto;
     }
 }
 
@@ -270,10 +293,7 @@ body.light-mode .nav-capsule a { color: #1e293b; }
    RESTE DU SITE (Inchangé)
    ========================================= */
 
-.container { 
-    width: 100%; max-width: 1200px; 
-    margin: 0 auto; padding: 40px 20px; display: block; 
-}
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: block; }
 
 /* Hero */
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 10px; width: 100%; }
@@ -283,12 +303,10 @@ body.light-mode .nav-capsule a { color: #1e293b; }
     -webkit-background-clip: text; color: transparent; 
 }
 .bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
-
 @media (min-width: 1024px) {
     .hero-title { font-size: 3.5rem; }
     .bio-text { font-size: 1.1rem; max-width: 700px; }
 }
-
 .cursor { animation: blink 1s infinite; font-weight: 100; color: var(--muted); }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -310,10 +328,7 @@ body.light-mode .nav-capsule a { color: #1e293b; }
 
 /* Sections Global */
 .section-wrapper { width: 100%; margin-bottom: 60px; scroll-margin-top: 120px; }
-h3 { 
-    margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
-    border-left: 4px solid var(--primary); padding-left: 15px; 
-}
+h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
 
 /* Projets Grid */
 .grid { display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; }
@@ -322,7 +337,6 @@ h3 {
     border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; 
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-
 .new-badge {
     position: absolute; top: 15px; right: 15px;
     background: var(--badge-bg); color: #fff;
@@ -336,8 +350,6 @@ h3 {
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
-
-/* PDF Viewer */
 .pdf-container { display: none; height: 640px; border-top: 1px solid var(--border); background: #000; }
 
 /* Timeline (Parcours) */
@@ -354,7 +366,6 @@ h3 {
 /* Compétences */
 .cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; width: 100%; }
 @media (min-width: 1024px) { .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } }
-
 .comp-card-container { 
     background: var(--card); border-radius: 12px; border: 1px solid var(--border); 
     overflow: hidden; transition: all 0.3s ease;
@@ -364,14 +375,12 @@ h3 {
     cursor: pointer; font-weight: 600; transition: background 0.2s;
 }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
-
 .comp-dropdown-menu { 
     padding: 15px 20px; background: rgba(0,0,0,0.1); 
     border-top: 1px solid var(--border); list-style: none;
 }
 .comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
-
 .cert-name { font-weight: 600; font-size: 0.95rem; }
 .cert-btn { 
     display: flex; align-items: center; gap: 6px; background: transparent; color: var(--primary);
@@ -380,7 +389,7 @@ h3 {
 }
 .cert-btn:hover, .cert-btn.active { background: var(--primary); color: #fff; }
 
-/* Load More */
+/* Load More & Footer */
 .load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
 .load-more-btn {
     background: transparent; border: 1px solid var(--border); color: var(--muted);
@@ -390,7 +399,6 @@ h3 {
 }
 .load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); }
 
-/* Footer & Modal */
 footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; width: 100%; }
 
 .modal-overlay { 
