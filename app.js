@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
-    // Injection du Favicon et de l'Avatar si c'est un SVG
+    // Injection du Favicon
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) {
         faviconEl.href = config.profile.favicon;
@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 5. PROJETS (LIMIT 4) ---
     const grid = document.getElementById("project-grid");
+    // Calcul automatique du chemin relatif pour les documents
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
@@ -197,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
+            emailSpan.innerText = config.profile.email || "votre@email.com";
             document.getElementById("email-modal").style.display = "flex";
         });
     }
@@ -209,10 +210,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 11. NAVBAR DYNAMIQUE (SCROLL) ---
+    // --- 11. NAVBAR DYNAMIQUE (C'EST ICI LA CORRECTION) ---
     const header = document.querySelector('.app-header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) { // Se déclenche un peu plus tard (50px)
+        if (window.scrollY > 50) { 
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
