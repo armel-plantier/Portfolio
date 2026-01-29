@@ -46,8 +46,22 @@ a { text-decoration: none; color: inherit; }
 
 .header-left, .nav-capsule, .header-right { pointer-events: auto; }
 
-/* Identité */
-.header-left { display: flex; align-items: center; gap: 16px; }
+/* -- IDENTITÉ (GAUCHE) -- */
+.header-left { 
+    display: flex; align-items: center; gap: 16px; 
+    /* AJOUT : Transition pour l'effacement fluide au scroll */
+    transition: all 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* NOUVEAU : Quand on scroll, l'identité disparait */
+.app-header.scrolled .header-left {
+    opacity: 0;
+    transform: translateY(-20px); /* Remonte un peu en disparaissant */
+    pointer-events: none; /* On ne peut plus cliquer dessus quand c'est invisible */
+}
+
 .id-avatar { 
     width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
@@ -69,7 +83,7 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* Bouton Thème */
+/* -- BOUTON THEME (DROITE) -- */
 .header-right { 
     display: flex; align-items: center; position: absolute; 
     right: var(--header-padding); top: 50%; transform: translateY(-50%);
@@ -144,17 +158,23 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
     .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
     .header-left { width: 100%; justify-content: flex-start; } 
     .header-right { right: 15px; top: 20px; transform: none; }
+    
     .nav-capsule {
         position: static; transform: none; order: 3; width: 100%;
         margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
         background: var(--card); height: auto; transition: none; 
     }
+    
     .app-header.scrolled .nav-capsule {
         position: static; width: 100%; height: auto; border-radius: 12px; padding: 10px 15px;
         right: auto; left: auto; transform: none; background: var(--card);
     }
     .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
     .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
+    
+    /* Sur mobile, on garde l'identité visible ou non ? 
+       Souvent on la garde car le header défile avec la page si position sticky n'est pas utilisé.
+       Si tu veux que ça disparaisse aussi sur mobile au scroll, laisse tel quel. */
     .hero-title { font-size: 2rem; }
     .hero-section { margin-top: 140px; }
 }
@@ -166,7 +186,7 @@ body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 2
 .container { 
     max-width: 100%; margin: 0 auto; padding: 40px 20px; 
 }
-/* PC Large (>1024px) : On élargit tout le conteneur */
+/* PC Large (>1024px) : On élargit tout */
 @media (min-width: 1024px) {
     .container { max-width: 1200px; padding: 60px 40px; }
 }
@@ -211,15 +231,12 @@ h3 {
     border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-/* PROJETS - CONFIGURATION */
+/* PROJETS (1 COLONNE LARGE) */
 .grid { 
     display: grid; 
     grid-template-columns: 1fr; /* 1 colonne uniquement */
     gap: 30px; 
 }
-/* NOTE : Pas de media query ici pour mettre en 2 colonnes.
-   On reste sur 1 colonne à 100%, mais comme le conteneur est plus large (1200px),
-   les cartes seront très larges et confortables. */
 
 .project-card { 
     position: relative; 
@@ -244,8 +261,7 @@ h3 {
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
 .pdf-container { 
-    display: none; 
-    height: 850px; /* Grand format pour bien lire sur les cartes larges */
+    display: none; height: 850px; 
     border-top: 1px solid var(--border); background: #000; 
 }
 
@@ -260,11 +276,10 @@ h3 {
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* COMPETENCES & CERTIFS - RESTE EN GRID 2 COLONNES SUR PC */
+/* COMPETENCES & CERTIFS (2 COLONNES SUR PC) */
 .cert-list { 
     list-style: none; display: flex; flex-direction: column; gap: 12px; 
 }
-/* PC : 2 Colonnes pour les certifs uniquement pour optimiser l'espace vertical */
 @media (min-width: 1024px) {
     .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 }
