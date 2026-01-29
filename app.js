@@ -29,6 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
+    // AJOUT : Injection du favicon
+    const faviconEl = document.getElementById("favicon-link");
+    if(faviconEl && config.profile.favicon) {
+        faviconEl.href = config.profile.favicon;
+    }
+
     document.getElementById("profile-name").innerText = config.profile.name;
     document.getElementById("profile-status").innerText = config.profile.status;
     document.getElementById("profile-bio").innerText = config.profile.bio;
@@ -84,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
-    const PROJECT_LIMIT = 4; // <--- C'est ici que ça se joue
+    const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
         config.projects.forEach((proj, index) => {
@@ -92,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const div = document.createElement("div"); 
             div.className = "project-card";
             
-            // Si l'index est 4 ou plus (donc le 5ème élément), on ajoute la classe hidden-item
             if (index >= PROJECT_LIMIT) {
                 div.classList.add("hidden-item");
             }
@@ -114,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.appendChild(div);
         });
         
-        // Si on a plus de 4 projets, on affiche le bouton
         if (config.projects.length > PROJECT_LIMIT) {
             createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
         }
@@ -206,8 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTIONS UTILS ---
-
+// --- FONCTION BOUTON REDESSINÉ ---
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
     div.className = "load-more-container"; 
@@ -221,13 +224,8 @@ function createToggleBtn(container, limit, txtMore) {
     btn.onclick = () => {
         expanded = !expanded;
         const children = container.children;
-        // On parcourt les enfants directs (les cartes projets)
-        // Attention : il ne faut pas compter le bouton "load-more-container" qui est hors du conteneur dans mon code précédent,
-        // MAIS ici "container" est "project-grid".
         
         for(let i=0; i<children.length; i++) {
-            // On ne touche qu'aux éléments qui ont potentiellement la classe hidden-item ou qui devraient l'avoir
-            // On vérifie simplement l'index
             if(i >= limit) {
                 if(expanded) { 
                     children[i].classList.remove("hidden-item"); 
@@ -235,7 +233,7 @@ function createToggleBtn(container, limit, txtMore) {
                     setTimeout(()=>children[i].style.opacity=1, 50); 
                 } else { 
                     children[i].classList.add("hidden-item"); 
-                    children[i].style.opacity=0; // Reset opacity pour animation
+                    children[i].style.opacity=0; 
                 }
             }
         }
