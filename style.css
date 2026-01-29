@@ -26,7 +26,7 @@ html, body { min-height: 100%; }
 
 body { 
     background: var(--bg);
-    background-attachment: fixed; /* Fixe le dégradé pour qu'il ne bouge pas au scroll */
+    background-attachment: fixed; /* Fixe le dégradé */
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
@@ -34,33 +34,33 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER DYNAMIQUE (GLASSMORPHISM) --- */
+/* --- HEADER (MODIFIÉ POUR RESTER TRANSPARENT) --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
     padding: 0 40px; 
     
-    /* Transparent par défaut */
+    /* Toujours transparent */
     background: transparent;
     backdrop-filter: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: none;
     
     z-index: 1000; 
     transition: all 0.4s ease; 
 }
 
-/* Classe ajoutée en JS au scroll */
+/* Quand on scrolle : Toujours transparent, juste un flou */
 .app-header.scrolled {
-    background: rgba(11, 13, 20, 0.70);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: transparent; /* Pas de fond noir */
+    backdrop-filter: blur(12px); /* Effet de flou "verre" */
+    border-bottom: none;
+    box-shadow: none;
 }
 
-body.light-mode .app-header { background: transparent; border-color: transparent; }
+body.light-mode .app-header,
 body.light-mode .app-header.scrolled { 
-    background: rgba(255, 255, 255, 0.75); 
-    border-color: rgba(0,0,0,0.05); 
+    background: transparent; 
+    border-color: transparent; 
 }
 
 .header-left { display: flex; align-items: center; gap: 16px; }
