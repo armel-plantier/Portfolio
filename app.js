@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
+            emailSpan.innerText = config.profile.email || "ton.email@exemple.com";
             document.getElementById("email-modal").style.display = "flex";
         });
     }
@@ -208,20 +208,55 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // --- 11. GESTION DU SCROLL BARRE NAV (AJOUTÉ ET IMPORTANT) ---
+    // --- 11. GESTION DU SCROLL ET MENU MOBILE (MIS A JOUR) ---
     const header = document.querySelector('.app-header');
+    const navCapsule = document.querySelector('.nav-capsule');
+    const menuIcon = document.querySelector('.menu-icon'); // S'assure de cibler l'icône burger
+
     if (header) {
+        // A. Scroll Logic (Apparition du fond flou et du header compact)
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { 
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+                // Si on remonte tout en haut, on ferme le menu proprement
+                header.classList.remove('menu-open');
             }
         });
-    }
-});
 
-// --- FONCTIONS UTILS ---
+        // B. Click Logic (Ouverture du menu au clic sur le bouton rond)
+        if (menuIcon) {
+            menuIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Empêche la fermeture immédiate
+                header.classList.toggle('menu-open');
+            });
+        }
+
+        // C. Click Outside (Fermeture si on clique ailleurs)
+        document.addEventListener('click', (e) => {
+            // Si le menu est ouvert ET qu'on clique en dehors de la capsule
+            if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
+                header.classList.remove('menu-open');
+            }
+        });
+        
+        // D. Navigation Click (Fermeture quand on clique sur un lien)
+        // On attend un petit peu que le DOM soit bien généré (Section 3)
+        setTimeout(() => {
+            const navLinks = document.querySelectorAll('.nav-capsule a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    header.classList.remove('menu-open');
+                });
+            });
+        }, 100);
+    }
+
+}); // Fin DOMContentLoaded
+
+
+// --- FONCTIONS UTILITAIRES ---
 
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
