@@ -46,16 +46,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
 
-    // --- 3. NAVIGATION (SIMPLIFIÉE GRÂCE AU CSS) ---
+    // --- 3. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
             const li = document.createElement("li");
             const a = document.createElement("a");
             a.innerText = item.title;
-            a.href = item.link; // Le CSS (scroll-margin-top) gère le positionnement
+            a.href = item.link; 
             
-            // Fermeture du menu mobile au clic
+            // Fermeture menu mobile au clic
             a.addEventListener('click', () => {
                  const header = document.querySelector('.app-header');
                  if(header) header.classList.remove('menu-open');
@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 5. PROJETS (LIMIT 4) ---
     const grid = document.getElementById("project-grid");
+    // Calcul du chemin relatif pour Documents/
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     
@@ -156,27 +157,52 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 8. CERTIFICATIONS (NOUVEAU DESIGN) ---
+    // --- 8. CERTIFICATIONS (V2 : Double Boutons) ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
+    // Chemin pour les Certifs : Documents/Certifs/
+    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
 
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li");
-            li.className = "cert-card-container"; // Nouvelle classe CSS
+            li.className = "cert-card-container";
             
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
             
-            // On vérifie si "issuer" existe dans la config
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
+            const viewerId = `cert_view_${index}`;
+            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
+
+            // Bouton Lien
+            let buttonsHtml = '';
+            if (cert.url) {
+                buttonsHtml += `
+                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">
+                        <i class="fa-solid fa-link"></i> 🔗
+                    </a>`;
+            }
+
+            // Bouton PDF
+            if (cert.pdf) {
+                buttonsHtml += `
+                    <button onclick="toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
+                        <i class="fa-solid fa-file-pdf"></i> 📄
+                    </button>`;
+            }
 
             li.innerHTML = `
-                <div class="cert-icon-box">🏆</div>
-                <div class="cert-info">
-                    <span class="cert-name">${cert.name}</span>
-                    <span class="cert-issuer">${issuer}</span>
+                <div class="cert-header-row">
+                    <div class="cert-icon-box">🏆</div>
+                    <div class="cert-info">
+                        <span class="cert-name">${cert.name}</span>
+                        <span class="cert-issuer">${issuer}</span>
+                    </div>
+                    <div class="cert-actions">
+                        ${buttonsHtml}
+                    </div>
                 </div>
-                <a href="${cert.url}" target="_blank" class="cert-link" title="Voir le certificat">➜</a>
+                <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
             certList.appendChild(li);
         });
@@ -197,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "armel.plantier@protonmail.com";
+            emailSpan.innerText = config.profile.email || "email@exemple.com";
             document.getElementById("email-modal").style.display = "flex";
         });
     }
@@ -215,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuIcon = document.querySelector('.menu-icon'); 
 
     if (header) {
-        // A. Scroll Logic
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) { 
                 header.classList.add('scrolled');
@@ -225,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // B. Click Logic
         if (menuIcon) {
             menuIcon.addEventListener('click', (e) => {
                 e.stopPropagation(); 
@@ -233,7 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // C. Click Outside
         document.addEventListener('click', (e) => {
             if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
                 header.classList.remove('menu-open');
@@ -294,6 +317,17 @@ window.togglePDF = function(id, url) {
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
+};
+
+// Nouvelle fonction pour les certifications (ferme les autres avant d'ouvrir)
+window.toggleCertPDF = function(id, url) {
+    const viewer = document.getElementById(id);
+    if (viewer.style.display === 'block') {
+        viewer.style.display = 'none'; viewer.innerHTML = ''; return;
+    }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    viewer.style.display = 'block';
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 };
 
 window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
