@@ -1,5 +1,8 @@
 :root {
-    --bg: #0b0d14;
+    /* MODIF : Dégradé subtil du noir vers un violet profond */
+    --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
+    /* Ancienne valeur pour info : #0b0d14 */
+    
     --card: #151925;
     --text: #f1f5f9;
     --muted: #94a3b8;
@@ -10,16 +13,24 @@
 }
 
 body.light-mode {
-    --bg: #f8fafc;
+    /* MODIF : Dégradé subtil pour le mode clair aussi */
+    --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
+    /* Ancienne valeur : #f8fafc */
+
     --card: #ffffff;
     --text: #0f172a;
     --muted: #64748b;
     --border: #e2e8f0;
 }
 
+/* Le reste du fichier ne change pas, mais il est nécessaire pour que tout fonctionne */
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
+/* Important : on s'assure que le background couvre bien toute la hauteur même s'il y a peu de contenu */
+html, body { min-height: 100%; } 
 body { 
-    background: var(--bg); 
+    background: var(--bg); /* Applique le dégradé défini plus haut */
+    background-attachment: fixed; /* Le dégradé reste fixe quand on scrolle, effet sympa */
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
