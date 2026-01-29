@@ -85,51 +85,103 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* --- NAVIGATION CAPSULE (Glassmorphism ULTIME) --- */
+/* --- NAVIGATION CAPSULE (DYNAMIQUE) --- */
 .nav-capsule {
     position: absolute;
+    /* Positionnement initial : centré */
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     
-    /* 1. Fond beaucoup plus transparent pour voir le flou */
     background: rgba(20, 20, 30, 0.4); 
-    
-    /* 2. Flou très puissant + Saturation pour faire ressortir les couleurs derrière */
     backdrop-filter: blur(50px) saturate(180%);
     -webkit-backdrop-filter: blur(50px) saturate(180%);
-    
-    /* 3. Bordure un peu plus visible pour l'effet "vitre" */
     border: 1px solid rgba(255, 255, 255, 0.15);
     
     padding: 10px 30px;
     border-radius: 50px;
-    
-    /* 4. Ombre douce pour décoller du fond */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     
-    transition: all 0.3s ease;
+    /* Animation fluide pour le déplacement */
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; /* Important pour cacher la liste quand réduite */
 }
 
+/* Liste des liens */
 .nav-capsule ul {
     display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Icône Menu (cachée par défaut) */
+.menu-icon {
+    display: none;
+    font-size: 1.2rem;
+    color: var(--text);
+    cursor: pointer;
 }
 
 .nav-capsule a {
-    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; /* Texte un peu plus clair */
+    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
     transition: 0.2s ease; white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Lisibilité sur effet verre */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
 }
-
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 
-/* --- ETAT SCROLLÉ --- */
+
+/* --- ETAT SCROLLÉ (LE MOUVEMENT) --- */
 .app-header.scrolled .nav-capsule {
-    /* Un tout petit peu plus foncé au scroll, mais toujours très flou */
-    background: rgba(20, 20, 30, 0.6); 
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    /* 1. Déplacement vers la droite (à côté du bouton theme) */
+    /* On utilise calc() pour le placer précisément. Le bouton theme est à droite. */
+    left: calc(100% - 100px); 
+    transform: translate(0, -50%); /* On enlève le centrage X */
+    
+    /* 2. Transformation en bouton rond */
+    padding: 0;
+    width: 42px; height: 42px; /* Taille bouton */
+    border-radius: 50%;
+    
+    background: rgba(20, 20, 30, 0.8); /* Fond plus opaque */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
+
+/* Quand scrollé : on cache la liste UL */
+.app-header.scrolled .nav-capsule ul {
+    display: none;
+    opacity: 0;
+}
+
+/* Quand scrollé : on affiche l'icône menu */
+.app-header.scrolled .nav-capsule .menu-icon {
+    display: block;
+}
+
+/* --- INTERACTION HOVER EN SCROLL --- */
+/* Si on survole le "bouton" quand on est scrollé, il se redéploie */
+.app-header.scrolled .nav-capsule:hover {
+    /* On l'agrandit */
+    width: auto;
+    height: auto;
+    padding: 10px 30px;
+    border-radius: 50px;
+    
+    /* On décale un peu vers la gauche pour que le texte ne sorte pas de l'écran */
+    transform: translate(-100%, -50%);
+    /* Note: le left reste à (100% - 100px), donc le translate -100% le fait pousser vers la gauche */
+    margin-left: 42px; /* Compensation pour l'alignement */
+}
+
+.app-header.scrolled .nav-capsule:hover ul {
+    display: flex;
+    opacity: 1;
+}
+.app-header.scrolled .nav-capsule:hover .menu-icon {
+    display: none;
+}
+
 
 /* Adaptation Light Mode */
 body.light-mode .nav-capsule {
@@ -138,6 +190,9 @@ body.light-mode .nav-capsule {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 body.light-mode .nav-capsule a { color: #1e293b; }
+body.light-mode .app-header.scrolled .nav-capsule {
+    background: rgba(255, 255, 255, 0.85);
+}
 
 
 .header-right { display: flex; align-items: center; }
@@ -313,4 +368,12 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
     .nav-capsule::-webkit-scrollbar { display: none; }
     .hero-title { font-size: 2rem; }
     .hero-section { margin-top: 140px; }
+    
+    /* On désactive l'effet de bouton au scroll sur mobile car c'est pas pratique */
+    .app-header.scrolled .nav-capsule {
+        left: auto; transform: none; width: 100%; border-radius: 12px; padding: 10px 15px;
+        background: var(--card);
+    }
+    .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
 }
