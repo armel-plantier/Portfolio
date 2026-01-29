@@ -3,181 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Développeur Fullstack</title>
+    <title>Portfolio | SysAdmin & Réseau</title>
+    
+    <link id="favicon-link" rel="icon" href="">
+
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="app-header">
         <div class="header-left">
-            <img src="https://i.pravatar.cc/150?img=11" alt="Avatar" class="id-avatar">
+            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
             <div class="identity-info">
-                <span class="id-name">Alex.Dev</span>
+                <span id="profile-name" class="id-name"></span>
                 <div class="status-wrapper">
-                    <div class="status-dot"></div>
-                    <span>Open to work</span>
+                    <span class="status-dot"></span>
+                    <span id="profile-status" class="id-status"></span>
                 </div>
             </div>
         </div>
 
         <nav class="nav-capsule">
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#parcours">Parcours</a></li>
-                <li><a href="#competences">Skills</a></li>
-            </ul>
-
-            <div class="menu-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </div>
+            <ul id="nav-list"></ul>
         </nav>
 
         <div class="header-right">
-            <button class="theme-icon" id="theme-toggle">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+            <button id="theme-toggle" class="theme-icon">☀️</button>
         </div>
     </header>
 
     <div class="container">
-        <section id="accueil" class="hero-section section-wrapper">
-            <h1 class="hero-title">Créons quelque chose d'<span class="cursor">_</span>unique</h1>
-            <p class="bio-text">
-                Développeur Fullstack passionné par les interfaces modernes et l'expérience utilisateur. 
-                Je transforme vos idées en réalité numérique avec du code propre et performant.
-            </p>
+        
+        <section class="hero-section">
+            <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
+            <p id="profile-bio" class="bio-text"></p>
 
             <div class="social-links">
-                <a href="#" class="social-btn"><i class="fa-brands fa-github"></i> GitHub</a>
-                <a href="#" class="social-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                <button class="social-btn email" id="contact-btn"><i class="fa-regular fa-envelope"></i> Me contacter</button>
+                <a id="link-github" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                
+                <a id="link-linkedin" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                
+                <a id="email-trigger" href="#" class="social-btn email">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Contact
+                </a>
             </div>
-
-            <div class="skills-section">
-                <span class="skill-tag">React.js</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Three.js</span>
-                <span class="skill-tag">UI/UX Design</span>
-            </div>
+            
+            <div id="skills-section" class="skills-section"></div>
         </section>
 
         <section id="projets" class="section-wrapper">
-            <h3>Projets Récents</h3>
-            <div class="grid" id="projects-grid">
-                <div class="project-card">
-                    <span class="new-badge">Nouveau</span>
-                    <div class="card-header">
-                        <div class="icon">🚀</div>
-                        <div class="meta">
-                            <h4>Dashboard SaaS Analytics</h4>
-                            <p>Une interface d'administration complète pour visualiser des données en temps réel avec graphiques interactifs.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="card-header">
-                        <div class="icon">🎨</div>
-                        <div class="meta">
-                            <h4>E-commerce Minimaliste</h4>
-                            <p>Boutique en ligne axée sur la rapidité et l'expérience mobile, développée avec Next.js et Tailwind.</p>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="project-card hidden-item">
-                    <div class="card-header">
-                        <div class="icon">🤖</div>
-                        <div class="meta">
-                            <h4>Bot Discord IA</h4>
-                            <p>Un bot capable de modérer et d'animer une communauté en utilisant l'API OpenAI.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="load-more-container">
-                <button id="load-more" class="load-more-btn">
-                    <span>Voir plus de projets</span>
-                    <i class="fa-solid fa-arrow-down"></i>
-                </button>
-            </div>
+            <h3>Projets & Labs</h3>
+            <div id="project-grid" class="grid"></div>
         </section>
 
         <section id="parcours" class="section-wrapper">
-            <h3>Mon Parcours</h3>
-            <ul class="timeline-list">
-                <li class="timeline-item">
-                    <span class="timeline-date">2023 - Présent</span>
-                    <h4 class="timeline-title">Freelance Fullstack Developer</h4>
-                    <p class="timeline-desc">Développement de solutions web sur mesure pour divers clients internationaux.</p>
-                </li>
-                <li class="timeline-item">
-                    <span class="timeline-date">2021 - 2023</span>
-                    <h4 class="timeline-title">Lead Frontend - TechAgency</h4>
-                    <p class="timeline-desc">Gestion d'une équipe de 5 développeurs et refonte complète de l'architecture frontend.</p>
-                </li>
-            </ul>
+            <h3>Parcours</h3>
+            <ul id="exp-list" class="timeline-list"></ul>
         </section>
 
         <section id="competences" class="section-wrapper">
-            <h3>Compétences & Certifications</h3>
-            <ul class="cert-list" id="cert-list">
-                <li class="comp-card-container">
-                    <div class="comp-header">
-                        <span>Frontend Development</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <ul class="comp-dropdown-menu hidden-item">
-                        <li>React & Next.js Avancé</li>
-                        <li>Three.js & WebGL</li>
-                        <li>Tailwind CSS & Framer Motion</li>
-                    </ul>
-                </li>
-                 <li class="comp-card-container">
-                    <div class="comp-header">
-                        <span>Backend & DevOps</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <ul class="comp-dropdown-menu hidden-item">
-                        <li>Node.js & Express</li>
-                        <li>Docker & CI/CD</li>
-                        <li>PostgreSQL & MongoDB</li>
-                    </ul>
-                </li>
-            </ul>
+            <h3>Compétences</h3>
+            <ul id="comp-list" class="cert-list"></ul>
         </section>
 
-        <div id="pdf-container" class="pdf-container">
-            <p style="color:white; text-align:center; padding-top:100px;">Visualiseur PDF activé (Simulation)</p>
-        </div>
+        <section id="certifications" class="section-wrapper">
+            <h3>Certifications</h3>
+            <ul id="cert-list" class="cert-list"></ul>
+        </section>
 
+        <footer><p id="footer-copy"></p></footer>
     </div>
 
-    <footer>
-        <p>© 2024 Alex.Dev - Fait avec passion et du café.</p>
-    </footer>
-
-    <div class="modal-overlay" id="modal">
+    <div id="email-modal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <span>Contact</span>
-                <button class="close-btn" id="close-modal">&times;</button>
-            </div>
+            <div class="modal-header"><span>Contact</span><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <p>Envoyez-moi un message directement :</p>
-                <div class="email-box">hello@alex.dev</div>
+                <p>Mon adresse email :</p>
+                <div class="email-box"><span id="email-text"></span></div>
             </div>
         </div>
     </div>
 
+    <script src="config.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
