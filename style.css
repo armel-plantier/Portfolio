@@ -1,20 +1,21 @@
 :root {
-    /* Dégradé subtil du noir vers un violet profond */
+    /* Couleurs */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
-    
     --card: #151925;
     --text: #f1f5f9;
     --muted: #94a3b8;
     --border: #2d3748;
     --primary: #6366f1;
     --header-h: 90px;
-    --badge-bg: #10b981; 
+    --badge-bg: #10b981;
+    
+    /* Dimensions pour le positionnement dynamique */
+    --header-padding: 40px; 
+    --theme-btn-size: 42px;
 }
 
 body.light-mode {
-    /* Dégradé subtil pour le mode clair */
     --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
-    
     --card: #ffffff;
     --text: #0f172a;
     --muted: #64748b;
@@ -26,7 +27,7 @@ html, body { min-height: 100%; }
 
 body { 
     background: var(--bg);
-    background-attachment: fixed; /* Fixe le dégradé */
+    background-attachment: fixed;
     color: var(--text); 
     font-family: 'Inter', sans-serif; 
     padding-top: var(--header-h); 
@@ -34,36 +35,32 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* --- HEADER (INVISIBLE CONTAINER) --- */
+/* --- HEADER PRINCIPAL (SYSTEME FUSION) --- */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
-    padding: 0 40px; 
+    padding: 0 var(--header-padding); 
     
-    /* TOTALEMENT TRANSPARENT ET INVISIBLE */
+    /* Invisible pour laisser passer le fond */
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
     
-    z-index: 1000; 
-    pointer-events: none;
+    pointer-events: none; /* Laisse passer les clics */
+    z-index: 1000;
 }
 
-/* On réactive les clics uniquement sur les éléments réels du menu */
-.header-left, .nav-capsule, .header-right {
-    pointer-events: auto;
-}
+/* On réactive la souris sur les éléments interactifs */
+.header-left, .nav-capsule, .header-right { pointer-events: auto; }
 
+/* -- IDENTITÉ (GAUCHE) -- */
 .header-left { display: flex; align-items: center; gap: 16px; }
 
-/* MODIF : Effet verre très marqué sur l'avatar */
 .id-avatar { 
-    width: 54px; height: 54px; 
-    border-radius: 12px; object-fit: cover; 
+    width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
     border: 1px solid rgba(255, 255, 255, 0.2); 
-    
-    background: rgba(255, 255, 255, 0.05); /* Très transparent */
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(40px) saturate(150%);
     -webkit-backdrop-filter: blur(40px) saturate(150%);
 }
@@ -85,12 +82,36 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
 }
 
-/* --- NAVIGATION CAPSULE (DYNAMIQUE) --- */
+/* -- BOUTON THEME (FIXE A DROITE) -- */
+.header-right { 
+    display: flex; align-items: center; 
+    position: absolute; 
+    right: var(--header-padding); /* Toujours calé à droite */
+    top: 50%; transform: translateY(-50%);
+}
+
+.theme-icon {
+    width: var(--theme-btn-size); height: var(--theme-btn-size);
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    
+    color: var(--text); cursor: pointer; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
+.theme-icon:hover { background: var(--card); border-color: var(--primary); }
+
+
+/* -- NAVIGATION CAPSULE (ELEMENT DYNAMIQUE) -- */
 .nav-capsule {
-    position: absolute;
-    /* Positionnement initial : centré */
-    left: 50%;
+    position: fixed; /* Fixed permet de changer l'ancrage left/right */
     top: 50%;
+    
+    /* ETAT INITIAL : CENTRÉ */
+    left: 50%; 
+    right: auto;
     transform: translate(-50%, -50%);
     
     background: rgba(20, 20, 30, 0.4); 
@@ -102,27 +123,26 @@ a { text-decoration: none; color: inherit; }
     border-radius: 50px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     
-    /* Animation fluide pour le déplacement */
-    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-    
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Mouvement fluide */
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden; /* Important pour cacher la liste quand réduite */
+    overflow: hidden;
+    height: 50px;
+    z-index: 1001; /* Au-dessus du reste */
 }
 
-/* Liste des liens */
+/* Mode clair pour la capsule */
+body.light-mode .nav-capsule {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
 .nav-capsule ul {
     display: flex; gap: 24px; list-style: none; margin: 0; padding: 0;
-    transition: opacity 0.3s ease;
-    opacity: 1;
+    transition: opacity 0.3s; opacity: 1;
 }
 
-/* Icône Menu (cachée par défaut) */
-.menu-icon {
-    display: none;
-    font-size: 1.2rem;
-    color: var(--text);
-    cursor: pointer;
-}
+.menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
 
 .nav-capsule a {
     font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
@@ -130,88 +150,81 @@ a { text-decoration: none; color: inherit; }
     text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
 }
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
+body.light-mode .nav-capsule a { color: #1e293b; }
 
 
-/* --- ETAT SCROLLÉ (LE MOUVEMENT) --- */
+/* --- ETAT SCROLLÉ : LA FUSION --- */
 .app-header.scrolled .nav-capsule {
-    /* 1. Déplacement vers la droite (à côté du bouton theme) */
-    /* On utilise calc() pour le placer précisément. Le bouton theme est à droite. */
-    left: calc(100% - 100px); 
-    transform: translate(0, -50%); /* On enlève le centrage X */
+    /* 1. On casse le centrage */
+    left: auto; 
+    transform: translateY(-50%); /* On garde juste le centrage vertical */
     
-    /* 2. Transformation en bouton rond */
+    /* 2. On ancre à DROITE, collé au bouton thème */
+    /* Padding Header + Taille Bouton Theme + Marge (15px) */
+    right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
+    
+    /* 3. On réduit la forme en bouton rond */
+    width: var(--theme-btn-size); 
+    height: var(--theme-btn-size);
     padding: 0;
-    width: 42px; height: 42px; /* Taille bouton */
     border-radius: 50%;
     
-    background: rgba(20, 20, 30, 0.8); /* Fond plus opaque */
+    background: rgba(20, 20, 30, 0.8);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
+body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 255, 0.85); }
 
-/* Quand scrollé : on cache la liste UL */
-.app-header.scrolled .nav-capsule ul {
-    display: none;
-    opacity: 0;
-}
+/* Cacher la liste et montrer l'icône */
+.app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
+.app-header.scrolled .nav-capsule .menu-icon { display: block; }
 
-/* Quand scrollé : on affiche l'icône menu */
-.app-header.scrolled .nav-capsule .menu-icon {
-    display: block;
-}
-
-/* --- INTERACTION HOVER EN SCROLL --- */
-/* Si on survole le "bouton" quand on est scrollé, il se redéploie */
+/* --- INTERACTION AU SURVOL (QUAND FUSIONNÉ) --- */
 .app-header.scrolled .nav-capsule:hover {
-    /* On l'agrandit */
-    width: auto;
-    height: auto;
-    padding: 10px 30px;
+    /* On l'agrandit pour afficher le menu */
+    width: auto; 
+    padding: 0 30px;
     border-radius: 50px;
     
-    /* On décale un peu vers la gauche pour que le texte ne sorte pas de l'écran */
-    transform: translate(-100%, -50%);
-    /* Note: le left reste à (100% - 100px), donc le translate -100% le fait pousser vers la gauche */
-    margin-left: 42px; /* Compensation pour l'alignement */
+    /* Comme il est ancré à RIGHT, il s'agrandit vers la GAUCHE */
 }
 
-.app-header.scrolled .nav-capsule:hover ul {
-    display: flex;
-    opacity: 1;
-}
-.app-header.scrolled .nav-capsule:hover .menu-icon {
-    display: none;
-}
+.app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
+.app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
 
 
-/* Adaptation Light Mode */
-body.light-mode .nav-capsule {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-body.light-mode .nav-capsule a { color: #1e293b; }
-body.light-mode .app-header.scrolled .nav-capsule {
-    background: rgba(255, 255, 255, 0.85);
-}
-
-
-.header-right { display: flex; align-items: center; }
-
-/* MODIF : Effet verre aussi sur le bouton thème */
-.theme-icon {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
+/* --- MEDIA QUERY MOBILE --- */
+@media(max-width: 900px) {
+    .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
+    .header-left { width: 100%; justify-content: flex-start; } 
+    /* Positionnement absolu simple pour le bouton thème sur mobile */
+    .header-right { right: 15px; top: 20px; transform: none; }
     
-    border: 1px solid rgba(255,255,255,0.15); 
-    color: var(--text);
-    width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
-    display: flex; align-items: center; justify-content: center; transition: 0.3s;
+    .nav-capsule {
+        position: static; transform: none; order: 3; width: 100%;
+        margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
+        background: var(--card); height: auto;
+        /* Désactiver les transitions de position sur mobile */
+        transition: none; 
+    }
+    .nav-capsule::-webkit-scrollbar { display: none; }
+    
+    /* On annule l'effet "Fusion" au scroll sur mobile */
+    .app-header.scrolled .nav-capsule {
+        position: static; width: 100%; height: auto; border-radius: 12px; padding: 10px 15px;
+        right: auto; left: auto; transform: none;
+        background: var(--card);
+    }
+    
+    .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
+    
+    .hero-title { font-size: 2rem; }
+    .hero-section { margin-top: 140px; }
 }
-body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
-.theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-/* --- CONTAINER & HERO --- */
+
+/* --- RESTE DU SITE (HERO, CONTENU, FOOTER) --- */
+
 .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
 
 .hero-section { text-align: center; margin-bottom: 80px; margin-top: 40px; }
@@ -242,14 +255,14 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
     font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
 }
 
-/* --- SECTIONS GENERALES --- */
+/* Sections */
 .section-wrapper { margin-bottom: 60px; scroll-margin-top: 100px; }
 h3 { 
     margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem;
     border-left: 4px solid var(--primary); padding-left: 15px; 
 }
 
-/* --- PROJETS --- */
+/* Projets */
 .grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 
 .project-card { 
@@ -267,7 +280,6 @@ h3 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
 }
 
-/* CLASSE IMPORTANTE POUR CACHER LES ÉLÉMENTS */
 .hidden-item { display: none !important; }
 
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
@@ -280,7 +292,7 @@ h3 {
     border-top: 1px solid var(--border); background: #000; 
 }
 
-/* Timeline (Parcours) */
+/* Timeline */
 .timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
 .timeline-item { margin-bottom: 35px; position: relative; }
 .timeline-item::before { 
@@ -291,7 +303,7 @@ h3 {
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* COMPÉTENCES & CERTIFS */
+/* Compétences */
 .cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
 
 .comp-card-container { 
@@ -326,7 +338,7 @@ h3 {
 }
 #cert-list li:hover { transform: translateX(5px); border-color: var(--primary); }
 
-/* --- BOUTON LOAD MORE --- */
+/* Load More Btn */
 .load-more-container {
     width: 100%; display: flex; justify-content: center;
     margin-top: 25px; margin-bottom: 10px;
@@ -342,7 +354,7 @@ h3 {
     background: rgba(99, 102, 241, 0.05); transform: translateY(-2px);
 }
 
-/* --- FOOTER & MODAL --- */
+/* Footer & Modal */
 footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
 
 .modal-overlay { 
@@ -354,26 +366,3 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
 .email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
-
-@media(max-width: 900px) { 
-    .app-header { flex-wrap: wrap; height: auto; padding: 15px; gap: 15px; }
-    .header-left { width: 100%; justify-content: flex-start; } 
-    .header-right { position: absolute; top: 20px; right: 15px; } 
-    .nav-capsule {
-        position: static; transform: none; order: 3; width: 100%;
-        margin-top: 15px; overflow-x: auto; border-radius: 12px; padding: 10px 15px;
-        -ms-overflow-style: none; scrollbar-width: none;
-        background: var(--card); 
-    }
-    .nav-capsule::-webkit-scrollbar { display: none; }
-    .hero-title { font-size: 2rem; }
-    .hero-section { margin-top: 140px; }
-    
-    /* On désactive l'effet de bouton au scroll sur mobile car c'est pas pratique */
-    .app-header.scrolled .nav-capsule {
-        left: auto; transform: none; width: 100%; border-radius: 12px; padding: 10px 15px;
-        background: var(--card);
-    }
-    .app-header.scrolled .nav-capsule ul { display: flex; opacity: 1; }
-    .app-header.scrolled .nav-capsule .menu-icon { display: none !important; }
-}
