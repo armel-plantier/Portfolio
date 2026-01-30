@@ -14,22 +14,22 @@
     --theme-btn-size: 42px;
 }
 
-/* --- MODIFICATION LIGHT MODE (Fond Gris & Barre Transparente) --- */
+/* --- MODIFICATION LIGHT MODE (Gris Moche & Compétences Fix) --- */
 body.light-mode {
-    /* FOND : On passe sur un Gris Perle/Bleuté bien visible (fini le blanc aveuglant) */
-    --bg: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+    /* FOND : Gris plat et terne */
+    --bg: #a0a0a0; 
     
-    /* Cartes : Restent blanches pour bien ressortir sur le fond gris */
-    --card: #ffffff;
+    /* Cartes : Gris clair sale */
+    --card: #d3d3d3; 
     
-    /* Texte : Gris ardoise foncé */
-    --text: #1e293b;
+    /* Texte : Gris foncé pour le contraste */
+    --text: #333333;
     
-    /* Texte secondaire */
-    --muted: #64748b;
+    /* Texte secondaire : Gris encore plus foncé */
+    --muted: #555555;
     
-    /* Bordures : Gris moyen */
-    --border: #cbd5e1;
+    /* Bordures : Gris foncé */
+    --border: #808080;
     
     /* Badge vert plus sombre */
     --badge-bg: #059669;
@@ -138,9 +138,8 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
     overflow: hidden; height: 50px; z-index: 1001;
 }
 
-/* CORRECTION BARRE LIGHT MODE : Transparente et non noire */
+/* CORRECTION BARRE LIGHT MODE : Transparente */
 body.light-mode .nav-capsule { 
-    /* Fond presque transparent, juste un voile blanc */
     background: rgba(255, 255, 255, 0.3) !important;
     border-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
@@ -175,7 +174,6 @@ body.light-mode .nav-capsule a {
         padding: 0; border-radius: 50%; background: rgba(20, 20, 30, 0.8);
     }
     
-    /* Correction du rond qui devient noir au scroll en light mode */
     body.light-mode .app-header.scrolled .nav-capsule {
         background: rgba(255, 255, 255, 0.5) !important;
         border-color: rgba(0,0,0,0.1);
@@ -201,14 +199,12 @@ body.light-mode .nav-capsule a {
     .nav-capsule {
         position: relative !important; top: 0 !important; left: 0 !important; transform: none !important;
         width: 100%; max-width: 500px; margin: 0 auto;
-        /* En mobile (non scrollé), on utilise la variable card ou fond par défaut */
         background: var(--card); 
         border-radius: 12px;
         padding: 12px 10px; height: auto;
         display: flex; justify-content: center; overflow-x: auto; 
     }
     
-    /* En light mode mobile, s'assurer que le fond n'est pas noir */
     body.light-mode .nav-capsule {
         background: #ffffff !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -223,13 +219,11 @@ body.light-mode .nav-capsule a {
         position: fixed !important; top: 0; left: 0; width: 100%; height: 70px !important;
         flex-direction: row; justify-content: flex-end; align-items: center;
         padding: 0 15px; gap: 0;
-        /* Mode sombre par défaut */
         background: rgba(15, 20, 30, 0.85) !important;
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 9999;
     }
     
-    /* Correction Mobile Light Mode Scrollé : Fond clair ! */
     body.light-mode .app-header.scrolled {
         background: rgba(255, 255, 255, 0.9) !important;
         border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -250,7 +244,6 @@ body.light-mode .nav-capsule a {
         display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer;
     }
     
-    /* Bouton menu mobile light mode scrollé */
     body.light-mode .app-header.scrolled .nav-capsule {
         background: rgba(0,0,0,0.05) !important;
         color: var(--text);
@@ -268,7 +261,6 @@ body.light-mode .nav-capsule a {
         background: rgba(20, 20, 30, 0.95) !important; z-index: 2000; cursor: default;
     }
     
-    /* Menu ouvert en light mode */
     body.light-mode .app-header.scrolled.menu-open .nav-capsule {
         background: #ffffff !important;
         border: 1px solid #e2e8f0;
@@ -408,7 +400,17 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
 
+/* MENU DÉROULANT (DESCRIPTION) */
 .comp-dropdown-menu { padding: 15px 20px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); list-style: none; }
+
+/* CORRECTIF LIGHT MODE : FOND BLANC POUR LA DESCRIPTION */
+body.light-mode .comp-dropdown-menu {
+    background: #ffffff !important;
+    border-top: 1px solid #e5e5e5;
+    color: #333333;
+}
+body.light-mode .comp-dropdown-menu li { color: #4b5563; }
+
 .comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 
@@ -447,12 +449,12 @@ body.light-mode .project-card,
 body.light-mode .cert-card-container,
 body.light-mode .comp-card-container {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    border-color: #e2e8f0;
+    border-color: #808080;
 }
 
 body.light-mode .skill-tag {
     background: rgba(255, 255, 255, 0.6);
-    border-color: #cbd5e1;
+    border-color: #808080;
     color: #475569;
 }
 
