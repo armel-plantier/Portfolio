@@ -1,399 +1,576 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Vérification de sécurité de base
-    if (typeof config === 'undefined') {
-        console.error("Erreur: Le fichier config.js n'est pas chargé.");
-        return;
-    }
+document.addEventListener("DOMContentLoaded", () => {
 
-    initTheme();
-    renderHeader();
-    renderHero();
-    renderProjects();
-    renderTimeline();
-    renderSkills();
-    renderCertifications();
-    renderFooter();
-    initModal();
-    initScrollEffects();
+    
+
+    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
+
+
+    // --- 1. THEME ---
+
+    const themeBtn = document.getElementById("theme-toggle");
+
+    const body = document.body;
+
+    
+
+    if (localStorage.getItem("theme") === "light") {
+
+        body.classList.add("light-mode");
+
+        if(themeBtn) themeBtn.innerText = "🌙"; 
+
+    }
+
+    
+
+    if (themeBtn) {
+
+        themeBtn.addEventListener("click", () => {
+
+            body.classList.toggle("light-mode");
+
+            if (body.classList.contains("light-mode")) {
+
+                themeBtn.innerText = "🌙"; 
+
+                localStorage.setItem("theme", "light");
+
+            } else {
+
+                themeBtn.innerText = "☀️"; 
+
+                localStorage.setItem("theme", "dark");
+
+            }
+
+        });
+
+    }
+
+
+    // --- 2. PROFIL ---
+
+    document.title = `${config.profile.name} | Portfolio`;
+
+    const avatarEl = document.getElementById("profile-avatar");
+
+    if(avatarEl) avatarEl.src = config.profile.avatar;
+
+    
+
+    const faviconEl = document.getElementById("favicon-link");
+
+    if(faviconEl && config.profile.favicon) {
+
+        faviconEl.href = config.profile.favicon;
+
+    }
+
+
+    document.getElementById("profile-name").innerText = config.profile.name;
+
+    document.getElementById("profile-status").innerText = config.profile.status;
+
+    document.getElementById("profile-bio").innerText = config.profile.bio;
+
+    
+
+    const gh = document.getElementById("link-github");
+
+    if(gh) gh.href = config.social.github;
+
+    
+
+    const lk = document.getElementById("link-linkedin");
+
+    if(lk) lk.href = config.social.linkedin;
+
+    
+
+    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
+
+
+    // --- 3. NAVIGATION ---
+
+    const navList = document.getElementById("nav-list");
+
+    if(navList && config.navigation) {
+
+        config.navigation.forEach(item => {
+
+            const li = document.createElement("li");
+
+            const a = document.createElement("a");
+
+            a.innerText = item.title;
+
+            a.href = item.link; 
+
+            
+
+            a.addEventListener('click', () => {
+
+                 const header = document.querySelector('.app-header');
+
+                 if(header) header.classList.remove('menu-open');
+
+            });
+
+
+            li.appendChild(a);
+
+            navList.appendChild(li);
+
+        });
+
+    }
+
+
+    // --- 4. TAGS HEADER ---
+
+    const skillsContainer = document.getElementById("skills-section");
+
+    if(skillsContainer && config.skills) {
+
+        config.skills.forEach(s => {
+
+            const span = document.createElement("span"); 
+
+            span.className = "skill-tag"; 
+
+            span.innerText = s;
+
+            skillsContainer.appendChild(span);
+
+        });
+
+    }
+
+
+    // --- 5. PROJETS (LIMIT 4) ---
+
+    const grid = document.getElementById("project-grid");
+
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+
+    const baseUrl = `${window.location.origin}${path}Documents/`; 
+
+    const PROJECT_LIMIT = 4; 
+
+
+    if (grid && config.projects) {
+
+        config.projects.forEach((proj, index) => {
+
+            const vid = `viewer_${index}`;
+
+            const div = document.createElement("div"); 
+
+            div.className = "project-card";
+
+            
+
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+
+            
+
+            const fullPdfUrl = baseUrl + proj.path;
+
+            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+
+
+            div.innerHTML = `
+
+                ${badgeHTML}
+
+                <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
+
+                    <div class="icon">${proj.icon}</div>
+
+                    <div class="meta">
+
+                        <h4>${proj.title}</h4>
+
+                        <p>${proj.description}</p>
+
+                    </div>
+
+                </div>
+
+                <div id="${vid}" class="pdf-container"></div>
+
+            `;
+
+            grid.appendChild(div);
+
+        });
+
+        
+
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+
+    }
+
+
+    // --- 6. PARCOURS (LIMIT 5) ---
+
+    const expList = document.getElementById("exp-list");
+
+    const EXP_LIMIT = 5;
+
+    
+
+    if(expList && config.experiences) {
+
+        config.experiences.forEach((exp, index) => {
+
+            const li = document.createElement("li"); 
+
+            li.className = "timeline-item";
+
+            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+
+            
+
+            li.innerHTML = `
+
+                <span class="timeline-date">${exp.date}</span>
+
+                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
+
+                <p class="timeline-desc">${exp.description}</p>
+
+            `;
+
+            expList.appendChild(li);
+
+        });
+
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
+
+    }
+
+
+    // --- 7. COMPETENCES (LIMIT 5) - MIS A JOUR ---
+
+    const compList = document.getElementById("comp-list");
+
+    const COMP_LIMIT = 5;
+
+
+    if(compList && config.competences) {
+
+        config.competences.forEach((comp, index) => {
+
+            const li = document.createElement("li"); 
+
+            li.className = "comp-card-container";
+
+            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+
+            
+
+            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
+
+            
+
+            // On utilise cert-icon-box pour le même style que les certifs
+
+            li.innerHTML = `
+
+                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
+
+                    <div class="cert-icon-box">${comp.icon}</div>
+
+                    <span class="cert-name">${comp.name}</span>
+
+                    <button class="cert-btn comp-toggle">▼</button>
+
+                </div>
+
+                <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
+
+            `;
+
+            compList.appendChild(li);
+
+        });
+
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
+
+    }
+
+
+    // --- 8. CERTIFICATIONS ---
+
+    const certList = document.getElementById("cert-list");
+
+    const CERT_LIMIT = 5;
+
+    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+
+
+    if(certList && config.certifications) {
+
+        config.certifications.forEach((cert, index) => {
+
+            const li = document.createElement("li");
+
+            li.className = "cert-card-container";
+
+            
+
+            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+
+            
+
+            const issuer = cert.issuer ? cert.issuer : "Certification"; 
+
+            const viewerId = `cert_view_${index}`;
+
+            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
+
+
+            let buttonsHtml = '';
+
+            if (cert.url) {
+
+                buttonsHtml += `
+
+                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">
+
+                        <i class="fa-solid fa-link"></i> 🔗
+
+                    </a>`;
+
+            }
+
+
+            if (cert.pdf) {
+
+                buttonsHtml += `
+
+                    <button onclick="toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
+
+                        <i class="fa-solid fa-file-pdf"></i> 📄
+
+                    </button>`;
+
+            }
+
+
+            li.innerHTML = `
+
+                <div class="cert-header-row">
+
+                    <div class="cert-icon-box">🏆</div>
+
+                    <div class="cert-info">
+
+                        <span class="cert-name">${cert.name}</span>
+
+                        <span class="cert-issuer">${issuer}</span>
+
+                    </div>
+
+                    <div class="cert-actions">
+
+                        ${buttonsHtml}
+
+                    </div>
+
+                </div>
+
+                <div id="${viewerId}" class="cert-pdf-viewer"></div>
+
+            `;
+
+            certList.appendChild(li);
+
+        });
+
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
+
+    }
+
+
+    // --- 9. TYPEWRITER & EMAIL ---
+
+    const textEl = document.getElementById("typewriter-area");
+
+    if(textEl && config.profile.typewriterText) {
+
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+
+        function type() { if(i<txt.length) { textEl.innerHTML += txt.charAt(i); i++; setTimeout(type, 50); } }
+
+        setTimeout(type, 500);
+
+    }
+
+
+    const emailTrigger = document.getElementById("email-trigger");
+
+    if(emailTrigger) {
+
+        emailTrigger.addEventListener("click", function(e) {
+
+            e.preventDefault();
+
+            const emailSpan = document.getElementById("email-text");
+
+            emailSpan.innerText = config.profile.email || "email@exemple.com";
+
+            document.getElementById("email-modal").style.display = "flex";
+
+        });
+
+    }
+
+
+    document.addEventListener('click', function(e) {
+
+        if (!e.target.closest('.comp-card-container')) {
+
+            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
+
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+
+        }
+
+    });
+
+
+    // --- 10. SCROLL & MENU ---
+
+    const header = document.querySelector('.app-header');
+
+    const navCapsule = document.querySelector('.nav-capsule');
+
+    const menuIcon = document.querySelector('.menu-icon'); 
+
+
+    if (header) {
+
+        window.addEventListener('scroll', () => {
+
+            if (window.scrollY > 50) header.classList.add('scrolled');
+
+            else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); }
+
+        });
+
+
+        if (menuIcon) {
+
+            menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); });
+
+        }
+
+
+        document.addEventListener('click', (e) => {
+
+            if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
+
+                header.classList.remove('menu-open');
+
+            }
+
+        });
+
+    }
+
 });
 
-/* =========================================
-   1. GESTION DU THÈME
-   ========================================= */
-function initTheme() {
-    const themeBtn = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    // Vérifie le stockage local ou la préférence système
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        body.classList.add('light-mode');
-        themeBtn.textContent = '🌙';
-    } else {
-        themeBtn.textContent = '☀️';
-    }
 
-    themeBtn.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        const isLight = body.classList.contains('light-mode');
-        themeBtn.textContent = isLight ? '🌙' : '☀️';
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    });
+// --- HELPER FUNCTIONS ---
+
+function createToggleBtn(container, limit, txtMore) {
+
+    const div = document.createElement("div"); div.className = "load-more-container"; 
+
+    const btn = document.createElement("button"); btn.className = "load-more-btn";
+
+    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
+
+    let expanded = false;
+
+    btn.onclick = () => {
+
+        expanded = !expanded;
+
+        const children = container.children;
+
+        for(let i=0; i<children.length; i++) {
+
+            if(i >= limit) {
+
+                if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity=0; setTimeout(()=>children[i].style.opacity=1, 50); } 
+
+                else { children[i].classList.add("hidden-item"); children[i].style.opacity=0; }
+
+            }
+
+        }
+
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
+
+    };
+
+    div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
+
 }
 
-/* =========================================
-   2. RENDU HEADER & NAV
-   ========================================= */
-function renderHeader() {
-    // Favicon
-    document.getElementById('favicon-link').href = config.profile.favicon;
-    
-    // Avatar & Info
-    const avatarImg = document.getElementById('profile-avatar');
-    avatarImg.src = config.profile.avatar;
-    avatarImg.alt = `Avatar de ${config.profile.name}`;
-    
-    document.getElementById('profile-name').textContent = config.profile.name;
-    document.getElementById('profile-status').textContent = config.profile.status;
 
-    // Navigation
-    const navList = document.getElementById('nav-list');
-    config.navigation.forEach(item => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.textContent = item.title;
-        a.href = item.link;
-        li.appendChild(a);
-        navList.appendChild(li);
-    });
+window.toggleComp = function(e, id) {
 
-    // Mobile Menu Toggle
-    const menuIcon = document.querySelector('.menu-icon');
-    const header = document.querySelector('.app-header');
-    
-    menuIcon.addEventListener('click', () => {
-        header.classList.toggle('menu-open');
-    });
-}
+    e.stopPropagation(); 
 
-/* =========================================
-   3. RENDU HERO (Typewriter & Social)
-   ========================================= */
-function renderHero() {
-    // Typewriter Effect
-    const typeWriterElement = document.getElementById('typewriter-area');
-    const textToType = config.profile.typewriterText;
-    let charIndex = 0;
+    const menu = document.getElementById(id); 
 
-    function type() {
-        if (charIndex < textToType.length) {
-            typeWriterElement.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(type, 50 + Math.random() * 50); // Vitesse aléatoire pour réalisme
-        }
-    }
-    type();
+    const btn = e.currentTarget.querySelector('.comp-toggle');
 
-    // Bio & Social
-    document.getElementById('profile-bio').textContent = config.profile.bio;
-    document.getElementById('link-github').href = config.social.github;
-    document.getElementById('link-linkedin').href = config.social.linkedin;
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
 
-    // Tags Compétences Rapides
-    const skillsContainer = document.getElementById('skills-section');
-    config.skills.forEach(skill => {
-        const span = document.createElement('span');
-        span.className = 'skill-tag';
-        span.textContent = skill;
-        skillsContainer.appendChild(span);
-    });
-}
+    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
 
-/* =========================================
-   4. RENDU PROJETS (Grille + PDF)
-   ========================================= */
-function renderProjects() {
-    const grid = document.getElementById('project-grid');
-    
-    config.projects.forEach(project => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
+    if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
 
-        // Badge "New"
-        if (project.isNew) {
-            const badge = document.createElement('span');
-            badge.className = 'new-badge';
-            badge.textContent = 'NOUVEAU';
-            card.appendChild(badge);
-        }
+    else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
 
-        // Header de la carte (Cliquable)
-        const header = document.createElement('div');
-        header.className = 'card-header';
-        
-        const iconDiv = document.createElement('div');
-        iconDiv.className = 'icon';
-        iconDiv.textContent = project.icon;
+};
 
-        const metaDiv = document.createElement('div');
-        metaDiv.className = 'meta';
-        
-        const h4 = document.createElement('h4');
-        h4.textContent = project.title;
-        
-        const p = document.createElement('p');
-        p.textContent = project.description;
 
-        metaDiv.appendChild(h4);
-        metaDiv.appendChild(p);
-        header.appendChild(iconDiv);
-        header.appendChild(metaDiv);
+window.togglePDF = function(id, url) {
 
-        // Container PDF
-        const pdfContainer = document.createElement('div');
-        pdfContainer.className = 'pdf-container';
-        
-        // Logique Toggle PDF
-        header.addEventListener('click', () => {
-            const isVisible = pdfContainer.style.display === 'block';
-            
-            // Fermer tous les autres PDFs
-            document.querySelectorAll('.pdf-container').forEach(el => el.style.display = 'none');
-            
-            if (!isVisible) {
-                // Créer l'iframe seulement au clic (Performance)
-                if (!pdfContainer.hasChildNodes()) {
-                    const iframe = document.createElement('iframe');
-                    iframe.src = project.path;
-                    iframe.width = "100%";
-                    iframe.height = "100%";
-                    iframe.style.border = "none";
-                    pdfContainer.appendChild(iframe);
-                }
-                pdfContainer.style.display = 'block';
-            }
-        });
+    const c = document.getElementById(id);
 
-        card.appendChild(header);
-        card.appendChild(pdfContainer);
-        grid.appendChild(card);
-    });
-}
+    if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
 
-/* =========================================
-   5. RENDU PARCOURS (Timeline)
-   ========================================= */
-function renderTimeline() {
-    const list = document.getElementById('exp-list');
-    
-    config.experiences.forEach(exp => {
-        const li = document.createElement('li');
-        li.className = 'timeline-item';
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
 
-        const date = document.createElement('span');
-        date.className = 'timeline-date';
-        date.textContent = exp.date;
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
 
-        const title = document.createElement('h4');
-        title.className = 'timeline-title';
-        title.textContent = `${exp.role} @ ${exp.company}`;
+    c.style.display='block';
 
-        const desc = document.createElement('p');
-        desc.className = 'timeline-desc';
-        desc.textContent = exp.description;
+};
 
-        li.appendChild(date);
-        li.appendChild(title);
-        li.appendChild(desc);
-        list.appendChild(li);
-    });
-}
 
-/* =========================================
-   6. RENDU COMPÉTENCES (Dropdowns)
-   ========================================= */
-function renderSkills() {
-    const list = document.getElementById('comp-list'); // C'est une div grid maintenant
+window.toggleCertPDF = function(id, url) {
 
-    config.competences.forEach(comp => {
-        const container = document.createElement('div');
-        container.className = 'comp-card-container';
+    const viewer = document.getElementById(id);
 
-        // Header du menu déroulant
-        const header = document.createElement('div');
-        header.className = 'comp-header';
-        
-        const icon = document.createTextNode(comp.icon + " ");
-        const title = document.createElement('span');
-        title.textContent = comp.name;
-        
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'comp-toggle';
-        toggleBtn.innerHTML = '▼'; // Caractère simple, sûr.
+    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
 
-        header.appendChild(icon);
-        header.appendChild(title);
-        header.appendChild(toggleBtn);
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
 
-        // Liste des détails (Cachée par défaut via CSS/JS logic)
-        const ul = document.createElement('ul');
-        ul.className = 'comp-dropdown-menu';
-        ul.style.display = 'none';
+    viewer.style.display = 'block';
 
-        comp.details.forEach(detail => {
-            const li = document.createElement('li');
-            li.textContent = detail;
-            ul.appendChild(li);
-        });
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 
-        // Event Listener pour l'accordéon
-        header.addEventListener('click', () => {
-            const isOpen = ul.style.display === 'block';
-            ul.style.display = isOpen ? 'none' : 'block';
-            toggleBtn.classList.toggle('active', !isOpen);
-        });
+};
 
-        container.appendChild(header);
-        container.appendChild(ul);
-        list.appendChild(container);
-    });
-}
 
-/* =========================================
-   7. RENDU CERTIFICATIONS
-   ========================================= */
-function renderCertifications() {
-    const list = document.getElementById('cert-list');
+window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
 
-    config.certifications.forEach(cert => {
-        const cardContainer = document.createElement('div');
-        cardContainer.className = 'cert-card-container';
-        
-        // Ligne supérieure (Icone, Infos, Boutons)
-        const headerRow = document.createElement('div');
-        headerRow.className = 'cert-header-row';
-
-        const iconBox = document.createElement('div');
-        iconBox.className = 'cert-icon-box';
-        iconBox.textContent = '📜'; 
-
-        const infoDiv = document.createElement('div');
-        infoDiv.className = 'cert-info';
-        
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'cert-name';
-        nameSpan.textContent = cert.name;
-        
-        const issuerSpan = document.createElement('span');
-        issuerSpan.className = 'cert-issuer';
-        issuerSpan.textContent = cert.issuer;
-
-        infoDiv.appendChild(nameSpan);
-        infoDiv.appendChild(issuerSpan);
-
-        const actionsDiv = document.createElement('div');
-        actionsDiv.className = 'cert-actions';
-
-        // Bouton Lien externe
-        if (cert.url) {
-            const linkBtn = document.createElement('a');
-            linkBtn.href = cert.url;
-            linkBtn.target = '_blank';
-            linkBtn.rel = 'noopener noreferrer';
-            linkBtn.className = 'cert-btn link-btn';
-            linkBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>';
-            actionsDiv.appendChild(linkBtn);
-        }
-
-        // Bouton PDF
-        let pdfViewer = null;
-        if (cert.pdf) {
-            const pdfBtn = document.createElement('button');
-            pdfBtn.className = 'cert-btn pdf-btn';
-            pdfBtn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>';
-            
-            // Viewer Container
-            pdfViewer = document.createElement('div');
-            pdfViewer.className = 'cert-pdf-viewer'; // Cache par défaut via CSS
-
-            pdfBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Évite de déclencher d'autres clics
-                const isVisible = pdfViewer.style.display === 'block';
-                
-                // Reset autres viewers
-                document.querySelectorAll('.cert-pdf-viewer').forEach(el => el.style.display = 'none');
-
-                if (!isVisible) {
-                    if (!pdfViewer.hasChildNodes()) {
-                        const iframe = document.createElement('iframe');
-                        iframe.src = cert.pdf;
-                        iframe.width = "100%";
-                        iframe.height = "100%";
-                        iframe.style.border = "none";
-                        pdfViewer.appendChild(iframe);
-                    }
-                    pdfViewer.style.display = 'block';
-                }
-            });
-            actionsDiv.appendChild(pdfBtn);
-        }
-
-        headerRow.appendChild(iconBox);
-        headerRow.appendChild(infoDiv);
-        headerRow.appendChild(actionsDiv);
-
-        cardContainer.appendChild(headerRow);
-        if (pdfViewer) cardContainer.appendChild(pdfViewer);
-        
-        // Wrapper li pour la grille
-        const li = document.createElement('li');
-        li.appendChild(cardContainer);
-        list.appendChild(li);
-    });
-}
-
-/* =========================================
-   8. FOOTER & MODAL & SCROLL
-   ========================================= */
-function renderFooter() {
-    const year = new Date().getFullYear();
-    document.getElementById('footer-copy').textContent = `© ${year} ${config.profile.name}. Tous droits réservés.`;
-    document.getElementById('email-text').textContent = config.profile.email;
-}
-
-function initModal() {
-    const modal = document.getElementById('email-modal');
-    const trigger = document.getElementById('email-trigger');
-    const closeBtn = document.getElementById('close-modal-btn');
-
-    const openModal = (e) => {
-        e.preventDefault();
-        modal.style.display = 'flex';
-    };
-
-    const closeModal = () => {
-        modal.style.display = 'none';
-    };
-
-    trigger.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-
-    // Fermer si on clique en dehors
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-}
-
-function initScrollEffects() {
-    const header = document.querySelector('.app-header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled', 'menu-open');
-        }
-    });
-}
+window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
