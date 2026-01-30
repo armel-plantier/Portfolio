@@ -1,11 +1,11 @@
 /* --- VARIABLES & THEME --- */
 :root {
     /* DARK MODE (Défaut) */
-    --bg-color: #0f111a;       /* Fond très sombre (proche noir) */
-    --card-bg: #1a1d2d;        /* Fond des cartes */
-    --text-main: #e2e8f0;      /* Blanc cassé */
-    --text-muted: #94a3b8;     /* Gris bleuté */
-    --accent: #6366f1;         /* Indigo (Couleur primaire) */
+    --bg-color: #0f111a;       
+    --card-bg: #1a1d2d;        
+    --text-main: #e2e8f0;      
+    --text-muted: #94a3b8;     
+    --accent: #6366f1;         
     --accent-hover: #4f46e5;
     --border-color: #2d3748;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
@@ -42,7 +42,7 @@ ul { list-style: none; }
 .app-header {
     position: fixed;
     top: 0; width: 100%;
-    background: rgba(15, 17, 26, 0.8); /* Transparence */
+    background: rgba(15, 17, 26, 0.8); 
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid transparent;
@@ -145,7 +145,7 @@ main { max-width: 1000px; margin: 80px auto 40px; padding: 0 20px; }
 .comp-header, .cert-header-row {
     padding: 15px; display: flex; align-items: center; gap: 15px; cursor: pointer;
 }
-.cert-header-row { cursor: default; } /* Certifs header not clickable for dropdown but buttons are */
+.cert-header-row { cursor: default; }
 .cert-icon-box { font-size: 1.5rem; }
 .cert-info { flex-grow: 1; display: flex; flex-direction: column; }
 .cert-name { font-weight: bold; }
