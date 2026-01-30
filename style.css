@@ -420,3 +420,17 @@ body.light-mode .nav-capsule a {
 body.light-mode .nav-capsule a:hover {
     color: var(--primary);
 }
+
+/* MODIF : Barre de navigation scrollée en mode clair */
+body.light-mode .app-header.scrolled {
+    /* Fond gris très clair, presque blanc, avec transparence */
+    background: rgba(245, 247, 250, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+/* En mode mobile, fond uni quand le menu est ouvert */
+@media (max-width: 1200px) {
+    body.light-mode .app-header.scrolled.menu-open {
+        background: #f5f7fa !important;
+    }
+}
