@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 9. TYPEWRITER & EMAIL ---
+    // --- 9. TYPEWRITER & EMAIL (OBFUSCATION BASE64) ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; 
@@ -333,11 +333,22 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            // Protection basique contre le scraping
-            const user = config.profile.email.split("@")[0];
-            const domain = config.profile.email.split("@")[1];
-            emailSpan.textContent = `${user}@${domain}`;
-            emailModal.style.display = "flex";
+            
+            // SECURITE : Décodage Base64 à la volée
+            // Les robots qui lisent le code source ne voient pas l'email.
+            // L'email n'apparaît dans le DOM que si l'utilisateur clique.
+            try {
+                if(config.profile.emailEncoded) {
+                    const decoded = atob(config.profile.emailEncoded);
+                    emailSpan.textContent = decoded;
+                    emailModal.style.display = "flex";
+                } else {
+                    emailSpan.textContent = "Email non configuré";
+                }
+            } catch (err) {
+                console.error("Erreur de décodage email", err);
+                emailSpan.textContent = "Erreur d'affichage";
+            }
         });
 
         // Fermeture Modal
