@@ -5,11 +5,12 @@ const config = {
         { title: "Projets", link: "#projects" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifs" }
+        { title: "Certifs", link: "#certifications" }
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
     profile: {
+        // Favicon en Data URI (Optimisation perf & sécurité)
         favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
@@ -101,7 +102,6 @@ const config = {
     ],
 
     // --- 6. COMPÉTENCES DÉTAILLÉES ---
-    // Note: J'ai séparé l'icône du nom pour le nouveau design
     competences: [
         {
             icon: "🐧",
@@ -165,3 +165,10 @@ const config = {
         }
     ]
 };
+
+// SÉCURITÉ : Empêche la modification de la configuration au runtime (Tamper Proof)
+Object.freeze(config);
+Object.freeze(config.profile);
+Object.freeze(config.social);
+// Note: Pour geler profondément (deep freeze) les tableaux imbriqués, il faudrait une fonction récursive, 
+// mais cela suffit pour empêcher les modifications accidentelles de premier niveau.
