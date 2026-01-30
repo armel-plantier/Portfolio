@@ -1,5 +1,5 @@
 :root {
-    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT) --- */
+    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT - inchangé) --- */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
     --card: #151925;
     --text: #f1f5f9;
@@ -14,24 +14,24 @@
     --theme-btn-size: 42px;
 }
 
-/* --- MODIFICATION LIGHT MODE (Gris Moche) --- */
+/* --- MODIFICATION LIGHT MODE (Mode Clair PROPRE et BLANC) --- */
 body.light-mode {
-    /* FOND : Gris plat et terne */
-    --bg: #a0a0a0; 
+    /* FOND : Blanc très légèrement gris pour ne pas piquer les yeux */
+    --bg: #f3f4f6; 
     
-    /* Cartes : Gris clair sale */
-    --card: #d3d3d3; 
+    /* Cartes : BLANC PUR */
+    --card: #ffffff; 
     
-    /* Texte : Gris foncé pour le contraste */
-    --text: #333333;
+    /* Texte : Noir/Gris anthracite */
+    --text: #1f2937;
     
-    /* Texte secondaire : Gris encore plus foncé */
-    --muted: #555555;
+    /* Texte secondaire : Gris moyen */
+    --muted: #6b7280;
     
-    /* Bordures : Gris foncé */
-    --border: #808080;
+    /* Bordures : Gris très clair */
+    --border: #e5e7eb;
     
-    /* Badge vert plus sombre */
+    /* Badge vert ajusté */
     --badge-bg: #059669;
 }
 
@@ -91,6 +91,9 @@ a { text-decoration: none; color: inherit; }
     font-size: 1.3rem; line-height: 1.1; color: var(--text);
     text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
 }
+/* En mode clair, on enlève l'ombre du texte du nom */
+body.light-mode .id-name { text-shadow: none; }
+
 .status-wrapper { 
     display: flex; align-items: center; gap: 8px; 
     font-size: 0.9rem; color: var(--muted); margin-top: 4px;
@@ -115,7 +118,12 @@ a { text-decoration: none; color: inherit; }
     color: var(--text); cursor: pointer; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center; transition: 0.3s;
 }
-body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
+/* Bouton thème en mode clair : fond blanc semi-transparent */
+body.light-mode .theme-icon { 
+    background: rgba(255,255,255,0.8); 
+    border-color: rgba(0,0,0,0.1); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
 /* -- Navigation (Capsule) -- */
@@ -138,11 +146,11 @@ body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: r
     overflow: hidden; height: 50px; z-index: 1001;
 }
 
-/* CORRECTION BARRE LIGHT MODE : Transparente */
+/* MODE CLAIR : Capsule blanche propre */
 body.light-mode .nav-capsule { 
-    background: rgba(255, 255, 255, 0.3) !important;
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .nav-capsule ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; transition: opacity 0.3s; opacity: 1; }
@@ -155,11 +163,12 @@ body.light-mode .nav-capsule {
 }
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
 
-/* Liens en Light Mode : Gris foncé */
+/* Liens en Light Mode : Gris foncé propre */
 body.light-mode .nav-capsule a { 
-    color: #334155; 
+    color: #4b5563; 
     text-shadow: none;
 }
+body.light-mode .nav-capsule a:hover { color: var(--primary); }
 
 
 /* =========================================
@@ -175,7 +184,7 @@ body.light-mode .nav-capsule a {
     }
     
     body.light-mode .app-header.scrolled .nav-capsule {
-        background: rgba(255, 255, 255, 0.5) !important;
+        background: rgba(255, 255, 255, 0.8) !important;
         border-color: rgba(0,0,0,0.1);
     }
     
@@ -398,27 +407,27 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
 
-/* --- DESCRIPTION DES COMPETENCES (LE CORRECTIF EST ICI) --- */
+/* --- DESCRIPTION DES COMPETENCES --- */
 .comp-dropdown-menu { 
     padding: 15px 20px; 
-    background: rgba(0,0,0,0.1); /* Défaut (Mode Sombre) */
+    background: rgba(0,0,0,0.1); /* Mode sombre */
     border-top: 1px solid var(--border); 
     list-style: none; 
 }
 
-/* !!! CHANGEMENT : FOND BLANC PUR EN LIGHT MODE !!! */
+/* CORRECTIF LIGHT MODE : FOND BLANC PUR */
 body.light-mode .comp-dropdown-menu {
     background-color: #ffffff !important;
-    border-top: 1px solid #d1d5db;
-    color: #333333; /* Texte noir pour lire sur le blanc */
+    border-top: 1px solid #f3f4f6;
+    color: #333333;
 }
 
 .comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 
-/* Assure que le texte de la liste est bien foncé en light mode */
+/* Assure que le texte de la liste est lisible en light mode */
 body.light-mode .comp-dropdown-menu li {
-    color: #333333 !important;
+    color: #4b5563 !important;
 }
 
 .comp-toggle { 
@@ -453,18 +462,19 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 body.light-mode .project-card,
 body.light-mode .cert-card-container,
 body.light-mode .comp-card-container {
+    /* Ombre douce au lieu de bordure grise moche */
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    border-color: #808080;
+    border-color: #e5e7eb;
 }
 
 body.light-mode .skill-tag {
-    background: rgba(255, 255, 255, 0.6);
-    border-color: #808080;
-    color: #475569;
+    background: #ffffff;
+    border-color: #e5e7eb;
+    color: #4b5563;
 }
 
 body.light-mode .cert-icon-box {
-    background: rgba(99, 102, 241, 0.15);
+    background: rgba(99, 102, 241, 0.1);
     color: #4f46e5;
 }
 
