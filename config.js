@@ -5,7 +5,7 @@ const config = {
         { title: "Projets", link: "#projects" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifications" }
+        { title: "Certifs", link: "#certifs" }
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
@@ -17,7 +17,10 @@ const config = {
         typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
-        email: "armel.plantier@protonmail.com"
+        
+        // SECURITE : Email encodé en Base64 pour éviter le scraping sur GitHub
+        // Décodé à la volée par le JS lors du clic utilisateur
+        emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=" 
     },
 
     social: {
@@ -170,5 +173,3 @@ const config = {
 Object.freeze(config);
 Object.freeze(config.profile);
 Object.freeze(config.social);
-// Note: Pour geler profondément (deep freeze) les tableaux imbriqués, il faudrait une fonction récursive, 
-// mais cela suffit pour empêcher les modifications accidentelles de premier niveau.
