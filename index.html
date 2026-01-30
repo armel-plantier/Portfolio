@@ -1,184 +1,102 @@
- <!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Portfolio | SysAdmin & Réseau</title>
-
     
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; object-src 'self';">
 
     <link id="favicon-link" rel="icon" href="">
-
-
     <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
 
-
     <header class="app-header">
-
         <div class="header-left">
-
             <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
-
             <div class="identity-info">
-
                 <span id="profile-name" class="id-name"></span>
-
                 <div class="status-wrapper">
-
                     <span class="status-dot"></span>
-
                     <span id="profile-status" class="id-status"></span>
-
                 </div>
-
             </div>
-
         </div>
-
 
         <nav class="nav-capsule">
-
             <span class="menu-icon">☰</span>
-
             <ul id="nav-list"></ul>
-
         </nav>
 
-
         <div class="header-right">
-
-            <button id="theme-toggle" class="theme-icon">☀️</button>
-
+            <button id="theme-toggle" class="theme-icon" aria-label="Changer le thème">☀️</button>
         </div>
-
     </header>
 
-
     <div class="container">
-
         
-
         <section class="hero-section">
-
             <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
-
             <p id="profile-bio" class="bio-text"></p>
 
-
             <div class="social-links">
-
-                <a id="link-github" href="#" target="_blank" class="social-btn">
-
+                <a id="link-github" href="#" target="_blank" rel="noopener noreferrer" class="social-btn">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-
                     GitHub
-
                 </a>
-
                 
-
-                <a id="link-linkedin" href="#" target="_blank" class="social-btn">
-
+                <a id="link-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="social-btn">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-
                     LinkedIn
-
                 </a>
-
                 
-
-                <a id="email-trigger" href="#" class="social-btn email">
-
+                <button id="email-trigger" class="social-btn email">
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-
                     Contact
-
-                </a>
-
+                </button>
             </div>
-
             
-
             <div id="skills-section" class="skills-section"></div>
-
         </section>
 
-
-        <section id="projets" class="section-wrapper">
-
+        <section id="projects" class="section-wrapper">
             <h3>Projets & Labs</h3>
-
             <div id="project-grid" class="grid"></div>
-
         </section>
-
 
         <section id="parcours" class="section-wrapper">
-
             <h3>Parcours</h3>
-
             <ul id="exp-list" class="timeline-list"></ul>
-
         </section>
-
 
         <section id="competences" class="section-wrapper">
-
             <h3>Compétences</h3>
+            <div id="comp-list" class="cert-list"></div> </section>
 
-            <ul id="comp-list" class="cert-list"></ul>
-
-        </section>
-
-
-        <section id="certifications" class="section-wrapper">
-
+        <section id="certifs" class="section-wrapper">
             <h3>Certifications</h3>
-
             <ul id="cert-list" class="cert-list"></ul>
-
         </section>
-
 
         <footer><p id="footer-copy"></p></footer>
-
     </div>
-
 
     <div id="email-modal" class="modal-overlay">
-
         <div class="modal-content">
-
-            <div class="modal-header"><span>Contact</span><button class="close-btn" onclick="closeModal()">×</button></div>
-
-            <div class="modal-body">
-
-                <p>Mon adresse email :</p>
-
-                <div class="email-box"><span id="email-text"></span></div>
-
+            <div class="modal-header">
+                <span>Contact</span>
+                <button id="close-modal-btn" class="close-btn" aria-label="Fermer">×</button>
             </div>
-
+            <div class="modal-body">
+                <p>Mon adresse email :</p>
+                <div class="email-box"><span id="email-text"></span></div>
+            </div>
         </div>
-
     </div>
 
-
     <script src="config.js"></script>
-
     <script src="app.js"></script>
-
 </body>
-
-</html> 
+</html>
