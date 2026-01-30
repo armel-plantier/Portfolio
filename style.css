@@ -14,12 +14,25 @@
     --theme-btn-size: 42px;
 }
 
+/* --- MODIFICATION LIGHT MODE (Adouci) --- */
 body.light-mode {
-    --bg: linear-gradient(135deg, #f8fafc 20%, #eef2ff 100%);
+    /* Fond : Gris très léger bleuté au lieu de blanc pur pour moins agresser l'oeil */
+    --bg: linear-gradient(135deg, #f0f4f8 0%, #dbeafe 100%);
+    
+    /* Cartes : Blanc pur pour ressortir sur le fond gris */
     --card: #ffffff;
-    --text: #0f172a;
+    
+    /* Texte : Gris foncé (Ardoise) plus doux que le noir pur */
+    --text: #1e293b;
+    
+    /* Texte secondaire */
     --muted: #64748b;
-    --border: #e2e8f0;
+    
+    /* Bordures : Un peu plus visibles pour le contraste */
+    --border: #cbd5e1;
+    
+    /* Badge vert plus sombre pour être lisible sur du blanc */
+    --badge-bg: #059669;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -367,3 +380,43 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
 .email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
+
+/* --- AJUSTEMENTS LIGHT MODE SPÉCIFIQUES --- */
+/* Ajoutés pour corriger le "trop blanc" */
+
+body.light-mode .project-card,
+body.light-mode .cert-card-container,
+body.light-mode .comp-card-container {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-color: #e2e8f0;
+}
+
+body.light-mode .skill-tag {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+body.light-mode .cert-icon-box {
+    background: rgba(99, 102, 241, 0.15);
+    color: #4f46e5;
+}
+
+body.light-mode .hero-title {
+    text-shadow: none; 
+}
+
+body.light-mode .nav-capsule {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .nav-capsule a {
+    color: #334155;
+    text-shadow: none;
+}
+
+body.light-mode .nav-capsule a:hover {
+    color: var(--primary);
+}
