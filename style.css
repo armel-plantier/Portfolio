@@ -14,9 +14,9 @@
     --theme-btn-size: 42px;
 }
 
-/* --- MODIFICATION LIGHT MODE (Mode Clair PROPRE et BLANC) --- */
+/* --- LIGHT MODE (PROPRE & LISIBLE) --- */
 body.light-mode {
-    /* FOND : Blanc très légèrement gris pour ne pas piquer les yeux */
+    /* FOND : Blanc cassé très clair */
     --bg: #f3f4f6; 
     
     /* Cartes : BLANC PUR */
@@ -415,7 +415,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     list-style: none; 
 }
 
-/* CORRECTIF LIGHT MODE : FOND BLANC PUR */
+/* CORRECTIF LIGHT MODE : FOND BLANC PUR + TEXTE NOIR */
 body.light-mode .comp-dropdown-menu {
     background-color: #ffffff !important;
     border-top: 1px solid #f3f4f6;
@@ -430,6 +430,7 @@ body.light-mode .comp-dropdown-menu li {
     color: #4b5563 !important;
 }
 
+/* BOUTON TOGGLE (Flèche) */
 .comp-toggle { 
     margin-left: auto; 
     background: transparent; border: 1px solid var(--border); color: var(--muted); 
@@ -437,6 +438,25 @@ body.light-mode .comp-dropdown-menu li {
     display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0;
 }
 .comp-toggle.active { background: var(--primary); color: white; border-color: var(--primary); transform: rotate(180deg); }
+
+/* --- CORRECTIF BOUTON TOGGLE LIGHT MODE --- */
+/* Par défaut en light mode : bordure grise visible */
+body.light-mode .comp-toggle {
+    border-color: #9ca3af; 
+    color: #374151;
+}
+
+/* Au survol de la ligne en light mode : fond légèrement gris pour voir qu'on peut cliquer */
+body.light-mode .comp-header:hover {
+    background: #f9fafb;
+}
+
+/* Bouton actif (ouvert) en light mode : fond VIOLET OBLIGATOIRE pour voir la flèche blanche */
+body.light-mode .comp-toggle.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #ffffff !important;
+}
 
 
 /* Load More & Footer */
