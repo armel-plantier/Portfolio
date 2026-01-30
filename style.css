@@ -1,5 +1,5 @@
 :root {
-    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT - inchangé) --- */
+    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT) --- */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
     --card: #151925;
     --text: #f1f5f9;
@@ -430,32 +430,36 @@ body.light-mode .comp-dropdown-menu li {
     color: #4b5563 !important;
 }
 
-/* BOUTON TOGGLE (Flèche) */
+/* --- BOUTON TOGGLE (Flèche) --- */
 .comp-toggle { 
     margin-left: auto; 
     background: transparent; border: 1px solid var(--border); color: var(--muted); 
     width: 30px; height: 30px; border-radius: 50%; 
     display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0;
 }
-.comp-toggle.active { background: var(--primary); color: white; border-color: var(--primary); transform: rotate(180deg); }
 
-/* --- CORRECTIF BOUTON TOGGLE LIGHT MODE --- */
-/* Par défaut en light mode : bordure grise visible */
+/* ETAT ACTIVE (ROTATION) */
+.comp-toggle.active { transform: rotate(180deg); }
+
+/* --- ETAT SURVOL (HOVER) + ACTIVE POUR LES 2 MODES --- */
+/* Cela force le bouton à devenir violet avec flèche blanche, sur les deux thèmes */
+.comp-toggle:hover, 
+.comp-toggle.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+/* --- AJUSTEMENTS SPECIFIQUES LIGHT MODE (ETAT REPOS SEULEMENT) --- */
+/* Par défaut en light mode (quand on ne touche pas), bordure grise visible */
 body.light-mode .comp-toggle {
     border-color: #9ca3af; 
     color: #374151;
 }
 
-/* Au survol de la ligne en light mode : fond légèrement gris pour voir qu'on peut cliquer */
+/* Petit fond gris au survol de la ligne entière en light mode */
 body.light-mode .comp-header:hover {
     background: #f9fafb;
-}
-
-/* Bouton actif (ouvert) en light mode : fond VIOLET OBLIGATOIRE pour voir la flèche blanche */
-body.light-mode .comp-toggle.active {
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
-    color: #ffffff !important;
 }
 
 
