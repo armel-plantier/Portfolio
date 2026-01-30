@@ -1,59 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
+    // Vérification de sécurité de la config
+    if (typeof config === 'undefined') { console.error("ERREUR CRITIQUE : Fichier de configuration introuvable."); return; }
+
+    // --- HELPER : Création sécurisée d'éléments (Remplace innerHTML) ---
+    const createElement = (tag, className, text = null) => {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        if (text) el.textContent = text;
+        return el;
+    };
+
+    // --- HELPER : Validation des URLs (Anti-Javascript Injection) ---
+    const safeHref = (url) => {
+        if (!url) return "#";
+        if (url.trim().toLowerCase().startsWith("javascript:")) return "#";
+        return url;
+    };
 
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
-    if (localStorage.getItem("theme") === "light") {
+    // Application sécurisée du thème stocké
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "light") {
         body.classList.add("light-mode");
-        if(themeBtn) themeBtn.innerText = "🌙"; 
+        if(themeBtn) themeBtn.textContent = "🌙"; 
     }
     
     if (themeBtn) {
         themeBtn.addEventListener("click", () => {
             body.classList.toggle("light-mode");
-            if (body.classList.contains("light-mode")) {
-                themeBtn.innerText = "🌙"; 
-                localStorage.setItem("theme", "light");
-            } else {
-                themeBtn.innerText = "☀️"; 
-                localStorage.setItem("theme", "dark");
-            }
+            const isLight = body.classList.contains("light-mode");
+            themeBtn.textContent = isLight ? "🌙" : "☀️"; 
+            localStorage.setItem("theme", isLight ? "light" : "dark");
         });
     }
 
     // --- 2. PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
+    
     const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
+    if(avatarEl) avatarEl.src = safeHref(config.profile.avatar); // Sécurisation source image
     
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) {
-        faviconEl.href = config.profile.favicon;
+        // Pour les favicons data-uri, on laisse passer, sinon on nettoie
+        faviconEl.href = config.profile.favicon.startsWith("data:") ? config.profile.favicon : safeHref(config.profile.favicon);
     }
 
-    document.getElementById("profile-name").innerText = config.profile.name;
-    document.getElementById("profile-status").innerText = config.profile.status;
-    document.getElementById("profile-bio").innerText = config.profile.bio;
+    // Utilisation de textContent pour éviter l'injection HTML
+    const setSafeText = (id, text) => {
+        const el = document.getElementById(id);
+        if(el) el.textContent = text;
+    };
+
+    setSafeText("profile-name", config.profile.name);
+    setSafeText("profile-status", config.profile.status);
+    setSafeText("profile-bio", config.profile.bio);
     
-    const gh = document.getElementById("link-github");
-    if(gh) gh.href = config.social.github;
+    const setupSocialLink = (id, url) => {
+        const el = document.getElementById(id);
+        if(el) {
+            el.href = safeHref(url);
+            el.rel = "noopener noreferrer"; // Sécurité Tabnabbing
+        }
+    };
+    setupSocialLink("link-github", config.social.github);
+    setupSocialLink("link-linkedin", config.social.linkedin);
     
-    const lk = document.getElementById("link-linkedin");
-    if(lk) lk.href = config.social.linkedin;
-    
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
+    const footerCopy = document.getElementById("footer-copy");
+    if(footerCopy) footerCopy.textContent = `© ${new Date().getFullYear()} ${config.profile.name}.`;
 
     // --- 3. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.innerText = item.title;
-            a.href = item.link; 
+            const li = createElement("li");
+            const a = createElement("a", null, item.title);
+            a.href = safeHref(item.link);
             
             a.addEventListener('click', () => {
                  const header = document.querySelector('.app-header');
@@ -69,88 +95,150 @@ document.addEventListener("DOMContentLoaded", () => {
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => {
-            const span = document.createElement("span"); 
-            span.className = "skill-tag"; 
-            span.innerText = s;
-            skillsContainer.appendChild(span);
+            skillsContainer.appendChild(createElement("span", "skill-tag", s));
         });
     }
 
-    // --- 5. PROJETS (LIMIT 4) ---
+    // --- 5. PROJETS (CONSTRUCTION DOM SÉCURISÉE) ---
     const grid = document.getElementById("project-grid");
+    // Calcul sécurisé du chemin de base
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 4; 
 
+    // Helper Iframe PDF sécurisé
+    const createPdfViewer = (url) => {
+        const iframe = createElement("iframe");
+        iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+        iframe.style.width = "100%";
+        iframe.style.height = "850px";
+        iframe.style.border = "none";
+        // Sandbox pour limiter les actions de l'iframe (sécurité accrue)
+        iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+        return iframe;
+    };
+
     if (grid && config.projects) {
         config.projects.forEach((proj, index) => {
-            const vid = `viewer_${index}`;
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            
+            const div = createElement("div", "project-card");
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
             
-            const fullPdfUrl = baseUrl + proj.path;
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+            // Badge Nouveau
+            if(proj.isNew) {
+                div.appendChild(createElement("span", "new-badge", "Nouveau"));
+            }
 
-            div.innerHTML = `
-                ${badgeHTML}
-                <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
-                    <div class="icon">${proj.icon}</div>
-                    <div class="meta">
-                        <h4>${proj.title}</h4>
-                        <p>${proj.description}</p>
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
+            // Header Card
+            const header = createElement("div", "card-header");
+            const iconDiv = createElement("div", "icon", proj.icon);
+            
+            const metaDiv = createElement("div", "meta");
+            metaDiv.appendChild(createElement("h4", null, proj.title));
+            metaDiv.appendChild(createElement("p", null, proj.description));
+
+            header.appendChild(iconDiv);
+            header.appendChild(metaDiv);
+
+            // Container PDF
+            const pdfContainer = createElement("div", "pdf-container");
+            pdfContainer.style.display = "none";
+
+            // Event Listener (Fermeture de Scope)
+            header.addEventListener("click", () => {
+                const isOpen = pdfContainer.style.display === 'block';
+                
+                // Reset tous les autres
+                document.querySelectorAll('.pdf-container').forEach(el => {
+                    el.style.display = 'none';
+                    el.innerHTML = ''; // Nettoyage mémoire
+                });
+
+                if (!isOpen) {
+                    const fullPdfUrl = baseUrl + proj.path;
+                    pdfContainer.appendChild(createPdfViewer(fullPdfUrl));
+                    pdfContainer.style.display = 'block';
+                }
+            });
+
+            div.appendChild(header);
+            div.appendChild(pdfContainer);
             grid.appendChild(div);
         });
         
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- 6. PARCOURS (LIMIT 5) ---
+    // --- 6. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     
     if(expList && config.experiences) {
         config.experiences.forEach((exp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "timeline-item";
+            const li = createElement("li", "timeline-item");
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
             
-            li.innerHTML = `
-                <span class="timeline-date">${exp.date}</span>
-                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
-                <p class="timeline-desc">${exp.description}</p>
-            `;
+            li.appendChild(createElement("span", "timeline-date", exp.date));
+            
+            const h4 = createElement("h4", "timeline-title");
+            // Construction fine pour éviter innerHTML même ici
+            h4.textContent = exp.role + " ";
+            const spanCompany = createElement("span", null, `@ ${exp.company}`);
+            spanCompany.style.fontWeight = "400";
+            spanCompany.style.opacity = "0.8";
+            h4.appendChild(spanCompany);
+            
+            li.appendChild(h4);
+            li.appendChild(createElement("p", "timeline-desc", exp.description));
+            
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. COMPETENCES (LIMIT 5) - MIS A JOUR ---
+    // --- 7. COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container";
+            const li = createElement("li", "comp-card-container");
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             
-            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
+            // Header
+            const header = createElement("div", "comp-header");
+            header.appendChild(createElement("div", "cert-icon-box", comp.icon));
+            header.appendChild(createElement("span", "cert-name", comp.name));
+            const arrowBtn = createElement("button", "cert-btn comp-toggle", "▼");
+            header.appendChild(arrowBtn);
+
+            // Dropdown List
+            const ul = createElement("ul", "comp-dropdown-menu");
+            ul.style.display = "none";
             
-            // On utilise cert-icon-box pour le même style que les certifs
-            li.innerHTML = `
-                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
-                    <div class="cert-icon-box">${comp.icon}</div>
-                    <span class="cert-name">${comp.name}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
-                </div>
-                <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
-            `;
+            comp.details.forEach(detail => {
+                const itemLi = createElement("li", null, detail);
+                // On ajoute manuellement la puce ou style spécifique si besoin
+                // Mais CSS ::before gère déjà les puces colorées
+                ul.appendChild(itemLi);
+            });
+
+            // Logic Toggle
+            header.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const isOpen = ul.style.display === 'block';
+
+                // Reset
+                document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+
+                if(!isOpen) {
+                    ul.style.display = 'block';
+                    arrowBtn.classList.add('active');
+                }
+            });
+
+            li.appendChild(header);
+            li.appendChild(ul);
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -163,43 +251,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li");
-            li.className = "cert-card-container";
-            
+            const li = createElement("li", "cert-card-container");
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
-            const issuer = cert.issuer ? cert.issuer : "Certification"; 
-            const viewerId = `cert_view_${index}`;
-            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
-            let buttonsHtml = '';
+            const row = createElement("div", "cert-header-row");
+            
+            // Icon & Info
+            row.appendChild(createElement("div", "cert-icon-box", "🏆"));
+            const info = createElement("div", "cert-info");
+            info.appendChild(createElement("span", "cert-name", cert.name));
+            info.appendChild(createElement("span", "cert-issuer", cert.issuer || "Certification"));
+            row.appendChild(info);
+
+            // Actions
+            const actions = createElement("div", "cert-actions");
+            
             if (cert.url) {
-                buttonsHtml += `
-                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">
-                        <i class="fa-solid fa-link"></i> 🔗
-                    </a>`;
+                const linkBtn = createElement("a", "cert-btn link-btn", "🔗");
+                linkBtn.href = safeHref(cert.url);
+                linkBtn.target = "_blank";
+                linkBtn.rel = "noopener noreferrer"; // Sécurité
+                linkBtn.title = "Voir le site officiel";
+                actions.appendChild(linkBtn);
             }
+
+            // Viewer PDF Container
+            const pdfViewer = createElement("div", "cert-pdf-viewer");
+            pdfViewer.style.display = "none";
 
             if (cert.pdf) {
-                buttonsHtml += `
-                    <button onclick="toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
-                        <i class="fa-solid fa-file-pdf"></i> 📄
-                    </button>`;
+                const pdfBtn = createElement("button", "cert-btn pdf-btn", "📄");
+                pdfBtn.title = "Voir le diplôme";
+                pdfBtn.addEventListener("click", () => {
+                    const isOpen = pdfViewer.style.display === 'block';
+                    
+                    document.querySelectorAll('.cert-pdf-viewer').forEach(el => {
+                        el.style.display = 'none';
+                        el.innerHTML = '';
+                    });
+
+                    if(!isOpen) {
+                        const fullPdfUrl = certBaseUrl + cert.pdf;
+                        // Réutilisation de la fonction iframe sécurisée, style height ajusté
+                        const iframe = createPdfViewer(fullPdfUrl);
+                        iframe.style.height = "100%";
+                        pdfViewer.appendChild(iframe);
+                        pdfViewer.style.display = 'block';
+                    }
+                });
+                actions.appendChild(pdfBtn);
             }
 
-            li.innerHTML = `
-                <div class="cert-header-row">
-                    <div class="cert-icon-box">🏆</div>
-                    <div class="cert-info">
-                        <span class="cert-name">${cert.name}</span>
-                        <span class="cert-issuer">${issuer}</span>
-                    </div>
-                    <div class="cert-actions">
-                        ${buttonsHtml}
-                    </div>
-                </div>
-                <div id="${viewerId}" class="cert-pdf-viewer"></div>
-            `;
+            row.appendChild(actions);
+            li.appendChild(row);
+            li.appendChild(pdfViewer);
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
@@ -208,21 +313,43 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 9. TYPEWRITER & EMAIL ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
-        function type() { if(i<txt.length) { textEl.innerHTML += txt.charAt(i); i++; setTimeout(type, 50); } }
+        const txt = config.profile.typewriterText; 
+        textEl.textContent = ""; 
+        let i=0;
+        function type() { 
+            if(i < txt.length) { 
+                textEl.textContent += txt.charAt(i); // Safe text addition
+                i++; 
+                setTimeout(type, 50); 
+            } 
+        }
         setTimeout(type, 500);
     }
 
     const emailTrigger = document.getElementById("email-trigger");
-    if(emailTrigger) {
+    const emailModal = document.getElementById("email-modal");
+    
+    if(emailTrigger && emailModal) {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "email@exemple.com";
-            document.getElementById("email-modal").style.display = "flex";
+            // Protection basique contre le scraping
+            const user = config.profile.email.split("@")[0];
+            const domain = config.profile.email.split("@")[1];
+            emailSpan.textContent = `${user}@${domain}`;
+            emailModal.style.display = "flex";
+        });
+
+        // Fermeture Modal
+        const closeBtn = emailModal.querySelector('.close-btn');
+        if(closeBtn) closeBtn.addEventListener('click', () => emailModal.style.display = "none");
+        
+        window.addEventListener('click', (e) => {
+            if(e.target === emailModal) emailModal.style.display = "none";
         });
     }
 
+    // Click Outside pour fermer les compétences
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
@@ -242,7 +369,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (menuIcon) {
-            menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); });
+            menuIcon.addEventListener('click', (e) => { 
+                e.stopPropagation(); 
+                header.classList.toggle('menu-open'); 
+            });
         }
 
         document.addEventListener('click', (e) => {
@@ -251,53 +381,42 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
 
-// --- HELPER FUNCTIONS ---
-function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div"); div.className = "load-more-container"; 
-    const btn = document.createElement("button"); btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    let expanded = false;
-    btn.onclick = () => {
-        expanded = !expanded;
-        const children = container.children;
-        for(let i=0; i<children.length; i++) {
-            if(i >= limit) {
-                if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity=0; setTimeout(()=>children[i].style.opacity=1, 50); } 
-                else { children[i].classList.add("hidden-item"); children[i].style.opacity=0; }
+    // --- LOAD MORE FUNCTION (Interne au scope) ---
+    function createToggleBtn(container, limit, txtMore) {
+        const div = createElement("div", "load-more-container");
+        const btn = createElement("button", "load-more-btn");
+        
+        // Gestion sécurisée du contenu du bouton (Texte + flèche)
+        const updateBtnText = (expanded) => {
+            btn.textContent = ""; // Clear
+            const arrow = createElement("span", null, expanded ? "↑" : "↓");
+            btn.appendChild(arrow);
+            btn.appendChild(document.createTextNode(expanded ? " Masquer" : ` ${txtMore}`));
+        };
+        
+        updateBtnText(false);
+
+        let expanded = false;
+        btn.onclick = () => {
+            expanded = !expanded;
+            const children = container.children;
+            for(let i=0; i<children.length; i++) {
+                if(i >= limit) {
+                    if(expanded) { 
+                        children[i].classList.remove("hidden-item"); 
+                        children[i].style.opacity = 0; 
+                        setTimeout(() => children[i].style.opacity = 1, 50); 
+                    } 
+                    else { 
+                        children[i].classList.add("hidden-item"); 
+                        children[i].style.opacity = 0; 
+                    }
+                }
             }
-        }
-        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
-    };
-    div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
-}
-
-window.toggleComp = function(e, id) {
-    e.stopPropagation(); 
-    const menu = document.getElementById(id); 
-    const btn = e.currentTarget.querySelector('.comp-toggle');
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
-    if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
-    else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
-};
-
-window.togglePDF = function(id, url) {
-    const c = document.getElementById(id);
-    if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
-    c.style.display='block';
-};
-
-window.toggleCertPDF = function(id, url) {
-    const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-};
-
-window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
-window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
+            updateBtnText(expanded);
+        };
+        div.appendChild(btn); 
+        container.parentNode.insertBefore(div, container.nextSibling);
+    }
+});
