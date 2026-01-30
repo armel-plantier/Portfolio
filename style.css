@@ -1,5 +1,5 @@
 :root {
-    /* --- COULEURS & THEME --- */
+    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT) --- */
     --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
     --card: #151925;
     --text: #f1f5f9;
@@ -14,24 +14,24 @@
     --theme-btn-size: 42px;
 }
 
-/* --- MODIFICATION LIGHT MODE (Adouci) --- */
+/* --- MODIFICATION LIGHT MODE (Fond Gris & Barre Transparente) --- */
 body.light-mode {
-    /* Fond : Gris très léger bleuté au lieu de blanc pur pour moins agresser l'oeil */
-    --bg: linear-gradient(135deg, #f0f4f8 0%, #dbeafe 100%);
+    /* FOND : On passe sur un Gris Perle/Bleuté bien visible (fini le blanc aveuglant) */
+    --bg: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
     
-    /* Cartes : Blanc pur pour ressortir sur le fond gris */
+    /* Cartes : Restent blanches pour bien ressortir sur le fond gris */
     --card: #ffffff;
     
-    /* Texte : Gris foncé (Ardoise) plus doux que le noir pur */
+    /* Texte : Gris ardoise foncé */
     --text: #1e293b;
     
     /* Texte secondaire */
     --muted: #64748b;
     
-    /* Bordures : Un peu plus visibles pour le contraste */
+    /* Bordures : Gris moyen */
     --border: #cbd5e1;
     
-    /* Badge vert plus sombre pour être lisible sur du blanc */
+    /* Badge vert plus sombre */
     --badge-bg: #059669;
 }
 
@@ -118,29 +118,49 @@ a { text-decoration: none; color: inherit; }
 body.light-mode .theme-icon { background: rgba(255,255,255,0.4); border-color: rgba(0,0,0,0.1); }
 .theme-icon:hover { background: var(--card); border-color: var(--primary); }
 
-/* -- Navigation -- */
+/* -- Navigation (La fameuse capsule) -- */
 .nav-capsule {
     position: fixed; 
     top: calc(var(--header-h) / 2); 
     left: 50%; right: auto;
     transform: translate(-50%, -50%);
+    
+    /* Mode sombre par défaut */
     background: rgba(20, 20, 30, 0.6); 
     backdrop-filter: blur(50px) saturate(180%);
     -webkit-backdrop-filter: blur(50px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    
     padding: 10px 30px; border-radius: 50px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; height: 50px; z-index: 1001;
 }
-body.light-mode .nav-capsule { background: rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.6); }
+
+/* CORRECTION BARRE LIGHT MODE : Transparente et non noire */
+body.light-mode .nav-capsule { 
+    /* Fond presque transparent, juste un voile blanc */
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
 
 .nav-capsule ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; transition: opacity 0.3s; opacity: 1; }
 .menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
-.nav-capsule a { font-size: 0.9rem; font-weight: 500; color: #e2e8f0; transition: 0.2s ease; white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+
+.nav-capsule a { 
+    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
+    transition: 0.2s ease; white-space: nowrap; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+}
 .nav-capsule a:hover { color: var(--primary); text-shadow: none; }
-body.light-mode .nav-capsule a { color: #1e293b; }
+
+/* Liens en Light Mode : Gris foncé sans ombre portée noire */
+body.light-mode .nav-capsule a { 
+    color: #334155; 
+    text-shadow: none;
+}
 
 
 /* =========================================
@@ -154,6 +174,13 @@ body.light-mode .nav-capsule a { color: #1e293b; }
         width: var(--theme-btn-size); height: var(--theme-btn-size);
         padding: 0; border-radius: 50%; background: rgba(20, 20, 30, 0.8);
     }
+    
+    /* Correction du rond qui devient noir au scroll en light mode */
+    body.light-mode .app-header.scrolled .nav-capsule {
+        background: rgba(255, 255, 255, 0.5) !important;
+        border-color: rgba(0,0,0,0.1);
+    }
+    
     .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
     .app-header.scrolled .nav-capsule .menu-icon { display: block; }
 
@@ -174,22 +201,40 @@ body.light-mode .nav-capsule a { color: #1e293b; }
     .nav-capsule {
         position: relative !important; top: 0 !important; left: 0 !important; transform: none !important;
         width: 100%; max-width: 500px; margin: 0 auto;
-        background: var(--card); border-radius: 12px;
+        /* En mobile (non scrollé), on utilise la variable card ou fond par défaut */
+        background: var(--card); 
+        border-radius: 12px;
         padding: 12px 10px; height: auto;
         display: flex; justify-content: center; overflow-x: auto; 
     }
+    
+    /* En light mode mobile, s'assurer que le fond n'est pas noir */
+    body.light-mode .nav-capsule {
+        background: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
     .nav-capsule ul { display: flex !important; opacity: 1 !important; gap: 15px; }
     .nav-capsule .menu-icon { display: none !important; }
     .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
 
+    /* Header Mobile SCROLLÉ */
     .app-header.scrolled {
         position: fixed !important; top: 0; left: 0; width: 100%; height: 70px !important;
         flex-direction: row; justify-content: flex-end; align-items: center;
         padding: 0 15px; gap: 0;
+        /* Mode sombre par défaut */
         background: rgba(15, 20, 30, 0.85) !important;
         backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
         border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 9999;
     }
+    
+    /* Correction Mobile Light Mode Scrollé : Fond clair ! */
+    body.light-mode .app-header.scrolled {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
     .app-header.scrolled .header-left {
         position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) !important;
         width: auto; margin: 0; opacity: 1 !important; pointer-events: auto; z-index: 1; 
@@ -204,6 +249,13 @@ body.light-mode .nav-capsule a { color: #1e293b; }
         position: static !important; margin-right: 10px; transform: none !important;
         display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer;
     }
+    
+    /* Bouton menu mobile light mode scrollé */
+    body.light-mode .app-header.scrolled .nav-capsule {
+        background: rgba(0,0,0,0.05) !important;
+        color: var(--text);
+    }
+    
     .app-header.scrolled .nav-capsule ul { display: none !important; }
     .app-header.scrolled .nav-capsule .menu-icon { display: block !important; font-size: 1.1rem; }
     .app-header.scrolled .header-right { position: static; transform: none; top: auto; right: auto; margin: 0; z-index: 10; }
@@ -215,6 +267,14 @@ body.light-mode .nav-capsule a { color: #1e293b; }
         padding: 0 25px !important; margin: 0 !important;
         background: rgba(20, 20, 30, 0.95) !important; z-index: 2000; cursor: default;
     }
+    
+    /* Menu ouvert en light mode */
+    body.light-mode .app-header.scrolled.menu-open .nav-capsule {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
     .app-header.scrolled.menu-open .nav-capsule ul { display: flex !important; gap: 15px; }
     .app-header.scrolled.menu-open .nav-capsule .menu-icon { display: none !important; }
     .app-header.scrolled.menu-open .header-right { margin-left: auto; }
@@ -382,7 +442,6 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
 
 /* --- AJUSTEMENTS LIGHT MODE SPÉCIFIQUES --- */
-/* Ajoutés pour corriger le "trop blanc" */
 
 body.light-mode .project-card,
 body.light-mode .cert-card-container,
@@ -404,33 +463,4 @@ body.light-mode .cert-icon-box {
 
 body.light-mode .hero-title {
     text-shadow: none; 
-}
-
-body.light-mode .nav-capsule {
-    background: rgba(255, 255, 255, 0.85);
-    border-color: #e2e8f0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-body.light-mode .nav-capsule a {
-    color: #334155;
-    text-shadow: none;
-}
-
-body.light-mode .nav-capsule a:hover {
-    color: var(--primary);
-}
-
-/* MODIF : Barre de navigation scrollée en mode clair */
-body.light-mode .app-header.scrolled {
-    /* Fond gris très clair, presque blanc, avec transparence */
-    background: rgba(245, 247, 250, 0.95) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
-/* En mode mobile, fond uni quand le menu est ouvert */
-@media (max-width: 1200px) {
-    body.light-mode .app-header.scrolled.menu-open {
-        background: #f5f7fa !important;
-    }
 }
