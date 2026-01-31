@@ -49,25 +49,25 @@ const config = {
             isNew: true
         },
         {
-            title: "Audit Sécurité Wi-Fi",
-            description: "Test d'intrusion WPA3 et analyse de trames.",
-            path: "audit_wifi.pdf",        
+            title: "Mise en place d’un serveur de journalisation (Graylog)",
+            description: "Description",
+            path: "graylog.pdf",        
             icon: "🛡️",
-            isNew: false
+            isNew: true
         },
         {
-            title: "Hardening Linux",
-            description: "Sécurisation SSH et Firewall.",
-            path: "linux_hardening.pdf", 
+            title: "Connexion aux machines Linux via les utilisateurs Active Directory ",
+            description: "Description",
+            path: "ad.pdf", 
             icon: "🐧",
-            isNew: false
+            isNew: true
         },
         {
-            title: "Projet Serveur Web",
+            title: "Gestion des comptes locaux Linux",
             description: "Configuration Apache/Nginx et Let's Encrypt.",
-            path: "web_server.pdf", 
+            path: "linux.pdf", 
             icon: "🌍",
-            isNew: false
+            isNew: true
         },
         {
             title: "Scripting Python Automation",
