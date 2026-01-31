@@ -165,3 +165,6 @@ const config = {
         }
     ]
 };
+
+// Sécurisation : Empêche la modification de la configuration par des scripts tiers
+Object.freeze(config);
