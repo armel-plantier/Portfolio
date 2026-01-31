@@ -42,11 +42,11 @@ const config = {
             isNew: true
         },
         {
-            title: "Gestion de l'Active Directory",
-            description: "GPO, gestion des utilisateurs et DNS.", 
+            title: "Gestion avancée de l'Active Directory",
+            description: "Première approhe des partages, GPO et de la gestion utilisateurs.", 
             path: "active_directory.pdf", 
             icon: "🖥️",
-            isNew: false
+            isNew: true
         },
         {
             title: "Audit Sécurité Wi-Fi",
