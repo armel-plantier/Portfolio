@@ -64,7 +64,7 @@ const config = {
         },
         {
             title: "Gestion des comptes locaux Linux",
-            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            description: "Description",
             path: "linux.pdf", 
             icon: "🌍",
             isNew: true
