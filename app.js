@@ -2,6 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
 
+    // SECURITE : Fonction pour échapper les caractères spéciaux HTML (Anti-XSS)
+    const escapeHTML = (str) => {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
+
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
@@ -27,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 2. PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
+    if(avatarEl) avatarEl.src = config.profile.avatar; // URL contrôlée via CSP
     
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) {
@@ -44,7 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lk = document.getElementById("link-linkedin");
     if(lk) lk.href = config.social.linkedin;
     
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
+    // innerHTML sécurisé ici car seule la date est dynamique
+    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
 
     // --- 3. NAVIGATION ---
     const navList = document.getElementById("nav-list");
@@ -93,17 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
+            // Sécurisation : Utilisation de escapeHTML pour le contenu texte
+            // Suppression de onclick dans le HTML string -> Ajout via addEventListener plus bas
             div.innerHTML = `
                 ${badgeHTML}
-                <div class="card-header" onclick="togglePDF('${vid}', '${fullPdfUrl}')">
-                    <div class="icon">${proj.icon}</div>
+                <div class="card-header js-toggle-pdf">
+                    <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
-                        <h4>${proj.title}</h4>
-                        <p>${proj.description}</p>
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description)}</p>
                     </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
+            
+            // Attachement sécurisé de l'événement
+            const headerBtn = div.querySelector('.js-toggle-pdf');
+            if(headerBtn) {
+                headerBtn.addEventListener('click', () => togglePDF(vid, fullPdfUrl));
+            }
+
             grid.appendChild(div);
         });
         
@@ -120,17 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
             li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
             
+            // Sécurisation XSS
             li.innerHTML = `
-                <span class="timeline-date">${exp.date}</span>
-                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
-                <p class="timeline-desc">${exp.description}</p>
+                <span class="timeline-date">${escapeHTML(exp.date)}</span>
+                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
+                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
             `;
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. COMPETENCES (LIMIT 5) - MIS A JOUR ---
+    // --- 7. COMPETENCES (LIMIT 5) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -140,17 +162,25 @@ document.addEventListener("DOMContentLoaded", () => {
             li.className = "comp-card-container";
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             
-            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
+            const dropId = `comp-drop-${index}`;
+            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // On utilise cert-icon-box pour le même style que les certifs
+            // Sécurisation : onclick remplacé par gestionnaire d'événement
             li.innerHTML = `
-                <div class="comp-header" onclick="toggleComp(event, 'comp-drop-${index}')">
-                    <div class="cert-icon-box">${comp.icon}</div>
-                    <span class="cert-name">${comp.name}</span>
+                <div class="comp-header js-comp-header">
+                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
+                    <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
-                <ul id="comp-drop-${index}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
+            
+            // Event Listener sécurisé
+            const headerEl = li.querySelector('.js-comp-header');
+            if(headerEl) {
+                headerEl.addEventListener('click', (e) => toggleComp(e, dropId, headerEl));
+            }
+
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -172,34 +202,43 @@ document.addEventListener("DOMContentLoaded", () => {
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
-            let buttonsHtml = '';
+            // Construction sécurisée des boutons
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'cert-actions';
+
             if (cert.url) {
-                buttonsHtml += `
-                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">
-                        <i class="fa-solid fa-link"></i> 🔗
-                    </a>`;
+                const linkBtn = document.createElement('a');
+                linkBtn.href = cert.url;
+                linkBtn.target = "_blank";
+                linkBtn.rel = "noopener noreferrer"; // Sécurité Tabnabbing
+                linkBtn.className = "cert-btn link-btn";
+                linkBtn.title = "Voir le site officiel";
+                linkBtn.innerHTML = '<i class="fa-solid fa-link"></i> 🔗';
+                actionsDiv.appendChild(linkBtn);
             }
 
             if (cert.pdf) {
-                buttonsHtml += `
-                    <button onclick="toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
-                        <i class="fa-solid fa-file-pdf"></i> 📄
-                    </button>`;
+                const pdfBtn = document.createElement('button');
+                pdfBtn.className = "cert-btn pdf-btn";
+                pdfBtn.title = "Voir le diplôme";
+                pdfBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> 📄';
+                pdfBtn.addEventListener('click', () => toggleCertPDF(viewerId, fullPdfUrl));
+                actionsDiv.appendChild(pdfBtn);
             }
 
             li.innerHTML = `
                 <div class="cert-header-row">
                     <div class="cert-icon-box">🏆</div>
                     <div class="cert-info">
-                        <span class="cert-name">${cert.name}</span>
-                        <span class="cert-issuer">${issuer}</span>
-                    </div>
-                    <div class="cert-actions">
-                        ${buttonsHtml}
+                        <span class="cert-name">${escapeHTML(cert.name)}</span>
+                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
                     </div>
                 </div>
                 <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
+            
+            // On insère les boutons générés proprement
+            li.querySelector('.cert-header-row').appendChild(actionsDiv);
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
@@ -208,8 +247,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 9. TYPEWRITER & EMAIL ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
-        function type() { if(i<txt.length) { textEl.innerHTML += txt.charAt(i); i++; setTimeout(type, 50); } }
+        const txt = config.profile.typewriterText; 
+        textEl.innerText = ""; 
+        let i=0;
+        function type() { 
+            if(i<txt.length) { 
+                // Sécurisation : innerText au lieu de innerHTML pour éviter injection
+                textEl.textContent += txt.charAt(i); 
+                i++; 
+                setTimeout(type, 50); 
+            } 
+        }
         setTimeout(type, 500);
     }
 
@@ -218,15 +266,26 @@ document.addEventListener("DOMContentLoaded", () => {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
             const emailSpan = document.getElementById("email-text");
-            emailSpan.innerText = config.profile.email || "email@exemple.com";
+            // Sécurité : textContent
+            emailSpan.textContent = config.profile.email || "email@exemple.com";
             document.getElementById("email-modal").style.display = "flex";
         });
+    }
+
+    // Gestion fermeture modale (déplacé du HTML vers ici)
+    const closeModalBtn = document.getElementById("modal-close-btn");
+    if(closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
     }
 
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+        }
+        // Fermeture modale au clic extérieur
+        if(e.target == document.getElementById("email-modal")) {
+            closeModal();
         }
     });
 
@@ -253,7 +312,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// --- HELPER FUNCTIONS ---
+// --- HELPER FUNCTIONS (Non exposées globalement si possible, mais gardées ici pour compatibilité logique) ---
+
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); div.className = "load-more-container"; 
     const btn = document.createElement("button"); btn.className = "load-more-btn";
@@ -273,31 +333,41 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
 }
 
-window.toggleComp = function(e, id) {
+// Fonctions rendues locales par la refonte addEventListener, 
+// mais définies ici pour être appelées par les closures.
+function toggleComp(e, id, triggerElement) {
     e.stopPropagation(); 
     const menu = document.getElementById(id); 
-    const btn = e.currentTarget.querySelector('.comp-toggle');
+    const btn = triggerElement.querySelector('.comp-toggle');
+    
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
+    
     if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
     else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
-};
+}
 
-window.togglePDF = function(id, url) {
+function togglePDF(id, url) {
     const c = document.getElementById(id);
     if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
+    
+    // Sécurisation : Utilisation stricte de l'URL encodée
+    const safeUrl = encodeURIComponent(url);
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
-};
+}
 
-window.toggleCertPDF = function(id, url) {
+function toggleCertPDF(id, url) {
     const viewer = document.getElementById(id);
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    
+    const safeUrl = encodeURIComponent(url);
     viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-};
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+}
 
-window.closeModal = function() { document.getElementById("email-modal").style.display = "none"; };
-window.onclick = function(e) { if(e.target == document.getElementById("email-modal")) window.closeModal(); };
+function closeModal() { 
+    document.getElementById("email-modal").style.display = "none"; 
+}
