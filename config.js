@@ -69,13 +69,7 @@ const config = {
             icon: "🌍",
             isNew: true
         },
-        {
-            title: "Scripting Python Automation",
-            description: "Automatisation des sauvegardes via API.",
-            path: "python_script.pdf", 
-            icon: "🐍",
-            isNew: false
-        }
+
     ],
 
     // --- 5. EXPÉRIENCES ---
