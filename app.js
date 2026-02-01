@@ -280,8 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         sitekey: config.profile.turnstileSiteKey,
                         theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
                         callback: function(token) {
-                            // SUCCES ! Le captcha est validé.
-                            // console.log("Captcha validé. Token:", token); 
                             
                             // 3. Décodage et affichage de l'email
                             try {
@@ -311,27 +309,43 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModalBtn.addEventListener('click', closeModal);
     }
 
-    // --- GESTION BOUTON COPIER ---
+    // --- GESTION BOUTON COPIER (Version Corrigée) ---
     const copyBtn = document.getElementById("copy-btn");
     
     if (copyBtn) {
         copyBtn.addEventListener("click", () => {
-            const emailText = document.getElementById("email-text").innerText;
+            const emailSpan = document.getElementById("email-text");
+            // Protection si l'élément n'existe pas encore
+            if (!emailSpan) return; 
             
-            // Copie dans le presse-papier
-            navigator.clipboard.writeText(emailText).then(() => {
-                // Optionnel : Changer le texte du bouton brièvement avant de fermer
-                const originalContent = copyBtn.innerHTML;
-                copyBtn.innerHTML = "Copié !";
+            const textToCopy = emailSpan.innerText;
+            const originalHtml = copyBtn.innerHTML; // Sauvegarde l'état du bouton
+
+            // Fonction de copie
+            navigator.clipboard.writeText(textToCopy).then(() => {
                 
+                // 1. Feedback Visuel (Change le bouton en vert "Copié")
+                copyBtn.style.background = "#10b981"; // Vert
+                copyBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Copié !</span>
+                `;
+
+                // 2. Attendre 1 seconde, puis fermer la fenêtre
                 setTimeout(() => {
-                    closeModal(); // Ferme la fenêtre
+                    closeModal();
                     
-                    // Remet le bouton à son état initial après la fermeture
-                    setTimeout(() => { copyBtn.innerHTML = originalContent; }, 300);
-                }, 400); 
+                    // 3. Remettre le bouton à son état normal (invisible pour l'utilisateur car fermé)
+                    setTimeout(() => { 
+                        copyBtn.style.background = ""; // Reset couleur
+                        copyBtn.innerHTML = originalHtml; 
+                    }, 300);
+                    
+                }, 1000); // 1 seconde de délai pour voir le "Copié !"
+
             }).catch(err => {
-                console.error('Erreur de copie :', err);
+                console.error('Erreur copie :', err);
+                alert("Erreur de copie. Veuillez sélectionner et copier manuellement.");
             });
         });
     }
