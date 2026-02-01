@@ -311,6 +311,31 @@ document.addEventListener("DOMContentLoaded", () => {
         closeModalBtn.addEventListener('click', closeModal);
     }
 
+    // --- GESTION BOUTON COPIER ---
+    const copyBtn = document.getElementById("copy-btn");
+    
+    if (copyBtn) {
+        copyBtn.addEventListener("click", () => {
+            const emailText = document.getElementById("email-text").innerText;
+            
+            // Copie dans le presse-papier
+            navigator.clipboard.writeText(emailText).then(() => {
+                // Optionnel : Changer le texte du bouton brièvement avant de fermer
+                const originalContent = copyBtn.innerHTML;
+                copyBtn.innerHTML = "Copié !";
+                
+                setTimeout(() => {
+                    closeModal(); // Ferme la fenêtre
+                    
+                    // Remet le bouton à son état initial après la fermeture
+                    setTimeout(() => { copyBtn.innerHTML = originalContent; }, 300);
+                }, 400); 
+            }).catch(err => {
+                console.error('Erreur de copie :', err);
+            });
+        });
+    }
+
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.comp-card-container')) {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
