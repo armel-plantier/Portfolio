@@ -325,18 +325,16 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
-/* --- CORRECTION AFFICHAGE PDF (Suppression fond blanc & espace vide) --- */
 .pdf-container { 
     display: none; 
-    /* height: 640px; <--- Retiré pour laisser le contenu gérer la hauteur */
     border-top: 1px solid var(--border); 
-    background: var(--card); /* Fond harmonisé */
+    background: var(--card); 
     overflow: hidden; 
     border-radius: 0 0 16px 16px; 
 }
 
 .pdf-container iframe {
-    display: block; /* Supprime l'espace fantôme en bas */
+    display: block; 
     width: 100%;
     border: none;
     background-color: var(--card);
@@ -353,9 +351,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .timeline-title { font-size: 1rem; margin-bottom: 5px; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 
-/* =========================================
-   CERTIFICATIONS
-   ========================================= */
+/* Certifications */
 .cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
 @media (min-width: 768px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
 
@@ -387,7 +383,6 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .cert-btn.link-btn:hover { background: var(--primary); }
 .cert-btn.pdf-btn:hover { background: #10b981; } 
 
-/* Correction aussi pour le viewer de certifs */
 .cert-pdf-viewer { 
     display: none; 
     margin-top: 20px; 
@@ -404,9 +399,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     background-color: var(--card);
 }
 
-/* =========================================
-   COMPETENCES (Menu Déroulant)
-   ========================================= */
+/* Competences */
 .comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; height: fit-content; }
 
 .comp-header { 
@@ -420,7 +413,6 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
 
-/* --- DESCRIPTION DES COMPETENCES --- */
 .comp-dropdown-menu { 
     padding: 15px 20px; 
     background: rgba(0,0,0,0.1); 
@@ -437,35 +429,22 @@ body.light-mode .comp-dropdown-menu {
 .comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 
-body.light-mode .comp-dropdown-menu li {
-    color: #4b5563 !important;
-}
+body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
-/* --- BOUTON TOGGLE (Flèche) --- */
 .comp-toggle { 
     margin-left: auto; 
     background: transparent; border: 1px solid var(--border); color: var(--muted); 
     width: 30px; height: 30px; border-radius: 50%; 
     display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0;
 }
-
 .comp-toggle.active { transform: rotate(180deg); }
-
-.comp-toggle:hover, 
-.comp-toggle.active {
+.comp-toggle:hover, .comp-toggle.active {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
     color: #ffffff !important;
 }
-
-body.light-mode .comp-toggle {
-    border-color: #9ca3af; 
-    color: #374151;
-}
-
-body.light-mode .comp-header:hover {
-    background: #f9fafb;
-}
+body.light-mode .comp-toggle { border-color: #9ca3af; color: #374151; }
+body.light-mode .comp-header:hover { background: #f9fafb; }
 
 
 /* Load More & Footer */
@@ -480,76 +459,78 @@ body.light-mode .comp-header:hover {
 
 footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; width: 100%; }
 
+/* Modal */
 .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-.modal-content { background: var(--card); width: 90%; max-width: 400px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.modal-content { background: var(--card); width: 90%; max-width: 440px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
 .modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
 
-/* --- Modification de la zone Email --- */
-.email-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.email-box {
-    margin-top: 0; 
-    background: rgba(255, 255, 255, 0.05); /* Fond très léger */
-    padding: 10px 15px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    font-family: monospace;
-    color: var(--text); /* << COULEUR MODIFIÉE : Blanc/Texte standard */
-    font-size: 1rem;
-}
-
-/* Nouveau bouton copier */
-.copy-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-    height: 100%;
-}
-
-.copy-btn:hover {
-    background: var(--badge-bg); /* Change de couleur au survol */
-}
-
-.copy-btn svg {
-    pointer-events: none;
-}
-
-/* --- AJUSTEMENTS LIGHT MODE FINAUX --- */
+/* Light Mode Card Fixes */
 body.light-mode .project-card,
 body.light-mode .cert-card-container,
 body.light-mode .comp-card-container {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     border-color: #e5e7eb;
 }
+body.light-mode .skill-tag { background: #ffffff; border-color: #e5e7eb; color: #4b5563; }
+body.light-mode .cert-icon-box { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
+body.light-mode .hero-title { text-shadow: none; }
 
-body.light-mode .skill-tag {
+/* =========================================
+   NOUVEAU DESIGN EMAIL (Input Group)
+   ========================================= */
+
+/* Conteneur global qui soude l'email et le bouton */
+.email-input-group {
+    display: flex;
+    align-items: stretch; /* Force la même hauteur */
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden; /* Important pour les coins arrondis */
+    margin-top: 5px;
+    max-width: 100%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Partie Gauche : L'adresse email */
+.email-display {
+    flex-grow: 1; /* Prend toute la place dispo */
+    padding: 12px 15px;
+    font-family: 'Courier New', Courier, monospace; /* Police code */
+    font-size: 1rem;
+    color: #ffffff !important; /* FORCE LE BLANC */
+    background: transparent;
+    display: flex;
+    align-items: center;
+    overflow-x: auto; /* Scroll si l'email est très long */
+    white-space: nowrap;
+}
+
+/* Partie Droite : Le bouton */
+.copy-btn-integrated {
+    background: var(--primary); /* Couleur violette du thème */
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.copy-btn-integrated:hover {
+    background: var(--badge-bg); /* Devient vert au survol */
+}
+.copy-btn-integrated:active { transform: scale(0.98); }
+
+/* Mode Clair : Ajustement */
+body.light-mode .email-display {
+    color: #1f2937 !important; /* Texte foncé en mode clair */
     background: #ffffff;
-    border-color: #e5e7eb;
-    color: #4b5563;
-}
-
-body.light-mode .cert-icon-box {
-    background: rgba(99, 102, 241, 0.1);
-    color: #4f46e5;
-}
-
-body.light-mode .hero-title {
-    text-shadow: none; 
 }
