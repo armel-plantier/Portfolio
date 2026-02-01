@@ -485,7 +485,51 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
-.email-box { margin-top: 15px; background: var(--bg); padding: 10px; border-radius: 6px; border: 1px solid var(--border); font-family: monospace; color: var(--primary); }
+
+/* --- Modification de la zone Email --- */
+.email-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.email-box {
+    margin-top: 0; 
+    background: rgba(255, 255, 255, 0.05); /* Fond très léger */
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-family: monospace;
+    color: var(--text); /* << COULEUR MODIFIÉE : Blanc/Texte standard */
+    font-size: 1rem;
+}
+
+/* Nouveau bouton copier */
+.copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    height: 100%;
+}
+
+.copy-btn:hover {
+    background: var(--badge-bg); /* Change de couleur au survol */
+}
+
+.copy-btn svg {
+    pointer-events: none;
+}
 
 /* --- AJUSTEMENTS LIGHT MODE FINAUX --- */
 body.light-mode .project-card,
