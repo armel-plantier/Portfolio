@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 2. PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar; // URL contrôlée via CSP
+    if(avatarEl) avatarEl.src = config.profile.avatar; 
     
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) {
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const lk = document.getElementById("link-linkedin");
     if(lk) lk.href = config.social.linkedin;
     
-    // innerHTML sécurisé ici car seule la date est dynamique
     document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
 
     // --- 3. NAVIGATION ---
@@ -105,8 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
-            // Sécurisation : Utilisation de escapeHTML pour le contenu texte
-            // Suppression de onclick dans le HTML string -> Ajout via addEventListener plus bas
             div.innerHTML = `
                 ${badgeHTML}
                 <div class="card-header js-toggle-pdf">
@@ -119,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // Attachement sécurisé de l'événement
             const headerBtn = div.querySelector('.js-toggle-pdf');
             if(headerBtn) {
                 headerBtn.addEventListener('click', () => togglePDF(vid, fullPdfUrl));
@@ -141,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
             li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
             
-            // Sécurisation XSS
             li.innerHTML = `
                 <span class="timeline-date">${escapeHTML(exp.date)}</span>
                 <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
@@ -165,7 +160,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // Sécurisation : onclick remplacé par gestionnaire d'événement
             li.innerHTML = `
                 <div class="comp-header js-comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
@@ -175,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
             
-            // Event Listener sécurisé
             const headerEl = li.querySelector('.js-comp-header');
             if(headerEl) {
                 headerEl.addEventListener('click', (e) => toggleComp(e, dropId, headerEl));
@@ -202,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
-            // Construction sécurisée des boutons
             const actionsDiv = document.createElement('div');
             actionsDiv.className = 'cert-actions';
 
@@ -210,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const linkBtn = document.createElement('a');
                 linkBtn.href = cert.url;
                 linkBtn.target = "_blank";
-                linkBtn.rel = "noopener noreferrer"; // Sécurité Tabnabbing
+                linkBtn.rel = "noopener noreferrer"; 
                 linkBtn.className = "cert-btn link-btn";
                 linkBtn.title = "Voir le site officiel";
                 linkBtn.innerHTML = '<i class="fa-solid fa-link"></i> 🔗';
@@ -237,14 +229,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
             
-            // On insère les boutons générés proprement
             li.querySelector('.cert-header-row').appendChild(actionsDiv);
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 9. TYPEWRITER & EMAIL ---
+    // --- 9. TYPEWRITER ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; 
@@ -252,7 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let i=0;
         function type() { 
             if(i<txt.length) { 
-                // Sécurisation : innerText au lieu de innerHTML pour éviter injection
                 textEl.textContent += txt.charAt(i); 
                 i++; 
                 setTimeout(type, 50); 
@@ -261,18 +251,61 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
+    // --- 10. GESTION EMAIL AVEC CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailResultArea = document.getElementById("email-result-area");
+    const emailText = document.getElementById("email-text");
+    const captchaInstruction = document.getElementById("captcha-instruction");
+    let widgetId = null;
+
     if(emailTrigger) {
         emailTrigger.addEventListener("click", function(e) {
             e.preventDefault();
-            const emailSpan = document.getElementById("email-text");
-            // Sécurité : textContent
-            emailSpan.textContent = config.profile.email || "email@exemple.com";
+            
+            // 1. Reset de l'interface
             document.getElementById("email-modal").style.display = "flex";
+            captchaContainer.style.display = "flex";
+            emailResultArea.style.display = "none";
+            captchaInstruction.style.display = "block";
+            emailText.innerText = "";
+
+            // 2. Si le widget existe déjà, on le reset, sinon on le crée
+            if (widgetId !== null) {
+                if(window.turnstile) turnstile.reset(widgetId);
+            } else {
+                if(window.turnstile) {
+                    // Rendu explicite du widget
+                    widgetId = turnstile.render('#captcha-container', {
+                        sitekey: config.profile.turnstileSiteKey,
+                        theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
+                        callback: function(token) {
+                            // SUCCES ! Le captcha est validé.
+                            // console.log("Captcha validé. Token:", token); 
+                            
+                            // 3. Décodage et affichage de l'email
+                            try {
+                                const decodedEmail = atob(config.profile.emailEncoded);
+                                emailText.innerText = decodedEmail;
+                                
+                                // 4. Transition visuelle
+                                captchaContainer.style.display = "none";
+                                captchaInstruction.style.display = "none";
+                                emailResultArea.style.display = "block";
+                            } catch (err) {
+                                console.error("Erreur décodage email");
+                            }
+                        }
+                    });
+                } else {
+                    console.error("Erreur : Turnstile non chargé.");
+                    captchaContainer.innerHTML = "<p style='color:red;'>Erreur chargement Captcha</p>";
+                }
+            }
         });
     }
 
-    // Gestion fermeture modale (déplacé du HTML vers ici)
+    // Gestion fermeture modale
     const closeModalBtn = document.getElementById("modal-close-btn");
     if(closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
@@ -283,13 +316,12 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
-        // Fermeture modale au clic extérieur
         if(e.target == document.getElementById("email-modal")) {
             closeModal();
         }
     });
 
-    // --- 10. SCROLL & MENU ---
+    // --- 11. SCROLL & MENU ---
     const header = document.querySelector('.app-header');
     const navCapsule = document.querySelector('.nav-capsule');
     const menuIcon = document.querySelector('.menu-icon'); 
@@ -312,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// --- HELPER FUNCTIONS (Non exposées globalement si possible, mais gardées ici pour compatibilité logique) ---
+// --- HELPER FUNCTIONS ---
 
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); div.className = "load-more-container"; 
@@ -333,8 +365,6 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
 }
 
-// Fonctions rendues locales par la refonte addEventListener, 
-// mais définies ici pour être appelées par les closures.
 function toggleComp(e, id, triggerElement) {
     e.stopPropagation(); 
     const menu = document.getElementById(id); 
@@ -352,7 +382,6 @@ function togglePDF(id, url) {
     if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
     
-    // Sécurisation : Utilisation stricte de l'URL encodée
     const safeUrl = encodeURIComponent(url);
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
     c.style.display='block';
