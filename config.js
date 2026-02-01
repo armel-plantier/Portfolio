@@ -16,7 +16,13 @@ const config = {
         typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
-        email: "armel.plantier@protonmail.com"
+        
+        // SECURITE : Email encodé en Base64 pour éviter le scraping simple
+        // armel.plantier@protonmail.com
+        emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=",
+        
+        // CLOUDFLARE TURNSTILE (Captcha)
+        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
     },
 
     social: {
@@ -42,34 +48,40 @@ const config = {
             isNew: true
         },
         {
-            title: "Gestion avancée de l'Active Directory",
-            description: "Première approhe des partages, GPO et de la gestion utilisateurs.", 
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
             icon: "🖥️",
-            isNew: true
+            isNew: false
         },
         {
-            title: "Mise en place d’un serveur de journalisation (Graylog)",
-            description: "Description",
-            path: "graylog.pdf",        
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
+            path: "audit_wifi.pdf",        
             icon: "🛡️",
-            isNew: true
+            isNew: false
         },
         {
-            title: "Connexion aux machines Linux via les utilisateurs Active Directory ",
-            description: "Description",
-            path: "ad.pdf", 
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
             icon: "🐧",
-            isNew: true
+            isNew: false
         },
         {
-            title: "Gestion des comptes locaux Linux",
-            description: "Description",
-            path: "linux.pdf", 
+            title: "Projet Serveur Web",
+            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            path: "web_server.pdf", 
             icon: "🌍",
-            isNew: true
+            isNew: false
         },
-
+        {
+            title: "Scripting Python Automation",
+            description: "Automatisation des sauvegardes via API.",
+            path: "python_script.pdf", 
+            icon: "🐍",
+            isNew: false
+        }
     ],
 
     // --- 5. EXPÉRIENCES ---
@@ -95,7 +107,6 @@ const config = {
     ],
 
     // --- 6. COMPÉTENCES DÉTAILLÉES ---
-    // Note: J'ai séparé l'icône du nom pour le nouveau design
     competences: [
         {
             icon: "🐧",
