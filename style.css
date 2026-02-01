@@ -496,41 +496,42 @@ body.light-mode .hero-title { text-shadow: none; }
 
 /* Partie Gauche : L'adresse email */
 .email-display {
-    flex-grow: 1; /* Prend toute la place dispo */
-    padding: 12px 15px;
-    font-family: 'Courier New', Courier, monospace; /* Police code */
-    font-size: 1rem;
-    color: #ffffff !important; /* FORCE LE BLANC */
+    flex-grow: 1; 
+    padding: 12px 10px; /* Marges réduites pour gagner de la place */
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 0.9rem; /* Police légèrement plus petite pour tout afficher */
+    color: #ffffff !important; 
     background: transparent;
     display: flex;
     align-items: center;
-    overflow-x: auto; /* Scroll si l'email est très long */
+    overflow-x: auto; /* Permet de scroller si l'écran est vraiment minuscule */
     white-space: nowrap;
 }
 
 /* Partie Droite : Le bouton */
 .copy-btn-integrated {
-    background: var(--primary); /* Couleur violette du thème */
+    background: var(--primary); 
     color: white;
     border: none;
-    padding: 0 20px;
+    padding: 0 15px; /* Bouton un peu moins large pour laisser place au texte */
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Texte du bouton ajusté */
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     transition: all 0.2s ease;
     border-left: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0; /* Empêche le bouton de s'écraser */
 }
 
 .copy-btn-integrated:hover {
-    background: var(--badge-bg); /* Devient vert au survol */
+    background: var(--badge-bg); 
 }
 .copy-btn-integrated:active { transform: scale(0.98); }
 
 /* Mode Clair : Ajustement */
 body.light-mode .email-display {
-    color: #1f2937 !important; /* Texte foncé en mode clair */
+    color: #1f2937 !important; 
     background: #ffffff;
 }
