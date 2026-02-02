@@ -182,7 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
-        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
+        // CORRECTION ICI : Chemin vers le dossier Documents
+        container.innerHTML = `<iframe src="Documents/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
     window.toggleComp = (index) => {
@@ -197,7 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (container.style.display === "block") { container.style.display = "none"; container.innerHTML = ""; return; }
         document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
-        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}"></iframe>`;
+        // CORRECTION ICI EGALEMENT : Chemin vers le dossier Documents
+        container.innerHTML = `<iframe src="Documents/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
     // ==========================================
