@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 4. GESTION MODALES & PDF (GOOGLE VIEWER)
+    // 4. GESTION MODALES & PDF (NATIVE VIEWER)
     // ==========================================
     window.togglePdf = (headerElement, pdfFile) => {
         const container = headerElement.nextElementSibling;
@@ -183,9 +183,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
 
-        // Construction de l'URL complète pour Google Viewer
-        const fullUrl = window.location.origin + "/Documents/" + pdfFile;
-        container.innerHTML = `<iframe src="https://docs.google.com/gview?url=${fullUrl}&embedded=true" width="100%" height="500px" frameborder="0"></iframe>`;
+        // Utilisation de la balise OBJECT pour l'affichage natif
+        container.innerHTML = `
+            <object data="Documents/${pdfFile}" type="application/pdf" width="100%" height="500px">
+                <p style="padding:1rem; text-align:center;">
+                    Votre navigateur ne peut pas afficher ce PDF directement.<br>
+                    <a href="Documents/${pdfFile}" target="_blank" style="color:#6366f1; text-decoration:underline;">Cliquez ici pour le télécharger</a>.
+                </p>
+            </object>
+        `;
     };
 
     window.toggleComp = (index) => {
@@ -201,9 +207,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
 
-        // Construction de l'URL complète pour Google Viewer
-        const fullUrl = window.location.origin + "/Documents/" + pdfFile;
-        container.innerHTML = `<iframe src="https://docs.google.com/gview?url=${fullUrl}&embedded=true" width="100%" height="500px" frameborder="0"></iframe>`;
+        // Utilisation de la balise OBJECT pour l'affichage natif
+        container.innerHTML = `
+            <object data="Documents/${pdfFile}" type="application/pdf" width="100%" height="500px">
+                <p style="padding:1rem; text-align:center;">
+                    Votre navigateur ne peut pas afficher ce PDF directement.<br>
+                    <a href="Documents/${pdfFile}" target="_blank" style="color:#6366f1; text-decoration:underline;">Cliquez ici pour le télécharger</a>.
+                </p>
+            </object>
+        `;
     };
 
     // ==========================================
