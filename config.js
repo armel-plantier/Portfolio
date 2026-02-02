@@ -17,8 +17,7 @@ const config = {
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
         
-        // SECURITE : Email encodé en Base64 pour éviter le scraping simple
-        // armel.plantier@protonmail.com
+        // SECURITE : Email encodé en Base64
         emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=",
         
         // CLOUDFLARE TURNSTILE (Captcha)
@@ -171,5 +170,5 @@ const config = {
     ]
 };
 
-// Sécurisation : Empêche la modification de la configuration par des scripts tiers
+// Sécurisation
 Object.freeze(config);
