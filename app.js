@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const navList = document.getElementById("nav-list");
     config.navigation.forEach(item => {
         const li = document.createElement("li");
-        // Sécurité : Pas de target blank ici par défaut, mais si tu en mets, il faudrait rel="noopener"
         li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
         navList.appendChild(li);
     });
@@ -139,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span>${comp.name}</span>
                 <button class="comp-toggle" id="toggle-btn-${index}">▼</button>
             </div>
-            <ul class="comp-dropdown-menu" id="comp-list-${index}" style="display:none;">
+            <ul class="comp-dropdown-menu" id="comp-list-${index}">
                 ${detailsHtml}
             </ul>
         `;
@@ -153,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
         li.className = "cert-card-container";
 
         let actionsHtml = "";
-        // SÉCURITÉ : Ajout de rel="noopener noreferrer" pour les liens externes
         if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
         if(cert.pdf && cert.pdf !== "") actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
 
@@ -175,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 4. GESTION MODALES & PDF
+    // 4. GESTION MODALES & PDF & TOGGLES
     // ==========================================
     window.togglePdf = (headerElement, pdfFile) => {
         const container = headerElement.nextElementSibling;
@@ -184,22 +182,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
-        // iframe : sandboxée par défaut par les navigateurs récents, mais 'src' interne est safe.
         container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
+    // --- FIX TOGGLE COMPETENCES ---
     window.toggleComp = (index) => {
         const list = document.getElementById(`comp-list-${index}`);
         const btn = document.getElementById(`toggle-btn-${index}`);
         
-        // MODIFICATION : Utilisation de "flex" pour les badges, au lieu de "block"
-        if (list.style.display === "none" || list.style.display === "") { 
-            list.style.display = "flex"; 
-            btn.classList.add("active"); 
-        } 
-        else { 
-            list.style.display = "none"; 
-            btn.classList.remove("active"); 
+        // On bascule la classe 'visible' définie dans le CSS
+        list.classList.toggle("visible");
+        
+        // Rotation de la flèche
+        if (list.classList.contains("visible")) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
         }
     };
 
@@ -241,35 +239,27 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal() {
         if (!contactModal) return;
 
-        // Reset de l'état (On cache l'email, on montre le captcha)
+        // Reset
         captchaStep.style.display = "block";
         emailArea.style.display = "none";
         emailSpan.innerText = "";
-        captchaContainer.innerHTML = ""; // Reset du widget précédent
+        captchaContainer.innerHTML = ""; 
 
-        // Affichage Modale
         contactModal.style.display = "flex";
         setTimeout(() => { contactModal.style.opacity = "1"; }, 10);
 
-        // Initialisation du Captcha Turnstile
+        // Turnstile Captcha
         if (window.turnstile) {
             turnstile.render('#captcha-container', {
-                sitekey: config.profile.turnstileSiteKey, // Utilisation de la clé dans Config.js
+                sitekey: config.profile.turnstileSiteKey, 
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark',
                 callback: function(token) {
-                    // SUCCÈS : L'utilisateur est humain
-                    console.log('Captcha validé !');
-                    
-                    // 1. Masquer Captcha
                     captchaStep.style.display = "none";
-                    
-                    // 2. Décoder et afficher l'email
                     emailSpan.innerText = atob(config.profile.emailEncoded);
                     emailArea.style.display = "block";
                 },
             });
         } else {
-            // Fallback si script pas chargé (rare)
             emailSpan.innerText = "Erreur chargement Captcha.";
             emailArea.style.display = "block";
         }
@@ -280,7 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
         contactModal.style.opacity = "0";
         setTimeout(() => { 
             contactModal.style.display = "none"; 
-            // Nettoyage
             captchaContainer.innerHTML = "";
         }, 300);
     };
