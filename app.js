@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(copyBtn) {
                 copyBtn.innerText = "Copier";
                 copyBtn.style.backgroundColor = ""; 
+                copyBtn.style.borderColor = "";
             }
 
             // 2. Initialisation ou Reset du Captcha
@@ -134,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(decodedEmail) {
                     navigator.clipboard.writeText(decodedEmail).then(() => {
                         // 1. Feedback Visuel
-                        const originalText = copyBtn.innerText;
                         copyBtn.innerText = "Copié ! ✅";
                         copyBtn.style.backgroundColor = "#10b981"; // Vert succès
                         copyBtn.style.borderColor = "#10b981";
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Fermeture Modale
+        // Fermeture Modale Contact
         const closeFn = () => { emailModal.style.display = "none"; };
         if(closeModalBtn) closeModalBtn.addEventListener("click", closeFn);
         window.addEventListener("click", (e) => {
@@ -163,8 +163,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- 4. MODALE MENTIONS LEGALES ---
+    const legalTrigger = document.getElementById("legal-trigger");
+    const legalModal = document.getElementById("legal-modal");
+    const legalCloseBtn = document.getElementById("legal-close-btn");
 
-    // --- 4. NAVIGATION ---
+    if (legalTrigger && legalModal) {
+        legalTrigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            legalModal.style.display = "flex";
+        });
+
+        const closeLegal = () => { legalModal.style.display = "none"; };
+        
+        if (legalCloseBtn) legalCloseBtn.addEventListener("click", closeLegal);
+        
+        window.addEventListener("click", (e) => {
+            if(e.target === legalModal) closeLegal();
+        });
+    }
+
+
+    // --- 5. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -181,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 5. COMPETENCES (HEADER TAGS) ---
+    // --- 6. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => {
@@ -192,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. PROJETS ---
+    // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -231,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- 7. PARCOURS ---
+    // --- 8. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     
@@ -251,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 8. COMPETENCES (DROPDOWN) ---
+    // --- 9. COMPETENCES (DROPDOWN) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -283,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. CERTIFICATIONS ---
+    // --- 10. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -339,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 10. MACHINE A ECRIRE ---
+    // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; 
@@ -355,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 11. HEADER SCROLL & MOBILE ---
+    // --- 12. HEADER SCROLL & MOBILE ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
