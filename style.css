@@ -486,10 +486,10 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
 
-/* Correction du fond de l'email ici */
+/* Correction du fond de l'email ici : TRANSPARENT */
 .email-box { 
     margin-top: 15px; 
-    background: rgba(0, 0, 0, 0.2); /* Fond propre au lieu du dégradé */
+    background: transparent; /* Fond transparent pour s'adapter à la modale */
     padding: 10px; 
     border-radius: 6px; 
     border: 1px solid var(--border); 
