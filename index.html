@@ -1,86 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code&display=swap" rel="stylesheet">
-    
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | SysAdmin & Réseau</title>
+    
+    <link id="favicon-link" rel="icon" href="">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <header class="app-header">
-        <div class="header-content">
-            <h1 id="profile-name">Mon Nom</h1>
-            <nav>
-                <ul id="nav-list"></ul> </nav>
-            <button id="theme-toggle">🌙</button>
-        </div>
-    </header>
 
-    <main>
-        <section id="accueil" class="hero">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                </div>
-                <div class="terminal-body">
-                    <p class="prompt">user@portfolio:~$ <span id="typewriter-text"></span><span class="cursor">|</span></p>
-                    <p id="bio-text" class="bio">Chargement...</p>
-                </div>
-            </div>
-            
-            <div class="social-links">
-                <a id="github-link" href="#" target="_blank" class="btn">GitHub</a>
-                <a id="linkedin-link" href="#" target="_blank" class="btn">LinkedIn</a>
-                <button id="contact-btn" class="btn btn-primary">Me contacter</button>
-            </div>
-            
-            <div id="skills-container" class="skills-cloud"></div>
-        </section>
+    <header class="app-header">
+        <div class="header-left">
+            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
+            <div class="identity-info">
+                <span id="profile-name" class="id-name"></span>
+                <div class="status-wrapper">
+                    <span class="status-dot"></span>
+                    <span id="profile-status" class="id-status"></span>
+                </div>
+            </div>
+        </div>
 
-        <section id="projets">
-            <h3>Projets & Labs</h3>
-            <div id="projects-grid" class="grid"></div>
-        </section>
+        <nav class="nav-capsule">
+            <span class="menu-icon">☰</span>
+            <ul id="nav-list"></ul>
+        </nav>
 
-        <section id="parcours">
-            <h3>Parcours</h3>
-            <ul class="timeline-list"></ul>
-        </section>
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-icon">☀️</button>
+        </div>
+    </header>
 
-        <section id="competences">
-            <h3>Compétences Techniques</h3>
-            <div id="competences-grid" class="grid"></div>
-        </section>
-        
-        <section id="certifications">
-            <h3>Certifications</h3>
-            <ul class="cert-list"></ul>
-        </section>
-    </main>
+    <div class="container">
+        
+        <section class="hero-section">
+            <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
+            <p id="profile-bio" class="bio-text"></p>
 
-    <footer>
-        <p>© 2024 - Portfolio Personnel</p>
-    </footer>
+            <div class="social-links">
+                <a id="link-github" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    GitHub
+                </a>
+                
+                <a id="link-linkedin" href="#" target="_blank" class="social-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                </a>
+                
+                <a id="email-trigger" href="#" class="social-btn email">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Contact
+                </a>
+            </div>
+            
+            <div id="skills-section" class="skills-section"></div>
+        </section>
 
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3>Contact</h3>
-            <div id="captcha-container"></div>
-            <div id="email-result-area" style="display:none;">
-                <p id="email-text"></p>
-                <button id="copy-btn">Copier</button>
-            </div>
-        </div>
-    </div>
+        <section id="projets" class="section-wrapper">
+            <h3>Projets & Labs</h3>
+            <div id="project-grid" class="grid"></div>
+        </section>
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+        <section id="parcours" class="section-wrapper">
+            <h3>Parcours</h3>
+            <ul id="exp-list" class="timeline-list"></ul>
+        </section>
+
+        <section id="competences" class="section-wrapper">
+            <h3>Compétences</h3>
+            <ul id="comp-list" class="cert-list"></ul>
+        </section>
+
+        <section id="certifications" class="section-wrapper">
+            <h3>Certifications</h3>
+            <ul id="cert-list" class="cert-list"></ul>
+        </section>
+
+        <footer><p id="footer-copy"></p></footer>
+    </div>
+
+    <div id="email-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><span>Contact</span><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <p>Mon adresse email :</p>
+                <div class="email-box"><span id="email-text"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
