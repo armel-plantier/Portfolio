@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span>${comp.name}</span>
                 <button class="comp-toggle" id="toggle-btn-${index}">▼</button>
             </div>
-            <ul class="comp-dropdown-menu" id="comp-list-${index}">
+            <ul class="comp-dropdown-menu" id="comp-list-${index}" style="display:none;">
                 ${detailsHtml}
             </ul>
         `;
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         li.className = "cert-card-container";
 
         let actionsHtml = "";
-        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
+        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
         if(cert.pdf && cert.pdf !== "") actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
 
         li.innerHTML = `
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 4. GESTION MODALES & PDF & TOGGLES
+    // 4. GESTION MODALES & PDF
     // ==========================================
     window.togglePdf = (headerElement, pdfFile) => {
         const container = headerElement.nextElementSibling;
@@ -185,20 +185,11 @@ document.addEventListener("DOMContentLoaded", () => {
         container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
-    // --- FIX TOGGLE COMPETENCES ---
     window.toggleComp = (index) => {
         const list = document.getElementById(`comp-list-${index}`);
         const btn = document.getElementById(`toggle-btn-${index}`);
-        
-        // On bascule la classe 'visible' définie dans le CSS
-        list.classList.toggle("visible");
-        
-        // Rotation de la flèche
-        if (list.classList.contains("visible")) {
-            btn.classList.add("active");
-        } else {
-            btn.classList.remove("active");
-        }
+        if (list.style.display === "none") { list.style.display = "block"; btn.classList.add("active"); } 
+        else { list.style.display = "none"; btn.classList.remove("active"); }
     };
 
     window.toggleCertPdf = (containerId, pdfFile) => {
@@ -239,27 +230,35 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal() {
         if (!contactModal) return;
 
-        // Reset
+        // Reset de l'état (On cache l'email, on montre le captcha)
         captchaStep.style.display = "block";
         emailArea.style.display = "none";
         emailSpan.innerText = "";
-        captchaContainer.innerHTML = ""; 
+        captchaContainer.innerHTML = ""; // Reset du widget précédent
 
+        // Affichage Modale
         contactModal.style.display = "flex";
         setTimeout(() => { contactModal.style.opacity = "1"; }, 10);
 
-        // Turnstile Captcha
+        // Initialisation du Captcha Turnstile
         if (window.turnstile) {
             turnstile.render('#captcha-container', {
-                sitekey: config.profile.turnstileSiteKey, 
+                sitekey: config.profile.turnstileSiteKey, // Utilisation de la clé dans Config.js
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark',
                 callback: function(token) {
+                    // SUCCÈS : L'utilisateur est humain
+                    console.log('Captcha validé !');
+                    
+                    // 1. Masquer Captcha
                     captchaStep.style.display = "none";
+                    
+                    // 2. Décoder et afficher l'email
                     emailSpan.innerText = atob(config.profile.emailEncoded);
                     emailArea.style.display = "block";
                 },
             });
         } else {
+            // Fallback si script pas chargé (rare)
             emailSpan.innerText = "Erreur chargement Captcha.";
             emailArea.style.display = "block";
         }
@@ -270,6 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contactModal.style.opacity = "0";
         setTimeout(() => { 
             contactModal.style.display = "none"; 
+            // Nettoyage
             captchaContainer.innerHTML = "";
         }, 300);
     };
