@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Armel Plantier | SysAdmin & Réseau">
+    <meta property="og:description" content="Portfolio d'étudiant Administrateur Système. Projets, Labs et Certifications.">
+    
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
+        connect-src 'self' https://api.github.com;
         script-src 'self' https://challenges.cloudflare.com; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
         font-src 'self' https://fonts.gstatic.com; 
@@ -71,6 +76,11 @@
                     <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     Contact
                 </a>
+
+                <a href="Documents/CV_Armel_Plantier.pdf" target="_blank" class="social-btn" style="border: 1px solid var(--primary); color: var(--primary);" download>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Mon CV
+                </a>
             </div>
             
             <div id="skills-section" class="skills-section"></div>
@@ -97,7 +107,11 @@
         </section>
 
         <footer>
-            <p id="footer-copy"></p>
+            <div class="sys-info">
+                <span id="footer-copy"></span>
+                <span class="separator">|</span>
+                <span id="last-update" style="font-size: 0.8rem; color: var(--primary);">Connecting to Repo...</span>
+            </div>
             <a href="#" id="legal-trigger" class="footer-legal-link">Mentions Légales</a>
         </footer>
     </div>
@@ -130,18 +144,13 @@
             </div>
             <div class="modal-body legal-text">
                 <p><strong>Éditeur du site :</strong><br>Armel Plantier<br>Contact : <span style="font-family:monospace;">contact@armel-plantier.com</span></p>
-                
                 <p><strong>Hébergement :</strong><br>GitHub Pages / GitHub Inc.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
-                
                 <p><strong>Propriété Intellectuelle :</strong><br>Les contenus (textes, projets, PDF) sont la propriété exclusive de l'éditeur.</p>
                 
                 <div class="cloudflare-badge">
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="#F48120"><path d="M18.8 8.1c-.2-2.7-2.3-4.9-5-5.2-3.3-.4-6.2 1.9-6.8 5.1-2.9.3-5 2.9-4.7 5.8.3 2.6 2.5 4.6 5.1 4.6h11.2c3 0 5.4-2.4 5.4-5.4 0-2.8-2.1-5.1-4.9-5.4l-.3.5z"/></svg>
                     <span>Site sécurisé par <strong>Cloudflare</strong></span>
                 </div>
-                <p style="font-size: 0.8rem; margin-top: 5px; opacity: 0.7;">
-                    Ce site utilise Cloudflare pour la protection DDoS, le CDN et la vérification de sécurité (Turnstile).
-                </p>
             </div>
         </div>
     </div>
