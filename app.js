@@ -3,18 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 1. INITIALISATION & NAVIGATION
     // ==========================================
-    
-    // Injection du Favicon
     const link = document.createElement('link');
     link.rel = 'icon'; link.href = config.profile.favicon;
     document.head.appendChild(link);
 
-    // Injection des Infos Header
     document.getElementById("avatar-img").src = config.profile.avatar;
     document.getElementById("profile-name").textContent = config.profile.name;
     document.getElementById("profile-status").textContent = config.profile.status;
 
-    // Injection du Menu Navigation
     const navList = document.getElementById("nav-list");
     config.navigation.forEach(item => {
         const li = document.createElement("li");
@@ -22,14 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
         navList.appendChild(li);
     });
 
-    // Gestion du Scroll Header
     window.addEventListener("scroll", () => {
         const header = document.querySelector(".app-header");
         if (window.scrollY > 50) header.classList.add("scrolled");
         else header.classList.remove("scrolled");
     });
 
-    // Menu Mobile (Toggle)
     const capsule = document.querySelector(".nav-capsule");
     const menuIcon = document.querySelector(".menu-icon");
     if (capsule && menuIcon) {
@@ -47,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 2. HERO SECTION
     // ==========================================
-    
-    // Typewriter Effect
     const typeText = config.profile.typewriterText;
     const typeTarget = document.getElementById("typewriter-text");
     let typeIndex = 0;
@@ -62,12 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     typeWriter();
 
-    // Injection Bio & Liens
     document.getElementById("bio-text").textContent = config.profile.bio;
     document.getElementById("github-link").href = config.social.github;
     document.getElementById("linkedin-link").href = config.social.linkedin;
 
-    // Injection Tags Skills
     const skillsContainer = document.getElementById("skills-container");
     config.skills.forEach(skill => {
         const span = document.createElement("span");
@@ -77,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // 3. SECTIONS DYNAMIQUES (Projets, Parcours, etc.)
+    // 3. SECTIONS DYNAMIQUES
     // ==========================================
 
     // --- PROJETS ---
@@ -90,8 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const card = document.createElement("div");
             card.className = `project-card ${index >= projectsVisible ? 'hidden-item' : ''}`;
-            
-            // Badge "Nouveau"
             const badgeHtml = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
             card.innerHTML = `
@@ -108,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
             projectsGrid.appendChild(card);
         });
 
-        // Gestion bouton "Voir plus"
         if (config.projects.length <= projectsVisible) {
             if(loadMoreBtn) loadMoreBtn.style.display = "none";
         } else {
@@ -124,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- EXPÉRIENCES (Timeline) ---
+    // --- EXPÉRIENCES ---
     const timelineList = document.querySelector(".timeline-list");
     config.experiences.forEach(exp => {
         const li = document.createElement("li");
@@ -142,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     config.competences.forEach((comp, index) => {
         const div = document.createElement("div");
         div.className = "comp-card-container";
-        
         let detailsHtml = "";
         comp.details.forEach(det => detailsHtml += `<li>${det}</li>`);
 
@@ -166,14 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
         li.className = "cert-card-container";
 
         let actionsHtml = "";
-        // Lien officiel
-        if(cert.url) {
-            actionsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
-        }
-        // Bouton PDF
-        if(cert.pdf && cert.pdf !== "") {
-            actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
-        }
+        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
+        if(cert.pdf && cert.pdf !== "") actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
 
         li.innerHTML = `
             <div class="cert-header-row">
@@ -195,78 +175,40 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 4. GESTION MODALES & PDF
     // ==========================================
-
-    // --- TOGGLE PDF PROJETS ---
     window.togglePdf = (headerElement, pdfFile) => {
         const container = headerElement.nextElementSibling;
-        
-        // Ferme si déjà ouvert
         if (container.style.display === "block") {
-            container.style.display = "none";
-            container.innerHTML = ""; 
-            return;
+            container.style.display = "none"; container.innerHTML = ""; return;
         }
-
-        // Ferme les autres
-        document.querySelectorAll(".pdf-container").forEach(el => {
-            el.style.display = "none";
-            el.innerHTML = "";
-        });
-
-        // Ouvre le nouveau
+        document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
         container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
-    // --- TOGGLE COMPÉTENCES ---
     window.toggleComp = (index) => {
         const list = document.getElementById(`comp-list-${index}`);
         const btn = document.getElementById(`toggle-btn-${index}`);
-        
-        if (list.style.display === "none") {
-            list.style.display = "block";
-            btn.classList.add("active");
-        } else {
-            list.style.display = "none";
-            btn.classList.remove("active");
-        }
+        if (list.style.display === "none") { list.style.display = "block"; btn.classList.add("active"); } 
+        else { list.style.display = "none"; btn.classList.remove("active"); }
     };
 
-    // --- TOGGLE PDF CERTIFS ---
     window.toggleCertPdf = (containerId, pdfFile) => {
         const container = document.getElementById(containerId);
-
-        if (container.style.display === "block") {
-            container.style.display = "none";
-            container.innerHTML = "";
-            return;
-        }
-
-        // Ferme les autres viewers de certifs
-        document.querySelectorAll(".cert-pdf-viewer").forEach(el => {
-            el.style.display = "none";
-            el.innerHTML = "";
-        });
-
+        if (container.style.display === "block") { container.style.display = "none"; container.innerHTML = ""; return; }
+        document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
         container.innerHTML = `<iframe src="assets/pdf/${pdfFile}"></iframe>`;
     };
 
-
     // ==========================================
-    // 5. THEME & CONTACT
+    // 5. THEME & CONTACT AVEC CAPTCHA
     // ==========================================
-
-    // --- THEME SWITCHER ---
     const themeBtn = document.getElementById("theme-toggle");
     const themeIcon = themeBtn.querySelector("span");
-    
-    // Vérif localStorage
     if(localStorage.getItem("theme") === "light") {
         document.body.classList.add("light-mode");
         themeIcon.textContent = "☀️";
     }
-
     themeBtn.addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
         const isLight = document.body.classList.contains("light-mode");
@@ -274,29 +216,62 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", isLight ? "light" : "dark");
     });
 
-    // --- MODALE CONTACT (Email depuis Config) ---
+    // --- MODALE CONTACT ---
     const contactBtn = document.getElementById("contact-btn");
     const contactModal = document.getElementById("contact-modal");
     const closeModalBtn = document.querySelector(".close-btn");
+    
+    // Elements internes
+    const captchaStep = document.getElementById("captcha-step");
+    const emailArea = document.getElementById("email-result-area");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailSpan = document.getElementById("email-text");
 
     function openModal() {
         if (!contactModal) return;
-        
-        // 1. Récupération et Décodage de l'email depuis Config
-        const emailSpan = document.getElementById("email-text");
-        if (emailSpan && config.profile.emailEncoded) {
-            // atob() décode le Base64
-            emailSpan.innerText = atob(config.profile.emailEncoded);
-        }
 
+        // Reset de l'état (On cache l'email, on montre le captcha)
+        captchaStep.style.display = "block";
+        emailArea.style.display = "none";
+        emailSpan.innerText = "";
+        captchaContainer.innerHTML = ""; // Reset du widget précédent
+
+        // Affichage Modale
         contactModal.style.display = "flex";
         setTimeout(() => { contactModal.style.opacity = "1"; }, 10);
+
+        // Initialisation du Captcha Turnstile
+        if (window.turnstile) {
+            turnstile.render('#captcha-container', {
+                sitekey: config.profile.turnstileSiteKey, // Utilisation de la clé dans Config.js
+                theme: document.body.classList.contains('light-mode') ? 'light' : 'dark',
+                callback: function(token) {
+                    // SUCCÈS : L'utilisateur est humain
+                    console.log('Captcha validé !');
+                    
+                    // 1. Masquer Captcha
+                    captchaStep.style.display = "none";
+                    
+                    // 2. Décoder et afficher l'email
+                    emailSpan.innerText = atob(config.profile.emailEncoded);
+                    emailArea.style.display = "block";
+                },
+            });
+        } else {
+            // Fallback si script pas chargé (rare)
+            emailSpan.innerText = "Erreur chargement Captcha.";
+            emailArea.style.display = "block";
+        }
     }
 
     window.closeModal = () => {
         if (!contactModal) return;
         contactModal.style.opacity = "0";
-        setTimeout(() => { contactModal.style.display = "none"; }, 300);
+        setTimeout(() => { 
+            contactModal.style.display = "none"; 
+            // Nettoyage
+            captchaContainer.innerHTML = "";
+        }, 300);
     };
 
     if (contactBtn) contactBtn.addEventListener("click", (e) => {
@@ -305,45 +280,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+    window.addEventListener("click", (e) => { if (e.target === contactModal) closeModal(); });
 
-    window.addEventListener("click", (e) => {
-        if (e.target === contactModal) closeModal();
-    });
-
-
-    // --- GESTION BOUTON COPIER ---
+    // --- BOUTON COPIER ---
     const copyBtn = document.getElementById("copy-btn");
-    
     if (copyBtn) {
         copyBtn.addEventListener("click", () => {
-            const emailSpan = document.getElementById("email-text");
-            if (!emailSpan) return; 
-            
             const textToCopy = emailSpan.innerText;
             const originalHtml = copyBtn.innerHTML; 
-
             navigator.clipboard.writeText(textToCopy).then(() => {
-                // Feedback Visuel
                 copyBtn.style.background = "#10b981"; 
-                copyBtn.innerHTML = `
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Copié !</span>
-                `;
-
-                // Auto-fermeture
+                copyBtn.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Copié !</span>`;
                 setTimeout(() => {
                     closeModal();
-                    setTimeout(() => { 
-                        copyBtn.style.background = ""; 
-                        copyBtn.innerHTML = originalHtml; 
-                    }, 300);
+                    setTimeout(() => { copyBtn.style.background = ""; copyBtn.innerHTML = originalHtml; }, 300);
                 }, 1000); 
-
-            }).catch(err => {
-                console.error('Erreur copie :', err);
-                alert("Erreur de copie manuelle.");
             });
         });
     }
-
 });
