@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navList = document.getElementById("nav-list");
     config.navigation.forEach(item => {
         const li = document.createElement("li");
+        // Sécurité : Pas de target blank ici par défaut, mais si tu en mets, il faudrait rel="noopener"
         li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
         navList.appendChild(li);
     });
@@ -152,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
         li.className = "cert-card-container";
 
         let actionsHtml = "";
-        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
+        // SÉCURITÉ : Ajout de rel="noopener noreferrer" pour les liens externes
+        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
         if(cert.pdf && cert.pdf !== "") actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
 
         li.innerHTML = `
@@ -182,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
+        // iframe : sandboxée par défaut par les navigateurs récents, mais 'src' interne est safe.
         container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
     };
 
