@@ -399,53 +399,125 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     background-color: var(--card);
 }
 
-/* Competences */
-.comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; height: fit-content; }
+/* =========================================
+   SECTION COMPÉTENCES (REDESIGN)
+   ========================================= */
 
-.comp-header { 
-    padding: 16px 20px; 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    cursor: pointer; 
-    font-weight: 600; 
-    transition: background 0.2s; 
-}
-.comp-header:hover { background: rgba(255,255,255,0.02); }
-
-.comp-dropdown-menu { 
-    padding: 15px 20px; 
-    background: rgba(0,0,0,0.1); 
-    border-top: 1px solid var(--border); 
-    list-style: none; 
+/* --- 1. La Grille 2 Colonnes --- */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile : 1 colonne */
+    gap: 20px;
+    width: 100%;
 }
 
-body.light-mode .comp-dropdown-menu {
-    background-color: #ffffff !important;
-    border-top: 1px solid #f3f4f6;
-    color: #333333;
+@media (min-width: 768px) {
+    .grid-2-col {
+        grid-template-columns: 1fr 1fr; /* PC/Tablette : 2 colonnes */
+        align-items: start; /* Évite que les cartes s'étirent inutilement */
+    }
 }
 
-.comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-.comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
-
-body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
-
-.comp-toggle { 
-    margin-left: auto; 
-    background: transparent; border: 1px solid var(--border); color: var(--muted); 
-    width: 30px; height: 30px; border-radius: 50%; 
-    display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0;
+/* --- 2. Le Design de la Carte --- */
+.comp-card-container {
+    background: var(--card);
+    border-radius: 16px; /* Arrondi plus moderne */
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
-.comp-toggle.active { transform: rotate(180deg); }
-.comp-toggle:hover, .comp-toggle.active {
-    background-color: var(--primary) !important;
-    border-color: var(--primary) !important;
-    color: #ffffff !important;
-}
-body.light-mode .comp-toggle { border-color: #9ca3af; color: #374151; }
-body.light-mode .comp-header:hover { background: #f9fafb; }
 
+.comp-card-container:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* --- 3. Header de la Carte --- */
+.comp-header {
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.comp-header span:nth-child(2) {
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* --- 4. Le contenu (Liste transformée en Tags) --- */
+.comp-dropdown-menu {
+    padding: 0 25px 25px 25px; /* Padding interne */
+    background: transparent;
+    border-top: none; 
+    list-style: none;
+    /* Flexbox pour créer le nuage de tags */
+    display: none; /* Caché par défaut, géré par JS */
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: -5px; /* Remonte un peu vers le header */
+}
+
+/* Style des "Badges" de compétence */
+.comp-dropdown-menu li {
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    /* Couleurs des badges */
+    background: rgba(99, 102, 241, 0.1); /* Fond légèrement teinté */
+    color: var(--primary); /* Texte couleur primaire */
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+/* Effet au survol d'un badge */
+.comp-dropdown-menu li:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* Suppression des anciens ronds de liste */
+.comp-dropdown-menu li::before { content: none; }
+
+/* Ajustement Mode Clair pour les badges */
+body.light-mode .comp-dropdown-menu li {
+    background: #eef2ff;
+    border-color: #c7d2fe;
+    color: #4f46e5;
+}
+body.light-mode .comp-dropdown-menu li:hover {
+    background: #4f46e5;
+    color: white;
+}
+
+/* --- 5. Bouton Toggle (Flèche) --- */
+.comp-toggle {
+    margin-left: auto;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    transition: 0.3s;
+}
+
+.comp-toggle.active {
+    transform: rotate(180deg);
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
 
 /* Load More & Footer */
 .load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
