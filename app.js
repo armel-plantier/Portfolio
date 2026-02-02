@@ -129,33 +129,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // --- FONCTION COPIER AMELIORÉE (Feedback + Délai) ---
+        // Fonction Copier et Fermer
         if(copyBtn) {
             copyBtn.addEventListener("click", () => {
                 if(decodedEmail) {
                     navigator.clipboard.writeText(decodedEmail).then(() => {
-                        // 1. Feedback Visuel
+                        // Feedback visuel
                         copyBtn.innerText = "Copié ! ✅";
-                        copyBtn.style.backgroundColor = "#10b981"; // Vert succès
+                        copyBtn.style.backgroundColor = "#10b981"; 
                         copyBtn.style.borderColor = "#10b981";
 
-                        // 2. Délai de 2 secondes avant fermeture
+                        // Délai 2s avant fermeture
                         setTimeout(() => {
                             emailModal.style.display = "none";
-                            // Reset du bouton pour la prochaine fois
                             copyBtn.innerText = "Copier"; 
                             copyBtn.style.backgroundColor = "";
                             copyBtn.style.borderColor = "";
                         }, 2000); 
 
-                    }).catch(err => {
-                        console.error('Erreur copie :', err);
-                    });
+                    }).catch(err => { console.error('Erreur copie :', err); });
                 }
             });
         }
 
-        // Fermeture Modale Contact
+        // Fermeture Modale
         const closeFn = () => { emailModal.style.display = "none"; };
         if(closeModalBtn) closeModalBtn.addEventListener("click", closeFn);
         window.addEventListener("click", (e) => {
@@ -173,16 +170,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             legalModal.style.display = "flex";
         });
-
         const closeLegal = () => { legalModal.style.display = "none"; };
-        
         if (legalCloseBtn) legalCloseBtn.addEventListener("click", closeLegal);
-        
         window.addEventListener("click", (e) => {
             if(e.target === legalModal) closeLegal();
         });
     }
-
 
     // --- 5. NAVIGATION ---
     const navList = document.getElementById("nav-list");
@@ -402,6 +395,47 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // --- 13. DERNIERE MISE A JOUR (GITHUB API) ---
+    const updateEl = document.getElementById("last-update");
+    if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
+        const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
+        
+        fetch(repoUrl)
+            .then(response => {
+                if (!response.ok) throw new Error("Repo not found");
+                return response.json();
+            })
+            .then(data => {
+                const date = new Date(data.pushed_at);
+                const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
+                updateEl.innerHTML = `Maj : ${formattedDate}`;
+            })
+            .catch(err => {
+                console.warn("GitHub API Error:", err);
+                updateEl.innerText = "System Ready";
+            });
+    }
+    
+    // --- 14. RACCOURCIS CLAVIER ---
+    document.addEventListener('keydown', (e) => {
+        // ESC = Ferme tout
+        if (e.key === "Escape") {
+            const emailModal = document.getElementById("email-modal");
+            if(emailModal) emailModal.style.display = "none";
+            const legalModal = document.getElementById("legal-modal");
+            if(legalModal) legalModal.style.display = "none";
+            
+            document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+        }
+        // D = Dark/Light Mode
+        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') {
+            document.getElementById("theme-toggle").click();
+        }
+    });
 });
 
 // ==========================================
