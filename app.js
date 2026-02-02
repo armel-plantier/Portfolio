@@ -1,373 +1,541 @@
-document.addEventListener("DOMContentLoaded", () => {
+:root {
+    /* --- COULEURS & THEME (MODE SOMBRE PAR DÉFAUT) --- */
+    --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
+    --card: #151925;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #2d3748;
+    --primary: #6366f1;
+    --header-h: 90px;
+    --badge-bg: #10b981;
     
-    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
-
-    // SECURITE : Fonction pour échapper les caractères spéciaux HTML (Anti-XSS)
-    const escapeHTML = (str) => {
-        if (!str) return '';
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    };
-
-    // --- 1. THEME ---
-    const themeBtn = document.getElementById("theme-toggle");
-    const body = document.body;
-    
-    if (localStorage.getItem("theme") === "light") {
-        body.classList.add("light-mode");
-        if(themeBtn) themeBtn.innerText = "🌙"; 
-    }
-    
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            body.classList.toggle("light-mode");
-            if (body.classList.contains("light-mode")) {
-                themeBtn.innerText = "🌙"; 
-                localStorage.setItem("theme", "light");
-            } else {
-                themeBtn.innerText = "☀️"; 
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    }
-
-    // --- 2. PROFIL ---
-    document.title = `${config.profile.name} | Portfolio`;
-    const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar; // URL contrôlée via CSP
-    
-    const faviconEl = document.getElementById("favicon-link");
-    if(faviconEl && config.profile.favicon) {
-        faviconEl.href = config.profile.favicon;
-    }
-
-    document.getElementById("profile-name").innerText = config.profile.name;
-    document.getElementById("profile-status").innerText = config.profile.status;
-    document.getElementById("profile-bio").innerText = config.profile.bio;
-    
-    const gh = document.getElementById("link-github");
-    if(gh) gh.href = config.social.github;
-    
-    const lk = document.getElementById("link-linkedin");
-    if(lk) lk.href = config.social.linkedin;
-    
-    // innerHTML sécurisé ici car seule la date est dynamique
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
-
-    // --- 3. NAVIGATION ---
-    const navList = document.getElementById("nav-list");
-    if(navList && config.navigation) {
-        config.navigation.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.innerText = item.title;
-            a.href = item.link; 
-            
-            a.addEventListener('click', () => {
-                 const header = document.querySelector('.app-header');
-                 if(header) header.classList.remove('menu-open');
-            });
-
-            li.appendChild(a);
-            navList.appendChild(li);
-        });
-    }
-
-    // --- 4. TAGS HEADER ---
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer && config.skills) {
-        config.skills.forEach(s => {
-            const span = document.createElement("span"); 
-            span.className = "skill-tag"; 
-            span.innerText = s;
-            skillsContainer.appendChild(span);
-        });
-    }
-
-    // --- 5. PROJETS (LIMIT 4) ---
-    const grid = document.getElementById("project-grid");
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
-    const PROJECT_LIMIT = 4; 
-
-    if (grid && config.projects) {
-        config.projects.forEach((proj, index) => {
-            const vid = `viewer_${index}`;
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
-            
-            const fullPdfUrl = baseUrl + proj.path;
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-
-            // Sécurisation : Utilisation de escapeHTML pour le contenu texte
-            // Suppression de onclick dans le HTML string -> Ajout via addEventListener plus bas
-            div.innerHTML = `
-                ${badgeHTML}
-                <div class="card-header js-toggle-pdf">
-                    <div class="icon">${escapeHTML(proj.icon)}</div>
-                    <div class="meta">
-                        <h4>${escapeHTML(proj.title)}</h4>
-                        <p>${escapeHTML(proj.description)}</p>
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
-            
-            // Attachement sécurisé de l'événement
-            const headerBtn = div.querySelector('.js-toggle-pdf');
-            if(headerBtn) {
-                headerBtn.addEventListener('click', () => togglePDF(vid, fullPdfUrl));
-            }
-
-            grid.appendChild(div);
-        });
-        
-        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
-    }
-
-    // --- 6. PARCOURS (LIMIT 5) ---
-    const expList = document.getElementById("exp-list");
-    const EXP_LIMIT = 5;
-    
-    if(expList && config.experiences) {
-        config.experiences.forEach((exp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "timeline-item";
-            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-            
-            // Sécurisation XSS
-            li.innerHTML = `
-                <span class="timeline-date">${escapeHTML(exp.date)}</span>
-                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
-                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
-            `;
-            expList.appendChild(li);
-        });
-        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
-    }
-
-    // --- 7. COMPETENCES (LIMIT 5) ---
-    const compList = document.getElementById("comp-list");
-    const COMP_LIMIT = 5;
-
-    if(compList && config.competences) {
-        config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container";
-            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
-            
-            const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            
-            // Sécurisation : onclick remplacé par gestionnaire d'événement
-            li.innerHTML = `
-                <div class="comp-header js-comp-header">
-                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
-                    <span class="cert-name">${escapeHTML(comp.name)}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
-                </div>
-                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
-            `;
-            
-            // Event Listener sécurisé
-            const headerEl = li.querySelector('.js-comp-header');
-            if(headerEl) {
-                headerEl.addEventListener('click', (e) => toggleComp(e, dropId, headerEl));
-            }
-
-            compList.appendChild(li);
-        });
-        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
-    }
-
-    // --- 8. CERTIFICATIONS ---
-    const certList = document.getElementById("cert-list");
-    const CERT_LIMIT = 5;
-    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
-
-    if(certList && config.certifications) {
-        config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li");
-            li.className = "cert-card-container";
-            
-            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
-            const issuer = cert.issuer ? cert.issuer : "Certification"; 
-            const viewerId = `cert_view_${index}`;
-            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
-
-            // Construction sécurisée des boutons
-            const actionsDiv = document.createElement('div');
-            actionsDiv.className = 'cert-actions';
-
-            if (cert.url) {
-                const linkBtn = document.createElement('a');
-                linkBtn.href = cert.url;
-                linkBtn.target = "_blank";
-                linkBtn.rel = "noopener noreferrer"; // Sécurité Tabnabbing
-                linkBtn.className = "cert-btn link-btn";
-                linkBtn.title = "Voir le site officiel";
-                linkBtn.innerHTML = '<i class="fa-solid fa-link"></i> 🔗';
-                actionsDiv.appendChild(linkBtn);
-            }
-
-            if (cert.pdf) {
-                const pdfBtn = document.createElement('button');
-                pdfBtn.className = "cert-btn pdf-btn";
-                pdfBtn.title = "Voir le diplôme";
-                pdfBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> 📄';
-                pdfBtn.addEventListener('click', () => toggleCertPDF(viewerId, fullPdfUrl));
-                actionsDiv.appendChild(pdfBtn);
-            }
-
-            li.innerHTML = `
-                <div class="cert-header-row">
-                    <div class="cert-icon-box">🏆</div>
-                    <div class="cert-info">
-                        <span class="cert-name">${escapeHTML(cert.name)}</span>
-                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
-                    </div>
-                </div>
-                <div id="${viewerId}" class="cert-pdf-viewer"></div>
-            `;
-            
-            // On insère les boutons générés proprement
-            li.querySelector('.cert-header-row').appendChild(actionsDiv);
-            certList.appendChild(li);
-        });
-        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
-    }
-
-    // --- 9. TYPEWRITER & EMAIL ---
-    const textEl = document.getElementById("typewriter-area");
-    if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; 
-        textEl.innerText = ""; 
-        let i=0;
-        function type() { 
-            if(i<txt.length) { 
-                // Sécurisation : innerText au lieu de innerHTML pour éviter injection
-                textEl.textContent += txt.charAt(i); 
-                i++; 
-                setTimeout(type, 50); 
-            } 
-        }
-        setTimeout(type, 500);
-    }
-
-    const emailTrigger = document.getElementById("email-trigger");
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            const emailSpan = document.getElementById("email-text");
-            // Sécurité : textContent
-            emailSpan.textContent = config.profile.email || "email@exemple.com";
-            document.getElementById("email-modal").style.display = "flex";
-        });
-    }
-
-    // Gestion fermeture modale (déplacé du HTML vers ici)
-    const closeModalBtn = document.getElementById("modal-close-btn");
-    if(closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.comp-card-container')) {
-            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
-        }
-        // Fermeture modale au clic extérieur
-        if(e.target == document.getElementById("email-modal")) {
-            closeModal();
-        }
-    });
-
-    // --- 10. SCROLL & MENU ---
-    const header = document.querySelector('.app-header');
-    const navCapsule = document.querySelector('.nav-capsule');
-    const menuIcon = document.querySelector('.menu-icon'); 
-
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); }
-        });
-
-        if (menuIcon) {
-            menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); });
-        }
-
-        document.addEventListener('click', (e) => {
-            if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
-                header.classList.remove('menu-open');
-            }
-        });
-    }
-});
-
-// --- HELPER FUNCTIONS (Non exposées globalement si possible, mais gardées ici pour compatibilité logique) ---
-
-function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div"); div.className = "load-more-container"; 
-    const btn = document.createElement("button"); btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    let expanded = false;
-    btn.onclick = () => {
-        expanded = !expanded;
-        const children = container.children;
-        for(let i=0; i<children.length; i++) {
-            if(i >= limit) {
-                if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity=0; setTimeout(()=>children[i].style.opacity=1, 50); } 
-                else { children[i].classList.add("hidden-item"); children[i].style.opacity=0; }
-            }
-        }
-        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
-    };
-    div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
+    /* --- DIMENSIONS --- */
+    --header-padding: 40px; 
+    --theme-btn-size: 42px;
 }
 
-// Fonctions rendues locales par la refonte addEventListener, 
-// mais définies ici pour être appelées par les closures.
-function toggleComp(e, id, triggerElement) {
-    e.stopPropagation(); 
-    const menu = document.getElementById(id); 
-    const btn = triggerElement.querySelector('.comp-toggle');
+/* --- LIGHT MODE (PROPRE & LISIBLE) --- */
+body.light-mode {
+    /* FOND : Blanc cassé très clair */
+    --bg: #f3f4f6; 
     
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
+    /* Cartes : BLANC PUR */
+    --card: #ffffff; 
     
-    if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
-    else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
+    /* Texte : Noir/Gris anthracite */
+    --text: #1f2937;
+    
+    /* Texte secondaire : Gris moyen */
+    --muted: #6b7280;
+    
+    /* Bordures : Gris très clair */
+    --border: #e5e7eb;
+    
+    /* Badge vert ajusté */
+    --badge-bg: #059669;
 }
 
-function togglePDF(id, url) {
-    const c = document.getElementById(id);
-    if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-    
-    // Sécurisation : Utilisation stricte de l'URL encodée
-    const safeUrl = encodeURIComponent(url);
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
-    c.style.display='block';
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* --- SCROLL FLUIDE NATIF --- */
+html { scroll-behavior: smooth; }
+
+html, body { min-height: 100%; }
+
+body { 
+    background: var(--bg);
+    background-attachment: fixed;
+    color: var(--text); 
+    font-family: 'Inter', sans-serif; 
+    padding-top: var(--header-h); 
+    transition: background 0.3s, color 0.3s; 
+    overflow-x: hidden; 
+}
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   HEADER PRINCIPAL
+   ========================================= */
+.app-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 var(--header-padding); 
+    background: transparent !important; 
+    pointer-events: none; 
+    z-index: 1000;
+    transition: all 0.4s ease;
 }
 
-function toggleCertPDF(id, url) {
-    const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    
-    const safeUrl = encodeURIComponent(url);
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+.header-left, .nav-capsule, .header-right { pointer-events: auto; }
+
+/* -- Identité -- */
+.header-left { 
+    display: flex; align-items: center; gap: 16px; 
+    transition: all 0.4s ease;
+    opacity: 1; transform: translateY(0);
+}
+.app-header.scrolled .header-left {
+    opacity: 0; transform: translateY(-20px); pointer-events: none;
 }
 
-function closeModal() { 
-    document.getElementById("email-modal").style.display = "none"; 
+.id-avatar { 
+    width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px);
+    transition: all 0.3s ease;
+}
+.identity-info { display: flex; flex-direction: column; align-items: flex-start; transition: all 0.3s ease; }
+.id-name { 
+    font-weight: 800; font-family: 'Outfit', sans-serif; 
+    font-size: 1.3rem; line-height: 1.1; color: var(--text);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
+}
+/* En mode clair, on enlève l'ombre du texte du nom */
+body.light-mode .id-name { text-shadow: none; }
+
+.status-wrapper { 
+    display: flex; align-items: center; gap: 8px; 
+    font-size: 0.9rem; color: var(--muted); margin-top: 4px;
+}
+.status-dot { 
+    width: 8px; height: 8px; background: #10b981; 
+    border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); 
+}
+
+/* -- Bouton Thème -- */
+.header-right { 
+    display: flex; align-items: center; position: absolute; 
+    right: var(--header-padding); top: 50%; transform: translateY(-50%);
+    transition: all 0.4s ease; 
+    z-index: 1002;
+}
+.theme-icon {
+    width: var(--theme-btn-size); height: var(--theme-btn-size);
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(40px);
+    color: var(--text); cursor: pointer; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+/* Bouton thème en mode clair : fond blanc semi-transparent */
+body.light-mode .theme-icon { 
+    background: rgba(255,255,255,0.8); 
+    border-color: rgba(0,0,0,0.1); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.theme-icon:hover { background: var(--card); border-color: var(--primary); }
+
+/* -- Navigation (Capsule) -- */
+.nav-capsule {
+    position: fixed; 
+    top: calc(var(--header-h) / 2); 
+    left: 50%; right: auto;
+    transform: translate(-50%, -50%);
+    
+    /* Mode sombre par défaut */
+    background: rgba(20, 20, 30, 0.6); 
+    backdrop-filter: blur(50px) saturate(180%);
+    -webkit-backdrop-filter: blur(50px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    padding: 10px 30px; border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; height: 50px; z-index: 1001;
+}
+
+/* MODE CLAIR : Capsule blanche propre */
+body.light-mode .nav-capsule { 
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.nav-capsule ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; transition: opacity 0.3s; opacity: 1; }
+.menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
+
+.nav-capsule a { 
+    font-size: 0.9rem; font-weight: 500; color: #e2e8f0; 
+    transition: 0.2s ease; white-space: nowrap; 
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+}
+.nav-capsule a:hover { color: var(--primary); text-shadow: none; }
+
+/* Liens en Light Mode : Gris foncé propre */
+body.light-mode .nav-capsule a { 
+    color: #4b5563; 
+    text-shadow: none;
+}
+body.light-mode .nav-capsule a:hover { color: var(--primary); }
+
+
+/* =========================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================= */
+
+@media (min-width: 1201px) {
+    .app-header.scrolled .nav-capsule {
+        left: auto; transform: translateY(-50%);
+        right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
+        width: var(--theme-btn-size); height: var(--theme-btn-size);
+        padding: 0; border-radius: 50%; background: rgba(20, 20, 30, 0.8);
+    }
+    
+    body.light-mode .app-header.scrolled .nav-capsule {
+        background: rgba(255, 255, 255, 0.8) !important;
+        border-color: rgba(0,0,0,0.1);
+    }
+    
+    .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: block; }
+
+    .app-header.scrolled .nav-capsule:hover { width: auto; padding: 0 30px; border-radius: 50px; }
+    .app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
+    .app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
+}
+
+@media (max-width: 1200px) {
+    body { padding-top: 240px; } 
+    .app-header {
+        position: absolute !important; top: 0; left: 0; width: 100%;
+        flex-direction: column; height: auto !important; 
+        padding: 20px 15px; gap: 15px; background: transparent !important; 
+    }
+    .header-left { width: 100%; justify-content: center; margin-bottom: 0; opacity: 1 !important; transform: none; }
+    
+    .nav-capsule {
+        position: relative !important; top: 0 !important; left: 0 !important; transform: none !important;
+        width: 100%; max-width: 500px; margin: 0 auto;
+        background: var(--card); 
+        border-radius: 12px;
+        padding: 12px 10px; height: auto;
+        display: flex; justify-content: center; overflow-x: auto; 
+    }
+    
+    body.light-mode .nav-capsule {
+        background: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .nav-capsule ul { display: flex !important; opacity: 1 !important; gap: 15px; }
+    .nav-capsule .menu-icon { display: none !important; }
+    .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
+
+    /* Header Mobile SCROLLÉ */
+    .app-header.scrolled {
+        position: fixed !important; top: 0; left: 0; width: 100%; height: 70px !important;
+        flex-direction: row; justify-content: flex-end; align-items: center;
+        padding: 0 15px; gap: 0;
+        background: rgba(15, 20, 30, 0.85) !important;
+        backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 9999;
+    }
+    
+    body.light-mode .app-header.scrolled {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .app-header.scrolled .header-left {
+        position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) !important;
+        width: auto; margin: 0; opacity: 1 !important; pointer-events: auto; z-index: 1; 
+    }
+    .app-header.scrolled .id-avatar { width: 34px; height: 34px; } 
+    .app-header.scrolled .id-name { font-size: 1rem; } 
+    .app-header.scrolled .status-wrapper { display: none; } 
+
+    .app-header.scrolled .nav-capsule {
+        width: 42px !important; height: 42px !important; padding: 0 !important; border-radius: 50% !important;
+        background: rgba(255,255,255,0.08) !important;
+        position: static !important; margin-right: 10px; transform: none !important;
+        display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer;
+    }
+    
+    body.light-mode .app-header.scrolled .nav-capsule {
+        background: rgba(0,0,0,0.05) !important;
+        color: var(--text);
+    }
+    
+    .app-header.scrolled .nav-capsule ul { display: none !important; }
+    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; font-size: 1.1rem; }
+    .app-header.scrolled .header-right { position: static; transform: none; top: auto; right: auto; margin: 0; z-index: 10; }
+
+    .app-header.scrolled.menu-open .header-left { position: static !important; transform: none !important; margin-right: auto; opacity: 1 !important; }
+    .app-header.scrolled.menu-open .nav-capsule {
+        position: absolute !important; left: 50% !important; transform: translateX(-50%) !important;
+        width: auto !important; height: 50px !important; border-radius: 50px !important;
+        padding: 0 25px !important; margin: 0 !important;
+        background: rgba(20, 20, 30, 0.95) !important; z-index: 2000; cursor: default;
+    }
+    
+    body.light-mode .app-header.scrolled.menu-open .nav-capsule {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    
+    .app-header.scrolled.menu-open .nav-capsule ul { display: flex !important; gap: 15px; }
+    .app-header.scrolled.menu-open .nav-capsule .menu-icon { display: none !important; }
+    .app-header.scrolled.menu-open .header-right { margin-left: auto; }
+}
+
+
+/* =========================================
+   RESTE DU SITE
+   ========================================= */
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: block; }
+
+/* Hero */
+.hero-section { text-align: center; margin-bottom: 80px; margin-top: 10px; width: 100%; }
+.hero-title { 
+    font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; 
+    background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; 
+}
+.bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
+@media (min-width: 1024px) {
+    .hero-title { font-size: 3.5rem; }
+    .bio-text { font-size: 1.1rem; max-width: 700px; }
+}
+.cursor { animation: blink 1s infinite; font-weight: 100; color: var(--muted); }
+@keyframes blink { 50% { opacity: 0; } }
+
+.social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;}
+.social-btn { 
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 20px; background: var(--card); border-radius: 8px; 
+    border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; 
+    transition: 0.2s; color: var(--muted);
+}
+.social-btn:hover { border-color: var(--primary); color: var(--primary); }
+.social-btn.email { background: var(--primary); color: white; border: none; }
+
+.skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.skill-tag { 
+    background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; 
+    font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); 
+}
+
+/* Sections & Headers */
+.section-wrapper, section, #projects, #parcours, #competences, #certifs { 
+    width: 100%; margin-bottom: 60px; scroll-margin-top: 140px; 
+}
+h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
+
+/* Grid Projets */
+.grid { display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; }
+.project-card { 
+    position: relative; background: var(--card); border: 1px solid var(--border); 
+    border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; 
+}
+.project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+.new-badge {
+    position: absolute; top: 15px; right: 15px;
+    background: var(--badge-bg); color: #fff;
+    font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
+    border-radius: 20px; text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
+}
+.hidden-item { display: none !important; }
+.card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
+.card-header .icon { font-size: 2rem; }
+.card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
+.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
+
+/* --- CORRECTION AFFICHAGE PDF (Suppression fond blanc & espace vide) --- */
+.pdf-container { 
+    display: none; 
+    /* height: 640px; <--- Retiré pour laisser le contenu gérer la hauteur */
+    border-top: 1px solid var(--border); 
+    background: var(--card); /* Fond harmonisé */
+    overflow: hidden; 
+    border-radius: 0 0 16px 16px; 
+}
+
+.pdf-container iframe {
+    display: block; /* Supprime l'espace fantôme en bas */
+    width: 100%;
+    border: none;
+    background-color: var(--card);
+}
+
+/* Timeline */
+.timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); width: 100%; }
+.timeline-item { margin-bottom: 35px; position: relative; }
+.timeline-item::before { 
+    content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; 
+    background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; 
+}
+.timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
+.timeline-title { font-size: 1rem; margin-bottom: 5px; }
+.timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* =========================================
+   CERTIFICATIONS
+   ========================================= */
+.cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
+@media (min-width: 768px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
+
+.cert-card-container {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; position: relative; display: flex; flex-direction: column;
+    transition: all 0.3s ease; overflow: hidden;
+}
+.cert-card-container:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+.cert-header-row { display: flex; align-items: center; gap: 15px; width: 100%; }
+
+.cert-icon-box {
+    width: 45px; height: 45px; background: rgba(99, 102, 241, 0.1); color: var(--primary);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+}
+
+.cert-info { flex-grow: 1; }
+.cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
+.cert-issuer { display: block; font-size: 0.85rem; color: var(--muted); }
+
+.cert-actions { display: flex; gap: 8px; }
+.cert-btn {
+    width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border);
+    background: transparent; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); transition: all 0.2s; font-size: 0.9rem; text-decoration: none; cursor: pointer;
+}
+.cert-btn:hover { color: #fff; border-color: transparent; }
+.cert-btn.link-btn:hover { background: var(--primary); }
+.cert-btn.pdf-btn:hover { background: #10b981; } 
+
+/* Correction aussi pour le viewer de certifs */
+.cert-pdf-viewer { 
+    display: none; 
+    margin-top: 20px; 
+    border-top: 1px solid var(--border); 
+    padding-top: 10px; 
+    background: var(--card); 
+    width: 100%; 
+    height: 500px; 
+}
+.cert-pdf-viewer iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: var(--card);
+}
+
+/* =========================================
+   COMPETENCES (Menu Déroulant)
+   ========================================= */
+.comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; height: fit-content; }
+
+.comp-header { 
+    padding: 16px 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    cursor: pointer; 
+    font-weight: 600; 
+    transition: background 0.2s; 
+}
+.comp-header:hover { background: rgba(255,255,255,0.02); }
+
+/* --- DESCRIPTION DES COMPETENCES --- */
+.comp-dropdown-menu { 
+    padding: 15px 20px; 
+    background: rgba(0,0,0,0.1); 
+    border-top: 1px solid var(--border); 
+    list-style: none; 
+}
+
+body.light-mode .comp-dropdown-menu {
+    background-color: #ffffff !important;
+    border-top: 1px solid #f3f4f6;
+    color: #333333;
+}
+
+.comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
+
+body.light-mode .comp-dropdown-menu li {
+    color: #4b5563 !important;
+}
+
+/* --- BOUTON TOGGLE (Flèche) --- */
+.comp-toggle { 
+    margin-left: auto; 
+    background: transparent; border: 1px solid var(--border); color: var(--muted); 
+    width: 30px; height: 30px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0;
+}
+
+.comp-toggle.active { transform: rotate(180deg); }
+
+.comp-toggle:hover, 
+.comp-toggle.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+body.light-mode .comp-toggle {
+    border-color: #9ca3af; 
+    color: #374151;
+}
+
+body.light-mode .comp-header:hover {
+    background: #f9fafb;
+}
+
+
+/* Load More & Footer */
+.load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
+.load-more-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
+}
+.load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); }
+
+footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; width: 100%; }
+
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+.modal-content { background: var(--card); width: 90%; max-width: 400px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+.modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+.close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
+.modal-body { padding: 30px; text-align: center; }
+
+/* Correction du fond de l'email ici */
+.email-box { 
+    margin-top: 15px; 
+    background: rgba(0, 0, 0, 0.2); /* Fond propre au lieu du dégradé */
+    padding: 10px; 
+    border-radius: 6px; 
+    border: 1px solid var(--border); 
+    font-family: monospace; 
+    color: var(--primary);
+    word-break: break-all;
+}
+
+/* --- AJUSTEMENTS LIGHT MODE FINAUX --- */
+body.light-mode .project-card,
+body.light-mode .cert-card-container,
+body.light-mode .comp-card-container {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-color: #e5e7eb;
+}
+
+body.light-mode .skill-tag {
+    background: #ffffff;
+    border-color: #e5e7eb;
+    color: #4b5563;
+}
+
+body.light-mode .cert-icon-box {
+    background: rgba(99, 102, 241, 0.1);
+    color: #4f46e5;
+}
+
+body.light-mode .hero-title {
+    text-shadow: none; 
 }
