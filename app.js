@@ -1,19 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Vérification de sécurité
-    if (typeof config === 'undefined') { console.error("ERREUR CRITIQUE : config.js n'est pas chargé."); return; }
+    // --- VERIFICATION CONFIG ---
+    if (typeof config === 'undefined') { 
+        console.error("ERREUR : config.js n'est pas chargé ou contient une erreur de syntaxe."); 
+        return; 
+    }
 
-    // --- 1. THEME (Dark/Light Mode) ---
+    // Fonction de sécurité (Nettoyage texte)
+    const escapeHTML = (str) => {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
+
+    // --- 1. THEME (DARK/LIGHT) ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
-    // Appliquer le thème sauvegardé
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-mode");
         if(themeBtn) themeBtn.innerText = "🌙"; 
     }
     
-    // Gestion du clic bouton thème
     if (themeBtn) {
         themeBtn.addEventListener("click", () => {
             body.classList.toggle("light-mode");
@@ -27,31 +39,69 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. REMPLISSAGE DU PROFIL ---
+    // --- 2. REMPLISSAGE PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     
-    // Avatar
+    // Avatar & Favicon
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
-    // Favicon
     const faviconEl = document.getElementById("favicon-link");
-    if(faviconEl && config.profile.favicon) { faviconEl.href = config.profile.favicon; }
+    if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
 
     // Textes
-    setText("profile-name", config.profile.name);
-    setText("profile-status", config.profile.status);
-    setText("profile-bio", config.profile.bio);
+    const nameEl = document.getElementById("profile-name");
+    if(nameEl) nameEl.innerText = config.profile.name;
     
-    // Liens Sociaux
-    setHref("link-github", config.social.github);
-    setHref("link-linkedin", config.social.linkedin);
+    const statusEl = document.getElementById("profile-status");
+    if(statusEl) statusEl.innerText = config.profile.status;
+    
+    const bioEl = document.getElementById("profile-bio");
+    if(bioEl) bioEl.innerText = config.profile.bio;
     
     // Footer
     const footerEl = document.getElementById("footer-copy");
-    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${config.profile.name}.`;
+    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
 
-    // --- 3. NAVIGATION (Menu) ---
+    // Liens Sociaux
+    const ghBtn = document.getElementById("link-github");
+    if(ghBtn && config.social.github) ghBtn.href = config.social.github;
+    
+    const lkBtn = document.getElementById("link-linkedin");
+    if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
+
+
+    // --- 3. BOUTON CONTACT (MODALE) ---
+    const emailTrigger = document.getElementById("email-trigger");
+    const emailModal = document.getElementById("email-modal");
+    const closeModalBtn = document.getElementById("modal-close-btn");
+    const emailText = document.getElementById("email-text");
+
+    if(emailTrigger && emailModal) {
+        emailTrigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Récupère l'email
+            if(emailText) emailText.innerText = config.profile.email || "Email non configuré";
+            emailModal.style.display = "flex";
+        });
+
+        // Fermeture via la croix
+        if(closeModalBtn) {
+            closeModalBtn.addEventListener("click", () => {
+                emailModal.style.display = "none";
+            });
+        }
+
+        // Fermeture en cliquant dehors
+        window.addEventListener("click", (e) => {
+            if(e.target === emailModal) {
+                emailModal.style.display = "none";
+            }
+        });
+    }
+
+
+    // --- 4. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -60,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
             a.innerText = item.title;
             a.href = item.link; 
             
-            // Fermer le menu sur mobile au clic
             a.addEventListener('click', () => {
                  const header = document.querySelector('.app-header');
                  if(header) header.classList.remove('menu-open');
@@ -71,7 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 4. TAGS HEADER (Compétences rapides) ---
+
+    // --- 5. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => {
@@ -82,9 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 5. PROJETS ---
+
+    // --- 6. PROJETS (AVEC CLIC FONCTIONNEL) ---
     const grid = document.getElementById("project-grid");
-    // Calcul du chemin pour les PDF
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
     const PROJECT_LIMIT = 4; 
@@ -92,35 +142,40 @@ document.addEventListener("DOMContentLoaded", () => {
     if (grid && config.projects) {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            
-            // Cacher les projets au-delà de la limite
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
-            
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
-            // Note: On utilise window.togglePDF ici via onclick
+            const div = document.createElement("div"); 
+            div.className = "project-card";
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+
+            // On injecte le HTML SANS onclick
             div.innerHTML = `
                 ${badgeHTML}
-                <div class="card-header" onclick="window.togglePDF('${vid}', '${fullPdfUrl}')" style="cursor: pointer;">
-                    <div class="icon">${proj.icon}</div>
+                <div class="card-header" style="cursor: pointer;">
+                    <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
-                        <h4>${proj.title}</h4>
-                        <p>${proj.description}</p>
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description)}</p>
                     </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
+            
+            // ON AJOUTE L'EVENEMENT ICI (Méthode Sûre)
+            const headerDiv = div.querySelector('.card-header');
+            headerDiv.addEventListener("click", () => {
+                togglePDF(vid, fullPdfUrl);
+            });
+
             grid.appendChild(div);
         });
         
-        // Bouton "Voir plus"
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- 6. PARCOURS (Timeline) ---
+
+    // --- 7. PARCOURS (TIMELINE) ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     
@@ -131,16 +186,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
             
             li.innerHTML = `
-                <span class="timeline-date">${exp.date}</span>
-                <h4 class="timeline-title">${exp.role} <span style="font-weight:400;opacity:0.8;">@ ${exp.company}</span></h4>
-                <p class="timeline-desc">${exp.description}</p>
+                <span class="timeline-date">${escapeHTML(exp.date)}</span>
+                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
+                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
             `;
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 7. COMPETENCES (Menu Déroulant) ---
+
+    // --- 8. COMPETENCES (DROPDOWN) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -151,23 +207,30 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             
             const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>• ${d}</li>`).join('');
+            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // Note: On utilise window.toggleComp ici
             li.innerHTML = `
-                <div class="comp-header" onclick="window.toggleComp(event, '${dropId}')">
-                    <div class="cert-icon-box">${comp.icon}</div>
-                    <span class="cert-name">${comp.name}</span>
+                <div class="comp-header">
+                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
+                    <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
+            
+            // EVENT LISTENER MANUEL
+            const headerEl = li.querySelector('.comp-header');
+            headerEl.addEventListener("click", (e) => {
+                toggleComp(dropId, headerEl);
+            });
+
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 8. CERTIFICATIONS ---
+
+    // --- 9. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -176,48 +239,58 @@ document.addEventListener("DOMContentLoaded", () => {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li");
             li.className = "cert-card-container";
-            
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
             
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
+            // Création des boutons
             let buttonsHtml = '';
-            // Bouton Lien
             if (cert.url) {
                 buttonsHtml += `
-                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Voir le site officiel">
-                         🔗
+                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">
+                        🔗
                     </a>`;
             }
-            // Bouton PDF
-            if (cert.pdf) {
-                buttonsHtml += `
-                    <button onclick="window.toggleCertPDF('${viewerId}', '${fullPdfUrl}')" class="cert-btn pdf-btn" title="Voir le diplôme">
-                         📄
-                    </button>`;
-            }
-
+            // Note: Le bouton PDF sera ajouté manuellement s'il existe pour gérer le clic
+            
             li.innerHTML = `
                 <div class="cert-header-row">
                     <div class="cert-icon-box">🏆</div>
                     <div class="cert-info">
-                        <span class="cert-name">${cert.name}</span>
-                        <span class="cert-issuer">${issuer}</span>
+                        <span class="cert-name">${escapeHTML(cert.name)}</span>
+                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
                     </div>
                     <div class="cert-actions">
                         ${buttonsHtml}
-                    </div>
+                        </div>
                 </div>
                 <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
+            
+            // Ajout du bouton PDF avec Event Listener si PDF existe
+            if (cert.pdf) {
+                const actionsDiv = li.querySelector('.cert-actions');
+                const pdfBtn = document.createElement("button");
+                pdfBtn.className = "cert-btn pdf-btn";
+                pdfBtn.title = "Voir le diplôme";
+                pdfBtn.innerHTML = "📄";
+                
+                pdfBtn.addEventListener("click", () => {
+                    toggleCertPDF(viewerId, fullPdfUrl);
+                });
+                
+                actionsDiv.appendChild(pdfBtn);
+            }
+
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 9. EFFET MACHINE A ECRIRE ---
+
+    // --- 10. EFFET MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; 
@@ -233,23 +306,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 10. BOUTON CONTACT (Email) ---
-    const emailTrigger = document.getElementById("email-trigger");
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            const emailSpan = document.getElementById("email-text");
-            // Récupère l'email depuis config.js
-            emailSpan.innerText = config.profile.email || "Email non configuré";
-            // Affiche la modale
-            document.getElementById("email-modal").style.display = "flex";
-        });
-    }
 
-    // --- 11. SCROLL & MENU MOBILE ---
+    // --- 11. HEADER SCROLL & MOBILE ---
     const header = document.querySelector('.app-header');
-    const navCapsule = document.querySelector('.nav-capsule');
     const menuIcon = document.querySelector('.menu-icon'); 
+    const navCapsule = document.querySelector('.nav-capsule');
 
     if (header) {
         window.addEventListener('scroll', () => {
@@ -266,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 header.classList.toggle('menu-open'); 
             });
         }
-
+        
         document.addEventListener('click', (e) => {
             if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
                 header.classList.remove('menu-open');
@@ -274,38 +335,72 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Gestion fermeture modale au clic extérieur
-    const modal = document.getElementById("email-modal");
-    if(modal) {
-        modal.addEventListener('click', function(e) {
-            if(e.target === modal) window.closeModal();
-        });
-    }
-    
-    // Bouton croix modale
-    const closeBtn = document.getElementById("modal-close-btn");
-    if(closeBtn) {
-        closeBtn.addEventListener('click', window.closeModal);
-    }
 });
 
+
 // ==========================================
-// FONCTIONS GLOBALES (Accessibles via onclick HTML)
+// FONCTIONS UTILITAIRES (Logique interne)
 // ==========================================
 
-// Helper pour remplir du texte
-function setText(id, text) {
-    const el = document.getElementById(id);
-    if(el) el.innerText = text || "";
+// Afficher/Cacher PDF Projet
+function togglePDF(id, url) {
+    const c = document.getElementById(id);
+    // Fermer si déjà ouvert
+    if(c.style.display === 'block') { 
+        c.style.display = 'none'; 
+        c.innerHTML = ''; 
+        return; 
+    }
+    // Fermer les autres
+    document.querySelectorAll('.pdf-container').forEach(el => { 
+        el.style.display = 'none'; 
+        el.innerHTML = ''; 
+    });
+    // Ouvrir le nouveau
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    c.style.display = 'block';
 }
 
-// Helper pour les liens
-function setHref(id, link) {
-    const el = document.getElementById(id);
-    if(el) el.href = link || "#";
+// Afficher/Cacher Compétences
+function toggleComp(id, headerEl) {
+    const menu = document.getElementById(id);
+    const btn = headerEl.querySelector('.comp-toggle');
+    
+    // Fermer les autres
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { 
+        if(el.id !== id) el.style.display = 'none'; 
+    });
+    document.querySelectorAll('.comp-toggle').forEach(el => { 
+        if(el !== btn) el.classList.remove('active'); 
+    });
+    
+    // Toggle actuel
+    if(menu.style.display === 'block') { 
+        menu.style.display = 'none'; 
+        if(btn) btn.classList.remove('active'); 
+    } else { 
+        menu.style.display = 'block'; 
+        if(btn) btn.classList.add('active'); 
+    }
 }
 
-// Fonction pour le bouton "Voir plus / Voir moins"
+// Afficher/Cacher PDF Certif
+function toggleCertPDF(id, url) {
+    const viewer = document.getElementById(id);
+    if (viewer.style.display === 'block') { 
+        viewer.style.display = 'none'; 
+        viewer.innerHTML = ''; 
+        return; 
+    }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { 
+        el.style.display = 'none'; 
+        el.innerHTML = ''; 
+    });
+    viewer.style.display = 'block';
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+}
+
+// Bouton Voir Plus
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
     div.className = "load-more-container"; 
@@ -316,14 +411,13 @@ function createToggleBtn(container, limit, txtMore) {
     
     let expanded = false;
     
-    btn.onclick = () => {
+    btn.addEventListener("click", () => {
         expanded = !expanded;
         const children = container.children;
         for(let i=0; i<children.length; i++) {
             if(i >= limit) {
                 if(expanded) { 
                     children[i].classList.remove("hidden-item"); 
-                    // Petit effet d'apparition
                     children[i].style.opacity = 0; 
                     setTimeout(()=>children[i].style.opacity=1, 50); 
                 } else { 
@@ -333,80 +427,8 @@ function createToggleBtn(container, limit, txtMore) {
             }
         }
         btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
-    };
+    });
     
     div.appendChild(btn); 
     container.parentNode.insertBefore(div, container.nextSibling);
 }
-
-// Ouvrir/Fermer la description des compétences
-window.toggleComp = function(e, id) {
-    if(e) e.stopPropagation(); 
-    const menu = document.getElementById(id); 
-    // Trouve le bouton flèche dans l'élément cliqué
-    const btn = e.currentTarget.querySelector('.comp-toggle');
-    
-    // Ferme les autres menus ouverts
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { 
-        if(el.id !== id) el.style.display = 'none'; 
-    });
-    document.querySelectorAll('.comp-toggle').forEach(el => { 
-        if(el !== btn) el.classList.remove('active'); 
-    });
-    
-    // Bascule l'état actuel
-    if(menu.style.display === 'block') { 
-        menu.style.display = 'none'; 
-        if(btn) btn.classList.remove('active'); 
-    } else { 
-        menu.style.display = 'block'; 
-        if(btn) btn.classList.add('active'); 
-    }
-};
-
-// Afficher/Cacher le PDF Projet
-window.togglePDF = function(id, url) {
-    const c = document.getElementById(id);
-    
-    // Si déjà ouvert, on ferme
-    if(c.style.display === 'block') { 
-        c.style.display = 'none'; 
-        c.innerHTML = ''; 
-        return; 
-    }
-    
-    // Ferme les autres PDF ouverts
-    document.querySelectorAll('.pdf-container').forEach(el => { 
-        el.style.display = 'none'; 
-        el.innerHTML = ''; 
-    });
-    
-    // Injecte le Viewer Google Docs
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
-    c.style.display = 'block';
-};
-
-// Afficher/Cacher le PDF Certification
-window.toggleCertPDF = function(id, url) {
-    const viewer = document.getElementById(id);
-    
-    if (viewer.style.display === 'block') { 
-        viewer.style.display = 'none'; 
-        viewer.innerHTML = ''; 
-        return; 
-    }
-    
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { 
-        el.style.display = 'none'; 
-        el.innerHTML = ''; 
-    });
-    
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-};
-
-// Fermer la modale Email
-window.closeModal = function() { 
-    const m = document.getElementById("email-modal");
-    if(m) m.style.display = "none"; 
-};
