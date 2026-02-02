@@ -7,14 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
     link.rel = 'icon'; link.href = config.profile.favicon;
     document.head.appendChild(link);
 
-    document.getElementById("avatar-img").src = config.profile.avatar;
+    const avatarImg = document.getElementById("avatar-img");
+    if(avatarImg) avatarImg.src = config.profile.avatar;
+    
     document.getElementById("profile-name").textContent = config.profile.name;
     document.getElementById("profile-status").textContent = config.profile.status;
 
     const navList = document.getElementById("nav-list");
     config.navigation.forEach(item => {
         const li = document.createElement("li");
-        // Sécurité : Pas de target blank ici par défaut, mais si tu en mets, il faudrait rel="noopener"
         li.innerHTML = `<a href="${item.link}">${item.title}</a>`;
         navList.appendChild(li);
     });
@@ -53,7 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(typeWriter, 50);
         }
     }
-    typeWriter();
+    // Lancement sécurisé
+    if (typeTarget) typeWriter();
 
     document.getElementById("bio-text").textContent = config.profile.bio;
     document.getElementById("github-link").href = config.social.github;
@@ -68,8 +70,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // 3. SECTIONS DYNAMIQUES
+    // 3. SECTIONS DYNAMIQUES (RÉPARÉES POUR CSP)
     // ==========================================
+
+    // FONCTIONS UTILITAIRES (Définies avant utilisation)
+    function togglePdf(headerElement, pdfFile) {
+        const container = headerElement.nextElementSibling; // Le pdf-container juste après le header
+        if (window.getComputedStyle(container).display === "block") {
+            container.style.display = "none"; 
+            container.innerHTML = ""; 
+            return;
+        }
+        // Fermer les autres
+        document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
+        // Ouvrir celui-ci
+        container.style.display = "block";
+        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
+    }
+
+    function toggleComp(index, btnElement) {
+        const list = document.getElementById(`comp-list-${index}`);
+        if (window.getComputedStyle(list).display === "none") { 
+            list.style.display = "block"; 
+            btnElement.classList.add("active"); 
+        } else { 
+            list.style.display = "none"; 
+            btnElement.classList.remove("active"); 
+        }
+    }
+
+    function toggleCertPdf(containerId, pdfFile) {
+        const container = document.getElementById(containerId);
+        if (window.getComputedStyle(container).display === "block") { 
+            container.style.display = "none"; 
+            container.innerHTML = ""; 
+            return; 
+        }
+        document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
+        container.style.display = "block";
+        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}"></iframe>`;
+    }
 
     // --- PROJETS ---
     const projectsGrid = document.getElementById("projects-grid");
@@ -83,9 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = `project-card ${index >= projectsVisible ? 'hidden-item' : ''}`;
             const badgeHtml = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
+            // Structure HTML sans onclick
             card.innerHTML = `
                 ${badgeHtml}
-                <div class="card-header" onclick="togglePdf(this, '${proj.path}')">
+                <div class="card-header">
                     <div class="icon">${proj.icon}</div>
                     <div class="meta">
                         <h4>${proj.title}</h4>
@@ -94,13 +135,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="pdf-container" id="pdf-${index}"></div>
             `;
+
+            // Ajout de l'EventListener sécurisé
+            const header = card.querySelector(".card-header");
+            header.addEventListener("click", () => togglePdf(header, proj.path));
+
             projectsGrid.appendChild(card);
         });
 
-        if (config.projects.length <= projectsVisible) {
-            if(loadMoreBtn) loadMoreBtn.style.display = "none";
-        } else {
-            if(loadMoreBtn) loadMoreBtn.style.display = "flex";
+        if (loadMoreBtn) {
+            loadMoreBtn.style.display = (config.projects.length <= projectsVisible) ? "none" : "flex";
         }
     }
     renderProjects();
@@ -133,8 +177,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let detailsHtml = "";
         comp.details.forEach(det => detailsHtml += `<li>${det}</li>`);
 
+        // HTML sans onclick
         div.innerHTML = `
-            <div class="comp-header" onclick="toggleComp(${index})">
+            <div class="comp-header">
                 <span style="font-size:1.5rem;">${comp.icon}</span>
                 <span>${comp.name}</span>
                 <button class="comp-toggle" id="toggle-btn-${index}">▼</button>
@@ -143,6 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${detailsHtml}
             </ul>
         `;
+
+        // EventListener sécurisé
+        const header = div.querySelector(".comp-header");
+        const btn = div.querySelector(`#toggle-btn-${index}`);
+        header.addEventListener("click", () => toggleComp(index, btn));
+
         compGrid.appendChild(div);
     });
 
@@ -152,66 +203,63 @@ document.addEventListener("DOMContentLoaded", () => {
         const li = document.createElement("li");
         li.className = "cert-card-container";
 
-        let actionsHtml = "";
-        // SÉCURITÉ : Ajout de rel="noopener noreferrer" pour les liens externes
-        if(cert.url) actionsHtml += `<a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="cert-btn link-btn" title="Voir le site officiel">🔗</a>`;
-        if(cert.pdf && cert.pdf !== "") actionsHtml += `<button onclick="toggleCertPdf('cert-pdf-${index}', '${cert.pdf}')" class="cert-btn pdf-btn" title="Voir le certificat">📄</button>`;
+        // Création des éléments boutons dynamiquement pour attacher les événements
+        const actionsDiv = document.createElement("div");
+        actionsDiv.className = "cert-actions";
 
-        li.innerHTML = `
-            <div class="cert-header-row">
-                <div class="cert-icon-box">📜</div>
-                <div class="cert-info">
-                    <span class="cert-name">${cert.name}</span>
-                    <span class="cert-issuer">${cert.issuer}</span>
-                </div>
-                <div class="cert-actions">
-                    ${actionsHtml}
-                </div>
+        if(cert.url) {
+            const linkBtn = document.createElement("a");
+            linkBtn.href = cert.url;
+            linkBtn.target = "_blank";
+            linkBtn.rel = "noopener noreferrer";
+            linkBtn.className = "cert-btn link-btn";
+            linkBtn.title = "Voir le site officiel";
+            linkBtn.textContent = "🔗";
+            actionsDiv.appendChild(linkBtn);
+        }
+
+        if(cert.pdf && cert.pdf !== "") {
+            const pdfBtn = document.createElement("button");
+            pdfBtn.className = "cert-btn pdf-btn";
+            pdfBtn.title = "Voir le certificat";
+            pdfBtn.textContent = "📄";
+            pdfBtn.addEventListener("click", () => toggleCertPdf(`cert-pdf-${index}`, cert.pdf));
+            actionsDiv.appendChild(pdfBtn);
+        }
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "cert-header-row";
+        contentDiv.innerHTML = `
+            <div class="cert-icon-box">📜</div>
+            <div class="cert-info">
+                <span class="cert-name">${cert.name}</span>
+                <span class="cert-issuer">${cert.issuer}</span>
             </div>
-            <div id="cert-pdf-${index}" class="cert-pdf-viewer"></div>
         `;
+        contentDiv.appendChild(actionsDiv); // On ajoute nos boutons sécurisés
+
+        li.appendChild(contentDiv);
+        
+        const pdfViewer = document.createElement("div");
+        pdfViewer.id = `cert-pdf-${index}`;
+        pdfViewer.className = "cert-pdf-viewer";
+        li.appendChild(pdfViewer);
+
         certGrid.appendChild(li);
     });
 
-
     // ==========================================
-    // 4. GESTION MODALES & PDF
-    // ==========================================
-    window.togglePdf = (headerElement, pdfFile) => {
-        const container = headerElement.nextElementSibling;
-        if (container.style.display === "block") {
-            container.style.display = "none"; container.innerHTML = ""; return;
-        }
-        document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
-        container.style.display = "block";
-        // iframe : sandboxée par défaut par les navigateurs récents, mais 'src' interne est safe.
-        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}" width="100%" height="500px"></iframe>`;
-    };
-
-    window.toggleComp = (index) => {
-        const list = document.getElementById(`comp-list-${index}`);
-        const btn = document.getElementById(`toggle-btn-${index}`);
-        if (list.style.display === "none") { list.style.display = "block"; btn.classList.add("active"); } 
-        else { list.style.display = "none"; btn.classList.remove("active"); }
-    };
-
-    window.toggleCertPdf = (containerId, pdfFile) => {
-        const container = document.getElementById(containerId);
-        if (container.style.display === "block") { container.style.display = "none"; container.innerHTML = ""; return; }
-        document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
-        container.style.display = "block";
-        container.innerHTML = `<iframe src="assets/pdf/${pdfFile}"></iframe>`;
-    };
-
-    // ==========================================
-    // 5. THEME & CONTACT AVEC CAPTCHA
+    // 5. THEME & CONTACT
     // ==========================================
     const themeBtn = document.getElementById("theme-toggle");
     const themeIcon = themeBtn.querySelector("span");
+    
+    // Initial Theme Check
     if(localStorage.getItem("theme") === "light") {
         document.body.classList.add("light-mode");
         themeIcon.textContent = "☀️";
     }
+
     themeBtn.addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
         const isLight = document.body.classList.contains("light-mode");
@@ -224,7 +272,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactModal = document.getElementById("contact-modal");
     const closeModalBtn = document.querySelector(".close-btn");
     
-    // Elements internes
     const captchaStep = document.getElementById("captcha-step");
     const emailArea = document.getElementById("email-result-area");
     const captchaContainer = document.getElementById("captcha-container");
@@ -232,50 +279,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openModal() {
         if (!contactModal) return;
-
-        // Reset de l'état (On cache l'email, on montre le captcha)
         captchaStep.style.display = "block";
         emailArea.style.display = "none";
         emailSpan.innerText = "";
-        captchaContainer.innerHTML = ""; // Reset du widget précédent
+        captchaContainer.innerHTML = ""; 
 
-        // Affichage Modale
         contactModal.style.display = "flex";
         setTimeout(() => { contactModal.style.opacity = "1"; }, 10);
 
-        // Initialisation du Captcha Turnstile
         if (window.turnstile) {
             turnstile.render('#captcha-container', {
-                sitekey: config.profile.turnstileSiteKey, // Utilisation de la clé dans Config.js
+                sitekey: config.profile.turnstileSiteKey,
                 theme: document.body.classList.contains('light-mode') ? 'light' : 'dark',
                 callback: function(token) {
-                    // SUCCÈS : L'utilisateur est humain
                     console.log('Captcha validé !');
-                    
-                    // 1. Masquer Captcha
                     captchaStep.style.display = "none";
-                    
-                    // 2. Décoder et afficher l'email
                     emailSpan.innerText = atob(config.profile.emailEncoded);
                     emailArea.style.display = "block";
                 },
             });
         } else {
-            // Fallback si script pas chargé (rare)
             emailSpan.innerText = "Erreur chargement Captcha.";
             emailArea.style.display = "block";
         }
     }
 
-    window.closeModal = () => {
+    function closeModal() {
         if (!contactModal) return;
         contactModal.style.opacity = "0";
         setTimeout(() => { 
             contactModal.style.display = "none"; 
-            // Nettoyage
             captchaContainer.innerHTML = "";
         }, 300);
-    };
+    }
 
     if (contactBtn) contactBtn.addEventListener("click", (e) => {
         e.preventDefault();
