@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // --- VERIFICATION CONFIG ---
     if (typeof config === 'undefined') { 
-        console.error("ERREUR : config.js n'est pas chargé ou contient une erreur de syntaxe."); 
+        console.error("ERREUR : config.js n'est pas chargé."); 
         return; 
     }
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/'/g, "&#039;");
     };
 
-    // --- 1. THEME (DARK/LIGHT) ---
+    // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
@@ -42,14 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 2. REMPLISSAGE PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     
-    // Avatar & Favicon
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
     
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
 
-    // Textes
     const nameEl = document.getElementById("profile-name");
     if(nameEl) nameEl.innerText = config.profile.name;
     
@@ -59,11 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
     
-    // Footer
     const footerEl = document.getElementById("footer-copy");
     if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
 
-    // Liens Sociaux
     const ghBtn = document.getElementById("link-github");
     if(ghBtn && config.social.github) ghBtn.href = config.social.github;
     
@@ -71,32 +67,72 @@ document.addEventListener("DOMContentLoaded", () => {
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
 
-    // --- 3. BOUTON CONTACT (MODALE) ---
+    // --- 3. BOUTON CONTACT (MODALE + CAPTCHA) ---
     const emailTrigger = document.getElementById("email-trigger");
     const emailModal = document.getElementById("email-modal");
     const closeModalBtn = document.getElementById("modal-close-btn");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailResultArea = document.getElementById("email-result-area");
     const emailText = document.getElementById("email-text");
+    const captchaInstruction = document.getElementById("captcha-instruction");
+    
+    let widgetId = null; // Pour stocker l'instance du captcha
 
     if(emailTrigger && emailModal) {
         emailTrigger.addEventListener("click", (e) => {
             e.preventDefault();
-            // Récupère l'email
-            if(emailText) emailText.innerText = config.profile.email || "Email non configuré";
+            
+            // 1. Reset de l'interface
             emailModal.style.display = "flex";
+            if(captchaContainer) captchaContainer.style.display = "flex";
+            if(emailResultArea) emailResultArea.style.display = "none";
+            if(captchaInstruction) captchaInstruction.style.display = "block";
+            if(emailText) emailText.innerText = "";
+
+            // 2. Initialisation ou Reset du Captcha
+            if (window.turnstile) {
+                // Si un widget existe déjà, on le reset pour redemander la validation
+                if (widgetId !== null) {
+                    turnstile.reset(widgetId);
+                } else {
+                    // Premier rendu du widget
+                    try {
+                        widgetId = turnstile.render('#captcha-container', {
+                            sitekey: config.profile.turnstileSiteKey, // Utilise la clé dans config.js
+                            theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
+                            callback: function(token) {
+                                // SUCCES !
+                                try {
+                                    // Décodage de l'email (Base64)
+                                    const decodedEmail = atob(config.profile.emailEncoded);
+                                    if(emailText) emailText.innerText = decodedEmail;
+                                    
+                                    // Affichage du résultat
+                                    if(captchaContainer) captchaContainer.style.display = "none";
+                                    if(captchaInstruction) captchaInstruction.style.display = "none";
+                                    if(emailResultArea) emailResultArea.style.display = "block";
+                                } catch (err) {
+                                    console.error("Erreur décodage email");
+                                }
+                            }
+                        });
+                    } catch (e) {
+                        console.error("Erreur rendu Turnstile:", e);
+                        if(captchaContainer) captchaContainer.innerHTML = "Erreur chargement sécurité.";
+                    }
+                }
+            } else {
+                console.error("Cloudflare Turnstile non chargé");
+            }
         });
 
-        // Fermeture via la croix
-        if(closeModalBtn) {
-            closeModalBtn.addEventListener("click", () => {
-                emailModal.style.display = "none";
-            });
-        }
-
-        // Fermeture en cliquant dehors
+        // Fermeture Modale
+        const closeFn = () => { emailModal.style.display = "none"; };
+        
+        if(closeModalBtn) closeModalBtn.addEventListener("click", closeFn);
+        
         window.addEventListener("click", (e) => {
-            if(e.target === emailModal) {
-                emailModal.style.display = "none";
-            }
+            if(e.target === emailModal) closeFn();
         });
     }
 
@@ -109,17 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const a = document.createElement("a");
             a.innerText = item.title;
             a.href = item.link; 
-            
             a.addEventListener('click', () => {
                  const header = document.querySelector('.app-header');
                  if(header) header.classList.remove('menu-open');
             });
-
             li.appendChild(a);
             navList.appendChild(li);
         });
     }
-
 
     // --- 5. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
@@ -132,8 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-    // --- 6. PROJETS (Correction CSP : EventListener) ---
+    // --- 6. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -149,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // On injecte le HTML SANS onclick
             div.innerHTML = `
                 ${badgeHTML}
                 <div class="card-header" style="cursor: pointer;">
@@ -162,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // ON AJOUTE L'EVENEMENT ICI (Méthode Sûre)
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => {
                 togglePDF(vid, fullPdfUrl);
@@ -174,8 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-
-    // --- 7. PARCOURS (TIMELINE) ---
+    // --- 7. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     
@@ -195,8 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-
-    // --- 8. COMPETENCES (DROPDOWN - Correction CSP) ---
+    // --- 8. COMPETENCES (DROPDOWN) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -218,7 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
             
-            // EVENT LISTENER MANUEL
             const headerEl = li.querySelector('.comp-header');
             headerEl.addEventListener("click", (e) => {
                 toggleComp(dropId, headerEl);
@@ -229,8 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-
-    // --- 9. CERTIFICATIONS (Correction CSP) ---
+    // --- 9. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -245,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
 
-            // Création des boutons
             let buttonsHtml = '';
             if (cert.url) {
                 buttonsHtml += `
@@ -263,12 +288,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="cert-actions">
                         ${buttonsHtml}
-                        </div>
+                    </div>
                 </div>
                 <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
             
-            // Injection dynamique du bouton PDF pour gérer le clic sans 'onclick'
             if (cert.pdf) {
                 const actionsDiv = li.querySelector('.cert-actions');
                 const pdfBtn = document.createElement("button");
@@ -276,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 pdfBtn.title = "Voir le diplôme";
                 pdfBtn.innerHTML = "📄";
                 
-                // Ajout de l'écouteur d'événement
                 pdfBtn.addEventListener("click", () => {
                     toggleCertPDF(viewerId, fullPdfUrl);
                 });
@@ -289,8 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-
-    // --- 10. EFFET MACHINE A ECRIRE ---
+    // --- 10. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; 
@@ -306,8 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-
-    // --- 11. HEADER SCROLL & MOBILE ---
+    // --- 11. HEADER & SCROLL ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
@@ -334,47 +355,36 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
 });
 
-
 // ==========================================
-// FONCTIONS UTILITAIRES (Logique interne)
+// FONCTIONS UTILITAIRES
 // ==========================================
 
-// Afficher/Cacher PDF Projet
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    // Fermer si déjà ouvert
     if(c.style.display === 'block') { 
         c.style.display = 'none'; 
         c.innerHTML = ''; 
         return; 
     }
-    // Fermer les autres
     document.querySelectorAll('.pdf-container').forEach(el => { 
         el.style.display = 'none'; 
         el.innerHTML = ''; 
     });
-    // Ouvrir le nouveau
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
 }
 
-// Afficher/Cacher Compétences
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
     const btn = headerEl.querySelector('.comp-toggle');
-    
-    // Fermer les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { 
         if(el.id !== id) el.style.display = 'none'; 
     });
     document.querySelectorAll('.comp-toggle').forEach(el => { 
         if(el !== btn) el.classList.remove('active'); 
     });
-    
-    // Toggle actuel
     if(menu.style.display === 'block') { 
         menu.style.display = 'none'; 
         if(btn) btn.classList.remove('active'); 
@@ -384,7 +394,6 @@ function toggleComp(id, headerEl) {
     }
 }
 
-// Afficher/Cacher PDF Certif
 function toggleCertPDF(id, url) {
     const viewer = document.getElementById(id);
     if (viewer.style.display === 'block') { 
@@ -400,17 +409,13 @@ function toggleCertPDF(id, url) {
     viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 }
 
-// Bouton Voir Plus
 function createToggleBtn(container, limit, txtMore) {
     const div = document.createElement("div"); 
     div.className = "load-more-container"; 
-    
     const btn = document.createElement("button"); 
     btn.className = "load-more-btn";
     btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    
     let expanded = false;
-    
     btn.addEventListener("click", () => {
         expanded = !expanded;
         const children = container.children;
@@ -428,7 +433,6 @@ function createToggleBtn(container, limit, txtMore) {
         }
         btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     });
-    
     div.appendChild(btn); 
     container.parentNode.insertBefore(div, container.nextSibling);
 }
