@@ -467,6 +467,44 @@ body.light-mode .cert-icon-box { background: rgba(99, 102, 241, 0.1); color: #4f
 body.light-mode .hero-title { text-shadow: none; }
 
 /* =========================================
+   PAGE 404
+   ========================================= */
+.error-body {
+    display: flex; align-items: center; justify-content: center; height: 100vh;
+    overflow: hidden; padding: 0 20px; background: var(--bg); /* Utilise le même dégradé */
+}
+.error-card {
+    width: 100%; max-width: 600px; padding: 40px; text-align: center;
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.error-title {
+    font-family: 'Outfit', sans-serif; font-size: 6rem; margin: 0;
+    background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; line-height: 1;
+}
+.error-subtitle { font-size: 1.5rem; margin-bottom: 30px; color: var(--text); }
+
+.terminal-box {
+    background: #0b0d14; border-radius: 8px; padding: 20px; text-align: left;
+    font-family: 'Courier New', monospace; margin-bottom: 30px; border: 1px solid var(--border);
+    color: #d1d5db; font-size: 0.9rem; line-height: 1.6;
+}
+.cmd-user { color: #10b981; } 
+.cmd-path { color: #6366f1; } 
+.cmd-error { color: #ef4444; }
+.cursor {
+    display: inline-block; width: 8px; height: 1em; background-color: #d1d5db;
+    animation: blink 1s infinite; vertical-align: bottom;
+}
+
+.btn-home {
+    display: inline-block; background: var(--primary); color: white;
+    padding: 12px 30px; border-radius: 50px; font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s; border: 1px solid transparent;
+}
+.btn-home:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
+
+/* =========================================
    MODE IMPRESSION (Ctrl+P)
    ========================================= */
 @media print {
