@@ -523,8 +523,53 @@ body.light-mode .email-box {
 }
 
 #copy-email-btn:hover {
-    background: #4f46e5; /* Un poil plus foncé au survol */
+    background: #4f46e5;
     transform: translateY(-1px);
+}
+
+/* =========================================
+   MENTIONS LEGALES
+   ========================================= */
+.footer-legal-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.footer-legal-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.legal-text {
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+.legal-text p {
+    margin-bottom: 15px;
+}
+.legal-text strong {
+    color: var(--text);
+}
+
+/* Badge Cloudflare */
+.cloudflare-badge {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(244, 129, 32, 0.1);
+    border: 1px solid rgba(244, 129, 32, 0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #F48120;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 /* --- AJUSTEMENTS LIGHT MODE FINAUX --- */
