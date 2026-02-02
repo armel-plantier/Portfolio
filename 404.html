@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - System Error</title>
+    <style>
+        body {
+            background-color: #0b0d14;
+            color: #33ff33;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .terminal { width: 90%; max-width: 600px; }
+        h1 { font-size: 5rem; margin: 0; text-shadow: 0 0 10px rgba(51, 255, 51, 0.7); }
+        p { font-size: 1.2rem; margin-bottom: 20px; opacity: 0.8; }
+        .prompt { color: #f1f5f9; }
+        .path { color: #6366f1; }
+        .error-code { color: #ef4444; font-weight: bold; }
+        .cursor {
+            display: inline-block; width: 10px; height: 1.2rem;
+            background-color: #33ff33; animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        a {
+            color: #0b0d14; background: #33ff33; text-decoration: none;
+            padding: 12px 24px; font-weight: bold; border-radius: 4px;
+            display: inline-block; margin-top: 30px; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        a:hover { background: #6366f1; color: white; box-shadow: 0 0 15px #6366f1; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>404</h1>
+        <p>ERROR: <span class="error-code">RESOURCE_NOT_FOUND</span></p>
+        <br>
+        <div>
+            <span class="prompt">root@portfolio:</span><span class="path">/var/www/html</span>$ locate page<br>
+            <span style="color:#ef4444;">> Error: The requested URL was not found on this server.</span>
+        </div>
+        <br>
+        <div>
+            <span class="prompt">root@portfolio:</span><span class="path">~</span>$ systemctl restart navigation<span class="cursor"></span>
+        </div>
+        <br>
+        <a href="index.html">Initialiser le retour</a>
+    </div>
+</body>
+</html>
