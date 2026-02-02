@@ -16,7 +16,13 @@ const config = {
         typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
-        email: "armel.plantier@protonmail.com"
+        
+        // SECURITE : Email encodé en Base64 pour éviter le scraping simple
+        // armel.plantier@protonmail.com
+        emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=",
+        
+        // CLOUDFLARE TURNSTILE (Captcha)
+        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
     },
 
     social: {
@@ -101,7 +107,6 @@ const config = {
     ],
 
     // --- 6. COMPÉTENCES DÉTAILLÉES ---
-    // Note: J'ai séparé l'icône du nom pour le nouveau design
     competences: [
         {
             icon: "🐧",
