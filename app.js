@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // --- 6. PROJETS (AVEC CLIC FONCTIONNEL) ---
+    // --- 6. PROJETS (Correction CSP : EventListener) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // --- 8. COMPETENCES (DROPDOWN) ---
+    // --- 8. COMPETENCES (DROPDOWN - Correction CSP) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
 
@@ -230,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // --- 9. CERTIFICATIONS ---
+    // --- 9. CERTIFICATIONS (Correction CSP) ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -253,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         🔗
                     </a>`;
             }
-            // Note: Le bouton PDF sera ajouté manuellement s'il existe pour gérer le clic
             
             li.innerHTML = `
                 <div class="cert-header-row">
@@ -269,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${viewerId}" class="cert-pdf-viewer"></div>
             `;
             
-            // Ajout du bouton PDF avec Event Listener si PDF existe
+            // Injection dynamique du bouton PDF pour gérer le clic sans 'onclick'
             if (cert.pdf) {
                 const actionsDiv = li.querySelector('.cert-actions');
                 const pdfBtn = document.createElement("button");
@@ -277,6 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 pdfBtn.title = "Voir le diplôme";
                 pdfBtn.innerHTML = "📄";
                 
+                // Ajout de l'écouteur d'événement
                 pdfBtn.addEventListener("click", () => {
                     toggleCertPDF(viewerId, fullPdfUrl);
                 });
@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let i=0;
         function type() { 
             if(i<txt.length) { 
-                textEl.innerHTML += txt.charAt(i); 
+                textEl.textContent += txt.charAt(i); 
                 i++; 
                 setTimeout(type, 50); 
             } 
