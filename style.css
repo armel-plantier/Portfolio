@@ -486,16 +486,45 @@ footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85
 .close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
 .modal-body { padding: 30px; text-align: center; }
 
-/* Correction du fond de l'email ici : TRANSPARENT */
+/* =========================================
+   EMAIL BOX & COPIER
+   ========================================= */
 .email-box { 
     margin-top: 15px; 
-    background: transparent; /* Fond transparent pour s'adapter à la modale */
+    background: transparent; /* Fond transparent */
     padding: 10px; 
-    border-radius: 6px; 
     border: 1px solid var(--border); 
+    border-radius: 6px; 
     font-family: monospace; 
-    color: var(--primary);
+    color: #ffffff; /* Texte en BLANC comme demandé */
     word-break: break-all;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+body.light-mode .email-box {
+    color: #333; /* Texte sombre en mode clair pour lisibilité */
+    border-color: #ccc;
+}
+
+#copy-email-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+#copy-email-btn:hover {
+    background: #4f46e5; /* Un poil plus foncé au survol */
+    transform: translateY(-1px);
 }
 
 /* --- AJUSTEMENTS LIGHT MODE FINAUX --- */
