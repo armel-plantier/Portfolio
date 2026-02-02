@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-email-btn");
     
     let widgetId = null; 
-    let decodedEmail = ""; // Stocke l'email décodé pour le copier
+    let decodedEmail = ""; 
 
     if(emailTrigger && emailModal) {
         emailTrigger.addEventListener("click", (e) => {
@@ -90,6 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if(emailResultArea) emailResultArea.style.display = "none";
             if(captchaInstruction) captchaInstruction.style.display = "block";
             if(emailText) emailText.innerText = "";
+            
+            // Reset visuel du bouton copier
+            if(copyBtn) {
+                copyBtn.innerText = "Copier";
+                copyBtn.style.backgroundColor = ""; 
+            }
 
             // 2. Initialisation ou Reset du Captcha
             if (window.turnstile) {
@@ -122,12 +128,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Fonction Copier et Fermer
+        // --- FONCTION COPIER AMELIORÉE (Feedback + Délai) ---
         if(copyBtn) {
             copyBtn.addEventListener("click", () => {
                 if(decodedEmail) {
                     navigator.clipboard.writeText(decodedEmail).then(() => {
-                        emailModal.style.display = "none"; // Ferme la modale après copie
+                        // 1. Feedback Visuel
+                        const originalText = copyBtn.innerText;
+                        copyBtn.innerText = "Copié ! ✅";
+                        copyBtn.style.backgroundColor = "#10b981"; // Vert succès
+                        copyBtn.style.borderColor = "#10b981";
+
+                        // 2. Délai de 2 secondes avant fermeture
+                        setTimeout(() => {
+                            emailModal.style.display = "none";
+                            // Reset du bouton pour la prochaine fois
+                            copyBtn.innerText = "Copier"; 
+                            copyBtn.style.backgroundColor = "";
+                            copyBtn.style.borderColor = "";
+                        }, 2000); 
+
                     }).catch(err => {
                         console.error('Erreur copie :', err);
                     });
