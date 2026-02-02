@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
 
-    // --- 3. BOUTON CONTACT (MODALE + CAPTCHA) ---
+    // --- 3. BOUTON CONTACT (MODALE + CAPTCHA + COPIER) ---
     const emailTrigger = document.getElementById("email-trigger");
     const emailModal = document.getElementById("email-modal");
     const closeModalBtn = document.getElementById("modal-close-btn");
@@ -75,8 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailResultArea = document.getElementById("email-result-area");
     const emailText = document.getElementById("email-text");
     const captchaInstruction = document.getElementById("captcha-instruction");
+    const copyBtn = document.getElementById("copy-email-btn");
     
-    let widgetId = null; // Pour stocker l'instance du captcha
+    let widgetId = null; 
+    let decodedEmail = ""; // Stocke l'email décodé pour le copier
 
     if(emailTrigger && emailModal) {
         emailTrigger.addEventListener("click", (e) => {
@@ -91,23 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // 2. Initialisation ou Reset du Captcha
             if (window.turnstile) {
-                // Si un widget existe déjà, on le reset pour redemander la validation
                 if (widgetId !== null) {
                     turnstile.reset(widgetId);
                 } else {
-                    // Premier rendu du widget
                     try {
                         widgetId = turnstile.render('#captcha-container', {
-                            sitekey: config.profile.turnstileSiteKey, // Utilise la clé dans config.js
+                            sitekey: config.profile.turnstileSiteKey, 
                             theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
                             callback: function(token) {
                                 // SUCCES !
                                 try {
-                                    // Décodage de l'email (Base64)
-                                    const decodedEmail = atob(config.profile.emailEncoded);
+                                    decodedEmail = atob(config.profile.emailEncoded);
                                     if(emailText) emailText.innerText = decodedEmail;
                                     
-                                    // Affichage du résultat
                                     if(captchaContainer) captchaContainer.style.display = "none";
                                     if(captchaInstruction) captchaInstruction.style.display = "none";
                                     if(emailResultArea) emailResultArea.style.display = "block";
@@ -121,16 +119,25 @@ document.addEventListener("DOMContentLoaded", () => {
                         if(captchaContainer) captchaContainer.innerHTML = "Erreur chargement sécurité.";
                     }
                 }
-            } else {
-                console.error("Cloudflare Turnstile non chargé");
             }
         });
 
+        // Fonction Copier et Fermer
+        if(copyBtn) {
+            copyBtn.addEventListener("click", () => {
+                if(decodedEmail) {
+                    navigator.clipboard.writeText(decodedEmail).then(() => {
+                        emailModal.style.display = "none"; // Ferme la modale après copie
+                    }).catch(err => {
+                        console.error('Erreur copie :', err);
+                    });
+                }
+            });
+        }
+
         // Fermeture Modale
         const closeFn = () => { emailModal.style.display = "none"; };
-        
         if(closeModalBtn) closeModalBtn.addEventListener("click", closeFn);
-        
         window.addEventListener("click", (e) => {
             if(e.target === emailModal) closeFn();
         });
@@ -328,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 11. HEADER & SCROLL ---
+    // --- 11. HEADER SCROLL & MOBILE ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
