@@ -1,402 +1,175 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    if (typeof config === 'undefined') { console.error("ERREUR : config.js manquant"); return; }
+const config = {
+    // --- 1. NAVIGATION ---
+    navigation: [
+        { title: "Accueil", link: "#" },
+        { title: "Projets", link: "#projects" },
+        { title: "Parcours", link: "#parcours" },
+        { title: "Compétences", link: "#competences" },
+        { title: "Certifs", link: "#certifs" }
+    ],
 
-    // SECURITE : Fonction pour échapper les caractères spéciaux HTML (Anti-XSS)
-    const escapeHTML = (str) => {
-        if (!str) return '';
-        return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    };
+    // --- 2. PROFIL & RÉSEAUX ---
+    profile: {
+        // Favicon en Data URI (Optimisation perf & sécurité)
+        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
+        name: "Armel Plantier",
+        typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
+        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        status: "Recherche active d'alternance",
+        
+        // SECURITE : Email encodé en Base64 pour éviter le scraping sur GitHub
+        // Décodé à la volée par le JS lors du clic utilisateur
+        emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=" 
+    },
 
-    // --- 1. THEME ---
-    const themeBtn = document.getElementById("theme-toggle");
-    const body = document.body;
-    
-    if (localStorage.getItem("theme") === "light") {
-        body.classList.add("light-mode");
-        if(themeBtn) themeBtn.innerText = "🌙"; 
-    }
-    
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            body.classList.toggle("light-mode");
-            if (body.classList.contains("light-mode")) {
-                themeBtn.innerText = "🌙"; 
-                localStorage.setItem("theme", "light");
-            } else {
-                themeBtn.innerText = "☀️"; 
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    }
+    social: {
+        github: "https://github.com/armel-plantier",
+        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
+    },
 
-    // --- 2. PROFIL ---
-    document.title = `${config.profile.name} | Portfolio`;
-    const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar; 
-    
-    const faviconEl = document.getElementById("favicon-link");
-    if(faviconEl && config.profile.favicon) {
-        faviconEl.href = config.profile.favicon;
-    }
+    // --- 3. TAGS HEADER ---
+    skills: [
+        "🐧 Linux",
+        "🪟 Windows",
+        "🕸️ Réseau",
+        "🛡️ Sécurité"
+    ],
 
-    document.getElementById("profile-name").innerText = config.profile.name;
-    document.getElementById("profile-status").innerText = config.profile.status;
-    document.getElementById("profile-bio").innerText = config.profile.bio;
-    
-    const gh = document.getElementById("link-github");
-    if(gh) gh.href = config.social.github;
-    
-    const lk = document.getElementById("link-linkedin");
-    if(lk) lk.href = config.social.linkedin;
-    
-    document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
+    // --- 4. PROJETS (Documents PDF) ---
+    projects: [
+        {
+            title: "Mise en place réseau TechNova",
+            description: "Architecture, VLANs et documentation technique.",
+            path: "reseau-technova.pdf", 
+            icon: "🌐",
+            isNew: true
+        },
+        {
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            path: "active_directory.pdf", 
+            icon: "🖥️",
+            isNew: false
+        },
+        {
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
+            path: "audit_wifi.pdf",        
+            icon: "🛡️",
+            isNew: false
+        },
+        {
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
+            icon: "🐧",
+            isNew: false
+        },
+        {
+            title: "Projet Serveur Web",
+            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            path: "web_server.pdf", 
+            icon: "🌍",
+            isNew: false
+        },
+        {
+            title: "Scripting Python Automation",
+            description: "Automatisation des sauvegardes via API.",
+            path: "python_script.pdf", 
+            icon: "🐍",
+            isNew: false
+        }
+    ],
 
-    // --- 3. NAVIGATION ---
-    const navList = document.getElementById("nav-list");
-    if(navList && config.navigation) {
-        config.navigation.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.innerText = item.title;
-            a.href = item.link; 
-            
-            a.addEventListener('click', () => {
-                 const header = document.querySelector('.app-header');
-                 if(header) header.classList.remove('menu-open');
-            });
+    // --- 5. EXPÉRIENCES ---
+    experiences: [
+        {
+            date: "2023 - Présent",
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
+        },
+        {
+            date: "2022 - 2023",
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
+        }
+    ],
 
-            li.appendChild(a);
-            navList.appendChild(li);
-        });
-    }
+    // --- 6. COMPÉTENCES DÉTAILLÉES ---
+    competences: [
+        {
+            icon: "🐧",
+            name: "Administration Système",
+            details: [
+                "Linux Hardening (Debian, RHEL)",
+                "Windows Server (AD, DNS, DHCP)",
+                "Virtualisation (Proxmox, VMware)",
+                "Scripting (Bash, Python)"
+            ]
+        },
+        {
+            icon: "🕸️",
+            name: "Réseau & Sécurité",
+            details: [
+                "Modèle OSI / TCP-IP",
+                "Switching (VLAN, STP)",
+                "Routing (OSPF, Static)",
+                "Firewalling (pfSense, iptables)"
+            ]
+        },
+        {
+            icon: "🛠️",
+            name: "Outils & DevOps",
+            details: [
+                "Docker & Docker Compose",
+                "Git & GitHub",
+                "Ansible (Basiques)",
+                "Monitoring (Zabbix)"
+            ]
+        },
+        {
+            icon: "🇬🇧",
+            name: "Langues",
+            details: [
+                "Anglais : B2 (Technique)",
+                "Français : Langue maternelle"
+            ]
+        }
+    ],
 
-    // --- 4. TAGS HEADER ---
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer && config.skills) {
-        config.skills.forEach(s => {
-            const span = document.createElement("span"); 
-            span.className = "skill-tag"; 
-            span.innerText = s;
-            skillsContainer.appendChild(span);
-        });
-    }
+    // --- 7. CERTIFICATIONS ---
+    certifications: [
+        { 
+            name: "CCNA (En cours)", 
+            issuer: "Cisco", 
+            url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
+            pdf: "" 
+        },
+        { 
+            name: "SecNumAcadémie", 
+            issuer: "ANSSI", 
+            url: "https://secnumacademie.gouv.fr/",
+            pdf: "secnum_anssi.pdf" 
+        },
+        { 
+            name: "Certification Pix", 
+            issuer: "Gouv.fr", 
+            url: "https://pix.fr/",
+            pdf: "resultats_pix.pdf"
+        }
+    ]
+};
 
-    // --- 5. PROJETS (LIMIT 4) ---
-    const grid = document.getElementById("project-grid");
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
-    const PROJECT_LIMIT = 4; 
-
-    if (grid && config.projects) {
-        config.projects.forEach((proj, index) => {
-            const vid = `viewer_${index}`;
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
-            
-            const fullPdfUrl = baseUrl + proj.path;
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-
-            div.innerHTML = `
-                ${badgeHTML}
-                <div class="card-header js-toggle-pdf">
-                    <div class="icon">${escapeHTML(proj.icon)}</div>
-                    <div class="meta">
-                        <h4>${escapeHTML(proj.title)}</h4>
-                        <p>${escapeHTML(proj.description)}</p>
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
-            
-            const headerBtn = div.querySelector('.js-toggle-pdf');
-            if(headerBtn) {
-                headerBtn.addEventListener('click', () => togglePDF(vid, fullPdfUrl));
-            }
-
-            grid.appendChild(div);
-        });
-        
-        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
-    }
-
-    // --- 6. PARCOURS (LIMIT 5) ---
-    const expList = document.getElementById("exp-list");
-    const EXP_LIMIT = 5;
-    
-    if(expList && config.experiences) {
-        config.experiences.forEach((exp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "timeline-item";
-            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-            
-            li.innerHTML = `
-                <span class="timeline-date">${escapeHTML(exp.date)}</span>
-                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
-                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
-            `;
-            expList.appendChild(li);
-        });
-        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
-    }
-
-    // --- 7. COMPETENCES (LIMIT 5) ---
-    const compList = document.getElementById("comp-list");
-    const COMP_LIMIT = 5;
-
-    if(compList && config.competences) {
-        config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container";
-            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
-            
-            const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            
-            li.innerHTML = `
-                <div class="comp-header js-comp-header">
-                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
-                    <span class="cert-name">${escapeHTML(comp.name)}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
-                </div>
-                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
-            `;
-            
-            const headerEl = li.querySelector('.js-comp-header');
-            if(headerEl) {
-                headerEl.addEventListener('click', (e) => toggleComp(e, dropId, headerEl));
-            }
-
-            compList.appendChild(li);
-        });
-        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
-    }
-
-    // --- 8. CERTIFICATIONS ---
-    const certList = document.getElementById("cert-list");
-    const CERT_LIMIT = 5;
-    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
-
-    if(certList && config.certifications) {
-        config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li");
-            li.className = "cert-card-container";
-            
-            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
-            const issuer = cert.issuer ? cert.issuer : "Certification"; 
-            const viewerId = `cert_view_${index}`;
-            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
-
-            const actionsDiv = document.createElement('div');
-            actionsDiv.className = 'cert-actions';
-
-            if (cert.url) {
-                const linkBtn = document.createElement('a');
-                linkBtn.href = cert.url;
-                linkBtn.target = "_blank";
-                linkBtn.rel = "noopener noreferrer"; 
-                linkBtn.className = "cert-btn link-btn";
-                linkBtn.title = "Voir le site officiel";
-                linkBtn.innerHTML = '<i class="fa-solid fa-link"></i> 🔗';
-                actionsDiv.appendChild(linkBtn);
-            }
-
-            if (cert.pdf) {
-                const pdfBtn = document.createElement('button');
-                pdfBtn.className = "cert-btn pdf-btn";
-                pdfBtn.title = "Voir le diplôme";
-                pdfBtn.innerHTML = '<i class="fa-solid fa-file-pdf"></i> 📄';
-                pdfBtn.addEventListener('click', () => toggleCertPDF(viewerId, fullPdfUrl));
-                actionsDiv.appendChild(pdfBtn);
-            }
-
-            li.innerHTML = `
-                <div class="cert-header-row">
-                    <div class="cert-icon-box">🏆</div>
-                    <div class="cert-info">
-                        <span class="cert-name">${escapeHTML(cert.name)}</span>
-                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
-                    </div>
-                </div>
-                <div id="${viewerId}" class="cert-pdf-viewer"></div>
-            `;
-            
-            li.querySelector('.cert-header-row').appendChild(actionsDiv);
-            certList.appendChild(li);
-        });
-        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
-    }
-
-    // --- 9. TYPEWRITER ---
-    const textEl = document.getElementById("typewriter-area");
-    if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; 
-        textEl.innerText = ""; 
-        let i=0;
-        function type() { 
-            if(i<txt.length) { 
-                textEl.textContent += txt.charAt(i); 
-                i++; 
-                setTimeout(type, 50); 
-            } 
-        }
-        setTimeout(type, 500);
-    }
-
-    // --- 10. GESTION EMAIL AVEC CAPTCHA ---
-    const emailTrigger = document.getElementById("email-trigger");
-    const captchaContainer = document.getElementById("captcha-container");
-    const emailResultArea = document.getElementById("email-result-area");
-    const emailText = document.getElementById("email-text");
-    const captchaInstruction = document.getElementById("captcha-instruction");
-    let widgetId = null;
-
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", function(e) {
-            e.preventDefault();
-            
-            // 1. Reset de l'interface
-            document.getElementById("email-modal").style.display = "flex";
-            captchaContainer.style.display = "flex";
-            emailResultArea.style.display = "none";
-            captchaInstruction.style.display = "block";
-            emailText.innerText = "";
-
-            // 2. Si le widget existe déjà, on le reset, sinon on le crée
-            if (widgetId !== null) {
-                if(window.turnstile) turnstile.reset(widgetId);
-            } else {
-                if(window.turnstile) {
-                    // Rendu explicite du widget
-                    widgetId = turnstile.render('#captcha-container', {
-                        sitekey: config.profile.turnstileSiteKey,
-                        theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
-                        callback: function(token) {
-                            // SUCCES ! Le captcha est validé.
-                            // console.log("Captcha validé. Token:", token); 
-                            
-                            // 3. Décodage et affichage de l'email
-                            try {
-                                const decodedEmail = atob(config.profile.emailEncoded);
-                                emailText.innerText = decodedEmail;
-                                
-                                // 4. Transition visuelle
-                                captchaContainer.style.display = "none";
-                                captchaInstruction.style.display = "none";
-                                emailResultArea.style.display = "block";
-                            } catch (err) {
-                                console.error("Erreur décodage email");
-                            }
-                        }
-                    });
-                } else {
-                    console.error("Erreur : Turnstile non chargé.");
-                    captchaContainer.innerHTML = "<p style='color:red;'>Erreur chargement Captcha</p>";
-                }
-            }
-        });
-    }
-
-    // Gestion fermeture modale
-    const closeModalBtn = document.getElementById("modal-close-btn");
-    if(closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModal);
-    }
-
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.comp-card-container')) {
-            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
-        }
-        if(e.target == document.getElementById("email-modal")) {
-            closeModal();
-        }
-    });
-
-    // --- 11. SCROLL & MENU ---
-    const header = document.querySelector('.app-header');
-    const navCapsule = document.querySelector('.nav-capsule');
-    const menuIcon = document.querySelector('.menu-icon'); 
-
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); }
-        });
-
-        if (menuIcon) {
-            menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); });
-        }
-
-        document.addEventListener('click', (e) => {
-            if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
-                header.classList.remove('menu-open');
-            }
-        });
-    }
-});
-
-// --- HELPER FUNCTIONS ---
-
-function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div"); div.className = "load-more-container"; 
-    const btn = document.createElement("button"); btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    let expanded = false;
-    btn.onclick = () => {
-        expanded = !expanded;
-        const children = container.children;
-        for(let i=0; i<children.length; i++) {
-            if(i >= limit) {
-                if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity=0; setTimeout(()=>children[i].style.opacity=1, 50); } 
-                else { children[i].classList.add("hidden-item"); children[i].style.opacity=0; }
-            }
-        }
-        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
-    };
-    div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling);
-}
-
-function toggleComp(e, id, triggerElement) {
-    e.stopPropagation(); 
-    const menu = document.getElementById(id); 
-    const btn = triggerElement.querySelector('.comp-toggle');
-    
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id!==id) el.style.display='none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el!==btn) el.classList.remove('active'); });
-    
-    if(menu.style.display==='block') { menu.style.display='none'; if(btn) btn.classList.remove('active'); } 
-    else { menu.style.display='block'; if(btn) btn.classList.add('active'); }
-}
-
-function togglePDF(id, url) {
-    const c = document.getElementById(id);
-    if(c.style.display==='block') { c.style.display='none'; c.innerHTML=''; return; }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-    
-    const safeUrl = encodeURIComponent(url);
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="850px" style="border:none;"></iframe>`;
-    c.style.display='block';
-}
-
-function toggleCertPDF(id, url) {
-    const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    
-    const safeUrl = encodeURIComponent(url);
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${safeUrl}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-}
-
-function closeModal() { 
-    document.getElementById("email-modal").style.display = "none"; 
-}
+// SÉCURITÉ : Empêche la modification de la configuration au runtime (Tamper Proof)
+Object.freeze(config);
+Object.freeze(config.profile);
+Object.freeze(config.social);
