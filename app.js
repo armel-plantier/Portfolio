@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 4. GESTION MODALES & PDF
+    // 4. GESTION MODALES & PDF (GOOGLE VIEWER)
     // ==========================================
     window.togglePdf = (headerElement, pdfFile) => {
         const container = headerElement.nextElementSibling;
@@ -182,8 +182,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         document.querySelectorAll(".pdf-container").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
-        // CORRECTION ICI : Chemin vers le dossier Documents
-        container.innerHTML = `<iframe src="Documents/${pdfFile}" width="100%" height="500px"></iframe>`;
+
+        // Construction de l'URL complète pour Google Viewer
+        const fullUrl = window.location.origin + "/Documents/" + pdfFile;
+        container.innerHTML = `<iframe src="https://docs.google.com/gview?url=${fullUrl}&embedded=true" width="100%" height="500px" frameborder="0"></iframe>`;
     };
 
     window.toggleComp = (index) => {
@@ -198,8 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (container.style.display === "block") { container.style.display = "none"; container.innerHTML = ""; return; }
         document.querySelectorAll(".cert-pdf-viewer").forEach(el => { el.style.display = "none"; el.innerHTML = ""; });
         container.style.display = "block";
-        // CORRECTION ICI EGALEMENT : Chemin vers le dossier Documents
-        container.innerHTML = `<iframe src="Documents/${pdfFile}" width="100%" height="500px"></iframe>`;
+
+        // Construction de l'URL complète pour Google Viewer
+        const fullUrl = window.location.origin + "/Documents/" + pdfFile;
+        container.innerHTML = `<iframe src="https://docs.google.com/gview?url=${fullUrl}&embedded=true" width="100%" height="500px" frameborder="0"></iframe>`;
     };
 
     // ==========================================
