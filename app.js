@@ -191,8 +191,16 @@ document.addEventListener("DOMContentLoaded", () => {
     window.toggleComp = (index) => {
         const list = document.getElementById(`comp-list-${index}`);
         const btn = document.getElementById(`toggle-btn-${index}`);
-        if (list.style.display === "none") { list.style.display = "block"; btn.classList.add("active"); } 
-        else { list.style.display = "none"; btn.classList.remove("active"); }
+        
+        // MODIFICATION : Utilisation de "flex" pour les badges, au lieu de "block"
+        if (list.style.display === "none" || list.style.display === "") { 
+            list.style.display = "flex"; 
+            btn.classList.add("active"); 
+        } 
+        else { 
+            list.style.display = "none"; 
+            btn.classList.remove("active"); 
+        }
     };
 
     window.toggleCertPdf = (containerId, pdfFile) => {
