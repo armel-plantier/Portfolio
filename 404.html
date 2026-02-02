@@ -7,88 +7,8 @@
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        /* Styles spécifiques pour centrer la 404 */
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden; /* Pas de scroll */
-            padding: 0 20px;
-        }
-        .error-card {
-            width: 100%;
-            max-width: 600px;
-            padding: 40px;
-            text-align: center;
-            /* On réutilise les variables CSS du site */
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .error-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 6rem;
-            margin: 0;
-            background: linear-gradient(to right, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            color: transparent;
-            line-height: 1;
-        }
-        .error-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: var(--text);
-        }
-        
-        /* Simulation Terminal dans la card */
-        .terminal-box {
-            background: #0b0d14; /* Fond noir profond */
-            border-radius: 8px;
-            padding: 20px;
-            text-align: left;
-            font-family: 'Courier New', monospace;
-            margin-bottom: 30px;
-            border: 1px solid var(--border);
-            color: #d1d5db;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        .cmd-user { color: #10b981; } /* Vert */
-        .cmd-path { color: #6366f1; } /* Violet */
-        .cmd-error { color: #ef4444; } /* Rouge */
-        
-        .cursor {
-            display: inline-block; width: 8px; height: 1em;
-            background-color: #d1d5db;
-            animation: blink 1s infinite;
-            vertical-align: bottom;
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        /* Bouton retour */
-        .btn-home {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid transparent;
-        }
-        .btn-home:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
-        }
-    </style>
 </head>
-<body>
-
-    <div class="error-card">
+<body class="error-body"> <div class="error-card">
         <h1 class="error-title">404</h1>
         <h2 class="error-subtitle">Destination Unreachable</h2>
 
