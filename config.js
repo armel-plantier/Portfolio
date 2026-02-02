@@ -10,7 +10,6 @@ const config = {
 
     // --- 2. PROFIL & RÉSEAUX ---
     profile: {
-        // Favicon en Data URI (Optimisation perf & sécurité)
         favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
@@ -18,9 +17,11 @@ const config = {
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
         
-        // SECURITE : Email encodé en Base64 pour éviter le scraping sur GitHub
-        // Décodé à la volée par le JS lors du clic utilisateur
-        emailEncoded: "YXJtZWwucGxhbnRpZXJAcHJvdG9ubWFpbC5jb20=" 
+        // SECURITE : Email "contact@armel-plantier.com" encodé en Base64
+        emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=", 
+        
+        // CLOUDFLARE TURNSTILE (Captcha)
+        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
     },
 
     social: {
@@ -169,7 +170,5 @@ const config = {
     ]
 };
 
-// SÉCURITÉ : Empêche la modification de la configuration au runtime (Tamper Proof)
+// Sécurisation : Empêche la modification de la configuration par des scripts tiers
 Object.freeze(config);
-Object.freeze(config.profile);
-Object.freeze(config.social);
