@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (MODERNE : Hint, pas de bouton) ---
+    // --- 7. PROJETS (MODERNE : Hint, pas de bouton, API GitHub active) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
+            // HTML Structure (Sans bouton chevron)
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Détails du projet" data-no-hint="true">
@@ -189,33 +190,51 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- AUTOMATISATION : GITHUB API ---
+            // --- AUTOMATISATION : GITHUB API (INTEGRÉE ICI) ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
+                
                 fetch(apiUrl)
-                    .then(res => { if (!res.ok) throw new Error("Fichier introuvable"); return res.json(); })
+                    .then(res => {
+                        if (!res.ok) throw new Error("Fichier introuvable");
+                        return res.json();
+                    })
                     .then(data => {
                         if (data && data.length > 0) {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
+                            // Affichage Date
                             const dateEl = document.getElementById(dateId);
-                            if(dateEl) { dateEl.innerText = formattedDate; dateEl.style.opacity = "1"; }
+                            if(dateEl) {
+                                dateEl.innerText = formattedDate;
+                                dateEl.style.opacity = "1";
+                            }
 
+                            // Affichage Badge
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
 
                             if (diffDays <= 30) {
                                 const badgeEl = document.getElementById(badgeId);
-                                if(badgeEl) badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                                if(badgeEl) {
+                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                                }
                             }
                         }
                     })
-                    .catch(err => { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; });
-            } else { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; }
+                    .catch(err => {
+                        const dateEl = document.getElementById(dateId);
+                        if(dateEl) dateEl.innerText = "";
+                    });
+            } else {
+                const dateEl = document.getElementById(dateId);
+                if(dateEl) dateEl.innerText = "";
+            }
+            // ----------------------------------------------------
 
-            // Clic Header
+            // Clic Header pour ouvrir
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
@@ -247,20 +266,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES (CLASSIQUE : Bouton flèche, PAS de hint) ---
+    // --- 9. COMPETENCES (CLASSIQUE : AVEC BOUTON) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li"); 
-            // NOTE : J'ai enlevé 'interactive-card' ici pour ne pas avoir le curseur suiveur
+            // Note: PAS de classe 'interactive-card' ici (pas de curseur suiveur)
             li.className = "comp-card-container"; 
             
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // REMISE DU BOUTON ▼
+            // On remet le bouton ▼
             li.innerHTML = `
                 <div class="comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
@@ -328,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
     }
     
-    // --- 14. LOGIQUE DU CURSEUR SUIVEUR (Uniquement pour Projets maintenant) ---
+    // --- 14. LOGIQUE DU CURSEUR SUIVEUR ---
     initCursorHint();
 
     // --- 15. KEYBOARD ---
@@ -374,6 +393,7 @@ function initCursorHint() {
             hintEl.classList.add("visible");
         });
         
+        // Check si ouvert en bougeant dedans
         el.addEventListener("mousemove", () => {
             if (el.classList.contains('expanded')) {
                 hintEl.classList.remove("visible");
@@ -425,6 +445,7 @@ function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card'); 
     
+    // Ferme l'actuel si ouvert
     if (c.style.display === 'block') {
         c.style.display = 'none';
         c.innerHTML = '';
@@ -432,6 +453,7 @@ function togglePDF(id, url) {
         return;
     }
 
+    // Ferme TOUS les autres
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
@@ -439,6 +461,7 @@ function togglePDF(id, url) {
         if(parent) parent.classList.remove('expanded');
     });
 
+    // Ouvre l'actuel
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     
@@ -450,7 +473,7 @@ function togglePDF(id, url) {
 
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
-    const btn = headerEl.querySelector('.comp-toggle'); // On cible le bouton qu'on a remis
+    const btn = headerEl.querySelector('.comp-toggle'); // On cible le bouton remis
     
     // Ferme les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
@@ -513,3 +536,4 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
+                                
