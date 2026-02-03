@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. PROJETS ---
+    // --- 7. PROJETS (AVEC DATE, TAGS ET BOUTON +) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -217,6 +217,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const fullPdfUrl = baseUrl + proj.path;
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
 
+            // Génération des tags HTML
+            let tagsHTML = '';
+            if(proj.tags && proj.tags.length > 0) {
+                tagsHTML = `<div class="proj-tags-row">` + 
+                           proj.tags.map(tag => `<span class="proj-mini-tag">${escapeHTML(tag)}</span>`).join('') + 
+                           `</div>`;
+            }
+
+            // Génération de la date HTML
+            const dateHTML = proj.date ? `<span class="proj-date">${escapeHTML(proj.date)}</span>` : '';
+
             const div = document.createElement("div"); 
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
@@ -225,17 +236,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${badgeHTML}
                 <div class="card-header" style="cursor: pointer;">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
+                    
                     <div class="meta">
-                        <h4>${escapeHTML(proj.title)}</h4>
+                        <div class="meta-top">
+                            <h4>${escapeHTML(proj.title)}</h4>
+                            ${dateHTML}
+                        </div>
                         <p>${escapeHTML(proj.description)}</p>
+                        ${tagsHTML}
                     </div>
+
+                    <div class="toggle-plus">+</div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
             const headerDiv = div.querySelector('.card-header');
+            const plusIcon = div.querySelector('.toggle-plus');
+
             headerDiv.addEventListener("click", () => {
-                togglePDF(vid, fullPdfUrl);
+                togglePDF(vid, fullPdfUrl, plusIcon);
             });
 
             grid.appendChild(div);
@@ -426,10 +446,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const legalModal = document.getElementById("legal-modal");
             if(legalModal) legalModal.style.display = "none";
             
-            document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-            document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.pdf-container').forEach(el => { 
+                el.style.display='none'; 
+                el.innerHTML=''; 
+            });
+            document.querySelectorAll('.cert-pdf-viewer').forEach(el => { 
+                el.style.display='none'; 
+                el.innerHTML=''; 
+            });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.toggle-plus').forEach(el => el.classList.remove('open'));
         }
         // D = Dark/Light Mode
         if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') {
@@ -442,19 +469,24 @@ document.addEventListener("DOMContentLoaded", () => {
 // FONCTIONS UTILITAIRES
 // ==========================================
 
-function togglePDF(id, url) {
+function togglePDF(id, url, iconElement) {
     const c = document.getElementById(id);
-    if(c.style.display === 'block') { 
-        c.style.display = 'none'; 
-        c.innerHTML = ''; 
-        return; 
-    }
+    const isClosed = c.style.display === 'none' || c.style.display === '';
+
+    // 1. On ferme tout d'abord (pour l'effet accordéon unique)
     document.querySelectorAll('.pdf-container').forEach(el => { 
         el.style.display = 'none'; 
         el.innerHTML = ''; 
     });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
-    c.style.display = 'block';
+    // On remet tous les "+" à leur état normal
+    document.querySelectorAll('.toggle-plus').forEach(el => el.classList.remove('open'));
+
+    // 2. Si c'était fermé, on ouvre le courant
+    if(isClosed) {
+        c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+        c.style.display = 'block';
+        if(iconElement) iconElement.classList.add('open'); 
+    }
 }
 
 function toggleComp(id, headerEl) {
