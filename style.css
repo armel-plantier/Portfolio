@@ -35,7 +35,7 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* HEADER */
+/* HEADER (Navigation) */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
@@ -175,10 +175,65 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .project-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
-.card-header { padding: 25px; padding-right: 110px; cursor: pointer; display: flex; gap: 20px; align-items: flex-start; }
+.card-header { 
+    padding: 25px; 
+    padding-right: 110px; 
+    cursor: pointer; 
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-start;
+    position: relative; /* Pour le texte au survol */
+}
+
+/* MESSAGE "Cliquez pour dérouler" AU SURVOL (PROJETS) */
+.card-header:hover::after {
+    content: "Cliquez pour afficher le PDF";
+    position: absolute;
+    bottom: 5px; /* Position ajustée */
+    right: 25px; 
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 600;
+    opacity: 0;
+    animation: fadeInHint 0.3s forwards;
+    pointer-events: none;
+}
+@media (max-width: 600px) {
+    .card-header:hover::after { display: none; } /* On cache sur mobile pour ne pas gêner */
+}
+
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; margin-bottom: 8px; }
+
+/* CHEVRON PROJET (NOUVEAU) */
+.project-toggle {
+    margin-left: auto; /* Pousse à droite */
+    margin-top: 5px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+.project-toggle.active {
+    transform: rotate(180deg);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+.project-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
 
 /* TAGS */
 .tags-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
@@ -203,6 +258,7 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 10px 25px 0 0; }
     .new-badge { float: right; } 
     .info-btn { position: relative; top: auto; right: auto; float: right; margin-top: -30px; }
+    .project-toggle { position: absolute; top: 20px; right: 20px; margin: 0; } /* Ajustement mobile du chevron */
 }
 
 .hidden-item { display: none !important; }
@@ -235,7 +291,7 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 .cert-pdf-viewer { display: none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 10px; background: var(--card); width: 100%; height: 500px; }
 .cert-pdf-viewer iframe { display: block; width: 100%; border: none; background-color: var(--card); }
 
-/* --- CSS MODIFIÉ POUR L'ACCORDÉON (COMPÉTENCES) --- */
+/* --- COMPETENCES --- */
 .comp-card-container { 
     background: var(--card); 
     border-radius: 12px; 
@@ -243,10 +299,8 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     overflow: hidden; 
     transition: all 0.3s ease; 
     height: fit-content; 
-    cursor: pointer; /* Indique que toute la carte est cliquable */
+    cursor: pointer;
 }
-
-/* Effet de survol sur la carte entière */
 .comp-card-container:hover {
     border-color: var(--primary);
     transform: translateY(-2px);
@@ -261,25 +315,22 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     cursor: pointer; 
     font-weight: 600; 
     transition: background 0.2s;
-    position: relative; /* Nécessaire pour positionner le texte "Cliquez pour..." */
+    position: relative; 
 }
 
-/* SOLUTION 2 : TEXTE AU SURVOL */
+/* MESSAGE AU SURVOL (COMPETENCES) */
 .comp-header:hover::after {
     content: "Cliquez pour dérouler";
     position: absolute;
-    right: 60px; /* Juste à gauche de la flèche */
+    right: 60px; 
     font-size: 0.75rem;
     color: var(--primary);
     font-weight: 600;
     opacity: 0;
     animation: fadeInHint 0.3s forwards;
-    pointer-events: none; /* Empêche le texte de gêner le clic */
+    pointer-events: none; 
 }
-/* Petit ajustement pour mobile : on cache le texte si l'écran est trop petit */
-@media (max-width: 500px) {
-    .comp-header:hover::after { display: none; }
-}
+@media (max-width: 500px) { .comp-header:hover::after { display: none; } }
 @keyframes fadeInHint {
     from { opacity: 0; transform: translateX(10px); }
     to { opacity: 1; transform: translateX(0); }
@@ -292,7 +343,7 @@ body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; bord
 .comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
-/* SOLUTION 1 : LA FLÈCHE (Bouton) */
+/* CHEVRON COMPETENCE */
 .comp-toggle { 
     margin-left: auto; 
     background: transparent; 
@@ -305,23 +356,18 @@ body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
     align-items: center; 
     justify-content: center; 
     font-size: 0.7rem; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animation fluide */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
     flex-shrink: 0; 
 }
-/* Rotation de la flèche quand active */
 .comp-toggle.active { 
     transform: rotate(180deg); 
     background-color: var(--primary);
     border-color: var(--primary);
     color: white;
 }
-/* Effet hover sur le bouton lui-même */
-.comp-toggle:hover { 
-    border-color: var(--primary);
-    color: var(--primary);
-}
+.comp-toggle:hover { border-color: var(--primary); color: var(--primary); }
 
-body.light-mode .comp-toggle { border-color: #9ca3af; color: #374151; }
+body.light-mode .comp-toggle, body.light-mode .project-toggle { border-color: #9ca3af; color: #374151; }
 body.light-mode .comp-header:hover { background: #f9fafb; }
 /* ------------------------------------------- */
 
