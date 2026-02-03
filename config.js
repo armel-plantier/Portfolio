@@ -38,43 +38,48 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
-    // PLUS DE DATES, PLUS DE "isNew". TOUT EST AUTOMATIQUE.
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
-            icon: "🌐"
+            icon: "🌐",
+            tags: ["Cisco", "VLAN", "Switching", "OSPF"] // Le 4ème sera ignoré
         },
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
-            icon: "🖥️"
+            icon: "🖥️",
+            tags: ["Windows Server", "AD DS", "DNS"]
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",        
-            icon: "🛡️"
+            icon: "🛡️",
+            tags: ["Wireshark", "Kali Linux", "Aircrack"]
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
-            icon: "🐧"
+            icon: "🐧",
+            tags: ["Debian", "SSH", "Fail2Ban"]
         },
         {
             title: "Projet Serveur Web",
             description: "Configuration Apache/Nginx et Let's Encrypt.",
             path: "web_server.pdf", 
-            icon: "🌍"
+            icon: "🌍",
+            tags: ["Apache", "Nginx", "SSL"]
         },
         {
             title: "Scripting Python Automation",
             description: "Automatisation des sauvegardes via API.",
             path: "python_script.pdf", 
-            icon: "🐍"
+            icon: "🐍",
+            tags: ["Python", "API", "Backup"]
         }
     ],
 
