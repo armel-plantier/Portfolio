@@ -42,55 +42,49 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
-    // Note : "date" est une valeur de secours si l'API GitHub échoue
+    // Les dates sont maintenant gérées automatiquement par app.js via l'API GitHub
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐",
-            isNew: true,
-            date: "01/02/2024"
+            isNew: true
         },
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
             icon: "🖥️",
-            isNew: false,
-            date: "15/01/2024"
+            isNew: false
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",        
             icon: "🛡️",
-            isNew: false,
-            date: "10/12/2023"
+            isNew: false
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
             icon: "🐧",
-            isNew: false,
-            date: "20/11/2023"
+            isNew: false
         },
         {
             title: "Projet Serveur Web",
             description: "Configuration Apache/Nginx et Let's Encrypt.",
             path: "web_server.pdf", 
             icon: "🌍",
-            isNew: false,
-            date: "05/10/2023"
+            isNew: false
         },
         {
             title: "Scripting Python Automation",
             description: "Automatisation des sauvegardes via API.",
             path: "python_script.pdf", 
             icon: "🐍",
-            isNew: false,
-            date: "15/09/2023"
+            isNew: false
         }
     ],
 
