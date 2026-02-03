@@ -42,6 +42,7 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
+    // Note : "date" est une valeur de secours si l'API GitHub échoue
     projects: [
         {
             title: "Mise en place réseau TechNova",
@@ -49,7 +50,7 @@ const config = {
             path: "reseau-technova.pdf", 
             icon: "🌐",
             isNew: true,
-            date: "01/02/2024" // Date ajoutée
+            date: "01/02/2024"
         },
         {
             title: "Gestion de l'Active Directory",
