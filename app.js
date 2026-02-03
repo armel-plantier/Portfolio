@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
     };
 
-    // --- 1. THEME ---
+    // --- THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 2. REMPLISSAGE PROFIL ---
+    // --- PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- 3. MODALES ---
+    // --- MODALES ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-    // --- EMAIL ---
+    // --- EMAIL / CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
     window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-    // --- 5. NAVIGATION ---
+    // --- NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -134,13 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. COMPETENCES ---
+    // --- SKILLS ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS ---
+    // --- PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const badgeId = `badge-project-${index}`;
             const btnId = `info-btn-${index}`;
 
-            // Tags +X
+            // Tags +X logic
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML : Bouton SVG (le "i" dans le rond)
+            // HTML : Bouton SVG Rond
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
@@ -202,13 +202,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // STOCKAGE DE LA DATE DANS LE BOUTON (attribut data-date)
+                            // Stockage de la date pour la modale
                             const btnEl = document.getElementById(btnId);
                             if(btnEl) {
                                 btnEl.setAttribute('data-date', formattedDate);
                             }
 
-                            // BADGE
+                            // Badge
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
@@ -228,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
                     e.stopPropagation(); 
-                    // On récupère la date stockée
                     const dateText = infoBtn.getAttribute('data-date') || ""; 
                     openProjectModal(proj, dateText);
                 });
@@ -240,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- 8. PARCOURS ---
+    // --- PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     if(expList && config.experiences) {
@@ -253,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES ---
+    // --- COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
@@ -278,7 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 10. CERTIFICATIONS ---
+    // --- CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -303,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 11. MACHINE A ECRIRE ---
+    // --- TYPEWRITER ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -311,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 12. HEADER SCROLL & MOBILE ---
+    // --- HEADER / SCROLL ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
@@ -321,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. FOOTER API ---
+    // --- GITHUB API ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
@@ -370,12 +369,10 @@ function initCursorHint() {
         });
         
         el.addEventListener("mousemove", (e) => {
-            // SECURITE : Si on survole le bouton info, le curseur disparait
             if (e.target.closest('.info-btn')) {
                 hintEl.classList.remove("visible");
                 return;
             }
-
             if (el.classList.contains('expanded')) {
                 hintEl.classList.remove("visible");
             } else {
@@ -398,7 +395,7 @@ function initCursorHint() {
     });
 }
 
-// Fonction Modifiée : "Date d'ajout :"
+// Fonction Modifiée : Date dans la modale uniquement
 function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
@@ -410,10 +407,10 @@ function openProjectModal(proj, dateStr = "") {
         
         let dateHtml = "";
         if (dateStr && dateStr !== "..." && dateStr !== "") {
-            // "Date d'ajout :" AFFICHEE DANS LA MODALE
             dateHtml = `<div class="modal-date-display">📅 Date d'ajout : ${dateStr}</div>`;
         }
 
+        // On injecte uniquement la date et la description brute venant de config.js
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
         
         tagsEl.innerHTML = "";
