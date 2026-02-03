@@ -166,11 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const div = document.createElement("div"); 
-            div.className = "project-card interactive-card"; // Ajout de classe interactive-card
-            div.setAttribute('data-hint', 'Voir le PDF 📄'); // Indication pour le curseur
+            div.className = "project-card interactive-card"; 
+            div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // --- Construction HTML (PLUS DE BOUTON ICI) ---
+            // HTML
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Détails du projet" data-no-hint="true">
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     .catch(err => { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; });
             } else { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; }
 
-            // Clic global sur le header pour ouvrir
+            // Clic Header (Toggle)
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
@@ -254,14 +254,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li"); 
-            li.className = "comp-card-container interactive-card"; // Ajout interactif
-            li.setAttribute('data-hint', 'Détails 🔍'); // Indication curseur
+            li.className = "comp-card-container interactive-card"; 
+            li.setAttribute('data-hint', 'Détails 🔍'); 
             
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // HTML épuré : plus de bouton ▼
             li.innerHTML = `
                 <div class="comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
@@ -270,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
             const headerEl = li.querySelector('.comp-header');
-            headerEl.addEventListener("click", (e) => { toggleComp(dropId); });
+            headerEl.addEventListener("click", (e) => { toggleComp(dropId, li); }); // Pass li to toggleComp
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -338,6 +337,8 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
+            // Reset expanded classes
+            document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
         }
         if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
     });
@@ -348,7 +349,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==========================================
 
 function initCursorHint() {
-    // Création de l'élément curseur s'il n'existe pas
     let hintEl = document.getElementById("cursor-hint");
     if (!hintEl) {
         hintEl = document.createElement("div");
@@ -356,34 +356,50 @@ function initCursorHint() {
         document.body.appendChild(hintEl);
     }
 
-    // Suivi de la souris
     document.addEventListener("mousemove", (e) => {
         const x = e.clientX;
         const y = e.clientY;
-        // Décalage léger pour ne pas être sous la souris
         hintEl.style.transform = `translate(${x + 15}px, ${y + 15}px)`;
     });
 
-    // Interaction avec les cartes
     const interactiveElements = document.querySelectorAll('.interactive-card');
     
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => {
+            // SI LA CARTE EST DÉJÀ OUVERTE (expanded), ON N'AFFICHE PAS LE CURSEUR
+            if (el.classList.contains('expanded')) return;
+
             const text = el.getAttribute('data-hint') || "Voir";
             hintEl.innerText = text;
             hintEl.classList.add("visible");
         });
         
+        // Si on bouge la souris DANS la carte, on vérifie si elle s'est ouverte entre temps
+        el.addEventListener("mousemove", () => {
+            if (el.classList.contains('expanded')) {
+                hintEl.classList.remove("visible");
+            } else {
+                // Si elle est fermée et qu'on est dessus, on s'assure qu'il est visible
+                if (!hintEl.classList.contains("visible")) {
+                     hintEl.classList.add("visible");
+                }
+            }
+        });
+        
         el.addEventListener("mouseleave", () => {
             hintEl.classList.remove("visible");
         });
+
+        // Au clic, on force la disparition immédiate pour ne pas avoir de délai
+        el.addEventListener("click", () => {
+             hintEl.classList.remove("visible");
+        });
     });
 
-    // Cas particulier : si on survole un bouton à l'intérieur d'une carte (ex: bouton info), on cache le hint
     const noHintElements = document.querySelectorAll('[data-no-hint="true"]');
     noHintElements.forEach(btn => {
         btn.addEventListener("mouseenter", (e) => {
-            e.stopPropagation(); // Stop propagation
+            e.stopPropagation(); 
             hintEl.classList.remove("visible");
         });
     });
@@ -415,30 +431,60 @@ function openProjectModal(proj) {
 
 function togglePDF(id, url) {
     const c = document.getElementById(id);
+    const card = c.closest('.project-card'); // Récupère la carte parente
+    
+    // Si c'est déjà ouvert, on ferme
     if (c.style.display === 'block') {
         c.style.display = 'none';
         c.innerHTML = '';
+        if(card) card.classList.remove('expanded'); // Enlève l'état ouvert
         return;
     }
+
+    // Ferme TOUTES les autres cartes
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
+        // Récupère le parent et enlève la classe expanded
+        const parent = el.closest('.project-card');
+        if(parent) parent.classList.remove('expanded');
     });
+
+    // Ouvre CELLE-CI
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
+    
+    // Marque la carte comme ouverte pour le curseur
+    if(card) card.classList.add('expanded');
+    
+    // Force la disparition du curseur hint
+    const hintEl = document.getElementById("cursor-hint");
+    if(hintEl) hintEl.classList.remove("visible");
 }
 
-function toggleComp(id) {
+function toggleComp(id, cardElement) {
     const menu = document.getElementById(id);
+    
     // Ferme les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
         if (el.id !== id) el.style.display = 'none';
     });
+    // Reset state on all competence cards
+    document.querySelectorAll('.comp-card-container').forEach(el => {
+        if (el !== cardElement) el.classList.remove('expanded');
+    });
+
     // Bascule l'actuel
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
+        if(cardElement) cardElement.classList.remove('expanded');
     } else {
         menu.style.display = 'block';
+        if(cardElement) cardElement.classList.add('expanded');
+        
+        // Force la disparition du curseur hint
+        const hintEl = document.getElementById("cursor-hint");
+        if(hintEl) hintEl.classList.remove("visible");
     }
 }
 
