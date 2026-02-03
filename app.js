@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. PROJETS ---
+    // --- 7. PROJETS (MODIFIÉ POUR LA DATE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -215,7 +215,13 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
+            
+            // Gestion du Badge "Nouveau"
             const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+            
+            // Gestion de la Date
+            const dateClass = proj.isNew ? "project-date with-badge" : "project-date";
+            const dateHTML = proj.date ? `<span class="${dateClass}">${escapeHTML(proj.date)}</span>` : '';
 
             const div = document.createElement("div"); 
             div.className = "project-card";
@@ -223,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             div.innerHTML = `
                 ${badgeHTML}
+                ${dateHTML}
                 <div class="card-header" style="cursor: pointer;">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
