@@ -238,12 +238,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
-            // Clic Info
+            // Clic Info MODIFIÉ : Récupère la date de la carte et la passe à la modale
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
                     e.stopPropagation(); 
-                    openProjectModal(proj);
+                    
+                    // Récupération de la date affichée (même si c'est "..." ou une date API)
+                    const dateElement = document.getElementById(dateId);
+                    const dateText = dateElement ? dateElement.innerText : "";
+
+                    openProjectModal(proj, dateText);
                 });
             }
 
@@ -394,7 +399,13 @@ function initCursorHint() {
         });
         
         // Check si ouvert en bougeant dedans
-        el.addEventListener("mousemove", () => {
+        el.addEventListener("mousemove", (e) => {
+            // AJOUT DE LA SÉCURITÉ : Si on est sur le bouton info, on cache
+            if (e.target.closest('.info-btn')) {
+                hintEl.classList.remove("visible");
+                return;
+            }
+
             if (el.classList.contains('expanded')) {
                 hintEl.classList.remove("visible");
             } else {
@@ -417,7 +428,8 @@ function initCursorHint() {
     });
 }
 
-function openProjectModal(proj) {
+// Fonction Modifiée : Accepte maintenant la date
+function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
     const descEl = document.getElementById("modal-project-desc");
@@ -425,7 +437,15 @@ function openProjectModal(proj) {
 
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
-        descEl.innerHTML = proj.longDescription ? proj.longDescription : proj.description;
+        
+        // Insertion de la date (si présente) juste avant la description
+        let dateHtml = "";
+        if (dateStr && dateStr !== "..." && dateStr !== "") {
+            dateHtml = `<div class="modal-date-display">📅 Mis à jour le : ${dateStr}</div>`;
+        }
+
+        descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
+        
         tagsEl.innerHTML = "";
         if(proj.tags && proj.tags.length > 0) {
             proj.tags.forEach(tag => {
@@ -536,4 +556,3 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
-                                
