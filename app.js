@@ -155,15 +155,27 @@ document.addEventListener("DOMContentLoaded", () => {
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // Tags
+            // --- GESTION DES TAGS (+X) ---
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
+                
+                // 1. Affiche les 3 premiers tags
                 proj.tags.slice(0, 3).forEach(tag => {
                     cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
+
+                // 2. Calcul du surplus
+                const remaining = proj.tags.length - 3;
+                
+                // 3. Affiche le badge "+X" si nécessaire
+                if (remaining > 0) {
+                    cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
+                }
+
                 cardTagsHTML += '</div>';
             }
+            // -----------------------------
 
             const div = document.createElement("div"); 
             div.className = "project-card interactive-card"; // ACTIVATION DU HINT
@@ -238,13 +250,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
-            // Clic Info MODIFIÉ : Récupère la date de la carte et la passe à la modale
+            // Clic Info
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
                     e.stopPropagation(); 
                     
-                    // Récupération de la date affichée (même si c'est "..." ou une date API)
+                    // Récupération de la date affichée
                     const dateElement = document.getElementById(dateId);
                     const dateText = dateElement ? dateElement.innerText : "";
 
@@ -446,6 +458,7 @@ function openProjectModal(proj, dateStr = "") {
 
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
         
+        // DANS LA MODALE : On affiche TOUS les tags (pas de limite)
         tagsEl.innerHTML = "";
         if(proj.tags && proj.tags.length > 0) {
             proj.tags.forEach(tag => {
