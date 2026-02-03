@@ -198,43 +198,42 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 
 .card-header { 
     padding: 25px; 
-    /* Padding droit réduit car la date est gérée autrement */
     padding-right: 25px; 
-    padding-bottom: 40px; /* Espace en bas pour le bouton Info */
+    padding-bottom: 40px; /* Espace pour le bouton Info en bas */
     cursor: pointer; 
     display: flex; 
     gap: 20px; 
-    align-items: center; /* 2. Emoji centré verticalement */
+    align-items: center; /* Emoji centré verticalement */
     flex-grow: 1;
 }
 
 .card-header .icon { 
     font-size: 2rem; 
-    flex-shrink: 0; /* L'icone ne s'écrase pas */
+    flex-shrink: 0; 
 }
 
-/* Alignement Titre + Badge */
+/* TITRE GROSSI & ALIGNÉ */
 .card-header .meta h4 { 
-    font-size: 1.1rem; 
+    font-size: 1.3rem; /* TITRE PLUS GROS */
     margin-bottom: 5px; 
-    display: flex; /* Flex pour aligner le titre et le badge */
+    display: flex; 
     align-items: center;
     gap: 10px;
-    padding-right: 90px; /* Espace pour la date à droite */
+    padding-right: 100px; /* Espace réservé pour la date à droite */
 }
 
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 20px; margin-bottom: 8px; }
 
-/* TAGS (4. Descendus un peu) */
+/* TAGS (Descendus un peu) */
 .tags-container { 
     display: flex; gap: 8px; flex-wrap: wrap; 
-    margin-top: 15px; /* Augmenté */
+    margin-top: 15px; /* Espacement augmenté */
 }
 
 .project-tag { font-size: 0.7rem; padding: 3px 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-family: 'Inter', monospace; white-space: nowrap; }
 body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
-/* 1. DATE, BADGE & INFO BTN */
+/* DATE, BADGE & INFO BTN */
 .new-badge { 
     display: inline-block; 
     background: var(--badge-bg); 
@@ -246,10 +245,10 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     text-transform: uppercase; 
 }
 
-/* Date alignée avec le titre */
+/* Date alignée avec le "gros" titre */
 .project-date { 
     position: absolute; 
-    top: 28px; /* Ajusté pour s'aligner avec le texte du H4 */
+    top: 29px; /* Ajusté pour centrer verticalement avec le titre 1.3rem */
     right: 25px; 
     font-size: 0.85rem; 
     font-family: 'Inter', monospace; 
@@ -258,12 +257,12 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     opacity: 0.8; 
 }
 
-/* 3. Bouton Info en bas à gauche */
+/* BOUTON INFO EN BAS À DROITE */
 .info-btn {
     position: absolute; 
     bottom: 15px; /* En bas */
-    left: 25px;   /* À gauche (aligné avec le padding de la carte) */
-    top: auto; right: auto; /* Reset des anciennes valeurs */
+    right: 25px;  /* À DROITE */
+    top: auto; left: auto;
     
     width: 34px; height: 34px; border-radius: 50%;
     background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
@@ -279,10 +278,10 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     .card-header { padding-right: 25px; flex-direction: column; align-items: flex-start; gap: 10px; }
     .card-header .meta h4 { padding-right: 0; flex-wrap: wrap; }
     
-    /* Sur mobile, on remet la date en dessous pour éviter le chevauchement */
+    /* Sur mobile, date en dessous pour éviter chevauchement */
     .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 0; }
     
-    .info-btn { position: absolute; bottom: 15px; left: 25px; } /* Reste en bas à gauche */
+    .info-btn { position: absolute; bottom: 15px; right: 25px; } /* Reste en bas à droite */
 }
 
 .hidden-item { display: none !important; }
