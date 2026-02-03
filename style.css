@@ -254,7 +254,8 @@ body.light-mode .comp-header:hover { background: #f9fafb; }
     width: 100%; 
     display: flex; 
     justify-content: center; 
-    margin-top: -20px; /* Remonte sur le flou */
+    /* MODIFICATION : Marge positive pour descendre le bouton sous le contenu */
+    margin-top: 30px; 
     margin-bottom: 10px; 
     position: relative; 
     z-index: 10; 
