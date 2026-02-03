@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (SANS BOUTON DANS LE BLOC) ---
+    // --- 7. PROJETS (MODERNE : Hint, pas de bouton) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -166,11 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const div = document.createElement("div"); 
-            div.className = "project-card interactive-card"; 
+            div.className = "project-card interactive-card"; // ACTIVATION DU HINT
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Détails du projet" data-no-hint="true">
@@ -216,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     .catch(err => { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; });
             } else { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; }
 
-            // Clic Header (Toggle)
+            // Clic Header
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
@@ -248,28 +247,30 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES (SANS BOUTON) ---
+    // --- 9. COMPETENCES (CLASSIQUE : Bouton flèche, PAS de hint) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li"); 
-            li.className = "comp-card-container interactive-card"; 
-            li.setAttribute('data-hint', 'Détails 🔍'); 
+            // NOTE : J'ai enlevé 'interactive-card' ici pour ne pas avoir le curseur suiveur
+            li.className = "comp-card-container"; 
             
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
+            // REMISE DU BOUTON ▼
             li.innerHTML = `
                 <div class="comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
+                    <button class="cert-btn comp-toggle">▼</button>
                 </div>
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
             `;
             const headerEl = li.querySelector('.comp-header');
-            headerEl.addEventListener("click", (e) => { toggleComp(dropId, li); }); // Pass li to toggleComp
+            headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -327,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
     }
     
-    // --- 14. LOGIQUE DU CURSEUR SUIVEUR (HINT) ---
+    // --- 14. LOGIQUE DU CURSEUR SUIVEUR (Uniquement pour Projets maintenant) ---
     initCursorHint();
 
     // --- 15. KEYBOARD ---
@@ -337,8 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
-            // Reset expanded classes
+            // Reset toggles et hints
             document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
         if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
     });
@@ -366,23 +368,17 @@ function initCursorHint() {
     
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => {
-            // SI LA CARTE EST DÉJÀ OUVERTE (expanded), ON N'AFFICHE PAS LE CURSEUR
             if (el.classList.contains('expanded')) return;
-
             const text = el.getAttribute('data-hint') || "Voir";
             hintEl.innerText = text;
             hintEl.classList.add("visible");
         });
         
-        // Si on bouge la souris DANS la carte, on vérifie si elle s'est ouverte entre temps
         el.addEventListener("mousemove", () => {
             if (el.classList.contains('expanded')) {
                 hintEl.classList.remove("visible");
             } else {
-                // Si elle est fermée et qu'on est dessus, on s'assure qu'il est visible
-                if (!hintEl.classList.contains("visible")) {
-                     hintEl.classList.add("visible");
-                }
+                if (!hintEl.classList.contains("visible")) hintEl.classList.add("visible");
             }
         });
         
@@ -390,7 +386,6 @@ function initCursorHint() {
             hintEl.classList.remove("visible");
         });
 
-        // Au clic, on force la disparition immédiate pour ne pas avoir de délai
         el.addEventListener("click", () => {
              hintEl.classList.remove("visible");
         });
@@ -398,10 +393,7 @@ function initCursorHint() {
 
     const noHintElements = document.querySelectorAll('[data-no-hint="true"]');
     noHintElements.forEach(btn => {
-        btn.addEventListener("mouseenter", (e) => {
-            e.stopPropagation(); 
-            hintEl.classList.remove("visible");
-        });
+        btn.addEventListener("mouseenter", (e) => { e.stopPropagation(); hintEl.classList.remove("visible"); });
     });
 }
 
@@ -431,60 +423,51 @@ function openProjectModal(proj) {
 
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    const card = c.closest('.project-card'); // Récupère la carte parente
+    const card = c.closest('.project-card'); 
     
-    // Si c'est déjà ouvert, on ferme
     if (c.style.display === 'block') {
         c.style.display = 'none';
         c.innerHTML = '';
-        if(card) card.classList.remove('expanded'); // Enlève l'état ouvert
+        if(card) card.classList.remove('expanded'); 
         return;
     }
 
-    // Ferme TOUTES les autres cartes
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
-        // Récupère le parent et enlève la classe expanded
         const parent = el.closest('.project-card');
         if(parent) parent.classList.remove('expanded');
     });
 
-    // Ouvre CELLE-CI
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     
-    // Marque la carte comme ouverte pour le curseur
     if(card) card.classList.add('expanded');
     
-    // Force la disparition du curseur hint
     const hintEl = document.getElementById("cursor-hint");
     if(hintEl) hintEl.classList.remove("visible");
 }
 
-function toggleComp(id, cardElement) {
+function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
+    const btn = headerEl.querySelector('.comp-toggle'); // On cible le bouton qu'on a remis
     
     // Ferme les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
         if (el.id !== id) el.style.display = 'none';
     });
-    // Reset state on all competence cards
-    document.querySelectorAll('.comp-card-container').forEach(el => {
-        if (el !== cardElement) el.classList.remove('expanded');
+    // Reset buttons
+    document.querySelectorAll('.comp-toggle').forEach(el => {
+        if (el !== btn) el.classList.remove('active');
     });
 
     // Bascule l'actuel
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
-        if(cardElement) cardElement.classList.remove('expanded');
+        if (btn) btn.classList.remove('active');
     } else {
         menu.style.display = 'block';
-        if(cardElement) cardElement.classList.add('expanded');
-        
-        // Force la disparition du curseur hint
-        const hintEl = document.getElementById("cursor-hint");
-        if(hintEl) hintEl.classList.remove("visible");
+        if (btn) btn.classList.add('active');
     }
 }
 
