@@ -3,150 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Armel Plantier | SysAdmin & Réseau">
-    <meta property="og:description" content="Portfolio d'étudiant Administrateur Système. Projets, Labs et Certifications.">
+    <title>404 | Route Not Found</title>
     
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self'; 
-        connect-src 'self' https://api.github.com;
-        script-src 'self' https://challenges.cloudflare.com; 
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
-        font-src 'self' https://fonts.gstatic.com; 
-        img-src 'self' data: https://encrypted-tbn0.gstatic.com; 
-        frame-src https://docs.google.com https://challenges.cloudflare.com; 
-        object-src 'none'; 
-        base-uri 'self';
-    ">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-
-    <title>Portfolio | SysAdmin & Réseau</title>
-    
-    <link id="favicon-link" rel="icon" href="">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="error-body"> <div class="error-card">
+        <h1 class="error-title">404</h1>
+        <h2 class="error-subtitle">Destination Unreachable</h2>
 
-    <header class="app-header">
-        <div class="header-left">
-            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
-            <div class="identity-info">
-                <span id="profile-name" class="id-name"></span>
-                <div class="status-wrapper">
-                    <span class="status-dot"></span>
-                    <span id="profile-status" class="id-status"></span>
-                </div>
+        <div class="terminal-box">
+            <div>
+                <span class="cmd-user">root@armel-plantier</span>:<span class="cmd-path">/var/www</span>$ ping requested-page
+            </div>
+            <div>
+                Request timed out.
+            </div>
+            <div>
+                <span class="cmd-error">Error: 404 Not Found. Packet lost in space.</span>
+            </div>
+            <br>
+            <div>
+                <span class="cmd-user">root@armel-plantier</span>:<span class="cmd-path">~</span>$ systemctl return home<span class="cursor"></span>
             </div>
         </div>
 
-        <nav class="nav-capsule">
-            <span class="menu-icon">☰</span>
-            <ul id="nav-list"></ul>
-        </nav>
-
-        <div class="header-right">
-            <button id="theme-toggle" class="theme-icon">☀️</button>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <section class="hero-section">
-            <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
-            <p id="profile-bio" class="bio-text"></p>
-            <div class="social-links">
-                <a id="link-github" href="#" target="_blank" class="social-btn">GitHub</a>
-                <a id="link-linkedin" href="#" target="_blank" class="social-btn">LinkedIn</a>
-                <a id="email-trigger" href="#" class="social-btn email">Contact</a>
-                <a href="Documents/CV_Armel_Plantier.pdf" target="_blank" class="social-btn" download>Mon CV</a>
-            </div>
-            <div id="skills-section" class="skills-section"></div>
-        </section>
-
-        <section id="projets" class="section-wrapper">
-            <h3>Projets & Labs</h3>
-            <div id="project-grid" class="grid"></div>
-        </section>
-
-        <section id="parcours" class="section-wrapper">
-            <h3>Parcours</h3>
-            <ul id="exp-list" class="timeline-list"></ul>
-        </section>
-
-        <section id="competences" class="section-wrapper">
-            <h3>Compétences</h3>
-            <ul id="comp-list" class="cert-list"></ul>
-        </section>
-
-        <section id="certifications" class="section-wrapper">
-            <h3>Certifications</h3>
-            <ul id="cert-list" class="cert-list"></ul>
-        </section>
-
-        <footer>
-            <div class="sys-info">
-                <span id="footer-copy"></span>
-                <span class="separator">|</span>
-                <span id="last-update" style="font-size: 0.8rem; color: var(--primary);">Connecting...</span>
-            </div>
-            <a href="#" id="legal-trigger" class="footer-legal-link">Mentions Légales</a>
-        </footer>
+        <a href="https://armel-plantier.com" class="btn-home">
+            ↩ Retour à la base
+        </a>
     </div>
 
-    <div id="email-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Contact</span>
-                <button id="modal-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body">
-                <p id="captcha-instruction">Vérification de sécurité :</p>
-                <div id="captcha-container" style="margin: 20px auto; min-height: 65px; display: flex; justify-content: center;"></div>
-                <div id="email-result-area" style="display: none;">
-                    <p style="margin-bottom: 10px;">Mon adresse email :</p>
-                    <div class="email-box">
-                        <span id="email-text"></span>
-                        <button id="copy-email-btn">Copier</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="legal-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Mentions Légales</span>
-                <button id="legal-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body legal-text">
-                <p><strong>Éditeur :</strong> Armel Plantier</p>
-                <div class="cloudflare-badge">Site sécurisé par <strong>Cloudflare</strong></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="project-modal" class="modal-overlay">
-        <div class="modal-content project-info-modal">
-            <div class="modal-header">
-                <span id="proj-modal-title" style="color:var(--primary);">Titre Projet</span>
-                <button id="proj-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body" style="text-align: left;">
-                <p id="proj-modal-desc" style="line-height: 1.6; color: var(--text); margin-bottom: 20px;"></p>
-                <hr style="border: 0; border-top: 1px solid var(--border); margin-bottom: 15px;">
-                <h4 style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px;">Technologies utilisées :</h4>
-                <div id="proj-modal-tags" class="proj-tags-row"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="config.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
