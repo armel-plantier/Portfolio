@@ -1,299 +1,268 @@
-:root {
-    --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
-    --card: #151925;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --border: #2d3748;
-    --primary: #6366f1;
-    --header-h: 90px;
-    --badge-bg: #10b981;
-    --header-padding: 40px; 
-    --theme-btn-size: 42px;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    
+    if (typeof config === 'undefined') { console.error("ERREUR : config.js n'est pas chargé."); return; }
 
-body.light-mode {
-    --bg: #f3f4f6; 
-    --card: #ffffff; 
-    --text: #1f2937;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --badge-bg: #059669;
-}
+    const escapeHTML = (str) => {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, "&amp;") .replace(/</g, "&lt;") .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
+    };
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html, body { min-height: 100%; }
-
-body { 
-    background: var(--bg);
-    background-attachment: fixed;
-    color: var(--text); 
-    font-family: 'Inter', sans-serif; 
-    padding-top: var(--header-h); 
-    transition: background 0.3s, color 0.3s; 
-    overflow-x: hidden; 
-}
-a { text-decoration: none; color: inherit; }
-
-/* HEADER */
-.app-header {
-    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 var(--header-padding); 
-    background: transparent !important; 
-    pointer-events: none; 
-    z-index: 1000;
-    transition: all 0.4s ease;
-}
-.header-left, .nav-capsule, .header-right { pointer-events: auto; }
-
-.header-left { display: flex; align-items: center; gap: 16px; transition: all 0.4s ease; opacity: 1; transform: translateY(0); }
-.app-header.scrolled .header-left { opacity: 0; transform: translateY(-20px); pointer-events: none; }
-
-.id-avatar { 
-    width: 50px; height: 50px; border-radius: 12px; object-fit: cover; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px);
-    transition: all 0.3s ease;
-}
-.identity-info { display: flex; flex-direction: column; align-items: flex-start; transition: all 0.3s ease; }
-.id-name { 
-    font-weight: 800; font-family: 'Outfit', sans-serif; 
-    font-size: 1.3rem; line-height: 1.1; color: var(--text);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); 
-}
-body.light-mode .id-name { text-shadow: none; }
-
-.status-wrapper { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
-.status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); }
-
-.header-right { 
-    display: flex; align-items: center; position: absolute; 
-    right: var(--header-padding); top: 50%; transform: translateY(-50%);
-    transition: all 0.4s ease; z-index: 1002;
-}
-.theme-icon {
-    width: var(--theme-btn-size); height: var(--theme-btn-size);
-    border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(40px);
-    color: var(--text); cursor: pointer; font-size: 1.2rem;
-    display: flex; align-items: center; justify-content: center; transition: 0.3s;
-}
-body.light-mode .theme-icon { 
-    background: rgba(255,255,255,0.8); border-color: rgba(0,0,0,0.1); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-.theme-icon:hover { background: var(--card); border-color: var(--primary); }
-
-.nav-capsule {
-    position: fixed; top: calc(var(--header-h) / 2); left: 50%; right: auto; transform: translate(-50%, -50%);
-    background: rgba(20, 20, 30, 0.6); backdrop-filter: blur(50px) saturate(180%); -webkit-backdrop-filter: blur(50px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 10px 30px; border-radius: 50px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; height: 50px; z-index: 1001;
-}
-body.light-mode .nav-capsule { background: rgba(255, 255, 255, 0.75) !important; border-color: rgba(255, 255, 255, 0.8); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); }
-
-.nav-capsule ul { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; transition: opacity 0.3s; opacity: 1; }
-.menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
-.nav-capsule a { font-size: 0.9rem; font-weight: 500; color: #e2e8f0; transition: 0.2s ease; white-space: nowrap; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-.nav-capsule a:hover { color: var(--primary); text-shadow: none; }
-body.light-mode .nav-capsule a { color: #4b5563; text-shadow: none; }
-body.light-mode .nav-capsule a:hover { color: var(--primary); }
-
-@media (min-width: 1201px) {
-    .app-header.scrolled .nav-capsule {
-        left: auto; transform: translateY(-50%);
-        right: calc(var(--header-padding) + var(--theme-btn-size) + 15px);
-        width: var(--theme-btn-size); height: var(--theme-btn-size);
-        padding: 0; border-radius: 50%; background: rgba(20, 20, 30, 0.8);
+    // --- THEME ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") { body.classList.add("light-mode"); if(themeBtn) themeBtn.innerText = "🌙"; }
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) { themeBtn.innerText = "🌙"; localStorage.setItem("theme", "light"); } 
+            else { themeBtn.innerText = "☀️"; localStorage.setItem("theme", "dark"); }
+        });
     }
-    body.light-mode .app-header.scrolled .nav-capsule { background: rgba(255, 255, 255, 0.8) !important; border-color: rgba(0,0,0,0.1); }
-    .app-header.scrolled .nav-capsule ul { display: none; opacity: 0; }
-    .app-header.scrolled .nav-capsule .menu-icon { display: block; }
-    .app-header.scrolled .nav-capsule:hover { width: auto; padding: 0 30px; border-radius: 50px; }
-    .app-header.scrolled .nav-capsule:hover ul { display: flex; opacity: 1; }
-    .app-header.scrolled .nav-capsule:hover .menu-icon { display: none; }
-}
 
-@media (max-width: 1200px) {
-    body { padding-top: 240px; } 
-    .app-header { position: absolute !important; top: 0; left: 0; width: 100%; flex-direction: column; height: auto !important; padding: 20px 15px; gap: 15px; background: transparent !important; }
-    .header-left { width: 100%; justify-content: center; margin-bottom: 0; opacity: 1 !important; transform: none; }
-    .nav-capsule { position: relative !important; top: 0 !important; left: 0 !important; transform: none !important; width: 100%; max-width: 500px; margin: 0 auto; background: var(--card); border-radius: 12px; padding: 12px 10px; height: auto; display: flex; justify-content: center; overflow-x: auto; }
-    body.light-mode .nav-capsule { background: #ffffff !important; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-    .nav-capsule ul { display: flex !important; opacity: 1 !important; gap: 15px; }
-    .nav-capsule .menu-icon { display: none !important; }
-    .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
-    .app-header.scrolled { position: fixed !important; top: 0; left: 0; width: 100%; height: 70px !important; flex-direction: row; justify-content: flex-end; align-items: center; padding: 0 15px; gap: 0; background: rgba(15, 20, 30, 0.85) !important; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.1); z-index: 9999; }
-    body.light-mode .app-header.scrolled { background: rgba(255, 255, 255, 0.9) !important; border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .app-header.scrolled .header-left { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) !important; width: auto; margin: 0; opacity: 1 !important; pointer-events: auto; z-index: 1; }
-    .app-header.scrolled .id-avatar { width: 34px; height: 34px; } 
-    .app-header.scrolled .id-name { font-size: 1rem; } 
-    .app-header.scrolled .status-wrapper { display: none; } 
-    .app-header.scrolled .nav-capsule { width: 42px !important; height: 42px !important; padding: 0 !important; border-radius: 50% !important; background: rgba(255,255,255,0.08) !important; position: static !important; margin-right: 10px; transform: none !important; display: flex; justify-content: center; align-items: center; z-index: 10; cursor: pointer; }
-    body.light-mode .app-header.scrolled .nav-capsule { background: rgba(0,0,0,0.05) !important; color: var(--text); }
-    .app-header.scrolled .nav-capsule ul { display: none !important; }
-    .app-header.scrolled .nav-capsule .menu-icon { display: block !important; font-size: 1.1rem; }
-    .app-header.scrolled .header-right { position: static; transform: none; top: auto; right: auto; margin: 0; z-index: 10; }
-    .app-header.scrolled.menu-open .header-left { position: static !important; transform: none !important; margin-right: auto; opacity: 1 !important; }
-    .app-header.scrolled.menu-open .nav-capsule { position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; width: auto !important; height: 50px !important; border-radius: 50px !important; padding: 0 25px !important; margin: 0 !important; background: rgba(20, 20, 30, 0.95) !important; z-index: 2000; cursor: default; }
-    body.light-mode .app-header.scrolled.menu-open .nav-capsule { background: #ffffff !important; border: 1px solid #e2e8f0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .app-header.scrolled.menu-open .nav-capsule ul { display: flex !important; gap: 15px; }
-    .app-header.scrolled.menu-open .nav-capsule .menu-icon { display: none !important; }
-    .app-header.scrolled.menu-open .header-right { margin-left: auto; }
-}
+    // --- PROFIL ---
+    document.title = `${config.profile.name} | Portfolio`;
+    const avatarEl = document.getElementById("profile-avatar"); if(avatarEl) avatarEl.src = config.profile.avatar;
+    const faviconEl = document.getElementById("favicon-link"); if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
+    const nameEl = document.getElementById("profile-name"); if(nameEl) nameEl.innerText = config.profile.name;
+    const statusEl = document.getElementById("profile-status"); if(statusEl) statusEl.innerText = config.profile.status;
+    const bioEl = document.getElementById("profile-bio"); if(bioEl) bioEl.innerText = config.profile.bio;
+    const footerEl = document.getElementById("footer-copy"); if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
+    const ghBtn = document.getElementById("link-github"); if(ghBtn && config.social.github) ghBtn.href = config.social.github;
+    const lkBtn = document.getElementById("link-linkedin"); if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: block; }
+    // --- MODALES ---
+    function setupModal(triggerId, modalId, closeBtnId) {
+        const trigger = document.getElementById(triggerId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = document.getElementById(closeBtnId);
+        if (trigger && modal) { trigger.addEventListener("click", (e) => { e.preventDefault(); modal.style.display = "flex"; }); }
+        const closeFn = () => { if(modal) modal.style.display = "none"; };
+        if (closeBtn) closeBtn.addEventListener("click", closeFn);
+        window.addEventListener("click", (e) => { if(e.target === modal) closeFn(); });
+    }
+    setupModal("email-trigger", "email-modal", "modal-close-btn");
+    setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-/* HERO */
-.hero-section { text-align: center; margin-bottom: 80px; margin-top: 10px; width: 100%; }
-.hero-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; }
-.bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
-@media (min-width: 1024px) { .hero-title { font-size: 3.5rem; } .bio-text { font-size: 1.1rem; max-width: 700px; } }
-.cursor { animation: blink 1s infinite; font-weight: 100; color: var(--muted); }
-@keyframes blink { 50% { opacity: 0; } }
+    // --- EMAIL ---
+    const emailTrigger = document.getElementById("email-trigger");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailResultArea = document.getElementById("email-result-area");
+    const emailText = document.getElementById("email-text");
+    const captchaInstruction = document.getElementById("captcha-instruction");
+    const copyBtn = document.getElementById("copy-email-btn");
+    let widgetId = null; let decodedEmail = ""; 
 
-.social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap;}
-.social-btn { display: flex; align-items: center; gap: 8px; padding: 10px 20px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-weight: 600; font-size: 0.9rem; transition: 0.2s; color: var(--muted); }
-.social-btn:hover { border-color: var(--primary); color: var(--primary); }
-.social-btn.email { background: var(--primary); color: white; border: none; }
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", () => {
+            if(captchaContainer) captchaContainer.style.display = "flex";
+            if(emailResultArea) emailResultArea.style.display = "none";
+            if(captchaInstruction) captchaInstruction.style.display = "block";
+            if(emailText) emailText.innerText = "";
+            if(copyBtn) { copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = ""; }
 
-.skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-.skill-tag { background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); }
+            if (window.turnstile) {
+                if (widgetId !== null) turnstile.reset(widgetId);
+                else {
+                    try {
+                        widgetId = turnstile.render('#captcha-container', {
+                            sitekey: config.profile.turnstileSiteKey, 
+                            theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
+                            callback: function(token) {
+                                try {
+                                    decodedEmail = atob(config.profile.emailEncoded);
+                                    if(emailText) emailText.innerText = decodedEmail;
+                                    if(captchaContainer) captchaContainer.style.display = "none";
+                                    if(captchaInstruction) captchaInstruction.style.display = "none";
+                                    if(emailResultArea) emailResultArea.style.display = "block";
+                                } catch (err) { console.error("Erreur décodage"); }
+                            }
+                        });
+                    } catch (e) { if(captchaContainer) captchaContainer.innerHTML = "Erreur sécu."; }
+                }
+            }
+        });
+        if(copyBtn) {
+            copyBtn.addEventListener("click", () => {
+                if(decodedEmail) navigator.clipboard.writeText(decodedEmail).then(() => {
+                    copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
+                    setTimeout(() => { document.getElementById("email-modal").style.display = "none"; }, 2000); 
+                });
+            });
+        }
+    }
 
-/* SECTIONS */
-.section-wrapper, section, #projects, #parcours, #competences, #certifs { width: 100%; margin-bottom: 60px; scroll-margin-top: 140px; }
-h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
+    // --- MODALE PROJET ---
+    const projectModal = document.getElementById("project-modal");
+    const projectCloseBtn = document.getElementById("project-close-btn");
+    if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
+    window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-/* PROJETS & GRID */
-.grid { display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; }
-.project-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; }
-.project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+    // --- NAVIGATION / SKILLS ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li"); const a = document.createElement("a");
+            a.innerText = item.title; a.href = item.link; 
+            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
+            li.appendChild(a); navList.appendChild(li);
+        });
+    }
+    const skillsContainer = document.getElementById("skills-section");
+    if(skillsContainer && config.skills) {
+        config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
+    }
 
-.card-header { padding: 25px; padding-right: 110px; cursor: pointer; display: flex; gap: 20px; align-items: flex-start; }
-.card-header .icon { font-size: 2rem; }
-.card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
-.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; margin-bottom: 8px; }
+    // --- 7. PROJETS (AVEC EXPAND ARROW + AUTO DATE) ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `${window.location.origin}${path}Documents/`; 
+    const PROJECT_LIMIT = 4; 
 
-/* TAGS */
-.tags-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
-.project-tag { font-size: 0.7rem; padding: 3px 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-family: 'Inter', monospace; white-space: nowrap; }
-body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
+    if (grid && config.projects) {
+        config.projects.forEach((proj, index) => {
+            const vid = `viewer_${index}`;
+            const fullPdfUrl = baseUrl + proj.path;
+            
+            const dateId = `date-project-${index}`;
+            const badgeId = `badge-project-${index}`;
 
-/* BADGE, DATE & INFO BTN */
-.new-badge { display: inline-block; vertical-align: middle; margin-left: 10px; background: var(--badge-bg); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; transform: translateY(-2px); }
-.project-date { position: absolute; top: 25px; right: 25px; font-size: 0.85rem; font-family: 'Inter', monospace; color: var(--muted); font-weight: 500; opacity: 0.8; }
+            // Tags Carte
+            let cardTagsHTML = '';
+            if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proj.tags.slice(0, 3).forEach(tag => {
+                    cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
+                });
+                cardTagsHTML += '</div>';
+            }
 
-.info-btn {
-    position: absolute; top: 55px; right: 25px;
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.2s; z-index: 5;
-}
-.info-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
+            const div = document.createElement("div"); 
+            div.className = "project-card";
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-@media (max-width: 600px) {
-    .card-header { padding-right: 25px; flex-direction: column; gap: 10px; }
-    .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 10px 25px 0 0; }
-    .new-badge { float: right; } 
-    .info-btn { position: relative; top: auto; right: auto; float: right; margin-top: -30px; }
-}
+            // Construction HTML avec la flèche "expand-icon"
+            div.innerHTML = `
+                <span id="${dateId}" class="project-date">...</span>
+                <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+                <div class="card-header">
+                    <div class="icon">${escapeHTML(proj.icon)}</div>
+                    <div class="meta">
+                        <h4>
+                            ${escapeHTML(proj.title)} 
+                            <span id="${badgeId}"></span>
+                        </h4>
+                        <p>${escapeHTML(proj.description)}</p>
+                        ${cardTagsHTML}
+                    </div>
+                    <div class="expand-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+            
+            // --- AUTOMATISATION API GITHUB ---
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const encodedPath = encodeURIComponent(`Documents/${proj.path}`);
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=${encodedPath}&sha=main&page=1&per_page=1`;
+                
+                fetch(apiUrl).then(res => { if (!res.ok) throw new Error("API Error"); return res.json(); })
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            const commitDate = new Date(data[0].commit.author.date);
+                            const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                            
+                            const dateEl = document.getElementById(dateId);
+                            if(dateEl) { dateEl.innerText = formattedDate; dateEl.style.opacity = "1"; }
 
-.hidden-item { display: none !important; }
-.pdf-container { display: none; border-top: 1px solid var(--border); background: var(--card); overflow: hidden; border-radius: 0 0 16px 16px; }
-.pdf-container iframe { display: block; width: 100%; border: none; background-color: var(--card); }
+                            const today = new Date();
+                            const timeDiff = Math.abs(today - commitDate);
+                            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+                            const badgeEl = document.getElementById(badgeId);
+                            if (badgeEl && diffDays <= 30) { badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`; }
+                        }
+                    }).catch(err => { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; });
+            } else { const dateEl = document.getElementById(dateId); if(dateEl) dateEl.innerText = ""; }
 
-/* TIMELINE */
-.timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); width: 100%; }
-.timeline-item { margin-bottom: 35px; position: relative; }
-.timeline-item::before { content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; }
-.timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.timeline-title { font-size: 1rem; margin-bottom: 5px; }
-.timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+            // CLIC HEADER (Ouvre le PDF + Tourne la flèche)
+            const headerDiv = div.querySelector('.card-header');
+            headerDiv.addEventListener("click", () => { 
+                div.classList.toggle('active'); // Pour la rotation CSS
+                togglePDF(vid, fullPdfUrl); 
+            });
 
-/* CERTIFS & COMPETENCES */
-.cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
-@media (min-width: 768px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
-.cert-card-container { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; display: flex; flex-direction: column; transition: all 0.3s ease; overflow: hidden; }
-.cert-card-container:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-.cert-header-row { display: flex; align-items: center; gap: 15px; width: 100%; }
-.cert-icon-box { width: 45px; height: 45px; background: rgba(99, 102, 241, 0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.cert-info { flex-grow: 1; }
-.cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
-.cert-issuer { display: block; font-size: 0.85rem; color: var(--muted); }
-.cert-actions { display: flex; gap: 8px; }
-.cert-btn { width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.2s; font-size: 0.9rem; text-decoration: none; cursor: pointer; }
-.cert-btn:hover { color: #fff; border-color: transparent; }
-.cert-btn.link-btn:hover { background: var(--primary); }
-.cert-btn.pdf-btn:hover { background: #10b981; } 
-.cert-pdf-viewer { display: none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 10px; background: var(--card); width: 100%; height: 500px; }
-.cert-pdf-viewer iframe { display: block; width: 100%; border: none; background-color: var(--card); }
+            // CLIC INFO (Ouvre la modale)
+            const infoBtn = div.querySelector(`#info-btn-${index}`);
+            if(infoBtn) {
+                infoBtn.addEventListener("click", (e) => {
+                    e.stopPropagation(); 
+                    openProjectModal(proj);
+                });
+            }
 
-.comp-card-container { background: var(--card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; height: fit-content; }
-.comp-header { padding: 16px 20px; display: flex; align-items: center; gap: 15px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
-.comp-header:hover { background: rgba(255,255,255,0.02); }
-.comp-dropdown-menu { padding: 15px 20px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); list-style: none; }
-body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; border-top: 1px solid #f3f4f6; color: #333333; }
-.comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-.comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
-body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
-.comp-toggle { margin-left: auto; background: transparent; border: 1px solid var(--border); color: var(--muted); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; transition: 0.3s; flex-shrink: 0; }
-.comp-toggle.active { transform: rotate(180deg); }
-.comp-toggle:hover, .comp-toggle.active { background-color: var(--primary) !important; border-color: var(--primary) !important; color: #ffffff !important; }
-body.light-mode .comp-toggle { border-color: #9ca3af; color: #374151; }
-body.light-mode .comp-header:hover { background: #f9fafb; }
+            grid.appendChild(div);
+        });
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+    }
 
-/* LOAD MORE & FOOTER */
-.load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
-.load-more-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
-.load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); }
-footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; width: 100%; }
-.sys-info { margin-bottom: 15px; font-family: monospace; opacity: 0.8; }
-.separator { margin: 0 8px; color: var(--primary); }
+    // --- 8. PARCOURS & 9. COMPETENCES & 10. CERTIFICATIONS ---
+    const expList = document.getElementById("exp-list");
+    const EXP_LIMIT = 5;
+    if(expList && config.experiences) {
+        config.experiences.forEach((exp, index) => {
+            const li = document.createElement("li"); li.className = "timeline-item"; if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+            li.innerHTML = `<span class="timeline-date">${escapeHTML(exp.date)}</span><h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4><p class="timeline-desc">${escapeHTML(exp.description)}</p>`;
+            expList.appendChild(li);
+        });
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
+    }
+    const compList = document.getElementById("comp-list");
+    const COMP_LIMIT = 5;
+    if(compList && config.competences) {
+        config.competences.forEach((comp, index) => {
+            const li = document.createElement("li"); li.className = "comp-card-container"; if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+            const dropId = `comp-drop-${index}`; const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
+            li.innerHTML = `<div class="comp-header"><div class="cert-icon-box">${escapeHTML(comp.icon)}</div><span class="cert-name">${escapeHTML(comp.name)}</span><button class="cert-btn comp-toggle">▼</button></div><ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>`;
+            const headerEl = li.querySelector('.comp-header'); headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
+            compList.appendChild(li);
+        });
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
+    }
+    const certList = document.getElementById("cert-list");
+    const CERT_LIMIT = 5;
+    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    if(certList && config.certifications) {
+        config.certifications.forEach((cert, index) => {
+            const li = document.createElement("li"); li.className = "cert-card-container"; if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+            const issuer = cert.issuer ? cert.issuer : "Certification"; const viewerId = `cert_view_${index}`; const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null; let buttonsHtml = '';
+            if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
+            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
+            if (cert.pdf) {
+                const actionsDiv = li.querySelector('.cert-actions'); const pdfBtn = document.createElement("button"); pdfBtn.className = "cert-btn pdf-btn"; pdfBtn.title = "Voir le diplôme"; pdfBtn.innerHTML = "📄";
+                pdfBtn.addEventListener("click", () => { toggleCertPDF(viewerId, fullPdfUrl); }); actionsDiv.appendChild(pdfBtn);
+            }
+            certList.appendChild(li);
+        });
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
+    }
 
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-.modal-content { background: var(--card); width: 90%; max-width: 400px; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
-.modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-.close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
-.modal-body { padding: 30px; text-align: center; }
-.email-box { margin-top: 15px; background: transparent; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: monospace; color: #ffffff; word-break: break-all; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-body.light-mode .email-box { color: #333; border-color: #ccc; }
-#copy-email-btn { background: var(--primary); color: white; border: none; border-radius: 4px; padding: 6px 12px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-#copy-email-btn:hover { background: #4f46e5; transform: translateY(-1px); }
+    // --- TYPEWRITER / SCROLL / FOOTER ---
+    const textEl = document.getElementById("typewriter-area");
+    if(textEl && config.profile.typewriterText) { const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0; function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } } setTimeout(type, 500); }
+    const header = document.querySelector('.app-header'); const menuIcon = document.querySelector('.menu-icon'); const navCapsule = document.querySelector('.nav-capsule');
+    if (header) { window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); } }); if (menuIcon) { menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); }); } document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } }); }
+    const updateEl = document.getElementById("last-update");
+    if(updateEl && config.profile.githubUser && config.profile.githubRepo) { const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`; fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); }).then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; }).catch(err => { updateEl.innerText = "System Ready"; }); }
+    
+    document.addEventListener('keydown', (e) => { if (e.key === "Escape") { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none"); document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; }); document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; }); document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none'); document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active')); } if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); } });
+});
 
-.footer-legal-link { display: inline-block; color: var(--muted); font-size: 0.8rem; text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
-.footer-legal-link:hover { opacity: 1; text-decoration: underline; }
-.legal-text { text-align: left; font-size: 0.9rem; line-height: 1.6; color: var(--muted); }
-.legal-text p { margin-bottom: 15px; }
-.legal-text strong { color: var(--text); }
-.cloudflare-badge { margin-top: 20px; padding: 10px; background: rgba(244, 129, 32, 0.1); border: 1px solid rgba(244, 129, 32, 0.3); border-radius: 8px; display: flex; align-items: center; gap: 10px; color: #F48120; font-weight: 600; font-size: 0.9rem; }
-
-body.light-mode .project-card, body.light-mode .cert-card-container, body.light-mode .comp-card-container { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-color: #e5e7eb; }
-body.light-mode .skill-tag { background: #ffffff; border-color: #e5e7eb; color: #4b5563; }
-body.light-mode .cert-icon-box { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
-body.light-mode .hero-title { text-shadow: none; }
-
-.error-body { display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; padding: 0 20px; background: var(--bg); }
-.error-card { width: 100%; max-width: 600px; padding: 40px; text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-.error-title { font-family: 'Outfit', sans-serif; font-size: 6rem; margin: 0; background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; line-height: 1; }
-.error-subtitle { font-size: 1.5rem; margin-bottom: 30px; color: var(--text); }
-.terminal-box { background: #0b0d14; border-radius: 8px; padding: 20px; text-align: left; font-family: 'Courier New', monospace; margin-bottom: 30px; border: 1px solid var(--border); color: #d1d5db; font-size: 0.9rem; line-height: 1.6; }
-.cmd-user { color: #10b981; } .cmd-path { color: #6366f1; } .cmd-error { color: #ef4444; }
-.btn-home { display: inline-block; background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid transparent; }
-.btn-home:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
-
-@media print {
-    .app-header, .social-links, .load-more-container, .comp-toggle, footer, .cursor, .new-badge, .modal-overlay { display: none !important; }
-    body { background: #fff !important; color: #000 !important; padding-top: 0 !important; }
-    a[href]::after { content: " (" attr(href) ")"; font-size: 0.8rem; color: #666; }
-    .container { max-width: 100%; padding: 0; margin: 0; }
-    h1, h3 { color: #000 !important; page-break-after: avoid; }
-    .project-card, .cert-card-container, .comp-card-container { border: 1px solid #ddd; box-shadow: none; break-inside: avoid; margin-bottom: 20px; }
-    .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
-}
+function openProjectModal(proj) { const modal = document.getElementById("project-modal"); const titleEl = document.getElementById("modal-project-title"); const descEl = document.getElementById("modal-project-desc"); const tagsEl = document.getElementById("modal-project-tags"); if(modal && titleEl && descEl && tagsEl) { titleEl.innerText = proj.title; descEl.innerHTML = proj.longDescription ? proj.longDescription : proj.description; tagsEl.innerHTML = ""; if(proj.tags && proj.tags.length > 0) { proj.tags.forEach(tag => { const span = document.createElement("span"); span.className = "project-tag"; span.innerText = tag; tagsEl.appendChild(span); }); } else { tagsEl.innerHTML = "<span style='color:var(--muted); font-size:0.8rem;'>Aucun tag</span>"; } modal.style.display = "flex"; } }
+function togglePDF(id, url) { const c = document.getElementById(id); if(c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; return; } document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`; c.style.display = 'block'; }
+function toggleComp(id, headerEl) { const menu = document.getElementById(id); const btn = headerEl.querySelector('.comp-toggle'); document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; }); document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); }); if(menu.style.display === 'block') { menu.style.display = 'none'; if(btn) btn.classList.remove('active'); } else { menu.style.display = 'block'; if(btn) btn.classList.add('active'); } }
+function toggleCertPDF(id, url) { const viewer = document.getElementById(id); if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; } document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); viewer.style.display = 'block'; viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`; }
+function createToggleBtn(container, limit, txtMore) { const div = document.createElement("div"); div.className = "load-more-container"; const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`; let expanded = false; btn.addEventListener("click", () => { expanded = !expanded; const children = container.children; for(let i=0; i<children.length; i++) { if(i >= limit) { if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity = 0; setTimeout(()=>children[i].style.opacity=1, 50); } else { children[i].classList.add("hidden-item"); children[i].style.opacity = 0; } } } btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`; }); div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling); }
