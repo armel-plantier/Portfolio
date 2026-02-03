@@ -33,7 +33,6 @@ const config = {
     skills: [ "🐧 Linux", "🪟 Windows", "🕸️ Réseau", "🛡️ Sécurité" ],
 
     // --- 4. PROJETS (AUTOMATISÉS) ---
-    // Note : Assurez-vous que le nom du fichier PDF correspond EXACTEMENT à celui sur GitHub
     projects: [
         {
             title: "Mise en place réseau TechNova",
@@ -41,7 +40,7 @@ const config = {
             longDescription: "Refonte complète de l'architecture réseau PME : Segmentation en 5 VLANs, routage inter-VLAN sur cœur Cisco, ACLs strictes et documentation technique détaillée.",
             path: "reseau-technova.pdf", 
             icon: "🌐",
-            tags: ["Cisco", "VLAN", "Switching", "OSPF", "Visio"]
+            tags: ["Cisco", "VLAN", "Switching", "OSPF", "ACL", "Visio"]
         },
         {
             title: "Gestion de l'Active Directory",
