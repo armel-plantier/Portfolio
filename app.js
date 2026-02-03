@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. PROJETS (AVEC TAGS & AUTO-DATE) ---
+    // --- 7. PROJETS (AUTOMATISATION DATE/BADGE + TAGS MANUELS) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -215,10 +215,12 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
+            
+            // ID Uniques pour la mise à jour différée
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // GESTION DES TAGS (Max 3)
+            // GESTION DES TAGS (MANUEL - CONFIG.JS)
             let tagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 tagsHTML = '<div class="tags-container">';
@@ -233,6 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
+            // CONSTRUCTION HTML INITIALE
+            // Note: Date et Badge sont vides au départ ("...") et attendent l'API
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <div class="card-header">
@@ -248,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // APPEL API GITHUB
+            // AUTOMATISATION : APPEL API GITHUB (DATE & BADGE)
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
@@ -262,14 +266,14 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // Date
+                            // 1. Mise à jour de la date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // Badge Nouveau (< 30 jours)
+                            // 2. Calcul automatique du Badge "Nouveau" (Si < 30 jours)
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
@@ -283,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(err => {
+                        // En cas d'échec API (ex: fichier local ou rate limit), on efface les "..."
                          const dateEl = document.getElementById(dateId);
                          if(dateEl) dateEl.innerText = "";
                     });
