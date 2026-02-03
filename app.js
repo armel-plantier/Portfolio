@@ -1,263 +1,178 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    if (typeof config === 'undefined') { console.error("Config missing"); return; }
-    const escapeHTML = (str) => {
-        if (!str) return '';
-        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-    };
+const config = {
+    // --- 1. NAVIGATION ---
+    navigation: [
+        { title: "Accueil", link: "#" },
+        { title: "Projets", link: "#projects" },
+        { title: "Parcours", link: "#parcours" },
+        { title: "Compétences", link: "#competences" },
+        { title: "Certifs", link: "#certifs" }
+    ],
 
-    // --- THEME ---
-    const themeBtn = document.getElementById("theme-toggle");
-    const body = document.body;
-    if (localStorage.getItem("theme") === "light") { body.classList.add("light-mode"); if(themeBtn) themeBtn.innerText = "🌙"; }
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            body.classList.toggle("light-mode");
-            if (body.classList.contains("light-mode")) { themeBtn.innerText = "🌙"; localStorage.setItem("theme", "light"); } 
-            else { themeBtn.innerText = "☀️"; localStorage.setItem("theme", "dark"); }
-        });
-    }
+    // --- 2. PROFIL & RÉSEAUX ---
+    profile: {
+        // --- API GITHUB ---
+        githubUser: "armel-plantier", 
+        githubRepo: "Portfolio", // ✅ Nom corrigé
 
-    // --- PROFIL ---
-    document.title = `${config.profile.name} | Portfolio`;
-    if(document.getElementById("profile-avatar")) document.getElementById("profile-avatar").src = config.profile.avatar;
-    if(document.getElementById("profile-name")) document.getElementById("profile-name").innerText = config.profile.name;
-    if(document.getElementById("profile-status")) document.getElementById("profile-status").innerText = config.profile.status;
-    if(document.getElementById("profile-bio")) document.getElementById("profile-bio").innerText = config.profile.bio;
-    if(document.getElementById("footer-copy")) document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
-    if(document.getElementById("link-github")) document.getElementById("link-github").href = config.social.github;
-    if(document.getElementById("link-linkedin")) document.getElementById("link-linkedin").href = config.social.linkedin;
-
-    // --- NAVIGATION ---
-    const navList = document.getElementById("nav-list");
-    if(navList && config.navigation) {
-        config.navigation.forEach(item => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.innerText = item.title; a.href = item.link; 
-            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
-            li.appendChild(a); navList.appendChild(li);
-        });
-    }
-
-    // --- SKILLS HEADER ---
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer && config.skills) {
-        config.skills.forEach(s => {
-            const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span);
-        });
-    }
-
-    // --- PROJETS (FIX: BADGE DANS FOOTER) ---
-    const grid = document.getElementById("project-grid");
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
-    const PROJECT_LIMIT = 4; 
-
-    // Modale Elements
-    const projModal = document.getElementById("project-modal");
-    const projClose = document.getElementById("proj-close-btn");
-    const projTitle = document.getElementById("proj-modal-title");
-    const projDesc = document.getElementById("proj-modal-desc");
-    const projTags = document.getElementById("proj-modal-tags");
-    const closeProjModal = () => { if(projModal) projModal.style.display = "none"; };
-    if(projClose) projClose.addEventListener("click", closeProjModal);
-    window.addEventListener("click", (e) => { if(e.target === projModal) closeProjModal(); });
-
-    if (grid && config.projects) {
-        config.projects.forEach((proj, index) => {
-            const vid = `viewer_${index}`;
-            const fullPdfUrl = baseUrl + proj.path;
-            
-            // Badge (préparé pour le footer)
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-
-            // Tags (Max 3)
-            let tagsHTML = '';
-            if(proj.tags && proj.tags.length > 0) {
-                const visibleTags = proj.tags.slice(0, 3);
-                tagsHTML = visibleTags.map(tag => `<span class="proj-mini-tag">${escapeHTML(tag)}</span>`).join('');
-                if(proj.tags.length > 3) tagsHTML += `<span class="proj-mini-tag" style="opacity:0.5;">+${proj.tags.length - 3}</span>`;
-            }
-
-            // Date
-            const dateHTML = proj.date ? `<span class="proj-date">📅 ${escapeHTML(proj.date)}</span>` : '';
-
-            const div = document.createElement("div"); 
-            div.className = "project-card";
-            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
-
-            div.innerHTML = `
-                <div class="card-header">
-                    <div class="icon">${escapeHTML(proj.icon)}</div>
-                    
-                    <div class="meta">
-                        <h4>${escapeHTML(proj.title)}</h4>
-                        <p>${escapeHTML(proj.description)}</p>
-                        
-                        <div class="meta-footer">
-                            <div class="proj-tags-row">${tagsHTML}</div>
-                            <div class="proj-right-info">
-                                ${badgeHTML} ${dateHTML}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="actions-right">
-                        <button class="btn-info-modal" title="Détails & Tags">ℹ️</button>
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
-            
-            // Listeners
-            const headerDiv = div.querySelector('.card-header');
-            const infoBtn = div.querySelector('.btn-info-modal');
-
-            // Clic Carte -> PDF
-            headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
-            
-            // Clic Info -> Modale
-            infoBtn.addEventListener("click", (e) => {
-                e.stopPropagation(); 
-                if(projTitle) projTitle.innerText = proj.title;
-                if(projDesc) projDesc.innerText = proj.longDescription ? proj.longDescription : proj.description;
-                if(projTags && proj.tags) projTags.innerHTML = proj.tags.map(tag => `<span class="proj-mini-tag">${escapeHTML(tag)}</span>`).join('');
-                if(projModal) projModal.style.display = "flex";
-            });
-
-            grid.appendChild(div);
-        });
+        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
+        name: "Armel Plantier",
+        typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
+        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        status: "Recherche active d'alternance",
         
-        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
-    }
+        // Email : contact@armel-plantier.com (Encodé Base64)
+        emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
+        
+        // CLOUDFLARE TURNSTILE (Captcha)
+        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
+    },
 
-    // --- PARCOURS ---
-    const expList = document.getElementById("exp-list");
-    if(expList && config.experiences) {
-        config.experiences.forEach((exp, i) => {
-            const li = document.createElement("li"); li.className = "timeline-item"; if (i >= 5) li.classList.add("hidden-item");
-            li.innerHTML = `<span class="timeline-date">${escapeHTML(exp.date)}</span><h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4><p class="timeline-desc">${escapeHTML(exp.description)}</p>`;
-            expList.appendChild(li);
-        });
-        if (config.experiences.length > 5) createToggleBtn(expList, 5, "Voir la suite");
-    }
+    social: {
+        github: "https://github.com/armel-plantier",
+        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
+    },
 
-    // --- COMPETENCES ---
-    const compList = document.getElementById("comp-list");
-    if(compList && config.competences) {
-        config.competences.forEach((comp, i) => {
-            const li = document.createElement("li"); li.className = "comp-card-container"; if (i >= 5) li.classList.add("hidden-item");
-            const dropId = `comp-drop-${i}`;
-            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            li.innerHTML = `<div class="comp-header"><div class="cert-icon-box">${escapeHTML(comp.icon)}</div><span class="cert-name">${escapeHTML(comp.name)}</span><button class="cert-btn comp-toggle">▼</button></div><ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>`;
-            li.querySelector('.comp-header').addEventListener("click", () => toggleComp(dropId, li.querySelector('.comp-header')));
-            compList.appendChild(li);
-        });
-        if (config.competences.length > 5) createToggleBtn(compList, 5, "Voir la suite");
-    }
+    // --- 3. TAGS HEADER ---
+    skills: [
+        "🐧 Linux",
+        "🪟 Windows",
+        "🕸️ Réseau",
+        "🛡️ Sécurité"
+    ],
 
-    // --- CERTIFS ---
-    const certList = document.getElementById("cert-list");
-    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
-    if(certList && config.certifications) {
-        config.certifications.forEach((cert, i) => {
-            const li = document.createElement("li"); li.className = "cert-card-container"; if (i >= 5) li.classList.add("hidden-item");
-            const vid = `cert_view_${i}`;
-            const url = cert.pdf ? certBaseUrl + cert.pdf : null;
-            let btns = cert.url ? `<a href="${cert.url}" target="_blank" class="cert-btn link-btn">🔗</a>` : '';
-            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(cert.issuer)}</span></div><div class="cert-actions">${btns}</div></div><div id="${vid}" class="cert-pdf-viewer"></div>`;
-            if (cert.pdf) {
-                const b = document.createElement("button"); b.className = "cert-btn pdf-btn"; b.innerHTML = "📄";
-                b.addEventListener("click", () => toggleCertPDF(vid, url));
-                li.querySelector('.cert-actions').appendChild(b);
-            }
-            certList.appendChild(li);
-        });
-        if (config.certifications.length > 5) createToggleBtn(certList, 5, "Voir la suite");
-    }
-
-    // --- UTILS ---
-    const textEl = document.getElementById("typewriter-area");
-    if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
-        function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } }
-        setTimeout(type, 500);
-    }
-
-    const eTrig = document.getElementById("email-trigger"), eMod = document.getElementById("email-modal"), eClose = document.getElementById("modal-close-btn");
-    const lTrig = document.getElementById("legal-trigger"), lMod = document.getElementById("legal-modal"), lClose = document.getElementById("legal-close-btn");
-    if(eTrig && eMod) {
-        eTrig.addEventListener("click", (e) => { e.preventDefault(); eMod.style.display = "flex"; if(window.turnstile) window.turnstile.reset(); });
-        if(eClose) eClose.addEventListener("click", () => eMod.style.display = "none");
-    }
-    if(lTrig && lMod) {
-        lTrig.addEventListener("click", (e) => { e.preventDefault(); lMod.style.display = "flex"; });
-        if(lClose) lClose.addEventListener("click", () => lMod.style.display = "none");
-    }
-    window.addEventListener("click", (e) => {
-        if(e.target === eMod) eMod.style.display = "none";
-        if(e.target === lMod) lMod.style.display = "none";
-    });
-
-    const upEl = document.getElementById("last-update");
-    if(upEl) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`)
-            .then(r=>r.ok?r.json():Promise.reject()).then(d=>{
-                const dt = new Date(d.pushed_at); upEl.innerHTML = `Maj : ${dt.toLocaleDateString('fr-FR')}`;
-            }).catch(()=>upEl.innerText = "System Ready");
-    }
-
-    const head = document.querySelector('.app-header');
-    window.addEventListener('scroll', () => { if(window.scrollY > 50) head.classList.add('scrolled'); else head.classList.remove('scrolled'); });
-    
-    // Keybinds
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            if(document.getElementById("email-modal")) document.getElementById("email-modal").style.display = "none";
-            if(document.getElementById("legal-modal")) document.getElementById("legal-modal").style.display = "none";
-            if(document.getElementById("project-modal")) closeProjModal();
-            document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-            document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
-            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+    // --- 4. PROJETS (Documents PDF) ---
+    projects: [
+        {
+            title: "Mise en place réseau TechNova",
+            description: "Architecture, VLANs et documentation technique.",
+            path: "reseau-technova.pdf", 
+            icon: "🌐",
+            isNew: true
+        },
+        {
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            path: "active_directory.pdf", 
+            icon: "🖥️",
+            isNew: false
+        },
+        {
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
+            path: "audit_wifi.pdf",        
+            icon: "🛡️",
+            isNew: false
+        },
+        {
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
+            icon: "🐧",
+            isNew: false
+        },
+        {
+            title: "Projet Serveur Web",
+            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            path: "web_server.pdf", 
+            icon: "🌍",
+            isNew: false
+        },
+        {
+            title: "Scripting Python Automation",
+            description: "Automatisation des sauvegardes via API.",
+            path: "python_script.pdf", 
+            icon: "🐍",
+            isNew: false
         }
-        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') document.getElementById("theme-toggle").click();
-    });
-});
+    ],
 
-function togglePDF(id, url) {
-    const c = document.getElementById(id);
-    const isClosed = c.style.display === 'none' || c.style.display === '';
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    if(isClosed) {
-        c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
-        c.style.display = 'block';
-    }
-}
-function toggleComp(id, headerEl) {
-    const m = document.getElementById(id); const b = headerEl.querySelector('.comp-toggle');
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== b) el.classList.remove('active'); });
-    if(m.style.display === 'block') { m.style.display = 'none'; if(b) b.classList.remove('active'); } 
-    else { m.style.display = 'block'; if(b) b.classList.add('active'); }
-}
-function toggleCertPDF(id, url) {
-    const v = document.getElementById(id);
-    if (v.style.display === 'block') { v.style.display = 'none'; v.innerHTML = ''; return; }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    v.style.display = 'block'; v.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-}
-function createToggleBtn(c, l, t) {
-    const d = document.createElement("div"); d.className = "load-more-container"; 
-    const b = document.createElement("button"); b.className = "load-more-btn"; b.innerHTML = `<span>↓</span> ${t}`; 
-    let exp = false;
-    b.addEventListener("click", () => {
-        exp = !exp; const ch = c.children;
-        for(let i=0; i<ch.length; i++) {
-            if(i >= l) { if(exp) { ch[i].classList.remove("hidden-item"); ch[i].style.opacity = 0; setTimeout(()=>ch[i].style.opacity=1, 50); } else { ch[i].classList.add("hidden-item"); } }
+    // --- 5. EXPÉRIENCES ---
+    experiences: [
+        {
+            date: "2023 - Présent",
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
+        },
+        {
+            date: "2022 - 2023",
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
-        b.innerHTML = exp ? `<span>↑</span> Masquer` : `<span>↓</span> ${t}`;
-    });
-    d.appendChild(b); c.parentNode.insertBefore(d, c.nextSibling);
-}
+    ],
+
+    // --- 6. COMPÉTENCES DÉTAILLÉES ---
+    competences: [
+        {
+            icon: "🐧",
+            name: "Administration Système",
+            details: [
+                "Linux Hardening (Debian, RHEL)",
+                "Windows Server (AD, DNS, DHCP)",
+                "Virtualisation (Proxmox, VMware)",
+                "Scripting (Bash, Python)"
+            ]
+        },
+        {
+            icon: "🕸️",
+            name: "Réseau & Sécurité",
+            details: [
+                "Modèle OSI / TCP-IP",
+                "Switching (VLAN, STP)",
+                "Routing (OSPF, Static)",
+                "Firewalling (pfSense, iptables)"
+            ]
+        },
+        {
+            icon: "🛠️",
+            name: "Outils & DevOps",
+            details: [
+                "Docker & Docker Compose",
+                "Git & GitHub",
+                "Ansible (Basiques)",
+                "Monitoring (Zabbix)"
+            ]
+        },
+        {
+            icon: "🇬🇧",
+            name: "Langues",
+            details: [
+                "Anglais : B2 (Technique)",
+                "Français : Langue maternelle"
+            ]
+        }
+    ],
+
+    // --- 7. CERTIFICATIONS ---
+    certifications: [
+        { 
+            name: "CCNA (En cours)", 
+            issuer: "Cisco", 
+            url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
+            pdf: "" 
+        },
+        { 
+            name: "SecNumAcadémie", 
+            issuer: "ANSSI", 
+            url: "https://secnumacademie.gouv.fr/",
+            pdf: "secnum_anssi.pdf" 
+        },
+        { 
+            name: "Certification Pix", 
+            issuer: "Gouv.fr", 
+            url: "https://pix.fr/",
+            pdf: "resultats_pix.pdf"
+        }
+    ]
+};
+
+// Sécurisation
+Object.freeze(config);
