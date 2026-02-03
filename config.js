@@ -36,7 +36,6 @@ const config = {
     ],
 
     // --- 4. PROJETS ---
-    // Ajout de 'longDescription' pour la modale (Oeil)
     projects: [
         {
             title: "Mise en place réseau TechNova",
@@ -46,7 +45,7 @@ const config = {
             icon: "🌐",
             isNew: true,
             date: "12 Fév 2024",
-            tags: ["Cisco", "VLAN", "Packet Tracer", "Routing", "Switching"] // > 3 tags pour tester
+            tags: ["Cisco", "VLAN", "Packet Tracer", "Routing", "Switching"]
         },
         {
             title: "Gestion de l'Active Directory",
