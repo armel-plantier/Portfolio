@@ -170,15 +170,37 @@ body.light-mode .nav-capsule a:hover { color: var(--primary); }
 .section-wrapper, section, #projects, #parcours, #competences, #certifs { width: 100%; margin-bottom: 60px; scroll-margin-top: 140px; }
 h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
 
-/* PROJETS & GRID */
-.grid { display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; }
-.project-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; }
+/* --- PROJETS & GRID (Modifié pour 2 colonnes + expansion) --- */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* PAR DÉFAUT : 2 COLONNES */
+    gap: 30px; 
+    width: 100%; 
+    align-items: start; /* Évite les déformations de hauteur */
+}
+
+/* CARTE PROJET */
+.project-card { 
+    position: relative; 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 16px; 
+    overflow: hidden; 
+    transition: transform 0.2s; 
+    height: fit-content; 
+}
+
+/* QUAND LA CARTE EST DÉPLIÉE (classe ajoutée par JS) */
+.project-card.expanded {
+    grid-column: 1 / -1; /* Prend toute la largeur (de la ligne 1 à la fin) */
+}
+
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
 .card-header { 
     padding: 25px; 
     padding-right: 110px; 
-    cursor: pointer; /* MODIFIÉ : Affiche le pointeur standard */
+    cursor: pointer; 
     display: flex; 
     gap: 20px; 
     align-items: flex-start;
@@ -206,7 +228,10 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 }
 .info-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
 
-@media (max-width: 600px) {
+/* MODE MOBILE : 1 COLONNE */
+@media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; } /* Force 1 colonne sur tablette/mobile */
+    
     .card-header { padding-right: 25px; flex-direction: column; gap: 10px; }
     .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 10px 25px 0 0; }
     .new-badge { float: right; } 
