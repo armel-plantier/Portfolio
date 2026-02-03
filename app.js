@@ -6,15 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return; 
     }
 
-    // Fonction de sécurité (Nettoyage texte)
     const escapeHTML = (str) => {
         if (!str) return '';
         return String(str)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+            .replace(/&/g, "&amp;") .replace(/</g, "&lt;") .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
     };
 
     // --- 1. THEME ---
@@ -66,116 +62,75 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
+    // --- 3. MODALES (CONTACT & LEGAL) ---
+    function setupModal(triggerId, modalId, closeBtnId) {
+        const trigger = document.getElementById(triggerId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = document.getElementById(closeBtnId);
+        if (trigger && modal) {
+            trigger.addEventListener("click", (e) => { e.preventDefault(); modal.style.display = "flex"; });
+        }
+        const closeFn = () => { if(modal) modal.style.display = "none"; };
+        if (closeBtn) closeBtn.addEventListener("click", closeFn);
+        window.addEventListener("click", (e) => { if(e.target === modal) closeFn(); });
+    }
 
-    // --- 3. BOUTON CONTACT (MODALE + CAPTCHA + COPIER) ---
+    setupModal("email-trigger", "email-modal", "modal-close-btn");
+    setupModal("legal-trigger", "legal-modal", "legal-close-btn");
+
+    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
-    const emailModal = document.getElementById("email-modal");
-    const closeModalBtn = document.getElementById("modal-close-btn");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
     const emailText = document.getElementById("email-text");
     const captchaInstruction = document.getElementById("captcha-instruction");
     const copyBtn = document.getElementById("copy-email-btn");
-    
-    let widgetId = null; 
-    let decodedEmail = ""; 
+    let widgetId = null; let decodedEmail = ""; 
 
-    if(emailTrigger && emailModal) {
-        emailTrigger.addEventListener("click", (e) => {
-            e.preventDefault();
-            
-            // 1. Reset de l'interface
-            emailModal.style.display = "flex";
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", () => {
             if(captchaContainer) captchaContainer.style.display = "flex";
             if(emailResultArea) emailResultArea.style.display = "none";
             if(captchaInstruction) captchaInstruction.style.display = "block";
             if(emailText) emailText.innerText = "";
-            
-            // Reset visuel du bouton copier
-            if(copyBtn) {
-                copyBtn.innerText = "Copier";
-                copyBtn.style.backgroundColor = ""; 
-                copyBtn.style.borderColor = "";
-            }
+            if(copyBtn) { copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = ""; }
 
-            // 2. Initialisation ou Reset du Captcha
             if (window.turnstile) {
-                if (widgetId !== null) {
-                    turnstile.reset(widgetId);
-                } else {
+                if (widgetId !== null) turnstile.reset(widgetId);
+                else {
                     try {
                         widgetId = turnstile.render('#captcha-container', {
                             sitekey: config.profile.turnstileSiteKey, 
                             theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
                             callback: function(token) {
-                                // SUCCES !
                                 try {
                                     decodedEmail = atob(config.profile.emailEncoded);
                                     if(emailText) emailText.innerText = decodedEmail;
-                                    
                                     if(captchaContainer) captchaContainer.style.display = "none";
                                     if(captchaInstruction) captchaInstruction.style.display = "none";
                                     if(emailResultArea) emailResultArea.style.display = "block";
-                                } catch (err) {
-                                    console.error("Erreur décodage email");
-                                }
+                                } catch (err) { console.error("Erreur décodage email"); }
                             }
                         });
-                    } catch (e) {
-                        console.error("Erreur rendu Turnstile:", e);
-                        if(captchaContainer) captchaContainer.innerHTML = "Erreur chargement sécurité.";
-                    }
+                    } catch (e) { console.error(e); if(captchaContainer) captchaContainer.innerHTML = "Erreur sécu."; }
                 }
             }
         });
-
-        // Fonction Copier et Fermer
         if(copyBtn) {
             copyBtn.addEventListener("click", () => {
-                if(decodedEmail) {
-                    navigator.clipboard.writeText(decodedEmail).then(() => {
-                        // Feedback visuel
-                        copyBtn.innerText = "Copié ! ✅";
-                        copyBtn.style.backgroundColor = "#10b981"; 
-                        copyBtn.style.borderColor = "#10b981";
-
-                        // Délai 2s avant fermeture
-                        setTimeout(() => {
-                            emailModal.style.display = "none";
-                            copyBtn.innerText = "Copier"; 
-                            copyBtn.style.backgroundColor = "";
-                            copyBtn.style.borderColor = "";
-                        }, 2000); 
-
-                    }).catch(err => { console.error('Erreur copie :', err); });
-                }
+                if(decodedEmail) navigator.clipboard.writeText(decodedEmail).then(() => {
+                    copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
+                    setTimeout(() => { document.getElementById("email-modal").style.display = "none"; }, 2000); 
+                });
             });
         }
-
-        // Fermeture Modale
-        const closeFn = () => { emailModal.style.display = "none"; };
-        if(closeModalBtn) closeModalBtn.addEventListener("click", closeFn);
-        window.addEventListener("click", (e) => {
-            if(e.target === emailModal) closeFn();
-        });
     }
 
-    // --- 4. MODALE MENTIONS LEGALES ---
-    const legalTrigger = document.getElementById("legal-trigger");
-    const legalModal = document.getElementById("legal-modal");
-    const legalCloseBtn = document.getElementById("legal-close-btn");
-
-    if (legalTrigger && legalModal) {
-        legalTrigger.addEventListener("click", (e) => {
-            e.preventDefault();
-            legalModal.style.display = "flex";
-        });
-        const closeLegal = () => { legalModal.style.display = "none"; };
-        if (legalCloseBtn) legalCloseBtn.addEventListener("click", closeLegal);
-        window.addEventListener("click", (e) => {
-            if(e.target === legalModal) closeLegal();
-        });
-    }
+    // --- MODALE PROJET (FERMETURE) ---
+    const projectModal = document.getElementById("project-modal");
+    const projectCloseBtn = document.getElementById("project-close-btn");
+    if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
+    window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
     // --- 5. NAVIGATION ---
     const navList = document.getElementById("nav-list");
@@ -183,29 +138,19 @@ document.addEventListener("DOMContentLoaded", () => {
         config.navigation.forEach(item => {
             const li = document.createElement("li");
             const a = document.createElement("a");
-            a.innerText = item.title;
-            a.href = item.link; 
-            a.addEventListener('click', () => {
-                 const header = document.querySelector('.app-header');
-                 if(header) header.classList.remove('menu-open');
-            });
-            li.appendChild(a);
-            navList.appendChild(li);
+            a.innerText = item.title; a.href = item.link; 
+            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
+            li.appendChild(a); navList.appendChild(li);
         });
     }
 
     // --- 6. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
-        config.skills.forEach(s => {
-            const span = document.createElement("span"); 
-            span.className = "skill-tag"; 
-            span.innerText = s;
-            skillsContainer.appendChild(span);
-        });
+        config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (AUTOMATISATION DATE/BADGE + TAGS MANUELS) ---
+    // --- 7. PROJETS (AVEC BOUTON INFO) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -216,15 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
             
-            // ID Uniques pour la mise à jour différée
-            const dateId = `date-project-${index}`;
-            const badgeId = `badge-project-${index}`;
+            // Données manuelles
+            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+            const dateHTML = proj.date ? `<span class="project-date">${escapeHTML(proj.date)}</span>` : '';
 
-            // GESTION DES TAGS (MANUEL - CONFIG.JS)
+            // Tags Carte (Max 3)
             let tagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 tagsHTML = '<div class="tags-container">';
-                // On prend seulement les 3 premiers
                 proj.tags.slice(0, 3).forEach(tag => {
                     tagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
@@ -235,68 +179,36 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // CONSTRUCTION HTML INITIALE
-            // Note: Date et Badge sont vides au départ ("...") et attendent l'API
+            // Construction HTML
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">...</span>
+                ${dateHTML}
+                <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">ℹ️</button>
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
                         <h4>
                             ${escapeHTML(proj.title)} 
-                            <span id="${badgeId}"></span>
+                            ${badgeHTML}
                         </h4>
                         <p>${escapeHTML(proj.description)}</p>
-                        ${tagsHTML} </div>
+                        ${tagsHTML}
+                    </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // AUTOMATISATION : APPEL API GITHUB (DATE & BADGE)
-            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
-                
-                fetch(apiUrl)
-                    .then(res => {
-                        if (!res.ok) throw new Error("Fichier introuvable sur GitHub");
-                        return res.json();
-                    })
-                    .then(data => {
-                        if (data && data.length > 0) {
-                            const commitDate = new Date(data[0].commit.author.date);
-                            const formattedDate = commitDate.toLocaleDateString('fr-FR');
-                            
-                            // 1. Mise à jour de la date
-                            const dateEl = document.getElementById(dateId);
-                            if(dateEl) {
-                                dateEl.innerText = formattedDate;
-                                dateEl.style.opacity = "1";
-                            }
-
-                            // 2. Calcul automatique du Badge "Nouveau" (Si < 30 jours)
-                            const today = new Date();
-                            const timeDiff = Math.abs(today - commitDate);
-                            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
-
-                            if (diffDays <= 30) {
-                                const badgeEl = document.getElementById(badgeId);
-                                if(badgeEl) {
-                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
-                                }
-                            }
-                        }
-                    })
-                    .catch(err => {
-                        // En cas d'échec API (ex: fichier local ou rate limit), on efface les "..."
-                         const dateEl = document.getElementById(dateId);
-                         if(dateEl) dateEl.innerText = "";
-                    });
-            }
-
+            // Clic PDF
             const headerDiv = div.querySelector('.card-header');
-            headerDiv.addEventListener("click", () => {
-                togglePDF(vid, fullPdfUrl);
-            });
+            headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+
+            // Clic Info
+            const infoBtn = div.querySelector(`#info-btn-${index}`);
+            if(infoBtn) {
+                infoBtn.addEventListener("click", (e) => {
+                    e.stopPropagation(); // Stop clic PDF
+                    openProjectModal(proj);
+                });
+            }
 
             grid.appendChild(div);
         });
@@ -307,18 +219,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 8. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
-    
     if(expList && config.experiences) {
         config.experiences.forEach((exp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "timeline-item";
+            const li = document.createElement("li"); li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-            
-            li.innerHTML = `
-                <span class="timeline-date">${escapeHTML(exp.date)}</span>
-                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
-                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
-            `;
+            li.innerHTML = `<span class="timeline-date">${escapeHTML(exp.date)}</span><h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4><p class="timeline-desc">${escapeHTML(exp.description)}</p>`;
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
@@ -327,30 +232,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 9. COMPETENCES (DROPDOWN) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
-
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container";
+            const li = document.createElement("li"); li.className = "comp-card-container";
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
-            
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            
-            li.innerHTML = `
-                <div class="comp-header">
-                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
-                    <span class="cert-name">${escapeHTML(comp.name)}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
-                </div>
-                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
-            `;
-            
+            li.innerHTML = `<div class="comp-header"><div class="cert-icon-box">${escapeHTML(comp.icon)}</div><span class="cert-name">${escapeHTML(comp.name)}</span><button class="cert-btn comp-toggle">▼</button></div><ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>`;
             const headerEl = li.querySelector('.comp-header');
-            headerEl.addEventListener("click", (e) => {
-                toggleComp(dropId, headerEl);
-            });
-
+            headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -360,53 +250,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
-
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li");
-            li.className = "cert-card-container";
+            const li = document.createElement("li"); li.className = "cert-card-container";
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
-
             let buttonsHtml = '';
-            if (cert.url) {
-                buttonsHtml += `
-                    <a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">
-                        🔗
-                    </a>`;
-            }
-            
-            li.innerHTML = `
-                <div class="cert-header-row">
-                    <div class="cert-icon-box">🏆</div>
-                    <div class="cert-info">
-                        <span class="cert-name">${escapeHTML(cert.name)}</span>
-                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
-                    </div>
-                    <div class="cert-actions">
-                        ${buttonsHtml}
-                    </div>
-                </div>
-                <div id="${viewerId}" class="cert-pdf-viewer"></div>
-            `;
-            
+            if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
+            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
             if (cert.pdf) {
                 const actionsDiv = li.querySelector('.cert-actions');
-                const pdfBtn = document.createElement("button");
-                pdfBtn.className = "cert-btn pdf-btn";
-                pdfBtn.title = "Voir le diplôme";
-                pdfBtn.innerHTML = "📄";
-                
-                pdfBtn.addEventListener("click", () => {
-                    toggleCertPDF(viewerId, fullPdfUrl);
-                });
-                
+                const pdfBtn = document.createElement("button"); pdfBtn.className = "cert-btn pdf-btn"; pdfBtn.title = "Voir le diplôme"; pdfBtn.innerHTML = "📄";
+                pdfBtn.addEventListener("click", () => { toggleCertPDF(viewerId, fullPdfUrl); });
                 actionsDiv.appendChild(pdfBtn);
             }
-
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
@@ -415,16 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
-        const txt = config.profile.typewriterText; 
-        textEl.innerText = ""; 
-        let i=0;
-        function type() { 
-            if(i<txt.length) { 
-                textEl.textContent += txt.charAt(i); 
-                i++; 
-                setTimeout(type, 50); 
-            } 
-        }
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+        function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } }
         setTimeout(type, 500);
     }
 
@@ -432,148 +283,64 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
-
     if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) header.classList.add('scrolled');
-            else { 
-                header.classList.remove('scrolled'); 
-                header.classList.remove('menu-open'); 
-            }
-        });
-
-        if (menuIcon) {
-            menuIcon.addEventListener('click', (e) => { 
-                e.stopPropagation(); 
-                header.classList.toggle('menu-open'); 
-            });
-        }
-        
-        document.addEventListener('click', (e) => {
-            if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) {
-                header.classList.remove('menu-open');
-            }
-        });
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); } });
+        if (menuIcon) { menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); }); }
+        document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. DERNIERE MISE A JOUR (GITHUB API) ---
+    // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
-        
-        fetch(repoUrl)
-            .then(response => {
-                if (!response.ok) throw new Error("Repo not found");
-                return response.json();
-            })
-            .then(data => {
-                const date = new Date(data.pushed_at);
-                const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
-                updateEl.innerHTML = `Maj : ${formattedDate}`;
-            })
-            .catch(err => {
-                console.warn("GitHub API Error:", err);
-                updateEl.innerText = "System Ready";
-            });
+        fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); })
+            .then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; })
+            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
     }
     
-    // --- 14. RACCOURCIS CLAVIER ---
+    // --- 14. KEYBOARD ---
     document.addEventListener('keydown', (e) => {
-        // ESC = Ferme tout
         if (e.key === "Escape") {
-            const emailModal = document.getElementById("email-modal");
-            if(emailModal) emailModal.style.display = "none";
-            const legalModal = document.getElementById("legal-modal");
-            if(legalModal) legalModal.style.display = "none";
-            
+            document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
             document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
-        // D = Dark/Light Mode
-        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') {
-            document.getElementById("theme-toggle").click();
-        }
+        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
     });
 });
 
-// ==========================================
-// FONCTIONS UTILITAIRES
-// ==========================================
+// --- FONCTION : OUVERTURE MODALE PROJET ---
+function openProjectModal(proj) {
+    const modal = document.getElementById("project-modal");
+    const titleEl = document.getElementById("modal-project-title");
+    const descEl = document.getElementById("modal-project-desc");
+    const tagsEl = document.getElementById("modal-project-tags");
 
-function togglePDF(id, url) {
-    const c = document.getElementById(id);
-    if(c.style.display === 'block') { 
-        c.style.display = 'none'; 
-        c.innerHTML = ''; 
-        return; 
-    }
-    document.querySelectorAll('.pdf-container').forEach(el => { 
-        el.style.display = 'none'; 
-        el.innerHTML = ''; 
-    });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
-    c.style.display = 'block';
-}
-
-function toggleComp(id, headerEl) {
-    const menu = document.getElementById(id);
-    const btn = headerEl.querySelector('.comp-toggle');
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { 
-        if(el.id !== id) el.style.display = 'none'; 
-    });
-    document.querySelectorAll('.comp-toggle').forEach(el => { 
-        if(el !== btn) el.classList.remove('active'); 
-    });
-    if(menu.style.display === 'block') { 
-        menu.style.display = 'none'; 
-        if(btn) btn.classList.remove('active'); 
-    } else { 
-        menu.style.display = 'block'; 
-        if(btn) btn.classList.add('active'); 
-    }
-}
-
-function toggleCertPDF(id, url) {
-    const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') { 
-        viewer.style.display = 'none'; 
-        viewer.innerHTML = ''; 
-        return; 
-    }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { 
-        el.style.display = 'none'; 
-        el.innerHTML = ''; 
-    });
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
-}
-
-function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div"); 
-    div.className = "load-more-container"; 
-    const btn = document.createElement("button"); 
-    btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`; 
-    let expanded = false;
-    btn.addEventListener("click", () => {
-        expanded = !expanded;
-        const children = container.children;
-        for(let i=0; i<children.length; i++) {
-            if(i >= limit) {
-                if(expanded) { 
-                    children[i].classList.remove("hidden-item"); 
-                    children[i].style.opacity = 0; 
-                    setTimeout(()=>children[i].style.opacity=1, 50); 
-                } else { 
-                    children[i].classList.add("hidden-item"); 
-                    children[i].style.opacity = 0; 
-                }
-            }
+    if(modal && titleEl && descEl && tagsEl) {
+        titleEl.innerText = proj.title;
+        // On affiche la description longue si elle existe, sinon la courte
+        descEl.innerHTML = proj.longDescription ? proj.longDescription : proj.description;
+        
+        // On met TOUS les tags
+        tagsEl.innerHTML = "";
+        if(proj.tags && proj.tags.length > 0) {
+            proj.tags.forEach(tag => {
+                const span = document.createElement("span");
+                span.className = "project-tag";
+                span.innerText = tag;
+                tagsEl.appendChild(span);
+            });
+        } else {
+            tagsEl.innerHTML = "<span style='color:var(--muted); font-size:0.8rem;'>Aucun tag</span>";
         }
-        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
-    });
-    div.appendChild(btn); 
-    container.parentNode.insertBefore(div, container.nextSibling);
+        
+        modal.style.display = "flex";
+    }
 }
+
+function togglePDF(id, url) { const c = document.getElementById(id); if(c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; return; } document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`; c.style.display = 'block'; }
+function toggleComp(id, headerEl) { const menu = document.getElementById(id); const btn = headerEl.querySelector('.comp-toggle'); document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; }); document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); }); if(menu.style.display === 'block') { menu.style.display = 'none'; if(btn) btn.classList.remove('active'); } else { menu.style.display = 'block'; if(btn) btn.classList.add('active'); } }
+function toggleCertPDF(id, url) { const viewer = document.getElementById(id); if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; } document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); viewer.style.display = 'block'; viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`; }
+function createToggleBtn(container, limit, txtMore) { const div = document.createElement("div"); div.className = "load-more-container"; const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`; let expanded = false; btn.addEventListener("click", () => { expanded = !expanded; const children = container.children; for(let i=0; i<children.length; i++) { if(i >= limit) { if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity = 0; setTimeout(()=>children[i].style.opacity=1, 50); } else { children[i].classList.add("hidden-item"); children[i].style.opacity = 0; } } } btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`; }); div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling); }
