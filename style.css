@@ -191,12 +191,12 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
 .info-btn {
     position: absolute; top: 55px; right: 25px;
-    background: transparent; border: 1px solid var(--border); color: var(--muted);
-    width: 28px; height: 28px; border-radius: 50%;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; transition: all 0.2s; font-size: 0.8rem; z-index: 5;
+    cursor: pointer; transition: all 0.2s; z-index: 5;
 }
-.info-btn:hover { background: var(--primary); border-color: var(--primary); color: white; transform: scale(1.1); }
+.info-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
 
 @media (max-width: 600px) {
     .card-header { padding-right: 25px; flex-direction: column; gap: 10px; }
