@@ -33,11 +33,12 @@ const config = {
     skills: [ "🐧 Linux", "🪟 Windows", "🕸️ Réseau", "🛡️ Sécurité" ],
 
     // --- 4. PROJETS (AUTOMATISÉS) ---
+    // Pas de date ni de isNew ici. Le script va chercher la date du commit sur GitHub.
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
-            longDescription: "Refonte complète de l'architecture réseau PME : Segmentation en 5 VLANs, routage inter-VLAN sur cœur Cisco, ACLs strictes et documentation technique détaillée.",
+            longDescription: "Refonte complète de l'architecture réseau PME : Segmentation en 5 VLANs, routage inter-VLAN sur cœur Cisco, ACLs strictes et documentation technique détaillée (50 pages).",
             path: "reseau-technova.pdf", 
             icon: "🌐",
             tags: ["Cisco", "VLAN", "Switching", "OSPF", "ACL", "Visio"]
@@ -45,7 +46,7 @@ const config = {
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
-            longDescription: "Administration d'un parc utilisateurs. Création de GPO de sécurité et scripts PowerShell pour l'automatisation des comptes.",
+            longDescription: "Administration d'un parc de 200 utilisateurs. Création de GPO de sécurité et scripts PowerShell pour l'automatisation des comptes.",
             path: "active_directory.pdf", 
             icon: "🖥️",
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
