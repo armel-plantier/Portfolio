@@ -37,28 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. REMPLISSAGE PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
-    
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
-    
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
-
     const nameEl = document.getElementById("profile-name");
     if(nameEl) nameEl.innerText = config.profile.name;
-    
     const statusEl = document.getElementById("profile-status");
     if(statusEl) statusEl.innerText = config.profile.status;
-    
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
-    
     const footerEl = document.getElementById("footer-copy");
     if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
-
     const ghBtn = document.getElementById("link-github");
     if(ghBtn && config.social.github) ghBtn.href = config.social.github;
-    
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
@@ -150,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (AUTOMATISÉ + BOUTON INFO + TAGS) ---
+    // --- 7. PROJETS (LOGIQUE CORRIGÉE ICI) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -160,10 +152,13 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
-            
-            // ID Uniques
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
+
+            // === 1. RECUPERATION DES VALEURS MANUELLES (config.js) ===
+            // C'est ici que je corrige : on charge d'abord ce que vous avez écrit
+            let initialBadge = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+            let initialDate = proj.date ? escapeHTML(proj.date) : ""; 
 
             // Tags Carte (Max 3)
             let cardTagsHTML = '';
@@ -179,9 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // Construction HTML
+            // === 2. CONSTRUCTION HTML AVEC LES VALEURS MANUELLES ===
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">...</span>
+                <span id="${dateId}" class="project-date">${initialDate}</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
@@ -190,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="meta">
                         <h4>
                             ${escapeHTML(proj.title)} 
-                            <span id="${badgeId}"></span>
+                            <span id="${badgeId}">${initialBadge}</span>
                         </h4>
                         <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
@@ -199,13 +194,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- AUTOMATISATION : APPEL API GITHUB ---
+            // --- TENTATIVE DE MISE A JOUR AUTO (SI POSSIBLE) ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
                 fetch(apiUrl)
                     .then(res => {
-                        if (!res.ok) throw new Error(`GitHub API Error ${res.status}`);
+                        if (!res.ok) throw new Error(`API Error`);
                         return res.json();
                     })
                     .then(data => {
@@ -213,18 +208,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // Mise à jour Date
+                            // On écrase la date manuelle seulement si on en trouve une sur GitHub
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // Mise à jour Badge (< 30 jours)
+                            // Mise à jour Badge
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
-
                             const badgeEl = document.getElementById(badgeId);
                             if (badgeEl && diffDays <= 30) {
                                 badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
@@ -232,13 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(err => {
-                        // console.warn(`Erreur API pour ${proj.title}:`, err);
-                        const dateEl = document.getElementById(dateId);
-                        if(dateEl) dateEl.innerText = "";
+                        // En cas d'erreur API, on ne fait RIEN. 
+                        // On laisse la date/badge manuels définis plus haut.
                     });
-            } else {
-                const dateEl = document.getElementById(dateId);
-                if(dateEl) dateEl.innerText = "";
             }
 
             // Clic PDF
@@ -249,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
-                    e.stopPropagation(); // Stop clic PDF
+                    e.stopPropagation(); 
                     openProjectModal(proj);
                 });
             }
@@ -356,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
-// FONCTIONS UTILITAIRES (CORRIGÉES & LISIBLES)
+// FONCTIONS UTILITAIRES
 // ==========================================
 
 function openProjectModal(proj) {
