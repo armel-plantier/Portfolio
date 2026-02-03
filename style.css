@@ -212,12 +212,12 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     flex-shrink: 0; 
 }
 
-/* TITRE & BADGE */
+/* TITRE GROSSI & ALIGNÉ */
 .card-header .meta h4 { 
     font-size: 1.3rem; /* TITRE PLUS GROS */
     margin-bottom: 5px; 
     display: flex; 
-    align-items: center; /* ALIGNEMENT VERTICAL TITLE/BADGE */
+    align-items: center;
     gap: 10px;
     padding-right: 100px; /* Espace pour la date */
 }
@@ -256,10 +256,10 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     align-self: center; 
 }
 
-/* DATE (Alignement ajusté) */
+/* Date alignée avec le titre */
 .project-date { 
     position: absolute; 
-    top: 28px; /* Ajusté pour le titre 1.3rem */
+    top: 29px; /* Ajusté pour le titre 1.3rem */
     right: 25px; 
     font-size: 0.85rem; 
     font-family: 'Inter', monospace; 
@@ -453,6 +453,8 @@ body.light-mode .hero-title { text-shadow: none; }
 .cmd-user { color: #10b981; } .cmd-path { color: #6366f1; } .cmd-error { color: #ef4444; }
 .btn-home { display: inline-block; background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid transparent; }
 .btn-home:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
+
+.modal-date-display { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed var(--border); display: inline-block; }
 
 @media print {
     .app-header, .social-links, .load-more-container, footer, .cursor, .new-badge, .modal-overlay, #cursor-hint { display: none !important; }
