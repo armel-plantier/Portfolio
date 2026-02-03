@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (AVEC BOUTON INFO) ---
+    // --- 7. PROJETS (MODIFIÉ AVEC SVG) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -179,10 +179,16 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // Construction HTML
+            // Construction HTML (SVG REMPLACE EMOJI)
             div.innerHTML = `
                 ${dateHTML}
-                <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">ℹ️</button>
+                <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                </button>
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
@@ -320,10 +326,8 @@ function openProjectModal(proj) {
 
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
-        // On affiche la description longue si elle existe, sinon la courte
         descEl.innerHTML = proj.longDescription ? proj.longDescription : proj.description;
         
-        // On met TOUS les tags
         tagsEl.innerHTML = "";
         if(proj.tags && proj.tags.length > 0) {
             proj.tags.forEach(tag => {
