@@ -35,7 +35,7 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 
-/* HEADER (Navigation) */
+/* HEADER */
 .app-header {
     position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h);
     display: flex; justify-content: space-between; align-items: center;
@@ -270,9 +270,9 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
 body.light-mode .comp-header:hover { background: #f9fafb; }
 
-/* REINTRODUCTION DU CSS POUR LE BOUTON FLÈCHE */
+/* BOUTON FLÈCHE (REMIS) */
 .comp-toggle {
-    margin-left: auto; /* Pousse à droite */
+    margin-left: auto; 
     background: transparent;
     border: 1px solid var(--border);
     color: var(--muted);
@@ -304,13 +304,13 @@ body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; bord
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
 /* ------------------------------------------- */
-/* --- CURSOR HINT (LE BADGE SUIVEUR) --- */
+/* --- CURSOR HINT --- */
 #cursor-hint {
     position: fixed;
     top: 0; left: 0;
-    pointer-events: none; /* Ne doit pas bloquer les clics */
+    pointer-events: none; 
     padding: 8px 14px;
-    background: rgba(99, 102, 241, 0.9); /* Primaire avec transparence */
+    background: rgba(99, 102, 241, 0.9); 
     color: white;
     font-size: 0.8rem;
     font-weight: 600;
@@ -318,7 +318,7 @@ body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
     z-index: 9999;
     opacity: 0;
     transform: scale(0.8);
-    transition: opacity 0.2s ease, transform 0.1s linear; /* Linear pour le mouvement, ease pour l'apparition */
+    transition: opacity 0.2s ease, transform 0.1s linear; 
     backdrop-filter: blur(4px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     white-space: nowrap;
@@ -328,7 +328,6 @@ body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
     transform: scale(1);
 }
 
-/* Sur mobile, on désactive le curseur suiveur car pas de hover */
 @media (max-width: 768px) {
     #cursor-hint { display: none !important; }
 }
