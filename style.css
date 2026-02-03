@@ -305,25 +305,79 @@ body.light-mode .nav-capsule a:hover { color: var(--primary); }
 }
 h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
 
-/* Grid Projets */
+/* Grid Projets - MODIFIÉ */
 .grid { display: grid; grid-template-columns: 1fr; gap: 30px; width: 100%; }
+
 .project-card { 
-    position: relative; background: var(--card); border: 1px solid var(--border); 
-    border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; 
+    position: relative; /* Indispensable pour date en absolu */
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 16px; 
+    overflow: hidden; 
+    transition: transform 0.2s; 
+    height: fit-content; 
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-.new-badge {
-    position: absolute; top: 15px; right: 15px;
-    background: var(--badge-bg); color: #fff;
-    font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
-    border-radius: 20px; text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
+
+.card-header { 
+    padding: 25px; 
+    padding-right: 110px; /* Place pour la date */
+    cursor: pointer; 
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-start; 
 }
-.hidden-item { display: none !important; }
-.card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
+
 .card-header .icon { font-size: 2rem; }
 .card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
+
+/* BADGE et DATE */
+.new-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    background: var(--badge-bg); 
+    color: #fff;
+    font-size: 0.65rem; 
+    font-weight: 700; 
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transform: translateY(-2px);
+}
+
+.project-date {
+    position: absolute;
+    top: 25px;   
+    right: 25px; 
+    font-size: 0.85rem;
+    font-family: 'Inter', monospace;
+    color: var(--muted);
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+    .card-header { 
+        padding-right: 25px; 
+        flex-direction: column; 
+        gap: 10px; 
+    }
+    .project-date {
+        position: relative; 
+        top: auto; right: auto;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.8rem;
+        text-align: right; 
+        width: 100%;
+        padding: 10px 25px 0 0; 
+    }
+    .new-badge { float: right; } 
+}
+
+.hidden-item { display: none !important; }
 
 /* --- CORRECTION AFFICHAGE PDF --- */
 .pdf-container { 
@@ -517,31 +571,4 @@ body.light-mode .hero-title { text-shadow: none; }
         border: 1px solid #ddd; box-shadow: none; break-inside: avoid; margin-bottom: 20px;
     }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
-}
-
-/* =========================================
-   AJOUT : DATE PROJETS
-   ========================================= */
-.project-date {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 0.75rem;
-    color: var(--muted);
-    background: rgba(0, 0, 0, 0.2);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-    pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.project-date.with-badge {
-    top: 50px; 
-}
-
-body.light-mode .project-date {
-    background: rgba(255, 255, 255, 0.5);
-    border-color: rgba(0, 0, 0, 0.05);
-    color: var(--muted);
 }
