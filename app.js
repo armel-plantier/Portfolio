@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- 3. MODALES (CONTACT & LEGAL) ---
+    // --- 3. MODALES ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
+    // --- GESTION EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
@@ -118,13 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- MODALE PROJET (FERMETURE) ---
+    // --- MODALE PROJET ---
     const projectModal = document.getElementById("project-modal");
     const projectCloseBtn = document.getElementById("project-close-btn");
     if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
     window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-    // --- 5. NAVIGATION ---
+    // --- NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -136,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. COMPETENCES (HEADER TAGS) ---
+    // --- SKILLS ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (LOGIQUE CORRIGÉE ICI) ---
+    // --- PROJETS (AUTOMATISÉ) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -152,15 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
+            
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // === 1. RECUPERATION DES VALEURS MANUELLES (config.js) ===
-            // C'est ici que je corrige : on charge d'abord ce que vous avez écrit
-            let initialBadge = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-            let initialDate = proj.date ? escapeHTML(proj.date) : ""; 
-
-            // Tags Carte (Max 3)
+            // Tags Carte
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
@@ -174,9 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // === 2. CONSTRUCTION HTML AVEC LES VALEURS MANUELLES ===
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">${initialDate}</span>
+                <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
@@ -185,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="meta">
                         <h4>
                             ${escapeHTML(proj.title)} 
-                            <span id="${badgeId}">${initialBadge}</span>
+                            <span id="${badgeId}"></span>
                         </h4>
                         <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
@@ -194,13 +189,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- TENTATIVE DE MISE A JOUR AUTO (SI POSSIBLE) ---
+            // --- AUTOMATISATION API GITHUB (CORRIGÉE) ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
+                // 1. Encodage du chemin pour gérer les espaces/caractères spéciaux
+                // 2. Force la branche "main" (sha=main) pour éviter les erreurs si HEAD est détaché
+                const encodedPath = encodeURIComponent(`Documents/${proj.path}`);
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=${encodedPath}&sha=main&page=1&per_page=1`;
                 
                 fetch(apiUrl)
                     .then(res => {
-                        if (!res.ok) throw new Error(`API Error`);
+                        if (!res.ok) throw new Error("Fichier introuvable");
                         return res.json();
                     })
                     .then(data => {
@@ -208,17 +206,18 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // On écrase la date manuelle seulement si on en trouve une sur GitHub
+                            // Date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // Mise à jour Badge
+                            // Badge
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+
                             const badgeEl = document.getElementById(badgeId);
                             if (badgeEl && diffDays <= 30) {
                                 badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
@@ -226,16 +225,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(err => {
-                        // En cas d'erreur API, on ne fait RIEN. 
-                        // On laisse la date/badge manuels définis plus haut.
+                        // Si le fichier n'est pas encore sur GitHub (les 4 autres projets), on enlève "..."
+                        const dateEl = document.getElementById(dateId);
+                        if(dateEl) dateEl.innerText = "";
                     });
+            } else {
+                const dateEl = document.getElementById(dateId);
+                if(dateEl) dateEl.innerText = "";
             }
 
-            // Clic PDF
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
-            // Clic Info
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
@@ -263,7 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES (DROPDOWN) ---
+    // --- 9. COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
@@ -305,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 11. MACHINE A ECRIRE ---
+    // --- 11. TYPEWRITER ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -313,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 12. HEADER SCROLL & MOBILE ---
+    // --- 12. SCROLL ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
@@ -323,13 +324,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. GITHUB API FOOTER ---
+    // --- 13. API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
         fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); })
             .then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; })
-            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
+            .catch(err => { updateEl.innerText = "System Ready"; });
     }
     
     // --- 14. KEYBOARD ---
