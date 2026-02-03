@@ -10,7 +10,6 @@ const config = {
 
     // --- 2. PROFIL & RÉSEAUX ---
     profile: {
-        // --- API GITHUB ---
         githubUser: "armel-plantier", 
         githubRepo: "Portfolio", 
 
@@ -21,10 +20,7 @@ const config = {
         bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
         status: "Recherche active d'alternance",
         
-        // Email : contact@armel-plantier.com (Encodé Base64)
         emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
-        
-        // CLOUDFLARE TURNSTILE (Captcha)
         turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
     },
 
@@ -42,49 +38,43 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
-    // Les dates sont maintenant gérées automatiquement par app.js via l'API GitHub
+    // PLUS DE DATES, PLUS DE "isNew". TOUT EST AUTOMATIQUE.
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
-            icon: "🌐",
-            isNew: true
+            icon: "🌐"
         },
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
-            icon: "🖥️",
-            isNew: false
+            icon: "🖥️"
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",        
-            icon: "🛡️",
-            isNew: false
+            icon: "🛡️"
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
-            icon: "🐧",
-            isNew: false
+            icon: "🐧"
         },
         {
             title: "Projet Serveur Web",
             description: "Configuration Apache/Nginx et Let's Encrypt.",
             path: "web_server.pdf", 
-            icon: "🌍",
-            isNew: false
+            icon: "🌍"
         },
         {
             title: "Scripting Python Automation",
             description: "Automatisation des sauvegardes via API.",
             path: "python_script.pdf", 
-            icon: "🐍",
-            isNew: false
+            icon: "🐍"
         }
     ],
 
