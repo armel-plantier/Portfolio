@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- 3. MODALES ---
+    // --- 3. MODALES (CONTACT & LEGAL) ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-    // --- GESTION EMAIL/CAPTCHA ---
+    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
@@ -118,13 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- MODALE PROJET ---
+    // --- MODALE PROJET (FERMETURE) ---
     const projectModal = document.getElementById("project-modal");
     const projectCloseBtn = document.getElementById("project-close-btn");
     if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
     window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-    // --- NAVIGATION ---
+    // --- 5. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -136,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- SKILLS ---
+    // --- 6. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- PROJETS (AUTOMATISÉ) ---
+    // --- 7. PROJETS (AUTOMATISATION COMPLETE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -153,10 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
             
+            // ID pour ciblage
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // Tags Carte
+            // Tags (Affichage Carte)
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
@@ -170,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
+            // Construction HTML (Date et Badge vides initialement car auto)
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
@@ -189,12 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- AUTOMATISATION API GITHUB (CORRIGÉE) ---
+            // AUTOMATISATION : GITHUB API
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                // 1. Encodage du chemin pour gérer les espaces/caractères spéciaux
-                // 2. Force la branche "main" (sha=main) pour éviter les erreurs si HEAD est détaché
-                const encodedPath = encodeURIComponent(`Documents/${proj.path}`);
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=${encodedPath}&sha=main&page=1&per_page=1`;
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
                 fetch(apiUrl)
                     .then(res => {
@@ -206,37 +205,42 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // Date
+                            // 1. Affiche la date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // Badge
+                            // 2. Affiche Badge si < 30 jours
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
 
-                            const badgeEl = document.getElementById(badgeId);
-                            if (badgeEl && diffDays <= 30) {
-                                badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                            if (diffDays <= 30) {
+                                const badgeEl = document.getElementById(badgeId);
+                                if(badgeEl) {
+                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                                }
                             }
                         }
                     })
                     .catch(err => {
-                        // Si le fichier n'est pas encore sur GitHub (les 4 autres projets), on enlève "..."
+                        // En cas d'erreur, on retire les "..." pour faire propre
                         const dateEl = document.getElementById(dateId);
                         if(dateEl) dateEl.innerText = "";
                     });
             } else {
+                // Pas de config GitHub
                 const dateEl = document.getElementById(dateId);
                 if(dateEl) dateEl.innerText = "";
             }
 
+            // Clic PDF
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
+            // Clic Info
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
@@ -264,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES ---
+    // --- 9. COMPETENCES (DROPDOWN) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
@@ -306,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- 11. TYPEWRITER ---
+    // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -314,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- 12. SCROLL ---
+    // --- 12. HEADER SCROLL & MOBILE ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
@@ -324,13 +328,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. API FOOTER ---
+    // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
         fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); })
             .then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; })
-            .catch(err => { updateEl.innerText = "System Ready"; });
+            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
     }
     
     // --- 14. KEYBOARD ---
