@@ -203,8 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
-                // console.log(`Checking GitHub for: ${proj.title} -> ${apiUrl}`);
-
                 fetch(apiUrl)
                     .then(res => {
                         if (!res.ok) throw new Error(`GitHub API Error ${res.status}`);
@@ -234,12 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(err => {
-                        console.warn(`Impossible de récupérer la date pour ${proj.title}:`, err);
+                        // console.warn(`Erreur API pour ${proj.title}:`, err);
                         const dateEl = document.getElementById(dateId);
-                        if(dateEl) dateEl.innerText = ""; // On efface les "..." si erreur
+                        if(dateEl) dateEl.innerText = "";
                     });
             } else {
-                // Si pas d'infos GitHub configurées
                 const dateEl = document.getElementById(dateId);
                 if(dateEl) dateEl.innerText = "";
             }
@@ -358,7 +355,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- FONCTION : OUVERTURE MODALE PROJET ---
+// ==========================================
+// FONCTIONS UTILITAIRES (CORRIGÉES & LISIBLES)
+// ==========================================
+
 function openProjectModal(proj) {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
@@ -385,7 +385,78 @@ function openProjectModal(proj) {
     }
 }
 
-function togglePDF(id, url) { const c = document.getElementById(id); if(c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; return; } document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`; c.style.display = 'block'; }
-function toggleComp(id, headerEl) { const menu = document.getElementById(id); const btn = headerEl.querySelector('.comp-toggle'); document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; }); document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); }); if(menu.style.display === 'block') { menu.style.display = 'none'; if(btn) btn.classList.remove('active'); } else { menu.style.display = 'block'; if(btn) btn.classList.add('active'); } }
-function toggleCertPDF(id, url) { const viewer = document.getElementById(id); if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; } document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); viewer.style.display = 'block'; viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`; }
-function createToggleBtn(container, limit, txtMore) { const div = document.createElement("div"); div.className = "load-more-container"; const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`; let expanded = false; btn.addEventListener("click", () => { expanded = !expanded; const children = container.children; for(let i=0; i<children.length; i++) { if(i >= limit) { if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity = 0; setTimeout(()=>children[i].style.opacity=1, 50); } else { children[i].classList.add("hidden-item"); children[i].style.opacity = 0; } } } btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`; }); div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling); }
+function togglePDF(id, url) {
+    const c = document.getElementById(id);
+    if (c.style.display === 'block') {
+        c.style.display = 'none';
+        c.innerHTML = '';
+        return;
+    }
+    document.querySelectorAll('.pdf-container').forEach(el => {
+        el.style.display = 'none';
+        el.innerHTML = '';
+    });
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    c.style.display = 'block';
+}
+
+function toggleComp(id, headerEl) {
+    const menu = document.getElementById(id);
+    const btn = headerEl.querySelector('.comp-toggle');
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
+        if (el.id !== id) el.style.display = 'none';
+    });
+    document.querySelectorAll('.comp-toggle').forEach(el => {
+        if (el !== btn) el.classList.remove('active');
+    });
+    if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+        if (btn) btn.classList.remove('active');
+    } else {
+        menu.style.display = 'block';
+        if (btn) btn.classList.add('active');
+    }
+}
+
+function toggleCertPDF(id, url) {
+    const viewer = document.getElementById(id);
+    if (viewer.style.display === 'block') {
+        viewer.style.display = 'none';
+        viewer.innerHTML = '';
+        return;
+    }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => {
+        el.style.display = 'none';
+        el.innerHTML = '';
+    });
+    viewer.style.display = 'block';
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+}
+
+function createToggleBtn(container, limit, txtMore) {
+    const div = document.createElement("div");
+    div.className = "load-more-container";
+    const btn = document.createElement("button");
+    btn.className = "load-more-btn";
+    btn.innerHTML = `<span>↓</span> ${txtMore}`;
+    let expanded = false;
+    btn.addEventListener("click", () => {
+        expanded = !expanded;
+        const children = container.children;
+        for (let i = 0; i < children.length; i++) {
+            if (i >= limit) {
+                if (expanded) {
+                    children[i].classList.remove("hidden-item");
+                    children[i].style.opacity = 0;
+                    setTimeout(() => children[i].style.opacity = 1, 50);
+                } else {
+                    children[i].classList.add("hidden-item");
+                    children[i].style.opacity = 0;
+                }
+            }
+        }
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
+    });
+    div.appendChild(btn);
+    container.parentNode.insertBefore(div, container.nextSibling);
+}
