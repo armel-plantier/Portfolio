@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 7. PROJETS (AVEC AUTO-DATE GITHUB) ---
+    // --- 7. PROJETS (AUTOMATISATION TOTALE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -215,28 +215,34 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
-            const dateId = `date-project-${index}`;
             
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-            const defaultDate = proj.date ? escapeHTML(proj.date) : "...";
+            // ID Uniques pour cibler les éléments après le chargement API
+            const dateId = `date-project-${index}`;
+            const badgeId = `badge-project-${index}`;
 
             const div = document.createElement("div"); 
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
+            // On prépare le terrain :
+            // - Le <span> de la date est vide ou contient "..."
+            // - Le <span> du badge est vide pour l'instant
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">${defaultDate}</span>
+                <span id="${dateId}" class="project-date">...</span>
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
-                        <h4>${escapeHTML(proj.title)} ${badgeHTML}</h4>
+                        <h4>
+                            ${escapeHTML(proj.title)} 
+                            <span id="${badgeId}"></span>
+                        </h4>
                         <p>${escapeHTML(proj.description)}</p>
                     </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // APPEL API GITHUB POUR LA DATE
+            // APPEL API GITHUB INTELLIGENT
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
@@ -249,15 +255,32 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (data && data.length > 0) {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                            
+                            // 1. Mise à jour de la date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
+
+                            // 2. Calcul du Badge "Nouveau"
+                            // Si la date du fichier est < à 30 jours par rapport à aujourd'hui
+                            const today = new Date();
+                            const timeDiff = Math.abs(today - commitDate);
+                            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+
+                            if (diffDays <= 30) {
+                                const badgeEl = document.getElementById(badgeId);
+                                if(badgeEl) {
+                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                                }
+                            }
                         }
                     })
                     .catch(err => {
-                        // En cas d'erreur (limite d'API ou fichier introuvable), on garde la date par défaut.
+                        // En cas d'erreur API, on efface le "..." de la date pour que ça fasse propre
+                         const dateEl = document.getElementById(dateId);
+                         if(dateEl) dateEl.innerText = "";
                     });
             }
 
