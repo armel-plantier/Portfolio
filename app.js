@@ -161,16 +161,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
             
-            // ID Uniques pour la mise à jour par l'API
+            // ID Uniques
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // 1. Valeurs par défaut (depuis config.js pour que ça s'affiche tout de suite)
-            // On affiche le badge seulement si config.isNew est true
-            let initialBadge = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-            let initialDate = proj.date ? escapeHTML(proj.date) : "...";
-
-            // 2. Tags Carte (Max 3)
+            // Tags Carte (Max 3)
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
@@ -186,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Construction HTML
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">${initialDate}</span>
+                <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
@@ -195,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="meta">
                         <h4>
                             ${escapeHTML(proj.title)} 
-                            <span id="${badgeId}">${initialBadge}</span>
+                            <span id="${badgeId}"></span>
                         </h4>
                         <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
@@ -208,46 +203,45 @@ document.addEventListener("DOMContentLoaded", () => {
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
+                // console.log(`Checking GitHub for: ${proj.title} -> ${apiUrl}`);
+
                 fetch(apiUrl)
                     .then(res => {
-                        if (!res.ok) throw new Error("Fichier introuvable sur GitHub");
+                        if (!res.ok) throw new Error(`GitHub API Error ${res.status}`);
                         return res.json();
                     })
                     .then(data => {
                         if (data && data.length > 0) {
-                            // On a trouvé la vraie date !
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // 1. Mise à jour de la date
+                            // Mise à jour Date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // 2. Calcul automatique du Badge "Nouveau" (< 30 jours)
-                            // Si c'est nouveau selon GitHub, on force le badge même si config disait false
+                            // Mise à jour Badge (< 30 jours)
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
 
                             const badgeEl = document.getElementById(badgeId);
-                            if (badgeEl) {
-                                if (diffDays <= 30) {
-                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
-                                } else {
-                                    // Si c'est vieux (>30j), on enlève le badge s'il y était
-                                    badgeEl.innerHTML = ``;
-                                }
+                            if (badgeEl && diffDays <= 30) {
+                                badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
                             }
                         }
                     })
                     .catch(err => {
-                        // En cas d'erreur (Repo privé / Rate Limit), on ne fait rien.
-                        // On garde ce qui est écrit dans config.js (date manuelle).
-                        // console.log("Erreur API, on garde la date config");
+                        console.warn(`Impossible de récupérer la date pour ${proj.title}:`, err);
+                        const dateEl = document.getElementById(dateId);
+                        if(dateEl) dateEl.innerText = ""; // On efface les "..." si erreur
                     });
+            } else {
+                // Si pas d'infos GitHub configurées
+                const dateEl = document.getElementById(dateId);
+                if(dateEl) dateEl.innerText = "";
             }
 
             // Clic PDF
@@ -392,6 +386,4 @@ function openProjectModal(proj) {
 }
 
 function togglePDF(id, url) { const c = document.getElementById(id); if(c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; return; } document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`; c.style.display = 'block'; }
-function toggleComp(id, headerEl) { const menu = document.getElementById(id); const btn = headerEl.querySelector('.comp-toggle'); document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; }); document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== btn) el.classList.remove('active'); }); if(menu.style.display === 'block') { menu.style.display = 'none'; if(btn) btn.classList.remove('active'); } else { menu.style.display = 'block'; if(btn) btn.classList.add('active'); } }
-function toggleCertPDF(id, url) { const viewer = document.getElementById(id); if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; } document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; }); viewer.style.display = 'block'; viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`; }
-function createToggleBtn(container, limit, txtMore) { const div = document.createElement("div"); div.className = "load-more-container"; const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`; let expanded = false; btn.addEventListener("click", () => { expanded = !expanded; const children = container.children; for(let i=0; i<children.length; i++) { if(i >= limit) { if(expanded) { children[i].classList.remove("hidden-item"); children[i].style.opacity = 0; setTimeout(()=>children[i].style.opacity=1, 50); } else { children[i].classList.add("hidden-item"); children[i].style.opacity = 0; } } } btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`; }); div.appendChild(btn); container.parentNode.insertBefore(div, container.nextSibling); }
+function toggleComp(id, headerEl
