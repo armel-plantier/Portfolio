@@ -199,11 +199,11 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 .card-header { 
     padding: 25px; 
     padding-right: 25px; 
-    padding-bottom: 40px; /* Espace pour le bouton Info en bas */
+    padding-bottom: 40px; /* Espace pour le bouton Info */
     cursor: pointer; 
     display: flex; 
     gap: 20px; 
-    align-items: center; /* Emoji centré verticalement */
+    align-items: center; /* Emoji centré */
     flex-grow: 1;
 }
 
@@ -219,18 +219,27 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     display: flex; 
     align-items: center;
     gap: 10px;
-    padding-right: 100px; /* Espace réservé pour la date à droite */
+    padding-right: 100px; /* Espace pour la date */
 }
 
 .card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 20px; margin-bottom: 8px; }
 
-/* TAGS (Descendus un peu) */
+/* TAGS (GROSSIS) */
 .tags-container { 
     display: flex; gap: 8px; flex-wrap: wrap; 
-    margin-top: 15px; /* Espacement augmenté */
+    margin-top: 15px; 
 }
 
-.project-tag { font-size: 0.7rem; padding: 3px 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-family: 'Inter', monospace; white-space: nowrap; }
+.project-tag { 
+    font-size: 0.85rem; /* PLUS GROS */
+    padding: 5px 12px;  /* PLUS DE MARGE INTERNE */
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid var(--border); 
+    border-radius: 4px; 
+    color: var(--muted); 
+    font-family: 'Inter', monospace; 
+    white-space: nowrap; 
+}
 body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
 /* DATE, BADGE & INFO BTN */
@@ -245,10 +254,10 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     text-transform: uppercase; 
 }
 
-/* Date alignée avec le "gros" titre */
+/* Date alignée avec le titre */
 .project-date { 
     position: absolute; 
-    top: 29px; /* Ajusté pour centrer verticalement avec le titre 1.3rem */
+    top: 29px; /* Ajusté pour le titre 1.3rem */
     right: 25px; 
     font-size: 0.85rem; 
     font-family: 'Inter', monospace; 
@@ -260,7 +269,7 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 /* BOUTON INFO EN BAS À DROITE */
 .info-btn {
     position: absolute; 
-    bottom: 15px; /* En bas */
+    bottom: 15px; 
     right: 25px;  /* À DROITE */
     top: auto; left: auto;
     
@@ -278,10 +287,9 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     .card-header { padding-right: 25px; flex-direction: column; align-items: flex-start; gap: 10px; }
     .card-header .meta h4 { padding-right: 0; flex-wrap: wrap; }
     
-    /* Sur mobile, date en dessous pour éviter chevauchement */
     .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 0; }
     
-    .info-btn { position: absolute; bottom: 15px; right: 25px; } /* Reste en bas à droite */
+    .info-btn { position: absolute; bottom: 15px; right: 25px; } 
 }
 
 .hidden-item { display: none !important; }
