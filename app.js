@@ -1,117 +1,265 @@
-:root {
-    --bg: linear-gradient(135deg, #0b0d14 20%, #1a1b3a 100%);
-    --card: #151925; --text: #f1f5f9; --muted: #94a3b8; --border: #2d3748;
-    --primary: #6366f1; --header-h: 90px; --badge-bg: #10b981;
-    --header-padding: 40px; --theme-btn-size: 42px;
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- VERIFICATION CONFIG ---
+    if (typeof config === 'undefined') { console.error("Config missing"); return; }
+    const escapeHTML = (str) => {
+        if (!str) return '';
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    };
+
+    // --- 1. THEME ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    if (localStorage.getItem("theme") === "light") { body.classList.add("light-mode"); if(themeBtn) themeBtn.innerText = "🌙"; }
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) { themeBtn.innerText = "🌙"; localStorage.setItem("theme", "light"); } 
+            else { themeBtn.innerText = "☀️"; localStorage.setItem("theme", "dark"); }
+        });
+    }
+
+    // --- 2. PROFIL ---
+    document.title = `${config.profile.name} | Portfolio`;
+    if(document.getElementById("profile-avatar")) document.getElementById("profile-avatar").src = config.profile.avatar;
+    if(document.getElementById("profile-name")) document.getElementById("profile-name").innerText = config.profile.name;
+    if(document.getElementById("profile-status")) document.getElementById("profile-status").innerText = config.profile.status;
+    if(document.getElementById("profile-bio")) document.getElementById("profile-bio").innerText = config.profile.bio;
+    if(document.getElementById("footer-copy")) document.getElementById("footer-copy").innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
+    if(document.getElementById("link-github")) document.getElementById("link-github").href = config.social.github;
+    if(document.getElementById("link-linkedin")) document.getElementById("link-linkedin").href = config.social.linkedin;
+
+    // --- 3. MODALE INFO PROJET ---
+    const projModal = document.getElementById("project-modal");
+    const projClose = document.getElementById("proj-close-btn");
+    const projTitle = document.getElementById("proj-modal-title");
+    const projDesc = document.getElementById("proj-modal-desc");
+    const projTags = document.getElementById("proj-modal-tags");
+
+    const closeProjModal = () => { if(projModal) projModal.style.display = "none"; };
+    if(projClose) projClose.addEventListener("click", closeProjModal);
+    window.addEventListener("click", (e) => { if(e.target === projModal) closeProjModal(); });
+
+
+    // --- 4. NAVIGATION ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = item.title; a.href = item.link; 
+            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
+            li.appendChild(a); navList.appendChild(li);
+        });
+    }
+
+    // --- 5. SKILLS HEADER ---
+    const skillsContainer = document.getElementById("skills-section");
+    if(skillsContainer && config.skills) {
+        config.skills.forEach(s => {
+            const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span);
+        });
+    }
+
+    // --- 6. PROJETS (LOGIQUE CORRIGEE) ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `${window.location.origin}${path}Documents/`; 
+    const PROJECT_LIMIT = 4; 
+
+    if (grid && config.projects) {
+        config.projects.forEach((proj, index) => {
+            const vid = `viewer_${index}`;
+            const fullPdfUrl = baseUrl + proj.path;
+            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+
+            // Gestion Tags : Max 3 sur la carte
+            let tagsHTML = '';
+            if(proj.tags && proj.tags.length > 0) {
+                const visibleTags = proj.tags.slice(0, 3); // MAX 3
+                tagsHTML = visibleTags.map(tag => `<span class="proj-mini-tag">${escapeHTML(tag)}</span>`).join('');
+                if(proj.tags.length > 3) tagsHTML += `<span class="proj-mini-tag" style="opacity:0.5;">+${proj.tags.length - 3}</span>`;
+            }
+
+            // Date
+            const dateHTML = proj.date ? `<span class="proj-date">📅 ${escapeHTML(proj.date)}</span>` : '';
+
+            const div = document.createElement("div"); 
+            div.className = "project-card";
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+
+            // HTML Structure: 
+            // - Pas de bouton +
+            // - Tags à gauche
+            // - Date à droite
+            div.innerHTML = `
+                <div class="card-header">
+                    <div class="icon">${escapeHTML(proj.icon)}</div>
+                    
+                    <div class="meta">
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description)}</p>
+                        
+                        <div class="meta-footer">
+                            <div class="proj-tags-row">${tagsHTML}</div>
+                            ${dateHTML}
+                        </div>
+                    </div>
+
+                    <div class="actions-right">
+                        ${badgeHTML}
+                        <button class="btn-info-modal" title="Détails & Tags">👁️</button>
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+            
+            // 1. Clic sur tout le Header => Ouvre l'accordéon (PDF)
+            const headerDiv = div.querySelector('.card-header');
+            const infoBtn = div.querySelector('.btn-info-modal');
+
+            headerDiv.addEventListener("click", () => { 
+                togglePDF(vid, fullPdfUrl); // On ouvre le PDF en cliquant sur la carte
+            });
+            
+            // 2. Clic sur l'Oeil => Ouvre la Modale (Infos) et STOP le PDF
+            infoBtn.addEventListener("click", (e) => {
+                e.stopPropagation(); // EMPÊCHE L'OUVERTURE DU PDF
+                
+                if(projTitle) projTitle.innerText = proj.title;
+                if(projDesc) projDesc.innerText = proj.longDescription ? proj.longDescription : proj.description;
+                
+                // Tous les tags dans la modale
+                if(projTags && proj.tags) {
+                    projTags.innerHTML = proj.tags.map(tag => `<span class="proj-mini-tag">${escapeHTML(tag)}</span>`).join('');
+                }
+                
+                if(projModal) projModal.style.display = "flex";
+            });
+
+            grid.appendChild(div);
+        });
+        
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+    }
+
+    // --- 7. PARCOURS & AUTRES ---
+    // (Identique au code précédent)
+    const expList = document.getElementById("exp-list");
+    if(expList && config.experiences) {
+        config.experiences.forEach((exp, i) => {
+            const li = document.createElement("li"); li.className = "timeline-item"; if (i >= 5) li.classList.add("hidden-item");
+            li.innerHTML = `<span class="timeline-date">${escapeHTML(exp.date)}</span><h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4><p class="timeline-desc">${escapeHTML(exp.description)}</p>`;
+            expList.appendChild(li);
+        });
+        if (config.experiences.length > 5) createToggleBtn(expList, 5, "Voir la suite");
+    }
+
+    // Competences & Certifs...
+    const compList = document.getElementById("comp-list");
+    if(compList && config.competences) {
+        config.competences.forEach((comp, i) => {
+            const li = document.createElement("li"); li.className = "comp-card-container"; if (i >= 5) li.classList.add("hidden-item");
+            const dropId = `comp-drop-${i}`;
+            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
+            li.innerHTML = `<div class="comp-header"><div class="cert-icon-box">${escapeHTML(comp.icon)}</div><span class="cert-name">${escapeHTML(comp.name)}</span><button class="cert-btn comp-toggle">▼</button></div><ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>`;
+            li.querySelector('.comp-header').addEventListener("click", () => toggleComp(dropId, li.querySelector('.comp-header')));
+            compList.appendChild(li);
+        });
+        if (config.competences.length > 5) createToggleBtn(compList, 5, "Voir la suite");
+    }
+
+    const certList = document.getElementById("cert-list");
+    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    if(certList && config.certifications) {
+        config.certifications.forEach((cert, i) => {
+            const li = document.createElement("li"); li.className = "cert-card-container"; if (i >= 5) li.classList.add("hidden-item");
+            const vid = `cert_view_${i}`;
+            const url = cert.pdf ? certBaseUrl + cert.pdf : null;
+            let btns = cert.url ? `<a href="${cert.url}" target="_blank" class="cert-btn link-btn">🔗</a>` : '';
+            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(cert.issuer)}</span></div><div class="cert-actions">${btns}</div></div><div id="${vid}" class="cert-pdf-viewer"></div>`;
+            if (cert.pdf) {
+                const b = document.createElement("button"); b.className = "cert-btn pdf-btn"; b.innerHTML = "📄";
+                b.addEventListener("click", () => toggleCertPDF(vid, url));
+                li.querySelector('.cert-actions').appendChild(b);
+            }
+            certList.appendChild(li);
+        });
+        if (config.certifications.length > 5) createToggleBtn(certList, 5, "Voir la suite");
+    }
+
+    // Typewriter
+    const textEl = document.getElementById("typewriter-area");
+    if(textEl && config.profile.typewriterText) {
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+        function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } }
+        setTimeout(type, 500);
+    }
+
+    // Modal Contact / Mentions
+    const eTrig = document.getElementById("email-trigger"), eMod = document.getElementById("email-modal"), eClose = document.getElementById("modal-close-btn");
+    const lTrig = document.getElementById("legal-trigger"), lMod = document.getElementById("legal-modal"), lClose = document.getElementById("legal-close-btn");
+    
+    if(eTrig && eMod) {
+        eTrig.addEventListener("click", (e) => { e.preventDefault(); eMod.style.display = "flex"; if(window.turnstile) window.turnstile.reset(); });
+        if(eClose) eClose.addEventListener("click", () => eMod.style.display = "none");
+    }
+    if(lTrig && lMod) {
+        lTrig.addEventListener("click", (e) => { e.preventDefault(); lMod.style.display = "flex"; });
+        if(lClose) lClose.addEventListener("click", () => lMod.style.display = "none");
+    }
+    window.addEventListener("click", (e) => {
+        if(e.target === eMod) eMod.style.display = "none";
+        if(e.target === lMod) lMod.style.display = "none";
+    });
+
+    // Maj GitHub
+    const upEl = document.getElementById("last-update");
+    if(upEl) {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`)
+            .then(r=>r.ok?r.json():Promise.reject()).then(d=>{
+                const dt = new Date(d.pushed_at); upEl.innerHTML = `Maj : ${dt.toLocaleDateString('fr-FR')}`;
+            }).catch(()=>upEl.innerText = "System Ready");
+    }
+
+    // Scroll
+    const head = document.querySelector('.app-header');
+    window.addEventListener('scroll', () => { if(window.scrollY > 50) head.classList.add('scrolled'); else head.classList.remove('scrolled'); });
+});
+
+function togglePDF(id, url) {
+    const c = document.getElementById(id);
+    const isClosed = c.style.display === 'none' || c.style.display === '';
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    // On ne gère plus de classe active sur un bouton + car il n'existe plus
+    if(isClosed) {
+        c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+        c.style.display = 'block';
+    }
 }
-body.light-mode {
-    --bg: #f3f4f6; --card: #ffffff; --text: #1f2937; --muted: #6b7280; --border: #e5e7eb; --badge-bg: #059669;
+function toggleComp(id, headerEl) {
+    const m = document.getElementById(id); const b = headerEl.querySelector('.comp-toggle');
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if(el.id !== id) el.style.display = 'none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if(el !== b) el.classList.remove('active'); });
+    if(m.style.display === 'block') { m.style.display = 'none'; if(b) b.classList.remove('active'); } 
+    else { m.style.display = 'block'; if(b) b.classList.add('active'); }
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); background-attachment: fixed; color: var(--text); font-family: 'Inter', sans-serif; padding-top: var(--header-h); transition: 0.3s; overflow-x: hidden; min-height: 100vh; }
-a { text-decoration: none; color: inherit; }
-
-/* HEADER & NAV */
-.app-header { position: fixed; top: 0; left: 0; width: 100%; height: var(--header-h); display: flex; justify-content: space-between; align-items: center; padding: 0 var(--header-padding); background: transparent !important; pointer-events: none; z-index: 1000; transition: 0.4s; }
-.header-left, .nav-capsule, .header-right { pointer-events: auto; }
-.header-left { display: flex; align-items: center; gap: 16px; opacity: 1; transform: translateY(0); transition: 0.4s; }
-.app-header.scrolled .header-left { opacity: 0; transform: translateY(-20px); pointer-events: none; }
-.id-avatar { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); backdrop-filter: blur(40px); }
-.id-name { font-weight: 800; font-family: 'Outfit', sans-serif; font-size: 1.3rem; line-height: 1.1; color: var(--text); }
-.status-wrapper { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
-.status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2); }
-.header-right { position: absolute; right: var(--header-padding); top: 50%; transform: translateY(-50%); }
-.theme-icon { width: var(--theme-btn-size); height: var(--theme-btn-size); border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); backdrop-filter: blur(40px); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-.theme-icon:hover { background: var(--card); border-color: var(--primary); }
-.nav-capsule { position: fixed; top: calc(var(--header-h)/2); left: 50%; transform: translate(-50%,-50%); background: rgba(20,20,30,0.6); backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.15); padding: 10px 30px; border-radius: 50px; display: flex; justify-content: center; height: 50px; z-index: 1001; transition: 0.5s; }
-.nav-capsule ul { display: flex; gap: 24px; list-style: none; padding: 0; margin: 0; }
-.nav-capsule a { font-size: 0.9rem; font-weight: 500; color: #e2e8f0; transition: 0.2s; white-space: nowrap; }
-.nav-capsule a:hover { color: var(--primary); }
-.menu-icon { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text); }
-
-/* Responsive Header */
-@media (max-width: 1200px) {
-    body { padding-top: 240px; }
-    .app-header { position: absolute !important; flex-direction: column; height: auto !important; padding: 20px 15px; gap: 15px; }
-    .header-left { width: 100%; justify-content: center; transform: none; }
-    .nav-capsule { position: relative !important; top: 0 !important; left: 0 !important; transform: none !important; width: 100%; max-width: 500px; background: var(--card); border-radius: 12px; height: auto; justify-content: center; }
-    .header-right { position: absolute; top: 25px; right: 20px; transform: none; }
-    .app-header.scrolled { position: fixed !important; height: 70px !important; flex-direction: row; justify-content: flex-end; padding: 0 15px; background: rgba(15,20,30,0.85) !important; z-index: 9999; }
-    .app-header.scrolled .nav-capsule { width: 42px !important; padding: 0 !important; border-radius: 50% !important; background: rgba(255,255,255,0.08) !important; position: static !important; margin-right: 10px; }
-    .app-header.scrolled .nav-capsule ul { display: none !important; } .app-header.scrolled .nav-capsule .menu-icon { display: block !important; }
-    .app-header.scrolled.menu-open .nav-capsule { position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; width: auto !important; height: 50px !important; border-radius: 50px !important; padding: 0 25px !important; background: rgba(20,20,30,0.95) !important; z-index: 2000; }
-    .app-header.scrolled.menu-open .nav-capsule ul { display: flex !important; } .app-header.scrolled.menu-open .nav-capsule .menu-icon { display: none !important; }
+function toggleCertPDF(id, url) {
+    const v = document.getElementById(id);
+    if (v.style.display === 'block') { v.style.display = 'none'; v.innerHTML = ''; return; }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    v.style.display = 'block'; v.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 }
-
-/* GENERAL CONTENT */
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-.hero-section { text-align: center; margin: 10px 0 80px; }
-.hero-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; }
-.bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
-.social-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
-.social-btn { padding: 10px 20px; background: var(--card); border-radius: 8px; border: 1px solid var(--border); font-weight: 600; color: var(--muted); transition: 0.2s; }
-.social-btn:hover { border-color: var(--primary); color: var(--primary); }
-.social-btn.email { background: var(--primary); color: white; border: none; }
-.skills-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-.skill-tag { background: rgba(255,255,255,0.03); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border); color: var(--muted); }
-.section-wrapper { margin-bottom: 60px; scroll-margin-top: 140px; }
-h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
-
-/* PROJETS (CARTE REVISITÉE) */
-.grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
-.project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s; }
-.project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-.card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
-.card-header .icon { font-size: 2rem; }
-.meta { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }
-.card-header .meta h4 { margin-bottom: 0; font-size: 1.15rem; padding-right: 20px; }
-.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
-
-/* Footer Carte : Tags à Gauche, Date à Droite */
-.meta-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; }
-body.light-mode .meta-footer { border-top-color: rgba(0,0,0,0.05); }
-
-.proj-tags-row { display: flex; gap: 6px; flex-wrap: wrap; }
-.proj-mini-tag { font-size: 0.7rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; color: var(--muted); }
-body.light-mode .proj-mini-tag { background: #f3f4f6; border-color: #d1d5db; color: #4b5563; }
-.proj-date { font-size: 0.75rem; color: var(--primary); font-family: monospace; opacity: 0.9; white-space: nowrap; margin-left: 10px; }
-
-/* Actions Droite (Badge, Oeil, +) */
-.actions-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.new-badge { background: var(--badge-bg); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 20px; text-transform: uppercase; }
-.btn-info-modal { background: transparent; border: 1px solid var(--border); color: var(--muted); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; }
-.btn-info-modal:hover { background: var(--primary); color: white; border-color: var(--primary); }
-.toggle-plus { font-size: 1.5rem; color: var(--muted); font-weight: 300; width: 30px; text-align: center; transition: 0.3s; user-select: none; }
-.toggle-plus.open { transform: rotate(45deg); color: var(--primary); }
-.card-header:hover .toggle-plus { color: var(--primary); }
-
-.pdf-container { display: none; border-top: 1px solid var(--border); background: var(--card); }
-.pdf-container iframe { display: block; width: 100%; border: none; }
-
-/* OTHER SECTIONS */
-.timeline-list { list-style: none; padding-left: 20px; border-left: 2px solid var(--border); }
-.timeline-item { margin-bottom: 35px; position: relative; }
-.timeline-item::before { content:''; position: absolute; left: -27px; top: 6px; width: 12px; height: 12px; background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; }
-.cert-list { display: grid; grid-template-columns: 1fr; gap: 20px; list-style: none; }
-@media (min-width: 768px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
-.cert-card-container, .comp-card-container { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
-.cert-icon-box { width: 45px; height: 45px; background: rgba(99, 102, 241, 0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-.comp-header { display: flex; align-items: center; gap: 15px; cursor: pointer; }
-.comp-dropdown-menu { margin-top: 15px; padding-left: 20px; display: none; }
-.hidden-item { display: none !important; }
-
-/* FOOTER & MODALS */
-footer { text-align: center; color: var(--muted); padding: 40px; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 40px; }
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
-.modal-content { background: var(--card); width: 90%; max-width: 450px; border-radius: 12px; border: 1px solid var(--border); padding: 0; display:flex; flex-direction:column; max-height: 90vh; }
-.modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-.modal-body { padding: 20px; overflow-y: auto; text-align: center; }
-.close-btn { background: none; border: none; font-size: 1.5rem; color: var(--muted); cursor: pointer; }
-.email-box { margin-top: 15px; background: transparent; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: monospace; color: #ffffff; display: flex; justify-content: space-between; }
-#copy-email-btn { background: var(--primary); color: white; border: none; padding: 6px 12px; cursor: pointer; border-radius: 4px; }
-
-/* 404 & PRINT */
-.error-body { display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
-.error-card { width: 100%; max-width: 600px; padding: 40px; text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: 16px; }
-@media print { .app-header, .social-links, .load-more-container, footer, .modal-overlay, .btn-info-modal, .toggle-plus { display: none !important; } }
+function createToggleBtn(c, l, t) {
+    const d = document.createElement("div"); d.className = "load-more-container"; 
+    const b = document.createElement("button"); b.className = "load-more-btn"; b.innerHTML = `<span>↓</span> ${t}`; 
+    let exp = false;
+    b.addEventListener("click", () => {
+        exp = !exp; const ch = c.children;
+        for(let i=0; i<ch.length; i++) {
+            if(i >= l) { if(exp) { ch[i].classList.remove("hidden-item"); ch[i].style.opacity = 0; setTimeout(()=>ch[i].style.opacity=1, 50); } else { ch[i].classList.add("hidden-item"); } }
+        }
+        b.innerHTML = exp ? `<span>↑</span> Masquer` : `<span>↓</span> ${t}`;
+    });
+    d.appendChild(b); c.parentNode.insertBefore(d, c.nextSibling);
+}
