@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
             const badgeId = `badge-project-${index}`;
-            const btnId = `info-btn-${index}`; // ID pour cibler le bouton
+            const btnId = `info-btn-${index}`;
 
             // Tags +X
             let cardTagsHTML = '';
@@ -172,12 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML : Le bouton info est vide par défaut (ou contient "...")
+            // HTML : Bouton SVG (le "i" dans le rond)
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
                 <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
-                    <span class="btn-text">Info</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
 
                 <div class="card-header">
@@ -202,11 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // MISE A JOUR DU BOUTON INFO AVEC LA DATE
+                            // STOCKAGE DE LA DATE DANS LE BOUTON (attribut data-date)
                             const btnEl = document.getElementById(btnId);
                             if(btnEl) {
-                                btnEl.innerText = `Date d'ajout : ${formattedDate}`;
-                                btnEl.setAttribute('data-date', formattedDate); // Stocke la date pour la modale
+                                btnEl.setAttribute('data-date', formattedDate);
                             }
 
                             // BADGE
@@ -219,9 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             }
                         }
                     })
-                    .catch(err => {
-                        // En cas d'erreur ou pas de date, on laisse "Info" ou on met rien
-                    });
+                    .catch(err => { });
             }
 
             const headerDiv = div.querySelector('.card-header');
@@ -231,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
                     e.stopPropagation(); 
-                    // On récupère la date stockée ou affichée
+                    // On récupère la date stockée
                     const dateText = infoBtn.getAttribute('data-date') || ""; 
                     openProjectModal(proj, dateText);
                 });
@@ -373,7 +370,7 @@ function initCursorHint() {
         });
         
         el.addEventListener("mousemove", (e) => {
-            // SECURITE : Si on survole le bouton date, le curseur disparait
+            // SECURITE : Si on survole le bouton info, le curseur disparait
             if (e.target.closest('.info-btn')) {
                 hintEl.classList.remove("visible");
                 return;
@@ -413,8 +410,8 @@ function openProjectModal(proj, dateStr = "") {
         
         let dateHtml = "";
         if (dateStr && dateStr !== "..." && dateStr !== "") {
-            // "Date d'ajout :" ici
-            dateHtml = `<div class="modal-date-display">Date d'ajout : ${dateStr}</div>`;
+            // "Date d'ajout :" AFFICHEE DANS LA MODALE
+            dateHtml = `<div class="modal-date-display">📅 Date d'ajout : ${dateStr}</div>`;
         }
 
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
