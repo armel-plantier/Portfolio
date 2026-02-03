@@ -38,13 +38,15 @@ const config = {
     ],
 
     // --- 4. PROJETS (Documents PDF) ---
+    // Tags = Manuels (config.js)
+    // Dates/Badge = Automatiques (API GitHub)
     projects: [
         {
             title: "Mise en place réseau TechNova",
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐",
-            tags: ["Cisco", "VLAN", "Switching", "OSPF"] // Le 4ème sera ignoré
+            tags: ["Cisco", "VLAN", "Switching"]
         },
         {
             title: "Gestion de l'Active Directory",
