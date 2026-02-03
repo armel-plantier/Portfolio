@@ -429,29 +429,59 @@ function toggleCertPDF(id, url) {
 }
 
 function createToggleBtn(container, limit, txtMore) {
+    // 1. Appliquer le masque visuel initialement
+    container.classList.add("projects-masked");
+
     const div = document.createElement("div");
     div.className = "load-more-container";
+    
     const btn = document.createElement("button");
     btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`;
+    
+    // On met un texte plus incitatif par défaut (pour les projets)
+    // Astuce : On détecte si c'est la section projets par l'ID du container ou le contexte
+    // Mais pour rester générique, on utilise txtMore ou "Voir tous les projets" si c'est la grille
+    let defaultText = txtMore;
+    if(container.id === "project-grid") defaultText = "Voir tous les projets";
+
+    btn.innerHTML = `<span>↓</span> ${defaultText}`;
+    
     let expanded = false;
+    
     btn.addEventListener("click", () => {
         expanded = !expanded;
         const children = container.children;
+        
+        // 2. Gestion du masque visuel (on l'enlève si tout est affiché)
+        if (expanded) {
+            container.classList.remove("projects-masked");
+        } else {
+            container.classList.add("projects-masked");
+        }
+
         for (let i = 0; i < children.length; i++) {
             if (i >= limit) {
                 if (expanded) {
                     children[i].classList.remove("hidden-item");
+                    // Petite animation d'apparition
                     children[i].style.opacity = 0;
-                    setTimeout(() => children[i].style.opacity = 1, 50);
+                    children[i].style.transform = "translateY(20px)";
+                    children[i].style.transition = "all 0.4s ease";
+                    
+                    // Léger délai pour fluidité
+                    setTimeout(() => {
+                        children[i].style.opacity = 1;
+                        children[i].style.transform = "translateY(0)";
+                    }, 50);
                 } else {
                     children[i].classList.add("hidden-item");
-                    children[i].style.opacity = 0;
                 }
             }
         }
-        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
+        btn.innerHTML = expanded ? `<span>↑</span> Réduire` : `<span>↓</span> ${defaultText}`;
     });
+    
     div.appendChild(btn);
+    // Insère le bouton juste après la grille/liste
     container.parentNode.insertBefore(div, container.nextSibling);
 }
