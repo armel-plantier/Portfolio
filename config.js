@@ -12,7 +12,7 @@ const config = {
     profile: {
         // --- API GITHUB (Pour la date de mise à jour) ---
         githubUser: "armel-plantier", 
-        githubRepo: "Portfolio", // ✅ Nom corrigé ici
+        githubRepo: "Portfolio", // ✅ Nom exact du dépôt
 
         favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
@@ -48,42 +48,54 @@ const config = {
             description: "Architecture, VLANs et documentation technique.",
             path: "reseau-technova.pdf", 
             icon: "🌐",
-            isNew: true
+            isNew: true,
+            date: "12 Fév 2024",
+            tags: ["Cisco", "VLAN", "Packet Tracer"]
         },
         {
             title: "Gestion de l'Active Directory",
             description: "GPO, gestion des utilisateurs et DNS.", 
             path: "active_directory.pdf", 
             icon: "🖥️",
-            isNew: false
+            isNew: false,
+            date: "10 Jan 2024",
+            tags: ["Windows Server", "AD DS", "Powershell"]
         },
         {
             title: "Audit Sécurité Wi-Fi",
             description: "Test d'intrusion WPA3 et analyse de trames.",
             path: "audit_wifi.pdf",        
             icon: "🛡️",
-            isNew: false
+            isNew: false,
+            date: "05 Déc 2023",
+            tags: ["Kali Linux", "Aircrack-ng", "Wireshark"]
         },
         {
             title: "Hardening Linux",
             description: "Sécurisation SSH et Firewall.",
             path: "linux_hardening.pdf", 
             icon: "🐧",
-            isNew: false
+            isNew: false,
+            date: "20 Nov 2023",
+            tags: ["Debian", "SSH", "Fail2Ban"]
         },
         {
             title: "Projet Serveur Web",
             description: "Configuration Apache/Nginx et Let's Encrypt.",
             path: "web_server.pdf", 
             icon: "🌍",
-            isNew: false
+            isNew: false,
+            date: "15 Oct 2023",
+            tags: ["Apache", "SSL/TLS", "Web"]
         },
         {
             title: "Scripting Python Automation",
             description: "Automatisation des sauvegardes via API.",
             path: "python_script.pdf", 
             icon: "🐍",
-            isNew: false
+            isNew: false,
+            date: "01 Sep 2023",
+            tags: ["Python", "API", "Automation"]
         }
     ],
 
