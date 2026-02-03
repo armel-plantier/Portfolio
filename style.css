@@ -203,7 +203,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     cursor: pointer; 
     display: flex; 
     gap: 20px; 
-    align-items: center; /* Emoji centré */
+    align-items: center; /* Emoji centré verticalement */
     flex-grow: 1;
 }
 
@@ -212,12 +212,12 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     flex-shrink: 0; 
 }
 
-/* TITRE GROSSI & ALIGNÉ */
+/* TITRE & BADGE */
 .card-header .meta h4 { 
     font-size: 1.3rem; /* TITRE PLUS GROS */
     margin-bottom: 5px; 
     display: flex; 
-    align-items: center;
+    align-items: center; /* ALIGNEMENT VERTICAL TITLE/BADGE */
     gap: 10px;
     padding-right: 100px; /* Espace pour la date */
 }
@@ -231,8 +231,8 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 
 .project-tag { 
-    font-size: 0.85rem; /* PLUS GROS */
-    padding: 5px 12px;  /* PLUS DE MARGE INTERNE */
+    font-size: 0.85rem; 
+    padding: 5px 12px;  
     background: rgba(255, 255, 255, 0.05); 
     border: 1px solid var(--border); 
     border-radius: 4px; 
@@ -251,13 +251,15 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     font-weight: 700; 
     padding: 3px 8px; 
     border-radius: 6px; 
-    text-transform: uppercase; 
+    text-transform: uppercase;
+    /* Suppression du transform qui cassait l'alignement */
+    align-self: center; 
 }
 
-/* Date alignée avec le titre */
+/* DATE (Alignement ajusté) */
 .project-date { 
     position: absolute; 
-    top: 29px; /* Ajusté pour le titre 1.3rem */
+    top: 28px; /* Ajusté pour le titre 1.3rem */
     right: 25px; 
     font-size: 0.85rem; 
     font-family: 'Inter', monospace; 
