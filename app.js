@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. PROJETS (LOGIQUE CORRIGEE) ---
+    // --- 6. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -88,10 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML Structure: 
-            // - Pas de bouton +
-            // - Tags à gauche
-            // - Date à droite
             div.innerHTML = `
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
@@ -108,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <div class="actions-right">
                         ${badgeHTML}
-                        <button class="btn-info-modal" title="Détails & Tags">👁️</button>
+                        <button class="btn-info-modal" title="Détails & Tags">ℹ️</button>
                     </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
@@ -122,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 togglePDF(vid, fullPdfUrl); // On ouvre le PDF en cliquant sur la carte
             });
             
-            // 2. Clic sur l'Oeil => Ouvre la Modale (Infos) et STOP le PDF
+            // 2. Clic sur l'Info => Ouvre la Modale (Infos) et STOP le PDF
             infoBtn.addEventListener("click", (e) => {
                 e.stopPropagation(); // EMPÊCHE L'OUVERTURE DU PDF
                 
@@ -231,7 +227,6 @@ function togglePDF(id, url) {
     const c = document.getElementById(id);
     const isClosed = c.style.display === 'none' || c.style.display === '';
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    // On ne gère plus de classe active sur un bouton + car il n'existe plus
     if(isClosed) {
         c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
         c.style.display = 'block';
