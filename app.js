@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (MODIFIÉ AVEC SVG) ---
+    // --- 7. PROJETS (AUTOMATISÉ + BOUTON INFO + TAGS) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -161,48 +161,95 @@ document.addEventListener("DOMContentLoaded", () => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
             
-            // Données manuelles
-            const badgeHTML = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
-            const dateHTML = proj.date ? `<span class="project-date">${escapeHTML(proj.date)}</span>` : '';
+            // ID Uniques pour la mise à jour par l'API
+            const dateId = `date-project-${index}`;
+            const badgeId = `badge-project-${index}`;
 
-            // Tags Carte (Max 3)
-            let tagsHTML = '';
+            // 1. Valeurs par défaut (depuis config.js pour que ça s'affiche tout de suite)
+            // On affiche le badge seulement si config.isNew est true
+            let initialBadge = proj.isNew ? `<span class="new-badge">Nouveau</span>` : '';
+            let initialDate = proj.date ? escapeHTML(proj.date) : "...";
+
+            // 2. Tags Carte (Max 3)
+            let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
-                tagsHTML = '<div class="tags-container">';
+                cardTagsHTML = '<div class="tags-container">';
                 proj.tags.slice(0, 3).forEach(tag => {
-                    tagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
+                    cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
-                tagsHTML += '</div>';
+                cardTagsHTML += '</div>';
             }
 
             const div = document.createElement("div"); 
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // Construction HTML (SVG REMPLACE EMOJI)
+            // Construction HTML
             div.innerHTML = `
-                ${dateHTML}
+                <span id="${dateId}" class="project-date">${initialDate}</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
                         <h4>
                             ${escapeHTML(proj.title)} 
-                            ${badgeHTML}
+                            <span id="${badgeId}">${initialBadge}</span>
                         </h4>
                         <p>${escapeHTML(proj.description)}</p>
-                        ${tagsHTML}
+                        ${cardTagsHTML}
                     </div>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
+            // --- AUTOMATISATION : APPEL API GITHUB ---
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
+                
+                fetch(apiUrl)
+                    .then(res => {
+                        if (!res.ok) throw new Error("Fichier introuvable sur GitHub");
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            // On a trouvé la vraie date !
+                            const commitDate = new Date(data[0].commit.author.date);
+                            const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                            
+                            // 1. Mise à jour de la date
+                            const dateEl = document.getElementById(dateId);
+                            if(dateEl) {
+                                dateEl.innerText = formattedDate;
+                                dateEl.style.opacity = "1";
+                            }
+
+                            // 2. Calcul automatique du Badge "Nouveau" (< 30 jours)
+                            // Si c'est nouveau selon GitHub, on force le badge même si config disait false
+                            const today = new Date();
+                            const timeDiff = Math.abs(today - commitDate);
+                            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
+
+                            const badgeEl = document.getElementById(badgeId);
+                            if (badgeEl) {
+                                if (diffDays <= 30) {
+                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
+                                } else {
+                                    // Si c'est vieux (>30j), on enlève le badge s'il y était
+                                    badgeEl.innerHTML = ``;
+                                }
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        // En cas d'erreur (Repo privé / Rate Limit), on ne fait rien.
+                        // On garde ce qui est écrit dans config.js (date manuelle).
+                        // console.log("Erreur API, on garde la date config");
+                    });
+            }
+
             // Clic PDF
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
