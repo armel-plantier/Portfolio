@@ -312,43 +312,106 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     border-radius: 16px; overflow: hidden; transition: transform 0.2s; height: fit-content; 
 }
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-.new-badge {
-    position: absolute; top: 15px; right: 15px;
-    background: var(--badge-bg); color: #fff;
-    font-size: 0.7rem; font-weight: 700; padding: 4px 10px;
-    border-radius: 20px; text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; pointer-events: none;
-}
+
 .hidden-item { display: none !important; }
 .card-header { padding: 25px; cursor: pointer; display: flex; gap: 20px; align-items: start; }
 .card-header .icon { font-size: 2rem; }
-.card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
-.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; }
 
-/* --- AMÉLIORATIONS PROJETS (Tags, Date, Plus) --- */
-.meta-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 5px;
+/* --- NOUVEAU DESIGN PROJETS (Oeil, Date en bas) --- */
+.card-header {
+    cursor: default !important; /* On enlève le curseur main sur toute la carte */
 }
 
-.card-header .meta h4 { margin-bottom: 0; } 
+/* Zone de contenu */
+.meta {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card-header .meta h4 {
+    margin-bottom: 0;
+    font-size: 1.15rem;
+    padding-right: 20px;
+}
+.card-header .meta p {
+    color: var(--muted); font-size: 0.9rem; line-height: 1.4;
+}
+
+/* Zone Droite (Badge + Bouton) */
+.actions-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* Badge Nouveau */
+.new-badge {
+    position: static; 
+    background: var(--badge-bg);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Bouton "Voir" */
+.btn-open-pdf {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-open-pdf:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-open-pdf.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Footer de la carte (Date + Tags) */
+.meta-footer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
 
 .proj-date {
-    font-size: 0.75rem;
-    color: var(--primary);
-    font-weight: 600;
-    opacity: 0.9;
-    white-space: nowrap;
-    margin-left: 10px;
+    font-size: 0.8rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: monospace;
+    opacity: 0.8;
 }
 
 .proj-tags-row {
     display: flex;
     gap: 8px;
-    margin-top: 8px;
     flex-wrap: wrap;
 }
 
@@ -356,32 +419,16 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     font-size: 0.7rem;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 10px;
-    color: var(--muted);
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: var(--text);
+    opacity: 0.8;
 }
+
 body.light-mode .proj-mini-tag {
     background: #f3f4f6;
     border-color: #d1d5db;
-}
-
-.toggle-plus {
-    font-size: 1.5rem;
-    color: var(--muted);
-    font-weight: 300;
-    margin-left: auto; 
-    padding-left: 15px;
-    transition: transform 0.3s ease, color 0.3s;
-    user-select: none;
-}
-
-.toggle-plus.open {
-    transform: rotate(45deg); 
-    color: var(--primary);
-}
-
-.card-header:hover .toggle-plus {
-    color: var(--primary);
+    color: #4b5563;
 }
 
 
@@ -568,7 +615,7 @@ body.light-mode .hero-title { text-shadow: none; }
    MODE IMPRESSION (Ctrl+P)
    ========================================= */
 @media print {
-    .app-header, .social-links, .load-more-container, .comp-toggle, footer, .cursor, .new-badge, .modal-overlay, .toggle-plus { display: none !important; }
+    .app-header, .social-links, .load-more-container, .comp-toggle, footer, .cursor, .new-badge, .modal-overlay, .btn-open-pdf { display: none !important; }
     body { background: #fff !important; color: #000 !important; padding-top: 0 !important; }
     a[href]::after { content: " (" attr(href) ")"; font-size: 0.8rem; color: #666; }
     .container { max-width: 100%; padding: 0; margin: 0; }
