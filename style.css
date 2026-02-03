@@ -170,13 +170,12 @@ body.light-mode .nav-capsule a:hover { color: var(--primary); }
 .section-wrapper, section, #projects, #parcours, #competences, #certifs { width: 100%; margin-bottom: 60px; scroll-margin-top: 140px; }
 h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
 
-/* --- PROJETS & GRID (Modifié pour 2 colonnes + expansion + même taille) --- */
+/* --- PROJETS & GRID --- */
 .grid { 
     display: grid; 
     grid-template-columns: repeat(2, 1fr); 
     gap: 30px; 
     width: 100%; 
-    /* align-items: start; <--- SUPPRIMÉ pour que les éléments s'étirent */
 }
 
 /* CARTE PROJET */
@@ -187,43 +186,85 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
     border-radius: 16px; 
     overflow: hidden; 
     transition: transform 0.2s; 
-    height: 100%; /* <--- AJOUTÉ : Force la carte à prendre toute la hauteur de la ligne */
-    display: flex; /* <--- AJOUTÉ : Pour gérer l'intérieur */
+    height: 100%; 
+    display: flex; 
     flex-direction: column;
 }
 
-/* QUAND LA CARTE EST DÉPLIÉE */
-.project-card.expanded {
-    grid-column: 1 / -1; 
-}
+/* CARTE DÉPLIÉE */
+.project-card.expanded { grid-column: 1 / -1; }
 
 .project-card:hover { transform: translateY(-2px); border-color: var(--primary); }
 
 .card-header { 
     padding: 25px; 
-    padding-right: 110px; 
+    /* Padding droit réduit car la date est gérée autrement */
+    padding-right: 25px; 
+    padding-bottom: 40px; /* Espace en bas pour le bouton Info */
     cursor: pointer; 
     display: flex; 
     gap: 20px; 
-    align-items: flex-start;
-    flex-grow: 1; /* <--- AJOUTÉ : Le header s'agrandit pour combler le vide si besoin */
+    align-items: center; /* 2. Emoji centré verticalement */
+    flex-grow: 1;
 }
 
-.card-header .icon { font-size: 2rem; }
-.card-header .meta h4 { font-size: 1.1rem; margin-bottom: 5px; }
-.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 40px; margin-bottom: 8px; }
+.card-header .icon { 
+    font-size: 2rem; 
+    flex-shrink: 0; /* L'icone ne s'écrase pas */
+}
 
-/* TAGS */
-.tags-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
+/* Alignement Titre + Badge */
+.card-header .meta h4 { 
+    font-size: 1.1rem; 
+    margin-bottom: 5px; 
+    display: flex; /* Flex pour aligner le titre et le badge */
+    align-items: center;
+    gap: 10px;
+    padding-right: 90px; /* Espace pour la date à droite */
+}
+
+.card-header .meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.4; padding-right: 20px; margin-bottom: 8px; }
+
+/* TAGS (4. Descendus un peu) */
+.tags-container { 
+    display: flex; gap: 8px; flex-wrap: wrap; 
+    margin-top: 15px; /* Augmenté */
+}
+
 .project-tag { font-size: 0.7rem; padding: 3px 8px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 4px; color: var(--muted); font-family: 'Inter', monospace; white-space: nowrap; }
 body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
-/* BADGE, DATE & INFO BTN */
-.new-badge { display: inline-block; vertical-align: middle; margin-left: 10px; background: var(--badge-bg); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; transform: translateY(-2px); }
-.project-date { position: absolute; top: 25px; right: 25px; font-size: 0.85rem; font-family: 'Inter', monospace; color: var(--muted); font-weight: 500; opacity: 0.8; }
+/* 1. DATE, BADGE & INFO BTN */
+.new-badge { 
+    display: inline-block; 
+    background: var(--badge-bg); 
+    color: #fff; 
+    font-size: 0.65rem; 
+    font-weight: 700; 
+    padding: 3px 8px; 
+    border-radius: 6px; 
+    text-transform: uppercase; 
+}
 
+/* Date alignée avec le titre */
+.project-date { 
+    position: absolute; 
+    top: 28px; /* Ajusté pour s'aligner avec le texte du H4 */
+    right: 25px; 
+    font-size: 0.85rem; 
+    font-family: 'Inter', monospace; 
+    color: var(--muted); 
+    font-weight: 500; 
+    opacity: 0.8; 
+}
+
+/* 3. Bouton Info en bas à gauche */
 .info-btn {
-    position: absolute; top: 55px; right: 25px;
+    position: absolute; 
+    bottom: 15px; /* En bas */
+    left: 25px;   /* À gauche (aligné avec le padding de la carte) */
+    top: auto; right: auto; /* Reset des anciennes valeurs */
+    
     width: 34px; height: 34px; border-radius: 50%;
     background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted);
     display: flex; align-items: center; justify-content: center;
@@ -231,14 +272,17 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 }
 .info-btn:hover { background: var(--primary); border-color: var(--primary); color: white; }
 
-/* MODE MOBILE : 1 COLONNE */
+/* MOBILE */
 @media (max-width: 900px) {
-    .grid { grid-template-columns: 1fr; } /* Force 1 colonne sur tablette/mobile */
+    .grid { grid-template-columns: 1fr; }
     
-    .card-header { padding-right: 25px; flex-direction: column; gap: 10px; }
-    .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 10px 25px 0 0; }
-    .new-badge { float: right; } 
-    .info-btn { position: relative; top: auto; right: auto; float: right; margin-top: -30px; }
+    .card-header { padding-right: 25px; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .card-header .meta h4 { padding-right: 0; flex-wrap: wrap; }
+    
+    /* Sur mobile, on remet la date en dessous pour éviter le chevauchement */
+    .project-date { position: relative; top: auto; right: auto; display: block; margin-bottom: 5px; font-size: 0.8rem; text-align: right; width: 100%; padding: 0; }
+    
+    .info-btn { position: absolute; bottom: 15px; left: 25px; } /* Reste en bas à gauche */
 }
 
 .hidden-item { display: none !important; }
@@ -332,7 +376,7 @@ body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; bord
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
 /* ------------------------------------------- */
-/* --- CURSOR HINT (LE BADGE SUIVEUR) --- */
+/* --- CURSOR HINT --- */
 #cursor-hint {
     position: fixed;
     top: 0; left: 0;
