@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // Construction HTML (Date et Badge vides initialement car auto)
+            // Construction HTML
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
                 <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
@@ -226,12 +226,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(err => {
-                        // En cas d'erreur, on retire les "..." pour faire propre
                         const dateEl = document.getElementById(dateId);
                         if(dateEl) dateEl.innerText = "";
                     });
             } else {
-                // Pas de config GitHub
                 const dateEl = document.getElementById(dateId);
                 if(dateEl) dateEl.innerText = "";
             }
@@ -277,7 +275,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            li.innerHTML = `<div class="comp-header"><div class="cert-icon-box">${escapeHTML(comp.icon)}</div><span class="cert-name">${escapeHTML(comp.name)}</span><button class="cert-btn comp-toggle">▼</button></div><ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>`;
+            
+            // Note: Le bouton a la classe 'comp-toggle' pour le style CSS
+            li.innerHTML = `
+                <div class="comp-header">
+                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
+                    <span class="cert-name">${escapeHTML(comp.name)}</span>
+                    <button class="cert-btn comp-toggle">▼</button>
+                </div>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
+            `;
             const headerEl = li.querySelector('.comp-header');
             headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
             compList.appendChild(li);
@@ -398,12 +405,16 @@ function togglePDF(id, url) {
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
     const btn = headerEl.querySelector('.comp-toggle');
+    
+    // Ferme les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
         if (el.id !== id) el.style.display = 'none';
     });
     document.querySelectorAll('.comp-toggle').forEach(el => {
         if (el !== btn) el.classList.remove('active');
     });
+
+    // Bascule l'actuel
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
         if (btn) btn.classList.remove('active');
@@ -429,56 +440,29 @@ function toggleCertPDF(id, url) {
 }
 
 function createToggleBtn(container, limit, txtMore) {
-    // 1. Appliquer le masque visuel initialement
-    container.classList.add("projects-masked");
-
     const div = document.createElement("div");
     div.className = "load-more-container";
-    
     const btn = document.createElement("button");
     btn.className = "load-more-btn";
-    
-    // On met un texte plus incitatif par défaut
-    let defaultText = txtMore;
-    if(container.id === "project-grid") defaultText = "Voir tous les projets";
-
-    btn.innerHTML = `<span>↓</span> ${defaultText}`;
-    
+    btn.innerHTML = `<span>↓</span> ${txtMore}`;
     let expanded = false;
-    
     btn.addEventListener("click", () => {
         expanded = !expanded;
         const children = container.children;
-        
-        // 2. Gestion du masque visuel (on l'enlève si tout est affiché)
-        if (expanded) {
-            container.classList.remove("projects-masked");
-        } else {
-            container.classList.add("projects-masked");
-        }
-
         for (let i = 0; i < children.length; i++) {
             if (i >= limit) {
                 if (expanded) {
                     children[i].classList.remove("hidden-item");
-                    // Petite animation d'apparition
                     children[i].style.opacity = 0;
-                    children[i].style.transform = "translateY(20px)";
-                    children[i].style.transition = "all 0.4s ease";
-                    
-                    setTimeout(() => {
-                        children[i].style.opacity = 1;
-                        children[i].style.transform = "translateY(0)";
-                    }, 50);
+                    setTimeout(() => children[i].style.opacity = 1, 50);
                 } else {
                     children[i].classList.add("hidden-item");
+                    children[i].style.opacity = 0;
                 }
             }
         }
-        btn.innerHTML = expanded ? `<span>↑</span> Réduire` : `<span>↓</span> ${defaultText}`;
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     });
-    
     div.appendChild(btn);
-    // Insère le bouton juste après la grille/liste
     container.parentNode.insertBefore(div, container.nextSibling);
 }
