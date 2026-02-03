@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- VERIFICATION CONFIG ---
     if (typeof config === 'undefined') { 
         console.error("ERREUR : config.js n'est pas chargé."); 
         return; 
@@ -54,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- 3. MODALES (CONTACT & LEGAL) ---
+    // --- 3. MODALES ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -70,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
+    // --- EMAIL ---
     const emailTrigger = document.getElementById("email-trigger");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --- MODALE PROJET (FERMETURE) ---
     const projectModal = document.getElementById("project-modal");
     const projectCloseBtn = document.getElementById("project-close-btn");
     if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
@@ -136,13 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. COMPETENCES (HEADER TAGS) ---
+    // --- 6. COMPETENCES ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (MODERNE : Hint, pas de bouton, API GitHub active) ---
+    // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -152,49 +150,40 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
-            const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
+            const btnId = `info-btn-${index}`; // ID pour cibler le bouton
 
-            // --- GESTION DES TAGS (+X) ---
+            // Tags +X
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
-                
-                // 1. Affiche les 3 premiers tags
                 proj.tags.slice(0, 3).forEach(tag => {
                     cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
-
-                // 2. Calcul du surplus
                 const remaining = proj.tags.length - 3;
-                
-                // 3. Affiche le badge "+X" si nécessaire
                 if (remaining > 0) {
                     cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
                 }
-
                 cardTagsHTML += '</div>';
             }
-            // -----------------------------
 
             const div = document.createElement("div"); 
-            div.className = "project-card interactive-card"; // ACTIVATION DU HINT
+            div.className = "project-card interactive-card"; 
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML Structure (Sans bouton chevron)
+            // HTML : Le bouton info est vide par défaut (ou contient "...")
             div.innerHTML = `
-                <span id="${dateId}" class="project-date">...</span>
-                <button class="info-btn" id="info-btn-${index}" title="Détails du projet" data-no-hint="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span id="${badgeId}" class="badge-container-abs"></span>
+                
+                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                    <span class="btn-text">Info</span>
                 </button>
+
                 <div class="card-header">
                     <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
-                        <h4>
-                            ${escapeHTML(proj.title)} 
-                            <span id="${badgeId}"></span>
-                        </h4>
+                        <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
                     </div>
@@ -202,64 +191,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- AUTOMATISATION : GITHUB API (INTEGRÉE ICI) ---
+            // --- GITHUB API ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
                 fetch(apiUrl)
-                    .then(res => {
-                        if (!res.ok) throw new Error("Fichier introuvable");
-                        return res.json();
-                    })
+                    .then(res => { if (!res.ok) throw new Error("Fichier introuvable"); return res.json(); })
                     .then(data => {
                         if (data && data.length > 0) {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // Affichage Date
-                            const dateEl = document.getElementById(dateId);
-                            if(dateEl) {
-                                dateEl.innerText = formattedDate;
-                                dateEl.style.opacity = "1";
+                            // MISE A JOUR DU BOUTON INFO AVEC LA DATE
+                            const btnEl = document.getElementById(btnId);
+                            if(btnEl) {
+                                btnEl.innerText = `Date d'ajout : ${formattedDate}`;
+                                btnEl.setAttribute('data-date', formattedDate); // Stocke la date pour la modale
                             }
 
-                            // Affichage Badge
+                            // BADGE
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
-
                             if (diffDays <= 30) {
                                 const badgeEl = document.getElementById(badgeId);
-                                if(badgeEl) {
-                                    badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
-                                }
+                                if(badgeEl) badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
                             }
                         }
                     })
                     .catch(err => {
-                        const dateEl = document.getElementById(dateId);
-                        if(dateEl) dateEl.innerText = "";
+                        // En cas d'erreur ou pas de date, on laisse "Info" ou on met rien
                     });
-            } else {
-                const dateEl = document.getElementById(dateId);
-                if(dateEl) dateEl.innerText = "";
             }
-            // ----------------------------------------------------
 
-            // Clic Header pour ouvrir
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
-            // Clic Info
-            const infoBtn = div.querySelector(`#info-btn-${index}`);
+            const infoBtn = div.querySelector(`#${btnId}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
                     e.stopPropagation(); 
-                    
-                    // Récupération de la date affichée
-                    const dateElement = document.getElementById(dateId);
-                    const dateText = dateElement ? dateElement.innerText : "";
-
+                    // On récupère la date stockée ou affichée
+                    const dateText = infoBtn.getAttribute('data-date') || ""; 
                     openProjectModal(proj, dateText);
                 });
             }
@@ -283,20 +256,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- 9. COMPETENCES (CLASSIQUE : AVEC BOUTON) ---
+    // --- 9. COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
             const li = document.createElement("li"); 
-            // Note: PAS de classe 'interactive-card' ici (pas de curseur suiveur)
             li.className = "comp-card-container"; 
-            
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            
-            // On remet le bouton ▼
             li.innerHTML = `
                 <div class="comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
@@ -355,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. GITHUB API FOOTER ---
+    // --- 13. FOOTER API ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
@@ -364,27 +333,20 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
     }
     
-    // --- 14. LOGIQUE DU CURSEUR SUIVEUR ---
     initCursorHint();
 
-    // --- 15. KEYBOARD ---
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
             document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
-            // Reset toggles et hints
             document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
         }
         if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
     });
 });
-
-// ==========================================
-// FONCTIONS UTILITAIRES
-// ==========================================
 
 function initCursorHint() {
     let hintEl = document.getElementById("cursor-hint");
@@ -410,9 +372,8 @@ function initCursorHint() {
             hintEl.classList.add("visible");
         });
         
-        // Check si ouvert en bougeant dedans
         el.addEventListener("mousemove", (e) => {
-            // AJOUT DE LA SÉCURITÉ : Si on est sur le bouton info, on cache
+            // SECURITE : Si on survole le bouton date, le curseur disparait
             if (e.target.closest('.info-btn')) {
                 hintEl.classList.remove("visible");
                 return;
@@ -440,7 +401,7 @@ function initCursorHint() {
     });
 }
 
-// Fonction Modifiée : Accepte maintenant la date
+// Fonction Modifiée : "Date d'ajout :"
 function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
@@ -450,15 +411,14 @@ function openProjectModal(proj, dateStr = "") {
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
         
-        // Insertion de la date (si présente) juste avant la description
         let dateHtml = "";
         if (dateStr && dateStr !== "..." && dateStr !== "") {
-            dateHtml = `<div class="modal-date-display">📅 Mis à jour le : ${dateStr}</div>`;
+            // "Date d'ajout :" ici
+            dateHtml = `<div class="modal-date-display">Date d'ajout : ${dateStr}</div>`;
         }
 
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
         
-        // DANS LA MODALE : On affiche TOUS les tags (pas de limite)
         tagsEl.innerHTML = "";
         if(proj.tags && proj.tags.length > 0) {
             proj.tags.forEach(tag => {
@@ -478,7 +438,6 @@ function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card'); 
     
-    // Ferme l'actuel si ouvert
     if (c.style.display === 'block') {
         c.style.display = 'none';
         c.innerHTML = '';
@@ -486,7 +445,6 @@ function togglePDF(id, url) {
         return;
     }
 
-    // Ferme TOUS les autres
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
@@ -494,30 +452,25 @@ function togglePDF(id, url) {
         if(parent) parent.classList.remove('expanded');
     });
 
-    // Ouvre l'actuel
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     
     if(card) card.classList.add('expanded');
-    
     const hintEl = document.getElementById("cursor-hint");
     if(hintEl) hintEl.classList.remove("visible");
 }
 
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
-    const btn = headerEl.querySelector('.comp-toggle'); // On cible le bouton remis
+    const btn = headerEl.querySelector('.comp-toggle'); 
     
-    // Ferme les autres
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
         if (el.id !== id) el.style.display = 'none';
     });
-    // Reset buttons
     document.querySelectorAll('.comp-toggle').forEach(el => {
         if (el !== btn) el.classList.remove('active');
     });
 
-    // Bascule l'actuel
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
         if (btn) btn.classList.remove('active');
