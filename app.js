@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (AUTOMATISATION COMPLETE) ---
+    // --- 7. PROJETS (AVEC API GITHUB + CHEVRONS) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -152,12 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
         config.projects.forEach((proj, index) => {
             const vid = `viewer_${index}`;
             const fullPdfUrl = baseUrl + proj.path;
-            
-            // ID pour ciblage
             const dateId = `date-project-${index}`;
             const badgeId = `badge-project-${index}`;
 
-            // Tags (Affichage Carte)
+            // Tags
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
@@ -171,10 +169,10 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "project-card";
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // Construction HTML
+            // --- Construction HTML (Ajout du chevron .project-toggle) ---
             div.innerHTML = `
                 <span id="${dateId}" class="project-date">...</span>
-                <button class="info-btn" id="info-btn-${index}" title="Plus d'infos">
+                <button class="info-btn" id="info-btn-${index}" title="Détails du projet">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
                 <div class="card-header">
@@ -187,11 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
                     </div>
+                    <span class="chevron project-toggle">▼</span>
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // AUTOMATISATION : GITHUB API
+            // --- AUTOMATISATION : GITHUB API (Préservée) ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
                 
@@ -205,14 +204,14 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // 1. Affiche la date
+                            // Date
                             const dateEl = document.getElementById(dateId);
                             if(dateEl) {
                                 dateEl.innerText = formattedDate;
                                 dateEl.style.opacity = "1";
                             }
 
-                            // 2. Affiche Badge si < 30 jours
+                            // Badge "Nouveau" (< 30 jours)
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
@@ -234,11 +233,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(dateEl) dateEl.innerText = "";
             }
 
-            // Clic PDF
+            // --- GESTION DU CLIC (Ouverture PDF + Animation Chevron) ---
             const headerDiv = div.querySelector('.card-header');
-            headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+            const toggleBtn = div.querySelector('.project-toggle');
+            
+            headerDiv.addEventListener("click", () => {
+                const pdfContainer = document.getElementById(vid);
+                const isAlreadyOpen = pdfContainer.style.display === 'block';
 
-            // Clic Info
+                togglePDF(vid, fullPdfUrl); // Ouvre/Ferme le PDF (ferme les autres)
+
+                // Gestion des chevrons (réinitialise tout, active celui-ci si ouvert)
+                document.querySelectorAll('.project-toggle').forEach(el => el.classList.remove('active'));
+                
+                if (!isAlreadyOpen) {
+                    toggleBtn.classList.add('active');
+                }
+            });
+
+            // Clic Info (Modale)
             const infoBtn = div.querySelector(`#info-btn-${index}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
@@ -276,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // Note: Le bouton a la classe 'comp-toggle' pour le style CSS
             li.innerHTML = `
                 <div class="comp-header">
                     <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
@@ -351,7 +363,9 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
+            // Reset toggles
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.project-toggle').forEach(el => el.classList.remove('active'));
         }
         if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
     });
@@ -394,10 +408,12 @@ function togglePDF(id, url) {
         c.innerHTML = '';
         return;
     }
+    // Close all other PDFs
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
     });
+    // Open this one
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
 }
