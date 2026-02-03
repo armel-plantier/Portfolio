@@ -438,9 +438,7 @@ function createToggleBtn(container, limit, txtMore) {
     const btn = document.createElement("button");
     btn.className = "load-more-btn";
     
-    // On met un texte plus incitatif par défaut (pour les projets)
-    // Astuce : On détecte si c'est la section projets par l'ID du container ou le contexte
-    // Mais pour rester générique, on utilise txtMore ou "Voir tous les projets" si c'est la grille
+    // On met un texte plus incitatif par défaut
     let defaultText = txtMore;
     if(container.id === "project-grid") defaultText = "Voir tous les projets";
 
@@ -468,7 +466,6 @@ function createToggleBtn(container, limit, txtMore) {
                     children[i].style.transform = "translateY(20px)";
                     children[i].style.transition = "all 0.4s ease";
                     
-                    // Léger délai pour fluidité
                     setTimeout(() => {
                         children[i].style.opacity = 1;
                         children[i].style.transform = "translateY(0)";
