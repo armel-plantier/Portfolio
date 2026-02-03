@@ -254,8 +254,8 @@ body.light-mode .comp-header:hover { background: #f9fafb; }
     width: 100%; 
     display: flex; 
     justify-content: center; 
-    /* MODIFICATION : Marge positive pour descendre le bouton sous le contenu */
-    margin-top: 30px; 
+    /* MODIFICATION : Marge augmentée pour bien décoller le bouton */
+    margin-top: 60px; 
     margin-bottom: 10px; 
     position: relative; 
     z-index: 10; 
