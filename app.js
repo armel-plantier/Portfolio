@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS ---
+    // --- 7. PROJETS (MODERNE : Hint, +X Tags, API GitHub) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -155,13 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const badgeId = `badge-project-${index}`;
             const btnId = `info-btn-${index}`;
 
-            // Tags +X logic
+            // --- GESTION DES TAGS (+X) ---
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
+                // 3 premiers tags
                 proj.tags.slice(0, 3).forEach(tag => {
                     cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
+                // Surplus
                 const remaining = proj.tags.length - 3;
                 if (remaining > 0) {
                     cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
@@ -175,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
             // HTML : Badge en haut à droite, Bouton Info rond en bas à droite
-            // NOTE: On utilise ${proj.icon} SANS escapeHTML pour le SVG
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </button>
 
                 <div class="card-header">
-                    <div class="icon">${proj.icon}</div>
+                    <div class="icon">${escapeHTML(proj.icon)}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description)}</p>
@@ -267,11 +268,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
-            
-            // NOTE: On utilise ${comp.icon} SANS escapeHTML
             li.innerHTML = `
                 <div class="comp-header">
-                    <div class="cert-icon-box">${comp.icon}</div>
+                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
@@ -297,11 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
             let buttonsHtml = '';
             if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
-            
-            // NOTE: On utilise une icône personnalisée si elle existe (cert.customIcon) ou un trophée SVG par défaut
-            const iconHtml = cert.customIcon ? cert.customIcon : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>`;
-
-            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">${iconHtml}</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
+            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
             if (cert.pdf) {
                 const actionsDiv = li.querySelector('.cert-actions');
                 const pdfBtn = document.createElement("button"); pdfBtn.className = "cert-btn pdf-btn"; pdfBtn.title = "Voir le diplôme"; pdfBtn.innerHTML = "📄";
