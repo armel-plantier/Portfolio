@@ -476,3 +476,12 @@ body.light-mode .hero-title { text-shadow: none; }
     .project-card, .cert-card-container, .comp-card-container { border: 1px solid #ddd; box-shadow: none; break-inside: avoid; margin-bottom: 20px; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
+
+/* Cibler les SVG à l'intérieur de vos conteneurs d'icônes */
+.competence-card .icon svg, 
+.cert-icon svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor; /* Permet au SVG de prendre la couleur du texte parent */
+    vertical-align: middle;
+}
