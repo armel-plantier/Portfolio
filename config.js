@@ -57,7 +57,7 @@ const config = {
             title: "Mise en place d’un serveur de journalisation Graylog",
             description: "Short Description", 
             longDescription: "Long Description",
-            path: "active_directory.pdf", 
+            path: "graylog.pdf", 
             icon: ``,
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
