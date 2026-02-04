@@ -477,27 +477,31 @@ body.light-mode .hero-title { text-shadow: none; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
 
-/* --- GESTION UNIVERSELLE DES SVG (Projets, Compétences, etc.) --- */
+/* --- GESTION UNIVERSELLE DES ICONES (SVG + IMAGES PNG/JPG) --- */
 
-/* Règle par défaut pour tous les SVG dans des zones d'icônes */
-.icon svg, 
-.timeline-icon svg, 
-.skill-icon svg {
+/* Règle par défaut : l'image/svg prend toute la place disponible */
+.icon svg, .icon img,
+.timeline-icon svg, .timeline-icon img,
+.skill-icon svg, .skill-icon img {
     display: block;
     margin: 0 auto;
-    width: 100%; /* S'adapte à la taille du conteneur parent */
+    width: 100%; 
     height: 100%;
+    object-fit: contain;
 }
 
-/* Force une taille spécifique pour les CARTES PROJETS */
-.project-card .icon svg {
-    width: 48px;
-    height: 48px;
+/* Force une taille spécifique pour les CARTES PROJETS (SVG + IMAGES) */
+.project-card .icon svg,
+.project-card .icon img {
+    width: 48px !important;  /* Le !important force le redimensionnement */
+    height: 48px !important;
+    object-fit: contain;
 }
 
-/* Force une taille spécifique pour les COMPÉTENCES (si vous en mettez plus tard) */
-.competence-card .icon svg, 
-.skill-item svg {
-    width: 40px; 
-    height: 40px;
+/* Force une taille spécifique pour les COMPÉTENCES */
+.competence-card .icon svg,
+.competence-card .icon img,
+.skill-item svg, .skill-item img {
+    width: 40px !important; 
+    height: 40px !important;
 }
