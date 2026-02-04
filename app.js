@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- VERIFICATION CONFIG ---
     if (typeof config === 'undefined') { 
         console.error("ERREUR : config.js n'est pas chargé."); 
         return; 
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
     };
 
-    // --- THEME ---
+    // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- PROFIL ---
+    // --- 2. REMPLISSAGE PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
     const avatarEl = document.getElementById("profile-avatar");
     if(avatarEl) avatarEl.src = config.profile.avatar;
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- MODALES ---
+    // --- 3. MODALES (CONTACT & LEGAL) ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
 
-    // --- EMAIL / CAPTCHA ---
+    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
     const captchaContainer = document.getElementById("captcha-container");
     const emailResultArea = document.getElementById("email-result-area");
@@ -117,12 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // --- MODALE PROJET (FERMETURE) ---
     const projectModal = document.getElementById("project-modal");
     const projectCloseBtn = document.getElementById("project-close-btn");
     if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
     window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-    // --- NAVIGATION ---
+    // --- 5. NAVIGATION ---
     const navList = document.getElementById("nav-list");
     if(navList && config.navigation) {
         config.navigation.forEach(item => {
@@ -134,13 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- SKILLS ---
+    // --- 6. COMPETENCES (HEADER TAGS) ---
     const skillsContainer = document.getElementById("skills-section");
     if(skillsContainer && config.skills) {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- PROJETS ---
+    // --- 7. PROJETS (MODERNE : Hint, +X Tags, API GitHub) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -153,13 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const badgeId = `badge-project-${index}`;
             const btnId = `info-btn-${index}`;
 
-            // Tags +X logic
+            // --- GESTION DES TAGS (+X) ---
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
+                // 3 premiers tags
                 proj.tags.slice(0, 3).forEach(tag => {
                     cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
                 });
+                // Surplus
                 const remaining = proj.tags.length - 3;
                 if (remaining > 0) {
                     cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
@@ -172,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML : Bouton SVG Rond
+            // HTML : Badge en haut à droite, Bouton Info rond en bas à droite
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
@@ -202,13 +206,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             const commitDate = new Date(data[0].commit.author.date);
                             const formattedDate = commitDate.toLocaleDateString('fr-FR');
                             
-                            // Stockage de la date pour la modale
+                            // Stocke la date dans le bouton (pour l'envoyer à la modale)
                             const btnEl = document.getElementById(btnId);
                             if(btnEl) {
                                 btnEl.setAttribute('data-date', formattedDate);
                             }
 
-                            // Badge
+                            // Affiche le badge si récent
                             const today = new Date();
                             const timeDiff = Math.abs(today - commitDate);
                             const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
@@ -221,13 +225,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     .catch(err => { });
             }
 
+            // Clic sur la carte (sauf bouton info)
             const headerDiv = div.querySelector('.card-header');
             headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
 
+            // Clic sur le bouton Info
             const infoBtn = div.querySelector(`#${btnId}`);
             if(infoBtn) {
                 infoBtn.addEventListener("click", (e) => {
-                    e.stopPropagation(); 
+                    e.stopPropagation(); // Empêche l'ouverture du PDF
                     const dateText = infoBtn.getAttribute('data-date') || ""; 
                     openProjectModal(proj, dateText);
                 });
@@ -239,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- PARCOURS ---
+    // --- 8. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     if(expList && config.experiences) {
@@ -252,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
 
-    // --- COMPETENCES ---
+    // --- 9. COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
@@ -277,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- CERTIFICATIONS ---
+    // --- 10. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -302,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- TYPEWRITER ---
+    // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
         const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
@@ -310,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(type, 500);
     }
 
-    // --- HEADER / SCROLL ---
+    // --- 12. HEADER SCROLL & MOBILE ---
     const header = document.querySelector('.app-header');
     const menuIcon = document.querySelector('.menu-icon'); 
     const navCapsule = document.querySelector('.nav-capsule');
@@ -320,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- GITHUB API ---
+    // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
@@ -344,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// --- CURSOR HINT ---
 function initCursorHint() {
     let hintEl = document.getElementById("cursor-hint");
     if (!hintEl) {
@@ -395,7 +402,7 @@ function initCursorHint() {
     });
 }
 
-// Fonction Modifiée : Date dans la modale uniquement
+// --- OUVERTURE MODALE (Date au dessus de la description) ---
 function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
@@ -410,7 +417,7 @@ function openProjectModal(proj, dateStr = "") {
             dateHtml = `<div class="modal-date-display">📅 Date d'ajout : ${dateStr}</div>`;
         }
 
-        // On injecte uniquement la date et la description brute venant de config.js
+        // Concaténation Date + Description
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
         
         tagsEl.innerHTML = "";
@@ -428,10 +435,12 @@ function openProjectModal(proj, dateStr = "") {
     }
 }
 
+// --- OUVERTURE PDF + SCROLL + REMONTEE EN HAUT ---
 function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card'); 
     
+    // Ferme l'actuel
     if (c.style.display === 'block') {
         c.style.display = 'none';
         c.innerHTML = '';
@@ -439,6 +448,7 @@ function togglePDF(id, url) {
         return;
     }
 
+    // Ferme TOUS les autres
     document.querySelectorAll('.pdf-container').forEach(el => {
         el.style.display = 'none';
         el.innerHTML = '';
@@ -446,10 +456,20 @@ function togglePDF(id, url) {
         if(parent) parent.classList.remove('expanded');
     });
 
+    // Ouvre le nouveau
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     
-    if(card) card.classList.add('expanded');
+    if(card) {
+        card.classList.add('expanded');
+        
+        // SCROLL AUTOMATIQUE VERS LA CARTE
+        setTimeout(() => {
+            const y = card.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        }, 100);
+    }
+    
     const hintEl = document.getElementById("cursor-hint");
     if(hintEl) hintEl.classList.remove("visible");
 }
@@ -457,14 +477,8 @@ function togglePDF(id, url) {
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
     const btn = headerEl.querySelector('.comp-toggle'); 
-    
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => {
-        if (el.id !== id) el.style.display = 'none';
-    });
-    document.querySelectorAll('.comp-toggle').forEach(el => {
-        if (el !== btn) el.classList.remove('active');
-    });
-
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
     if (menu.style.display === 'block') {
         menu.style.display = 'none';
         if (btn) btn.classList.remove('active');
@@ -481,20 +495,14 @@ function toggleCertPDF(id, url) {
         viewer.innerHTML = '';
         return;
     }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-    });
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
     viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 }
 
 function createToggleBtn(container, limit, txtMore) {
-    const div = document.createElement("div");
-    div.className = "load-more-container";
-    const btn = document.createElement("button");
-    btn.className = "load-more-btn";
-    btn.innerHTML = `<span>↓</span> ${txtMore}`;
+    const div = document.createElement("div"); div.className = "load-more-container";
+    const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`;
     let expanded = false;
     btn.addEventListener("click", () => {
         expanded = !expanded;
