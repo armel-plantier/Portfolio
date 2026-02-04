@@ -91,15 +91,15 @@ const config = {
     experiences: [
         {
             date: "Décembre 2025 - Février 2026",
-            role: "Stagiaire Administrateur Système et réseau",
+            role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
             description: "Mise en place du protocole 802.1x sur 3 éphad \n Fog : Création, Déploiement et gestion d'images \n WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
-            date: "2022 - 2023",
-            role: "Technicien Support",
-            company: "Entreprise B",
-            description: "66666666"
+            date: "Mai 2025 - Juin 2026",
+            role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
+            company: "Ellix Informatique",
+            description: "Un serveur DNS Pi-Hole (Blocklist /Analyse des requêtes DNS / Filtrage publicitaire) \n Serveur Graylog (Centralisation et analyse des logs du SI) \n Active directory (GPO, Audits de sécurité, Gestion d'Unités d'Organisation) \n Un routeur Netgate (Avec interface pfSense) \n 2 clients Windows (simulant des postes utilisateurs) \n Serveur DHCP (Via Windows serveur et via Debian 12)"
         },
         {
             date: "2020 - 2022",
