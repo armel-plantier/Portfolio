@@ -90,16 +90,16 @@ const config = {
     // --- 5. EXPÉRIENCES ---
     experiences: [
         {
-            date: "2023 - Présent",
-            role: "Administrateur Système Junior",
-            company: "Entreprise A",
+            date: "Décembre 2025 - Février 2026",
+            role: "Stagiaire Administrateur Système et réseau",
+            company: "Fondation Hospitalière de la Miséricorde",
             description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
         },
         {
             date: "2022 - 2023",
             role: "Technicien Support",
             company: "Entreprise B",
-            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+            description: "Mise en place du protocole 802.1x sur 3 éphad, Fog : Création, Déploiement et gestion d'images, WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
             date: "2020 - 2022",
