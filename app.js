@@ -13,6 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
     };
 
+    // --- FONCTION INTELLIGENTE (FLEXIBLE) ---
+    // Cette fonction vérifie si c'est une image (chemin fichier) ou un emoji/svg brut
+    const renderIcon = (iconString) => {
+        if (!iconString) return '';
+        const lower = iconString.toLowerCase();
+        
+        // Détecte si c'est une image (locale ou URL complète https://...)
+        if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
+            // C'est un fichier image : on crée une balise IMG
+            return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
+        } else {
+            // C'est un emoji ou du code SVG brut (copié-collé)
+            return iconString;
+        }
+    };
+
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
@@ -176,8 +192,10 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // HTML : Badge en haut à droite, Bouton Info rond en bas à droite
-            // --- MODIFICATION ICI : escapeHTML retiré de proj.icon ---
+            // --- APPEL DE LA FONCTION INTELLIGENTE ICI ---
+            // On transforme le texte de la config (ex: "assets/logo.png" ou "🚀") en HTML valide
+            const renderedIcon = renderIcon(proj.icon);
+
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
@@ -186,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </button>
 
                 <div class="card-header">
-                    <div class="icon">${proj.icon}</div>
+                    <div class="icon">${renderedIcon}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description)}</p>
@@ -270,10 +288,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // --- MODIFICATION ICI : escapeHTML retiré de comp.icon ---
+            // --- APPEL DE LA FONCTION INTELLIGENTE ICI AUSSI ---
+            const renderedIcon = renderIcon(comp.icon);
+
             li.innerHTML = `
                 <div class="comp-header">
-                    <div class="cert-icon-box">${comp.icon}</div>
+                    <div class="cert-icon-box">${renderedIcon}</div>
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
