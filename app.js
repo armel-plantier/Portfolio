@@ -547,20 +547,43 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
-
-// --- 14. LIEN CONTACT DANS MENTIONS LEGALES ---
-    const legalLink = document.getElementById("legal-contact-link");
-    const legalModal = document.getElementById("legal-modal");
-    const mainEmailTrigger = document.getElementById("email-trigger");
-
-    if (legalLink && mainEmailTrigger) {
-        legalLink.addEventListener("click", (e) => {
-            e.preventDefault(); // Empêche le lien de recharger la page
+// --- 14. PROTECTION EMAIL MENTIONS LÉGALES (IN-PLACE) ---
+    const btnReveal = document.getElementById("btn-reveal-email");
+    
+    if (btnReveal) {
+        btnReveal.addEventListener("click", function(e) {
+            e.preventDefault();
             
-            // 1. On ferme la modale "Mentions Légales"
-            if(legalModal) legalModal.style.display = "none";
-            
-            // 2. On simule un clic sur le vrai bouton Contact pour lancer le Captcha
-            mainEmailTrigger.click();
+            // 1. On masque le lien de clic pour éviter les doubles clics
+            this.style.opacity = "0.5";
+            this.style.pointerEvents = "none";
+            this.textContent = "Chargement du test de sécurité...";
+
+            // 2. On rend le Captcha dynamiquement
+            // Assurez-vous que le script Turnstile est bien chargé dans le <head>
+            if (typeof turnstile !== 'undefined') {
+                turnstile.render('#legal-captcha-target', {
+                    sitekey: 'VOTRE_CLOUDFLARE_SITE_KEY', // <--- METTEZ VOTRE CLE ICI
+                    theme: 'auto',
+                    callback: function(token) {
+                        // 3. SUCCÈS : Le captcha est validé
+                        console.log("Captcha validé !");
+                        
+                        // Email encodé en Base64 pour éviter le scraping simple
+                        // "contact@armel-plantier.com" donne :
+                        const secret = "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20="; 
+                        const decodedEmail = atob(secret);
+
+                        // On affiche l'email en clair et cliquable
+                        const container = document.getElementById("legal-email-container");
+                        container.innerHTML = `<a href="mailto:${decodedEmail}" style="color: var(--text); font-weight: bold;">${decodedEmail}</a>`;
+
+                        // On supprime le widget captcha visuellement
+                        document.getElementById("legal-captcha-target").innerHTML = "";
+                    }
+                });
+            } else {
+                alert("Erreur : Impossible de charger Cloudflare Turnstile.");
+            }
         });
     }
