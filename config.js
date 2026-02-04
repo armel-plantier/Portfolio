@@ -3,7 +3,7 @@ const config = {
     navigation: [
         { title: "Accueil", link: "#" },
         // CORRECTION ICI : #projets au lieu de #projects
-        { title: "Projets", link: "#projets" }, 
+        { title: "Projet TechNova", link: "#projets" }, 
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
         // CORRECTION ICI : #certifications au lieu de #certifs
