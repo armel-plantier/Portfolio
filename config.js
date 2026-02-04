@@ -100,12 +100,6 @@ const config = {
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
             description: "Un serveur DNS Pi-Hole (Blocklist /Analyse des requêtes DNS / Filtrage publicitaire) \n Serveur Graylog (Centralisation et analyse des logs du SI) \n Active directory (GPO, Audits de sécurité, Gestion d'Unités d'Organisation) \n Un routeur Netgate (Avec interface pfSense) \n 2 clients Windows (simulant des postes utilisateurs) \n Serveur DHCP (Via Windows serveur et via Debian 12)"
-        },
-        {
-            date: "2020 - 2022",
-            role: "Projets Personnels",
-            company: "Home Lab",
-            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
     ],
 
