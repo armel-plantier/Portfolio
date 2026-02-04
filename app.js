@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </button>
 
                 <div class="card-header">
-                    <div class="icon">${escapeHTML(proj.icon)}</div>
+                <div class="icon">${proj.icon}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description)}</p>
