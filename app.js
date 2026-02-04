@@ -547,3 +547,20 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
+
+// --- 14. LIEN CONTACT DANS MENTIONS LEGALES ---
+    const legalLink = document.getElementById("legal-contact-link");
+    const legalModal = document.getElementById("legal-modal");
+    const mainEmailTrigger = document.getElementById("email-trigger");
+
+    if (legalLink && mainEmailTrigger) {
+        legalLink.addEventListener("click", (e) => {
+            e.preventDefault(); // Empêche le lien de recharger la page
+            
+            // 1. On ferme la modale "Mentions Légales"
+            if(legalModal) legalModal.style.display = "none";
+            
+            // 2. On simule un clic sur le vrai bouton Contact pour lancer le Captcha
+            mainEmailTrigger.click();
+        });
+    }
