@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
             // HTML : Badge en haut à droite, Bouton Info rond en bas à droite
+            // --- MODIFICATION ICI : escapeHTML retiré de proj.icon ---
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
                 
@@ -185,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </button>
 
                 <div class="card-header">
-                <div class="icon">${proj.icon}</div>
+                    <div class="icon">${proj.icon}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description)}</p>
@@ -268,9 +269,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
             const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
+            
+            // --- MODIFICATION ICI : escapeHTML retiré de comp.icon ---
             li.innerHTML = `
                 <div class="comp-header">
-                    <div class="cert-icon-box">${escapeHTML(comp.icon)}</div>
+                    <div class="cert-icon-box">${comp.icon}</div>
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
