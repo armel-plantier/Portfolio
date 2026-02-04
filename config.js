@@ -10,108 +10,128 @@ const config = {
 
     // --- 2. PROFIL & RÉSEAUX ---
     profile: {
-        name: "Armel Plantier",
-        status: "Étudiant Admin Sys & Réseau",
-        bio: "Passionné par l'infrastructure, la virtualisation et la sécurité. En route vers l'expertise DevOps.",
-        avatar: "image_d427db.png", // Votre image
-        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%236366f1%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22>AP</text></svg>",
-        
-        // Configuration GitHub pour l'API (Mettez vos vrais infos)
         githubUser: "armel-plantier", 
         githubRepo: "Portfolio", 
 
-        // Sécurité Email (Optionnel)
-        emailEncoded: "Y29udGFjdDFAYXJtZWwtcGxhbnRpZXIuY29t", // Exemple base64
-        turnstileSiteKey: "" 
+        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
+        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
+        name: "Armel Plantier",
+        typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cyber",
+        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        status: "Recherche active d'alternance",
+        
+        emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
+        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
     },
 
     social: {
-        github: "https://github.com/",
-        linkedin: "https://linkedin.com/"
+        github: "https://github.com/armel-plantier",
+        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
-    // --- 3. PROJETS (AVEC SVG) ---
+    // --- 3. TAGS HEADER ---
+    skills: [ "🐧 Linux", "🪟 Windows", "🕸️ Réseau", "🛡️ Sécurité" ],
+
+    // --- 4. PROJETS (AUTOMATISÉS) ---
+    // Pas de date ni de isNew ici. Le script va chercher la date du commit sur GitHub.
     projects: [
         {
-            title: "Infrastructure HA",
-            // ICONE SVG : SERVEUR
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>`,
-            description: "Cluster Proxmox haute disponibilité avec Ceph.",
-            path: "Projet1.pdf",
-            tags: ["Proxmox", "Ceph", "Debian", "Cluster", "HA"] 
+            title: "Mise en place réseau TechNova",
+            description: "Architecture, VLANs et documentation technique.",
+            longDescription: "Refonte complète de l'architecture réseau PME : Segmentation en 5 VLANs, routage inter-VLAN sur cœur Cisco, ACLs strictes et documentation technique détaillée (50 pages).",
+            path: "reseau-technova.pdf", 
+            icon: "🌐",
+            tags: ["Cisco", "VLAN", "Switching", "OSPF", "ACL", "Visio"]
         },
         {
-            title: "Monitoring Stack",
-            // ICONE SVG : GRAPHIQUE / ACTIVITÉ
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`,
-            description: "Déploiement Zabbix & Grafana via Ansible.",
-            path: "Projet2.pdf",
-            tags: ["Zabbix", "Grafana", "Ansible"]
+            title: "Gestion de l'Active Directory",
+            description: "GPO, gestion des utilisateurs et DNS.", 
+            longDescription: "Administration d'un parc de 200 utilisateurs. Création de GPO de sécurité et scripts PowerShell pour l'automatisation des comptes.",
+            path: "active_directory.pdf", 
+            icon: "🖥️",
+            tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
-        // Ajoutez vos autres projets avec des SVG ici...
+        {
+            title: "Audit Sécurité Wi-Fi",
+            description: "Test d'intrusion WPA3 et analyse de trames.",
+            path: "audit_wifi.pdf",        
+            icon: "🛡️",
+            tags: ["Wireshark", "Kali Linux", "Aircrack"]
+        },
+        {
+            title: "Hardening Linux",
+            description: "Sécurisation SSH et Firewall.",
+            path: "linux_hardening.pdf", 
+            icon: "🐧",
+            tags: ["Debian", "SSH", "Fail2Ban"]
+        },
+        {
+            title: "Projet Serveur Web",
+            description: "Configuration Apache/Nginx et Let's Encrypt.",
+            path: "web_server.pdf", 
+            icon: "🌍",
+            tags: ["Apache", "Nginx", "SSL"]
+        },
+        {
+            title: "Scripting Python Automation",
+            description: "Automatisation des sauvegardes via API.",
+            path: "python_script.pdf", 
+            icon: "🐍",
+            tags: ["Python", "API", "Backup"]
+        }
     ],
 
-    // --- 4. PARCOURS ---
+    // --- 5. EXPÉRIENCES ---
     experiences: [
         {
             date: "2023 - Présent",
-            role: "Alternant Administrateur Système",
-            company: "Entreprise X",
-            description: "Gestion du parc informatique, support N2/N3, déploiement de solutions de sécurité."
+            role: "Administrateur Système Junior",
+            company: "Entreprise A",
+            description: "Gestion Active Directory, Support N2, déploiement de VM sur Proxmox."
         },
         {
-            date: "2021 - 2023",
-            role: "BTS SIO (SISR)",
-            company: "Lycée Y",
-            description: "Apprentissage des bases réseaux (Cisco), systèmes Windows/Linux et cybersécurité."
+            date: "2022 - 2023",
+            role: "Technicien Support",
+            company: "Entreprise B",
+            description: "Assistance utilisateurs, ticketing (GLPI), maintenance parc informatique."
+        },
+        {
+            date: "2020 - 2022",
+            role: "Projets Personnels",
+            company: "Home Lab",
+            description: "Création d'un serveur NAS, auto-hébergement (Nextcloud), apprentissage Linux."
         }
     ],
 
-    // --- 5. COMPÉTENCES (AVEC SVG) ---
+    // --- 6. COMPÉTENCES DÉTAILLÉES ---
     competences: [
         {
-            // ICONE SVG : TERMINAL
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>`,
-            name: "Système",
-            details: [ "Linux (Debian, RHEL)", "Windows Server", "Bash / PowerShell" ]
+            icon: "🐧",
+            name: "Administration Système",
+            details: [ "Linux Hardening (Debian, RHEL)", "Windows Server (AD, DNS, DHCP)", "Virtualisation (Proxmox, VMware)", "Scripting (Bash, Python)" ]
         },
         {
-            // ICONE SVG : RESEAU (GLOBE)
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
-            name: "Réseau",
-            details: [ "Cisco (Switching/Routing)", "Firewall (pfSense)", "VPN (Wireguard)" ]
+            icon: "🕸️",
+            name: "Réseau & Sécurité",
+            details: [ "Modèle OSI / TCP-IP", "Switching (VLAN, STP)", "Routing (OSPF, Static)", "Firewalling (pfSense, iptables)" ]
         },
         {
-            // ICONE SVG : OUTILS (CLÉ)
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
-            name: "DevOps & Outils",
-            details: [ "Docker", "Git", "Proxmox" ]
+            icon: "🛠️",
+            name: "Outils & DevOps",
+            details: [ "Docker & Docker Compose", "Git & GitHub", "Ansible (Basiques)", "Monitoring (Zabbix)" ]
         },
         {
-            // ICONE SVG : LANGUE (MESSAGE)
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`,
+            icon: "🇬🇧",
             name: "Langues",
-            details: [ "Anglais Technique", "Français" ]
+            details: [ "Anglais : B2 (Technique)", "Français : Langue maternelle" ]
         }
     ],
 
-    // --- 6. CERTIFICATIONS (AVEC SVG) ---
+    // --- 7. CERTIFICATIONS ---
     certifications: [
-        { 
-            name: "CCNA", 
-            issuer: "Cisco", 
-            url: "#", 
-            pdf: "",
-            // ICONE SVG : TROPHEE
-            customIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>`
-        },
-        { 
-            name: "SecNumAcadémie", 
-            issuer: "ANSSI", 
-            url: "#", 
-            pdf: "",
-            // ICONE SVG : MEDAILLE
-            customIcon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
-        }
+        { name: "CCNA (En cours)", issuer: "Cisco", url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html", pdf: "" },
+        { name: "SecNumAcadémie", issuer: "ANSSI", url: "https://secnumacademie.gouv.fr/", pdf: "secnum_anssi.pdf" },
+        { name: "Certification Pix", issuer: "Gouv.fr", url: "https://pix.fr/", pdf: "resultats_pix.pdf" }
     ]
 };
+Object.freeze(config);
