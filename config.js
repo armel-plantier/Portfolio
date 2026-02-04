@@ -41,7 +41,7 @@ const config = {
         longDescription: "Refonte complète de l'architecture réseau PME : Segmentation en 5 VLANs, routage inter-VLAN sur cœur Cisco, ACLs strictes et documentation technique détaillée (50 pages).",
         path: "reseau-technova.pdf",
         // J'ai remplacé l'emoji par votre SVG ci-dessous (encadré par des backticks ` )
-        icon: "Site/assets/technova-logo.png",
+        icon: "Site/assets/logo-technova.png",
         tags: ["Cisco", "VLAN", "Switching", "OSPF", "ACL", "Visio"]
     }, 
         {
