@@ -1,11 +1,13 @@
 const config = {
-    // --- 1. NAVIGATION ---
+// --- 1. NAVIGATION ---
     navigation: [
         { title: "Accueil", link: "#" },
-        { title: "Projets", link: "#projects" },
+        // CORRECTION ICI : #projets au lieu de #projects
+        { title: "Projets", link: "#projets" }, 
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifs" }
+        // CORRECTION ICI : #certifications au lieu de #certifs
+        { title: "Certifs", link: "#certifications" } 
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
