@@ -477,10 +477,27 @@ body.light-mode .hero-title { text-shadow: none; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
 
-/* --- FIX ICONE SVG PROJET --- */
-.project-card .icon svg {
-    width: 48px;  /* Ajustez la taille si besoin */
-    height: 48px;
+/* --- GESTION UNIVERSELLE DES SVG (Projets, Compétences, etc.) --- */
+
+/* Règle par défaut pour tous les SVG dans des zones d'icônes */
+.icon svg, 
+.timeline-icon svg, 
+.skill-icon svg {
     display: block;
     margin: 0 auto;
+    width: 100%; /* S'adapte à la taille du conteneur parent */
+    height: 100%;
+}
+
+/* Force une taille spécifique pour les CARTES PROJETS */
+.project-card .icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+/* Force une taille spécifique pour les COMPÉTENCES (si vous en mettez plus tard) */
+.competence-card .icon svg, 
+.skill-item svg {
+    width: 40px; 
+    height: 40px;
 }
