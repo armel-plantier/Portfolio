@@ -73,7 +73,7 @@ const config = {
             title: "Gestion des comptes locaux Linux",
             description: "Short Description", 
             longDescription: "Long Description",
-            path: "compyes-linux", 
+            path: "comptes-linux", 
             icon: ``,
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
