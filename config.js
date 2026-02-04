@@ -62,18 +62,18 @@ const config = {
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
         {
-            title: "Mise en place d’un serveur de journalisation Graylog",
+            title: "Connexion aux machines Linux via les utilisateurs Active Directory ",
             description: "Short Description", 
             longDescription: "Long Description",
-            path: "active_directory.pdf", 
+            path: "ad-linux.pdf", 
             icon: ``,
             tags: ["Graylog", "Logs", "Linux", "Debian"]
         },
         {
-            title: "Mise en place d’un serveur de journalisation Graylog",
+            title: "Gestion des comptes locaux Linux",
             description: "Short Description", 
             longDescription: "Long Description",
-            path: "active_directory.pdf", 
+            path: "compyes-linux", 
             icon: ``,
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
