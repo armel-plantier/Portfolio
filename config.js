@@ -58,7 +58,7 @@ const config = {
             description: "Short Description", 
             longDescription: "Long Description",
             path: "graylog.pdf", 
-            icon: ``,
+            icon: `https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/graylog.svg`,
             tags: ["Windows Server", "AD DS", "DNS", "PowerShell"]
         },
         {
