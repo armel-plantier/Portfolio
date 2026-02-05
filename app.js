@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
         fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); })
             .then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; })
-            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "System Ready"; });
+            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "Recherche de la dernière maj..."; });
     }
     
     initCursorHint();
