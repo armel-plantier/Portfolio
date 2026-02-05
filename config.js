@@ -133,12 +133,41 @@ experiences: [
         }
     ],
 
-    // --- 7. CERTIFICATIONS ---
+// --- 7. CERTIFICATIONS ---
     certifications: [
-        { name: "RootMe (En cours)", issuer: "root-me.org", url: "https://www.root-me.org/", pdf: "" },
-        { name: "Cyber101", issuer: "cyber101.com", url: "https://www.cyber101.com/fr/", pdf: "cyber101.pdf" },
-        { name: "SecNumAcadémie", issuer: "ANSSI", url: "https://secnumacademie.gouv.fr/", pdf: "secnum.pdf" },
-        { name: "Certification Pix", issuer: "Gouv.fr", url: "https://pix.fr/", pdf: "pix.pdf" }
+        { 
+            name: "RootMe (En cours)", 
+            issuer: "root-me.org", 
+            url: "https://www.root-me.org/", 
+            pdf: "",
+            // Icône Terminal / Hacker
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>`
+        },
+        { 
+            name: "Cyber101", 
+            issuer: "cyber101.com", 
+            url: "https://www.cyber101.com/fr/", 
+            pdf: "cyber101.pdf",
+            // Icône Bouclier / Sécurité
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
+        },
+        { 
+            name: "SecNumAcadémie", 
+            issuer: "ANSSI", 
+            url: "https://secnumacademie.gouv.fr/", 
+            pdf: "secnum.pdf",
+            // Icône Médaille / Gouvernementale
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
+        },
+        { 
+            name: "Certification Pix", 
+            issuer: "Gouv.fr", 
+            url: "https://pix.fr/", 
+            pdf: "pix.pdf",
+            // Icône Cible / Compétence
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`
+        }
     ]
+    
 };
 Object.freeze(config);
