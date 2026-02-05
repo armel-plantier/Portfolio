@@ -102,7 +102,9 @@ const config = {
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
-            description: "Mise en place du protocole 802.1x sur 3 éphad \n Fog : Création, Déploiement et gestion d'images \n WSUS : Mise à jour du script pour Windows 11 25h2"
+            description: `Mise en place du protocole 802.1x sur 3 éphad
+                            Fog : Création, Déploiement et gestion d'images
+                            WSUS : Mise à jour du script pour Windows 11 25h2`
         },
         {
             date: "Mai 2025 - Juin 2026",
