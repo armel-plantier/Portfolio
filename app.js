@@ -282,31 +282,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 // --- 10. CERTIFICATIONS ---
+    const certSection = document.getElementById("certifications"); // On récupère la section entière
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    
+    // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
+    let globalViewer = document.getElementById("global-cert-viewer");
+    if (!globalViewer && certList) {
+        globalViewer = document.createElement("div");
+        globalViewer.id = "global-cert-viewer";
+        // On l'insère juste avant la liste <ul>
+        certList.parentNode.insertBefore(globalViewer, certList);
+    }
+
     if(certList && config.certifications) {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li"); li.className = "cert-card-container";
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
             
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
-            const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
             
-            // --- MODIFICATION ICI : On utilise renderIcon ou une coupe par défaut ---
+            // Icône
             const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
             
             let buttonsHtml = '';
             if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
             
-            // On injecte ${iconDisplay} au lieu de l'emoji 🏆
-            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">${iconDisplay}</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
+            // Notez que j'ai retiré la div "cert-pdf-viewer" de l'intérieur de la carte
+            li.innerHTML = `
+                <div class="cert-header-row">
+                    <div class="cert-icon-box">${iconDisplay}</div>
+                    <div class="cert-info">
+                        <span class="cert-name">${escapeHTML(cert.name)}</span>
+                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
+                    </div>
+                    <div class="cert-actions">${buttonsHtml}</div>
+                </div>
+            `;
             
             if (cert.pdf) {
                 const act = li.querySelector('.cert-actions');
-                const pBtn = document.createElement("button"); pBtn.className = "cert-btn pdf-btn"; pBtn.innerHTML = "📄";
-                pBtn.addEventListener("click", () => { toggleCertPDF(viewerId, fullPdfUrl); });
+                const pBtn = document.createElement("button"); 
+                pBtn.className = "cert-btn pdf-btn"; 
+                pBtn.innerHTML = "📄";
+                // On appelle la nouvelle fonction toggleGlobalPDF
+                pBtn.addEventListener("click", (e) => { 
+                    // Optionnel : Retirer la classe active de tous les autres boutons
+                    document.querySelectorAll('.pdf-btn').forEach(b => b.style.background = '');
+                    // Mettre ce bouton en surbrillance
+                    pBtn.style.background = 'var(--primary)';
+                    pBtn.style.color = 'white';
+                    
+                    toggleGlobalPDF(fullPdfUrl); 
+                });
                 act.appendChild(pBtn);
             }
             certList.appendChild(li);
