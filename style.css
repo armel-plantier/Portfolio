@@ -334,9 +334,9 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 .cert-icon-box { 
     width: 45px; 
     height: 45px; 
-    background: rgba(99, 102, 241, 0.1); /* <--- C'est cette ligne qui crée le fond */
+    background: transparent; /* Fond retiré */
     color: var(--primary); 
-    border-radius: 10px; 
+    /* border-radius: 10px; <-- Supprimé car inutile sans fond */
     display: flex; 
     align-items: center; 
     justify-content: center; 
