@@ -19,7 +19,7 @@ const config = {
         avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
         name: "Armel Plantier",
         typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cybersécurité",
-        bio: "Passionné par l'architecture réseau et le durcissement système. J'aime automatiser avec Bash, configurer des VLANs et analyser des trames Wireshark.",
+        bio: "Passionné par l'architecture réseau, le durcissement système et la cybersécurité, j'aime construire des environnements robustes, automatisés et sécurisés dès la conception",
         status: "Recherche active d'alternance",
         
         emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
