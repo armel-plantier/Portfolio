@@ -618,7 +618,7 @@ body.light-mode .hero-title { text-shadow: none; }
     /* On garde la hauteur qui semblait bonne */
     top: 85px; 
     /* On le rapproche du bord droit pour l'aligner sous le bouton noir */
-    right: 35px; 
+    right: 50px; 
     
     background: var(--primary);
     color: white;
