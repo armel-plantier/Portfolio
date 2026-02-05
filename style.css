@@ -616,9 +616,9 @@ body.light-mode .hero-title { text-shadow: none; }
 .global-close-btn {
     position: absolute;
     /* On augmente 'top' pour le descendre sous le bouton du lecteur Google */
-    top: 65px; 
+    top: 85px; 
     /* On le remet à droite */
-    right: 15px;
+    right: 65px;
     
     background: var(--primary);
     color: white;
