@@ -102,14 +102,15 @@ experiences: [
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
-            // J'ai ajouté des <br> pour forcer le saut de ligne
-            description: "Mise en place du protocole 802.1x sur 3 éphad <br> Fog : Création, Déploiement et gestion d'images <br> WSUS : Mise à jour du script pour Windows 11 25h2"
+            // J'ai mis les \n ici pour toi :
+            description: "Mise en place du protocole 802.1x sur 3 éphad \n Fog : Création, Déploiement et gestion d'images \n WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
             date: "Mai 2025 - Juin 2026",
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
-            description: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS / Filtrage) <br> Serveur Graylog (Centralisation des logs) <br> Active Directory (GPO, Audits, UO) <br> Routeur Netgate (pfSense) <br> Serveur DHCP (Windows & Debian)"
+            // Idem ici :
+            description: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS) \n Serveur Graylog (Centralisation des logs) \n Active Directory (GPO, Audits, UO) \n Routeur Netgate (pfSense) \n Serveur DHCP (Windows & Debian)"
         }
     ],
 
