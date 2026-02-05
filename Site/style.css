@@ -615,10 +615,11 @@ body.light-mode .hero-title { text-shadow: none; }
 /* Bouton de fermeture dans le lecteur global */
 .global-close-btn {
     position: absolute;
-    /* On augmente 'top' pour le descendre sous le bouton du lecteur Google */
-    top: 65px; 
-    /* On le remet à droite */
-    right: 15px;
+    /* On descend plus bas pour être sous la barre d'outils noire */
+    top: 85px; 
+    /* On décale vers la gauche pour s'aligner avec le bouton "Pop-out" de Google */
+    /* Essayez 45px, si c'est encore trop à droite, augmentez à 50px ou 55px */
+    right: 45px;
     
     background: var(--primary);
     color: white;
@@ -629,7 +630,7 @@ body.light-mode .hero-title { text-shadow: none; }
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    z-index: 1000; /* Toujours au-dessus de l'iframe */
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
