@@ -618,7 +618,7 @@ body.light-mode .hero-title { text-shadow: none; }
     /* On augmente 'top' pour le descendre sous le bouton du lecteur Google */
     top: 85px; 
     /* On le remet à droite */
-    right: 45px;
+    right: 40px;
     
     background: var(--primary);
     color: white;
