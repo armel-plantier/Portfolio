@@ -496,7 +496,12 @@ body.light-mode .email-box { color: #333; border-color: #ccc; }
 
 body.light-mode .project-card, body.light-mode .cert-card-container, body.light-mode .comp-card-container { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-color: #e5e7eb; }
 body.light-mode .skill-tag { background: #ffffff; border-color: #e5e7eb; color: #4b5563; }
-body.light-mode .cert-icon-box { background: rgba(99, 102, 241, 0.1); color: #4f46e5; }
+
+body.light-mode .cert-icon-box { 
+    background: transparent; /* Fond retiré aussi en mode clair */
+    color: #4f46e5; 
+}
+
 body.light-mode .hero-title { text-shadow: none; }
 
 .error-body { display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; padding: 0 20px; background: var(--bg); }
