@@ -330,7 +330,21 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 .cert-card-container { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; display: flex; flex-direction: column; transition: all 0.3s ease; overflow: hidden; }
 .cert-card-container:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 .cert-header-row { display: flex; align-items: center; gap: 15px; width: 100%; }
-.cert-icon-box { width: 45px; height: 45px; background: rgba(99, 102, 241, 0.1); color: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+
+.cert-icon-box { 
+    width: 45px; 
+    height: 45px; 
+    background: rgba(99, 102, 241, 0.1); /* <--- C'est cette ligne qui crée le fond */
+    color: var(--primary); 
+    border-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.4rem; 
+    flex-shrink: 0; 
+}
+
+
 .cert-info { flex-grow: 1; }
 .cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
 .cert-issuer { display: block; font-size: 0.85rem; color: var(--muted); }
