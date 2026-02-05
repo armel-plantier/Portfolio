@@ -473,32 +473,44 @@ function toggleGlobalPDF(url) {
     // Si le viewer est inexistant, on arrête
     if (!viewer) return;
 
-    // Vérification : Est-ce qu'on clique sur le même PDF pour le fermer ?
-    const currentIframe = viewer.querySelector('iframe');
-    // On nettoie l'URL pour comparer proprement
     const encodedUrl = encodeURIComponent(url);
-    
-    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
-        // FERMETURE
+    const currentIframe = viewer.querySelector('iframe');
+
+    // --- FONCTION DE FERMETURE (Réutilisable) ---
+    const closeViewer = () => {
         viewer.style.display = 'none';
-        viewer.innerHTML = '';
-        // Reset des boutons actifs
-        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+        viewer.innerHTML = ''; // Vide le contenu pour arrêter le chargement
+        // Reset des boutons actifs (retire la couleur violette)
+        document.querySelectorAll('.pdf-btn').forEach(b => { 
+            b.style.background = ''; 
+            b.style.color = ''; 
+        });
+    };
+
+    // 1. CAS : On clique pour FERMER (si c'est le même PDF déjà ouvert)
+    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
+        closeViewer();
         return;
     }
 
-    // OUVERTURE
+    // 2. CAS : On clique pour OUVRIR
     viewer.style.display = 'block';
+    
+    // On injecte le HTML avec un ID spécifique pour le bouton
     viewer.innerHTML = `
-        <button class="global-close-btn" title="Fermer" onclick="
-            document.getElementById('global-cert-viewer').style.display='none'; 
-            document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
-        ">×</button>
+        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
         <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
     `;
 
-    // Scroll fluide vers le lecteur pour une bonne UX
-    const headerOffset = 120; // Marge pour ne pas être caché par le header fixe
+    // --- RENDRE LE BOUTON FONCTIONNEL ---
+    // On sélectionne le bouton qu'on vient de créer et on lui ajoute l'événement click
+    const closeBtn = document.getElementById("btn-close-viewer");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeViewer);
+    }
+
+    // Scroll fluide vers le lecteur
+    const headerOffset = 120;
     const elementPosition = viewer.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
