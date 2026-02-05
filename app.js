@@ -585,3 +585,26 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
+
+// --- 14. COMPTEUR DE VISITES (API EXTERNE) ---
+    const viewCountEl = document.getElementById("view-count");
+    if (viewCountEl && config.profile.githubUser) {
+        // On utilise l'API gratuite countapi.xyz
+        // namespace = ton nom github, key = 'portfolio-visits'
+        const namespace = config.profile.githubUser.replace(/[^a-zA-Z0-9]/g, ''); // Nettoyage nom
+        const key = "portfolio-visits";
+        
+        // Cette URL incrémente le compteur (+1) à chaque chargement
+        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+            .then(res => res.json())
+            .then(data => {
+                viewCountEl.innerHTML = `👁️ ${data.value} Vues`;
+            })
+            .catch(err => {
+                console.warn("Compteur error:", err);
+                viewCountEl.style.display = "none"; // On cache s'il y a une erreur
+                // On cache aussi le séparateur précédent s'il existe
+                const prevSep = viewCountEl.previousElementSibling;
+                if(prevSep && prevSep.classList.contains('separator')) prevSep.style.display = "none";
+            });
+    }
