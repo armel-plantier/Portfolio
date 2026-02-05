@@ -522,3 +522,8 @@ body.light-mode .hero-title { text-shadow: none; }
     width: 40px !important; 
     height: 40px !important;
 }
+
+/* Ajoute ceci à la fin de ton fichier style.css */
+#exp-list p, .timeline-content p {
+    white-space: pre-line;
+}
