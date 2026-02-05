@@ -271,27 +271,42 @@ document.addEventListener("DOMContentLoaded", () => {
         config.experiences.forEach((exp, index) => {
             const li = document.createElement("li"); li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-            
-            // --- AJOUT DU POINT VIOLET ICI ---
-            // On crée un petit cercle violet avec une ombre (box-shadow)
-            const purpleDot = `<span style="
-                display: inline-block; 
-                width: 10px; 
-                height: 10px; 
-                background-color: #6366f1; 
-                border-radius: 50%; 
-                margin-right: 8px; 
-                box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
-            "></span>`;
 
-            // On l'insère juste avant la date
+            // 1. On découpe la description à chaque saut de ligne (\n)
+            const lines = exp.description.split('\n');
+
+            // 2. On transforme chaque ligne en un élément de liste avec le point violet
+            const listHtml = lines.map(line => {
+                const cleanLine = line.trim();
+                if (!cleanLine) return ''; // On ignore les lignes vides
+                return `
+                    <li style="display: flex; align-items: flex-start; margin-bottom: 6px;">
+                        <span style="
+                            display: inline-block;
+                            min-width: 6px;
+                            height: 6px;
+                            background-color: #6366f1; 
+                            border-radius: 50%;
+                            margin-top: 9px; 
+                            margin-right: 12px;
+                            box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+                        "></span>
+                        <span style="line-height: 1.6;">${escapeHTML(cleanLine)}</span>
+                    </li>`;
+            }).join('');
+
+            // 3. On assemble le tout
+            // Note : J'ai mis la date en bleu/violet aussi pour rappeler le thème
             li.innerHTML = `
-                <div style="display:flex; align-items:center; margin-bottom: 5px;">
-                    ${purpleDot} 
-                    <span class="timeline-date" style="margin:0;">${escapeHTML(exp.date)}</span>
-                </div>
-                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
-                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
+                <span class="timeline-date" style="color:#6366f1; font-weight:bold;">${escapeHTML(exp.date)}</span>
+                <h4 class="timeline-title" style="margin-top:5px; margin-bottom:10px;">
+                    ${escapeHTML(exp.role)} 
+                    <span style="font-weight:400;opacity:0.8; font-size: 0.9em;">@ ${escapeHTML(exp.company)}</span>
+                </h4>
+                
+                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">
+                    ${listHtml}
+                </ul>
             `;
             
             expList.appendChild(li);
