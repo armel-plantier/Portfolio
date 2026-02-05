@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-    // --- 10. CERTIFICATIONS ---
+// --- 10. CERTIFICATIONS ---
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
     const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
@@ -289,12 +289,20 @@ document.addEventListener("DOMContentLoaded", () => {
         config.certifications.forEach((cert, index) => {
             const li = document.createElement("li"); li.className = "cert-card-container";
             if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+            
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
             const viewerId = `cert_view_${index}`;
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
+            
+            // --- MODIFICATION ICI : On utilise renderIcon ou une coupe par défaut ---
+            const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
+            
             let buttonsHtml = '';
             if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
-            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
+            
+            // On injecte ${iconDisplay} au lieu de l'emoji 🏆
+            li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">${iconDisplay}</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
+            
             if (cert.pdf) {
                 const act = li.querySelector('.cert-actions');
                 const pBtn = document.createElement("button"); pBtn.className = "cert-btn pdf-btn"; pBtn.innerHTML = "📄";
