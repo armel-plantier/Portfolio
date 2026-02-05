@@ -615,21 +615,29 @@ body.light-mode .hero-title { text-shadow: none; }
 /* Bouton de fermeture dans le lecteur global */
 .global-close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
+    top: 15px;      /* Décalage du haut */
+    right: 15px;    /* Décalage de la droite */
     background: var(--primary);
     color: white;
-    border: none;
-    width: 30px;
-    height: 30px;
+    border: 2px solid rgba(255,255,255,0.2);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    z-index: 10;
-    transition: transform 0.2s;
+    z-index: 1000;  /* TRÈS IMPORTANT : Pour passer au-dessus de l'iframe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+
 .global-close-btn:hover {
     transform: scale(1.1);
+    background: #ef4444; /* Devient rouge au survol pour indiquer "Fermer" */
+    border-color: white;
 }
 
 @keyframes slideDown {
