@@ -264,14 +264,36 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-    // --- 8. PARCOURS ---
+// --- 8. PARCOURS ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     if(expList && config.experiences) {
         config.experiences.forEach((exp, index) => {
             const li = document.createElement("li"); li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
-            li.innerHTML = `<span class="timeline-date">${escapeHTML(exp.date)}</span><h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4><p class="timeline-desc">${escapeHTML(exp.description)}</p>`;
+            
+            // --- AJOUT DU POINT VIOLET ICI ---
+            // On crée un petit cercle violet avec une ombre (box-shadow)
+            const purpleDot = `<span style="
+                display: inline-block; 
+                width: 10px; 
+                height: 10px; 
+                background-color: #6366f1; 
+                border-radius: 50%; 
+                margin-right: 8px; 
+                box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+            "></span>`;
+
+            // On l'insère juste avant la date
+            li.innerHTML = `
+                <div style="display:flex; align-items:center; margin-bottom: 5px;">
+                    ${purpleDot} 
+                    <span class="timeline-date" style="margin:0;">${escapeHTML(exp.date)}</span>
+                </div>
+                <h4 class="timeline-title">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8;">@ ${escapeHTML(exp.company)}</span></h4>
+                <p class="timeline-desc">${escapeHTML(exp.description)}</p>
+            `;
+            
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
