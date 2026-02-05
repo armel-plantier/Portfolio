@@ -135,9 +135,10 @@ experiences: [
 
     // --- 7. CERTIFICATIONS ---
     certifications: [
-        { name: "CCNA (En cours)", issuer: "Cisco", url: "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html", pdf: "" },
-        { name: "SecNumAcadémie", issuer: "ANSSI", url: "https://secnumacademie.gouv.fr/", pdf: "secnum_anssi.pdf" },
-        { name: "Certification Pix", issuer: "Gouv.fr", url: "https://pix.fr/", pdf: "resultats_pix.pdf" }
+        { name: "RootMe (En cours)", issuer: "root-me.org", url: "https://www.root-me.org/", pdf: "" },
+        { name: "Cyber101", issuer: "cyber101.com", url: "https://www.cyber101.com/fr/", pdf: "cyber101.pdf" },
+        { name: "SecNumAcadémie", issuer: "ANSSI", url: "https://secnumacademie.gouv.fr/", pdf: "secnum.pdf" },
+        { name: "Certification Pix", issuer: "Gouv.fr", url: "https://pix.fr/", pdf: "pix.pdf" }
     ]
 };
 Object.freeze(config);
