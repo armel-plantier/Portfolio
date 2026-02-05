@@ -613,11 +613,13 @@ body.light-mode .hero-title { text-shadow: none; }
 }
 
 /* Bouton de fermeture dans le lecteur global */
-/* NOUVEAU CODE */
 .global-close-btn {
     position: absolute;
-    top: 15px;
-    left: 15px; /* <--- On le met à gauche */
+    /* On augmente 'top' pour le descendre sous le bouton du lecteur Google */
+    top: 65px; 
+    /* On le remet à droite */
+    right: 15px;
+    
     background: var(--primary);
     color: white;
     border: 2px solid rgba(255,255,255,0.2);
@@ -627,7 +629,7 @@ body.light-mode .hero-title { text-shadow: none; }
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1000; /* Toujours au-dessus de l'iframe */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -637,7 +639,7 @@ body.light-mode .hero-title { text-shadow: none; }
 
 .global-close-btn:hover {
     transform: scale(1.1);
-    background: #ef4444; /* Devient rouge au survol pour indiquer "Fermer" */
+    background: #ef4444;
     border-color: white;
 }
 
