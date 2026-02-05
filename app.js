@@ -313,8 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
-
-    // --- 9. COMPETENCES ---
+// --- 9. COMPETENCES ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
@@ -323,9 +322,11 @@ document.addEventListener("DOMContentLoaded", () => {
             li.className = "comp-card-container"; 
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>• ${escapeHTML(d)}</li>`).join('');
             
-            // --- APPEL DE LA FONCTION INTELLIGENTE ICI AUSSI ---
+            // CORRECTION ICI : J'ai retiré le "• " qui était devant ${escapeHTML(d)}
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join('');
+            
+            // --- APPEL DE LA FONCTION INTELLIGENTE ---
             const renderedIcon = renderIcon(comp.icon);
 
             li.innerHTML = `
@@ -334,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
                     <button class="cert-btn comp-toggle">▼</button>
                 </div>
-                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none;">${details}</ul>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none; list-style: none;">${details}</ul>
             `;
             const headerEl = li.querySelector('.comp-header');
             headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
