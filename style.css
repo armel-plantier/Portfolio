@@ -398,9 +398,31 @@ body.light-mode .comp-header:hover { background: #f9fafb; }
 
 .comp-dropdown-menu { padding: 15px 20px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); list-style: none; }
 body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; border-top: 1px solid #f3f4f6; color: #333333; }
-.comp-dropdown-menu li { margin-bottom: 8px; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-.comp-dropdown-menu li::before { content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; }
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
+
+/* NOUVEAU CODE */
+.comp-dropdown-menu li { 
+    margin-bottom: 8px; 
+    font-size: 0.9rem; 
+    color: var(--muted); 
+    display: flex; 
+    align-items: flex-start; /* 1. Aligne le tout en haut */
+    gap: 8px; 
+}
+
+/* On ajuste ensuite le point violet spécifiquement */
+.comp-dropdown-menu li::before { 
+    content: ''; 
+    width: 6px; 
+    height: 6px; 
+    background: var(--primary); 
+    border-radius: 50%; 
+    opacity: 0.7; 
+    /* 2. On empêche le point de s'écraser */
+    flex-shrink: 0; 
+    /* 3. On le descend un peu pour l'aligner avec la 1ère ligne de texte */
+    margin-top: 7px; 
+}
 
 /* ------------------------------------------- */
 /* --- CURSOR HINT --- */
