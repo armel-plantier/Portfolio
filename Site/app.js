@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
-    setupModal("info-trigger", "info-modal", "info-close-btn"); // ✅ Ajout modale info
+    setupModal("info-trigger", "info-modal", "info-close-btn"); 
 
     // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
@@ -162,8 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
-    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/Projet-TechNova/`; 
+    
+    // CORRECTION : Utilisation de l'objet URL pour gérer proprement le retour arrière (../)
+    // Cela évite les bugs de chemin dans certaines configurations
+    const baseUrl = new URL('../Documents/Projet-Technova/', window.location.href).href;
+
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
@@ -205,7 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet-TechNova/${proj.path}&page=1&per_page=1`;
+                // Le chemin GitHub reste relatif à la racine du dépôt
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet-Technova/${proj.path}&page=1&per_page=1`;
                 fetch(apiUrl).then(res => res.json()).then(data => {
                     if (data && data.length > 0) {
                         const commitDate = new Date(data[0].commit.author.date);
@@ -263,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li"); li.className = "comp-card-container"; 
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); // ✅ Point blanc retiré
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); 
             const renderedIcon = renderIcon(comp.icon);
 
             li.innerHTML = `
@@ -281,18 +285,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
     }
 
-// --- 10. CERTIFICATIONS ---
-    const certSection = document.getElementById("certifications"); // On récupère la section entière
+    // --- 10. CERTIFICATIONS ---
+    const certSection = document.getElementById("certifications"); 
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
-    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    
+    // CORRECTION : Même chose pour les certifications, on sécurise le chemin
+    // Je pars du principe que les certifs sont aussi dans Documents, peut-être dans Certifs ou Projet-Technova
+    // Si tes certifs sont dans Projet-Technova, change "Certifs/" par "Projet-Technova/"
+    const certBaseUrl = new URL('../Documents/Certifs/', window.location.href).href; 
     
     // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
     let globalViewer = document.getElementById("global-cert-viewer");
     if (!globalViewer && certList) {
         globalViewer = document.createElement("div");
         globalViewer.id = "global-cert-viewer";
-        // On l'insère juste avant la liste <ul>
         certList.parentNode.insertBefore(globalViewer, certList);
     }
 
@@ -304,13 +311,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const issuer = cert.issuer ? cert.issuer : "Certification"; 
             const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
             
-            // Icône
             const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
             
             let buttonsHtml = '';
             if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
             
-            // Notez que j'ai retiré la div "cert-pdf-viewer" de l'intérieur de la carte
             li.innerHTML = `
                 <div class="cert-header-row">
                     <div class="cert-icon-box">${iconDisplay}</div>
@@ -327,14 +332,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const pBtn = document.createElement("button"); 
                 pBtn.className = "cert-btn pdf-btn"; 
                 pBtn.innerHTML = "📄";
-                // On appelle la nouvelle fonction toggleGlobalPDF
                 pBtn.addEventListener("click", (e) => { 
-                    // Optionnel : Retirer la classe active de tous les autres boutons
                     document.querySelectorAll('.pdf-btn').forEach(b => b.style.background = '');
-                    // Mettre ce bouton en surbrillance
                     pBtn.style.background = 'var(--primary)';
                     pBtn.style.color = 'white';
-                    
                     toggleGlobalPDF(fullPdfUrl); 
                 });
                 act.appendChild(pBtn);
