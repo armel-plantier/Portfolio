@@ -527,3 +527,24 @@ body.light-mode .hero-title { text-shadow: none; }
 #exp-list p, .timeline-content p {
     white-space: pre-line;
 }
+
+/* AJOUTE ÇA À LA FIN DE TON STYLE.CSS */
+
+/* Le petit bouton "i" */
+.info-bubble-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary); /* Gris discret par défaut */
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s, transform 0.2s;
+    opacity: 0.7;
+}
+
+.info-bubble-btn:hover {
+    color: var(--primary); /* Devient violet au survol */
+    opacity: 1;
+    transform: scale(1.1); /* Léger effet de zoom */
+}
