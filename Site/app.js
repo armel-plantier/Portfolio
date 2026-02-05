@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/Projet-TechNova`; 
+    const baseUrl = `${window.location.origin}${path}Documents/Projet-TechNova/`; 
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet-TechNova/${proj.path}&page=1&per_page=1`;
                 fetch(apiUrl).then(res => res.json()).then(data => {
                     if (data && data.length > 0) {
                         const commitDate = new Date(data[0].commit.author.date);
