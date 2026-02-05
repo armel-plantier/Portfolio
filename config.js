@@ -97,20 +97,19 @@ const config = {
     ],
 
     // --- 5. EXPÉRIENCES ---
-    experiences: [
+experiences: [
         {
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
-            description: `Mise en place du protocole 802.1x sur 3 éphad
-                            Fog : Création, Déploiement et gestion d'images
-                            WSUS : Mise à jour du script pour Windows 11 25h2`
+            // J'ai ajouté des <br> pour forcer le saut de ligne
+            description: "Mise en place du protocole 802.1x sur 3 éphad <br> Fog : Création, Déploiement et gestion d'images <br> WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
             date: "Mai 2025 - Juin 2026",
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
-            description: "Un serveur DNS Pi-Hole (Blocklist /Analyse des requêtes DNS / Filtrage publicitaire) \n Serveur Graylog (Centralisation et analyse des logs du SI) \n Active directory (GPO, Audits de sécurité, Gestion d'Unités d'Organisation) \n Un routeur Netgate (Avec interface pfSense) \n 2 clients Windows (simulant des postes utilisateurs) \n Serveur DHCP (Via Windows serveur et via Debian 12)"
+            description: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS / Filtrage) <br> Serveur Graylog (Centralisation des logs) <br> Active Directory (GPO, Audits, UO) <br> Routeur Netgate (pfSense) <br> Serveur DHCP (Windows & Debian)"
         }
     ],
 
