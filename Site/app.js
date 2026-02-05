@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/`; 
+    const baseUrl = `${window.location.origin}${path}Documents/Projet-TechNova`; 
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
