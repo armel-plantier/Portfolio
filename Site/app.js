@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Site/Documents/Projet/${proj.path}&page=1&per_page=1`;
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
                 fetch(apiUrl).then(res => res.json()).then(data => {
                     if (data && data.length > 0) {
                         const commitDate = new Date(data[0].commit.author.date);
