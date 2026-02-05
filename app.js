@@ -466,3 +466,44 @@ function createToggleBtn(container, limit, txtMore) {
     div.appendChild(btn);
     container.parentNode.insertBefore(div, container.nextSibling);
 }
+
+function toggleGlobalPDF(url) {
+    const viewer = document.getElementById("global-cert-viewer");
+    
+    // Si le viewer est inexistant, on arrête
+    if (!viewer) return;
+
+    // Vérification : Est-ce qu'on clique sur le même PDF pour le fermer ?
+    const currentIframe = viewer.querySelector('iframe');
+    // On nettoie l'URL pour comparer proprement
+    const encodedUrl = encodeURIComponent(url);
+    
+    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
+        // FERMETURE
+        viewer.style.display = 'none';
+        viewer.innerHTML = '';
+        // Reset des boutons actifs
+        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+        return;
+    }
+
+    // OUVERTURE
+    viewer.style.display = 'block';
+    viewer.innerHTML = `
+        <button class="global-close-btn" title="Fermer" onclick="
+            document.getElementById('global-cert-viewer').style.display='none'; 
+            document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+        ">×</button>
+        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
+    `;
+
+    // Scroll fluide vers le lecteur pour une bonne UX
+    const headerOffset = 120; // Marge pour ne pas être caché par le header fixe
+    const elementPosition = viewer.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
