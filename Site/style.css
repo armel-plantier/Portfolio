@@ -615,11 +615,10 @@ body.light-mode .hero-title { text-shadow: none; }
 /* Bouton de fermeture dans le lecteur global */
 .global-close-btn {
     position: absolute;
-    /* On descend plus bas pour être sous la barre d'outils noire */
+    /* On garde la hauteur qui semblait bonne */
     top: 85px; 
-    /* On décale vers la gauche pour s'aligner avec le bouton "Pop-out" de Google */
-    /* Essayez 45px, si c'est encore trop à droite, augmentez à 50px ou 55px */
-    right: 45px;
+    /* On le rapproche du bord droit pour l'aligner sous le bouton noir */
+    right: 20px; 
     
     background: var(--primary);
     color: white;
