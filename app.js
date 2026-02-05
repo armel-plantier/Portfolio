@@ -13,18 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
     };
 
-    // --- FONCTION INTELLIGENTE (FLEXIBLE) ---
-    // Cette fonction vérifie si c'est une image (chemin fichier) ou un emoji/svg brut
     const renderIcon = (iconString) => {
         if (!iconString) return '';
         const lower = iconString.toLowerCase();
-        
-        // Détecte si c'est une image (locale ou URL complète https://...)
         if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
-            // C'est un fichier image : on crée une balise IMG
             return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
         } else {
-            // C'est un emoji ou du code SVG brut (copié-collé)
             return iconString;
         }
     };
@@ -70,21 +64,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const lkBtn = document.getElementById("link-linkedin");
     if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
 
-    // --- 3. MODALES (CONTACT & LEGAL) ---
+    // --- 3. MODALES (CONTACT, LEGAL & INFO) ---
     function setupModal(triggerId, modalId, closeBtnId) {
         const trigger = document.getElementById(triggerId);
         const modal = document.getElementById(modalId);
         const closeBtn = document.getElementById(closeBtnId);
         if (trigger && modal) {
-            trigger.addEventListener("click", (e) => { e.preventDefault(); modal.style.display = "flex"; });
+            trigger.addEventListener("click", (e) => { 
+                e.preventDefault(); 
+                modal.style.display = "flex"; 
+                document.body.style.overflow = "hidden";
+            });
         }
-        const closeFn = () => { if(modal) modal.style.display = "none"; };
+        const closeFn = () => { 
+            if(modal) modal.style.display = "none"; 
+            document.body.style.overflow = "auto";
+        };
         if (closeBtn) closeBtn.addEventListener("click", closeFn);
         window.addEventListener("click", (e) => { if(e.target === modal) closeFn(); });
     }
 
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
+    setupModal("info-trigger", "info-modal", "info-close-btn"); // ✅ Ajout modale info
 
     // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
@@ -158,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
     }
 
-    // --- 7. PROJETS (MODERNE : Hint, +X Tags, API GitHub) ---
+    // --- 7. PROJETS ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `${window.location.origin}${path}Documents/`; 
@@ -171,19 +173,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const badgeId = `badge-project-${index}`;
             const btnId = `info-btn-${index}`;
 
-            // --- GESTION DES TAGS (+X) ---
             let cardTagsHTML = '';
             if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
                 cardTagsHTML = '<div class="tags-container">';
-                // 3 premiers tags
-                proj.tags.slice(0, 3).forEach(tag => {
-                    cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`;
-                });
-                // Surplus
+                proj.tags.slice(0, 3).forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
                 const remaining = proj.tags.length - 3;
-                if (remaining > 0) {
-                    cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
-                }
+                if (remaining > 0) cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
                 cardTagsHTML += '</div>';
             }
 
@@ -192,17 +187,12 @@ document.addEventListener("DOMContentLoaded", () => {
             div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
-            // --- APPEL DE LA FONCTION INTELLIGENTE ICI ---
-            // On transforme le texte de la config (ex: "assets/logo.png" ou "🚀") en HTML valide
             const renderedIcon = renderIcon(proj.icon);
-
             div.innerHTML = `
                 <span id="${badgeId}" class="badge-container-abs"></span>
-                
                 <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
-
                 <div class="card-header">
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
@@ -214,57 +204,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            // --- GITHUB API ---
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/${proj.path}&page=1&per_page=1`;
-                
-                fetch(apiUrl)
-                    .then(res => { if (!res.ok) throw new Error("Fichier introuvable"); return res.json(); })
-                    .then(data => {
-                        if (data && data.length > 0) {
-                            const commitDate = new Date(data[0].commit.author.date);
-                            const formattedDate = commitDate.toLocaleDateString('fr-FR');
-                            
-                            // Stocke la date dans le bouton (pour l'envoyer à la modale)
-                            const btnEl = document.getElementById(btnId);
-                            if(btnEl) {
-                                btnEl.setAttribute('data-date', formattedDate);
-                            }
-
-                            // Affiche le badge si récent
-                            const today = new Date();
-                            const timeDiff = Math.abs(today - commitDate);
-                            const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); 
-                            if (diffDays <= 30) {
-                                const badgeEl = document.getElementById(badgeId);
-                                if(badgeEl) badgeEl.innerHTML = `<span class="new-badge">Nouveau</span>`;
-                            }
-                        }
-                    })
-                    .catch(err => { });
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    if (data && data.length > 0) {
+                        const commitDate = new Date(data[0].commit.author.date);
+                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                        const diffDays = Math.ceil(Math.abs(new Date() - commitDate) / (1000 * 60 * 60 * 24)); 
+                        if (diffDays <= 30) { const bad = document.getElementById(badgeId); if(bad) bad.innerHTML = `<span class="new-badge">Nouveau</span>`; }
+                    }
+                }).catch(() => {});
             }
 
-            // Clic sur la carte (sauf bouton info)
-            const headerDiv = div.querySelector('.card-header');
-            headerDiv.addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
-
-            // Clic sur le bouton Info
-            const infoBtn = div.querySelector(`#${btnId}`);
-            if(infoBtn) {
-                infoBtn.addEventListener("click", (e) => {
-                    e.stopPropagation(); // Empêche l'ouverture du PDF
-                    const dateText = infoBtn.getAttribute('data-date') || ""; 
-                    openProjectModal(proj, dateText);
-                });
-            }
+            div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+            const infoB = div.querySelector(`#${btnId}`);
+            if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
 
             grid.appendChild(div);
         });
-        
         if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
     }
 
-// --- 8. PARCOURS ---
+    // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
     if(expList && config.experiences) {
@@ -272,61 +234,36 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li"); li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
 
-            // 1. On découpe la description à chaque saut de ligne (\n)
             const lines = exp.description.split('\n');
-
-            // 2. On transforme chaque ligne en un élément de liste avec le point violet
             const listHtml = lines.map(line => {
                 const cleanLine = line.trim();
-                if (!cleanLine) return ''; // On ignore les lignes vides
+                if (!cleanLine) return '';
                 return `
                     <li style="display: flex; align-items: flex-start; margin-bottom: 6px;">
-                        <span style="
-                            display: inline-block;
-                            min-width: 6px;
-                            height: 6px;
-                            background-color: #6366f1; 
-                            border-radius: 50%;
-                            margin-top: 9px; 
-                            margin-right: 12px;
-                            box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
-                        "></span>
+                        <span style="display: inline-block; min-width: 6px; height: 6px; background-color: #6366f1; border-radius: 50%; margin-top: 9px; margin-right: 12px; box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);"></span>
                         <span style="line-height: 1.6;">${escapeHTML(cleanLine)}</span>
                     </li>`;
             }).join('');
 
-            // 3. On assemble le tout
-            // Note : J'ai mis la date en bleu/violet aussi pour rappeler le thème
             li.innerHTML = `
                 <span class="timeline-date" style="color:#6366f1; font-weight:bold;">${escapeHTML(exp.date)}</span>
-                <h4 class="timeline-title" style="margin-top:5px; margin-bottom:10px;">
-                    ${escapeHTML(exp.role)} 
-                    <span style="font-weight:400;opacity:0.8; font-size: 0.9em;">@ ${escapeHTML(exp.company)}</span>
-                </h4>
-                
-                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">
-                    ${listHtml}
-                </ul>
+                <h4 class="timeline-title" style="margin-top:5px; margin-bottom:10px;">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8; font-size: 0.9em;">@ ${escapeHTML(exp.company)}</span></h4>
+                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">${listHtml}</ul>
             `;
-            
             expList.appendChild(li);
         });
         if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
     }
-// --- 9. COMPETENCES ---
+
+    // --- 9. COMPETENCES (SANS POINTS BLANCS) ---
     const compList = document.getElementById("comp-list");
     const COMP_LIMIT = 5;
     if(compList && config.competences) {
         config.competences.forEach((comp, index) => {
-            const li = document.createElement("li"); 
-            li.className = "comp-card-container"; 
+            const li = document.createElement("li"); li.className = "comp-card-container"; 
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
-            
-            // CORRECTION ICI : J'ai retiré le "• " qui était devant ${escapeHTML(d)}
-            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join('');
-            
-            // --- APPEL DE LA FONCTION INTELLIGENTE ---
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); // ✅ Point blanc retiré
             const renderedIcon = renderIcon(comp.icon);
 
             li.innerHTML = `
@@ -337,8 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <ul id="${dropId}" class="comp-dropdown-menu" style="display:none; list-style: none;">${details}</ul>
             `;
-            const headerEl = li.querySelector('.comp-header');
-            headerEl.addEventListener("click", (e) => { toggleComp(dropId, headerEl); });
+            const h = li.querySelector('.comp-header');
+            h.addEventListener("click", () => { toggleComp(dropId, h); });
             compList.appendChild(li);
         });
         if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
@@ -359,10 +296,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
             li.innerHTML = `<div class="cert-header-row"><div class="cert-icon-box">🏆</div><div class="cert-info"><span class="cert-name">${escapeHTML(cert.name)}</span><span class="cert-issuer">${escapeHTML(issuer)}</span></div><div class="cert-actions">${buttonsHtml}</div></div><div id="${viewerId}" class="cert-pdf-viewer"></div>`;
             if (cert.pdf) {
-                const actionsDiv = li.querySelector('.cert-actions');
-                const pdfBtn = document.createElement("button"); pdfBtn.className = "cert-btn pdf-btn"; pdfBtn.title = "Voir le diplôme"; pdfBtn.innerHTML = "📄";
-                pdfBtn.addEventListener("click", () => { toggleCertPDF(viewerId, fullPdfUrl); });
-                actionsDiv.appendChild(pdfBtn);
+                const act = li.querySelector('.cert-actions');
+                const pBtn = document.createElement("button"); pBtn.className = "cert-btn pdf-btn"; pBtn.innerHTML = "📄";
+                pBtn.addEventListener("click", () => { toggleCertPDF(viewerId, fullPdfUrl); });
+                act.appendChild(pBtn);
             }
             certList.appendChild(li);
         });
@@ -390,10 +327,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        const repoUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`;
-        fetch(repoUrl).then(response => { if (!response.ok) throw new Error("Repo not found"); return response.json(); })
-            .then(data => { const date = new Date(data.pushed_at); const formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'}); updateEl.innerHTML = `Maj : ${formattedDate}`; })
-            .catch(err => { console.warn("GitHub API Error:", err); updateEl.innerText = "Recherche de la dernière maj..."; });
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
+            const date = new Date(d.pushed_at);
+            updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
+        }).catch(() => { updateEl.innerText = "System Ready"; });
+    }
+
+    // --- 14. COMPTEUR DE VUES ---
+    const viewCountEl = document.getElementById("view-count");
+    if (viewCountEl && config.profile.githubUser) {
+        const namespace = config.profile.githubUser.replace(/[^a-zA-Z0-9]/g, '');
+        fetch(`https://api.countapi.xyz/hit/${namespace}/portfolio-visits`)
+            .then(res => res.json()).then(data => { viewCountEl.innerHTML = `👁️ ${data.value} Vues`; })
+            .catch(() => { viewCountEl.style.display = "none"; });
     }
     
     initCursorHint();
@@ -401,8 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
-            document.querySelectorAll('.pdf-container').forEach(el => { el.style.display='none'; el.innerHTML=''; });
-            document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.pdf-container, .cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
             document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
             document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
             document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
@@ -411,128 +356,41 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// --- CURSOR HINT ---
+// --- FONCTIONS AUXILIAIRES ---
 function initCursorHint() {
     let hintEl = document.getElementById("cursor-hint");
-    if (!hintEl) {
-        hintEl = document.createElement("div");
-        hintEl.id = "cursor-hint";
-        document.body.appendChild(hintEl);
-    }
-
-    document.addEventListener("mousemove", (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        hintEl.style.transform = `translate(${x + 15}px, ${y + 15}px)`;
-    });
-
-    const interactiveElements = document.querySelectorAll('.interactive-card');
-    
-    interactiveElements.forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            if (el.classList.contains('expanded')) return;
-            const text = el.getAttribute('data-hint') || "Voir";
-            hintEl.innerText = text;
-            hintEl.classList.add("visible");
-        });
-        
-        el.addEventListener("mousemove", (e) => {
-            if (e.target.closest('.info-btn')) {
-                hintEl.classList.remove("visible");
-                return;
-            }
-            if (el.classList.contains('expanded')) {
-                hintEl.classList.remove("visible");
-            } else {
-                if (!hintEl.classList.contains("visible")) hintEl.classList.add("visible");
-            }
-        });
-        
-        el.addEventListener("mouseleave", () => {
-            hintEl.classList.remove("visible");
-        });
-
-        el.addEventListener("click", () => {
-             hintEl.classList.remove("visible");
-        });
-    });
-
-    const noHintElements = document.querySelectorAll('[data-no-hint="true"]');
-    noHintElements.forEach(btn => {
-        btn.addEventListener("mouseenter", (e) => { e.stopPropagation(); hintEl.classList.remove("visible"); });
+    if (!hintEl) { hintEl = document.createElement("div"); hintEl.id = "cursor-hint"; document.body.appendChild(hintEl); }
+    document.addEventListener("mousemove", (e) => { hintEl.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`; });
+    document.querySelectorAll('.interactive-card').forEach(el => {
+        el.addEventListener("mouseenter", () => { if (!el.classList.contains('expanded')) { hintEl.innerText = el.getAttribute('data-hint') || "Voir"; hintEl.classList.add("visible"); } });
+        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
+        el.addEventListener("mouseleave", () => hintEl.classList.remove("visible"));
+        el.addEventListener("click", () => hintEl.classList.remove("visible"));
     });
 }
 
-// --- OUVERTURE MODALE (Date au dessus de la description) ---
 function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
     const descEl = document.getElementById("modal-project-desc");
     const tagsEl = document.getElementById("modal-project-tags");
-
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
-        
-        let dateHtml = "";
-        if (dateStr && dateStr !== "..." && dateStr !== "") {
-            dateHtml = `<div class="modal-date-display">📅 Date d'ajout : ${dateStr}</div>`;
-        }
-
-        // Concaténation Date + Description
+        let dateHtml = dateStr ? `<div class="modal-date-display" style="margin-bottom:10px; font-size:0.8rem; opacity:0.7;">📅 Ajouté le : ${dateStr}</div>` : "";
         descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
-        
-        tagsEl.innerHTML = "";
-        if(proj.tags && proj.tags.length > 0) {
-            proj.tags.forEach(tag => {
-                const span = document.createElement("span");
-                span.className = "project-tag";
-                span.innerText = tag;
-                tagsEl.appendChild(span);
-            });
-        } else {
-            tagsEl.innerHTML = "<span style='color:var(--muted); font-size:0.8rem;'>Aucun tag</span>";
-        }
+        tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
         modal.style.display = "flex";
     }
 }
 
-// --- OUVERTURE PDF + SCROLL + REMONTEE EN HAUT ---
 function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card'); 
-    
-    // Ferme l'actuel
-    if (c.style.display === 'block') {
-        c.style.display = 'none';
-        c.innerHTML = '';
-        if(card) card.classList.remove('expanded'); 
-        return;
-    }
-
-    // Ferme TOUS les autres
-    document.querySelectorAll('.pdf-container').forEach(el => {
-        el.style.display = 'none';
-        el.innerHTML = '';
-        const parent = el.closest('.project-card');
-        if(parent) parent.classList.remove('expanded');
-    });
-
-    // Ouvre le nouveau
+    if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
-    
-    if(card) {
-        card.classList.add('expanded');
-        
-        // SCROLL AUTOMATIQUE VERS LA CARTE
-        setTimeout(() => {
-            const y = card.getBoundingClientRect().top + window.scrollY - 100;
-            window.scrollTo({top: y, behavior: 'smooth'});
-        }, 100);
-    }
-    
-    const hintEl = document.getElementById("cursor-hint");
-    if(hintEl) hintEl.classList.remove("visible");
+    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 }
 
 function toggleComp(id, headerEl) {
@@ -540,22 +398,14 @@ function toggleComp(id, headerEl) {
     const btn = headerEl.querySelector('.comp-toggle'); 
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
-    if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-        if (btn) btn.classList.remove('active');
-    } else {
-        menu.style.display = 'block';
-        if (btn) btn.classList.add('active');
-    }
+    const isOpened = menu.style.display === 'block';
+    menu.style.display = isOpened ? 'none' : 'block';
+    if(btn) isOpened ? btn.classList.remove('active') : btn.classList.add('active');
 }
 
 function toggleCertPDF(id, url) {
     const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') {
-        viewer.style.display = 'none';
-        viewer.innerHTML = '';
-        return;
-    }
+    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
     viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
@@ -567,19 +417,12 @@ function createToggleBtn(container, limit, txtMore) {
     let expanded = false;
     btn.addEventListener("click", () => {
         expanded = !expanded;
-        const children = container.children;
-        for (let i = 0; i < children.length; i++) {
+        Array.from(container.children).forEach((child, i) => {
             if (i >= limit) {
-                if (expanded) {
-                    children[i].classList.remove("hidden-item");
-                    children[i].style.opacity = 0;
-                    setTimeout(() => children[i].style.opacity = 1, 50);
-                } else {
-                    children[i].classList.add("hidden-item");
-                    children[i].style.opacity = 0;
-                }
+                if (expanded) { child.classList.remove("hidden-item"); child.style.opacity = 0; setTimeout(() => child.style.opacity = 1, 50); }
+                else { child.classList.add("hidden-item"); child.style.opacity = 0; }
             }
-        }
+        });
         btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
     });
     div.appendChild(btn);
