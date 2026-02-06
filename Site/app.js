@@ -1,3 +1,25 @@
+// --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
+
+const escapeHTML = (str) => {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
+const renderIcon = (iconString) => {
+    if (!iconString) return '';
+    const lower = iconString.toLowerCase();
+    if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
+        return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
+    } else {
+        return iconString;
+    }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- VERIFICATION CONFIG ---
@@ -5,23 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("ERREUR : config.js n'est pas chargé."); 
         return; 
     }
-
-    const escapeHTML = (str) => {
-        if (!str) return '';
-        return String(str)
-            .replace(/&/g, "&amp;") .replace(/</g, "&lt;") .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;") .replace(/'/g, "&#039;");
-    };
-
-    const renderIcon = (iconString) => {
-        if (!iconString) return '';
-        const lower = iconString.toLowerCase();
-        if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
-            return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
-        } else {
-            return iconString;
-        }
-    };
 
     // --- 1. THEME ---
     const themeBtn = document.getElementById("theme-toggle");
