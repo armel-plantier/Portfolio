@@ -86,7 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
-    setupModal("info-trigger", "info-modal", "info-close-btn"); // ✅ Ajout modale info
+    
+    // ✅ Ajout de la modale info (Vérifiez que l'ID dans le HTML est bien 'info-trigger')
+    setupModal("info-trigger", "info-modal", "info-close-btn"); 
 
     // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
@@ -263,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li"); li.className = "comp-card-container"; 
             if (index >= COMP_LIMIT) li.classList.add("hidden-item");
             const dropId = `comp-drop-${index}`;
-            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); // ✅ Point blanc retiré
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); 
             const renderedIcon = renderIcon(comp.icon);
 
             li.innerHTML = `
