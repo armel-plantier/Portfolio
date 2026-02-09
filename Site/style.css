@@ -569,8 +569,6 @@ body.light-mode .hero-title { text-shadow: none; }
     white-space: pre-line;
 }
 
-/* AJOUTE ÇA À LA FIN DE TON STYLE.CSS */
-
 /* Le petit bouton "i" */
 .info-bubble-btn {
     background: none;
@@ -646,4 +644,22 @@ body.light-mode .hero-title { text-shadow: none; }
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CORRECTION BADGE MENU --- */
+/* C'est la partie qui empêche le badge d'écraser le texte "Projets" */
+nav ul li a,
+.nav-capsule ul li a,
+.dropdown-content a {
+    display: flex !important;       
+    align-items: center;            
+    gap: 10px;                     
+    white-space: nowrap;            
+}
+
+nav ul li a span,
+.nav-capsule ul li a span,
+.dropdown-content a span {
+    flex-shrink: 0;                
+    margin-left: auto;              
 }
