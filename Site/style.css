@@ -253,7 +253,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
-/* BADGE EN HAUT A DROITE (pour les cartes) */
+/* BADGE EN HAUT A DROITE */
 .badge-container-abs {
     position: absolute;
     top: 25px;
@@ -515,26 +515,38 @@ body.light-mode .hero-title { text-shadow: none; }
 .global-close-btn:hover { transform: scale(1.1); background: #ef4444; border-color: white; }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- FIX BADGE MENU --- */
+/* --- CORRECTION FINALE BADGE MENU --- */
+
+/* 1. Le conteneur du lien (Nav et Dropdown) */
 nav ul li a,
 .nav-capsule ul li a,
 .dropdown-content a {
-    display: flex !important;       
-    align-items: center;            
-    gap: 10px;                     
-    white-space: nowrap;
-    position: relative; /* Pour le contexte */
+    display: flex !important;       /* Active Flexbox */
+    align-items: center !important; /* Centre verticalement */
+    justify-content: flex-start;    /* Aligne à gauche */
+    gap: 10px;                      /* Espace entre Texte et Badge */
+    width: 100%;                    /* Prend la largeur dispo */
+    overflow: hidden;               /* Cache ce qui dépasse */
 }
 
-/* On CIBLE SPECIFIQUEMENT le badge ou son conteneur pour casser la position absolue */
+/* 2. Le Badge (Le carré vert) */
+/* On cible toutes les variantes possibles de structure du badge */
 nav ul li a span,
-.nav-capsule ul li a span,
+nav ul li a .new-badge,
+nav ul li a .badge-container-abs,
 .dropdown-content a span,
-.nav-capsule ul li a .badge-container-abs,
-nav ul li a .badge-container-abs {
-    position: static !important; /* Annule le position:absolute */
-    transform: none !important;  /* Annule les décalages */
-    margin: 0 !important;        /* Reset des marges */
-    display: inline-block !important; 
-    flex-shrink: 0;              /* Empêche le badge de s'écraser */
+.dropdown-content a .new-badge {
+    position: static !important;    /* Annule la position absolue qui cause le chevauchement */
+    transform: none !important;     /* Annule les déplacements */
+    margin: 0 !important;           /* Reset des marges */
+    flex-shrink: 0 !important;      /* LE POINT CLÉ : Empêche le badge de s'écraser */
+    display: inline-block !important;
+}
+
+/* 3. Limiter la longueur du texte pour qu'il ne pousse pas trop */
+/* Cela va couper le texte avec "..." s'il est trop long pour la largeur du menu */
+.nav-capsule ul li a,
+.dropdown-content a {
+    white-space: nowrap;            /* Une seule ligne */
+    text-overflow: ellipsis;        /* Ajoute "..." si coupé */
 }
