@@ -124,7 +124,6 @@ body.light-mode .nav-capsule a:hover { color: var(--primary); }
     body { padding-top: 240px; } 
     .app-header { position: absolute !important; top: 0; left: 0; width: 100%; flex-direction: column; height: auto !important; padding: 20px 15px; gap: 15px; background: transparent !important; }
     
-    /* CORRECTION ICI : Ajout de padding-right/left pour éviter le chevauchement avec la lune */
     .header-left { 
         width: 100%; 
         justify-content: center; 
@@ -205,7 +204,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 /* CARTE DÉPLIÉE */
 .project-card.expanded { 
     grid-column: 1 / -1; 
-    order: -1; /* Place la carte en premier */
+    order: -1; 
     z-index: 10;
 }
 
@@ -254,7 +253,7 @@ h3 { margin-bottom: 25px; font-family: 'Outfit', sans-serif; font-size: 1.5rem; 
 }
 body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 
-/* BADGE EN HAUT A DROITE */
+/* BADGE EN HAUT A DROITE (pour les cartes) */
 .badge-container-abs {
     position: absolute;
     top: 25px;
@@ -280,7 +279,7 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     right: 25px;  
     
     width: 34px; height: 34px; 
-    border-radius: 50%; /* ROND */
+    border-radius: 50%; 
     
     background: rgba(255,255,255,0.05); 
     border: 1px solid var(--border); 
@@ -300,12 +299,11 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
     .grid { grid-template-columns: 1fr; }
     
     .card-header { padding-right: 25px; flex-direction: column; align-items: flex-start; gap: 10px; }
-    .card-header .meta h4 { padding-right: 60px; /* Place pour le badge */ }
+    .card-header .meta h4 { padding-right: 60px; }
     
     .info-btn { position: absolute; bottom: 15px; right: 25px; } 
     .badge-container-abs { top: 25px; right: 25px; }
 
-    /* CORRECTION ICI : Padding pour éviter que les tags passent sous le bouton info */
     .tags-container {
         padding-right: 50px;
         box-sizing: border-box;
@@ -334,16 +332,14 @@ body.light-mode .project-tag { background: #f3f4f6; border-color: #e5e7eb; }
 .cert-icon-box { 
     width: 45px; 
     height: 45px; 
-    background: transparent; /* Fond retiré */
+    background: transparent; 
     color: var(--primary); 
-    /* border-radius: 10px; <-- Supprimé car inutile sans fond */
     display: flex; 
     align-items: center; 
     justify-content: center; 
     font-size: 1.4rem; 
     flex-shrink: 0; 
 }
-
 
 .cert-info { flex-grow: 1; }
 .cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
@@ -414,62 +410,33 @@ body.light-mode .comp-header:hover { background: #f9fafb; }
 body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; border-top: 1px solid #f3f4f6; color: #333333; }
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
-/* NOUVEAU CODE */
+/* ITEMS DROPDOWN */
 .comp-dropdown-menu li { 
     margin-bottom: 8px; 
     font-size: 0.9rem; 
     color: var(--muted); 
     display: flex; 
-    align-items: flex-start; /* 1. Aligne le tout en haut */
+    align-items: flex-start; 
     gap: 8px; 
 }
-
-/* On ajuste ensuite le point violet spécifiquement */
 .comp-dropdown-menu li::before { 
-    content: ''; 
-    width: 6px; 
-    height: 6px; 
-    background: var(--primary); 
-    border-radius: 50%; 
-    opacity: 0.7; 
-    /* 2. On empêche le point de s'écraser */
-    flex-shrink: 0; 
-    /* 3. On le descend un peu pour l'aligner avec la 1ère ligne de texte */
-    margin-top: 7px; 
+    content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; flex-shrink: 0; margin-top: 7px; 
 }
 
-/* ------------------------------------------- */
-/* --- CURSOR HINT --- */
+/* CURSOR HINT */
 #cursor-hint {
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none; 
-    padding: 8px 14px;
-    background: rgba(99, 102, 241, 0.9); 
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border-radius: 20px;
-    z-index: 9999;
-    opacity: 0;
-    transform: scale(0.8);
+    position: fixed; top: 0; left: 0; pointer-events: none; padding: 8px 14px;
+    background: rgba(99, 102, 241, 0.9); color: white;
+    font-size: 0.8rem; font-weight: 600; border-radius: 20px;
+    z-index: 9999; opacity: 0; transform: scale(0.8);
     transition: opacity 0.2s ease, transform 0.1s linear; 
-    backdrop-filter: blur(4px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px); box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     white-space: nowrap;
 }
-#cursor-hint.visible {
-    opacity: 1;
-    transform: scale(1);
-}
+#cursor-hint.visible { opacity: 1; transform: scale(1); }
+@media (max-width: 768px) { #cursor-hint { display: none !important; } }
 
-@media (max-width: 768px) {
-    #cursor-hint { display: none !important; }
-}
-
-/* ------------------------------------------- */
-
-/* LOAD MORE & FOOTER */
+/* FOOTER */
 .load-more-container { width: 100%; display: flex; justify-content: center; margin-top: 25px; margin-bottom: 10px; grid-column: 1 / -1; }
 .load-more-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 10px 28px; border-radius: 30px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
 .load-more-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.05); transform: translateY(-2px); }
@@ -496,12 +463,7 @@ body.light-mode .email-box { color: #333; border-color: #ccc; }
 
 body.light-mode .project-card, body.light-mode .cert-card-container, body.light-mode .comp-card-container { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-color: #e5e7eb; }
 body.light-mode .skill-tag { background: #ffffff; border-color: #e5e7eb; color: #4b5563; }
-
-body.light-mode .cert-icon-box { 
-    background: transparent; /* Fond retiré aussi en mode clair */
-    color: #4f46e5; 
-}
-
+body.light-mode .cert-icon-box { background: transparent; color: #4f46e5; }
 body.light-mode .hero-title { text-shadow: none; }
 
 .error-body { display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; padding: 0 20px; background: var(--bg); }
@@ -513,16 +475,8 @@ body.light-mode .hero-title { text-shadow: none; }
 .btn-home { display: inline-block; background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid transparent; }
 .btn-home:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4); }
 
-/* --- DATE DANS LA MODALE --- */
 .modal-date-display {
-    font-size: 0.85rem;
-    color: var(--primary);
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed var(--border);
-    display: block; /* BLOCK pour forcer le saut de ligne */
-    width: 100%;
+    font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px dashed var(--border); display: block; width: 100%;
 }
 
 @media print {
@@ -535,131 +489,52 @@ body.light-mode .hero-title { text-shadow: none; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
 
-/* --- GESTION UNIVERSELLE DES ICONES (SVG + IMAGES PNG/JPG) --- */
-
-/* Règle par défaut : l'image/svg prend toute la place disponible */
 .icon svg, .icon img,
 .timeline-icon svg, .timeline-icon img,
 .skill-icon svg, .skill-icon img {
-    display: block;
-    margin: 0 auto;
-    width: 100%; 
-    height: 100%;
-    object-fit: contain;
+    display: block; margin: 0 auto; width: 100%; height: 100%; object-fit: contain;
 }
 
-/* Force une taille spécifique pour les CARTES PROJETS (SVG + IMAGES) */
-.project-card .icon svg,
-.project-card .icon img {
-    width: 48px !important;  /* Le !important force le redimensionnement */
-    height: 48px !important;
-    object-fit: contain;
-}
+.project-card .icon svg, .project-card .icon img { width: 48px !important; height: 48px !important; object-fit: contain; }
+.competence-card .icon svg, .competence-card .icon img, .skill-item svg, .skill-item img { width: 40px !important; height: 40px !important; }
 
-/* Force une taille spécifique pour les COMPÉTENCES */
-.competence-card .icon svg,
-.competence-card .icon img,
-.skill-item svg, .skill-item img {
-    width: 40px !important; 
-    height: 40px !important;
-}
+#exp-list p, .timeline-content p { white-space: pre-line; }
 
-/* Ajoute ceci à la fin de ton fichier style.css */
-#exp-list p, .timeline-content p {
-    white-space: pre-line;
-}
+.info-bubble-btn { background: none; border: none; color: var(--muted); cursor: pointer; padding: 0; display: flex; align-items: center; transition: color 0.3s, transform 0.2s; opacity: 0.7; }
+.info-bubble-btn:hover { color: var(--primary); opacity: 1; transform: scale(1.1); }
 
-/* Le petit bouton "i" */
-.info-bubble-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary); /* Gris discret par défaut */
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s, transform 0.2s;
-    opacity: 0.7;
-}
-
-.info-bubble-btn:hover {
-    color: var(--primary); /* Devient violet au survol */
-    opacity: 1;
-    transform: scale(1.1); /* Léger effet de zoom */
-}
-
-/* --- LECTEUR PDF GLOBAL (CERTIFICATIONS) --- */
+/* --- LECTEUR PDF GLOBAL --- */
 #global-cert-viewer {
-    width: 100%;
-    display: none; /* Caché par défaut */
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px; /* Pousse les cartes vers le bas */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    position: relative;
-    animation: slideDown 0.3s ease-out;
+    width: 100%; display: none; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; animation: slideDown 0.3s ease-out;
 }
-
-#global-cert-viewer iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 4px;
-    background-color: white;
-}
-
-/* Bouton de fermeture dans le lecteur global */
+#global-cert-viewer iframe { width: 100%; height: 600px; border: none; border-radius: 4px; background-color: white; }
 .global-close-btn {
-    position: absolute;
-    /* On augmente 'top' pour le descendre sous le bouton du lecteur Google */
-    top: 85px; 
-    /* On le remet à droite */
-    right: 40px;
-    
-    background: var(--primary);
-    color: white;
-    border: 2px solid rgba(255,255,255,0.2);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1000; /* Toujours au-dessus de l'iframe */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    position: absolute; top: 85px; right: 40px;
+    background: var(--primary); color: white; border: 2px solid rgba(255,255,255,0.2); width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; z-index: 1000; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+.global-close-btn:hover { transform: scale(1.1); background: #ef4444; border-color: white; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-.global-close-btn:hover {
-    transform: scale(1.1);
-    background: #ef4444;
-    border-color: white;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- CORRECTION BADGE MENU --- */
-/* C'est la partie qui empêche le badge d'écraser le texte "Projets" */
+/* --- FIX BADGE MENU --- */
 nav ul li a,
 .nav-capsule ul li a,
 .dropdown-content a {
     display: flex !important;       
     align-items: center;            
     gap: 10px;                     
-    white-space: nowrap;            
+    white-space: nowrap;
+    position: relative; /* Pour le contexte */
 }
 
+/* On CIBLE SPECIFIQUEMENT le badge ou son conteneur pour casser la position absolue */
 nav ul li a span,
 .nav-capsule ul li a span,
-.dropdown-content a span {
-    flex-shrink: 0;                
-    margin-left: auto;              
+.dropdown-content a span,
+.nav-capsule ul li a .badge-container-abs,
+nav ul li a .badge-container-abs {
+    position: static !important; /* Annule le position:absolute */
+    transform: none !important;  /* Annule les décalages */
+    margin: 0 !important;        /* Reset des marges */
+    display: inline-block !important; 
+    flex-shrink: 0;              /* Empêche le badge de s'écraser */
 }
