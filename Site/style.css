@@ -605,14 +605,31 @@ body.light-mode .hero-title { text-shadow: none; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
 
+/* --- GESTION GLOBALE DE LA TAILLE DES ICONES --- */
 .icon svg, .icon img,
 .timeline-icon svg, .timeline-icon img,
-.skill-icon svg, .skill-icon img {
-    display: block; margin: 0 auto; width: 100%; height: 100%; object-fit: contain;
+.skill-icon svg, .skill-icon img,
+.cert-icon-box svg, .cert-icon-box img {
+    display: block; 
+    margin: 0 auto; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
 }
 
-.project-card .icon svg, .project-card .icon img { width: 48px !important; height: 48px !important; object-fit: contain; }
-.competence-card .icon svg, .competence-card .icon img, .skill-item svg, .skill-item img { width: 40px !important; height: 40px !important; }
+.project-card .icon svg, .project-card .icon img { 
+    width: 48px !important; 
+    height: 48px !important; 
+    object-fit: contain; 
+}
+
+.comp-card-container .cert-icon-box svg, 
+.comp-card-container .cert-icon-box img,
+.cert-card-container .cert-icon-box svg,
+.cert-card-container .cert-icon-box img { 
+    width: 35px !important; 
+    height: 35px !important; 
+}
 
 #exp-list p, .timeline-content p { white-space: pre-line; }
 
