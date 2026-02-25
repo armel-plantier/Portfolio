@@ -22,6 +22,21 @@ const renderIcon = (iconString) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- SCROLL REVEAL (Animation d'apparition) ---
+    const sections = document.querySelectorAll('.section-wrapper');
+    sections.forEach(sec => sec.classList.add('reveal'));
+    const revealSections = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        document.querySelectorAll('.reveal').forEach(reveal => {
+            if (reveal.getBoundingClientRect().top < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealSections);
+    revealSections(); // Déclenchement initial
+
     // --- VERIFICATION CONFIG ---
     if (typeof config === 'undefined') { 
         console.error("ERREUR : config.js n'est pas chargé."); 
