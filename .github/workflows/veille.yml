@@ -6,15 +6,13 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main # Déploie le site à chaque fois que tu modifies ton code source
+      - main
 
-# Autorisations nécessaires pour modifier le code ET publier sur GitHub Pages
 permissions:
   contents: write
-  pages: write      
-  id-token: write   
+  pages: write
+  id-token: write
 
-# Empêche deux déploiements de se lancer en même temps
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -52,13 +50,19 @@ jobs:
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
         git push
 
+    # LA MAGIE DE TON ANCIEN SCRIPT EST INTÉGRÉE ICI 👇
+    - name: 📁 Préparation des dossiers pour le site
+      run: |
+        cp -r Documents Site/
+        cp -r Veille Site/
+
     - name: ⚙️ Configuration de GitHub Pages
       uses: actions/configure-pages@v5
 
     - name: 📤 Upload des fichiers du Portfolio
       uses: actions/upload-pages-artifact@v3
       with:
-        path: '.' # Prend tout le dossier racine de ton site
+        path: './Site' # On publie uniquement le dossier Site (qui contient maintenant Documents et Veille)
 
     - name: 🌐 Déploiement du site en ligne !
       id: deployment
