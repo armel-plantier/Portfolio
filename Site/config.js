@@ -1,13 +1,13 @@
 const config = {
+
 // --- 1. NAVIGATION ---
     navigation: [
         { title: "Accueil", link: "#" },
-        // CORRECTION ICI : #projets au lieu de #projects
         { title: "Projet TechNova", link: "#projets" }, 
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
-        // CORRECTION ICI : #certifications au lieu de #certifs
-        { title: "Certifs", link: "#certifications" } 
+        { title: "Certifs", link: "#certifications" },
+        { title: "Veille Cyber", link: "/veille" } // <-- NOUVELLE LIGNE AJOUTÉE ICI
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
