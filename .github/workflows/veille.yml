@@ -2,11 +2,12 @@ name: Générateur de Veille Cyber et Déploiement
 
 on:
   schedule:
-    - cron: '0 6 * * 1'
-  workflow_dispatch:
+    # S'exécute tous les samedis à 9h00 UTC (10h ou 11h en France selon l'heure d'été/hiver)
+    - cron: '0 9 * * 6'
+  workflow_dispatch: # Permet de lancer manuellement
   push:
     branches:
-      - main
+      - main # Redéploie le site si tu modifies le code
 
 permissions:
   contents: write
@@ -42,16 +43,15 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: python Veille/veille.py
 
-    - name: 🚀 Commit de la veille
+    - name: 🚀 Commit de la nouvelle veille
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
         git add Veille/index.html
-        git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
+        git commit -m "Automated: Récapitulatif hebdomadaire cyber 🤖" || echo "Aucune modification"
         git push
 
-    # LA MAGIE DE TON ANCIEN SCRIPT EST INTÉGRÉE ICI 👇
-    - name: 📁 Préparation des dossiers pour le site
+    - name: 📁 Préparation de la structure du site
       run: |
         cp -r Documents Site/
         cp -r Veille Site/
@@ -59,11 +59,11 @@ jobs:
     - name: ⚙️ Configuration de GitHub Pages
       uses: actions/configure-pages@v5
 
-    - name: 📤 Upload des fichiers du Portfolio
+    - name: 📤 Upload de l'artéfact Site
       uses: actions/upload-pages-artifact@v3
       with:
-        path: './Site' # On publie uniquement le dossier Site (qui contient maintenant Documents et Veille)
+        path: './Site'
 
-    - name: 🌐 Déploiement du site en ligne !
+    - name: 🌐 Déploiement final
       id: deployment
       uses: actions/deploy-pages@v4
