@@ -1,0 +1,2 @@
+https://www.cert.ssi.gouv.fr/alerte/feed/
+https://www.bleepingcomputer.com/feed/
