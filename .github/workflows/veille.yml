@@ -1,15 +1,30 @@
-name: Générateur de Veille Cyber
+name: Générateur de Veille Cyber et Déploiement
 
 on:
   schedule:
     - cron: '0 6 * * 1'
-  workflow_dispatch: 
+  workflow_dispatch:
+  push:
+    branches:
+      - main # Déploie le site à chaque fois que tu modifies ton code source
+
+# Autorisations nécessaires pour modifier le code ET publier sur GitHub Pages
+permissions:
+  contents: write
+  pages: write      
+  id-token: write   
+
+# Empêche deux déploiements de se lancer en même temps
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build_and_deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
     - name: 📥 Récupération du code
@@ -29,10 +44,22 @@ jobs:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: python Veille/veille.py
 
-    - name: 🚀 Commit et Push dans le portfolio
+    - name: 🚀 Commit de la veille
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
         git add Veille/index.html
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
         git push
+
+    - name: ⚙️ Configuration de GitHub Pages
+      uses: actions/configure-pages@v5
+
+    - name: 📤 Upload des fichiers du Portfolio
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.' # Prend tout le dossier racine de ton site
+
+    - name: 🌐 Déploiement du site en ligne !
+      id: deployment
+      uses: actions/deploy-pages@v4
