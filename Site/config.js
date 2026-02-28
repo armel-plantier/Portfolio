@@ -7,7 +7,7 @@ const config = {
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
-        { title: "Veille Cyber", link: "/veille" } // <-- NOUVELLE LIGNE AJOUTÉE ICI
+        { title: "Veille", link: "#veille" } 
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
