@@ -6,8 +6,8 @@ from datetime import datetime
 # 1. Configuration du client Gemini
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# 2. Lecture des sources depuis le fichier texte
-chemin_flux = "veille/flux-rss.txt"
+# 2. Lecture des sources depuis le fichier texte (AVEC LA MAJUSCULE)
+chemin_flux = "Veille/flux-rss.txt"
 feeds = []
 
 # On vérifie si le fichier flux-rss.txt existe bien
@@ -63,13 +63,13 @@ response = client.models.generate_content(
     contents=prompt
 )
 
-# 6. Écriture du fichier Markdown DANS LE DOSSIER
+# 6. Écriture du fichier Markdown DANS LE DOSSIER (AVEC LA MAJUSCULE)
 en_tete = f"---\ntitle: Veille Cyber du {date_jour}\n---\n\n# 🛡️ Veille Cyber Hebdomadaire\n\n"
 
-os.makedirs("veille", exist_ok=True)
+os.makedirs("Veille", exist_ok=True)
 
 # On sauvegarde le fichier sous le nom index.md
-chemin_fichier = "veille/index.md"
+chemin_fichier = "Veille/index.md"
 with open(chemin_fichier, "w", encoding="utf-8") as f:
     f.write(en_tete + response.text)
 
