@@ -2,9 +2,8 @@ name: Générateur de Veille Cyber
 
 on:
   schedule:
-    # S'exécute tous les lundis à 6h00 du matin (heure UTC)
     - cron: '0 6 * * 1'
-  workflow_dispatch: # Permet de toujours garder le bouton pour lancer à la main
+  workflow_dispatch: 
 
 jobs:
   build_and_deploy:
@@ -25,17 +24,17 @@ jobs:
       run: |
         pip install google-genai feedparser
 
+    # ON APPELLE LE SCRIPT DANS LE BON DOSSIER (AVEC LA MAJUSCULE)
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      # On appelle bien le script qui est dans le dossier veille/
-      run: python veille/veille.py
+      run: python Veille/veille.py
 
+    # ON COMMIT LE FICHIER DANS LE BON DOSSIER (AVEC LA MAJUSCULE)
     - name: 🚀 Commit et Push dans le portfolio
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        # On sauvegarde uniquement le fichier généré par l'IA
-        git add veille/index.md
+        git add Veille/index.md
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
         git push
