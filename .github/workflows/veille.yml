@@ -1,0 +1,39 @@
+name: Générateur de Veille Cyber
+
+on:
+  schedule:
+    # S'exécute tous les lundis à 6h00 du matin (heure UTC)
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Permet de toujours garder le bouton pour lancer à la main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: 📥 Récupération du code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Configuration de Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: 📦 Installation des dépendances
+      run: |
+        pip install google-genai feedparser
+
+    - name: 🧠 Exécution de l'IA (Script Python)
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: python veille.py
+
+    - name: 🚀 Commit et Push dans le portfolio
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+        git add veille/index.md
+        git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
+        git push
