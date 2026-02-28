@@ -2,6 +2,7 @@ import feedparser
 from google import genai
 import os
 from datetime import datetime
+import markdown # NOUVEAU : Le convertisseur magique
 
 # 1. Configuration
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -34,7 +35,7 @@ if not articles_bruts:
 contenu_brut = "\n".join(articles_bruts)
 date_jour = datetime.now().strftime("%d/%m/%Y")
 
-# 4. Le Prompt Cyber
+# 4. Prompt
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {date_jour}.
 Rédige un résumé de veille technologique clair en Markdown.
@@ -47,37 +48,59 @@ Voici les données :
 {contenu_brut}
 """
 
-# 5. Appel à l'IA
+# 5. Appel IA
 print("Génération en cours...")
 response = client.models.generate_content(
     model='gemini-2.5-flash',
     contents=prompt
 )
 
-# 6. INJECTION DU DESIGN DU PORTFOLIO
-# On ajoute les liens vers tes polices et ton style.css, et on utilise tes classes CSS.
-en_tete = f"""---
-title: Veille Cyber du {date_jour}
----
-<link rel="stylesheet" href="/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+# 6. CONVERSION ET CRÉATION DE LA PAGE HTML
+# On transforme le texte de l'IA en code HTML pur
+contenu_html = markdown.markdown(response.text)
 
-<div class="container" style="padding-top: 40px;" markdown="1">
-
-<a href="/" class="btn-home" style="display: inline-block; margin-bottom: 40px;">
-    ↩ Retour au Portfolio
-</a>
-
-<h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber du {date_jour}</h1>
-
+# On fabrique la page finale avec ton design exact
+page_html = f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Cyber | Armel Plantier</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Ajustements pour que le texte de l'IA s'intègre parfaitement à ton style */
+        .veille-content h2 {{ color: var(--primary); margin-top: 35px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; }}
+        .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }}
+        .veille-content p {{ margin-bottom: 15px; line-height: 1.6; color: var(--muted); }}
+        .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
+        .veille-content li {{ margin-bottom: 10px; }}
+        .veille-content a {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
+        .veille-content a:hover {{ text-decoration: underline; }}
+        .veille-content strong {{ color: var(--text); }}
+    </style>
+</head>
+<body style="background: var(--bg);">
+    <div class="container" style="padding-top: 40px; padding-bottom: 60px;">
+        <a href="/" class="btn-home" style="display: inline-block; margin-bottom: 40px;">
+            ↩ Retour au Portfolio
+        </a>
+        
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber du {date_jour}</h1>
+        
+        <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+            {contenu_html}
+        </div>
+    </div>
+</body>
+</html>
 """
 
-pied_de_page = "\n</div>\n"
-
-# Écriture du fichier
 os.makedirs("Veille", exist_ok=True)
-chemin_fichier = "Veille/index.md"
+
+# ON SAUVEGARDE DIRECTEMENT EN .HTML
+chemin_fichier = "Veille/index.html"
 with open(chemin_fichier, "w", encoding="utf-8") as f:
-    f.write(en_tete + response.text + pied_de_page)
+    f.write(page_html)
 
 print(f"Fichier {chemin_fichier} généré avec succès !")
