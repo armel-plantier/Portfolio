@@ -22,19 +22,17 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install google-genai feedparser
+        pip install google-genai feedparser markdown
 
-    # ON APPELLE LE SCRIPT DANS LE BON DOSSIER (AVEC LA MAJUSCULE)
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: python Veille/veille.py
 
-    # ON COMMIT LE FICHIER DANS LE BON DOSSIER (AVEC LA MAJUSCULE)
     - name: 🚀 Commit et Push dans le portfolio
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
-        git add Veille/index.md
+        git add Veille/index.html
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
         git push
