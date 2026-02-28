@@ -28,12 +28,14 @@ jobs:
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-      run: python veille.py
+      # On appelle bien le script qui est dans le dossier veille/
+      run: python veille/veille.py
 
     - name: 🚀 Commit et Push dans le portfolio
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
+        # On sauvegarde uniquement le fichier généré par l'IA
         git add veille/index.md
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification à commiter"
         git push
