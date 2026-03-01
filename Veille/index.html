@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hebdomadaire | Armel Plantier</title>
+    <title>Veille Cyber | Du 22/02/2026 au 01/03/2026</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>">
+    
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -23,36 +26,83 @@
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber - Semaine du 01/03/2026</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber : du 22/02/2026 au 01/03/2026</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-            <h2>Vulnérabilités et Correctifs</h2>
+            <h2>Vulnérabilités et Alertes</h2>
 <ul>
-<li><strong>Juniper Networks PTX</strong> : Une vulnérabilité critique a été identifiée dans le système d'exploitation réseau Junos OS Evolved, affectant les routeurs PTX Series de Juniper Networks. Cette faille pourrait permettre à un attaquant non authentifié d'exécuter du code à distance avec les privilèges root. (<a href="https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/">https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/</a>)</li>
-<li><strong>Trend Micro Apex One</strong> : Trend Micro a corrigé deux vulnérabilités critiques dans Apex One, qui permettaient à des attaquants d'obtenir l'exécution de code à distance (RCE) sur les systèmes Windows vulnérables. (<a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/">https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/</a>)</li>
-<li><strong>Ivanti Connect Secure</strong> : La CISA a émis une alerte détaillant le malware RESURGE, un implant malveillant utilisé dans des attaques zero-day exploitant la vulnérabilité <strong>CVE-2025-0282</strong> pour compromettre les dispositifs Ivanti Connect Secure. Ce malware a la capacité de rester dormant. (<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/">https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/</a>)</li>
-<li><strong>Google API keys / Gemini AI</strong> : Il a été découvert que des clés API Google, précédemment considérées comme inoffensives et intégrées dans le code côté client (par exemple pour Google Maps), peuvent désormais être utilisées pour s'authentifier à l'assistant Gemini AI et accéder à des données privées. (<a href="https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/">https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/</a>)</li>
+<li>
+<p><strong>Vulnérabilités critiques dans Trend Micro Apex One</strong>
+    Trend Micro a corrigé deux vulnérabilités critiques permettant l'exécution de code à distance (RCE) sur les systèmes Windows via son produit Apex One.
+    <a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/">https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/</a></p>
+</li>
+<li>
+<p><strong>Faille critique dans Juniper Networks PTX Series</strong>
+    Une vulnérabilité critique a été identifiée dans le système d'exploitation Junos OS Evolved des routeurs PTX Series de Juniper Networks. Cette faille permet à un attaquant non authentifié d'exécuter du code à distance avec les privilèges root, conduisant à une prise de contrôle complète du routeur.
+    <a href="https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/">https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/</a></p>
+</li>
+<li>
+<p><strong>Alerte CISA sur le malware RESURGE dormant sur les appareils Ivanti</strong>
+    La CISA (U.S. Cybersecurity and Infrastructure Security Agency) a publié de nouveaux détails concernant RESURGE, un implant malveillant utilisé dans des attaques zero-day exploitant la vulnérabilité <strong>CVE-2025-0282</strong> pour compromettre les appareils Ivanti Connect Secure. Il est signalé que ce malware peut rester dormant sur les systèmes infectés.
+    <a href="https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/">https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/</a></p>
+</li>
+<li>
+<p><strong>Clés API Google exposant des données Gemini AI</strong>
+    Des clés API Google, auparavant considérées comme inoffensives pour des services comme Maps et intégrées dans le code client-side, pourraient désormais être utilisées pour s'authentifier auprès de l'assistant Gemini AI et accéder à des données privées.
+    <a href="https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/">https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/</a></p>
+</li>
+<li>
+<p><strong>Améliorations de sécurité pour les scripts batch de Windows 11</strong>
+    Microsoft déploie de nouvelles versions préliminaires de Windows 11 qui améliorent la sécurité et les performances lors de l'exécution de fichiers batch ou de scripts CMD.
+    <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-windows-11-batch-file-security-improvements/">https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-windows-11-batch-file-security-improvements/</a></p>
+</li>
 </ul>
-<h2>Incidents et Compromissions Majeures</h2>
+<h2>Incidents et Attaques Majeures</h2>
 <ul>
-<li><strong>ManoMano</strong> : La chaîne européenne de bricolage ManoMano a notifié ses clients d'une fuite de données personnelles impactant 38 millions d'entre eux, suite à la compromission d'un prestataire de services tiers. (<a href="https://www.bleepingcomputer.com/news/security/european-dyi-chain-manomano-data-breach-impacts-38-million-customers/">https://www.bleepingcomputer.com/news/security/european-dyi-chain-manomano-data-breach-impacts-38-million-customers/</a>)</li>
-<li><strong>Olympique de Marseille</strong> : Le club de football professionnel français a confirmé avoir été la cible d'une cyberattaque, suite à la revendication d'un acteur malveillant concernant une violation de ses systèmes et une fuite de données. (<a href="https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/">https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/</a>)</li>
-<li><strong>Agence fiscale sud-coréenne</strong> : Le Service national des impôts de Corée du Sud a accidentellement exposé la phrase de récupération mnémonique d'un portefeuille de cryptomonnaies saisi dans un communiqué de presse officiel, permettant à des hackers de voler l'équivalent de 4,8 millions de dollars en cryptomonnaies. (<a href="https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/">https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/</a>)</li>
-<li><strong>Extension Chrome "QuickLens"</strong> : Une extension Chrome nommée "QuickLens - Search Screen with Google Lens" a été retirée du Chrome Web Store après avoir été compromise pour diffuser des malwares et tenter de voler des cryptomonnaies à des milliers d'utilisateurs. (<a href="https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/">https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/</a>)</li>
+<li>
+<p><strong>Extension Chrome compromise pour le vol de cryptomonnaies</strong>
+    L'extension Chrome "QuickLens - Search Screen with Google Lens" a été retirée du Chrome Web Store après avoir été compromise pour diffuser des malwares et tenter de voler des cryptomonnaies à des milliers d'utilisateurs.
+    <a href="https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/">https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/</a></p>
+</li>
+<li>
+<p><strong>Vol de 4,8 millions de dollars en cryptomonnaies après l'exposition d'une clé de récupération par l'agence fiscale coréenne</strong>
+    Le Service National des Impôts de Corée du Sud a accidentellement exposé la phrase de récupération mnémonique d'un portefeuille de cryptomonnaies saisi dans un communiqué de presse officiel, permettant à des hackers de voler 6,4 milliards de wons (4,8 millions de dollars) en cryptomonnaies.
+    <a href="https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/">https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/</a></p>
+</li>
+<li>
+<p><strong>Fuite de données chez ManoMano impactant 38 millions de clients</strong>
+    La chaîne européenne de bricolage ManoMano a notifié ses clients d'une fuite de données personnelles, causée par la compromission d'un fournisseur de services tiers, affectant 38 millions de comptes.
+    <a href="https://www.bleepingcomputer.com/news/security/manomano-data-breach-impacts-38-million-customers/">https://www.bleepingcomputer.com/news/security/european-dyi-chain-manomano-data-breach-impacts-38-million-customers/</a></p>
+</li>
+<li>
+<p><strong>L'Olympique de Marseille confirme une cyberattaque après une fuite de données</strong>
+    Le club de football professionnel français Olympique de Marseille a confirmé une cyberattaque après qu'un acteur de la menace ait revendiqué avoir accédé aux systèmes du club plus tôt ce mois-ci, entraînant une fuite de données.
+    <a href="https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/">https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/</a></p>
+</li>
+<li>
+<p><strong>Le groupe APT37 utilise de nouveaux malwares pour cibler les réseaux isolés</strong>
+    Les hackers nord-coréens du groupe APT37 déploient de nouveaux outils pour déplacer des données entre les systèmes connectés à Internet et les réseaux isolés, en se propageant via des lecteurs amovibles et en menant une surveillance secrète.
+    <a href="https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/">https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/</a></p>
+</li>
 </ul>
-<h2>Activités Cybercriminelles et APT</h2>
+<h2>Cybercriminalité et Application de la Loi</h2>
 <ul>
-<li><strong>APT37 (Corée du Nord)</strong> : Des hackers nord-coréens de l'APT37 déploient de nouveaux outils malveillants pour exfiltrer des données entre les systèmes connectés à Internet et les réseaux air-gapped, en utilisant des clés USB amovibles, et pour mener des activités de surveillance secrète. (<a href="https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/">https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/</a>)</li>
-<li><strong>Opération Europol "Project Compass"</strong> : Une opération coordonnée par Europol, baptisée "Project Compass", a mené à 30 arrestations et identifié 179 suspects liés à "The Com", un collectif de cybercriminalité en ligne ciblant les enfants et les adolescents. (<a href="https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/">https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/</a>)</li>
-<li><strong>OnlyFake (Fausses pièces d'identité AI)</strong> : Un homme ukrainien a plaidé coupable d'avoir géré OnlyFake, un site web alimenté par l'intelligence artificielle qui a généré et vendu plus de 10 000 photos de fausses pièces d'identité à des clients du monde entier. (<a href="https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/">https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/</a>)</li>
+<li>
+<p><strong>Opération Europol contre "The Com" aboutit à 30 arrestations</strong>
+    Une opération d'un an coordonnée par Europol, nommée "Project Compass", a conduit à 30 arrestations et à l'identification de 179 suspects liés à "The Com", un collectif de cybercriminalité en ligne ciblant les enfants et les adolescents.
+    <a href="https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/">https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/</a></p>
+</li>
+<li>
+<p><strong>Un Ukrainien plaide coupable d'avoir géré un site de fausses identités alimenté par l'IA</strong>
+    Un homme ukrainien a plaidé coupable d'avoir exploité OnlyFake, un site web basé sur l'IA qui a généré et vendu plus de 10 000 photos de faux documents d'identité à des clients du monde entier.
+    <a href="https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/">https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/</a></p>
+</li>
 </ul>
-<h2>Réglementation et Confidentialité</h2>
+<h2>Confidentialité des Données</h2>
 <ul>
-<li><strong>Samsung Smart TVs (Texas)</strong> : Samsung et l'État du Texas ont conclu un accord de règlement stipulant que Samsung cessera de collecter les informations de visionnage de contenu via ses téléviseurs intelligents sans le consentement exprès des résidents du Texas. (<a href="https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/">https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/</a>)</li>
-</ul>
-<h2>Tendances et Rapports</h2>
-<ul>
-<li><strong>Taux de paiement des rançons</strong> : Le taux de victimes de rançongiciels qui paient les attaquants a chuté à un minimum historique de 28% l'année dernière, et ce, malgré une augmentation significative du nombre d'attaques revendiquées. (<a href="https://www.bleepingcomputer.com/news/security/ransomware-payment-rate-drops-to-record-low-as-attacks-surge/">https://www.bleepingcomputer.com/news/security/ransomware-payment-rate-drops-to-record-low-as-attacks-surge/</a>)</li>
+<li><strong>Samsung s'engage à ne plus collecter de données Smart TV des Texans sans consentement explicite</strong>
+    Samsung et l'État du Texas ont conclu un accord de règlement concernant la collecte présumée illégale d'informations sur le contenu de visionnage via ses téléviseurs intelligents.
+    <a href="https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/">https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/</a></li>
 </ul>
         </div>
     </div>
