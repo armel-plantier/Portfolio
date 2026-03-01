@@ -16,29 +16,32 @@
         .veille-content ul { margin-bottom: 25px; padding-left: 20px; color: var(--muted); }
         .veille-content li { margin-bottom: 15px; line-height: 1.6; }
         
-        /* --- LE CSS MAGIQUE POUR LE BOUTON SOURCE --- */
-        .veille-content li a {
+        /* --- LE CSS DU VRAI BOUTON --- */
+        .btn-source {
             display: inline-block;
-            background: rgba(99, 102, 241, 0.1); /* Fond violet très léger */
-            color: var(--primary); /* Texte violet */
-            padding: 4px 10px;
-            border-radius: 8px;
+            background-color: var(--primary); /* La même couleur que ton thème */
+            color: #ffffff !important; /* Texte en blanc pour le contraste */
+            padding: 6px 16px;
+            border-radius: 30px; /* Forme pilule comme ton bouton Retour */
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-left: 8px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            transition: all 0.2s ease-in-out;
+            margin-top: 8px;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-        .veille-content li a:hover {
-            background: var(--primary); /* Devient tout violet au survol */
-            color: #ffffff;
-            transform: translateY(-2px); /* Petit effet de saut */
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        .btn-source:hover {
+            transform: translateY(-3px); /* Effet de soulèvement */
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); /* Ombre violette stylée */
+            text-decoration: none;
         }
-        /* ------------------------------------------- */
+        /* ----------------------------- */
         
         .veille-content strong { color: var(--text); }
+        /* Pour s'assurer que si l'IA génère d'autres liens dans le texte (comme des CVE), ils restent normaux */
+        .veille-content a:not(.btn-source) { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .veille-content a:not(.btn-source):hover { text-decoration: underline; }
     </style>
 </head>
 <body style="background: var(--bg);">
@@ -50,55 +53,52 @@
         <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Journal de Veille : du 23/02/2026 au 01/03/2026</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-            <h2>Dimanche 1 Mars</h2>
-<h3>Données Personnelles / Vie Privée</h3>
-<p>Samsung a conclu un accord avec l'État du Texas pour cesser la collecte d'informations sur le visionnage de contenu via ses Smart TV sans consentement explicite.
-<a href="https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/">🔗 Source</a></p>
+            <h2>Dimanche 1er Mars</h2>
+<h3>Confidentialité des données</h3>
+<p>Samsung a conclu un accord avec l'État du Texas pour cesser la collecte d'informations sur les habitudes de visionnage de contenu via ses téléviseurs intelligents sans consentement explicite des utilisateurs.
+<a href="https://www.bleepingcomputer.com/news/security/samsung-tvs-to-stop-collecting-texans-data-without-express-consent/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
 <h2>Samedi 28 Février</h2>
-<h3>Attaques / Extensions de navigateur</h3>
-<p>L'extension Chrome "QuickLens - Search Screen with Google Lens" a été retirée du Chrome Web Store après avoir été compromise. Elle distribuait des malwares et tentait de voler des cryptomonnaies à des milliers d'utilisateurs.
-<a href="https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/">🔗 Source</a></p>
-<h3>Incidents de Sécurité / Fuite de données</h3>
-<p>Le Service National des Impôts de Corée du Sud a accidentellement exposé la phrase de récupération mnémonique d'un portefeuille de cryptomonnaies saisi dans un communiqué de presse officiel, permettant à des attaquants de voler l'équivalent de 4,8 millions de dollars en cryptomonnaie.
-<a href="https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-expodes-wallet-seed/">🔗 Source</a></p>
+<h3>Cyptomonnaie</h3>
+<p>Une somme de 4,8 millions de dollars en cryptomonnaie a été volée après que l'agence fiscale nationale sud-coréenne a accidentellement exposé la phrase de récupération mnémonique d'un portefeuille saisi dans un communiqué de presse officiel.
+<a href="https://www.bleepingcomputer.com/news/security/48m-in-crypto-stolen-after-korean-tax-agency-exposes-wallet-seed/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Vulnérabilités &amp; Malware</h3>
+<p>L'extension Chrome "QuickLens - Search Screen with Google Lens" a été compromise pour diffuser des logiciels malveillants et tenter de voler des cryptomonnaies à des milliers d'utilisateurs. Elle a depuis été retirée du Chrome Web Store.
+<a href="https://www.bleepingcomputer.com/news/security/quicklens-chrome-extension-steals-crypto-shows-clickfix-attack/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
 <h2>Vendredi 27 Février</h2>
-<h3>Mises à jour / Sécurité OS</h3>
-<p>Microsoft déploie de nouvelles versions de Windows 11 Insider Preview qui améliorent la sécurité et les performances lors de l'exécution de fichiers batch ou de scripts CMD.
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-windows-11-batch-file-security-improvements/">🔗 Source</a></p>
-<h3>Menaces Persistantes Avancées (APT) / Malware</h3>
-<p>Des hackers nord-coréens du groupe APT37 déploient de nouveaux outils malveillants pour exfiltrer des données entre des systèmes connectés à Internet et des réseaux isolés (air-gapped). Ces malwares se propagent via des lecteurs amovibles et mènent des activités de surveillance discrète.
-<a href="https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/">🔗 Source</a></p>
-<h3>Cybercriminalité / Opérations policières</h3>
-<p>Une opération coordonnée par Europol, baptisée "Project Compass", a mené à 30 arrestations et identifié 179 suspects liés à "The Com", un collectif de cybercriminalité ciblant les enfants et adolescents.
-<a href="https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/">🔗 Source</a></p>
-<h3>Malware / Vulnérabilités</h3>
-<p>La CISA (U.S. Cybersecurity and Infrastructure Security Agency) a publié de nouveaux détails sur RESURGE, un implant malveillant utilisé dans des attaques zero-day exploitant la vulnérabilité <strong>CVE-2025-0282</strong> pour compromettre les dispositifs Ivanti Connect Secure. Le malware peut rester dormant sur les appareils Ivanti.
-<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/">🔗 Source</a></p>
-<h3>Gestion des Vulnérabilités / Bonnes Pratiques</h3>
-<p>Un article met en lumière l'importance du patching des logiciels tiers (lecteurs PDF, clients de messagerie, utilitaires d'archivage) qui définissent la surface d'attaque réelle. Une gestion cohérente de ces mises à jour est essentielle pour réduire les risques d'exploitation sur les endpoints.
-<a href="https://www.bleepingcomputer.com/news/security/third-party-patching-and-the-business-footprint-we-all-share/">🔗 Source</a></p>
-<h3>Cybercriminalité / Fraude</h3>
-<p>Un Ukrainien a plaidé coupable d'avoir géré OnlyFake, un site web qui utilisait l'intelligence artificielle pour générer et vendre plus de 10 000 photos de fausses pièces d'identité à des clients du monde entier.
-<a href="https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/">🔗 Source</a></p>
+<h3>Vulnérabilités &amp; Menaces</h3>
+<p>La CISA a publié de nouveaux détails sur RESURGE, un implant malveillant utilisé dans des attaques zero-day exploitant la vulnérabilité <strong>CVE-2025-0282</strong> pour compromettre les dispositifs Ivanti Connect Secure. Ce malware peut rester dormant sur les appareils Ivanti.
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-that-resurge-malware-can-be-dormant-on-ivanti-devices/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Le groupe de hackers nord-coréens APT37 déploie de nouveaux outils pour transférer des données entre des systèmes connectés à Internet et des réseaux isolés (air-gapped), se propageant via des lecteurs amovibles et menant des surveillances secrètes.
+<a href="https://www.bleepingcomputer.com/news/security/apt37-hackers-use-new-malware-to-breach-air-gapped-networks/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Cybercriminalité</h3>
+<p>Une opération coordonnée par Europol, "Project Compass", a conduit à 30 arrestations et l'identification de 179 suspects liés à "The Com", un collectif de cybercriminalité ciblant les enfants et adolescents en ligne.
+<a href="https://www.bleepingcomputer.com/news/security/police-crackdown-on-the-com-cybercrime-gang-leads-to-30-arrests/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Un homme ukrainien a plaidé coupable d'avoir géré OnlyFake, un site web alimenté par l'IA qui générait et vendait plus de 10 000 fausses pièces d'identité à des clients dans le monde entier.
+<a href="https://www.bleepingcomputer.com/news/security/ukrainian-man-pleads-guilty-to-running-ai-powered-fake-id-site/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Sécurité des Systèmes</h3>
+<p>Microsoft déploie de nouvelles versions d'aperçu de Windows 11 Insider qui améliorent la sécurité et les performances lors de l'exécution de fichiers batch ou de scripts CMD.
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-windows-11-batch-file-security-improvements/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Gestion des Patchs</h3>
+<p>Action1 souligne l'importance du patching des logiciels tiers (lecteurs PDF, clients de messagerie, utilitaires d'archivage) qui définissent la surface d'attaque réelle, et comment une dérive des logiciels tiers augmente le risque d'exploitation, tandis qu'un patching cohérent réduit l'exposition sur les terminaux.
+<a href="https://www.bleepingcomputer.com/news/security/third-party-patching-and-the-business-footprint-we-all-share/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
 <h2>Jeudi 26 Février</h2>
-<h3>Vulnérabilités / Sécurité API</h3>
-<p>Des clés API Google pour des services comme Maps, précédemment considérées comme inoffensives lorsqu'elles sont intégrées dans du code côté client, pourraient désormais être utilisées pour s'authentifier auprès de l'assistant Gemini AI et accéder à des données privées.
-<a href="https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/">🔗 Source</a></p>
-<h3>Vulnérabilités / Patchs de Sécurité</h3>
-<p>Trend Micro a corrigé deux vulnérabilités critiques dans son produit Apex One qui permettaient l'exécution de code à distance (RCE) sur les systèmes Windows vulnérables.
-<a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/">🔗 Source</a></p>
-<h3>Incidents de Sécurité / Fuite de données</h3>
-<p>La chaîne européenne de bricolage ManoMano a notifié ses clients d'une fuite de données personnelles impactant 38 millions d'entre eux, suite à la compromission d'un fournisseur de services tiers.
-<a href="https://www.bleepingcomputer.com/news/security/european-dyi-chain-manomano-data-breach-impacts-38-million-customers/">🔗 Source</a></p>
-<h3>Vulnérabilités / Réseaux</h3>
-<p>Une vulnérabilité critique a été découverte dans le système d'exploitation réseau Junos OS Evolved des routeurs PTX Series de Juniper Networks. Cette faille pourrait permettre à un attaquant non authentifié d'exécuter du code à distance avec les privilèges root et de prendre le contrôle total du routeur.
-<a href="https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/">🔗 Source</a></p>
-<h3>Incidents de Sécurité / Cyberattaques</h3>
-<p>Le club de football professionnel français Olympique de Marseille a confirmé une "tentative" de cyberattaque après qu'un acteur malveillant a affirmé avoir pénétré les systèmes du club plus tôt ce mois-ci, entraînant une fuite de données.
-<a href="https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/">🔗 Source</a></p>
-<h3>Tendances / Ransomware</h3>
-<p>Le taux de paiement des rançons a chuté à un niveau record de 28% l'année dernière, et ce malgré une augmentation significative du nombre d'attaques revendiquées par ransomware.
-<a href="https://www.bleepingcomputer.com/news/security/ransomware-payment-rate-drops-to-record-low-as-attacks-surge/">🔗 Source</a></p>
+<h3>Vulnérabilités Critiques</h3>
+<p>Trend Micro a corrigé deux vulnérabilités critiques dans Apex One qui permettent aux attaquants d'obtenir l'exécution de code à distance (RCE) sur les systèmes Windows vulnérables.
+<a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-critical-apex-one-rce-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Une vulnérabilité critique dans le système d'exploitation Junos OS Evolved des routeurs PTX Series de Juniper Networks pourrait permettre à un attaquant non authentifié d'exécuter du code à distance avec les privilèges root.
+<a href="https://www.bleepingcomputer.com/news/security/critical-juniper-networks-ptx-flaw-allows-full-router-takeover/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Fuites de Données</h3>
+<p>La chaîne européenne de magasins de bricolage ManoMano informe ses clients d'une fuite de données personnelles, causée par la compromission d'un fournisseur de services tiers, impactant 38 millions de clients.
+<a href="https://www.bleepingcomputer.com/news/security/european-dyi-chain-manomano-data-breach-impacts-38-million-customers/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Ransomware</h3>
+<p>Le taux de paiement des rançons a chuté à un niveau record de 28% l'année dernière, malgré une augmentation significative du nombre d'attaques revendiquées.
+<a href="https://www.bleepingcomputer.com/news/security/ransomware-payment-rate-drops-to-record-low-as-attacks-surge/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Cyberattaques</h3>
+<p>Le club de football professionnel Olympique de Marseille a confirmé une cyberattaque après qu'un acteur malveillant ait revendiqué, lundi, avoir pénétré les systèmes du club plus tôt ce mois-ci, entraînant une fuite de données.
+<a href="https://www.bleepingcomputer.com/news/security/olympique-marseille-football-club-confirms-cyberattack-after-data-leak/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<h3>Intelligence Artificielle</h3>
+<p>Des clés API Google, auparavant inoffensives pour des services comme Maps et intégrées dans du code client accessible, pourraient être utilisées pour s'authentifier auprès de l'assistant Gemini AI et accéder à des données privées.
+<a href="https://www.bleepingcomputer.com/news/security/previously-harmless-google-api-keys-now-expose-gemini-ai-data/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
         </div>
     </div>
 </body>
