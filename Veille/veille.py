@@ -17,7 +17,7 @@ else:
     print(f"Erreur : {chemin_flux} introuvable.")
     exit(1)
 
-# 3. Récupération des articles (On en prend 30 pour être sûr d'avoir toute la semaine)
+# 3. Récupération des articles
 articles_bruts = []
 for url in feeds:
     try:
@@ -34,9 +34,8 @@ if not articles_bruts:
 
 contenu_brut = "\n".join(articles_bruts)
 
-# --- LE CŒUR DE TA NOUVELLE LOGIQUE ---
+# --- CALCUL DES DATES DE LA SEMAINE ---
 maintenant = datetime.now()
-# .weekday() donne 0 pour Lundi, 1 pour Mardi, etc.
 jours_depuis_lundi = maintenant.weekday() 
 date_lundi = maintenant - timedelta(days=jours_depuis_lundi)
 
@@ -44,25 +43,26 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber (Incrémental)
+# 4. Le Prompt Cyber (Mode TIMELINE JOURNALIÈRE)
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
-Ton objectif est de créer un résumé cumulatif de la semaine en cours.
-Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés entre le lundi {str_lundi} et aujourd'hui {str_aujourdhui}. Ignore totalement les événements datant d'avant le {str_lundi}.
+Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
+Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés entre le lundi {str_lundi} et aujourd'hui {str_aujourdhui}. Ignore les événements datant d'avant le {str_lundi}.
 
-RÈGLES STRICTES ABSOLUES :
-1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par les informations.
-2. AUCUN TITRE PRINCIPAL (#). Commence directement par des sous-titres (##) pour tes catégories.
-3. Ne garde que les informations pertinentes de CETTE période spécifique ({str_lundi} au {str_aujourdhui}).
-4. Sors les numéros de CVE en gras.
-5. Mets les liens cliquables.
+RÈGLES STRICTES DE FORMATAGE :
+1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par le premier jour.
+2. Structure ton résumé de manière chronologique (du plus récent au plus ancien).
+3. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
+4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES (ex: ### Vulnérabilités Critiques, ### Incidents, etc.).
+5. Ne garde que les infos les plus importantes. Sors les numéros de CVE en gras.
+6. Mets les liens cliquables sous forme de puces (-).
 
-Voici les données brutes à filtrer et résumer :
+Voici les données brutes à filtrer et organiser :
 {contenu_brut}
 """
 
 # 5. Appel à l'IA
-print(f"Génération du résumé du {str_lundi} au {str_aujourdhui}...")
+print(f"Génération du journal du {str_lundi} au {str_aujourdhui}...")
 response = client.models.generate_content(
     model='gemini-2.5-flash',
     contents=prompt
@@ -83,8 +83,9 @@ page_html = f"""<!DOCTYPE html>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
-        .veille-content h2 {{ color: var(--primary); margin-top: 35px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; }}
-        .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 10px; font-family: 'Outfit', sans-serif; }}
+        /* Design adapté pour le mode Timeline */
+        .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
+        .veille-content h3 {{ color: var(--text); margin-top: 20px; margin-bottom: 10px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
         .veille-content p {{ margin-bottom: 15px; line-height: 1.6; color: var(--muted); }}
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 10px; line-height: 1.5; }}
@@ -99,7 +100,7 @@ page_html = f"""<!DOCTYPE html>
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber : du {str_lundi} au {str_aujourdhui}</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Journal de Veille : du {str_lundi} au {str_aujourdhui}</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             {contenu_html}
