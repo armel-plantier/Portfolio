@@ -17,12 +17,12 @@ else:
     print(f"Erreur : {chemin_flux} introuvable.")
     exit(1)
 
-# 3. Récupération des articles (Les 20 derniers)
+# 3. Récupération des articles (On en prend 30 pour être sûr d'avoir toute la semaine)
 articles_bruts = []
 for url in feeds:
     try:
         feed = feedparser.parse(url)
-        for entry in feed.entries[:20]: 
+        for entry in feed.entries[:30]: 
             date_publi = entry.get('published', 'Date inconnue')
             articles_bruts.append(f"- Date: {date_publi}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {entry.description}\n")
     except Exception as e:
@@ -34,33 +34,35 @@ if not articles_bruts:
 
 contenu_brut = "\n".join(articles_bruts)
 
-# --- CALCUL DES DATES DE LA SEMAINE ---
+# --- LE CŒUR DE TA NOUVELLE LOGIQUE ---
 maintenant = datetime.now()
-il_y_a_une_semaine = maintenant - timedelta(days=7) # Remonte 7 jours en arrière
+# .weekday() donne 0 pour Lundi, 1 pour Mardi, etc.
+jours_depuis_lundi = maintenant.weekday() 
+date_lundi = maintenant - timedelta(days=jours_depuis_lundi)
 
-date_fin = maintenant.strftime("%d/%m/%Y")
-date_debut = il_y_a_une_semaine.strftime("%d/%m/%Y")
+str_aujourdhui = maintenant.strftime("%d/%m/%Y")
+str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber
+# 4. Le Prompt Cyber (Incrémental)
 prompt = f"""
-Tu es un expert en cybersécurité. 
-Rédige un récapitulatif structuré et professionnel des événements majeurs en cybersécurité pour la semaine du {date_debut} au {date_fin}.
+Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
+Ton objectif est de créer un résumé cumulatif de la semaine en cours.
+Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés entre le lundi {str_lundi} et aujourd'hui {str_aujourdhui}. Ignore totalement les événements datant d'avant le {str_lundi}.
 
 RÈGLES STRICTES ABSOLUES :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par les informations.
-2. AUCUN TITRE PRINCIPAL (#). Commence directement par des sous-titres (##) pour tes catégories (ex: ## Vulnérabilités Critiques).
-3. Ne traite que les informations les plus critiques ou marquantes de la semaine.
-4. Base-toi UNIQUEMENT sur le texte fourni.
-5. Sors les numéros de CVE en gras.
-6. Mets les liens cliquables.
+2. AUCUN TITRE PRINCIPAL (#). Commence directement par des sous-titres (##) pour tes catégories.
+3. Ne garde que les informations pertinentes de CETTE période spécifique ({str_lundi} au {str_aujourdhui}).
+4. Sors les numéros de CVE en gras.
+5. Mets les liens cliquables.
 
-Voici les données brutes de la semaine à traiter :
+Voici les données brutes à filtrer et résumer :
 {contenu_brut}
 """
 
 # 5. Appel à l'IA
-print("Génération du résumé hebdomadaire en cours...")
+print(f"Génération du résumé du {str_lundi} au {str_aujourdhui}...")
 response = client.models.generate_content(
     model='gemini-2.5-flash',
     contents=prompt
@@ -74,7 +76,7 @@ page_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Cyber | Du {date_debut} au {date_fin}</title>
+    <title>Veille Cyber | Du {str_lundi} au {str_aujourdhui}</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>">
     
@@ -97,7 +99,7 @@ page_html = f"""<!DOCTYPE html>
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber : du {date_debut} au {date_fin}</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber : du {str_lundi} au {str_aujourdhui}</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             {contenu_html}
@@ -108,8 +110,6 @@ page_html = f"""<!DOCTYPE html>
 """
 
 os.makedirs("Veille", exist_ok=True)
-
-# Sauvegarde
 chemin_fichier = "Veille/index.html"
 with open(chemin_fichier, "w", encoding="utf-8") as f:
     f.write(page_html)
