@@ -43,7 +43,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber (L'IA va maintenant générer un vrai bouton HTML)
+# 4. Le Prompt Cyber
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
@@ -85,35 +85,35 @@ page_html = f"""<!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
-        .veille-content h3 {{ color: var(--text); margin-top: 20px; margin-bottom: 10px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
+        .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
         .veille-content p {{ margin-bottom: 15px; line-height: 1.6; color: var(--muted); }}
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
         
-        /* --- LE CSS DU VRAI BOUTON --- */
+        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ) --- */
         .btn-source {{
-            display: inline-block;
-            background-color: var(--primary); /* La même couleur que ton thème */
-            color: #ffffff !important; /* Texte en blanc pour le contraste */
+            display: block; /* Force le bouton à se mettre sur une nouvelle ligne */
+            width: fit-content; /* L'empêche de prendre toute la largeur de l'écran */
+            background-color: var(--primary); 
+            color: #ffffff !important; 
             padding: 6px 16px;
-            border-radius: 30px; /* Forme pilule comme ton bouton Retour */
+            border-radius: 30px; 
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 8px;
-            margin-left: 5px;
+            margin-top: 12px; /* Dégage le bouton du texte au-dessus */
+            margin-bottom: 25px; /* Laisse un bel espace avant le prochain article */
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
         .btn-source:hover {{
-            transform: translateY(-3px); /* Effet de soulèvement */
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); /* Ombre violette stylée */
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); 
             text-decoration: none;
         }}
         /* ----------------------------- */
         
         .veille-content strong {{ color: var(--text); }}
-        /* Pour s'assurer que si l'IA génère d'autres liens dans le texte (comme des CVE), ils restent normaux */
         .veille-content a:not(.btn-source) {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
         .veille-content a:not(.btn-source):hover {{ text-decoration: underline; }}
     </style>
