@@ -1,13 +1,13 @@
 import feedparser
 from google import genai
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import markdown
 
 # 1. Configuration
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# 2. Lecture des flux depuis le fichier texte
+# 2. Lecture des flux
 chemin_flux = "Veille/flux-rss.txt"
 feeds = []
 if os.path.exists(chemin_flux):
@@ -17,7 +17,7 @@ else:
     print(f"Erreur : {chemin_flux} introuvable.")
     exit(1)
 
-# 3. Récupération des articles (On prend les 20 derniers pour avoir toute la semaine)
+# 3. Récupération des articles (Les 20 derniers)
 articles_bruts = []
 for url in feeds:
     try:
@@ -33,15 +33,22 @@ if not articles_bruts:
     exit(1)
 
 contenu_brut = "\n".join(articles_bruts)
-date_jour = datetime.now().strftime("%d/%m/%Y")
 
-# 4. Le Prompt Cyber (Mode "Semaine" et strict sur le formatage)
+# --- CALCUL DES DATES DE LA SEMAINE ---
+maintenant = datetime.now()
+il_y_a_une_semaine = maintenant - timedelta(days=7) # Remonte 7 jours en arrière
+
+date_fin = maintenant.strftime("%d/%m/%Y")
+date_debut = il_y_a_une_semaine.strftime("%d/%m/%Y")
+# --------------------------------------
+
+# 4. Le Prompt Cyber
 prompt = f"""
-Tu es un expert en cybersécurité. Nous sommes le {date_jour}.
-Rédige un récapitulatif structuré et professionnel des événements majeurs de la semaine écoulée en cybersécurité.
+Tu es un expert en cybersécurité. 
+Rédige un récapitulatif structuré et professionnel des événements majeurs en cybersécurité pour la semaine du {date_debut} au {date_fin}.
 
 RÈGLES STRICTES ABSOLUES :
-1. AUCUNE INTRODUCTION NI CONCLUSION. Ne dis pas "Voici le résumé", commence directement par les informations.
+1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par les informations.
 2. AUCUN TITRE PRINCIPAL (#). Commence directement par des sous-titres (##) pour tes catégories (ex: ## Vulnérabilités Critiques).
 3. Ne traite que les informations les plus critiques ou marquantes de la semaine.
 4. Base-toi UNIQUEMENT sur le texte fourni.
@@ -67,7 +74,10 @@ page_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hebdomadaire | Armel Plantier</title>
+    <title>Veille Cyber | Du {date_debut} au {date_fin}</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>">
+    
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -87,7 +97,7 @@ page_html = f"""<!DOCTYPE html>
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber - Semaine du {date_jour}</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Veille Cyber : du {date_debut} au {date_fin}</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             {contenu_html}
