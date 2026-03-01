@@ -43,7 +43,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber (Mode TIMELINE JOURNALIÈRE)
+# 4. Le Prompt Cyber (Mode TIMELINE + Bouton Source)
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
@@ -51,11 +51,11 @@ Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés
 
 RÈGLES STRICTES DE FORMATAGE :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par le premier jour.
-2. Structure ton résumé de manière chronologique (du plus récent au plus ancien).
+2. Structure ton résumé de chronologique (du plus récent au plus ancien).
 3. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
-4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES (ex: ### Vulnérabilités Critiques, ### Incidents, etc.).
+4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES.
 5. Ne garde que les infos les plus importantes. Sors les numéros de CVE en gras.
-6. Mets les liens cliquables sous forme de puces (-).
+6. RÈGLE ABSOLUE POUR LES LIENS : N'affiche JAMAIS l'URL brute. À la fin du résumé de chaque article, tu dois obligatoirement mettre un lien formaté EXACTEMENT comme ceci : [🔗 Source](URL_DE_L_ARTICLE)
 
 Voici les données brutes à filtrer et organiser :
 {contenu_brut}
@@ -83,14 +83,34 @@ page_html = f"""<!DOCTYPE html>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Design adapté pour le mode Timeline */
         .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
         .veille-content h3 {{ color: var(--text); margin-top: 20px; margin-bottom: 10px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
         .veille-content p {{ margin-bottom: 15px; line-height: 1.6; color: var(--muted); }}
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
-        .veille-content li {{ margin-bottom: 10px; line-height: 1.5; }}
-        .veille-content a {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
-        .veille-content a:hover {{ text-decoration: underline; }}
+        .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
+        
+        /* --- LE CSS MAGIQUE POUR LE BOUTON SOURCE --- */
+        .veille-content li a {{
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1); /* Fond violet très léger */
+            color: var(--primary); /* Texte violet */
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 8px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.2s ease-in-out;
+        }}
+        .veille-content li a:hover {{
+            background: var(--primary); /* Devient tout violet au survol */
+            color: #ffffff;
+            transform: translateY(-2px); /* Petit effet de saut */
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }}
+        /* ------------------------------------------- */
+        
         .veille-content strong {{ color: var(--text); }}
     </style>
 </head>
