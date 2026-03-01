@@ -2,7 +2,7 @@ name: Générateur de Veille Cyber et Déploiement
 
 on:
   schedule:
-    # S'exécute tous les jours à 22h00 UTC (donc ~23h00 en France)
+    # S'exécute tous les jours à 22h00 UTC (~23h00 en France)
     - cron: '0 22 * * *'
   workflow_dispatch:
   push:
@@ -36,11 +36,12 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install google-genai feedparser markdown
+        pip install google-genai feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: python Veille/veille.py
 
     - name: 🚀 Commit de la nouvelle veille
@@ -48,7 +49,8 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
         git add Veille/index.html
-        git commit -m "Automated: Récapitulatif hebdomadaire cyber 🤖" || echo "Aucune modification"
+        git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification"
+        git pull --rebase origin main
         git push
 
     - name: 📁 Préparation de la structure du site
