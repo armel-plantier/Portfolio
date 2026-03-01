@@ -3,6 +3,7 @@ from google import genai
 import os
 from datetime import datetime, timedelta
 import markdown
+import requests # NOUVEAU : Pour envoyer les requêtes à Brevo
 
 # 1. Configuration
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -43,7 +44,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber
+# 4. Le Prompt Cyber (Mode TIMELINE)
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
@@ -92,8 +93,8 @@ page_html = f"""<!DOCTYPE html>
         
         /* --- LE CSS DU VRAI BOUTON (ORDONNÉ) --- */
         .btn-source {{
-            display: block; /* Force le bouton à se mettre sur une nouvelle ligne */
-            width: fit-content; /* L'empêche de prendre toute la largeur de l'écran */
+            display: block;
+            width: fit-content;
             background-color: var(--primary); 
             color: #ffffff !important; 
             padding: 6px 16px;
@@ -101,8 +102,8 @@ page_html = f"""<!DOCTYPE html>
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 12px; /* Dégage le bouton du texte au-dessus */
-            margin-bottom: 25px; /* Laisse un bel espace avant le prochain article */
+            margin-top: 12px;
+            margin-bottom: 25px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
@@ -139,4 +140,70 @@ chemin_fichier = "Veille/index.html"
 with open(chemin_fichier, "w", encoding="utf-8") as f:
     f.write(page_html)
 
-print(f"Fichier {chemin_fichier} généré avec succès !")
+print(f"Fichier HTML {chemin_fichier} généré avec succès !")
+
+
+# --- 7. ENVOI DE LA NEWSLETTER VIA BREVO ---
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY")
+
+if BREVO_API_KEY:
+    print("Préparation de l'envoi de la newsletter...")
+    
+    # ⚠️ PARAMÈTRES À MODIFIER ICI ⚠️
+    LIST_ID = 2  # L'ID de ta liste de contacts sur Brevo
+    SENDER_EMAIL = "contact@armel-plantier.com" # Ton email expéditeur validé sur Brevo
+
+    url_campaign = "https://api.brevo.com/v3/emailCampaigns"
+    headers = {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json"
+    }
+    
+    # Le design de l'email
+    mail_html = f"""
+    <html>
+    <body style="font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333;">
+        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; border-top: 5px solid #6366f1;">
+            <h2 style="color: #6366f1; border-bottom: 2px solid #eee; padding-bottom: 10px;">🛡️ Ta Veille Cyber de la semaine</h2>
+            <p>Voici les dernières actualités du <strong>{str_lundi}</strong> au <strong>{str_aujourdhui}</strong> :</p>
+            
+            {contenu_html}
+            
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+            <p style="text-align: center; font-size: 12px; color: #888;">
+                Généré automatiquement par le Portfolio de <a href="https://armel-plantier.com" style="color: #6366f1;">Armel Plantier</a>.<br>
+                <a href="{{{{ unsubscribe }}}}" style="color: #888; text-decoration: underline;">Se désabonner</a>
+            </p>
+        </div>
+    </body>
+    </html>
+    """
+
+    payload = {
+        "name": f"Veille Cyber - {str_aujourdhui}",
+        "subject": f"🛡️ Ta Veille Cyber ({str_lundi} - {str_aujourdhui})",
+        "sender": {"name": "Armel Plantier", "email": SENDER_EMAIL},
+        "htmlContent": mail_html,
+        "recipients": {"listIds": [LIST_ID]}
+    }
+
+    # Création de la campagne
+    response_create = requests.post(url_campaign, json=payload, headers=headers)
+    
+    if response_create.status_code == 201:
+        campaign_id = response_create.json().get("id")
+        print(f"Campagne {campaign_id} créée. Envoi en cours...")
+        
+        # Envoi immédiat
+        url_send = f"https://api.brevo.com/v3/emailCampaigns/{campaign_id}/sendNow"
+        response_send = requests.post(url_send, headers=headers)
+        
+        if response_send.status_code == 204:
+            print("✅ Newsletter envoyée avec succès à tous les abonnés !")
+        else:
+            print(f"Erreur lors de l'envoi : {response_send.text}")
+    else:
+        print(f"Erreur lors de la création de la campagne : {response_create.text}")
+else:
+    print("⚠️ Pas de clé BREVO trouvée. L'action GitHub ne l'a pas transmise ou elle n'est pas configurée dans les secrets.")
