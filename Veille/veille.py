@@ -43,7 +43,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 4. Le Prompt Cyber (Mode TIMELINE + Bouton Source)
+# 4. Le Prompt Cyber (L'IA va maintenant générer un vrai bouton HTML)
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
@@ -55,7 +55,8 @@ RÈGLES STRICTES DE FORMATAGE :
 3. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
 4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES.
 5. Ne garde que les infos les plus importantes. Sors les numéros de CVE en gras.
-6. RÈGLE ABSOLUE POUR LES LIENS : N'affiche JAMAIS l'URL brute. À la fin du résumé de chaque article, tu dois obligatoirement mettre un lien formaté EXACTEMENT comme ceci : [🔗 Source](URL_DE_L_ARTICLE)
+6. RÈGLE ABSOLUE POUR LES LIENS : À la fin de chaque explication d'article, tu dois OBLIGATOIREMENT intégrer ce code HTML exact pour faire le bouton (remplace juste l'URL) :
+<a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire la source</a>
 
 Voici les données brutes à filtrer et organiser :
 {contenu_brut}
@@ -89,29 +90,32 @@ page_html = f"""<!DOCTYPE html>
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
         
-        /* --- LE CSS MAGIQUE POUR LE BOUTON SOURCE --- */
-        .veille-content li a {{
+        /* --- LE CSS DU VRAI BOUTON --- */
+        .btn-source {{
             display: inline-block;
-            background: rgba(99, 102, 241, 0.1); /* Fond violet très léger */
-            color: var(--primary); /* Texte violet */
-            padding: 4px 10px;
-            border-radius: 8px;
+            background-color: var(--primary); /* La même couleur que ton thème */
+            color: #ffffff !important; /* Texte en blanc pour le contraste */
+            padding: 6px 16px;
+            border-radius: 30px; /* Forme pilule comme ton bouton Retour */
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-left: 8px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            transition: all 0.2s ease-in-out;
+            margin-top: 8px;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
-        .veille-content li a:hover {{
-            background: var(--primary); /* Devient tout violet au survol */
-            color: #ffffff;
-            transform: translateY(-2px); /* Petit effet de saut */
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        .btn-source:hover {{
+            transform: translateY(-3px); /* Effet de soulèvement */
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); /* Ombre violette stylée */
+            text-decoration: none;
         }}
-        /* ------------------------------------------- */
+        /* ----------------------------- */
         
         .veille-content strong {{ color: var(--text); }}
+        /* Pour s'assurer que si l'IA génère d'autres liens dans le texte (comme des CVE), ils restent normaux */
+        .veille-content a:not(.btn-source) {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
+        .veille-content a:not(.btn-source):hover {{ text-decoration: underline; }}
     </style>
 </head>
 <body style="background: var(--bg);">
