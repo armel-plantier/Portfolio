@@ -151,7 +151,7 @@ if BREVO_API_KEY:
     
     # ⚠️ PARAMÈTRES À MODIFIER ICI ⚠️
     LIST_ID = 2  # L'ID de ta liste de contacts sur Brevo
-    SENDER_EMAIL = "armelplantier@gmail.com" # Ton email expéditeur validé sur Brevo
+    SENDER_EMAIL = "newsletter@armel-plantier.com" # Ton email expéditeur validé sur Brevo
 
     url_campaign = "https://api.brevo.com/v3/emailCampaigns"
     headers = {
