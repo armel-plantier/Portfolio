@@ -767,3 +767,33 @@ body.light-mode .veille-section {
 @media (max-width: 768px) {
     .veille-section { padding: 20px; }
 }
+
+/* --- TEXTE EXPLICATIF VEILLE (Colonne de droite) --- */
+.veille-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.veille-info-text h4 {
+    color: var(--text);
+    margin-bottom: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+}
+
+.veille-info-text strong {
+    color: var(--primary);
+}
+
+/* Sur mobile, on le centre et on réduit l'espacement pour que ça rende bien sous la carte */
+@media (max-width: 768px) {
+    .veille-info-text {
+        padding: 15px 10px 0 10px;
+        text-align: center;
+    }
+}
