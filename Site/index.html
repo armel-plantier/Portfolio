@@ -122,18 +122,18 @@
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                         </div>
                         <div class="cert-info">
-                            <span class="cert-name" style="display: flex; align-items: center; gap: 8px;">
-                                Ma Veille Automatisée
-                                <button id="veille-info-trigger" class="info-bubble-btn" aria-label="Comment ça marche ?" title="Comment ça marche ?">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                                </button>
-                            </span>
+                            <span class="cert-name">Ma Veille Automatisée</span>
                             <span class="cert-issuer">Actualités cyber générées chaque semaine par l'IA</span>
                         </div>
                         <div class="cert-actions">
                             <a href="/Veille" target="_blank" class="cert-btn link-btn" title="Consulter la veille">🔗</a>
                         </div>
                     </div>
+                </li>
+
+                <li class="veille-info-text">
+                    <h4>🤖 Comment ça marche ?</h4>
+                    <p>Ce projet est <strong>100% automatisé</strong>. Un script récupère les flux RSS spécialisés en cybersécurité. Une IA (LLM) analyse, traduit et synthétise ensuite ces données pour générer automatiquement cette newsletter hebdomadaire.</p>
                 </li>
             </ul>
 
@@ -150,7 +150,6 @@
                 </div>
             </div>
         </section>
-
         <footer>
             <div class="sys-info">
                 <span id="footer-copy"></span>
@@ -159,9 +158,7 @@
             </div>
             <a href="#" id="legal-trigger" class="footer-legal-link">Mentions Légales</a>
         </footer>
-    </div>
-
-    <div id="email-modal" class="modal-overlay">
+    </div> <div id="email-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
                 <span>Contact</span>
@@ -235,45 +232,6 @@
             </div>
         </div>
     </div>
-
-<section id="veille" class="section-wrapper veille-section">
-            <h3>Veille Cyber</h3>
-            
-            <ul class="cert-list">
-                <li class="cert-card-container">
-                    <div class="cert-header-row">
-                        <div class="cert-icon-box">
-                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                        </div>
-                        <div class="cert-info">
-                            <span class="cert-name">Ma Veille Automatisée</span>
-                            <span class="cert-issuer">Actualités cyber générées chaque semaine par l'IA</span>
-                        </div>
-                        <div class="cert-actions">
-                            <a href="/Veille" target="_blank" class="cert-btn link-btn" title="Consulter la veille">🔗</a>
-                        </div>
-                    </div>
-                </li>
-
-                <li class="veille-info-text">
-                    <h4>🤖 Comment ça marche ?</h4>
-                    <p>Ce projet est <strong>100% automatisé</strong>. Un script récupère les flux RSS spécialisés en cybersécurité. Une IA (LLM) analyse, traduit et synthétise ensuite ces données pour générer automatiquement cette newsletter hebdomadaire.</p>
-                </li>
-            </ul>
-
-            <div class="veille-divider"></div>
-
-            <div class="newsletter-card integrated-newsletter">
-                <div class="newsletter-content">
-                    <h4>📬 Recevoir la veille par email</h4>
-                    <p>Abonnez-vous pour recevoir le récapitulatif cyber automatisé directement dans votre boîte mail.</p>
-                    <form action="https://9cecd2c7.sibforms.com/serve/MUIFALH8FNeVFgpWuU1ghRjfBhstTy9bUGOOmNs-nc6_a2X_ydKuiy9PY15esm9K4S-Nqm6S-6qvnXXfWiIC-n3XxnrIDWWlp1fcdDGDRjQJfdqJKQlN4Q7_ZNPPNNxRbBHn--j77F2Ne64eWm1GwyzjtCwQd6j2wdVdXLQuwCUK8UYrU4VFuGyba8wJpjTL9ExbDR-IcNiDBaW8eA==" method="POST" class="newsletter-form">
-                        <input type="email" name="EMAIL" placeholder="Votre adresse email..." required>
-                        <button type="submit" class="btn-subscribe">S'abonner</button>
-                    </form>
-                </div>
-            </div>
-        </section>
 
     <script src="config.js"></script>
     <script src="app.js"></script>
