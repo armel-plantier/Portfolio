@@ -1,9 +1,11 @@
 import feedparser
 from google import genai
+from google.genai import errors # NOUVEAU : Pour cibler l'erreur API
 import os
+import time # NOUVEAU : Pour gérer la pause
 from datetime import datetime, timedelta
 import markdown
-import requests # NOUVEAU : Pour envoyer les requêtes à Brevo
+import requests
 
 # 1. Configuration
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
@@ -63,12 +65,31 @@ Voici les données brutes à filtrer et organiser :
 {contenu_brut}
 """
 
-# 5. Appel à l'IA
+# 5. Appel à l'IA avec gestion de la limite de débit (Erreur 429)
 print(f"Génération du journal du {str_lundi} au {str_aujourdhui}...")
-response = client.models.generate_content(
-    model='gemini-2.5-flash',
-    contents=prompt
-)
+
+max_tentatives = 3
+for tentative in range(max_tentatives):
+    try:
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=prompt
+        )
+        print("✅ Contenu généré avec succès !")
+        break # Si ça marche, on casse la boucle et on continue le script
+        
+    except errors.ClientError as e:
+        if e.code == 429:
+            print(f"⚠️ Limite de débit atteinte (Tentative {tentative + 1}/{max_tentatives}).")
+            if tentative < max_tentatives - 1:
+                print("⏳ Mise en pause du script pendant 65 secondes...")
+                time.sleep(65) # On attend que le quota se réinitialise
+            else:
+                print("❌ Échec : La limite est toujours bloquante après plusieurs pauses.")
+                exit(1)
+        else:
+            print(f"❌ Une autre erreur API est survenue : {e}")
+            exit(1)
 
 # 6. CONVERSION ET CRÉATION DE LA PAGE HTML
 contenu_html = markdown.markdown(response.text)
