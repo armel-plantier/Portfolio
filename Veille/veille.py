@@ -24,9 +24,16 @@ articles_bruts = []
 for url in feeds:
     try:
         feed = feedparser.parse(url)
-        for entry in feed.entries[:30]: 
+        # On réduit à 10 articles max par flux au lieu de 30
+        for entry in feed.entries[:10]: 
             date_publi = entry.get('published', 'Date inconnue')
-            articles_bruts.append(f"- Date: {date_publi}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {entry.description}\n")
+            
+            # On récupère le résumé et on le coupe à 300 caractères max pour sauver des tokens
+            resume = entry.get('description', '')
+            if len(resume) > 300:
+                resume = resume[:300] + "..."
+                
+            articles_bruts.append(f"- Date: {date_publi}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
     except Exception as e:
         print(f"Erreur avec le flux {url} : {e}")
 
