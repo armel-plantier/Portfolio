@@ -34,7 +34,6 @@ articles_bruts = []
 for url in feeds:
     try:
         feed = feedparser.parse(url)
-        # NOUVEAU : On récupère le nom du site web directement depuis le flux RSS
         nom_site = feed.feed.get('title', 'Lien externe')
         
         for entry in feed.entries:
@@ -48,7 +47,6 @@ for url in feeds:
                     if len(resume) > 150:
                         resume = resume[:150] + "..."
                         
-                    # NOUVEAU : On ajoute "Source: {nom_site}" pour que l'IA le connaisse
                     articles_bruts.append(f"- Date: {date_publi_str}\n  Source: {nom_site}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
     except Exception as e:
         print(f"Erreur avec le flux {url} : {e}")
@@ -71,16 +69,18 @@ print(f"Nombre d'articles filtrés envoyés à l'IA : {len(articles_bruts)}")
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR.
-Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés entre le lundi {str_lundi} et aujourd'hui {str_aujourdhui}. Ignore les événements datant d'avant le {str_lundi}.
+Tu dois analyser les articles fournis et NE GARDER STRICTEMENT QUE CEUX publiés entre le lundi {str_lundi} et aujourd'hui {str_aujourdhui}.
 
-RÈGLES STRICTES DE FORMATAGE :
+RÈGLES STRICTES DE FORMATAGE (À RESPECTER IMPÉRATIVEMENT) :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement par le premier jour.
-2. Structure ton résumé de chronologique (du plus récent au plus ancien).
-3. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
-4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES.
-5. Ne garde que les infos les plus importantes. Sors les numéros de CVE en gras.
-6. RÈGLE ABSOLUE POUR LES LIENS : À la fin de chaque explication d'article, tu dois OBLIGATOIREMENT intégrer ce code HTML exact pour faire le bouton (remplace l'URL et mets le nom de la source fournie) :
-<a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
+2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
+3. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES.
+4. POUR CHAQUE ARTICLE, tu dois OBLIGATOIREMENT suivre cette structure exacte :
+   - Rédige un court paragraphe explicatif (mets les CVE en gras).
+   - SAUTE UNE LIGNE (très important).
+   - Insère le bouton HTML : <a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
+   - SAUTE DEUX LIGNES avant de passer à l'article suivant.
+5. NE REGROUPE JAMAIS PLUSIEURS ARTICLES DANS LE MÊME PARAGRAPHE.
 
 Voici les données brutes à filtrer et organiser :
 {contenu_brut}
@@ -118,13 +118,13 @@ page_html = f"""<!DOCTYPE html>
     <style>
         .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
         .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
-        .veille-content p {{ margin-bottom: 15px; line-height: 1.6; color: var(--muted); }}
+        .veille-content p {{ margin-bottom: 10px; line-height: 1.6; color: var(--muted); }}
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
         
-        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ ET ALIGNÉ) --- */
+        /* --- CSS DU BOUTON CORRIGÉ --- */
         .btn-source {{
-            display: inline-block; /* Modifié pour l'alignement */
+            display: block; /* Force le bouton à se mettre en dessous */
             width: fit-content;
             background-color: var(--primary); 
             color: #ffffff !important; 
@@ -133,9 +133,8 @@ page_html = f"""<!DOCTYPE html>
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 12px;
-            margin-bottom: 25px;
-            margin-right: 10px; /* Ajout d'une marge à droite pour espacer les boutons s'il y en a plusieurs */
+            margin-top: 8px;
+            margin-bottom: 35px; /* Bel espace avant l'article suivant */
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
@@ -234,4 +233,4 @@ if BREVO_API_KEY:
     else:
         print(f"Erreur lors de la création de la campagne : {response_create.text}")
 else:
-    print("⚠️ Pas de clé BREVO trouvée. L'action GitHub ne l'a pas transmise ou elle n'est pas configurée dans les secrets.")
+    print("⚠️ Pas de clé BREVO trouvée.")
