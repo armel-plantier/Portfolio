@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Cyber | Du 02/03/2026 au 05/03/2026</title>
+    <title>Alerte Data Leaks | Du 02/03/2026 au 05/03/2026</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>DL</text></svg>">
     
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
-        .veille-content h2 { color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }
-        .veille-content h3 { color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }
+        .veille-content h2 { color: #ef4444; margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }
+        .veille-content h3 { color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid #ef4444; padding-left: 10px; }
         .veille-content p { margin-bottom: 10px; line-height: 1.6; color: var(--muted); }
         .veille-content ul { margin-bottom: 25px; padding-left: 20px; color: var(--muted); }
         .veille-content li { margin-bottom: 15px; line-height: 1.6; }
         
-        /* --- CSS DU BOUTON CORRIGÉ --- */
+        /* --- CSS DU BOUTON (Adapté pour les fuites) --- */
         .btn-source {
-            display: block; /* Force le bouton à se mettre en dessous */
+            display: block; 
             width: fit-content;
-            background-color: var(--primary); 
+            background-color: #ef4444; /* Rouge pour le côté alerte/fuite */
             color: #ffffff !important; 
             padding: 6px 16px;
             border-radius: 30px; 
@@ -28,19 +28,19 @@
             font-weight: 600;
             text-decoration: none;
             margin-top: 8px;
-            margin-bottom: 35px; /* Bel espace avant l'article suivant */
+            margin-bottom: 35px; 
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
         }
         .btn-source:hover {
             transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); 
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4); 
             text-decoration: none;
         }
         /* ----------------------------- */
         
         .veille-content strong { color: var(--text); }
-        .veille-content a:not(.btn-source) { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .veille-content a:not(.btn-source) { color: #ef4444; text-decoration: none; font-weight: 500; }
         .veille-content a:not(.btn-source):hover { text-decoration: underline; }
     </style>
 </head>
@@ -50,114 +50,43 @@
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Journal de Veille : du 02/03/2026 au 05/03/2026</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🚨 Alerte Data Leaks : du 02/03/2026 au 05/03/2026</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-            <h2>Lundi 2 Mars</h2>
-<h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. Les détails sur les <strong>CVE</strong> spécifiques impliquées ne sont pas fournis dans l'avis.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes dans MISP, certaines d'entre elles permettant à un attaquant de provoquer une falsification de requête.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Une liste infostealer de 8,29 millions d’identifiants a été liée à des sites web, dont plus de 194 000 Français.</p>
-<p><a href="https://www.zataz.com/liste-infostealer-de-829-millions-didentifiants-liee-a-des-sites-web-dont-plus-de-194-000-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Un espace qui flirte avec l’ombre a été découvert, où la veille vulnérabilités devient un manuel d’attaque.</p>
-<p><a href="https://www.zataz.com/decouverte-dun-espace-qui-qui-flirte-avec-lombre-quand-la-veille-vulnerabilites-devient-un-manuel-dattaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Un fichier « Google » de 3 To a été vendu à 0,1 BTC, découvert par ZATAZ, qui décrit ce qui semble être un export CRM et les risques cyber liés aux données clients.</p>
-<p><a href="https://www.zataz.com/vente-pirate-decouverte-dun-fichier-google-de-3-to-a-01-btc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Motorola s’est allié à GrapheneOS pour des smartphones ultra-sécurisés.</p>
-<p><a href="https://www.it-connect.fr/motorola-smartphone-grapheneos-version-securisee-android/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Les Tables Informatique et Libertés ont été mises à jour par la CNIL.</p>
-<p><a href="https://www.cnil.fr/fr/tables-informatique-et-libertes-2026" class="btn-source" target="_blank">🔗 Lire sur RSS - Actualités CNIL</a></p>
-<h2>Mardi 3 Mars</h2>
-<h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Docker Desktop, permettant à un attaquant de provoquer un problème de sécurité non spécifié. Les détails sur les <strong>CVE</strong> spécifiques impliquées ne sont pas fournis dans l'avis.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes dans Google Android, certaines d'entre elles permettant à un attaquant de provoquer une exécution de code arbitraire.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. Les détails sur les <strong>CVE</strong> spécifiques impliquées ne sont pas fournis dans l'avis.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Vaultwarden 1.35.4 a corrigé trois failles de sécurité, il est recommandé de mettre à jour votre instance.</p>
-<p><a href="https://www.it-connect.fr/vaultwarden-1-35-4-trois-failles-de-securite-corrigees-mettez-a-jour-votre-instance/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>GLPI 11.0.6 et GLPI 10.0.24 ont corrigé un total de sept vulnérabilités.</p>
-<p><a href="https://www.it-connect.fr/glpi-11-0-6-et-glpi-10-0-24-mises-a-jour-securite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Le projet LibreOffice Online a été relancé pour concurrencer Google et Microsoft.</p>
-<p><a href="https://www.it-connect.fr/le-projet-libreoffice-online-relance-pour-concurrencer-google-et-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Anthropic a lancé des cours gratuits pour aider à maîtriser Claude.</p>
-<p><a href="https://www.it-connect.fr/formation-ia-anthropic-lance-ses-cours-gratuits-pour-vous-aider-a-maitriser-claude/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>CISA a ajouté une vulnérabilité VMware Aria Operations à son catalogue de vulnérabilités exploitées.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/cisa-flags-vmware-aria-operations-rce-flaw-as-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Des spams de support technique falsifiés déployaient un C2 personnalisé Havoc à travers les organisations.</p>
-<p><a href="https://thehackernews.com/2026/03/fake-tech-support-spam-deploys.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Un article a été publié sur la manière de construire un Tier 1 à haut impact.</p>
-<p><a href="https://thehackernews.com/2026/03/building-high-impact-tier-1-3-steps.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Un kit d'exploitation AI-assisté a été déployé dans des attaques contre des appareils FortiGate à travers 55 pays.</p>
-<p><a href="https://thehackernews.com/2026/03/open-source-cyberstrikeai-deployed-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<h2>Mercredi 4 Mars</h2>
-<h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Google Pixel, certaines d'entre elles permettant à un attaquant de provoquer une exécution de code arbitraire.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Une vulnérabilité a été découverte dans Tenable Nessus Manager, permettant à un attaquant de provoquer une atteinte à la confidentialité des données.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes dans HPE Aruba Networking AOS, certaines d'entre elles permettant à un attaquant de provoquer un déni de service.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Accenture a acquis Downdetector et Speedtest pour 1,2 milliard de dollars.</p>
-<p><a href="https://www.it-connect.fr/accenture-met-la-main-sur-downdetector-et-speedtest-pour-1-2-milliard-de-dollars/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Microsoft travaille sur une nouvelle licence pour Microsoft 365, officieusement nommée Microsoft 365 E7, qui intégrerait des fonctions IA.</p>
-<p><a href="https://www.it-connect.fr/microsoft-365-e7-vers-un-abonnement-ultime-avec-de-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>La dématérialisation devient incontournable dans la gestion des ressources humaines.</p>
-<p><a href="https://www.it-connect.fr/pourquoi-dematerialisation-incontournable-gestion-ressources-humaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Un pirate a détruit le site YggTorrent et révélé les pratiques mafieuses de ses admins.</p>
+            <h2>Vendredi 5 Mars</h2>
+<h3>LeakBase</h3>
+<p>Une fuite de données importante a été signalée suite à la saisie du forum cybercriminel LeakBase par le FBI et Europol. Les données et les domaines ont été saisis dans le cadre d'une action coordonnée dans <strong>14</strong> pays. Cette opération a permis de mettre fin aux activités de ce forum, qui était utilisé par des cybercriminels pour acheter et vendre des outils de hacking et des données volées.</p>
+<p><a href="https://www.zataz.com/le-petit-frere-de-breachforum-ferme-par-le-fbi-et-europol/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
+<h3>YggTorrent</h3>
+<p>Un piratage a eu lieu sur le site YggTorrent, entraînant la fuite de <strong>11 Go</strong> de données. Les données compromises incluent des informations sensibles sur les utilisateurs et les administrateurs du site. Le pirate a également révélé les mauvaises pratiques des admins, allant jusqu'au vol de cartes bancaires.</p>
 <p><a href="https://www.it-connect.fr/fin-de-yggtorrent-un-pirate-detruit-le-site-et-revele-les-pratiques-mafieuses-de-ses-admins/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Un tutoriel a été publié sur la manière de déployer Windows 11 avec WAPT.</p>
-<p><a href="https://www.it-connect.fr/tuto-deployer-windows-11-avec-wapt-wads/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Docker veut étendre la sécurité au niveau des paquets.</p>
-<p><a href="https://www.it-connect.fr/docker-hardened-system-packages-securite-conteneurs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Google va publier des mises à jour de Chrome toutes les 2 semaines.</p>
-<p><a href="https://www.it-connect.fr/google-va-publier-des-mises-a-jour-de-chrome-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Bitwarden a ajouté la prise en charge de l'authentification par passkey sur Windows 11.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/bitwarden-adds-support-for-passkey-login-on-windows-11/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Une vulnérabilité dans FreeScout permet aux hackers de hijacker des serveurs de messagerie.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/mail2shell-zero-click-attack-lets-hackers-hijack-freescout-mail-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Microsoft a publié la mise à jour KB5075039 pour Windows 10 pour réparer l'environnement de récupération.</p>
-<p><a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-kb5075039-update-fixes-broken-recovery-environment/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Des emails de support falsifiés de LastPass tentent de voler les mots de passe des coffres.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/fake-lastpass-support-email-threads-try-to-steal-vault-passwords/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Cisco a averti des failles de sécurité de gravité maximale dans Secure FMC.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-max-severity-secure-fmc-flaws-giving-root-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Un kit d'exploitation Coruna iOS a été utilisé dans des attaques de vol de crypto-monnaies.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/spyware-grade-coruna-ios-exploit-kit-now-used-in-crypto-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Un hacker a envoyé des emails d'extorsion aux clients de HungerRush.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/hacker-mass-mails-hungerrush-extortion-emails-to-restaurant-patrons/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Le FBI a saisi le forum de cybercriminalité LeakBase.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Une opération coordonnée par Europol a perturbé la plate-forme de phishing Tycoon2FA.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/europol-coordinated-action-disrupts-tycoon2fa-phishing-platform/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Un centre médical du Mississippi a rouvert ses cliniques après une attaque de ransomware.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/mississippi-medical-center-reopens-clinics-hit-by-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Un article a été publié sur la manière dont une attaque de force brute a démasqué un réseau d'infrastructure de ransomware.</p>
-<p><a href="https://www.bleepingcomputer.com/news/security/how-a-brute-force-attack-unmasked-a-ransomware-infrastructure-network/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Des attaques de hacktivistes ont visé 110 organisations dans 16 pays après un conflit au Moyen-Orient.</p>
-<p><a href="https://thehackernews.com/2026/03/149-hacktivist-ddos-attacks-hit-110.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Un kit d'exploitation Coruna iOS utilise 23 exploits pour cibler les appareils iOS.</p>
-<p><a href="https://thehackernews.com/2026/03/coruna-ios-exploit-kit-uses-23-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Un modèle de demande de proposition pour l'utilisation et la gouvernance de l'IA a été publié.</p>
-<p><a href="https://thehackernews.com/2026/03/new-rfp-template-for-ai-usage-control.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Des packages Laravel falsifiés sur Packagist déployaient un RAT sur Windows, macOS et Linux.</p>
-<p><a href="https://thehackernews.com/2026/03/fake-laravel-packages-on-packagist.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Un groupe APT41 lié a ciblé des gouvernements à l'aide de Cobalt Strike et de Google Drive C2.</p>
-<p><a href="https://thehackernews.com/2026/03/apt41-linked-silver-dragon-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>CISA a ajouté une vulnérabilité VMware Aria Operations à son catalogue de vulnérabilités exploitées.</p>
-<p><a href="https://thehackernews.com/2026/03/cisa-adds-actively-exploited-vmware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<h2>Jeudi 5 Mars</h2>
-<h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Traefik, permettant à un attaquant de provoquer un déni de service à distance et un contournement de la politique de sécurité.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0236/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. Les détails sur les <strong>CVE</strong> spécifiques impliquées ne sont pas fournis dans l'avis.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0237/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Une vulnérabilité a été découverte dans NetApp ONTAP 9, permettant à un attaquant de provoquer une atteinte à la confidentialité des données.</p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0238/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Des vulnérabilités ont également été découvertes</p>
+<h3>Phobos Ransomware</h3>
+<p>Un ressortissant russe a plaidé coupable de conspiration en matière de fraude électronique en lien avec son rôle dans l'administration de l'opération Phobos Ransomware. Cette opération a entraîné des atteintes à la sécurité de nombreuses entreprises et organisations, avec des demandes de rançon pour restaurer l'accès aux données compromises.</p>
+<p><a href="https://www.bleepingcomputer.com/news/security/phobos-ransomware-admin-pleads-guilty-to-wire-fraud-conspiracy/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
+<h3>FBI et Europol</h3>
+<p>Le FBI et Europol ont mené une opération conjointe pour fermer le forum cybercriminel LeakBase, utilisé pour échanger des informations volées et des outils de hacking. Cette opération a abouti à la saisie des données de <strong>142 000</strong> membres et à l'arrestation de plusieurs suspects.</p>
+<p><a href="https://thehackernews.com/2026/03/fbi-and-europol-seize-leakbase-forum.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News&lt;/a</p>
+<h2>Jeudi 4 Mars</h2>
+<h3>YggTorrent</h3>
+<p>Un pirate a détruit le site YggTorrent et révélé les pratiques mafieuses de ses administrateurs, y compris le vol de cartes bancaires. Une fuite de données de <strong>11 Go</strong> a été signalée, contenant des informations sensibles sur les utilisateurs et les admins.</p>
+<p><a href="https://www.it-connect.fr/fin-de-yggtorrent-un-pirate-detruit-le-site-et-revele-les-pratiques-mafieuses-de-ses-admins/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
+<h3>LeakBase</h3>
+<p>Le FBI a saisi le forum cybercriminel LeakBase, qui comptait <strong>142 000</strong> membres. Les données saisies incluent des informations volées et des outils de hacking échangés entre les membres.</p>
+<p><a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer&lt;/a</p>
+<h3>University of Mississippi Medical Center</h3>
+<p>Un centre médical du Mississippi a subi une attaque par ransomware, qui a bloqué l'accès aux dossiers électroniques des patients. Le centre a repris ses activités normales après <strong>9</strong> jours.</p>
+<p><a href="https://www.bleepingcomputer.com/news/security/mississippi-medical-center-reopens-clinics-hit-by-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer&lt;/a</p>
+<h3>LexisNexis</h3>
+<p>Une nouvelle fuite de données a été confirmée chez LexisNexis après que des hackers aient publié des fichiers volés. Les hackers affirment avoir volé <strong>2 Go</strong> de fichiers, dont <strong>400 000</strong> dossiers d'informations personnelles.</p>
+<p><a href="https://www.securityweek.com/new-lexisnexis-data-breach-confirmed-after-hackers-leak-files/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek&lt;/a</p>
+<h2>Mercredi 3 Mars</h2>
+<h3>Ariomex</h3>
+<p>Une base de données d'Ariomex a été divulguée, révélant des informations sur les échanges de cryptomonnaies et les transferts de capitaux liés à des acteurs iraniens. Cette fuite de données met en lumière les pratiques de contournement des sanctions.</p>
+<p><a href="https://www.infosecurity-magazine.com/news/iranian-crypto-leaked-database/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine&lt;/a</p>
+<h2>Mardi 2 Mars</h2>
+<h3>Ransomware</h3>
+<p>Les paiements de rançons ont diminué de <strong>8%</strong> malgré une augmentation de <strong>50%</strong> des attaques par ransomware. Les hackers ont ciblé de nombreuses entreprises et organisations, demandant des rançons pour restaurer l'accès aux données compromises.</p>
+<p><a href="https://www.infosecurity-magazine.com/news/ransomware-payments-decline-1/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</p>
         </div>
     </div>
 </body>
