@@ -1,14 +1,13 @@
 import feedparser
-from google import genai
-from google.genai import errors # NOUVEAU : Pour cibler l'erreur API
+from groq import Groq
 import os
-import time # NOUVEAU : Pour gérer la pause
 from datetime import datetime, timedelta
 import markdown
 import requests
 
-# 1. Configuration
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+# 1. Configuration Groq
+# On récupère la clé API Groq depuis les variables d'environnement
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # 2. Lecture des flux
 chemin_flux = "Veille/flux-rss.txt"
@@ -65,34 +64,23 @@ Voici les données brutes à filtrer et organiser :
 {contenu_brut}
 """
 
-# 5. Appel à l'IA avec gestion de la limite de débit (Erreur 429)
-print(f"Génération du journal du {str_lundi} au {str_aujourdhui}...")
-
-max_tentatives = 3
-for tentative in range(max_tentatives):
-    try:
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=prompt
-        )
-        print("✅ Contenu généré avec succès !")
-        break # Si ça marche, on casse la boucle et on continue le script
-        
-    except errors.ClientError as e:
-        if e.code == 429:
-            print(f"⚠️ Limite de débit atteinte (Tentative {tentative + 1}/{max_tentatives}).")
-            if tentative < max_tentatives - 1:
-                print("⏳ Mise en pause du script pendant 65 secondes...")
-                time.sleep(65) # On attend que le quota se réinitialise
-            else:
-                print("❌ Échec : La limite est toujours bloquante après plusieurs pauses.")
-                exit(1)
-        else:
-            print(f"❌ Une autre erreur API est survenue : {e}")
-            exit(1)
+# 5. Appel à l'IA Groq
+print(f"Génération du journal du {str_lundi} au {str_aujourdhui} via Groq...")
+try:
+    response = client.chat.completions.create(
+        model="llama3-70b-8192",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.3 # Température basse pour rester factuel
+    )
+    reponse_texte = response.choices[0].message.content
+except Exception as e:
+    print(f"Erreur lors de l'appel à l'API Groq : {e}")
+    exit(1)
 
 # 6. CONVERSION ET CRÉATION DE LA PAGE HTML
-contenu_html = markdown.markdown(response.text)
+contenu_html = markdown.markdown(reponse_texte)
 
 page_html = f"""<!DOCTYPE html>
 <html lang="fr">
