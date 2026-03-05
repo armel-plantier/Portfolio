@@ -63,23 +63,24 @@ if len(articles_bruts) > MAX_ARTICLES:
 contenu_brut = "\n".join(articles_bruts)
 print(f"Nombre d'articles envoyés à l'IA : {len(articles_bruts)}")
 
-# 4. Le Prompt Cyber (Classification Stricte)
+# 4. Le Prompt Cyber (Structure HTML Forcée pour éviter les bugs)
 prompt = f"""
 Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
 Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR, puis par CATÉGORIES.
 
-RÈGLES STRICTES DE FORMATAGE (À RESPECTER IMPÉRATIVEMENT) :
+RÈGLES STRICTES DE FORMATAGE (À RESPECTER IMPÉRATIVEMENT SOUS PEINE D'ERREUR) :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
 2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
 3. SOUS chaque jour, tu dois CLASSER les articles en utilisant EXACTEMENT ces Titres 3 (###) :
-   - ### Vulnérabilités (pour les CVE, failles, patchs)
-   - ### Fuites de données (pour les leaks, ransomwares, piratages)
-   - ### Actualités (pour le reste: IA, lois, rachats, etc.)
-4. POUR CHAQUE ARTICLE, suis cette structure exacte :
-   - Rédige un court paragraphe explicatif.
-   - SAUTE UNE LIGNE.
-   - Insère le bouton HTML : <a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
-   - SAUTE DEUX LIGNES avant l'article suivant.
+   - ### Vulnérabilités
+   - ### Fuites de données
+   - ### Actualités
+4. POUR CHAQUE ARTICLE, tu DOIS obligatoirement générer ce bloc HTML exact (ne fais aucun paragraphe classique) :
+
+<div class="article-box">
+<p><strong>Sujet principal</strong> : Ton paragraphe explicatif ici.</p>
+<a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
+</div>
 
 Voici les données à analyser et organiser :
 {contenu_brut}
@@ -100,7 +101,7 @@ except Exception as e:
     print(f"Erreur lors de l'appel à l'API Groq : {e}")
     exit(1)
 
-# 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Avec Menu JavaScript Corrigé)
+# 6. CONVERSION ET CRÉATION DE LA PAGE HTML
 contenu_html = markdown.markdown(reponse_texte)
 
 page_html = f"""<!DOCTYPE html>
@@ -133,9 +134,7 @@ page_html = f"""<!DOCTYPE html>
             font-weight: 600;
             transition: all 0.3s ease;
         }}
-        .filter-btn:hover {{
-            background: var(--border, #334155);
-        }}
+        .filter-btn:hover {{ background: var(--border, #334155); }}
         .filter-btn.active {{
             background: var(--primary, #6366f1);
             color: white;
@@ -145,13 +144,24 @@ page_html = f"""<!DOCTYPE html>
 
         .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
         .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
-        .veille-content p {{ margin-bottom: 10px; line-height: 1.6; color: var(--muted); }}
-        .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
-        .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
+        
+        /* NOUVEAU DESIGN DES ARTICLES */
+        .article-box {{
+            background: rgba(99, 102, 241, 0.04);
+            border-left: 4px solid var(--primary, #6366f1);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }}
+        .article-box p {{
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--muted);
+        }}
         
         .btn-source {{
-            display: block; 
-            width: fit-content;
+            display: inline-block; 
             background-color: var(--primary); 
             color: #ffffff !important; 
             padding: 6px 16px;
@@ -159,14 +169,10 @@ page_html = f"""<!DOCTYPE html>
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 8px;
-            margin-bottom: 35px; 
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
         .btn-source:hover {{ transform: translateY(-3px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); text-decoration: none; }}
-        .veille-content strong {{ color: var(--text); }}
-        .veille-content a:not(.btn-source) {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
     </style>
 </head>
 <body style="background: var(--bg);">
@@ -190,7 +196,6 @@ page_html = f"""<!DOCTYPE html>
     </div>
 
     <script>
-        // On tague les éléments dès que la page est chargée
         document.addEventListener("DOMContentLoaded", function() {{
             const container = document.getElementById('veilleContent');
             if (!container) return;
@@ -198,32 +203,38 @@ page_html = f"""<!DOCTYPE html>
             let currentCategory = 'actu'; 
             
             elements.forEach(el => {{
-                if (el.tagName.toLowerCase() === 'h3') {{
+                if (el.tagName.toLowerCase() === 'h2') {{
+                    el.setAttribute('data-type', 'date');
+                }} else if (el.tagName.toLowerCase() === 'h3') {{
                     let text = el.innerText.toLowerCase();
                     if (text.includes('vuln')) currentCategory = 'vuln';
                     else if (text.includes('fuite') || text.includes('leak')) currentCategory = 'leak';
                     else if (text.includes('actu')) currentCategory = 'actu';
+                    
+                    el.setAttribute('data-type', 'category-title');
                     el.setAttribute('data-category', currentCategory);
-                }} else if (el.tagName.toLowerCase() === 'h2') {{
-                    el.setAttribute('data-category', 'date');
                 }} else {{
+                    // C'est un article (div.article-box)
+                    el.setAttribute('data-type', 'content');
                     el.setAttribute('data-category', currentCategory);
                 }}
             }});
         }});
 
         function filterData(category, btnElement) {{
-            // 1. Mise à jour visuelle des boutons
+            // Met à jour les boutons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
 
             const container = document.getElementById('veilleContent');
             const elements = Array.from(container.children);
 
-            // 2. Masquer/Afficher le contenu selon la catégorie
+            // 1. Appliquer le filtre sur les articles et les titres de catégories
             elements.forEach(el => {{
+                let type = el.getAttribute('data-type');
                 let cat = el.getAttribute('data-category');
-                if (cat !== 'date') {{ // On ne touche pas aux dates (H2) ici
+                
+                if (type === 'content' || type === 'category-title') {{
                     if (category === 'all' || cat === category) {{
                         el.style.display = '';
                     }} else {{
@@ -232,27 +243,30 @@ page_html = f"""<!DOCTYPE html>
                 }}
             }});
 
-            // 3. Masquer/Afficher les dates (H2) si elles sont vides
-            let currentH2 = null;
-            let hasVisibleContent = false;
-            
-            for (let i = 0; i < elements.length; i++) {{
+            // 2. Nettoyage intelligent : Cacher les dates et catégories qui sont vides
+            let hasContentForH3 = false;
+            let hasContentForH2 = false;
+
+            // On boucle à l'envers (du bas vers le haut) pour savoir si la date possède des articles en dessous
+            for (let i = elements.length - 1; i >= 0; i--) {{
                 let el = elements[i];
-                if (el.tagName.toLowerCase() === 'h2') {{
-                    if (currentH2) {{
-                        currentH2.style.display = hasVisibleContent ? '' : 'none';
+                let type = el.getAttribute('data-type');
+
+                if (type === 'content' && el.style.display !== 'none') {{
+                    hasContentForH3 = true;
+                    hasContentForH2 = true;
+                }} else if (type === 'category-title') {{
+                    if (!hasContentForH3) {{
+                        el.style.display = 'none'; // Cache le H3 si aucun article dessous
                     }}
-                    currentH2 = el;
-                    hasVisibleContent = false;
-                }} else {{
-                    if (el.style.display !== 'none') {{
-                        hasVisibleContent = true;
+                    hasContentForH3 = false; 
+                }} else if (type === 'date') {{
+                    if (!hasContentForH2) {{
+                        el.style.display = 'none'; // Cache la date si rien ne s'est passé ce jour là
                     }}
+                    hasContentForH2 = false; 
+                    hasContentForH3 = false; 
                 }}
-            }}
-            // Vérifier la dernière date de la liste
-            if (currentH2) {{
-                currentH2.style.display = hasVisibleContent ? '' : 'none';
             }}
         }}
     </script>
