@@ -29,15 +29,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# --- NOUVEAU : MOTS-CLÉS POUR LES FUITES DE DONNÉES ---
-mots_cles_fuites = [
-    "fuite", "leak", "breach", "vol de", "exfiltration", 
-    "dump", "données exposées", "compromission", "piratage",
-    "base de données", "database", "hacked", "ransomware"
-]
-# ------------------------------------------------------
-
-# 3. Récupération et filtrage STRICT des articles (Dates + Mots-clés)
+# 3. Récupération des articles (SANS filtre de mots-clés, on prend tout)
 articles_bruts = []
 for url in feeds:
     try:
@@ -51,21 +43,16 @@ for url in feeds:
                 if dt_publi >= date_lundi_debut:
                     date_publi_str = dt_publi.strftime("%d/%m/%Y")
                     resume = entry.get('description', '')
-                    titre = entry.title
                     
-                    # FILTRE MOTS-CLÉS : On cherche dans le titre et le résumé (en minuscules)
-                    texte_analyse = (titre + " " + resume).lower()
-                    
-                    if any(mot in texte_analyse for mot in mots_cles_fuites):
-                        if len(resume) > 150:
-                            resume = resume[:150] + "..."
-                            
-                        articles_bruts.append(f"- Date: {date_publi_str}\n  Source: {nom_site}\n  Titre: {titre}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
+                    if len(resume) > 150:
+                        resume = resume[:150] + "..."
+                        
+                    articles_bruts.append(f"- Date: {date_publi_str}\n  Source: {nom_site}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
     except Exception as e:
         print(f"Erreur avec le flux {url} : {e}")
 
 if not articles_bruts:
-    print("Aucune fuite de données trouvée cette semaine. Arrêt du script.")
+    print("Aucun article récent trouvé cette semaine. Arrêt du script.")
     exit(0)
 
 MAX_ARTICLES = 70
@@ -74,30 +61,32 @@ if len(articles_bruts) > MAX_ARTICLES:
     articles_bruts = articles_bruts[:MAX_ARTICLES]
 
 contenu_brut = "\n".join(articles_bruts)
-print(f"Nombre d'articles (orientés fuites) envoyés à l'IA : {len(articles_bruts)}")
+print(f"Nombre d'articles envoyés à l'IA : {len(articles_bruts)}")
 
-# 4. Le Prompt Cyber (Spécialisé FUITES DE DONNÉES)
+# 4. Le Prompt Cyber (Classification Stricte)
 prompt = f"""
-Tu es un analyste en Threat Intelligence spécialisé dans les fuites de données (Data Breaches). Nous sommes le {str_aujourdhui}.
-Ton objectif est de créer un bulletin d'alerte recensant UNIQUEMENT les fuites de données, vols d'informations ou attaques par ransomware ayant entraîné une compromission de données, entre le {str_lundi} et aujourd'hui.
+Tu es un expert en cybersécurité. Nous sommes le {str_aujourdhui}.
+Ton objectif est de créer un résumé de la semaine en cours, structuré JOUR PAR JOUR, puis par CATÉGORIES.
 
 RÈGLES STRICTES DE FORMATAGE (À RESPECTER IMPÉRATIVEMENT) :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
-2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR où des fuites ont eu lieu (ex: ## Lundi 2 Mars).
-3. SOUS chaque jour, utilise un Titre 3 (###) pour les NOMS DES ENTITÉS TOUCHÉES (entreprises, hôpitaux, etc.).
-4. POUR CHAQUE INCIDENT, tu dois OBLIGATOIREMENT suivre cette structure exacte :
-   - Rédige un paragraphe clair expliquant ce qui a fuité (type de données, ampleur, groupe de hackers si connu). Mets les chiffres et noms importants en gras.
+2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
+3. SOUS chaque jour, tu dois CLASSER les articles en utilisant EXACTEMENT ces Titres 3 (###) :
+   - ### Vulnérabilités (pour les CVE, failles, patchs)
+   - ### Fuites de données (pour les leaks, ransomwares, piratages)
+   - ### Actualités (pour le reste: IA, lois, rachats, etc.)
+4. POUR CHAQUE ARTICLE, suis cette structure exacte :
+   - Rédige un court paragraphe explicatif.
    - SAUTE UNE LIGNE.
    - Insère le bouton HTML : <a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
-   - SAUTE DEUX LIGNES avant de passer à l'incident suivant.
-5. Ignore totalement les articles qui parlent de simples mises à jour logicielles ou de vulnérabilités sans exploitation prouvée. Ne garde que les fuites/vols.
+   - SAUTE DEUX LIGNES avant l'article suivant.
 
-Voici les données pré-filtrées à analyser et organiser :
+Voici les données à analyser et organiser :
 {contenu_brut}
 """
 
 # 5. Appel à l'IA Groq
-print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Groq...")
+print(f"Génération du journal du {str_lundi} au {str_aujourdhui} via Groq...")
 try:
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
@@ -111,7 +100,7 @@ except Exception as e:
     print(f"Erreur lors de l'appel à l'API Groq : {e}")
     exit(1)
 
-# 6. CONVERSION ET CRÉATION DE LA PAGE HTML
+# 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Avec Menu JavaScript)
 contenu_html = markdown.markdown(reponse_texte)
 
 page_html = f"""<!DOCTYPE html>
@@ -119,24 +108,51 @@ page_html = f"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alerte Data Leaks | Du {str_lundi} au {str_aujourdhui}</title>
+    <title>Veille Cyber | Du {str_lundi} au {str_aujourdhui}</title>
     
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>DL</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>">
     
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
-        .veille-content h2 {{ color: #ef4444; margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
-        .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid #ef4444; padding-left: 10px; }}
+        /* CSS DU MENU DE TRI */
+        .filter-menu {{
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }}
+        .filter-btn {{
+            background: var(--card, #1e293b);
+            color: var(--text, #f8fafc);
+            border: 1px solid var(--border, #334155);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }}
+        .filter-btn:hover {{
+            background: var(--border, #334155);
+        }}
+        .filter-btn.active {{
+            background: var(--primary, #6366f1);
+            color: white;
+            border-color: var(--primary, #6366f1);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }}
+
+        .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
+        .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
         .veille-content p {{ margin-bottom: 10px; line-height: 1.6; color: var(--muted); }}
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
         
-        /* --- CSS DU BOUTON (Adapté pour les fuites) --- */
         .btn-source {{
             display: block; 
             width: fit-content;
-            background-color: #ef4444; /* Rouge pour le côté alerte/fuite */
+            background-color: var(--primary); 
             color: #ffffff !important; 
             padding: 6px 16px;
             border-radius: 30px; 
@@ -146,18 +162,11 @@ page_html = f"""<!DOCTYPE html>
             margin-top: 8px;
             margin-bottom: 35px; 
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
-        .btn-source:hover {{
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4); 
-            text-decoration: none;
-        }}
-        /* ----------------------------- */
-        
+        .btn-source:hover {{ transform: translateY(-3px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); text-decoration: none; }}
         .veille-content strong {{ color: var(--text); }}
-        .veille-content a:not(.btn-source) {{ color: #ef4444; text-decoration: none; font-weight: 500; }}
-        .veille-content a:not(.btn-source):hover {{ text-decoration: underline; }}
+        .veille-content a:not(.btn-source) {{ color: var(--primary); text-decoration: none; font-weight: 500; }}
     </style>
 </head>
 <body style="background: var(--bg);">
@@ -166,12 +175,84 @@ page_html = f"""<!DOCTYPE html>
             ↩ Retour au Portfolio
         </a>
         
-        <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🚨 Alerte Data Leaks : du {str_lundi} au {str_aujourdhui}</h1>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 30px;">🛡️ Journal de Veille : du {str_lundi} au {str_aujourdhui}</h1>
         
-        <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+        <div class="filter-menu" id="filterMenu">
+            <button class="filter-btn active" onclick="filterData('all')">Tout voir</button>
+            <button class="filter-btn" onclick="filterData('vuln')">🔓 Vulnérabilités</button>
+            <button class="filter-btn" onclick="filterData('leak')">🚨 Fuites de données</button>
+            <button class="filter-btn" onclick="filterData('actu')">📰 Actualités</button>
+        </div>
+
+        <div class="veille-content" id="veilleContent" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             {contenu_html}
         </div>
     </div>
+
+    <script>
+        function filterData(category) {{
+            // Met à jour le bouton actif
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const container = document.getElementById('veilleContent');
+            const elements = Array.from(container.children);
+            let currentCategory = 'other';
+            
+            // Étape 1 : Assigner une catégorie à chaque élément en lisant les H3
+            if (!elements[0].hasAttribute('data-category')) {{
+                elements.forEach(el => {{
+                    if (el.tagName.toLowerCase() === 'h3') {{
+                        let text = el.innerText.toLowerCase();
+                        if (text.includes('vuln')) currentCategory = 'vuln';
+                        else if (text.includes('fuite') || text.includes('leak')) currentCategory = 'leak';
+                        else if (text.includes('actu')) currentCategory = 'actu';
+                        else currentCategory = 'other';
+                        el.setAttribute('data-category', currentCategory);
+                    }} else if (el.tagName.toLowerCase() === 'h2') {{
+                        el.setAttribute('data-category', 'date');
+                    }} else {{
+                        el.setAttribute('data-category', currentCategory);
+                    }}
+                }});
+            }}
+
+            // Étape 2 : Masquer ou afficher selon le choix
+            elements.forEach(el => {{
+                let cat = el.getAttribute('data-category');
+                if (cat === 'date') {{
+                    el.style.display = ''; // Les dates restent affichées temporairement
+                }} else if (category === 'all' || cat === category) {{
+                    el.style.display = '';
+                }} else {{
+                    el.style.display = 'none';
+                }}
+            }});
+
+            // Étape 3 : Nettoyer l'affichage (cacher les dates vides)
+            let currentH2 = null;
+            let hasVisibleContent = false;
+            
+            for (let i = 0; i < elements.length; i++) {{
+                let el = elements[i];
+                if (el.tagName.toLowerCase() === 'h2') {{
+                    if (currentH2 && !hasVisibleContent) {{
+                        currentH2.style.display = 'none';
+                    }}
+                    currentH2 = el;
+                    hasVisibleContent = false;
+                }} else {{
+                    if (el.style.display !== 'none') {{
+                        hasVisibleContent = true;
+                    }}
+                }}
+            }}
+            // Vérifier le dernier jour
+            if (currentH2 && !hasVisibleContent) {{
+                currentH2.style.display = 'none';
+            }}
+        }}
+    </script>
 </body>
 </html>
 """
@@ -203,15 +284,15 @@ if BREVO_API_KEY:
     mail_html = f"""
     <html>
     <body style="font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333;">
-        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; border-top: 5px solid #ef4444;">
-            <h2 style="color: #ef4444; border-bottom: 2px solid #eee; padding-bottom: 10px;">🚨 Alerte Data Leaks de la semaine</h2>
-            <p>Voici les dernières fuites de données recensées du <strong>{str_lundi}</strong> au <strong>{str_aujourdhui}</strong> :</p>
+        <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 10px; border-top: 5px solid #6366f1;">
+            <h2 style="color: #6366f1; border-bottom: 2px solid #eee; padding-bottom: 10px;">🛡️ Ta Veille Cyber de la semaine</h2>
+            <p>Voici les dernières actualités classées du <strong>{str_lundi}</strong> au <strong>{str_aujourdhui}</strong> :</p>
             
             {contenu_html}
             
             <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
             <p style="text-align: center; font-size: 12px; color: #888;">
-                Généré automatiquement par le Portfolio de <a href="https://armel-plantier.com" style="color: #ef4444;">Armel Plantier</a>.<br>
+                Généré automatiquement par le Portfolio de <a href="https://armel-plantier.com" style="color: #6366f1;">Armel Plantier</a>.<br>
                 <a href="{{{{ unsubscribe }}}}" style="color: #888; text-decoration: underline;">Se désabonner</a>
             </p>
         </div>
@@ -220,8 +301,8 @@ if BREVO_API_KEY:
     """
 
     payload = {
-        "name": f"Alerte Data Leaks - {str_aujourdhui}",
-        "subject": f"🚨 Alerte Data Leaks ({str_lundi} - {str_aujourdhui})",
+        "name": f"Veille Cyber - {str_aujourdhui}",
+        "subject": f"🛡️ Ta Veille Cyber ({str_lundi} - {str_aujourdhui})",
         "sender": {"name": "Armel Plantier", "email": SENDER_EMAIL},
         "htmlContent": mail_html,
         "recipients": {"listIds": [LIST_ID]}
