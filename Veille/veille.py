@@ -145,7 +145,7 @@ page_html = f"""<!DOCTYPE html>
         .veille-content h2 {{ color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }}
         .veille-content h3 {{ color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }}
         
-        /* NOUVEAU DESIGN DES ARTICLES */
+        /* DESIGN DES ARTICLES */
         .article-box {{
             background: rgba(99, 102, 241, 0.04);
             border-left: 4px solid var(--primary, #6366f1);
@@ -184,10 +184,10 @@ page_html = f"""<!DOCTYPE html>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 30px;">🛡️ Journal de Veille : du {str_lundi} au {str_aujourdhui}</h1>
         
         <div class="filter-menu" id="filterMenu">
-            <button class="filter-btn active" onclick="filterData('all', this)">Tout voir</button>
-            <button class="filter-btn" onclick="filterData('vuln', this)">🔓 Vulnérabilités</button>
-            <button class="filter-btn" onclick="filterData('leak', this)">🚨 Fuites de données</button>
-            <button class="filter-btn" onclick="filterData('actu', this)">📰 Actualités</button>
+            <button class="filter-btn active" data-filter="all">Tout voir</button>
+            <button class="filter-btn" data-filter="vuln">🔓 Vulnérabilités</button>
+            <button class="filter-btn" data-filter="leak">🚨 Fuites de données</button>
+            <button class="filter-btn" data-filter="actu">📰 Actualités</button>
         </div>
 
         <div class="veille-content" id="veilleContent" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
@@ -202,6 +202,7 @@ page_html = f"""<!DOCTYPE html>
             const elements = Array.from(container.children);
             let currentCategory = 'actu'; 
             
+            // 1. Taguer le contenu généré par l'IA
             elements.forEach(el => {{
                 if (el.tagName.toLowerCase() === 'h2') {{
                     el.setAttribute('data-type', 'date');
@@ -214,61 +215,59 @@ page_html = f"""<!DOCTYPE html>
                     el.setAttribute('data-type', 'category-title');
                     el.setAttribute('data-category', currentCategory);
                 }} else {{
-                    // C'est un article (div.article-box)
                     el.setAttribute('data-type', 'content');
                     el.setAttribute('data-category', currentCategory);
                 }}
             }});
-        }});
 
-        function filterData(category, btnElement) {{
-            // Met à jour les boutons
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            // 2. Ajouter les événements de clics de manière sécurisée (Sans 'onclick' inline)
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {{
+                btn.addEventListener('click', function() {{
+                    const category = this.getAttribute('data-filter');
 
-            const container = document.getElementById('veilleContent');
-            const elements = Array.from(container.children);
+                    // Gérer l'état visuel du bouton
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
-            // 1. Appliquer le filtre sur les articles et les titres de catégories
-            elements.forEach(el => {{
-                let type = el.getAttribute('data-type');
-                let cat = el.getAttribute('data-category');
-                
-                if (type === 'content' || type === 'category-title') {{
-                    if (category === 'all' || cat === category) {{
-                        el.style.display = '';
-                    }} else {{
-                        el.style.display = 'none';
+                    // Filtrer les articles et les titres de catégories
+                    elements.forEach(el => {{
+                        let type = el.getAttribute('data-type');
+                        let cat = el.getAttribute('data-category');
+                        
+                        if (type === 'content' || type === 'category-title') {{
+                            if (category === 'all' || cat === category) {{
+                                el.style.display = '';
+                            }} else {{
+                                el.style.display = 'none';
+                            }}
+                        }}
+                    }});
+
+                    // Nettoyer les jours et catégories vides
+                    let hasContentForH3 = false;
+                    let hasContentForH2 = false;
+
+                    for (let i = elements.length - 1; i >= 0; i--) {{
+                        let el = elements[i];
+                        let type = el.getAttribute('data-type');
+
+                        if (type === 'content' && el.style.display !== 'none') {{
+                            hasContentForH3 = true;
+                            hasContentForH2 = true;
+                        }} else if (type === 'category-title') {{
+                            el.style.display = hasContentForH3 ? '' : 'none';
+                            hasContentForH3 = false; 
+                        }} else if (type === 'date') {{
+                            el.style.display = hasContentForH2 ? '' : 'none';
+                            hasContentForH2 = false; 
+                            hasContentForH3 = false; 
+                        }}
                     }}
-                }}
+                }});
             }});
-
-            // 2. Nettoyage intelligent : Cacher les dates et catégories qui sont vides
-            let hasContentForH3 = false;
-            let hasContentForH2 = false;
-
-            // On boucle à l'envers (du bas vers le haut) pour savoir si la date possède des articles en dessous
-            for (let i = elements.length - 1; i >= 0; i--) {{
-                let el = elements[i];
-                let type = el.getAttribute('data-type');
-
-                if (type === 'content' && el.style.display !== 'none') {{
-                    hasContentForH3 = true;
-                    hasContentForH2 = true;
-                }} else if (type === 'category-title') {{
-                    if (!hasContentForH3) {{
-                        el.style.display = 'none'; // Cache le H3 si aucun article dessous
-                    }}
-                    hasContentForH3 = false; 
-                }} else if (type === 'date') {{
-                    if (!hasContentForH2) {{
-                        el.style.display = 'none'; // Cache la date si rien ne s'est passé ce jour là
-                    }}
-                    hasContentForH2 = false; 
-                    hasContentForH3 = false; 
-                }}
-            }}
-        }}
+        }});
     </script>
 </body>
 </html>
