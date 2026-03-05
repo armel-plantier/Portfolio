@@ -16,9 +16,9 @@
         .veille-content ul { margin-bottom: 25px; padding-left: 20px; color: var(--muted); }
         .veille-content li { margin-bottom: 15px; line-height: 1.6; }
         
-        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ) --- */
+        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ ET ALIGNÉ) --- */
         .btn-source {
-            display: block;
+            display: inline-block; /* Modifié pour l'alignement */
             width: fit-content;
             background-color: var(--primary); 
             color: #ffffff !important; 
@@ -29,6 +29,7 @@
             text-decoration: none;
             margin-top: 12px;
             margin-bottom: 25px;
+            margin-right: 10px; /* Ajout d'une marge à droite pour espacer les boutons s'il y en a plusieurs */
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
@@ -53,65 +54,82 @@
         <h1 class="hero-title" style="text-align: left; margin-bottom: 40px;">🛡️ Journal de Veille : du 02/03/2026 au 05/03/2026</h1>
         
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-            <h2>Vendredi 5 Mars</h2>
+            <h2>Samedi 05/03/2026</h2>
 <h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Traefik, les produits Microsoft, NetApp ONTAP 9, Google Chrome, CPython, ClamAV et les produits Cisco. Ces vulnérabilités permettent à un attaquant de provoquer divers problèmes de sécurité, tels que des dénis de service, des exécutions de code arbitraire et des atteintes à la confidentialité des données. Les numéros de <strong>CVE</strong> associés à ces vulnérabilités sont <strong>CVE-2026-22719</strong>.
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0236/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0237/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0238/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0239/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0240/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0241/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0242/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h3>Sécurité</h3>
-<p>La police a démantelé un réseau de jeux en ligne qui exploitait des femmes ukrainiennes. Les autorités ont également saisi le forum de cybercriminalité LeakBase, qui contenait des données de 142 000 membres.
-<a href="https://www.bleepingcomputer.com/news/security/police-dismantles-online-gambling-ring-exploiting-ukrainian-women/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Des vulnérabilités ont été découvertes dans Traefik, permettant à un attaquant de provoquer un déni de service à distance et un contournement de la politique de sécurité. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0236/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0237/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Une vulnérabilité a été découverte dans NetApp ONTAP 9, permettant à un attaquant de provoquer une atteinte à la confidentialité des données. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0238/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans Google Chrome, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0239/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Une vulnérabilité a été découverte dans CPython, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0240/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Une vulnérabilité a été découverte dans ClamAV, permettant à un attaquant de provoquer un déni de service. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0241/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans les produits Cisco, permettant à un attaquant de provoquer une exécution de code arbitraire. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0242/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
 <h3>Actualités</h3>
-<p>Cisco a signalé que deux vulnérabilités de son SD-WAN sont actuellement exploitées dans des attaques. Un administrateur de ransomware Phobos a plaidé coupable d'une conspiration de fraude par fil.
-<a href="https://www.bleepingcomputer.com/news/security/cisco-flags-more-sd-wan-flaws-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/security/phobos-ransomware-admin-pleads-guilty-to-wire-fraud-conspiracy/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h2>Jeudi 4 Mars</h2>
+<p>La CNIL a lancé une consultation publique sur un projet de guide relatif à l'utilisation de l'IA dans le contexte de soins. 
+<a href="https://www.cnil.fr/fr/ia-et-sante-la-has-et-la-cnil-lancent-une-consultation-publique-sur-un-projet-de-guide" class="btn-source" target="_blank">🔗 Lire sur CNIL</a>
+La police a démantelé un réseau de jeux en ligne qui exploitait des femmes ukrainiennes. 
+<a href="https://www.bleepingcomputer.com/news/security/police-dismantles-online-gambling-ring-exploiting-ukrainian-women/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+Cisco a signalé que deux failles de sécurité dans son logiciel SD-WAN sont actuellement exploitées. 
+<a href="https://www.bleepingcomputer.com/news/security/cisco-flags-more-sd-wan-flaws-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+Un administrateur de ransomware a plaidé coupable pour conspiration de fraude par fil. 
+<a href="https://www.bleepingcomputer.com/news/security/phobos-ransomware-admin-pleads-guilty-to-wire-fraud-conspiracy/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
+<h2>Vendredi 04/03/2026</h2>
 <h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Google Pixel, Tenable Nessus Manager et HPE Aruba Networking AOS. Ces vulnérabilités permettent à un attaquant de provoquer divers problèmes de sécurité, tels que des exécutions de code arbitraire et des atteintes à la confidentialité des données. Les numéros de <strong>CVE</strong> associés à ces vulnérabilités sont <strong>CVE-2026-22719</strong>.
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h3>Sécurité</h3>
-<p>Un attaquant a mass-emailé des emails d'extorsion aux clients de restaurants utilisant la plate-forme HungerRush. Les autorités ont également saisi le forum de cybercriminalité LeakBase, qui contenait des données de 142 000 membres.
-<a href="https://www.bleepingcomputer.com/news/security/hacker-mass-mails-hungerrush-extortion-emails-to-restaurant-patrons/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Des vulnérabilités ont été découvertes dans Google Pixel, permettant à un attaquant de provoquer une exécution de code arbitraire. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Une vulnérabilité a été découverte dans Tenable Nessus Manager, permettant à un attaquant de provoquer une atteinte à la confidentialité des données. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans HPE Aruba Networking AOS, permettant à un attaquant de provoquer un déni de service. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
 <h3>Actualités</h3>
-<p>Bitwarden a ajouté la prise en charge de la connexion par mot de passe sur Windows 11. Microsoft a publié une mise à jour pour Windows 10 pour réparer l'environnement de récupération.
-<a href="https://www.bleepingcomputer.com/news/security/bitwarden-adds-support-for-passkey-login-on-windows-11/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-kb5075039-update-fixes-broken-recovery-environment/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h2>Mercredi 3 Mars</h2>
+<p>Accenture a acquis Downdetector et Speedtest pour 1,2 milliard de dollars. 
+<a href="https://www.it-connect.fr/accenture-met-la-main-sur-downdetector-et-speedtest-pour-1-2-milliard-de-dollars/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+Microsoft travaille sur une nouvelle licence pour Microsoft 365, qui intégrera des fonctions d'IA. 
+<a href="https://www.it-connect.fr/microsoft-365-e7-vers-un-abonnement-ultime-avec-de-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+Bitwarden prend en charge les passkeys pour se connecter à Windows 11. 
+<a href="https://www.bleepingcomputer.com/news/security/bitwarden-adds-support-for-passkey-login-on-windows-11/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+Une faille de sécurité dans FreeScout permet aux hackers de prendre le contrôle des serveurs de messagerie sans interaction utilisateur. 
+<a href="https://www.bleepingcomputer.com/news/security/mail2shell-zero-click-attack-lets-hackers-hijack-freescout-mail-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+Microsoft a publié une mise à jour pour Windows 10 pour réparer l'environnement de récupération. 
+<a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-kb5075039-update-fixes-broken-recovery-environment/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+Des emails de phishing ciblent les utilisateurs de LastPass pour voler leurs mots de passe de coffre. 
+<a href="https://www.bleepingcomputer.com/news/security/fake-lastpass-support-email-threads-try-to-steal-vault-passwords/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
+<h2>Jeudi 03/03/2026</h2>
 <h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans Docker Desktop, Google Android et les produits Microsoft. Ces vulnérabilités permettent à un attaquant de provoquer divers problèmes de sécurité, tels que des exécutions de code arbitraire et des atteintes à la confidentialité des données. Les numéros de <strong>CVE</strong> associés à ces vulnérabilités sont <strong>CVE-2026-22719</strong>.
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h3>Sécurité</h3>
-<p>La CISA a signalé que la vulnérabilité VMware Aria Operations est actuellement exploitée dans des attaques. Les autorités ont également saisi le forum de cybercriminalité LeakBase, qui contenait des données de 142 000 membres.
-<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-vmware-aria-operations-rce-flaw-as-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Des vulnérabilités ont été découvertes dans Docker Desktop, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans Google Android, permettant à un attaquant de provoquer une exécution de code arbitraire. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
 <h3>Actualités</h3>
-<p>Vaultwarden a publié une mise à jour pour patcher trois failles de sécurité. GLPI a également publié des mises à jour pour patcher sept vulnérabilités.
-<a href="https://www.it-connect.fr/vaultwarden-1-35-4-trois-failles-de-securite-corrigees-mettez-a-jour-votre-instance/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.it-connect.fr/glpi-11-0-6-et-glpi-10-0-24-mises-a-jour-securite/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h2>Mardi 2 Mars</h2>
+<p>Vaultwarden 1.35.4 corrige trois failles de sécurité, il est recommandé de mettre à jour votre instance. 
+<a href="https://www.it-connect.fr/vaultwarden-1-35-4-trois-failles-de-securite-corrigees-mettez-a-jour-votre-instance/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+GLPI 11.0.6 et GLPI 10.0.24 corrigent sept vulnérabilités, il est recommandé de mettre à jour. 
+<a href="https://www.it-connect.fr/glpi-11-0-6-et-glpi-10-0-24-mises-a-jour-securite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+Le projet LibreOffice Online a été relancé pour concurrencer Google et Microsoft. 
+<a href="https://www.it-connect.fr/le-projet-libreoffice-online-relance-pour-concurrencer-google-et-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+Anthropic propose des cours gratuits pour apprendre à utiliser son IA Claude. 
+<a href="https://www.it-connect.fr/formation-ia-anthropic-lance-ses-cours-gratuits-pour-vous-aider-a-maitriser-claude/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+CISA a ajouté une faille de sécurité de VMware Aria Operations à son catalogue de vulnérabilités exploitées. 
+<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-vmware-aria-operations-rce-flaw-as-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
+<h2>Mercredi 02/03/2026</h2>
 <h3>Vulnérabilités</h3>
-<p>Des vulnérabilités ont été découvertes dans les produits Microsoft et MISP. Ces vulnérabilités permettent à un attaquant de provoquer divers problèmes de sécurité, tels que des exécutions de code arbitraire et des atteintes à la confidentialité des données. Les numéros de <strong>CVE</strong> associés à ces vulnérabilités sont <strong>CVE-2026-22719</strong>.
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
-<h3>Sécurité</h3>
-<p>Un attaquant a découvert une liste d'identifiants de 8,29 millions d'utilisateurs, dont 194 000 Français. Les autorités ont également saisi le forum de cybercriminalité LeakBase, qui contenait des données de 142 000 membres.
-<a href="https://www.zataz.com/liste-infostealer-de-829-millions-didentifiants-liee-a-des-sites-web-dont-plus-de-194-000-francais/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Des vulnérabilités ont été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer un problème de sécurité non spécifié. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+Des vulnérabilités ont été découvertes dans MISP, permettant à un attaquant de provoquer une falsification de requête. 
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
 <h3>Actualités</h3>
-<p>Motorola s'est allié à GrapheneOS pour proposer des smartphones sécurisés. La CNIL a publié une mise à jour de ses Tables Informatique et Libertés.
-<a href="https://www.it-connect.fr/motorola-smartphone-grapheneos-version-securisee-android/" class="btn-source" target="_blank">🔗 Lire la source</a>
-<a href="https://www.cnil.fr/fr/tables-informatique-et-libertes-2026" class="btn-source" target="_blank">🔗 Lire la source</a></p>
+<p>Motorola s'allie à GrapheneOS pour des smartphones ultra-sécurisés. 
+<a href="https://www.it-connect.fr/motorola-smartphone-grapheneos-version-securisee-android/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+Une liste d'identifiants contenant 8,29 millions d'informations a été liée à des sites web, dont plus de 194 000 Français. 
+<a href="https://www.zataz.com/liste-infostealer-de-829-millions-didentifiants-liee-a-des-sites-web-dont-plus-de-194-000-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
         </div>
     </div>
 </body>
