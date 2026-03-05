@@ -39,7 +39,7 @@
         .veille-content h2 { color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }
         .veille-content h3 { color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }
         
-        /* NOUVEAU DESIGN DES ARTICLES */
+        /* DESIGN DES ARTICLES */
         .article-box {
             background: rgba(99, 102, 241, 0.04);
             border-left: 4px solid var(--primary, #6366f1);
@@ -78,10 +78,10 @@
         <h1 class="hero-title" style="text-align: left; margin-bottom: 30px;">🛡️ Journal de Veille : du 02/03/2026 au 05/03/2026</h1>
         
         <div class="filter-menu" id="filterMenu">
-            <button class="filter-btn active" onclick="filterData('all', this)">Tout voir</button>
-            <button class="filter-btn" onclick="filterData('vuln', this)">🔓 Vulnérabilités</button>
-            <button class="filter-btn" onclick="filterData('leak', this)">🚨 Fuites de données</button>
-            <button class="filter-btn" onclick="filterData('actu', this)">📰 Actualités</button>
+            <button class="filter-btn active" data-filter="all">Tout voir</button>
+            <button class="filter-btn" data-filter="vuln">🔓 Vulnérabilités</button>
+            <button class="filter-btn" data-filter="leak">🚨 Fuites de données</button>
+            <button class="filter-btn" data-filter="actu">📰 Actualités</button>
         </div>
 
         <div class="veille-content" id="veilleContent" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
@@ -165,16 +165,16 @@
 <h2>Mercredi 4 Mars</h2>
 <h3>Vulnérabilités</h3>
 <div class="article-box">
-<p><strong>Vulnérabilités dans Google Pixel</strong> : De multiples vulnérabilités ont été découvertes dans Google Pixel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-<div class="article-box">
 <p><strong>Vulnérabilité dans Tenable Nessus Manager</strong> : Une vulnérabilité a été découverte dans Tenable Nessus Manager. Elle permet à un attaquant de provoquer une atteinte à la confidentialité des données.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 <div class="article-box">
 <p><strong>Vulnérabilités dans HPE Aruba Networking AOS</strong> : De multiples vulnérabilités ont été découvertes dans HPE Aruba Networking AOS. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilités dans Google Pixel</strong> : De multiples vulnérabilités ont été découvertes dans Google Pixel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 <h3>Fuites de données</h3>
 <div class="article-box">
@@ -203,7 +203,7 @@
 <a href="https://www.it-connect.fr/pourquoi-dematerialisation-incontournable-gestion-ressources-humaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 <div class="article-box">
-<p><strong>Déployer Windows 11 avec WAPT, une alternative à MDT</strong> : Apprenez à utiliser WAPT pour automatiser le déploiement de Windows 11 via la fonction WADS, intégrant gestion de l'OS, logiciels, et intégration à votre parc.</p>
+<p><strong>Déployer Windows 11 avec WAPT, une alternative à MDT</strong> : Apprenez à utiliser WAPT pour automatiser le déploiement de Windows 11 via la fonction WADS, intégrant gestion de l'OS, logiciels, et intégration à l'AD.</p>
 <a href="https://www.it-connect.fr/tuto-deployer-windows-11-avec-wapt-wads/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 <div class="article-box">
@@ -215,20 +215,20 @@
 <a href="https://www.it-connect.fr/google-va-publier-des-mises-a-jour-de-chrome-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 <div class="article-box">
-<p><strong>149 Hacktivist DDoS Attacks Hit 110 Organizations in 16 Countries</strong> : Cybersecurity researchers have warned of a surge in retaliatory hacktivist activity following the U.S.-Israel coordinated military campaign against Iran.</p>
-<a href="https://thehackernews.com/2026/03/149-hacktivist-ddos-attacks-hit-110.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Mail2Shell zero-click attack lets hackers hijack FreeScout mail servers</strong> : A maximum severity vulnerability in the FreeScout helpdesk platform allows hackers to achieve remote code execution without any user interaction or authentication.</p>
+<a href="https://www.bleepingcomputer.com/news/security/mail2shell-zero-click-attack-lets-hackers-hijack-freescout-mail-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 <div class="article-box">
-<p><strong>Coruna iOS Exploit Kit Uses 23 Exploits Across Five Chains Targeting iOS 13–17.2.1</strong> : Google said it identified a "new and powerful" exploit kit dubbed Coruna (aka CryptoWaters) targeting Apple iPhone models running iOS versions between 13 and 17.2.1.</p>
-<a href="https://thehackernews.com/2026/03/coruna-ios-exploit-kit-uses-23-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Windows 10 KB5075039 update fixes broken Recovery Environment</strong> : Microsoft has released the KB5075039 Windows Recovery Environment update for Windows 10 to fix a long-standing issue that prevented some users from accessing the recovery environment.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-kb5075039-update-fixes-broken-recovery-environment/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 <div class="article-box">
-<p><strong>New RFP Template for AI Usage Control and AI Governance</strong> : As AI becomes the central engine for enterprise productivity, security leaders are finally getting the green light — and the budget — to secure it.</p>
-<a href="https://thehackernews.com/2026/03/new-rfp-template-for-ai-usage-control.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Fake LastPass support email threads try to steal vault passwords</strong> : Password management software provider LastPass is warning users of a phishing campaign targeting its users with fake unauthorized account access alerts.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fake-lastpass-support-email-threads-try-to-steal-vault-passwords/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 <div class="article-box">
-<p><strong>Fake Laravel Packages on Packagist Deploy RAT on Windows, macOS, and Linux</strong> : Cybersecurity researchers have flagged malicious Packagist PHP packages masquerading as Laravel utilities that act as a conduit for a cross-platform remote access trojan (RAT).</p>
-<a href="https://thehackernews.com/2026/03/fake-laravel-packages-on
+<p><strong>Cisco warns of max severity Secure FMC flaws giving root access</strong> : Cisco has released security updates to patch two maximum-severity vulnerabilities in its Secure Firewall Management Center (FMC) software.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-max-severity-secure-fmc-flaws-giving-root-access/" class="btn-source" target="_blank">🔗 Lire
         </div>
     </div>
 
@@ -239,6 +239,7 @@
             const elements = Array.from(container.children);
             let currentCategory = 'actu'; 
             
+            // 1. Taguer le contenu généré par l'IA
             elements.forEach(el => {
                 if (el.tagName.toLowerCase() === 'h2') {
                     el.setAttribute('data-type', 'date');
@@ -251,61 +252,59 @@
                     el.setAttribute('data-type', 'category-title');
                     el.setAttribute('data-category', currentCategory);
                 } else {
-                    // C'est un article (div.article-box)
                     el.setAttribute('data-type', 'content');
                     el.setAttribute('data-category', currentCategory);
                 }
             });
-        });
 
-        function filterData(category, btnElement) {
-            // Met à jour les boutons
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            // 2. Ajouter les événements de clics de manière sécurisée (Sans 'onclick' inline)
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-filter');
 
-            const container = document.getElementById('veilleContent');
-            const elements = Array.from(container.children);
+                    // Gérer l'état visuel du bouton
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
-            // 1. Appliquer le filtre sur les articles et les titres de catégories
-            elements.forEach(el => {
-                let type = el.getAttribute('data-type');
-                let cat = el.getAttribute('data-category');
-                
-                if (type === 'content' || type === 'category-title') {
-                    if (category === 'all' || cat === category) {
-                        el.style.display = '';
-                    } else {
-                        el.style.display = 'none';
+                    // Filtrer les articles et les titres de catégories
+                    elements.forEach(el => {
+                        let type = el.getAttribute('data-type');
+                        let cat = el.getAttribute('data-category');
+                        
+                        if (type === 'content' || type === 'category-title') {
+                            if (category === 'all' || cat === category) {
+                                el.style.display = '';
+                            } else {
+                                el.style.display = 'none';
+                            }
+                        }
+                    });
+
+                    // Nettoyer les jours et catégories vides
+                    let hasContentForH3 = false;
+                    let hasContentForH2 = false;
+
+                    for (let i = elements.length - 1; i >= 0; i--) {
+                        let el = elements[i];
+                        let type = el.getAttribute('data-type');
+
+                        if (type === 'content' && el.style.display !== 'none') {
+                            hasContentForH3 = true;
+                            hasContentForH2 = true;
+                        } else if (type === 'category-title') {
+                            el.style.display = hasContentForH3 ? '' : 'none';
+                            hasContentForH3 = false; 
+                        } else if (type === 'date') {
+                            el.style.display = hasContentForH2 ? '' : 'none';
+                            hasContentForH2 = false; 
+                            hasContentForH3 = false; 
+                        }
                     }
-                }
+                });
             });
-
-            // 2. Nettoyage intelligent : Cacher les dates et catégories qui sont vides
-            let hasContentForH3 = false;
-            let hasContentForH2 = false;
-
-            // On boucle à l'envers (du bas vers le haut) pour savoir si la date possède des articles en dessous
-            for (let i = elements.length - 1; i >= 0; i--) {
-                let el = elements[i];
-                let type = el.getAttribute('data-type');
-
-                if (type === 'content' && el.style.display !== 'none') {
-                    hasContentForH3 = true;
-                    hasContentForH2 = true;
-                } else if (type === 'category-title') {
-                    if (!hasContentForH3) {
-                        el.style.display = 'none'; // Cache le H3 si aucun article dessous
-                    }
-                    hasContentForH3 = false; 
-                } else if (type === 'date') {
-                    if (!hasContentForH2) {
-                        el.style.display = 'none'; // Cache la date si rien ne s'est passé ce jour là
-                    }
-                    hasContentForH2 = false; 
-                    hasContentForH3 = false; 
-                }
-            }
-        }
+        });
     </script>
 </body>
 </html>
