@@ -4,10 +4,9 @@ import os
 from datetime import datetime, timedelta
 import markdown
 import requests
-import time # Indispensable pour lire les dates des flux RSS
+import time 
 
 # 1. Configuration Groq
-# On récupère la clé API Groq depuis les variables d'environnement
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 # 2. Lecture des flux
@@ -24,7 +23,6 @@ else:
 maintenant = datetime.now()
 jours_depuis_lundi = maintenant.weekday() 
 date_lundi = maintenant - timedelta(days=jours_depuis_lundi)
-# On force l'heure à minuit pour le lundi pour comparer proprement avec les articles
 date_lundi_debut = date_lundi.replace(hour=0, minute=0, second=0, microsecond=0)
 
 str_aujourdhui = maintenant.strftime("%d/%m/%Y")
@@ -36,28 +34,28 @@ articles_bruts = []
 for url in feeds:
     try:
         feed = feedparser.parse(url)
+        # NOUVEAU : On récupère le nom du site web directement depuis le flux RSS
+        nom_site = feed.feed.get('title', 'Lien externe')
+        
         for entry in feed.entries:
-            # On vérifie si la date de l'article est lisible
             if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                # Conversion de la date RSS en objet datetime Python
                 dt_publi = datetime.fromtimestamp(time.mktime(entry.published_parsed))
                 
-                # FILTRE MAGIQUE : On ne garde QUE si c'est publié depuis lundi !
                 if dt_publi >= date_lundi_debut:
                     date_publi_str = dt_publi.strftime("%d/%m/%Y")
                     
-                    # On raccourcit le résumé (150 caractères max) pour sauver des tokens
                     resume = entry.get('description', '')
                     if len(resume) > 150:
                         resume = resume[:150] + "..."
                         
-                    articles_bruts.append(f"- Date: {date_publi_str}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
+                    # NOUVEAU : On ajoute "Source: {nom_site}" pour que l'IA le connaisse
+                    articles_bruts.append(f"- Date: {date_publi_str}\n  Source: {nom_site}\n  Titre: {entry.title}\n  Lien: {entry.link}\n  Résumé: {resume}\n")
     except Exception as e:
         print(f"Erreur avec le flux {url} : {e}")
 
 if not articles_bruts:
     print("Aucun article récent trouvé cette semaine. Arrêt du script.")
-    exit(0) # On sort avec 0 (succès) pour ne pas faire planter l'action GitHub
+    exit(0)
 
 # --- NOUVELLE LIMITE DE SÉCURITÉ POUR GROQ ---
 MAX_ARTICLES = 70
@@ -81,8 +79,8 @@ RÈGLES STRICTES DE FORMATAGE :
 3. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR (ex: ## Lundi 2 Mars).
 4. SOUS chaque jour, utilise un Titre 3 (###) pour les CATÉGORIES.
 5. Ne garde que les infos les plus importantes. Sors les numéros de CVE en gras.
-6. RÈGLE ABSOLUE POUR LES LIENS : À la fin de chaque explication d'article, tu dois OBLIGATOIREMENT intégrer ce code HTML exact pour faire le bouton (remplace juste l'URL) :
-<a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire la source</a>
+6. RÈGLE ABSOLUE POUR LES LIENS : À la fin de chaque explication d'article, tu dois OBLIGATOIREMENT intégrer ce code HTML exact pour faire le bouton (remplace l'URL et mets le nom de la source fournie) :
+<a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
 
 Voici les données brutes à filtrer et organiser :
 {contenu_brut}
@@ -92,11 +90,11 @@ Voici les données brutes à filtrer et organiser :
 print(f"Génération du journal du {str_lundi} au {str_aujourdhui} via Groq...")
 try:
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile", # Le modèle valide et puissant de Groq
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "user", "content": prompt}
         ],
-        temperature=0.3 # Température basse pour rester factuel
+        temperature=0.3
     )
     reponse_texte = response.choices[0].message.content
 except Exception as e:
@@ -124,9 +122,9 @@ page_html = f"""<!DOCTYPE html>
         .veille-content ul {{ margin-bottom: 25px; padding-left: 20px; color: var(--muted); }}
         .veille-content li {{ margin-bottom: 15px; line-height: 1.6; }}
         
-        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ) --- */
+        /* --- LE CSS DU VRAI BOUTON (ORDONNÉ ET ALIGNÉ) --- */
         .btn-source {{
-            display: block;
+            display: inline-block; /* Modifié pour l'alignement */
             width: fit-content;
             background-color: var(--primary); 
             color: #ffffff !important; 
@@ -137,6 +135,7 @@ page_html = f"""<!DOCTYPE html>
             text-decoration: none;
             margin-top: 12px;
             margin-bottom: 25px;
+            margin-right: 10px; /* Ajout d'une marge à droite pour espacer les boutons s'il y en a plusieurs */
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }}
@@ -182,9 +181,8 @@ BREVO_API_KEY = os.environ.get("BREVO_API_KEY")
 if BREVO_API_KEY:
     print("Préparation de l'envoi de la newsletter...")
     
-    # ⚠️ PARAMÈTRES À MODIFIER ICI ⚠️
-    LIST_ID = 2  # L'ID de ta liste de contacts sur Brevo
-    SENDER_EMAIL = "newsletter@armel-plantier.com" # Ton email expéditeur validé sur Brevo
+    LIST_ID = 2 
+    SENDER_EMAIL = "newsletter@armel-plantier.com" 
 
     url_campaign = "https://api.brevo.com/v3/emailCampaigns"
     headers = {
@@ -193,7 +191,6 @@ if BREVO_API_KEY:
         "content-type": "application/json"
     }
     
-    # Le design de l'email
     mail_html = f"""
     <html>
     <body style="font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333;">
@@ -221,14 +218,12 @@ if BREVO_API_KEY:
         "recipients": {"listIds": [LIST_ID]}
     }
 
-    # Création de la campagne
     response_create = requests.post(url_campaign, json=payload, headers=headers)
     
     if response_create.status_code == 201:
         campaign_id = response_create.json().get("id")
         print(f"Campagne {campaign_id} créée. Envoi en cours...")
         
-        # Envoi immédiat
         url_send = f"https://api.brevo.com/v3/emailCampaigns/{campaign_id}/sendNow"
         response_send = requests.post(url_send, headers=headers)
         
