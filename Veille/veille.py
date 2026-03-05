@@ -68,7 +68,7 @@ Voici les données brutes à filtrer et organiser :
 print(f"Génération du journal du {str_lundi} au {str_aujourdhui} via Groq...")
 try:
     response = client.chat.completions.create(
-        model="llama3-70b-8192",
+        model="llama-3.3-70b-versatile",  # 👈 C'est cette ligne qu'il faut changer !
         messages=[
             {"role": "user", "content": prompt}
         ],
