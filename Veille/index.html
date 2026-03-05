@@ -28,9 +28,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        .filter-btn:hover {
-            background: var(--border, #334155);
-        }
+        .filter-btn:hover { background: var(--border, #334155); }
         .filter-btn.active {
             background: var(--primary, #6366f1);
             color: white;
@@ -40,13 +38,24 @@
 
         .veille-content h2 { color: var(--primary); margin-top: 40px; margin-bottom: 20px; font-family: 'Outfit', sans-serif; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-size: 1.8rem; }
         .veille-content h3 { color: var(--text); margin-top: 25px; margin-bottom: 15px; font-family: 'Outfit', sans-serif; font-size: 1.3rem; border-left: 3px solid var(--primary); padding-left: 10px; }
-        .veille-content p { margin-bottom: 10px; line-height: 1.6; color: var(--muted); }
-        .veille-content ul { margin-bottom: 25px; padding-left: 20px; color: var(--muted); }
-        .veille-content li { margin-bottom: 15px; line-height: 1.6; }
+        
+        /* NOUVEAU DESIGN DES ARTICLES */
+        .article-box {
+            background: rgba(99, 102, 241, 0.04);
+            border-left: 4px solid var(--primary, #6366f1);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .article-box p {
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--muted);
+        }
         
         .btn-source {
-            display: block; 
-            width: fit-content;
+            display: inline-block; 
             background-color: var(--primary); 
             color: #ffffff !important; 
             padding: 6px 16px;
@@ -54,14 +63,10 @@
             font-size: 0.85em;
             font-weight: 600;
             text-decoration: none;
-            margin-top: 8px;
-            margin-bottom: 35px; 
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .btn-source:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); text-decoration: none; }
-        .veille-content strong { color: var(--text); }
-        .veille-content a:not(.btn-source) { color: var(--primary); text-decoration: none; font-weight: 500; }
     </style>
 </head>
 <body style="background: var(--bg);">
@@ -82,117 +87,152 @@
         <div class="veille-content" id="veilleContent" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             <h2>Lundi 2 Mars</h2>
 <h3>Vulnérabilités</h3>
-<p>De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>De multiples vulnérabilités ont été découvertes dans MISP. Certaines d'entre elles permettent à un attaquant de provoquer une falsification de requête. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Un canal présenté comme "CVE Exchange" diffuse vulnérabilités, PoC et contenus offensifs. Quand un malveillant ouvre un espace pour faciliter les attaques. </p>
-<p><a href="https://www.zataz.com/decouverte-dun-espace-qui-qui-flirte-avec-lombre-quand-la-veille-vulnerabilites-devient-un-manuel-dattaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Une liste infostealer de 8,29 millions d’identifiants liée à des sites web dont plus de 194 000 Français. </p>
-<p><a href="https://www.zataz.com/liste-infostealer-de-829-millions-didentifiants-liee-a-des-sites-web-dont-plus-de-194-000-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Un fichier « Google » de 3 To vendu 0,1 BTC découvert par ZATAZ décrit ce qui semble être un export CRM et les risques cyber liés aux données clients. </p>
-<p><a href="https://www.zataz.com/vente-pirate-decouverte-dun-fichier-google-de-3-to-a-01-btc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
+<div class="article-box">
+<p><strong>Vulnérabilités dans les produits Microsoft</strong> : De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilités dans MISP</strong> : De multiples vulnérabilités ont été découvertes dans MISP. Certaines d'entre elles permettent à un attaquant de provoquer une falsification de requête.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
 <h3>Fuites de données</h3>
-<p>Aucun article pour ce jour.</p>
+<div class="article-box">
+<p><strong>Liste infostealer de 8,29 millions d’identifiants</strong> : Découverte d'une liste infostealer de 8,29 millions identifiants avec sites, login et mots de passe réutilisables.</p>
+<a href="https://www.zataz.com/liste-infostealer-de-829-millions-didentifiants-liee-a-des-sites-web-dont-plus-de-194-000-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+<div class="article-box">
+<p><strong>Vente pirate : découverte d’un Fichier « Google » de 3 To</strong> : Un fichier « Google » de 3 To vendu 0,1 BTC découvert par ZATAZ décrit ce qui semble être un export CRM et les risques cyber liés aux données clients.</p>
+<a href="https://www.zataz.com/vente-pirate-decouverte-dun-fichier-google-de-3-to-a-01-btc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
 <h3>Actualités</h3>
-<p>La CNIL met à jour ses Tables Informatique et Libertés. Destinée aux professionnels et universitaires, cette version 2026 rassemble et organise l’essentiel des connaissances sur le droit des données à caractère personnel. </p>
-<p><a href="https://www.cnil.fr/fr/tables-informatique-et-libertes-2026" class="btn-source" target="_blank">🔗 Lire sur RSS - Actualités CNIL</a></p>
+<div class="article-box">
+<p><strong>Tables Informatique et Libertés : la CNIL publie la mise à jour 2026</strong> : La CNIL met à jour ses Tables Informatique et Libertés. Destinée aux professionnels et universitaires, cette version 2026 rassemble et organise l’essentiel des connaissances.</p>
+<a href="https://www.cnil.fr/fr/tables-informatique-et-libertes-2026" class="btn-source" target="_blank">🔗 Lire sur RSS - Actualités CNIL</a>
+</div>
+<div class="article-box">
+<p><strong>Découverte d’un espace qui flirte avec l’ombre</strong> : Un canal présenté comme "CVE Exchange" diffuse vulnérabilités, PoC et contenus offensifs.</p>
+<a href="https://www.zataz.com/decouverte-dun-espace-qui-qui-flirte-avec-lombre-quand-la-veille-vulnerabilites-devient-un-manuel-dattaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
 <h2>Mardi 3 Mars</h2>
 <h3>Vulnérabilités</h3>
-<p>De multiples vulnérabilités ont été découvertes dans Docker Desktop. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>De multiples vulnérabilités ont été découvertes dans Google Android. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>GLPI 11.0.6 et GLPI 10.0.24 : un total de sept vulnérabilités patchées par ces nouvelles versions. </p>
-<p><a href="https://www.it-connect.fr/glpi-11-0-6-et-glpi-10-0-24-mises-a-jour-securite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Vaultwarden 1.35.4 : trois failles de sécurité corrigées, mettez à jour votre instance ! </p>
-<p><a href="https://www.it-connect.fr/vaultwarden-1-35-4-trois-failles-de-securite-corrigees-mettez-a-jour-votre-instance/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Fake Tech Support Spam Deploys Customized Havoc C2 Across Organizations. </p>
-<p><a href="https://thehackernews.com/2026/03/fake-tech-support-spam-deploys.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Building a High-Impact Tier 1: The 3 Steps CISOs Must Follow. </p>
-<p><a href="https://thehackernews.com/2026/03/building-high-impact-tier-1-3-steps.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Open-Source CyberStrikeAI Deployed in AI-Driven FortiGate Attacks Across 55 Countries. </p>
-<p><a href="https://thehackernews.com/2026/03/open-source-cyberstrikeai-deployed-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<h3>Fuites de données</h3>
-<p>Aucun article pour ce jour.</p>
+<div class="article-box">
+<p><strong>Vulnérabilités dans Docker Desktop</strong> : De multiples vulnérabilités ont été découvertes dans Docker Desktop. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilités dans Google Android</strong> : De multiples vulnérabilités ont été découvertes dans Google Android. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilités dans les produits Microsoft</strong> : De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
 <h3>Actualités</h3>
-<p>The Document Foundation a annoncé le retour du projet LibreOffice Online, une suite bureautique en version web, qui est une alternative à Microsoft et Google. </p>
-<p><a href="https://www.it-connect.fr/le-projet-libreoffice-online-relance-pour-concurrencer-google-et-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Anthropic a mis en ligne une plateforme pour se former gratuitement à l'utilisation de son IA Claude, via un ensemble de 13 cours en ligne. </p>
-<p><a href="https://www.it-connect.fr/formation-ia-anthropic-lance-ses-cours-gratuits-pour-vous-aider-a-maitriser-claude/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
+<div class="article-box">
+<p><strong>Fake Tech Support Spam Deploys Customized Havoc C2</strong> : Threat hunters have called attention to a new campaign as part of which bad actors masqueraded as fake IT support to deliver the Havoc command-and-control (C2) framework.</p>
+<a href="https://thehackernews.com/2026/03/fake-tech-support-spam-deploys.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>Building a High-Impact Tier 1: The 3 Steps CISOs Must Follow</strong> : Every CISO knows the uncomfortable truth about their Security Operations Center: the people most responsible for catching threats in real time are the ones who need the most support.</p>
+<a href="https://thehackernews.com/2026/03/building-high-impact-tier-1-3-steps.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>Open-Source CyberStrikeAI Deployed in AI-Driven FortiGate Attacks</strong> : The threat actor behind the recently disclosed artificial intelligence (AI)-assisted campaign targeting Fortinet FortiGate appliances leveraged an open-source tool called CyberStrikeAI.</p>
+<a href="https://thehackernews.com/2026/03/open-source-cyberstrikeai-deployed-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>Vaultwarden 1.35.4 : trois failles de sécurité corrigées</strong> : Si vous utilisez Vaultwarden, la version self-hosted de Bitwarden, vous devez installer la nouvelle version : 1.35.4.</p>
+<a href="https://www.it-connect.fr/vaultwarden-1-35-4-trois-failles-de-securite-corrigees-mettez-a-jour-votre-instance/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Visualiser les logs Docker en temps réel avec Dozzle</strong> : Ce tutoriel explique comment installer et configurer Dozzle, un outil open source pour visualiser les journaux de Docker en temps réel et recevoir des alertes.</p>
+<a href="https://www.it-connect.fr/tuto-dozzle-surveillance-logs-docker/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>GLPI 11.0.6 et GLPI 10.0.24 : un total de sept vulnérabilités patchées</strong> : Ce mardi 3 mars 2026, de nouvelles mises à jour de GLPI ont été mises en ligne : GLPI 11.0.6 et GLPI 10.0.24.</p>
+<a href="https://www.it-connect.fr/glpi-11-0-6-et-glpi-10-0-24-mises-a-jour-securite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Le projet LibreOffice Online relancé pour concurrencer Google et Microsoft</strong> : The Document Foundation a annoncé le retour du projet LibreOffice Online, une suite bureautique en version web, qui est une alternative à Microsoft et Google.</p>
+<a href="https://www.it-connect.fr/le-projet-libreoffice-online-relance-pour-concurrencer-google-et-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Formation IA : Anthropic lance ses cours gratuits pour vous aider à maîtriser Claude</strong> : Anthropic a mis en ligne une plateforme pour se former gratuitement à l'utilisation de son IA Claude, via un ensemble de 13 cours en ligne.</p>
+<a href="https://www.it-connect.fr/formation-ia-anthropic-lance-ses-cours-gratuits-pour-vous-aider-a-maitriser-claude/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
 <h2>Mercredi 4 Mars</h2>
 <h3>Vulnérabilités</h3>
-<p>De multiples vulnérabilités ont été découvertes dans Google Pixel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Une vulnérabilité a été découverte dans Tenable Nessus Manager. Elle permet à un attaquant de provoquer une atteinte à la confidentialité des données. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>De multiples vulnérabilités ont été découvertes dans HPE Aruba Networking AOS. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>Bitwarden announced support for logging into Windows 11 devices using passkeys stored in the manager's vault, enabling phishing-resistant authentication. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/bitwarden-adds-support-for-passkey-login-on-windows-11/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>A maximum severity vulnerability in the FreeScout helpdesk platform allows hackers to achieve remote code execution without any user interaction or authentication. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/mail2shell-zero-click-attack-lets-hackers-hijack-freescout-mail-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Microsoft has released the KB5075039 Windows Recovery Environment update for Windows 10 to fix a long-standing issue that prevented some users from accessing the recovery environment. </p>
-<p><a href="https://www.bleepingcomputer.com/news/microsoft/windows-10-kb5075039-update-fixes-broken-recovery-environment/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Fake LastPass support email threads try to steal vault passwords. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/fake-lastpass-support-email-threads-try-to-steal-vault-passwords/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Cisco has released security updates to patch two maximum-severity vulnerabilities in its Secure Firewall Management Center (FMC) software. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-max-severity-secure-fmc-flaws-giving-root-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>A previously undocumented set of 23 iOS exploits named "Coruna" has been deployed by multiple threat actors in targeted espionage campaigns and financial attacks. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/spyware-grade-coruna-ios-exploit-kit-now-used-in-crypto-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>Cybersecurity researchers have warned of a surge in retaliatory hacktivist activity following the U.S.-Israel coordinated military campaign against Iran. </p>
-<p><a href="https://thehackernews.com/2026/03/149-hacktivist-ddos-attacks-hit-110.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Google said it identified a "new and powerful" exploit kit dubbed Coruna (aka CryptoWaters) targeting Apple iPhone models running iOS versions between 13 and 17.2.1. </p>
-<p><a href="https://thehackernews.com/2026/03/coruna-ios-exploit-kit-uses-23-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>As AI becomes the central engine for enterprise productivity, security leaders are finally getting the green light — and the budget — to secure it. But how do you even start? </p>
-<p><a href="https://thehackernews.com/2026/03/new-rfp-template-for-ai-usage-control.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Cybersecurity researchers have flagged malicious Packagist PHP packages masquerading as Laravel utilities that act as a conduit for a cross-platform remote access trojan (RAT). </p>
-<p><a href="https://thehackernews.com/2026/03/fake-laravel-packages-on-packagist.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>Cybersecurity researchers have disclosed details of an advanced persistent threat (APT) group dubbed Silver Dragon that has been linked to cyber attacks on government entities. </p>
-<p><a href="https://thehackernews.com/2026/03/apt41-linked-silver-dragon-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
-<p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a recently disclosed security flaw impacting Broadcom VMware Aria Operations to its Known Exploited Vulnerabilities (KEV) catalog. </p>
-<p><a href="https://thehackernews.com/2026/03/cisa-adds-actively-exploited-vmware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a></p>
+<div class="article-box">
+<p><strong>Vulnérabilités dans Google Pixel</strong> : De multiples vulnérabilités ont été découvertes dans Google Pixel. Certaines d'entre elles permettent à un attaquant de provoquer une exécution de code arbitraire.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilité dans Tenable Nessus Manager</strong> : Une vulnérabilité a été découverte dans Tenable Nessus Manager. Elle permet à un attaquant de provoquer une atteinte à la confidentialité des données.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+<div class="article-box">
+<p><strong>Vulnérabilités dans HPE Aruba Networking AOS</strong> : De multiples vulnérabilités ont été découvertes dans HPE Aruba Networking AOS. Certaines d'entre elles permettent à un attaquant de provoquer un déni de service.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
 <h3>Fuites de données</h3>
-<p>Un pirate détruit le site et révèle les pratiques mafieuses de ses admins. </p>
-<p><a href="https://www.it-connect.fr/fin-de-yggtorrent-un-pirate-detruit-le-site-et-revele-les-pratiques-mafieuses-de-ses-admins/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>YggTorrent détruit par un pirate : une fuite de données de 11 Go révèle les mauvaises pratiques des admins allant jusqu'au vol de cartes bancaires. </p>
-<p><a href="https://www.it-connect.fr/fin-de-yggtorrent-un-pirate-detruit-le-site-et-revele-les-pratiques-mafieuses-de-ses-admins/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>The FBI has seized the LeakBase cybercrime forum, a major online forum used by cybercriminals buy and sell hacking tools and stolen data. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/fbi-seizes-leakbase-cybercrime-forum-data-of-142-000-members/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>An international law enforcement operation coordinated by Europol has disrupted Tycoon2FA, a major phishing-as-a-service (PhaaS) platform linked to tens of thousands of phishing attacks. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/europol-coordinated-action-disrupts-tycoon2fa-phishing-platform/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
-<p>The University of Mississippi Medical Center (UMMC) says it has resumed normal operations, nine days after a ransomware attack blocked access to electronic health records and other critical systems. </p>
-<p><a href="https://www.bleepingcomputer.com/news/security/mississippi-medical-center-reopens-clinics-hit-by-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a></p>
+<div class="article-box">
+<p><strong>Fin de YggTorrent : un pirate détruit le site et révèle les pratiques mafieuses de ses admins</strong> : YggTorrent détruit par un pirate : une fuite de données de 11 Go révèle les mauvaises pratiques des admins allant jusqu'au vol de cartes bancaires.</p>
+<a href="https://www.it-connect.fr/fin-de-yggtorrent-un-pirate-detruit-le-site-et-revele-les-pratiques-mafieuses-de-ses-admins/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
 <h3>Actualités</h3>
-<p>L’IA en temps de guerre, du champ de bataille à la propagande. </p>
-<p><a href="https://www.zataz.com/lia-en-temps-de-guerre-du-champ-de-bataille-a-la-propagande/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Chute annoncée de YGG, accusations explosives et code exposé. </p>
-<p><a href="https://www.zataz.com/chute-annoncee-de-ygg-accusations-explosives-et-code-expose/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a></p>
-<p>Accenture a annoncé le rachat d'Ookla pour 1,2 milliard de dollars, ce qui lui permet de mettre la main sur des outils comme Speedtest et Downdetector. </p>
-<p><a href="https://www.it-connect.fr/accenture-met-la-main-sur-downdetector-et-speedtest-pour-1-2-milliard-de-dollars/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Microsoft travaillerait sur une nouvelle licence pour Microsoft 365, officieusement nommée Microsoft 365 E7. Elle intégrerait des fonctions IA, dont une fonction de gestion de projet. </p>
-<p><a href="https://www.it-connect.fr/microsoft-365-e7-vers-un-abonnement-ultime-avec-de-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>La dématérialisation RH devient incontournable : découvrez comment digitaliser vos processus pour plus d'agilité dans un monde du travail en pleine mutation. </p>
-<p><a href="https://www.it-connect.fr/pourquoi-dematerialisation-incontournable-gestion-ressources-humaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Déployer Windows 11 avec WAPT, une alternative à MDT. </p>
-<p><a href="https://www.it-connect.fr/tuto-deployer-windows-11-avec-wapt-wads/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Après les images durcies, Docker veut étendre la sécurité au niveau des paquets. </p>
-<p><a href="https://www.it-connect.fr/docker-hardened-system-packages-securite-conteneurs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<p>Google va publier des mises à jour de Chrome toutes les 2 semaines ! </p>
-<p><a href="https://www.it-connect.fr/google-va-publier-des-mises-a-jour-de-chrome-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a></p>
-<h2>Jeudi 5 Mars</h2>
-<h3>Vulnérabilités</h3>
-<p>De multiples vulnérabilités ont été découvertes dans Traefik. Elles permettent à un attaquant de provoquer un déni de service à distance et un contournement de la politique de sécurité. </p>
-<p><a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0236/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a></p>
-<p>De multiples vulnérabilités ont été découvertes dans les produits Microsoft. Elles permettent à un attaquant de provoquer un problème de sécurité non spécifié. </p>
-<p>&lt;a href="https://www.cert.ssi</p>
+<div class="article-box">
+<p><strong>L’IA en temps de guerre, du champ de bataille à la propagande</strong> : Sur les théâtres d’opérations comme en ligne, l’IA réorganise la guerre autour d’un même nerf, la vitesse.</p>
+<a href="https://www.zataz.com/lia-en-temps-de-guerre-du-champ-de-bataille-a-la-propagande/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+<div class="article-box">
+<p><strong>Chute annoncée de YGG, accusations explosives et code exposé</strong> : Un message revendique la fin de YGG, évoque des serveurs « vidés puis détruits » et promet des révélations techniques.</p>
+<a href="https://www.zataz.com/chute-annoncee-de-ygg-accusations-explosives-et-code-expose/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+<div class="article-box">
+<p><strong>Accenture met la main sur Downdetector et Speedtest pour 1,2 milliard de dollars</strong> : Accenture a annoncé le rachat d'Ookla pour 1,2 milliard de dollars, ce qui lui permet de mettre la main sur des outils comme Speedtest et Downdetector.</p>
+<a href="https://www.it-connect.fr/accenture-met-la-main-sur-downdetector-et-speedtest-pour-1-2-milliard-de-dollars/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Microsoft 365 E7 : vers un abonnement ultime avec de l’IA ?</strong> : Microsoft travaillerait sur une nouvelle licence pour Microsoft 365, officieusement nommée Microsoft 365 E7.</p>
+<a href="https://www.it-connect.fr/microsoft-365-e7-vers-un-abonnement-ultime-avec-de-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Pourquoi la dématérialisation devient incontournable dans la gestion des ressources humaines</strong> : La dématérialisation RH devient incontournable : découvrez comment digitaliser vos processus pour plus d'agilité dans un monde du travail en pleine mutation.</p>
+<a href="https://www.it-connect.fr/pourquoi-dematerialisation-incontournable-gestion-ressources-humaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Déployer Windows 11 avec WAPT, une alternative à MDT</strong> : Apprenez à utiliser WAPT pour automatiser le déploiement de Windows 11 via la fonction WADS, intégrant gestion de l'OS, logiciels, et intégration à votre parc.</p>
+<a href="https://www.it-connect.fr/tuto-deployer-windows-11-avec-wapt-wads/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Après les images durcies, Docker veut étendre la sécurité au niveau des paquets</strong> : Après avoir ouvert à tous l'accès à ses images durcies (DHI) en décembre dernier, Docker annonce le lancement des "Docker Hardened System Packages".</p>
+<a href="https://www.it-connect.fr/docker-hardened-system-packages-securite-conteneurs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>Google va publier des mises à jour de Chrome toutes les 2 semaines !</strong> : Dès septembre 2026, Google va publier une nouvelle version de Google Chrome toutes les deux semaines au lieu d'une version toutes les quatre semaines.</p>
+<a href="https://www.it-connect.fr/google-va-publier-des-mises-a-jour-de-chrome-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+<div class="article-box">
+<p><strong>149 Hacktivist DDoS Attacks Hit 110 Organizations in 16 Countries</strong> : Cybersecurity researchers have warned of a surge in retaliatory hacktivist activity following the U.S.-Israel coordinated military campaign against Iran.</p>
+<a href="https://thehackernews.com/2026/03/149-hacktivist-ddos-attacks-hit-110.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>Coruna iOS Exploit Kit Uses 23 Exploits Across Five Chains Targeting iOS 13–17.2.1</strong> : Google said it identified a "new and powerful" exploit kit dubbed Coruna (aka CryptoWaters) targeting Apple iPhone models running iOS versions between 13 and 17.2.1.</p>
+<a href="https://thehackernews.com/2026/03/coruna-ios-exploit-kit-uses-23-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>New RFP Template for AI Usage Control and AI Governance</strong> : As AI becomes the central engine for enterprise productivity, security leaders are finally getting the green light — and the budget — to secure it.</p>
+<a href="https://thehackernews.com/2026/03/new-rfp-template-for-ai-usage-control.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+<div class="article-box">
+<p><strong>Fake Laravel Packages on Packagist Deploy RAT on Windows, macOS, and Linux</strong> : Cybersecurity researchers have flagged malicious Packagist PHP packages masquerading as Laravel utilities that act as a conduit for a cross-platform remote access trojan (RAT).</p>
+<a href="https://thehackernews.com/2026/03/fake-laravel-packages-on
         </div>
     </div>
 
     <script>
-        // On tague les éléments dès que la page est chargée
         document.addEventListener("DOMContentLoaded", function() {
             const container = document.getElementById('veilleContent');
             if (!container) return;
@@ -200,32 +240,38 @@
             let currentCategory = 'actu'; 
             
             elements.forEach(el => {
-                if (el.tagName.toLowerCase() === 'h3') {
+                if (el.tagName.toLowerCase() === 'h2') {
+                    el.setAttribute('data-type', 'date');
+                } else if (el.tagName.toLowerCase() === 'h3') {
                     let text = el.innerText.toLowerCase();
                     if (text.includes('vuln')) currentCategory = 'vuln';
                     else if (text.includes('fuite') || text.includes('leak')) currentCategory = 'leak';
                     else if (text.includes('actu')) currentCategory = 'actu';
+                    
+                    el.setAttribute('data-type', 'category-title');
                     el.setAttribute('data-category', currentCategory);
-                } else if (el.tagName.toLowerCase() === 'h2') {
-                    el.setAttribute('data-category', 'date');
                 } else {
+                    // C'est un article (div.article-box)
+                    el.setAttribute('data-type', 'content');
                     el.setAttribute('data-category', currentCategory);
                 }
             });
         });
 
         function filterData(category, btnElement) {
-            // 1. Mise à jour visuelle des boutons
+            // Met à jour les boutons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
 
             const container = document.getElementById('veilleContent');
             const elements = Array.from(container.children);
 
-            // 2. Masquer/Afficher le contenu selon la catégorie
+            // 1. Appliquer le filtre sur les articles et les titres de catégories
             elements.forEach(el => {
+                let type = el.getAttribute('data-type');
                 let cat = el.getAttribute('data-category');
-                if (cat !== 'date') { // On ne touche pas aux dates (H2) ici
+                
+                if (type === 'content' || type === 'category-title') {
                     if (category === 'all' || cat === category) {
                         el.style.display = '';
                     } else {
@@ -234,27 +280,30 @@
                 }
             });
 
-            // 3. Masquer/Afficher les dates (H2) si elles sont vides
-            let currentH2 = null;
-            let hasVisibleContent = false;
-            
-            for (let i = 0; i < elements.length; i++) {
+            // 2. Nettoyage intelligent : Cacher les dates et catégories qui sont vides
+            let hasContentForH3 = false;
+            let hasContentForH2 = false;
+
+            // On boucle à l'envers (du bas vers le haut) pour savoir si la date possède des articles en dessous
+            for (let i = elements.length - 1; i >= 0; i--) {
                 let el = elements[i];
-                if (el.tagName.toLowerCase() === 'h2') {
-                    if (currentH2) {
-                        currentH2.style.display = hasVisibleContent ? '' : 'none';
+                let type = el.getAttribute('data-type');
+
+                if (type === 'content' && el.style.display !== 'none') {
+                    hasContentForH3 = true;
+                    hasContentForH2 = true;
+                } else if (type === 'category-title') {
+                    if (!hasContentForH3) {
+                        el.style.display = 'none'; // Cache le H3 si aucun article dessous
                     }
-                    currentH2 = el;
-                    hasVisibleContent = false;
-                } else {
-                    if (el.style.display !== 'none') {
-                        hasVisibleContent = true;
+                    hasContentForH3 = false; 
+                } else if (type === 'date') {
+                    if (!hasContentForH2) {
+                        el.style.display = 'none'; // Cache la date si rien ne s'est passé ce jour là
                     }
+                    hasContentForH2 = false; 
+                    hasContentForH3 = false; 
                 }
-            }
-            // Vérifier la dernière date de la liste
-            if (currentH2) {
-                currentH2.style.display = hasVisibleContent ? '' : 'none';
             }
         }
     </script>
