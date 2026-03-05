@@ -29,7 +29,7 @@ str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 # --------------------------------------
 
-# 3. Récupération des articles (SANS filtre de mots-clés, on prend tout)
+# 3. Récupération des articles
 articles_bruts = []
 for url in feeds:
     try:
@@ -100,7 +100,7 @@ except Exception as e:
     print(f"Erreur lors de l'appel à l'API Groq : {e}")
     exit(1)
 
-# 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Avec Menu JavaScript)
+# 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Avec Menu JavaScript Corrigé)
 contenu_html = markdown.markdown(reponse_texte)
 
 page_html = f"""<!DOCTYPE html>
@@ -178,10 +178,10 @@ page_html = f"""<!DOCTYPE html>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 30px;">🛡️ Journal de Veille : du {str_lundi} au {str_aujourdhui}</h1>
         
         <div class="filter-menu" id="filterMenu">
-            <button class="filter-btn active" onclick="filterData('all')">Tout voir</button>
-            <button class="filter-btn" onclick="filterData('vuln')">🔓 Vulnérabilités</button>
-            <button class="filter-btn" onclick="filterData('leak')">🚨 Fuites de données</button>
-            <button class="filter-btn" onclick="filterData('actu')">📰 Actualités</button>
+            <button class="filter-btn active" onclick="filterData('all', this)">Tout voir</button>
+            <button class="filter-btn" onclick="filterData('vuln', this)">🔓 Vulnérabilités</button>
+            <button class="filter-btn" onclick="filterData('leak', this)">🚨 Fuites de données</button>
+            <button class="filter-btn" onclick="filterData('actu', this)">📰 Actualités</button>
         </div>
 
         <div class="veille-content" id="veilleContent" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
@@ -190,54 +190,57 @@ page_html = f"""<!DOCTYPE html>
     </div>
 
     <script>
-        function filterData(category) {{
-            // Met à jour le bouton actif
+        // On tague les éléments dès que la page est chargée
+        document.addEventListener("DOMContentLoaded", function() {{
+            const container = document.getElementById('veilleContent');
+            if (!container) return;
+            const elements = Array.from(container.children);
+            let currentCategory = 'actu'; 
+            
+            elements.forEach(el => {{
+                if (el.tagName.toLowerCase() === 'h3') {{
+                    let text = el.innerText.toLowerCase();
+                    if (text.includes('vuln')) currentCategory = 'vuln';
+                    else if (text.includes('fuite') || text.includes('leak')) currentCategory = 'leak';
+                    else if (text.includes('actu')) currentCategory = 'actu';
+                    el.setAttribute('data-category', currentCategory);
+                }} else if (el.tagName.toLowerCase() === 'h2') {{
+                    el.setAttribute('data-category', 'date');
+                }} else {{
+                    el.setAttribute('data-category', currentCategory);
+                }}
+            }});
+        }});
+
+        function filterData(category, btnElement) {{
+            // 1. Mise à jour visuelle des boutons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            btnElement.classList.add('active');
 
             const container = document.getElementById('veilleContent');
             const elements = Array.from(container.children);
-            let currentCategory = 'other';
-            
-            // Étape 1 : Assigner une catégorie à chaque élément en lisant les H3
-            if (!elements[0].hasAttribute('data-category')) {{
-                elements.forEach(el => {{
-                    if (el.tagName.toLowerCase() === 'h3') {{
-                        let text = el.innerText.toLowerCase();
-                        if (text.includes('vuln')) currentCategory = 'vuln';
-                        else if (text.includes('fuite') || text.includes('leak')) currentCategory = 'leak';
-                        else if (text.includes('actu')) currentCategory = 'actu';
-                        else currentCategory = 'other';
-                        el.setAttribute('data-category', currentCategory);
-                    }} else if (el.tagName.toLowerCase() === 'h2') {{
-                        el.setAttribute('data-category', 'date');
-                    }} else {{
-                        el.setAttribute('data-category', currentCategory);
-                    }}
-                }});
-            }}
 
-            // Étape 2 : Masquer ou afficher selon le choix
+            // 2. Masquer/Afficher le contenu selon la catégorie
             elements.forEach(el => {{
                 let cat = el.getAttribute('data-category');
-                if (cat === 'date') {{
-                    el.style.display = ''; // Les dates restent affichées temporairement
-                }} else if (category === 'all' || cat === category) {{
-                    el.style.display = '';
-                }} else {{
-                    el.style.display = 'none';
+                if (cat !== 'date') {{ // On ne touche pas aux dates (H2) ici
+                    if (category === 'all' || cat === category) {{
+                        el.style.display = '';
+                    }} else {{
+                        el.style.display = 'none';
+                    }}
                 }}
             }});
 
-            // Étape 3 : Nettoyer l'affichage (cacher les dates vides)
+            // 3. Masquer/Afficher les dates (H2) si elles sont vides
             let currentH2 = null;
             let hasVisibleContent = false;
             
             for (let i = 0; i < elements.length; i++) {{
                 let el = elements[i];
                 if (el.tagName.toLowerCase() === 'h2') {{
-                    if (currentH2 && !hasVisibleContent) {{
-                        currentH2.style.display = 'none';
+                    if (currentH2) {{
+                        currentH2.style.display = hasVisibleContent ? '' : 'none';
                     }}
                     currentH2 = el;
                     hasVisibleContent = false;
@@ -247,9 +250,9 @@ page_html = f"""<!DOCTYPE html>
                     }}
                 }}
             }}
-            // Vérifier le dernier jour
-            if (currentH2 && !hasVisibleContent) {{
-                currentH2.style.display = 'none';
+            // Vérifier la dernière date de la liste
+            if (currentH2) {{
+                currentH2.style.display = hasVisibleContent ? '' : 'none';
             }}
         }}
     </script>
