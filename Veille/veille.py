@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timedelta
 import markdown
 import requests
-import time # NOUVEAU : Indispensable pour lire les dates des flux RSS
+import time # Indispensable pour lire les dates des flux RSS
 
 # 1. Configuration Groq
 # On récupère la clé API Groq depuis les variables d'environnement
@@ -58,6 +58,13 @@ for url in feeds:
 if not articles_bruts:
     print("Aucun article récent trouvé cette semaine. Arrêt du script.")
     exit(0) # On sort avec 0 (succès) pour ne pas faire planter l'action GitHub
+
+# --- NOUVELLE LIMITE DE SÉCURITÉ POUR GROQ ---
+MAX_ARTICLES = 70
+if len(articles_bruts) > MAX_ARTICLES:
+    print(f"Trop d'articles ({len(articles_bruts)}). Réduction aux {MAX_ARTICLES} premiers pour respecter les quotas.")
+    articles_bruts = articles_bruts[:MAX_ARTICLES]
+# ---------------------------------------------
 
 contenu_brut = "\n".join(articles_bruts)
 print(f"Nombre d'articles filtrés envoyés à l'IA : {len(articles_bruts)}")
