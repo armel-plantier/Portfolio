@@ -83,7 +83,7 @@ Ton objectif est de créer un bulletin d'alerte recensant UNIQUEMENT les fuites 
 
 RÈGLES STRICTES DE FORMATAGE (À RESPECTER IMPÉRATIVEMENT SOUS PEINE D'ERREUR) :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
-2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR où des fuites ont eu lieu (ex: ## Lundi 2 Mars).
+2. Utilise un Titre 2 (##) EXCLUSIVEMENT pour chaque JOUR où des fuites ont eu lieu (ex: ## Lundi 2 Mars). ORDRE CHRONOLOGIQUE OBLIGATOIRE : commence par Lundi, puis Mardi, Mercredi, etc. Ne commence JAMAIS par le jour le plus récent.
 3. SOUS chaque jour, utilise un Titre 3 (###) pour les NOMS DES ENTITÉS TOUCHÉES (entreprises, hôpitaux, etc.).
 4. POUR CHAQUE INCIDENT, tu DOIS obligatoirement générer ce bloc HTML exact (ne fais aucun paragraphe classique en dehors de ce bloc) :
 
