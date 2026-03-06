@@ -1,5 +1,5 @@
 import feedparser
-import google.generativeai as genai
+from google import genai
 import os
 from datetime import datetime, timedelta
 import markdown
@@ -7,8 +7,7 @@ import requests
 import time 
 
 # 1. Configuration Google Gemini
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
-model = genai.GenerativeModel("gemini-2.0-flash")
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 # 2. Lecture des flux
 chemin_flux = "Veille/flux-rss.txt"
@@ -100,9 +99,10 @@ Voici les données pré-filtrées à analyser et organiser :
 # 5. Appel à l'IA Gemini
 print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Gemini...")
 try:
-    response = model.generate_content(
-        prompt,
-        generation_config=genai.GenerationConfig(temperature=0.3)
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt,
+        config={"temperature": 0.3}
     )
     reponse_texte = response.text
 except Exception as e:
