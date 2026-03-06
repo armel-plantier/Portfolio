@@ -36,11 +36,11 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install google-genai feedparser markdown requests
+        pip install mistralai feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: python Veille/veille.py
 
