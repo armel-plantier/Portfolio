@@ -35,14 +35,12 @@ jobs:
         python-version: '3.12'
 
     - name: 📦 Installation des dépendances
-      # On a remplacé google-genai par groq ici
       run: |
-        pip install groq feedparser markdown requests
+        pip install anthropic feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
-      # On passe la nouvelle clé secrète Groq
       env:
-        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: python Veille/veille.py
 
