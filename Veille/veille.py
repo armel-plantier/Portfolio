@@ -1,13 +1,13 @@
 import feedparser
-from google import genai
+from mistralai import Mistral
 import os
 from datetime import datetime, timedelta
 import markdown
 import requests
 import time 
 
-# 1. Configuration Google Gemini
-client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+# 1. Configuration Mistral AI
+client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY"))
 
 # 2. Lecture des flux
 chemin_flux = "Veille/flux-rss.txt"
@@ -96,17 +96,19 @@ Voici les données pré-filtrées à analyser et organiser :
 {contenu_brut}
 """
 
-# 5. Appel à l'IA Gemini
-print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Gemini...")
+# 5. Appel à l'IA Mistral
+print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Mistral AI...")
 try:
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
-        config={"temperature": 0.3}
+    response = client.chat.complete(
+        model="mistral-small-latest",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.3
     )
-    reponse_texte = response.text
+    reponse_texte = response.choices[0].message.content
 except Exception as e:
-    print(f"Erreur lors de l'appel à l'API Gemini : {e}")
+    print(f"Erreur lors de l'appel à l'API Mistral : {e}")
     exit(1)
 
 # 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Statique, sans JS)
