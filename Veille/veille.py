@@ -1,13 +1,13 @@
 import feedparser
-from groq import Groq
+import anthropic
 import os
 from datetime import datetime, timedelta
 import markdown
 import requests
 import time 
 
-# 1. Configuration Groq
-client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+# 1. Configuration Anthropic
+client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 # 2. Lecture des flux
 chemin_flux = "Veille/flux-rss.txt"
@@ -96,19 +96,20 @@ Voici les données pré-filtrées à analyser et organiser :
 {contenu_brut}
 """
 
-# 5. Appel à l'IA Groq
-print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Groq...")
+# 5. Appel à l'IA Claude
+print(f"Génération du bulletin Data Leaks du {str_lundi} au {str_aujourdhui} via Claude...")
 try:
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+    response = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=4096,
         messages=[
             {"role": "user", "content": prompt}
         ],
         temperature=0.3
     )
-    reponse_texte = response.choices[0].message.content
+    reponse_texte = response.content[0].text
 except Exception as e:
-    print(f"Erreur lors de l'appel à l'API Groq : {e}")
+    print(f"Erreur lors de l'appel à l'API Anthropic : {e}")
     exit(1)
 
 # 6. CONVERSION ET CRÉATION DE LA PAGE HTML (Statique, sans JS)
