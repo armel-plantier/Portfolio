@@ -36,7 +36,7 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install google-generativeai feedparser markdown requests
+        pip install google-genai feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
