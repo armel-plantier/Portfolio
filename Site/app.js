@@ -391,6 +391,60 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+    // --- PROCEDURES ---
+    const procedureGrid = document.getElementById('procedure-grid');
+    const PROC_BASE_URL = `${window.location.origin}${path}Documents/Proc%C3%A9dures/`;
+    const PROC_LIMIT = 4;
+
+    if (procedureGrid && config.procedures && config.procedures.length > 0) {
+        config.procedures.forEach((proc, index) => {
+            const vid = `proc_viewer_${index}`;
+            const fullPdfUrl = PROC_BASE_URL + proc.path;
+            const btnId = `proc-info-btn-${index}`;
+
+            let cardTagsHTML = '';
+            if (proc.tags && proc.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proc.tags.slice(0, 3).forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
+                cardTagsHTML += '</div>';
+            }
+
+            const div = document.createElement('div');
+            div.className = 'project-card interactive-card';
+            div.setAttribute('data-hint', 'Voir le PDF 📄');
+            if (index >= PROC_LIMIT) div.classList.add('hidden-item');
+
+            const iconSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`;
+
+            div.innerHTML = `
+                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+                <div class="card-header">
+                    <div class="icon">${iconSVG}</div>
+                    <div class="meta">
+                        <h4>${escapeHTML(proc.title)}</h4>
+                        <p>${escapeHTML(proc.description || '')}</p>
+                        ${cardTagsHTML}
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+
+            div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+            const infoB = div.querySelector(`#${btnId}`);
+            if (infoB) infoB.addEventListener('click', (e) => { e.stopPropagation(); openProjectModal(proc, ''); });
+
+            procedureGrid.appendChild(div);
+        });
+
+        if (config.procedures.length > PROC_LIMIT) createToggleBtn(procedureGrid, PROC_LIMIT, 'Voir la suite');
+
+    } else if (procedureGrid) {
+        procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucune procédure disponible pour le moment.</p>';
+    }
+
     // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
     const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
