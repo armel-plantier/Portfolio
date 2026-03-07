@@ -1083,3 +1083,18 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
     color: var(--muted);
     line-height: 1.5;
 }
+
+/* --- BADGE DERNIÈRE MISE À JOUR VEILLE --- */
+.veille-last-update { margin-left: auto; }
+
+.veille-update-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    white-space: nowrap;
+}
