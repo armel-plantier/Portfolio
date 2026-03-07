@@ -935,3 +935,98 @@ body.light-mode .veille-section {
     color: var(--muted);
     opacity: 0.7;
 }
+
+/* --- BOUTON & MODALE SOURCES RSS --- */
+.rss-sources-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 26px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    color: var(--muted);
+    font-family: "Inter", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.rss-sources-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+}
+.rss-sources-btn svg { transition: transform 0.3s ease; }
+.rss-sources-btn:hover svg { transform: rotate(15deg); }
+
+.rss-modal-body { padding: 24px !important; }
+
+.rss-cat-block { margin-bottom: 24px; }
+.rss-cat-block:last-child { margin-bottom: 0; }
+
+.rss-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Outfit", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.rss-cat-red    { background: rgba(239,68,68,0.08);  color: #ef4444; }
+.rss-cat-blue   { background: rgba(99,102,241,0.08); color: #818cf8; }
+.rss-cat-yellow { background: rgba(234,179,8,0.08);  color: #eab308; }
+.rss-cat-green  { background: rgba(16,185,129,0.08); color: #10b981; }
+
+.rss-count {
+    margin-left: auto;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.rss-feed-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 16px;
+}
+@media (max-width: 500px) { .rss-feed-list { grid-template-columns: 1fr; } }
+
+.rss-feed-list li {
+    font-size: 0.85rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+body.light-mode .rss-feed-list li { border-bottom-color: rgba(0,0,0,0.05); }
+
+.rss-feed-list li::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+}
+.rss-feed-list a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.rss-feed-list a:hover { color: var(--primary); }
