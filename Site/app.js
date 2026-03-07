@@ -631,7 +631,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 
-        initCursorHint();
+    
+    // --- OUVERTURE AUTO D'UNE PROCÉDURE VIA URL (?proc=nom) ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const procParam = urlParams.get('proc');
+    if (procParam) {
+        // On attend que la grille soit chargée puis on scroll et ouvre le PDF
+        const waitAndOpen = setInterval(() => {
+            const cards = document.querySelectorAll('#procedure-grid .project-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h4');
+                if (!title) return;
+                // Normalise le titre : minuscules, sans espaces
+                const cardSlug = title.innerText.toLowerCase().replace(/\s+/g, '_');
+                const paramSlug = decodeURIComponent(procParam).toLowerCase().replace(/\s+/g, '_');
+                if (cardSlug === paramSlug || cardSlug.startsWith(paramSlug)) {
+                    clearInterval(waitAndOpen);
+                    // Scroll vers la section
+                    const section = document.getElementById('procedures');
+                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Ouvre le PDF après le scroll
+                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    // Nettoie l'URL
+                    window.history.replaceState({}, '', '/');
+                }
+            });
+        }, 300);
+        // Stop après 5s si rien trouvé
+        setTimeout(() => clearInterval(waitAndOpen), 5000);
+    }
+
+    initCursorHint();
 
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
