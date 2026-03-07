@@ -48,9 +48,9 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
+        git pull --rebase origin main
         git add Veille/index.html
         git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification"
-        git pull --rebase origin main
         git push
 
     - name: 📁 Préparation de la structure du site
