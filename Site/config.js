@@ -7,6 +7,7 @@ const config = {
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
+        { title: "Procédures", link: "#procedures" },
         { title: "Veille", link: "#veille" } 
     ],
 
