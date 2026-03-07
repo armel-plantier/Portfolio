@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="/style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        // Redirection automatique /procedures/nom → /?proc=nom
+        const path = window.location.pathname;
+        const match = path.match(/^\/procedures\/([^\/]+)\/?$/);
+        if (match) {
+            const procName = match[1];
+            window.location.replace('/?proc=' + encodeURIComponent(procName));
+        }
+    </script>
 </head>
 <body class="error-body"> 
     <div class="error-card">
