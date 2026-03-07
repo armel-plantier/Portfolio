@@ -114,28 +114,76 @@
 
         <section id="veille" class="section-wrapper veille-section">
             <h3>Veille Cyber</h3>
-            
-            <ul class="cert-list">
-                <li class="cert-card-container">
-                    <div class="cert-header-row">
-                        <div class="cert-icon-box">
-                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-                        </div>
-                        <div class="cert-info">
-                            <span class="cert-name">Ma Veille Automatisée</span>
-                            <span class="cert-issuer">Actualités cyber générées chaque semaine par l'IA</span>
-                        </div>
-                        <div class="cert-actions">
-                            <a href="/Veille" target="_blank" class="cert-btn link-btn" title="Consulter la veille">🔗</a>
-                        </div>
-                    </div>
-                </li>
 
-                <li class="veille-info-text">
-                    <h4>🤖 Comment ça marche ?</h4>
-                    <p>Ce projet est <strong>100% automatisé</strong>. Un script récupère les flux RSS spécialisés en cybersécurité. Une IA (LLM) analyse, traduit et synthétise ensuite ces données pour générer automatiquement cette newsletter hebdomadaire.</p>
-                </li>
-            </ul>
+            <p class="veille-intro-text">Quatre thématiques de veille <strong>100% automatisées</strong> — un script récupère des flux RSS spécialisés, une IA analyse et synthétise les actualités chaque semaine.</p>
+
+            <div class="veille-cards-grid">
+
+                <!-- Sécurité -->
+                <a href="/Veille/securite" target="_blank" class="veille-cat-card">
+                    <div class="veille-cat-icon veille-icon-red">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <div class="veille-cat-body">
+                        <span class="veille-cat-tag veille-tag-red">Sécurité</span>
+                        <h4>Exploits &amp; Menaces</h4>
+                        <p>0-days, fuites de données, nouveaux vecteurs d'attaque et correctifs critiques publiés cette semaine.</p>
+                    </div>
+                    <div class="veille-cat-footer">
+                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
+                    </div>
+                </a>
+
+                <!-- Techno -->
+                <a href="/Veille/techno" target="_blank" class="veille-cat-card">
+                    <div class="veille-cat-icon veille-icon-blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div class="veille-cat-body">
+                        <span class="veille-cat-tag veille-tag-blue">Techno</span>
+                        <h4>Updates &amp; Outils</h4>
+                        <p>Mises à jour logicielles, nouvelles releases, outils émergents et évolutions des stacks DevOps/Infra.</p>
+                    </div>
+                    <div class="veille-cat-footer">
+                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
+                    </div>
+                </a>
+
+                <!-- Légale -->
+                <a href="/Veille/legale" target="_blank" class="veille-cat-card">
+                    <div class="veille-cat-icon veille-icon-yellow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <div class="veille-cat-body">
+                        <span class="veille-cat-tag veille-tag-yellow">Légale</span>
+                        <h4>Lois &amp; Compliance</h4>
+                        <p>Évolutions réglementaires, jurisprudences RGPD, directives NIS2 et décisions des autorités de contrôle.</p>
+                    </div>
+                    <div class="veille-cat-footer">
+                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
+                    </div>
+                </a>
+
+                <!-- Hardware -->
+                <a href="/Veille/hardware" target="_blank" class="veille-cat-card">
+                    <div class="veille-cat-icon veille-icon-green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 3 L8 3 L8 7"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="8" y1="12" x2="8" y2="16"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="16" y1="12" x2="16" y2="16"/></svg>
+                    </div>
+                    <div class="veille-cat-body">
+                        <span class="veille-cat-tag veille-tag-green">Hardware</span>
+                        <h4>Serveurs &amp; Composants</h4>
+                        <p>Nouvelles architectures CPU/GPU, sorties de matériel serveur, vulnérabilités firmware et tendances datacenter.</p>
+                    </div>
+                    <div class="veille-cat-footer">
+                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
+                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
+                    </div>
+                </a>
+
+            </div>
 
             <div class="veille-divider"></div>
 
