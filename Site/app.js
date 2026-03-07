@@ -539,6 +539,27 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(() => { viewCountEl.style.display = "none"; });
     }
     
+
+    // --- BADGES DERNIÈRE MISE À JOUR VEILLE ---
+    const veilleCards = document.querySelectorAll('.veille-cat-card[data-veille-cat]');
+    veilleCards.forEach(card => {
+        const cat = card.getAttribute('data-veille-cat');
+        const badgeEl = card.querySelector('.veille-last-update');
+        if (!badgeEl || !config.profile.githubUser || !config.profile.githubRepo) return;
+
+        const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Veille/${cat}/index.html&page=1&per_page=1`;
+        fetch(apiUrl)
+            .then(r => r.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    const date = new Date(data[0].commit.author.date);
+                    const diff = Math.floor((new Date() - date) / (1000 * 60 * 60 * 24));
+                    const label = diff === 0 ? "Aujourd'hui" : diff === 1 ? "Hier" : `Il y a ${diff}j`;
+                    badgeEl.innerHTML = `<span class="veille-update-badge">${label}</span>`;
+                }
+            })
+            .catch(() => {});
+    });
     initCursorHint();
 
     document.addEventListener('keydown', (e) => {
