@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Sécurité | Exploits & Menaces — 02/03/2026 au 07/03/2026</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22#ef4444%22>SEC</text></svg>">
+
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        .veille-content h2 {
+            color: #ef4444;
+            margin-top: 40px; margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px; font-size: 1.6rem;
+        }
+        .veille-content h3 {
+            color: var(--text);
+            margin-top: 25px; margin-bottom: 15px;
+            font-family: 'Outfit', sans-serif; font-size: 1.15rem;
+            border-left: 3px solid #ef4444; padding-left: 10px;
+        }
+        .article-box {
+            background: rgba(239, 68, 68, 0.05);
+            border-left: 4px solid #ef4444;
+            padding: 15px 20px; margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .article-box p { margin-top: 0; margin-bottom: 15px; line-height: 1.6; color: var(--muted); }
+        .btn-source {
+            display: inline-block;
+            background-color: #ef4444;
+            color: #ffffff !important;
+            padding: 6px 16px; border-radius: 30px;
+            font-size: 0.85em; font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+        }
+        .btn-source:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4); }
+        .veille-content strong { color: var(--text); }
+        .veille-content a:not(.btn-source) { color: #ef4444; text-decoration: none; font-weight: 500; }
+        .veille-content a:not(.btn-source):hover { text-decoration: underline; }
+
+        .veille-header-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444; padding: 6px 16px; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+        .veille-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; margin-top: 20px; }
+        .veille-nav a {
+            padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; font-weight: 600;
+            border: 1px solid var(--border); color: var(--muted);
+            text-decoration: none; transition: all 0.2s;
+        }
+        .veille-nav a:hover { border-color: #ef4444; color: #ef4444; background: rgba(239, 68, 68, 0.05); }
+        .veille-nav a.active { background: #ef4444; color: white; border-color: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding-top: 40px; padding-bottom: 60px;">
+        <a href="/" class="btn-home" style="display: inline-block; margin-bottom: 30px;">↩ Retour au Portfolio</a>
+
+        <div class="veille-header-badge">🛡️ Sécurité</div>
+        <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
+        <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 02/03/2026 au 07/03/2026 · Généré par IA</p>
+
+        <nav class="veille-nav">
+            <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
+            <a href="/Veille/techno"   >💻 Techno</a>
+            <a href="/Veille/legale"   >⚖️ Légale</a>
+            <a href="/Veille/hardware" >🖥️ Hardware</a>
+        </nav>
+
+        <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h2>Dimanche 2 Mars</h2>
+<h3>Multiples vulnérabilités dans les produits Microsoft (02 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les produits Microsoft, permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Les systèmes affectés incluent Windows, Office et d'autres logiciels Microsoft. La criticité est élevée, et des correctifs sont probablement disponibles via les mises à jour de sécurité mensuelles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0228/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans MISP (02 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : MISP (Malware Information Sharing Platform) présente plusieurs vulnérabilités critiques, dont des SSRF (Server-Side Request Forgery) et des injections de code. Les systèmes affectés incluent les instances MISP déployées en production. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0229/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h2>Lundi 3 Mars</h2>
+<h3>Multiples vulnérabilités dans Docker Desktop (03 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Docker Desktop présente plusieurs vulnérabilités critiques non spécifiées, permettant des attaques non détaillées. Les systèmes affectés incluent les versions récentes de Docker Desktop. La criticité est élevée, et des correctifs sont probablement disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0230/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Google Android (03 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Android présente plusieurs vulnérabilités critiques, dont des exécutions de code arbitraire à distance et des élévations de privilèges. Les systèmes affectés incluent les appareils Android non mis à jour. La criticité est critique, et des correctifs sont disponibles via les mises à jour de sécurité mensuelles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0231/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft (03 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : De nouvelles vulnérabilités critiques ont été découvertes dans les produits Microsoft, permettant des attaques non spécifiées. Les systèmes affectés incluent Windows, Office et d'autres logiciels Microsoft. La criticité est élevée, et des correctifs sont probablement disponibles via les mises à jour de sécurité mensuelles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0232/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h2>Mardi 4 Mars</h2>
+<h3>Multiples vulnérabilités dans Google Pixel (04 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google Pixel présente plusieurs vulnérabilités critiques, dont des exécutions de code arbitraire à distance et des élévations de privilèges. Les systèmes affectés incluent les appareils Pixel non mis à jour. La criticité est critique, et des correctifs sont disponibles via les mises à jour de sécurité mensuelles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0233/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Tenable Nessus Manager (04 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans Tenable Nessus Manager, permettant des atteintes à la confidentialité des données. Les systèmes affectés incluent les instances Nessus Manager déployées en production. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0234/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans HPE Aruba Networking AOS (04 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : HPE Aruba Networking AOS présente plusieurs vulnérabilités critiques, dont des dénis de service à distance et des atteintes à la confidentialité. Les systèmes affectés incluent les équipements réseau Aruba. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0235/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h2>Mercredi 5 Mars</h2>
+<h3>Multiples vulnérabilités dans Traefik (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Traefik présente plusieurs vulnérabilités critiques, dont des dénis de service à distance et des contournements de politique de sécurité. Les systèmes affectés incluent les instances Traefik déployées en production. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0236/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : De nouvelles vulnérabilités critiques ont été découvertes dans les produits Microsoft, permettant des attaques non spécifiées. Les systèmes affectés incluent Windows, Office et d'autres logiciels Microsoft. La criticité est élevée, et des correctifs sont probablement disponibles via les mises à jour de sécurité mensuelles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0237/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans NetApp ONTAP 9 (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans NetApp ONTAP 9, permettant des atteintes à la confidentialité des données. Les systèmes affectés incluent les installations ONTAP 9. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0238/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Google Chrome (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google Chrome présente plusieurs vulnérabilités critiques non spécifiées. Les systèmes affectés incluent les versions récentes de Chrome. La criticité est élevée, et des correctifs sont disponibles via les mises à jour automatiques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0239/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans CPython (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans CPython, permettant des attaques non spécifiées. Les systèmes affectés incluent les installations CPython. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0240/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans ClamAV (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans ClamAV, permettant des dénis de service. Les systèmes affectés incluent les installations ClamAV. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0241/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Cisco (05 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco présente plusieurs vulnérabilités critiques, dont des exécutions de code arbitraire à distance et des dénis de service. Les systèmes affectés incluent les équipements réseau Cisco. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0242/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h2>Jeudi 6 Mars</h2>
+<h3>Vulnérabilité dans SPIP (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans SPIP, permettant des élévations de privilèges. Les systèmes affectés incluent les installations SPIP. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0243/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Nextcloud Flow (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans Nextcloud Flow, permettant des exécutions de code arbitraire à distance et des atteintes à la confidentialité. Les systèmes affectés incluent les instances Nextcloud Flow. La criticité est critique, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0244/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Zabbix (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été découverte dans Zabbix, permettant des atteintes à la confidentialité et à l'intégrité des données. Les systèmes affectés incluent les instances Zabbix. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0245/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux d'Ubuntu présente plusieurs vulnérabilités critiques, dont des exécutions de code arbitraire et des atteintes à la confidentialité. Les systèmes affectés incluent les distributions Ubuntu. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0246/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans le noyau Linux de SUSE (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux de SUSE présente plusieurs vulnérabilités critiques, dont des élévations de privilèges et des atteintes à la confidentialité. Les systèmes affectés incluent les distributions SUSE. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0247/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux de Red Hat présente plusieurs vulnérabilités critiques, dont des dénis de service à distance et des contournements de politique de sécurité. Les systèmes affectés incluent les distributions Red Hat. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0248/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits IBM (06 mars 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : IBM présente plusieurs vulnérabilités critiques, dont des exécutions de code arbitraire à distance et des élévations de privilèges. Les systèmes affectés incluent les produits IBM. La criticité est élevée, et des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0249/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h2>Vendredi 7 Mars</h2>
+<h3>Cyber actualités ZATAZ de la semaine du 3 mars 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La semaine cyber a été marquée par plusieurs événements forts mêlant piratage, cybercriminalité organisée et utilisation stratégique de l’intelligence artificielle. Le site ZATAZ détaille les principaux incidents et tendances observées.</p>
+<a href="https://www.zataz.com/cyber-actualites-zataz-de-la-semaine-du-3-mars-2026/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>YggTorrent annonce son retour après une attaque informatique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Après une cyberattaque revendiquée, YggTorrent annonce sa disparition puis prépare déjà le lancement d’un nouveau projet baptisé YGG. Le site détaille les circonstances de l'attaque et les conséquences pour les utilisateurs.</p>
+<a href="https://www.zataz.com/yggtorrent-annonce-son-retour-apres-une-attaque-informatique/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Termite ransomware breaches linked to ClickFix CastleRAT attacks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les acteurs de la menace Termite ransomware utilisent la technique ClickFix et des utilitaires légitimes de Windows pour déployer le malware DonutLoader et le backdoor CastleRAT. Le site BleepingComputer détaille les tactiques et les impacts de ces attaques.</p>
+<a href="https://www.bleepingcomputer.com/news/security/termite-ransomware-breaches-linked-to-clickfix-castlerat-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft: Hackers abusing AI at every stage of cyberattacks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft signale que les acteurs de la menace utilisent de plus en plus l'intelligence artificielle pour accélérer les attaques, les amplifier et réduire les barrières techniques à tous les stades des cyberattaques. Le site BleepingComputer détaille les implications de cette tendance.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-hackers-abusing-ai-at-every-stage-of-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Over 100 GitHub Repositories Distributing BoryptGrab Stealer</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plus de 100 dépôts GitHub distribuent le malware BoryptGrab Stealer, ciblant les données des navigateurs, des portefeuilles de cryptomonnaie, ainsi que les informations système et les fichiers utilisateur. Le site SecurityWeek détaille les caractéristiques de ce malware et les mesures de protection recommandées.</p>
+<a href="https://www.securityweek.com/over-100-github-repositories-distributing-boryptgrab-stealer/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+        </div>
+    </div>
+</body>
+</html>
