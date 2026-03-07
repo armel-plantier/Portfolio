@@ -1,432 +1,763 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+// --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
+
+const escapeHTML = (str) => {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
+const renderIcon = (iconString) => {
+    if (!iconString) return '';
+    const lower = iconString.toLowerCase();
+    if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
+        return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
+    } else {
+        return iconString;
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
     
-    <title>Armel Plantier | Portfolio</title>
+    // --- SCROLL REVEAL (Animation d'apparition) ---
+    const sections = document.querySelectorAll('.section-wrapper');
+    sections.forEach(sec => sec.classList.add('reveal'));
+    const revealSections = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        document.querySelectorAll('.reveal').forEach(reveal => {
+            if (reveal.getBoundingClientRect().top < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealSections);
+    revealSections(); // Déclenchement initial
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Armel Plantier | Portfolio">
-    <meta property="og:description" content="Portfolio d'étudiant Administrateur Système. Projets, Labs et Certifications.">
+    // --- VERIFICATION CONFIG ---
+    if (typeof config === 'undefined') { 
+        console.error("ERREUR : config.js n'est pas chargé."); 
+        return; 
+    }
+
+    // --- 1. THEME ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
     
-    <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self'; 
-        connect-src 'self' https://api.github.com;
-        script-src 'self' https://challenges.cloudflare.com; 
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
-        font-src 'self' https://fonts.gstatic.com; 
-        img-src 'self' data: https://encrypted-tbn0.gstatic.com; 
-        frame-src https://docs.google.com https://challenges.cloudflare.com; 
-        object-src 'none'; 
-        base-uri 'self';
-    ">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        if(themeBtn) themeBtn.innerText = "🌙"; 
+    }
     
-    <link id="favicon-link" rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%238A2BE2%22>AP</text></svg>">
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) {
+                themeBtn.innerText = "🌙"; 
+                localStorage.setItem("theme", "light");
+            } else {
+                themeBtn.innerText = "☀️"; 
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+
+    // --- 2. REMPLISSAGE PROFIL ---
+    document.title = `${config.profile.name} | Portfolio`;
+    const avatarEl = document.getElementById("profile-avatar");
+    if(avatarEl) avatarEl.src = config.profile.avatar;
+    const faviconEl = document.getElementById("favicon-link");
+    if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
+    const nameEl = document.getElementById("profile-name");
+    if(nameEl) nameEl.innerText = config.profile.name;
+    const statusEl = document.getElementById("profile-status");
+    if(statusEl) statusEl.innerText = config.profile.status;
+    const bioEl = document.getElementById("profile-bio");
+    if(bioEl) bioEl.innerText = config.profile.bio;
+    const footerEl = document.getElementById("footer-copy");
+    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
+    const ghBtn = document.getElementById("link-github");
+    if(ghBtn && config.social.github) ghBtn.href = config.social.github;
+    const lkBtn = document.getElementById("link-linkedin");
+    if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
+
+    // --- 3. MODALES (CONTACT, LEGAL & INFO) ---
+    function setupModal(triggerId, modalId, closeBtnId) {
+        const trigger = document.getElementById(triggerId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = document.getElementById(closeBtnId);
+        if (trigger && modal) {
+            trigger.addEventListener("click", (e) => { 
+                e.preventDefault(); 
+                modal.style.display = "flex"; 
+                document.body.style.overflow = "hidden";
+            });
+        }
+        const closeFn = () => { 
+            if(modal) modal.style.display = "none"; 
+            document.body.style.overflow = "auto";
+        };
+        if (closeBtn) closeBtn.addEventListener("click", closeFn);
+        window.addEventListener("click", (e) => { if(e.target === modal) closeFn(); });
+    }
+
+    setupModal("email-trigger", "email-modal", "modal-close-btn");
+    setupModal("legal-trigger", "legal-modal", "legal-close-btn");
+    setupModal("info-trigger", "info-modal", "info-close-btn");
+    setupModal("rss-trigger", "rss-modal", "rss-close-btn");
     
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
+    const emailTrigger = document.getElementById("email-trigger");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailResultArea = document.getElementById("email-result-area");
+    const emailText = document.getElementById("email-text");
+    const captchaInstruction = document.getElementById("captcha-instruction");
+    const copyBtn = document.getElementById("copy-email-btn");
+    let widgetId = null; let decodedEmail = ""; 
 
-    <header class="app-header">
-        <div class="header-left">
-            <img id="profile-avatar" src="" alt="Avatar" class="id-avatar">
-            <div class="identity-info">
-                <span id="profile-name" class="id-name"></span>
-                <div class="status-wrapper">
-                    <span class="status-dot"></span>
-                    <span id="profile-status" class="id-status"></span>
-                </div>
-            </div>
-        </div>
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", () => {
+            if(captchaContainer) captchaContainer.style.display = "flex";
+            if(emailResultArea) emailResultArea.style.display = "none";
+            if(captchaInstruction) captchaInstruction.style.display = "block";
+            if(emailText) emailText.innerText = "";
+            if(copyBtn) { copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = ""; }
 
-        <nav class="nav-capsule">
-            <span class="menu-icon">☰</span>
-            <ul id="nav-list"></ul>
-        </nav>
+            if (window.turnstile) {
+                if (widgetId !== null) turnstile.reset(widgetId);
+                else {
+                    try {
+                        widgetId = turnstile.render('#captcha-container', {
+                            sitekey: config.profile.turnstileSiteKey, 
+                            theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
+                            callback: function(token) {
+                                try {
+                                    decodedEmail = atob(config.profile.emailEncoded);
+                                    if(emailText) emailText.innerText = decodedEmail;
+                                    if(captchaContainer) captchaContainer.style.display = "none";
+                                    if(captchaInstruction) captchaInstruction.style.display = "none";
+                                    if(emailResultArea) emailResultArea.style.display = "block";
+                                } catch (err) { console.error("Erreur décodage email"); }
+                            }
+                        });
+                    } catch (e) { console.error(e); if(captchaContainer) captchaContainer.innerHTML = "Erreur sécu."; }
+                }
+            }
+        });
+        if(copyBtn) {
+            copyBtn.addEventListener("click", () => {
+                if(decodedEmail) navigator.clipboard.writeText(decodedEmail).then(() => {
+                    copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
+                    setTimeout(() => { document.getElementById("email-modal").style.display = "none"; }, 2000); 
+                });
+            });
+        }
+    }
 
-        <div class="header-right">
-            <button id="theme-toggle" class="theme-icon">☀️</button>
-        </div>
-    </header>
+    // --- MODALE PROJET (FERMETURE) ---
+    const projectModal = document.getElementById("project-modal");
+    const projectCloseBtn = document.getElementById("project-close-btn");
+    if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
+    window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
 
-    <div class="container">
+    // --- 5. NAVIGATION ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = item.title; a.href = item.link; 
+            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
+            li.appendChild(a); navList.appendChild(li);
+        });
+    }
+
+    // --- 6. COMPETENCES (HEADER TAGS) ---
+    const skillsContainer = document.getElementById("skills-section");
+    if(skillsContainer && config.skills) {
+        config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
+    }
+
+    // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `${window.location.origin}${path}Documents/Projet/`; 
+    const PROJECT_LIMIT = 4; 
+
+    if (grid && config.projects) {
+        // 1. EXTRAIRE LES TAGS UNIQUES
+        const allTags = new Set();
+        config.projects.forEach(p => {
+            if (p.tags) p.tags.forEach(t => allTags.add(t));
+        });
+
+        // 2. CRÉATION DE LA BARRE DE CONTRÔLE (Recherche + Filtre)
+        const controlsContainer = document.createElement("div");
+        controlsContainer.className = "project-controls";
         
-        <section class="hero-section">
-            <h1 class="hero-title"><span id="typewriter-area"></span><span class="cursor">|</span></h1>
-            <p id="profile-bio" class="bio-text"></p>
+        // Input de recherche
+        const searchInput = document.createElement("input");
+        searchInput.type = "text";
+        searchInput.id = "project-search";
+        searchInput.className = "project-search-input";
+        searchInput.placeholder = "Rechercher par mot-clé (titre, description...)";
+        
+        // Bouton et Menu Filtre
+        const filterWrapper = document.createElement("div");
+        filterWrapper.className = "filter-dropdown-wrapper";
+        
+        const filterBtn = document.createElement("button");
+        filterBtn.className = "filter-toggle-btn";
+        filterBtn.innerHTML = `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+        
+        const filterMenu = document.createElement("div");
+        filterMenu.className = "filter-dropdown-menu";
+        
+        let menuHTML = `<div class="filter-option active" data-tag="all">Tous les projets</div>`;
+        allTags.forEach(tag => {
+            menuHTML += `<div class="filter-option" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</div>`;
+        });
+        filterMenu.innerHTML = menuHTML;
+        
+        filterWrapper.appendChild(filterBtn);
+        filterWrapper.appendChild(filterMenu);
+        
+        controlsContainer.appendChild(searchInput);
+        controlsContainer.appendChild(filterWrapper);
+        
+        // Insertion au-dessus de la grille
+        grid.parentNode.insertBefore(controlsContainer, grid);
 
-            <div class="social-links">
-                <a id="link-github" href="#" target="_blank" rel="noopener noreferrer" class="social-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                    GitHub
-                </a>
-                
-                <a id="link-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="social-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn
-                </a>
-                
-                <a id="email-trigger" href="#" class="social-btn email">
-                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Contact
-                </a>
+        // Message Aucun résultat
+        const noResultMessage = document.createElement("div");
+        noResultMessage.className = "no-result-msg";
+        noResultMessage.style.display = "none";
+        noResultMessage.innerHTML = "<p>Aucun projet ne correspond à votre recherche.</p>";
+        grid.parentNode.insertBefore(noResultMessage, grid.nextSibling);
 
-                <a href="Documents/CV_Armel_Plantier.pdf" target="_blank" class="social-btn" style="border: 1px solid var(--primary); color: var(--primary);" download>
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    Télécharger mon CV
-                </a>
-            </div>
+        // 3. VARIABLES D'ÉTAT DES FILTRES
+        let currentSearchTerm = "";
+        let currentFilterTag = "all";
+
+        // 4. GÉNÉRATION DES CARTES
+        config.projects.forEach((proj, index) => {
+            const vid = `viewer_${index}`;
+            const fullPdfUrl = baseUrl + proj.path;
+            const badgeId = `badge-project-${index}`;
+            const btnId = `info-btn-${index}`;
+
+            let cardTagsHTML = '';
+            if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proj.tags.slice(0, 3).forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
+                const remaining = proj.tags.length - 3;
+                if (remaining > 0) cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
+                cardTagsHTML += '</div>';
+            }
+
+            const div = document.createElement("div"); 
+            div.className = "project-card interactive-card"; 
+            div.setAttribute('data-hint', 'Voir le PDF 📄'); 
             
-            <div id="skills-section" class="skills-section"></div>
-        </section>
+            // Attributs pour faciliter le filtrage JS
+            div.setAttribute('data-title', escapeHTML(proj.title || ""));
+            div.setAttribute('data-desc', escapeHTML(proj.description || proj.longDescription || ""));
+            div.setAttribute('data-tags', JSON.stringify(proj.tags || [])); 
 
-        <section id="projets" class="section-wrapper">
-            <h3 style="display: flex; align-items: center; gap: 12px;">
-                Projets TechNova
-                <button id="info-trigger" class="info-bubble-btn" aria-label="Information projets">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+
+            const renderedIcon = renderIcon(proj.icon);
+            div.innerHTML = `
+                <span id="${badgeId}" class="badge-container-abs"></span>
+                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
-            </h3>
-            <div id="project-grid" class="grid"></div>
-        </section>
-
-        <section id="parcours" class="section-wrapper">
-            <h3>Parcours professionnel</h3>
-            <ul id="exp-list" class="timeline-list"></ul>
-        </section>
-
-        <section id="competences" class="section-wrapper">
-            <h3>Compétences techniques</h3>
-            <ul id="comp-list" class="cert-list"></ul>
-        </section>
-
-        <section id="certifications" class="section-wrapper">
-            <h3>Certifications</h3>
-            <ul id="cert-list" class="cert-list"></ul>
-        </section>
-
-        <section id="procedures" class="section-wrapper">
-            <h3>Procédures</h3>
-            <div id="procedure-grid" class="grid"></div>
-        </section>
-
-        <section id="veille" class="section-wrapper veille-section">
-            <h3>Veille Cyber</h3>
-
-            <p class="veille-intro-text">Quatre thématiques de veille <strong>100% automatisées</strong> — un script récupère des flux RSS spécialisés, une IA analyse et synthétise les actualités chaque semaine.</p>
-
-            <div class="veille-cards-grid">
-
-                <!-- Sécurité -->
-                <a href="/Veille/securite" class="veille-cat-card">
-                    <div class="veille-cat-icon veille-icon-red">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    </div>
-                    <div class="veille-cat-body">
-                        <span class="veille-cat-tag veille-tag-red">Sécurité</span>
-                        <h4>Exploits &amp; Menaces</h4>
-                        <p>0-days, fuites de données, nouveaux vecteurs d'attaque et correctifs critiques publiés cette semaine.</p>
-                    </div>
-                    <div class="veille-cat-footer">
-                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
-                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
-                    </div>
-                </a>
-
-                <!-- Techno -->
-                <a href="/Veille/techno" class="veille-cat-card">
-                    <div class="veille-cat-icon veille-icon-blue">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
-                    <div class="veille-cat-body">
-                        <span class="veille-cat-tag veille-tag-blue">Techno</span>
-                        <h4>Updates &amp; Outils</h4>
-                        <p>Mises à jour logicielles, nouvelles releases, outils émergents et évolutions des stacks DevOps/Infra.</p>
-                    </div>
-                    <div class="veille-cat-footer">
-                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
-                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
-                    </div>
-                </a>
-
-                <!-- Légale -->
-                <a href="/Veille/legale" class="veille-cat-card">
-                    <div class="veille-cat-icon veille-icon-yellow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                    </div>
-                    <div class="veille-cat-body">
-                        <span class="veille-cat-tag veille-tag-yellow">Légale</span>
-                        <h4>Lois &amp; Compliance</h4>
-                        <p>Évolutions réglementaires, jurisprudences RGPD, directives NIS2 et décisions des autorités de contrôle.</p>
-                    </div>
-                    <div class="veille-cat-footer">
-                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
-                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
-                    </div>
-                </a>
-
-                <!-- Hardware -->
-                <a href="/Veille/hardware" class="veille-cat-card">
-                    <div class="veille-cat-icon veille-icon-green">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 3 L8 3 L8 7"/><line x1="12" y1="3" x2="12" y2="7"/><line x1="8" y1="12" x2="8" y2="16"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="16" y1="12" x2="16" y2="16"/></svg>
-                    </div>
-                    <div class="veille-cat-body">
-                        <span class="veille-cat-tag veille-tag-green">Hardware</span>
-                        <h4>Serveurs &amp; Composants</h4>
-                        <p>Nouvelles architectures CPU/GPU, sorties de matériel serveur, vulnérabilités firmware et tendances datacenter.</p>
-                    </div>
-                    <div class="veille-cat-footer">
-                        <span class="veille-cat-cta">Consulter <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></span>
-                        <span class="veille-cat-freq">📡 Hebdomadaire</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="veille-divider"></div>
-
-
-            <!-- COMMENT CA MARCHE -->
-            <div class="veille-how-grid">
-                <div class="veille-how-item">
-                    <div class="veille-how-icon">🤖</div>
-                    <div>
-                        <strong>IA Mistral</strong>
-                        <span>Chaque article est analysé et synthétisé par l'API Mistral AI</span>
+                <div class="card-header">
+                    <div class="icon">${renderedIcon}</div>
+                    <div class="meta">
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description)}</p>
+                        ${cardTagsHTML}
                     </div>
                 </div>
-                <div class="veille-how-item">
-                    <div class="veille-how-icon">📡</div>
-                    <div>
-                        <strong>47 sources RSS</strong>
-                        <span>Flux spécialisés agrégés automatiquement chaque semaine</span>
-                    </div>
-                </div>
-                <div class="veille-how-item">
-                    <div class="veille-how-icon">🇫🇷</div>
-                    <div>
-                        <strong>En français</strong>
-                        <span>Sources internationales traduites et reformulées automatiquement</span>
-                    </div>
-                </div>
-            </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+            
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    if (data && data.length > 0) {
+                        const commitDate = new Date(data[0].commit.author.date);
+                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                        const diffDays = Math.ceil(Math.abs(new Date() - commitDate) / (1000 * 60 * 60 * 24)); 
+                        if (diffDays <= 30) { const bad = document.getElementById(badgeId); if(bad) bad.innerHTML = `<span class="new-badge">Nouveau</span>`; }
+                    }
+                }).catch(() => {});
+            }
 
-            <!-- BOUTON SOURCES RSS -->
-            <div style="text-align: center; margin-bottom: 30px;">
-                <button id="rss-trigger" class="rss-sources-btn">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-                    Voir les sources RSS
-                </button>
-            </div>
+            div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+            const infoB = div.querySelector(`#${btnId}`);
+            if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
 
-            <div class="veille-divider"></div>
+            grid.appendChild(div);
+        });
+        
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
 
-            <div class="newsletter-card integrated-newsletter">
-                <div class="newsletter-content">
-                    <h4>📬 Recevoir la veille par email</h4>
-                    <p>Abonnez-vous pour recevoir le récapitulatif cyber automatisé directement dans votre boîte mail.</p>
-                    <form action="https://9cecd2c7.sibforms.com/serve/MUIFALH8FNeVFgpWuU1ghRjfBhstTy9bUGOOmNs-nc6_a2X_ydKuiy9PY15esm9K4S-Nqm6S-6qvnXXfWiIC-n3XxnrIDWWlp1fcdDGDRjQJfdqJKQlN4Q7_ZNPPNNxRbBHn--j77F2Ne64eWm1GwyzjtCwQd6j2wdVdXLQuwCUK8UYrU4VFuGyba8wJpjTL9ExbDR-IcNiDBaW8eA==" method="POST" class="newsletter-form">
-                        <input type="email" name="EMAIL" placeholder="Votre adresse email..." required>
-                        <button type="submit" class="btn-subscribe">S'abonner</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <footer>
-            <div class="sys-info">
-                <span id="footer-copy"></span>
-                <span class="separator">|</span>
-                <span id="last-update" style="font-size: 0.8rem; color: var(--primary);">Connecting to Repo...</span>
-            </div>
-            <a href="#" id="legal-trigger" class="footer-legal-link">Mentions Légales</a>
-        </footer>
-    </div> <div id="email-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Contact</span>
-                <button id="modal-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body">
-                <p id="captcha-instruction">Vérification de sécurité :</p>
-                <div id="captcha-container" style="margin: 20px auto; min-height: 65px; display: flex; justify-content: center;"></div>
-                <div id="email-result-area" style="display: none;">
-                    <p style="margin-bottom: 10px;">Mon adresse email :</p>
-                    <div class="email-box">
-                        <span id="email-text"></span>
-                        <button id="copy-email-btn" title="Copier et fermer">Copier</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        // 5. FONCTION CENTRALE DE FILTRAGE
+        const applyFilters = () => {
+            const allCards = grid.querySelectorAll(".project-card");
+            const loadMoreContainer = grid.parentNode.querySelector(".load-more-container");
+            const isFiltering = currentSearchTerm !== "" || currentFilterTag !== "all";
+            let visibleCount = 0;
 
-    <div id="project-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span id="modal-project-title">Détails du projet</span>
-                <button id="project-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body" style="text-align: left;">
-                <p id="modal-project-desc" style="line-height: 1.6; color: var(--text); margin-bottom: 20px;"></p>
+            allCards.forEach((card, i) => {
+                const title = (card.getAttribute("data-title") || "").toLowerCase();
+                const desc = (card.getAttribute("data-desc") || "").toLowerCase();
+                const tagsData = JSON.parse(card.getAttribute("data-tags") || "[]");
+                const tagsLower = tagsData.map(t => t.toLowerCase());
                 
-                <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; font-weight: bold;">Tags :</p>
-                <div id="modal-project-tags" class="tags-container" style="justify-content: flex-start;">
-                    </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="legal-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Mentions Légales</span>
-                <button id="legal-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body legal-text">
-                <p><strong>Éditeur du site :</strong><br>Armel Plantier<br></p>
-                <p><strong>Hébergement :</strong><br>GitHub Pages / GitHub Inc.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA.</p>
-                <p><strong>Propriété Intellectuelle :</strong><br>Les contenus (textes, projets, PDF) sont la propriété exclusive de l'éditeur.</p>
+                // Vérifications
+                const matchesSearch = title.includes(currentSearchTerm) || desc.includes(currentSearchTerm) || tagsLower.some(t => t.includes(currentSearchTerm));
+                const matchesTag = currentFilterTag === "all" || tagsData.includes(currentFilterTag);
                 
-                <div class="cloudflare-badge">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#F48120"><path d="M18.8 8.1c-.2-2.7-2.3-4.9-5-5.2-3.3-.4-6.2 1.9-6.8 5.1-2.9.3-5 2.9-4.7 5.8.3 2.6 2.5 4.6 5.1 4.6h11.2c3 0 5.4-2.4 5.4-5.4 0-2.8-2.1-5.1-4.9-5.4l-.3.5z"/></svg>
-                    <span>Site sécurisé par <strong>Cloudflare</strong></span>
-                </div>
-            </div>
-        </div>
-    </div>
+                // Reset état
+                card.style.display = ""; 
+                card.classList.remove("hidden-item");
 
-    <div id="info-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Le Projet TechNova c'est quoi ?</span>
-                <button id="info-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body" style="text-align: left; line-height: 1.6;">
-                <p style="margin-bottom: 15px;">
-                    Mon but dans ce projet est de concevoir une infrastructure d'entreprise virtuelle. Cela me permet de me familiariser avec certaines normes souvent retrouvés en entreprise.
-                </p>
-                <p>
-                    Cela permet également de mettre en avant mes compétences en <strong>architecture réseau</strong>, <strong>administration système</strong> (Windows/Linux) et en <strong>cybersécurité</strong>.
-                </p>
+                if (matchesSearch && matchesTag) {
+                    visibleCount++;
+                    // Si on ne filtre pas, on respecte la limite de pagination de base
+                    if (!isFiltering && i >= PROJECT_LIMIT) {
+                        const isExpanded = loadMoreContainer && loadMoreContainer.querySelector('button').innerText.includes('Masquer');
+                        if(!isExpanded) card.classList.add("hidden-item");
+                    } else {
+                        card.style.display = "flex"; 
+                    }
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Gérer le message "Aucun résultat"
+            noResultMessage.style.display = (visibleCount === 0) ? "block" : "none";
+
+            // Masquer "Voir la suite" si on est en train de rechercher/filtrer
+            if (loadMoreContainer) {
+                loadMoreContainer.style.display = (isFiltering || visibleCount === 0) ? "none" : "flex";
+            }
+        };
+
+        // 6. ÉVÈNEMENTS INTERFACE
+        searchInput.addEventListener("input", (e) => {
+            currentSearchTerm = e.target.value.toLowerCase();
+            applyFilters();
+        });
+
+        filterBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            filterMenu.classList.toggle("show");
+            filterBtn.classList.toggle("active");
+        });
+
+        filterMenu.addEventListener("click", (e) => {
+            if (e.target.classList.contains("filter-option")) {
+                currentFilterTag = e.target.dataset.tag;
                 
-                <hr style="border: 0; border-top: 1px solid var(--border); margin: 20px 0; opacity: 0.5;">
+                // MAJ Visuelle du menu
+                filterMenu.querySelectorAll(".filter-option").forEach(el => el.classList.remove("active"));
+                e.target.classList.add("active");
                 
-            </div>
-        </div>
-    </div>
+                // MAJ du bouton
+                filterBtn.innerHTML = currentFilterTag === "all" 
+                    ? `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>` 
+                    : `Tag: ${currentFilterTag} <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+                filterMenu.classList.remove("show");
+                applyFilters();
+            }
+        });
+
+        // Fermer le menu si clic à l'extérieur
+        window.addEventListener("click", (e) => {
+            if (!filterWrapper.contains(e.target)) {
+                filterMenu.classList.remove("show");
+                filterBtn.classList.remove("active", filterMenu.classList.contains("show"));
+            }
+        });
+    }
 
 
-    <!-- MODALE SOURCES RSS -->
-    <div id="rss-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 680px; max-height: 85vh; display: flex; flex-direction: column;">
-            <div class="modal-header">
-                <span style="display:flex; align-items:center; gap:10px;">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-                    Sources RSS par catégorie
-                </span>
-                <button id="rss-close-btn" class="close-btn">×</button>
-            </div>
-            <div class="modal-body rss-modal-body" style="text-align: left; overflow-y: auto; padding: 24px;">
+    // --- PROCEDURES (Chargement automatique depuis GitHub) ---
+    const procedureGrid = document.getElementById('procedure-grid');
+    const PROC_LIMIT = 4;
+    const PROC_BASE_URL = `${window.location.origin}${path}Documents/Proc%C3%A9dures/`;
 
-                <!-- Sécurité -->
-                <div class="rss-cat-block">
-                    <div class="rss-cat-header rss-cat-red">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Sécurité <span class="rss-count">16 sources</span>
-                    </div>
-                    <ul class="rss-feed-list">
-                        <li><a href="https://www.cert.ssi.gouv.fr/avis/feed/" target="_blank">CERT-FR — Avis</a></li>
-                        <li><a href="https://www.cert.ssi.gouv.fr/alerte/feed/" target="_blank">CERT-FR — Alertes</a></li>
-                        <li><a href="https://www.zataz.com/feed/" target="_blank">Zataz</a></li>
-                        <li><a href="https://www.bleepingcomputer.com/feed/" target="_blank">BleepingComputer</a></li>
-                        <li><a href="https://feeds.feedburner.com/TheHackersNews" target="_blank">The Hacker News</a></li>
-                        <li><a href="https://www.darkreading.com/rss.xml" target="_blank">Dark Reading</a></li>
-                        <li><a href="https://www.securityweek.com/feed/" target="_blank">SecurityWeek</a></li>
-                        <li><a href="https://www.cyberscoop.com/feed/" target="_blank">CyberScoop</a></li>
-                        <li><a href="https://krebsonsecurity.com/feed/" target="_blank">Krebs on Security</a></li>
-                        <li><a href="https://securelist.com/feed/" target="_blank">Securelist (Kaspersky)</a></li>
-                        <li><a href="https://blog.talosintelligence.com/rss/" target="_blank">Talos Intelligence</a></li>
-                        <li><a href="https://unit42.paloaltonetworks.com/feed/" target="_blank">Unit 42 (Palo Alto)</a></li>
-                        <li><a href="https://www.cisa.gov/cybersecurity-advisories/all.xml" target="_blank">CISA Advisories</a></li>
-                        <li><a href="https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml" target="_blank">NVD — CVE Feed</a></li>
-                        <li><a href="https://msrc.microsoft.com/blog/feed/" target="_blank">Microsoft Security</a></li>
-                        <li><a href="https://www.infosecurity-magazine.com/rss/news/" target="_blank">Infosecurity Magazine</a></li>
-                    </ul>
+    if (procedureGrid && config.profile.githubUser && config.profile.githubRepo) {
+        const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/contents/Documents/Proc%C3%A9dures`;
+
+        procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Chargement...</p>';
+
+        fetch(apiUrl)
+            .then(r => r.json())
+            .then(files => {
+                // Garder uniquement les PDF
+                const pdfs = Array.isArray(files) ? files.filter(f => f.name.toLowerCase().endsWith('.pdf')) : [];
+
+                procedureGrid.innerHTML = '';
+
+                if (pdfs.length === 0) {
+                    procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucune procédure disponible pour le moment.</p>';
+                    return;
+                }
+
+                const iconSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`;
+
+                pdfs.forEach((file, index) => {
+                    // Titre : nom du fichier sans extension, underscores → espaces
+                    const title = file.name.replace(/\.pdf$/i, '').replace(/_/g, ' ');
+                    const fullPdfUrl = PROC_BASE_URL + encodeURIComponent(file.name);
+                    const vid = `proc_viewer_${index}`;
+                    const btnId = `proc-info-btn-${index}`;
+
+                    const div = document.createElement('div');
+                    div.className = 'project-card interactive-card';
+                    div.setAttribute('data-hint', 'Voir le PDF 📄');
+                    if (index >= PROC_LIMIT) div.classList.add('hidden-item');
+
+                    div.innerHTML = `
+                        <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                        </button>
+                        <div class="card-header">
+                            <div class="icon">${iconSVG}</div>
+                            <div class="meta">
+                                <h4>${escapeHTML(title)}</h4>
+                                <p style="color: var(--muted); font-size: 0.85rem;">${file.name}</p>
+                            </div>
+                        </div>
+                        <div id="${vid}" class="pdf-container"></div>
+                    `;
+
+                    div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+
+                    // Récupération date du dernier commit
+                    const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(file.name)}&page=1&per_page=1`;
+                    fetch(commitUrl).then(r => r.json()).then(commits => {
+                        if (commits && commits.length > 0) {
+                            const date = new Date(commits[0].commit.author.date);
+                            const formatted = date.toLocaleDateString('fr-FR');
+                            const diffDays = Math.ceil(Math.abs(new Date() - date) / (1000 * 60 * 60 * 24));
+                            // Badge "Nouveau" si ajouté il y a moins de 30 jours
+                            if (diffDays <= 30) {
+                                const badge = document.createElement('span');
+                                badge.className = 'badge-container-abs';
+                                badge.innerHTML = '<span class="new-badge">Nouveau</span>';
+                                div.appendChild(badge);
+                            }
+                            // Date dans le bouton info pour la modale
+                            const btn = div.querySelector(`#${btnId}`);
+                            if (btn) btn.setAttribute('data-date', formatted);
+                        }
+                    }).catch(() => {});
+
+                    // Bouton info → modale
+                    const infoB = div.querySelector(`#${btnId}`);
+                    if (infoB) infoB.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openProjectModal({ title, description: file.name, tags: [] }, infoB.getAttribute('data-date') || '');
+                    });
+
+                    procedureGrid.appendChild(div);
+                });
+
+                if (pdfs.length > PROC_LIMIT) createToggleBtn(procedureGrid, PROC_LIMIT, 'Voir la suite');
+            })
+            .catch(() => {
+                procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Impossible de charger les procédures.</p>';
+            });
+    }
+
+    // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
+    const expList = document.getElementById("exp-list");
+    const EXP_LIMIT = 5;
+    if(expList && config.experiences) {
+        config.experiences.forEach((exp, index) => {
+            const li = document.createElement("li"); li.className = "timeline-item";
+            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+
+            const lines = exp.description.split('\n');
+            const listHtml = lines.map(line => {
+                const cleanLine = line.trim();
+                if (!cleanLine) return '';
+                return `
+                    <li style="display: flex; align-items: flex-start; margin-bottom: 6px;">
+                        <span style="display: inline-block; min-width: 6px; height: 6px; background-color: #6366f1; border-radius: 50%; margin-top: 9px; margin-right: 12px; box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);"></span>
+                        <span style="line-height: 1.6;">${escapeHTML(cleanLine)}</span>
+                    </li>`;
+            }).join('');
+
+            li.innerHTML = `
+                <span class="timeline-date" style="color:#6366f1; font-weight:bold;">${escapeHTML(exp.date)}</span>
+                <h4 class="timeline-title" style="margin-top:5px; margin-bottom:10px;">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8; font-size: 0.9em;">@ ${escapeHTML(exp.company)}</span></h4>
+                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">${listHtml}</ul>
+            `;
+            expList.appendChild(li);
+        });
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
+    }
+
+    // --- 9. COMPETENCES (SANS POINTS BLANCS) ---
+    const compList = document.getElementById("comp-list");
+    const COMP_LIMIT = 5;
+    if(compList && config.competences) {
+        config.competences.forEach((comp, index) => {
+            const li = document.createElement("li"); li.className = "comp-card-container"; 
+            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+            const dropId = `comp-drop-${index}`;
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); 
+            const renderedIcon = renderIcon(comp.icon);
+
+            li.innerHTML = `
+                <div class="comp-header">
+                    <div class="cert-icon-box">${renderedIcon}</div>
+                    <span class="cert-name">${escapeHTML(comp.name)}</span>
+                    <button class="cert-btn comp-toggle">▼</button>
                 </div>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none; list-style: none;">${details}</ul>
+            `;
+            const h = li.querySelector('.comp-header');
+            h.addEventListener("click", () => { toggleComp(dropId, h); });
+            compList.appendChild(li);
+        });
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
+    }
 
-                <!-- Techno -->
-                <div class="rss-cat-block">
-                    <div class="rss-cat-header rss-cat-blue">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        Techno <span class="rss-count">12 sources</span>
+    // --- 10. CERTIFICATIONS ---
+    const certSection = document.getElementById("certifications"); 
+    const certList = document.getElementById("cert-list");
+    const CERT_LIMIT = 5;
+    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    
+    // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
+    let globalViewer = document.getElementById("global-cert-viewer");
+    if (!globalViewer && certList) {
+        globalViewer = document.createElement("div");
+        globalViewer.id = "global-cert-viewer";
+        certList.parentNode.insertBefore(globalViewer, certList);
+    }
+
+    if(certList && config.certifications) {
+        config.certifications.forEach((cert, index) => {
+            const li = document.createElement("li"); li.className = "cert-card-container";
+            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+            
+            const issuer = cert.issuer ? cert.issuer : "Certification"; 
+            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
+            
+            // Icône
+            const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
+            
+            let buttonsHtml = '';
+            if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
+            
+            li.innerHTML = `
+                <div class="cert-header-row">
+                    <div class="cert-icon-box">${iconDisplay}</div>
+                    <div class="cert-info">
+                        <span class="cert-name">${escapeHTML(cert.name)}</span>
+                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
                     </div>
-                    <ul class="rss-feed-list">
-                        <li><a href="https://www.it-connect.fr/feed/" target="_blank">IT-Connect</a></li>
-                        <li><a href="https://www.lemagit.fr/rss/Securite.xml" target="_blank">LeMagIT</a></li>
-                        <li><a href="https://portswigger.net/daily-swig/rss" target="_blank">PortSwigger Daily Swig</a></li>
-                        <li><a href="https://www.schneier.com/feed/atom/" target="_blank">Schneier on Security</a></li>
-                        <li><a href="https://msrc.microsoft.com/blog/feed/" target="_blank">Microsoft Security Blog</a></li>
-                        <li><a href="https://feeds.feedburner.com/TheHackersNews" target="_blank">The Hacker News</a></li>
-                        <li><a href="https://www.lemondeinformatique.fr/flux-rss/thematique/securite/rss.xml" target="_blank">Le Monde Informatique</a></li>
-                        <li><a href="https://www.silicon.fr/feed" target="_blank">Silicon.fr</a></li>
-                        <li><a href="https://www.journaldunet.com/feed/" target="_blank">Journal du Net</a></li>
-                        <li><a href="https://www.01net.com/rss/info/flux-toutes-les-actualites.xml" target="_blank">01net</a></li>
-                        <li><a href="https://linuxfr.org/news.atom" target="_blank">LinuxFR</a></li>
-                        <li><a href="https://www.phoronix.com/rss.php" target="_blank">Phoronix</a></li>
-                    </ul>
+                    <div class="cert-actions">${buttonsHtml}</div>
                 </div>
+            `;
+            
+            if (cert.pdf) {
+                const act = li.querySelector('.cert-actions');
+                const pBtn = document.createElement("button"); 
+                pBtn.className = "cert-btn pdf-btn"; 
+                pBtn.innerHTML = "📄";
+                pBtn.addEventListener("click", (e) => { 
+                    document.querySelectorAll('.pdf-btn').forEach(b => b.style.background = '');
+                    pBtn.style.background = 'var(--primary)';
+                    pBtn.style.color = 'white';
+                    toggleGlobalPDF(fullPdfUrl); 
+                });
+                act.appendChild(pBtn);
+            }
+            certList.appendChild(li);
+        });
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
+    }
 
-                <!-- Légale -->
-                <div class="rss-cat-block">
-                    <div class="rss-cat-header rss-cat-yellow">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        Légale <span class="rss-count">9 sources</span>
-                    </div>
-                    <ul class="rss-feed-list">
-                        <li><a href="https://www.cnil.fr/fr/rss.xml" target="_blank">CNIL</a></li>
-                        <li><a href="https://www.cert.ssi.gouv.fr/avis/feed/" target="_blank">CERT-FR — Avis</a></li>
-                        <li><a href="https://www.legifrance.gouv.fr/contenu/pied-de-page/flux-rss" target="_blank">Légifrance</a></li>
-                        <li><a href="https://www.village-justice.com/articles/rss.php" target="_blank">Village de la Justice</a></li>
-                        <li><a href="https://www.dalloz-actualite.fr/rss.xml" target="_blank">Dalloz Actualité</a></li>
-                        <li><a href="https://www.europe-politique.eu/rss.xml" target="_blank">Europe Politique</a></li>
-                        <li><a href="https://eur-lex.europa.eu/rss-feed.html" target="_blank">EUR-Lex</a></li>
-                        <li><a href="https://www.cyberscoop.com/feed/" target="_blank">CyberScoop</a></li>
-                        <li><a href="https://www.securityweek.com/feed/" target="_blank">SecurityWeek</a></li>
-                    </ul>
-                </div>
+    // --- 11. MACHINE A ECRIRE ---
+    const textEl = document.getElementById("typewriter-area");
+    if(textEl && config.profile.typewriterText) {
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+        function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } }
+        setTimeout(type, 500);
+    }
 
-                <!-- Hardware -->
-                <div class="rss-cat-block">
-                    <div class="rss-cat-header rss-cat-green">
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3 L8 3 L8 7"/></svg>
-                        Hardware <span class="rss-count">10 sources</span>
-                    </div>
-                    <ul class="rss-feed-list">
-                        <li><a href="https://www.anandtech.com/rss/" target="_blank">AnandTech</a></li>
-                        <li><a href="https://www.tomshardware.com/feeds/all" target="_blank">Tom's Hardware</a></li>
-                        <li><a href="https://www.servethehome.com/feed/" target="_blank">ServeTheHome</a></li>
-                        <li><a href="https://www.nextplatform.com/feed/" target="_blank">The Next Platform</a></li>
-                        <li><a href="https://www.phoronix.com/rss.php" target="_blank">Phoronix</a></li>
-                        <li><a href="https://www.hardware.fr/flux/rss/articles/all/" target="_blank">Hardware.fr</a></li>
-                        <li><a href="https://www.clubic.com/feed/rss" target="_blank">Clubic</a></li>
-                        <li><a href="https://www.techpowerup.com/rss/news" target="_blank">TechPowerUp</a></li>
-                        <li><a href="https://www.datacenterdynamics.com/en/rss/" target="_blank">Datacenter Dynamics</a></li>
-                        <li><a href="https://www.silicon.fr/feed" target="_blank">Silicon.fr</a></li>
-                    </ul>
-                </div>
+    // --- 12. HEADER SCROLL & MOBILE ---
+    const header = document.querySelector('.app-header');
+    const menuIcon = document.querySelector('.menu-icon'); 
+    const navCapsule = document.querySelector('.nav-capsule');
+    if (header) {
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); } });
+        if (menuIcon) { menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); }); }
+        document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
+    }
 
-            </div>
-        </div>
-    </div>
+    // --- 13. GITHUB API FOOTER ---
+    const updateEl = document.getElementById("last-update");
+    if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
+            const date = new Date(d.pushed_at);
+            updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
+        }).catch(() => { updateEl.innerText = "System Ready"; });
+    }
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
-</body>
-</html>
+    // --- 14. COMPTEUR DE VUES ---
+    const viewCountEl = document.getElementById("view-count");
+    if (viewCountEl && config.profile.githubUser) {
+        const namespace = config.profile.githubUser.replace(/[^a-zA-Z0-9]/g, '');
+        fetch(`https://api.countapi.xyz/hit/${namespace}/portfolio-visits`)
+            .then(res => res.json()).then(data => { viewCountEl.innerHTML = `👁️ ${data.value} Vues`; })
+            .catch(() => { viewCountEl.style.display = "none"; });
+    }
+    
+
+        initCursorHint();
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
+            document.querySelectorAll('.pdf-container, .cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
+            document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+        }
+        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
+    });
+});
+
+// --- FONCTIONS AUXILIAIRES ---
+function initCursorHint() {
+    let hintEl = document.getElementById("cursor-hint");
+    if (!hintEl) { hintEl = document.createElement("div"); hintEl.id = "cursor-hint"; document.body.appendChild(hintEl); }
+    document.addEventListener("mousemove", (e) => { hintEl.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`; });
+    document.querySelectorAll('.interactive-card').forEach(el => {
+        el.addEventListener("mouseenter", () => { if (!el.classList.contains('expanded')) { hintEl.innerText = el.getAttribute('data-hint') || "Voir"; hintEl.classList.add("visible"); } });
+        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
+        el.addEventListener("mouseleave", () => hintEl.classList.remove("visible"));
+        el.addEventListener("click", () => hintEl.classList.remove("visible"));
+    });
+}
+
+function openProjectModal(proj, dateStr = "") {
+    const modal = document.getElementById("project-modal");
+    const titleEl = document.getElementById("modal-project-title");
+    const descEl = document.getElementById("modal-project-desc");
+    const tagsEl = document.getElementById("modal-project-tags");
+    if(modal && titleEl && descEl && tagsEl) {
+        titleEl.innerText = proj.title;
+        let dateHtml = dateStr ? `<div class="modal-date-display" style="margin-bottom:10px; font-size:0.8rem; opacity:0.7;">📅 Ajouté le : ${dateStr}</div>` : "";
+        descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
+        tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
+        modal.style.display = "flex";
+    }
+}
+
+function togglePDF(id, url) {
+    const c = document.getElementById(id);
+    const card = c.closest('.project-card'); 
+    if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    c.style.display = 'block';
+    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+}
+
+function toggleComp(id, headerEl) {
+    const menu = document.getElementById(id);
+    const btn = headerEl.querySelector('.comp-toggle'); 
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
+    const isOpened = menu.style.display === 'block';
+    menu.style.display = isOpened ? 'none' : 'block';
+    if(btn) isOpened ? btn.classList.remove('active') : btn.classList.add('active');
+}
+
+function toggleCertPDF(id, url) {
+    const viewer = document.getElementById(id);
+    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    viewer.style.display = 'block';
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+}
+
+function createToggleBtn(container, limit, txtMore) {
+    const div = document.createElement("div"); div.className = "load-more-container";
+    const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`;
+    let expanded = false;
+    btn.addEventListener("click", () => {
+        expanded = !expanded;
+        Array.from(container.children).forEach((child, i) => {
+            if (i >= limit) {
+                if (expanded) { child.classList.remove("hidden-item"); child.style.opacity = 0; setTimeout(() => child.style.opacity = 1, 50); }
+                else { child.classList.add("hidden-item"); child.style.opacity = 0; }
+            }
+        });
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
+    });
+    div.appendChild(btn);
+    container.parentNode.insertBefore(div, container.nextSibling);
+}
+
+function toggleGlobalPDF(url) {
+    const viewer = document.getElementById("global-cert-viewer");
+    
+    if (!viewer) return;
+
+    const encodedUrl = encodeURIComponent(url);
+    const currentIframe = viewer.querySelector('iframe');
+
+    const closeViewer = () => {
+        viewer.style.display = 'none';
+        viewer.innerHTML = ''; 
+        document.querySelectorAll('.pdf-btn').forEach(b => { 
+            b.style.background = ''; 
+            b.style.color = ''; 
+        });
+    };
+
+    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
+        closeViewer();
+        return;
+    }
+
+    viewer.style.display = 'block';
+    
+    viewer.innerHTML = `
+        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
+        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
+    `;
+
+    const closeBtn = document.getElementById("btn-close-viewer");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeViewer);
+    }
+
+    const headerOffset = 120;
+    const elementPosition = viewer.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
