@@ -951,6 +951,9 @@ body.light-mode .veille-section {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+    outline: none;
+    -webkit-appearance: none;
 }
 .rss-sources-btn:hover {
     border-color: var(--primary);
@@ -1030,3 +1033,53 @@ body.light-mode .rss-feed-list li { border-bottom-color: rgba(0,0,0,0.05); }
     text-overflow: ellipsis;
 }
 .rss-feed-list a:hover { color: var(--primary); }
+
+/* --- COMMENT CA MARCHE (Veille) --- */
+.veille-how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 30px 0;
+}
+@media (max-width: 768px) {
+    .veille-how-grid { grid-template-columns: 1fr; }
+}
+
+.veille-how-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: border-color 0.2s, transform 0.2s;
+}
+body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
+.veille-how-item:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.veille-how-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.veille-how-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.veille-how-item strong {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: "Outfit", sans-serif;
+}
+.veille-how-item span {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+}
