@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("email-trigger", "email-modal", "modal-close-btn");
     setupModal("legal-trigger", "legal-modal", "legal-close-btn");
     setupModal("info-trigger", "info-modal", "info-close-btn");
+    setupModal("rss-trigger", "rss-modal", "rss-close-btn");
     
     // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
     const emailTrigger = document.getElementById("email-trigger");
