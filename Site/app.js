@@ -275,6 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 </button>
+                <button class="copy-link-btn" data-no-hint="true" title="Copier le lien">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
                 <div class="card-header">
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
@@ -300,6 +303,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+            div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const slug = proj.path.replace(/\.pdf$/i, '');
+                const link = window.location.origin + '/procedures/' + encodeURIComponent(slug);
+                copyToClipboard(link, e.currentTarget);
+            });
             const infoB = div.querySelector(`#${btnId}`);
             if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
 
@@ -438,6 +447,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                         </button>
+                        <button class="copy-link-btn proc-copy-btn" data-no-hint="true" title="Copier le lien">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </button>
                         <div class="card-header">
                             <div class="icon">${iconSVG}</div>
                             <div class="meta">
@@ -449,6 +461,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
 
                     div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+                    div.querySelector('.proc-copy-btn').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const slug = file.name.replace(/\.pdf$/i, '');
+                        const link = window.location.origin + '/procedures/' + encodeURIComponent(slug);
+                        copyToClipboard(link, e.currentTarget);
+                    });
 
                     // Récupération date du dernier commit
                     const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(file.name)}&page=1&per_page=1`;
@@ -705,6 +723,16 @@ function openProjectModal(proj, dateStr = "") {
         tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
         modal.style.display = "flex";
     }
+}
+
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
+    });
 }
 
 function togglePDF(id, url) {
