@@ -9,15 +9,12 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
+
     <script>
-        // Redirection automatique /procedures/nom → /?proc=nom
         (function() {
-            var path = window.location.pathname;
-            var match = path.match(/^\/procedures\/([^\/]+)\/?$/);
-            if (match) {
-                var procName = match[1];
-                var target = 'https://armel-plantier.com/?proc=' + encodeURIComponent(procName);
-                window.location.href = target;
+            var segments = window.location.pathname.split('/').filter(Boolean);
+            if (segments[0] === 'procedures' && segments[1]) {
+                window.location.href = 'https://armel-plantier.com/?proc=' + encodeURIComponent(segments[1]);
             }
         })();
     </script>
