@@ -305,7 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
-                const slug = proj.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+                const slug = proj.title
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // accents → ascii
+                    .toLowerCase()
+                    .replace(/[''\(\)]/g, '')       // apostrophes, parenthèses
+                    .replace(/\s+/g, '-')            // espaces → tirets
+                    .replace(/[^a-z0-9\-]/g, '')    // reste → supprimé
+                    .replace(/-+/g, '-')              // tirets multiples → un seul
+                    .replace(/^-|-$/g, '');           // tirets en début/fin
                 const link = window.location.origin + '/projet-technova/' + slug;
                 copyToClipboard(link, e.currentTarget);
             });
@@ -666,7 +673,14 @@ document.addEventListener("DOMContentLoaded", () => {
             cards.forEach(card => {
                 const title = card.querySelector('h4');
                 if (!title) return;
-                const cardSlug = title.innerText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+                const cardSlug = title.innerText
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .replace(/[''\(\)]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9\-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
                 const paramSlug = decodeURIComponent(projParam).toLowerCase();
                 if (cardSlug === paramSlug) {
                     clearInterval(waitAndOpenProj);
