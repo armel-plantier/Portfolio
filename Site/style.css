@@ -1087,8 +1087,8 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 /* --- BOUTON COPIER LIEN --- */
 .copy-link-btn {
     position: absolute;
-    top: 14px;
-    right: 46px;
+    bottom: 14px;
+    right: 14px;
     background: transparent;
     border: 1px solid var(--border);
     border-radius: 8px;
