@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'sha256-gjUpyATkdpOf2USNmOza3uQ0oHY7wnwynM1rHGLsdFY=' https://challenges.cloudflare.com https://api.github.com;">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 | Route Not Found</title>
@@ -11,15 +9,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
-
-    <script>
-        (function() {
-            var segments = window.location.pathname.split('/').filter(Boolean);
-            if (segments[0] === 'procedures' && segments[1]) {
-                window.location.href = 'https://armel-plantier.com/?proc=' + encodeURIComponent(segments[1]);
-            }
-        })();
-    </script>
+    <script src="/redirect.js"></script>
 </head>
 <body class="error-body"> 
     <div class="error-card">
