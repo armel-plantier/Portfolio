@@ -59,6 +59,8 @@ jobs:
       run: |
         cp -r Documents Site/
         cp -r Veille Site/
+        mkdir -p "Site/Documents/Procédures"
+        sed -i 's/GITHUB_TOKEN_PLACEHOLDER/${{ secrets.GH_TOKEN }}/g' Site/config.js
 
     - name: ⚙️ Configuration de GitHub Pages
       uses: actions/configure-pages@v5
