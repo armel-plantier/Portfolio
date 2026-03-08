@@ -118,8 +118,8 @@ experiences: [
     // Pour ajouter une procédure : remplis un bloc et dépose le PDF dans Documents/Procédures/
     procedures: [
         {
-            title: "Mise en place et configuration de LogAnalyzer",
-            description: "Mise en place et configuration de LogAnalyzer.",
+            title: "Mise en place d’un LoganAlyser via Syslog",
+            description: "Mise en place d’un LoganAlyser via Syslog",
             path: "loganalyzer.pdf",
             tags: ["Administration Système", "Cybersécurité"]
         },
