@@ -724,12 +724,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return found;
         };
 
-        if (!tryOpen()) {
-            const waitAndOpen = setInterval(() => {
-                if (tryOpen()) clearInterval(waitAndOpen);
-            }, 200);
-            setTimeout(() => clearInterval(waitAndOpen), 5000);
-        }
+        // Attendre que les event listeners des cartes soient bien attachés
+        setTimeout(() => {
+            if (!tryOpen()) {
+                const waitAndOpen = setInterval(() => {
+                    if (tryOpen()) clearInterval(waitAndOpen);
+                }, 200);
+                setTimeout(() => clearInterval(waitAndOpen), 5000);
+            }
+        }, 300);
     }
 
     initCursorHint();
