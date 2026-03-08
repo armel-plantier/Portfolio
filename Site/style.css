@@ -386,7 +386,7 @@ body.light-mode .card-header .icon { background: rgba(99, 102, 241, 0.05); }
 .project-card:hover .project-tag { background: rgba(99, 102, 241, 0.15); }
 
 /* BADGE & INFO BOUTON */
-.badge-container-abs { position: absolute; top: 14px; right: 14px; z-index: 5; }
+.badge-container-abs { position: absolute; top: 14px; left: 14px; z-index: 3; }
 .new-badge { 
     display: inline-block; 
     background: linear-gradient(135deg, var(--badge-bg), #059669); 
@@ -1087,7 +1087,7 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 /* --- BOUTON COPIER LIEN --- */
 .copy-link-btn {
     position: absolute;
-    bottom: 14px;
+    bottom: 16px;
     right: 62px;
     background: transparent;
     border: 1px solid var(--border);
