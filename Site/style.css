@@ -386,7 +386,7 @@ body.light-mode .card-header .icon { background: rgba(99, 102, 241, 0.05); }
 .project-card:hover .project-tag { background: rgba(99, 102, 241, 0.15); }
 
 /* BADGE & INFO BOUTON */
-.badge-container-abs { position: absolute; top: 14px; left: 14px; z-index: 3; }
+.badge-container-abs { position: absolute; top: 14px; right: 14px; z-index: 3; }
 .new-badge { 
     display: inline-block; 
     background: linear-gradient(135deg, var(--badge-bg), #059669); 
@@ -1105,16 +1105,16 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 }
 /* Pour les cartes procédures — boutons en haut à droite côte à côte */
 .proc-copy-btn {
-    top: 14px !important;
-    right: 52px !important;
-    bottom: unset !important;
+    top: unset !important;
+    bottom: 16px !important;
+    right: 62px !important;
 }
 #procedure-grid .info-btn {
-    top: 14px;
-    right: 14px;
-    bottom: unset;
-    width: 32px;
-    height: 32px;
+    top: unset;
+    bottom: 14px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
 }
 .project-card:hover .copy-link-btn { opacity: 1; }
 .copy-link-btn:hover {
