@@ -1116,7 +1116,7 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
     width: 36px !important;
     height: 36px !important;
 }
-.project-card:hover .copy-link-btn { opacity: 1; }
+.copy-link-btn { opacity: 1 !important; }
 .copy-link-btn:hover {
     border-color: var(--primary);
     color: var(--primary);
