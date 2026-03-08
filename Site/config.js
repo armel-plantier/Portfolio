@@ -12,6 +12,8 @@ const config = {
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
+    githubToken: "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",
+
     profile: {
         githubUser: "armel-plantier", 
         githubRepo: "Portfolio", 
