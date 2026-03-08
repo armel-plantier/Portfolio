@@ -1103,6 +1103,19 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
     z-index: 2;
     opacity: 0;
 }
+/* Pour les cartes procédures — boutons en haut à droite côte à côte */
+.proc-copy-btn {
+    top: 14px;
+    right: 52px;
+    bottom: unset;
+}
+#procedure-grid .info-btn {
+    top: 14px;
+    right: 14px;
+    bottom: unset;
+    width: 32px;
+    height: 32px;
+}
 .project-card:hover .copy-link-btn { opacity: 1; }
 .copy-link-btn:hover {
     border-color: var(--primary);
