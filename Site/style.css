@@ -1083,3 +1083,34 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
     color: var(--muted);
     line-height: 1.5;
 }
+
+/* --- BOUTON COPIER LIEN --- */
+.copy-link-btn {
+    position: absolute;
+    top: 14px;
+    right: 46px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+    opacity: 0;
+}
+.project-card:hover .copy-link-btn { opacity: 1; }
+.copy-link-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.08);
+}
+.copy-link-btn.copied {
+    border-color: #10b981;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
+}
