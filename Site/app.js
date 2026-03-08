@@ -693,29 +693,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const procParam = urlParams.get('proc');
     if (procParam) {
-        // On attend que la grille soit chargée puis on scroll et ouvre le PDF
-        const waitAndOpen = setInterval(() => {
+        const makeSlug = (str) => str
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[\u2019\u2018'`\(\)]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-]/g, '')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+
+        const paramSlug = makeSlug(decodeURIComponent(procParam));
+
+        const tryOpen = () => {
             const cards = document.querySelectorAll('#procedure-grid .project-card');
+            let found = false;
             cards.forEach(card => {
-                const title = card.querySelector('h4');
-                if (!title) return;
-                // Normalise le titre : minuscules, sans espaces
-                const cardSlug = title.innerText.toLowerCase().replace(/\s+/g, '_');
-                const paramSlug = decodeURIComponent(procParam).toLowerCase().replace(/\s+/g, '_');
-                if (cardSlug === paramSlug || cardSlug.startsWith(paramSlug)) {
-                    clearInterval(waitAndOpen);
-                    // Scroll vers la section
+                const titleEl = card.querySelector('h4');
+                if (!titleEl) return;
+                const cardSlug = makeSlug(titleEl.innerText);
+                if (cardSlug === paramSlug) {
+                    found = true;
+                    card.classList.remove('hidden-item');
+                    card.style.display = 'flex';
                     const section = document.getElementById('procedures');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Ouvre le PDF après le scroll
                     setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
-                    // Nettoie l'URL
                     window.history.replaceState({}, '', '/');
                 }
             });
-        }, 300);
-        // Stop après 5s si rien trouvé
-        setTimeout(() => clearInterval(waitAndOpen), 5000);
+            return found;
+        };
+
+        if (!tryOpen()) {
+            const waitAndOpen = setInterval(() => {
+                if (tryOpen()) clearInterval(waitAndOpen);
+            }, 200);
+            setTimeout(() => clearInterval(waitAndOpen), 5000);
+        }
     }
 
     initCursorHint();
