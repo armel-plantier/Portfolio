@@ -305,8 +305,8 @@ document.addEventListener("DOMContentLoaded", () => {
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
-                const slug = proj.path.replace(/\.pdf$/i, '');
-                const link = window.location.origin + '/procedures/' + encodeURIComponent(slug);
+                const slug = proj.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+                const link = window.location.origin + '/projet-technova/' + slug;
                 copyToClipboard(link, e.currentTarget);
             });
             const infoB = div.querySelector(`#${btnId}`);
@@ -655,8 +655,31 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     
-    // --- OUVERTURE AUTO D'UNE PROCÉDURE VIA URL (?proc=nom) ---
+    // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
     const urlParams = new URLSearchParams(window.location.search);
+
+    // Ouverture auto d'un projet TechNova
+    const projParam = urlParams.get('proj');
+    if (projParam) {
+        const waitAndOpenProj = setInterval(() => {
+            const cards = document.querySelectorAll('#project-grid .project-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h4');
+                if (!title) return;
+                const cardSlug = title.innerText.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+                const paramSlug = decodeURIComponent(projParam).toLowerCase();
+                if (cardSlug === paramSlug) {
+                    clearInterval(waitAndOpenProj);
+                    const section = document.getElementById('projets');
+                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    window.history.replaceState({}, '', '/');
+                }
+            });
+        }, 300);
+        setTimeout(() => clearInterval(waitAndOpenProj), 5000);
+    }
+
     const procParam = urlParams.get('proc');
     if (procParam) {
         // On attend que la grille soit chargée puis on scroll et ouvre le PDF
