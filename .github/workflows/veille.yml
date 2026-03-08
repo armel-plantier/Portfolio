@@ -1,13 +1,10 @@
-name: Générateur de Veille Cyber et Déploiement
+name: Générateur de Veille Cyber
 
 on:
   schedule:
     # S'exécute tous les jours à 22h00 UTC (~23h00 en France)
     - cron: '0 22 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 permissions:
   contents: write
