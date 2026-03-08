@@ -392,6 +392,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // --- GITHUB AUTH HEADERS ---
+    const ghHeaders = config.githubToken
+        ? { headers: { 'Authorization': 'token ' + config.githubToken } }
+        : {};
+
     // --- PROCEDURES (Chargement automatique depuis GitHub) ---
     const procedureGrid = document.getElementById('procedure-grid');
     const PROC_LIMIT = 4;
@@ -402,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Chargement...</p>';
 
-        fetch(apiUrl)
+        fetch(apiUrl, ghHeaders)
             .then(r => r.json())
             .then(files => {
                 // Garder uniquement les PDF
@@ -447,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Récupération date du dernier commit
                     const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(file.name)}&page=1&per_page=1`;
-                    fetch(commitUrl).then(r => r.json()).then(commits => {
+                    fetch(commitUrl, ghHeaders).then(r => r.json()).then(commits => {
                         if (commits && commits.length > 0) {
                             const date = new Date(commits[0].commit.author.date);
                             const formatted = date.toLocaleDateString('fr-FR');
@@ -615,7 +620,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`, ghHeaders).then(r => r.json()).then(d => {
             const date = new Date(d.pushed_at);
             updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
         }).catch(() => { updateEl.innerText = "System Ready"; });
