@@ -729,10 +729,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!tryOpen()) {
                 const waitAndOpen = setInterval(() => {
                     if (tryOpen()) clearInterval(waitAndOpen);
-                }, 200);
+                }, 300);
                 setTimeout(() => clearInterval(waitAndOpen), 5000);
             }
-        }, 300);
+        }, 1000);
     }
 
     initCursorHint();
