@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-    const baseUrl = `${window.location.origin}${path}Documents/Projet/`; 
+    const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Projet/`;
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- PROCEDURES (Chargement statique depuis config.procedures) ---
     const procedureGrid = document.getElementById('procedure-grid');
     const PROC_LIMIT = 4;
-    const PROC_BASE_URL = `${window.location.origin}${path}Documents/Proc%C3%A9dures/`;
+    const PROC_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Proc%C3%A9dures/`;
 
     if (procedureGrid && config.procedures && config.procedures.length > 0) {
         procedureGrid.innerHTML = '';
@@ -594,7 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const certSection = document.getElementById("certifications"); 
     const certList = document.getElementById("cert-list");
     const CERT_LIMIT = 5;
-    const certBaseUrl = `${window.location.origin}${path}Documents/Certifs/`; 
+    const certBaseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Certifs/`;
     
     // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
     let globalViewer = document.getElementById("global-cert-viewer");
