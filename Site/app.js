@@ -1,36 +1,84 @@
-// --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
+// --- FONCTIONS GLOBALES ---
 
-// --- CAPTCHA ENTRÉE ---
-// Appelée par Turnstile via ?onload=onTurnstileLoad dès que le script est prêt
+// === SPLASH SCREEN ===
+(function() {
+    const LINES = [
+        { text: '[ OK ] Chargement des modules réseau', cls: 'ok',   delay: 0   },
+        { text: '[ OK ] Initialisation Active Directory', cls: 'ok',  delay: 180 },
+        { text: '[ OK ] Connexion GitHub API',            cls: 'ok',  delay: 340 },
+        { text: '[ .. ] Vérification sécurité...',        cls: 'warn',delay: 500 },
+    ];
+
+    const linesEl = document.getElementById('splash-lines');
+    const barFill  = document.getElementById('splash-bar-fill');
+    const pctEl    = document.getElementById('splash-pct');
+    const splash   = document.getElementById('splash-screen');
+    const overlay  = document.getElementById('entry-overlay');
+
+    if (!splash) return;
+
+    // Afficher les lignes de boot progressivement
+    LINES.forEach(({ text, cls, delay }) => {
+        setTimeout(() => {
+            if (!linesEl) return;
+            const span = document.createElement('span');
+            span.className = 'line ' + cls;
+            span.textContent = text;
+            linesEl.appendChild(span);
+        }, delay);
+    });
+
+    // Animer la barre 0 → 100%
+    let pct = 0;
+    const interval = setInterval(() => {
+        // Accélération non-linéaire : rapide au début, lente à la fin
+        const step = pct < 70 ? 3 : pct < 90 ? 1.2 : 0.5;
+        pct = Math.min(pct + step, 100);
+        if (barFill) barFill.style.width = pct + '%';
+        if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
+
+        if (pct >= 100) {
+            clearInterval(interval);
+            // Transition splash → captcha
+            setTimeout(() => {
+                splash.classList.add('fade-out');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    if (overlay) overlay.classList.add('visible');
+                    initEntryCaptcha();
+                }, 600);
+            }, 300);
+        }
+    }, 22);
+})();
+
+// === CAPTCHA ENTRÉE ===
 function onTurnstileLoad() {
-    initEntryCaptcha();
+    // turnstile prêt — initEntryCaptcha sera appelée après le splash
+    window._turnstileReady = true;
 }
 
 function initEntryCaptcha() {
     const overlay = document.getElementById('entry-overlay');
     if (!overlay) return;
 
-    // Sécurité : si turnstile n'est pas encore là, on réessaie
-    if (!window.turnstile) {
-        setTimeout(initEntryCaptcha, 200);
-        return;
-    }
-
-    turnstile.render('#entry-captcha-container', {
-        sitekey: config.profile.turnstileSiteKey,
-        theme: 'dark',
-        callback: function() {
-            overlay.style.transition = 'opacity 0.4s ease';
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 400);
+    const tryRender = () => {
+        if (window.turnstile) {
+            turnstile.render('#entry-captcha-container', {
+                sitekey: config.profile.turnstileSiteKey,
+                theme: 'dark',
+                callback: function() {
+                    overlay.style.transition = 'opacity 0.5s ease';
+                    overlay.style.opacity = '0';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 500);
+                }
+            });
+        } else {
+            setTimeout(tryRender, 250);
         }
-    });
+    };
+    tryRender();
 }
-
-// Fallback : si DOMContentLoaded se déclenche après onTurnstileLoad
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.turnstile) initEntryCaptcha();
-});
 
 
 const escapeHTML = (str) => {
