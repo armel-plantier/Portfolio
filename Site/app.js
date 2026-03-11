@@ -1,5 +1,29 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
+// --- CAPTCHA ENTRÉE ---
+function initEntryCaptcha() {
+    const overlay = document.getElementById('entry-overlay');
+    if (!overlay) return;
+
+    const tryRender = () => {
+        if (window.turnstile) {
+            turnstile.render('#entry-captcha-container', {
+                sitekey: config.profile.turnstileSiteKey,
+                theme: 'dark',
+                callback: function() {
+                    overlay.style.transition = 'opacity 0.4s ease';
+                    overlay.style.opacity = '0';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 400);
+                }
+            });
+        } else {
+            setTimeout(tryRender, 300);
+        }
+    };
+    tryRender();
+}
+document.addEventListener('DOMContentLoaded', initEntryCaptcha);
+
 const escapeHTML = (str) => {
     if (!str) return '';
     return String(str)
@@ -289,7 +313,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    if (data && data.length > 0) {
+                        const commitDate = new Date(data[0].commit.author.date);
+                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                        const diffDays = Math.ceil(Math.abs(new Date() - commitDate) / (1000 * 60 * 60 * 24)); 
+                        if (diffDays <= 30) { const bad = document.getElementById(badgeId); if(bad) bad.innerHTML = `<span class="new-badge">Nouveau</span>`; }
+                    }
+                }).catch(() => {});
+            }
 
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
@@ -463,6 +498,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 const link = window.location.origin + '/procedures/' + slug;
                 copyToClipboard(link, e.currentTarget);
             });
+
+            // Récupération date du dernier commit via GitHub API
+            if (config.profile.githubUser && config.profile.githubRepo) {
+                const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
+                fetch(commitUrl, ghHeaders).then(r => r.json()).then(commits => {
+                    if (commits && commits.length > 0) {
+                        const date = new Date(commits[0].commit.author.date);
+                        const formatted = date.toLocaleDateString('fr-FR');
+                        const diffDays = Math.ceil(Math.abs(new Date() - date) / (1000 * 60 * 60 * 24));
+                        if (diffDays <= 30) {
+                            const bad = document.getElementById(badgeId);
+                            if (bad) bad.innerHTML = '<span class="new-badge">Nouveau</span>';
+                        }
+                        const btn = document.getElementById(btnId);
+                        if (btn) btn.setAttribute('data-date', formatted);
+                    }
+                }).catch(() => {});
+            }
 
             // Bouton info → modale
             const infoB = div.querySelector(`#${btnId}`);
