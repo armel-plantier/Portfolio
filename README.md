@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=6366f1&height=100&section=header" width="100%"/>
+
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Syne&size=22&pause=1000&color=6366F1&center=true&vCenter=true&width=600&lines=Administration+Système+%26+Réseau;Passionné+de+Cybersécurité;En+recherche+active+d'alternance)](https://git.io/typing-svg)
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-armel--plantier.com-6366f1?style=for-the-badge)](https://armel-plantier.com)
