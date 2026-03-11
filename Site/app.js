@@ -818,34 +818,55 @@ function togglePDF(id, url) {
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
 
-    const encodedUrl = encodeURIComponent(url);
-    const viewerUrl = `https://docs.google.com/viewer?url=${encodedUrl}&embedded=true`;
+    const viewerUrl = () => `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true&t=${Date.now()}`;
 
     c.innerHTML = `
-        <div id="pdf-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
-                <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
-                <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            Chargement du PDF...
-        </div>
-        <div style="display:flex; justify-content:flex-end; padding: 6px 10px 0; background: transparent;">
+        <div style="display:flex; justify-content:flex-end; padding: 6px 12px; border-bottom: 1px solid rgba(99,102,241,0.1);">
             <a href="${url}" target="_blank" style="font-size:0.75rem; color:#6366f1; text-decoration:none; opacity:0.7;">↗ Ouvrir dans un onglet</a>
         </div>
-        <iframe id="pdf-embed-${id}" src="${viewerUrl}" width="100%" height="600px" style="display:none; border:none; border-radius:0 0 12px 12px;"></iframe>
-        <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
+        <div id="pdf-wrap-${id}" style="position:relative; width:100%; height:600px;">
+            <div id="pdf-loader-${id}" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:#94a3b8; font-size:0.85rem; background:rgba(15,18,30,0.6); z-index:1; pointer-events:none;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="animation:spin 1s linear infinite;">
+                    <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                Chargement du PDF...
+            </div>
+            <iframe id="pdf-iframe-${id}" src="${viewerUrl()}" width="100%" height="100%" style="border:none; border-radius:0 0 12px 12px; display:block;"></iframe>
+        </div>
+        <style>@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }</style>
     `;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 
     const loader = document.getElementById(`pdf-loader-${id}`);
-    const iframe = document.getElementById(`pdf-embed-${id}`);
+    const iframe = document.getElementById(`pdf-iframe-${id}`);
+    let attempts = 0;
 
-    // Afficher l'iframe après le loader
-    setTimeout(() => {
-        if(loader) loader.style.display = 'none';
-        if(iframe) iframe.style.display = 'block';
-    }, 1200);
+    // Google Docs Viewer peut échouer silencieusement — on détecte et on retry
+    const checkLoaded = () => {
+        try {
+            // Si Google Docs a chargé, le titre de l iframe change
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (iframeDoc && iframeDoc.body && iframeDoc.body.innerHTML.length > 100) {
+                if(loader) loader.style.display = 'none';
+                return;
+            }
+        } catch(e) { /* cross-origin : normal */ }
+
+        attempts++;
+        if (attempts >= 3) {
+            // Après 3 tentatives (~9s), on affiche quand même et on cache le loader
+            if(loader) loader.style.display = 'none';
+            return;
+        }
+        // Retry : recharger l iframe avec un nouveau timestamp pour bypasser le cache Google
+        iframe.src = viewerUrl();
+        setTimeout(checkLoaded, 3000);
+    };
+
+    // Premier check après 3s
+    setTimeout(checkLoaded, 3000);
 }
 
 function toggleComp(id, headerEl) {
