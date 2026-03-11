@@ -12,18 +12,17 @@
     
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self'; 
-        connect-src 'self' https://api.github.com;
+        connect-src 'self' https://api.github.com https://api.countapi.xyz;
         script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com 'unsafe-inline'; 
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
         font-src 'self' https://fonts.gstatic.com; 
-        img-src 'self' data: https://encrypted-tbn0.gstatic.com; 
+        img-src 'self' data: https://encrypted-tbn0.gstatic.com https://avatars.githubusercontent.com; 
         frame-src https://docs.google.com https://challenges.cloudflare.com; 
-        object-src 'self'; 
+        object-src 'none'; 
         base-uri 'self';
     ">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="X-Frame-Options" content="DENY">
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
     
