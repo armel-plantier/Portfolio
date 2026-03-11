@@ -806,10 +806,11 @@ function copyToClipboard(text, btn) {
 
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    const card = c.closest('.project-card'); 
+    const card = c.closest('.project-card');
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-    
+
+    const encodedUrl = encodeURIComponent(url);
     c.innerHTML = `
         <div id="pdf-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
@@ -818,31 +819,19 @@ function togglePDF(id, url) {
             </svg>
             Chargement du PDF...
         </div>
-        <embed id="pdf-embed-${id}" src="${url}" type="application/pdf" width="100%" height="600px" style="display:none; border-radius:0 0 12px 12px;"/>
+        <iframe id="pdf-iframe-${id}" src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true" width="100%" height="600px" style="display:none; border:none; border-radius:0 0 12px 12px;"></iframe>
         <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
     `;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 
     const loader = document.getElementById(`pdf-loader-${id}`);
-    const embed = document.getElementById(`pdf-embed-${id}`);
+    const iframe = document.getElementById(`pdf-iframe-${id}`);
 
     setTimeout(() => {
         if(loader) loader.style.display = 'none';
-        if(embed) embed.style.display = 'block';
-    }, 800);
-
-    setTimeout(() => {
-        if (embed && embed.offsetHeight < 10) {
-            c.innerHTML = `
-                <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    <span style="color:#f87171; font-weight:500;">Impossible d'afficher le document.</span>
-                    <a href="${url}" target="_blank" style="padding:7px 16px; border-radius:8px; border:1px solid #6366f1; background:transparent; color:#6366f1; font-size:0.8rem; text-decoration:none;">Ouvrir dans un nouvel onglet</a>
-                </div>
-            `;
-        }
-    }, 3000);
+        if(iframe) iframe.style.display = 'block';
+    }, 1500);
 }
 
 function toggleComp(id, headerEl) {
