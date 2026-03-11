@@ -823,6 +823,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     initCursorHint();
 
+    // --- BOUTON RETOUR EN HAUT ---
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
