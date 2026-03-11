@@ -1,23 +1,23 @@
 // --- FONCTIONS GLOBALES ---
 
-// === SPLASH SCREEN ===
+// === SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ ===
 (function() {
     const LINES = [
-        { text: '[ OK ] Chargement des modules réseau', cls: 'ok',   delay: 0   },
-        { text: '[ OK ] Initialisation Active Directory', cls: 'ok',  delay: 180 },
-        { text: '[ OK ] Connexion GitHub API',            cls: 'ok',  delay: 340 },
-        { text: '[ .. ] Vérification sécurité...',        cls: 'warn',delay: 500 },
+        { text: '[ OK ] Chargement des modules réseau',  cls: 'ok',   delay: 0   },
+        { text: '[ OK ] Initialisation Active Directory', cls: 'ok',   delay: 200 },
+        { text: '[ OK ] Connexion GitHub API',            cls: 'ok',   delay: 380 },
+        { text: '[ .. ] Vérification sécurité...',        cls: 'warn', delay: 560 },
     ];
 
-    const linesEl = document.getElementById('splash-lines');
-    const barFill  = document.getElementById('splash-bar-fill');
-    const pctEl    = document.getElementById('splash-pct');
-    const splash   = document.getElementById('splash-screen');
-    const overlay  = document.getElementById('entry-overlay');
+    const linesEl    = document.getElementById('splash-lines');
+    const barFill    = document.getElementById('splash-bar-fill');
+    const pctEl      = document.getElementById('splash-pct');
+    const splash     = document.getElementById('splash-screen');
+    const captchaSec = document.getElementById('splash-captcha-section');
 
     if (!splash) return;
 
-    // Afficher les lignes de boot progressivement
+    // Lignes de boot
     LINES.forEach(({ text, cls, delay }) => {
         setTimeout(() => {
             if (!linesEl) return;
@@ -28,39 +28,32 @@
         }, delay);
     });
 
-    // Animer la barre 0 → 100%
+    // Barre 0 → 100%, puis affiche le captcha dans le splash
     let pct = 0;
     const interval = setInterval(() => {
-        // Accélération non-linéaire : rapide au début, lente à la fin
-        const step = pct < 70 ? 3 : pct < 90 ? 1.2 : 0.5;
+        const step = pct < 70 ? 3 : pct < 92 ? 1.2 : 0.4;
         pct = Math.min(pct + step, 100);
         if (barFill) barFill.style.width = pct + '%';
         if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
 
         if (pct >= 100) {
             clearInterval(interval);
-            // Transition splash → captcha
+            // Afficher la section captcha directement dans le splash
             setTimeout(() => {
-                splash.classList.add('fade-out');
-                setTimeout(() => {
-                    splash.style.display = 'none';
-                    if (overlay) overlay.classList.add('visible');
-                    initEntryCaptcha();
-                }, 600);
+                if (captchaSec) captchaSec.classList.add('visible');
+                initEntryCaptcha();
             }, 300);
         }
     }, 22);
 })();
 
-// === CAPTCHA ENTRÉE ===
+// === CAPTCHA ===
 function onTurnstileLoad() {
-    // turnstile prêt — initEntryCaptcha sera appelée après le splash
     window._turnstileReady = true;
 }
 
 function initEntryCaptcha() {
-    const overlay = document.getElementById('entry-overlay');
-    if (!overlay) return;
+    const splash = document.getElementById('splash-screen');
 
     const tryRender = () => {
         if (window.turnstile) {
@@ -68,9 +61,12 @@ function initEntryCaptcha() {
                 sitekey: config.profile.turnstileSiteKey,
                 theme: 'dark',
                 callback: function() {
-                    overlay.style.transition = 'opacity 0.5s ease';
-                    overlay.style.opacity = '0';
-                    setTimeout(() => { overlay.style.display = 'none'; }, 500);
+                    // Captcha validé → fermer le splash
+                    if (splash) {
+                        splash.style.transition = 'opacity 0.5s ease';
+                        splash.style.opacity = '0';
+                        setTimeout(() => { splash.style.display = 'none'; }, 500);
+                    }
                 }
             });
         } else {
