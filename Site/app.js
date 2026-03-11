@@ -792,7 +792,6 @@ function togglePDF(id, url) {
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
     
-    const iframeSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
     c.innerHTML = `
         <div id="pdf-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
@@ -801,25 +800,33 @@ function togglePDF(id, url) {
             </svg>
             Chargement du PDF...
         </div>
-        <iframe id="pdf-iframe-${id}" src="${iframeSrc}" width="100%" height="600px" style="border:none; display:none;"
-            onload="document.getElementById('pdf-loader-${id}').style.display='none'; this.style.display='block';"></iframe>
+        <embed id="pdf-embed-${id}" src="${url}" type="application/pdf" width="100%" height="600px" style="display:none; border-radius:0 0 12px 12px;"/>
         <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
     `;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 
-    // Timeout : si le PDF ne charge pas en 8s, afficher un message avec bouton retry
+    const loader = document.getElementById(`pdf-loader-${id}`);
+    const embed = document.getElementById(`pdf-embed-${id}`);
+
+    // Affiche l'embed après un court délai
     setTimeout(() => {
-        const loader = document.getElementById(`pdf-loader-${id}`);
-        const iframe = document.getElementById(`pdf-iframe-${id}`);
-        if (loader && loader.style.display !== 'none') {
-            loader.innerHTML = `
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="opacity:0.5"><circle cx="12" cy="12" r="10" stroke="#94a3b8" stroke-width="2"/><path d="M12 8v4m0 4h.01" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>
-                <span style="color:#94a3b8;">Le PDF n'a pas pu charger.</span>
-                <button onclick="togglePDF('${id}', '${url}')" style="margin-top:4px; padding:6px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.4); color:#6366f1; border-radius:8px; cursor:pointer; font-size:0.82rem;">↺ Réessayer</button>
+        if(loader) loader.style.display = 'none';
+        if(embed) embed.style.display = 'block';
+    }, 800);
+
+    // Fallback si l'embed ne fonctionne pas (hauteur nulle)
+    setTimeout(() => {
+        if (embed && embed.offsetHeight < 10) {
+            c.innerHTML = `
+                <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span style="color:#f87171; font-weight:500;">Impossible d'afficher le document.</span>
+                    <a href="${url}" target="_blank" style="padding:7px 16px; border-radius:8px; border:1px solid #6366f1; background:transparent; color:#6366f1; font-size:0.8rem; text-decoration:none;">Ouvrir dans un nouvel onglet</a>
+                </div>
             `;
         }
-    }, 8000);
+    }, 3000);
 }
 
 function toggleComp(id, headerEl) {
