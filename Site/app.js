@@ -28,23 +28,48 @@
         }, delay);
     });
 
-    // Barre 0 → 100%, puis affiche le captcha dans le splash
+    // Barre 0 → 100%
+    // La barre s'arrête à 90% et attend que Turnstile soit chargé pour finir
     let pct = 0;
+    let barDone = false;
     const interval = setInterval(() => {
-        const step = pct < 70 ? 3 : pct < 92 ? 1.2 : 0.4;
-        pct = Math.min(pct + step, 100);
+        const step = pct < 70 ? 3 : pct < 89 ? 1.2 : 0;
+        pct = Math.min(pct + step, 89);
         if (barFill) barFill.style.width = pct + '%';
         if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
 
-        if (pct >= 100) {
+        if (pct >= 89 && !barDone) {
+            barDone = true;
             clearInterval(interval);
-            // Afficher la section captcha directement dans le splash
-            setTimeout(() => {
-                if (captchaSec) captchaSec.classList.add('visible');
-                initEntryCaptcha();
-            }, 300);
+            // Attendre que Turnstile soit prêt, puis finir la barre et afficher le captcha
+            waitForTurnstile();
         }
     }, 22);
+
+    function waitForTurnstile() {
+        if (window.turnstile) {
+            finishBar();
+        } else {
+            setTimeout(waitForTurnstile, 150);
+        }
+    }
+
+    function finishBar() {
+        // Finir la barre 89 → 100%
+        let p = 89;
+        const fin = setInterval(() => {
+            p = Math.min(p + 1, 100);
+            if (barFill) barFill.style.width = p + '%';
+            if (pctEl)   pctEl.textContent   = p + '%';
+            if (p >= 100) {
+                clearInterval(fin);
+                setTimeout(() => {
+                    if (captchaSec) captchaSec.classList.add('visible');
+                    initEntryCaptcha();
+                }, 200);
+            }
+        }, 30);
+    }
 })();
 
 // === CAPTCHA ===
@@ -54,26 +79,17 @@ function onTurnstileLoad() {
 
 function initEntryCaptcha() {
     const splash = document.getElementById('splash-screen');
-
-    const tryRender = () => {
-        if (window.turnstile) {
-            turnstile.render('#entry-captcha-container', {
-                sitekey: config.profile.turnstileSiteKey,
-                theme: 'dark',
-                callback: function() {
-                    // Captcha validé → fermer le splash
-                    if (splash) {
-                        splash.style.transition = 'opacity 0.5s ease';
-                        splash.style.opacity = '0';
-                        setTimeout(() => { splash.style.display = 'none'; }, 500);
-                    }
-                }
-            });
-        } else {
-            setTimeout(tryRender, 250);
+    turnstile.render('#entry-captcha-container', {
+        sitekey: config.profile.turnstileSiteKey,
+        theme: 'dark',
+        callback: function() {
+            if (splash) {
+                splash.style.transition = 'opacity 0.5s ease';
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
+            }
         }
-    };
-    tryRender();
+    });
 }
 
 
