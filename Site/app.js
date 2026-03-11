@@ -1,9 +1,6 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
 // --- CAPTCHA ENTRÉE ---
-// On efface la vérification à chaque chargement de page pour que le captcha s'affiche toujours
-sessionStorage.removeItem('entry_verified');
-
 function initEntryCaptcha() {
     const overlay = document.getElementById('entry-overlay');
     if (!overlay) return;
@@ -14,7 +11,6 @@ function initEntryCaptcha() {
                 sitekey: config.profile.turnstileSiteKey,
                 theme: 'dark',
                 callback: function() {
-                    sessionStorage.setItem('entry_verified', '1');
                     overlay.style.transition = 'opacity 0.4s ease';
                     overlay.style.opacity = '0';
                     setTimeout(() => { overlay.style.display = 'none'; }, 400);
