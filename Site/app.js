@@ -1,30 +1,5 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
-// --- CAPTCHA ENTRÉE ---
-function initEntryCaptcha() {
-    const overlay = document.getElementById('entry-overlay');
-    if (!overlay) return;
-
-    const tryRender = () => {
-        if (window.turnstile) {
-            turnstile.render('#entry-captcha-container', {
-                sitekey: config.profile.turnstileSiteKey,
-                theme: 'dark',
-                callback: function() {
-                    overlay.style.transition = 'opacity 0.4s ease';
-                    overlay.style.opacity = '0';
-                    setTimeout(() => { overlay.style.display = 'none'; }, 400);
-                }
-            });
-        } else {
-            setTimeout(tryRender, 300);
-        }
-    };
-    tryRender();
-}
-document.addEventListener('DOMContentLoaded', initEntryCaptcha);
-
-
 const escapeHTML = (str) => {
     if (!str) return '';
     return String(str)
@@ -321,6 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         const commitDate = new Date(data[0].commit.author.date);
                         const formattedDate = commitDate.toLocaleDateString('fr-FR');
                         const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                        const diffDays = Math.ceil(Math.abs(new Date() - commitDate) / (1000 * 60 * 60 * 24)); 
+                        if (diffDays <= 30) { const bad = document.getElementById(badgeId); if(bad) bad.innerHTML = `<span class="new-badge">Nouveau</span>`; }
                     }
                 }).catch(() => {});
             }
@@ -505,6 +482,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (commits && commits.length > 0) {
                         const date = new Date(commits[0].commit.author.date);
                         const formatted = date.toLocaleDateString('fr-FR');
+                        const diffDays = Math.ceil(Math.abs(new Date() - date) / (1000 * 60 * 60 * 24));
+                        if (diffDays <= 30) {
+                            const bad = document.getElementById(badgeId);
+                            if (bad) bad.innerHTML = '<span class="new-badge">Nouveau</span>';
+                        }
                         const btn = document.getElementById(btnId);
                         if (btn) btn.setAttribute('data-date', formatted);
                     }
@@ -806,17 +788,10 @@ function copyToClipboard(text, btn) {
 
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    const card = c.closest('.project-card');
+    const card = c.closest('.project-card'); 
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true';
-    iframe.width = '100%';
-    iframe.height = '600px';
-    iframe.style.cssText = 'border:none; border-radius:0 0 12px 12px; display:block;';
-    c.innerHTML = '';
-    c.appendChild(iframe);
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 }
