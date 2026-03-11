@@ -38,27 +38,68 @@
     <div id="entry-overlay" style="
         position: fixed; inset: 0; z-index: 9999;
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-        background: rgba(10, 12, 20, 0.75);
+        background: rgba(10, 12, 20, 0.85);
         display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
     ">
+        <!-- Grille animée en arrière-plan -->
         <div style="
-            background: var(--card-bg, #151925);
-            border: 1px solid rgba(99,102,241,0.3);
-            border-radius: 16px;
-            padding: 40px 48px;
+            position: absolute; inset: 0;
+            background-image: 
+                linear-gradient(rgba(99,102,241,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,102,241,0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: gridMove 8s linear infinite;
+            pointer-events: none;
+        "></div>
+        <!-- Halo central -->
+        <div style="
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        "></div>
+
+        <style>
+            @keyframes gridMove {
+                0% { background-position: 0 0; }
+                100% { background-position: 40px 40px; }
+            }
+            @keyframes shieldPulse {
+                0%, 100% { filter: drop-shadow(0 0 6px rgba(99,102,241,0.4)); transform: scale(1); }
+                50% { filter: drop-shadow(0 0 18px rgba(99,102,241,0.9)); transform: scale(1.06); }
+            }
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(16px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            #entry-card { animation: fadeInUp 0.5s ease forwards; }
+            #entry-shield { animation: shieldPulse 2s ease-in-out infinite; }
+        </style>
+
+        <div id="entry-card" style="
+            background: rgba(21, 25, 37, 0.95);
+            border: 1px solid rgba(99,102,241,0.35);
+            border-radius: 20px;
+            padding: 44px 52px;
             text-align: center;
-            max-width: 400px;
+            max-width: 420px;
             width: 90%;
-            box-shadow: 0 0 40px rgba(99,102,241,0.15);
+            box-shadow: 0 0 60px rgba(99,102,241,0.12), 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
         ">
-            <div style="margin-bottom: 16px;">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div id="entry-shield" style="margin-bottom: 20px; display: inline-block;">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V6L12 2z" fill="rgba(99,102,241,0.15)" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
                     <path d="M9 12l2 2 4-4" stroke="#6366f1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            <h2 style="margin: 0 0 8px; font-size: 1.2rem; color: #e2e8f0;">Vérification de sécurité</h2>
-            <p style="margin: 0 0 24px; font-size: 0.85rem; color: #94a3b8;">Veuillez confirmer que vous n'êtes pas un robot.</p>
+            <p style="margin: 0 0 4px; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: #6366f1; font-weight: 600;">Bienvenue</p>
+            <h2 style="margin: 0 0 8px; font-size: 1.35rem; color: #e2e8f0; font-weight: 700;">Armel Plantier</h2>
+            <p style="margin: 0 0 6px; font-size: 0.82rem; color: #64748b;">Étudiant Admin Sys & Réseau · Cybersécurité</p>
+            <div style="width: 40px; height: 2px; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; margin: 16px auto 20px;"></div>
+            <p style="margin: 0 0 24px; font-size: 0.82rem; color: #94a3b8;">Veuillez confirmer que vous n'êtes pas un robot.</p>
             <div id="entry-captcha-container" style="display: flex; justify-content: center; min-height: 65px;"></div>
         </div>
     </div>
