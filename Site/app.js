@@ -807,31 +807,64 @@ function copyToClipboard(text, btn) {
 function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card');
-    if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
+    if (c.style.display === 'block') {
+        c.style.display = 'none';
+        c.innerHTML = '';
+        if(card) card.classList.remove('expanded');
+        return;
+    }
+    document.querySelectorAll('.pdf-container').forEach(el => {
+        el.style.display = 'none';
+        el.innerHTML = '';
+        const p = el.closest('.project-card');
+        if(p) p.classList.remove('expanded');
+    });
 
-    const encodedUrl = encodeURIComponent(url);
-    c.innerHTML = `
-        <div id="pdf-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
-                <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
-                <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            Chargement du PDF...
-        </div>
-        <iframe id="pdf-iframe-${id}" src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true" width="100%" height="600px" style="display:none; border:none; border-radius:0 0 12px 12px;"></iframe>
-        <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
-    `;
     c.style.display = 'block';
-    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+    if(card) {
+        card.classList.add('expanded');
+        setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100);
+    }
 
-    const loader = document.getElementById(`pdf-loader-${id}`);
-    const iframe = document.getElementById(`pdf-iframe-${id}`);
+    let attempt = 0;
+    const maxAttempts = 5;
+    const spinCSS = '<style>@keyframes pdf-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}</style>';
 
-    setTimeout(() => {
-        if(loader) loader.style.display = 'none';
-        if(iframe) iframe.style.display = 'block';
-    }, 1500);
+    function renderLoader(msg) {
+        c.innerHTML = spinCSS + '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:220px;gap:12px;color:#94a3b8;font-size:0.85rem;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="animation:pdf-spin 1s linear infinite"><circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/><path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/></svg>' + msg + '</div>';
+    }
+
+    function renderFallback() {
+        c.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:220px;gap:12px;color:#94a3b8;font-size:0.85rem;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span style="color:#f87171;font-weight:500">Le visualiseur ne répond pas.</span><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button id="retry-btn-' + id + '" style="padding:7px 16px;border-radius:8px;border:1px solid #6366f1;background:transparent;color:#6366f1;font-size:0.8rem;cursor:pointer">🔄 Réessayer</button><a href="' + url + '" target="_blank" style="padding:7px 16px;border-radius:8px;border:1px solid #6366f1;background:transparent;color:#6366f1;font-size:0.8rem;text-decoration:none">↗ Ouvrir dans un onglet</a></div></div>';
+        const retryBtn = document.getElementById('retry-btn-' + id);
+        if (retryBtn) retryBtn.addEventListener('click', () => { c.style.display = 'none'; c.innerHTML = ''; togglePDF(id, url); });
+    }
+
+    function tryLoad() {
+        attempt++;
+        const msg = attempt === 1 ? 'Chargement du PDF...' : 'Tentative ' + attempt + '/' + maxAttempts + '...';
+        renderLoader(msg);
+
+        // Timeout : si Google Docs ne charge pas dans les temps → réessai
+        const timer = setTimeout(() => {
+            if (attempt < maxAttempts) tryLoad();
+            else renderFallback();
+        }, attempt === 1 ? 6000 : 4000);
+
+        const iframe = document.createElement('iframe');
+        iframe.width = '100%';
+        iframe.height = '600px';
+        iframe.style.cssText = 'border:none;border-radius:0 0 12px 12px;display:block;';
+        iframe.src = 'https://docs.google.com/viewer?url=' + encodeURIComponent(url) + '&embedded=true&nocache=' + Date.now();
+
+        iframe.onload = function() {
+            clearTimeout(timer);
+            c.innerHTML = '';
+            c.appendChild(iframe);
+        };
+    }
+
+    tryLoad();
 }
 
 function toggleComp(id, headerEl) {
