@@ -14,25 +14,27 @@
 
 ## 🗂️ Sections du site
 
-<img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" width="18"/> **Accueil**
+## 🗂️ Sections du site
+
+<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="20"/> **Accueil**
 Présentation rapide, statut de recherche et liens vers les réseaux.
 
-<img src="https://media.giphy.com/media/26tn33aiTi1jkl6H6/giphy.gif" width="18"/> **Projet TechNova**
+<img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="20"/> **Projet TechNova**
 Projet principal : simulation d'une refonte complète d'architecture réseau PME, documentée sous forme de PDF évolutif.
 
-<img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" width="18"/> **Parcours**
+<img src="https://media.giphy.com/media/KzJkzjggfGN5Py6nkT/giphy.gif" width="20"/> **Parcours**
 Timeline des expériences professionnelles (stages).
 
-<img src="https://media.giphy.com/media/QssGEmpkyEOhBCb7e1/giphy.gif" width="18"/> **Compétences**
+<img src="https://media.giphy.com/media/IdyAQJVN2kVPNUrojM/giphy.gif" width="20"/> **Compétences**
 Compétences techniques en Administration Système, Réseau et Cybersécurité.
 
-<img src="https://media.giphy.com/media/fwbZnTftCXVocKzfxR/giphy.gif" width="18"/> **Certifications**
+<img src="https://media.giphy.com/media/26u4lOMA8JKSnL9Uk/giphy.gif" width="20"/> **Certifications**
 Certifications obtenues ou en cours (RootMe, Cyber101, SecNumAcadémie).
 
-<img src="https://media.giphy.com/media/WUlplcMpOCEmTGBtBW/giphy.gif" width="18"/> **Procédures**
+<img src="https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif" width="20"/> **Procédures**
 Fiches techniques personnelles au format PDF (configurations, mises en place de services…).
 
-<img src="https://media.giphy.com/media/VgCDAzcKvsR6OM0uWg/giphy.gif" width="18"/> **Veille**
+<img src="https://media.giphy.com/media/l0IylOPCNkiqOgMyA/giphy.gif" width="20"/> **Veille**
 Veille technologique, sécurité, juridique et hardware, alimentée automatiquement via un script.
 
 ---
