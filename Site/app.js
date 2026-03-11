@@ -5,12 +5,19 @@ function initEntryCaptcha() {
     const overlay = document.getElementById('entry-overlay');
     if (!overlay) return;
 
+    // Déjà validé dans cette session → on skip
+    if (sessionStorage.getItem('entry_verified') === '1') {
+        overlay.style.display = 'none';
+        return;
+    }
+
     const tryRender = () => {
         if (window.turnstile) {
             turnstile.render('#entry-captcha-container', {
                 sitekey: config.profile.turnstileSiteKey,
                 theme: 'dark',
                 callback: function() {
+                    sessionStorage.setItem('entry_verified', '1');
                     overlay.style.transition = 'opacity 0.4s ease';
                     overlay.style.opacity = '0';
                     setTimeout(() => { overlay.style.display = 'none'; }, 400);
