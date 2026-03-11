@@ -5,7 +5,7 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Syne&size=22&pause=1000&color=6366F1&center=true&vCenter=true&width=600&lines=Administration+Système+%26+Réseau;Passionné+de+Cybersécurité;En+recherche+active+d'alternance)](https://git.io/typing-svg)
 
 [![Portfolio](https://img.shields.io/badge/armel--plantier.com-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://armel-plantier.com)
-[![LinkedIn](https://img.shields.io/badge/Armel_Plantier-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://fr.linkedin.com/in/armel-plantier-9372a2360)
+[![LinkedIn](https://img.shields.io/badge/Armel_Plantier-0077B5?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0yMC40NDcgMjAuNDUyaC0zLjU1NHYtNS41NjljMC0xLjMyOC0uMDI3LTMuMDM3LTEuODUyLTMuMDM3LTEuODUzIDAtMi4xMzYgMS40NDUtMi4xMzYgMi45Mzl2NS42NjdIOS4zNTFWOWgzLjQxNHYxLjU2MWguMDQ2Yy40NzctLjkgMS42MzctMS44NSAzLjM3LTEuODUgMy42MDEgMCA0LjI2NyAyLjM3IDQuMjY3IDUuNDU1djYuMjg2ek01LjMzNyA3LjQzM2EyLjA2MiAyLjA2MiAwIDAgMS0yLjA2My0yLjA2NSAyLjA2NCAyLjA2NCAwIDEgMSAyLjA2MyAyLjA2NXptMS43ODIgMTMuMDE5SDMuNTU1VjloMy41NjR2MTEuNDUyek0yMi4yMjUgMEgxLjc3MUMuNzkyIDAgMCAuNzc0IDAgMS43Mjl2MjAuNTQyQzAgMjMuMjI3Ljc5MiAyNCAxLjc3MSAyNGgyMC40NTFDNDI0IDI0IDI0IDIzLjIyNyAyNCAyMi4yNzFWMS43MjlDMjQgLjc3NCAyMy4yIDAgMjIuMjIyIDB6Ii8+PC9zdmc+&logoColor=white)](https://fr.linkedin.com/in/armel-plantier-9372a2360)
 [![GitHub](https://img.shields.io/badge/armel--plantier-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/armel-plantier)
 
 </div>
