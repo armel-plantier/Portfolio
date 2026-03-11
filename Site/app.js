@@ -1,36 +1,5 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
-// --- CAPTCHA ENTRÉE ---
-function initEntryCaptcha() {
-    const overlay = document.getElementById('entry-overlay');
-    if (!overlay) return;
-
-    // Déjà validé dans cette session → on skip
-    if (sessionStorage.getItem('entry_verified') === '1') {
-        overlay.style.display = 'none';
-        return;
-    }
-
-    const tryRender = () => {
-        if (window.turnstile) {
-            turnstile.render('#entry-captcha-container', {
-                sitekey: config.profile.turnstileSiteKey,
-                theme: 'dark',
-                callback: function() {
-                    sessionStorage.setItem('entry_verified', '1');
-                    overlay.style.transition = 'opacity 0.4s ease';
-                    overlay.style.opacity = '0';
-                    setTimeout(() => { overlay.style.display = 'none'; }, 400);
-                }
-            });
-        } else {
-            setTimeout(tryRender, 300);
-        }
-    };
-    tryRender();
-}
-document.addEventListener('DOMContentLoaded', initEntryCaptcha);
-
 const escapeHTML = (str) => {
     if (!str) return '';
     return String(str)
@@ -822,9 +791,35 @@ function togglePDF(id, url) {
     const card = c.closest('.project-card'); 
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    
+    const iframeSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    c.innerHTML = `
+        <div id="pdf-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            Chargement du PDF...
+        </div>
+        <iframe id="pdf-iframe-${id}" src="${iframeSrc}" width="100%" height="600px" style="border:none; display:none;"
+            onload="document.getElementById('pdf-loader-${id}').style.display='none'; this.style.display='block';"></iframe>
+        <style>@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }</style>
+    `;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+
+    // Timeout : si le PDF ne charge pas en 8s, afficher un message avec bouton retry
+    setTimeout(() => {
+        const loader = document.getElementById(`pdf-loader-${id}`);
+        const iframe = document.getElementById(`pdf-iframe-${id}`);
+        if (loader && loader.style.display !== 'none') {
+            loader.innerHTML = `
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="opacity:0.5"><circle cx="12" cy="12" r="10" stroke="#94a3b8" stroke-width="2"/><path d="M12 8v4m0 4h.01" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>
+                <span style="color:#94a3b8;">Le PDF n'a pas pu charger.</span>
+                <button onclick="togglePDF('${id}', '${url}')" style="margin-top:4px; padding:6px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.4); color:#6366f1; border-radius:8px; cursor:pointer; font-size:0.82rem;">↺ Réessayer</button>
+            `;
+        }
+    }, 8000);
 }
 
 function toggleComp(id, headerEl) {
@@ -842,7 +837,30 @@ function toggleCertPDF(id, url) {
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+
+    const iframeSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    viewer.innerHTML = `
+        <div id="cert-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="animation: spin 1s linear infinite;">
+                <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
+                <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            Chargement du PDF...
+        </div>
+        <iframe src="${iframeSrc}" width="100%" height="100%" style="border:none; display:none;"
+            onload="document.getElementById('cert-loader-${id}').style.display='none'; this.style.display='block';"></iframe>
+    `;
+
+    setTimeout(() => {
+        const loader = document.getElementById(`cert-loader-${id}`);
+        if (loader && loader.style.display !== 'none') {
+            loader.innerHTML = `
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="opacity:0.5"><circle cx="12" cy="12" r="10" stroke="#94a3b8" stroke-width="2"/><path d="M12 8v4m0 4h.01" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>
+                <span style="color:#94a3b8;">Le PDF n'a pas pu charger.</span>
+                <button onclick="toggleCertPDF('${id}', '${url}')" style="margin-top:4px; padding:6px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.4); color:#6366f1; border-radius:8px; cursor:pointer; font-size:0.82rem;">↺ Réessayer</button>
+            `;
+        }
+    }, 8000);
 }
 
 function createToggleBtn(container, limit, txtMore) {
