@@ -4,9 +4,9 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Syne&size=22&pause=1000&color=6366F1&center=true&vCenter=true&width=600&lines=Administration+Système+%26+Réseau;Passionné+de+Cybersécurité;En+recherche+active+d'alternance)](https://git.io/typing-svg)
 
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-armel--plantier.com-6366f1?style=for-the-badge)](https://armel-plantier.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Armel_Plantier-0077B5?style=for-the-badge&logo=linkedin)](https://fr.linkedin.com/in/armel-plantier-9372a2360)
-[![GitHub](https://img.shields.io/badge/GitHub-armel--plantier-181717?style=for-the-badge&logo=github)](https://github.com/armel-plantier)
+[![Portfolio](https://img.shields.io/badge/armel--plantier.com-6366f1?style=social&logo=googlechrome&logoColor=6366f1)](https://armel-plantier.com)
+[![LinkedIn](https://img.shields.io/badge/Armel_Plantier-6366f1?style=social&logo=linkedin&logoColor=0077B5)](https://fr.linkedin.com/in/armel-plantier-9372a2360)
+[![GitHub](https://img.shields.io/badge/armel--plantier-6366f1?style=social&logo=github&logoColor=181717)](https://github.com/armel-plantier)
 
 </div>
 
