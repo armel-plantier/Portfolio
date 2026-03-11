@@ -35,9 +35,8 @@
 </head>
 <body>
 
-    <!-- SPLASH SCREEN + CAPTCHA -->
+    <!-- SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ -->
     <style>
-        /* === SPLASH === */
         #splash-screen {
             position: fixed; inset: 0; z-index: 10000;
             background: #080a12;
@@ -46,11 +45,11 @@
             gap: 0;
             transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        #splash-screen.fade-out { opacity: 0; visibility: hidden; }
+        #splash-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
 
         .splash-logo {
             display: flex; align-items: center; gap: 14px;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             animation: splashFadeIn 0.6s ease 0.1s both;
         }
         .splash-logo-icon {
@@ -72,8 +71,8 @@
         .splash-boot-lines {
             font-family: 'Courier New', monospace;
             font-size: 0.72rem;
-            color: #1e293b;
-            margin-bottom: 36px;
+            color: #334155;
+            margin-bottom: 28px;
             text-align: left;
             width: 320px;
             animation: splashFadeIn 0.4s ease 0.3s both;
@@ -82,10 +81,10 @@
         .splash-boot-lines .line { display: block; }
         .splash-boot-lines .ok   { color: #10b981; }
         .splash-boot-lines .warn { color: #6366f1; }
-        .splash-boot-lines .dim  { color: #1e293b; }
 
         .splash-bar-wrap {
             width: 320px;
+            margin-bottom: 32px;
             animation: splashFadeIn 0.4s ease 0.4s both;
         }
         .splash-bar-label {
@@ -99,11 +98,9 @@
             width: 100%; height: 3px;
             background: #0f172a;
             border-radius: 99px; overflow: hidden;
-            position: relative;
         }
         #splash-bar-fill {
-            height: 100%;
-            width: 0%;
+            height: 100%; width: 0%;
             background: linear-gradient(90deg, #6366f1, #8b5cf6, #6366f1);
             background-size: 200% 100%;
             border-radius: 99px;
@@ -113,110 +110,34 @@
         @keyframes barShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         @keyframes splashFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* === CAPTCHA OVERLAY === */
-        #entry-overlay {
-            position: fixed; inset: 0; z-index: 9999;
-            background: #080a12;
-            display: none;
-            align-items: center; justify-content: center;
-            overflow: hidden;
+        /* Captcha intégré dans le splash */
+        #splash-captcha-section {
+            width: 320px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            pointer-events: none;
         }
-        #entry-overlay.visible { display: flex; }
-
-        /* Grille animée en fond */
-        .entry-grid-bg {
-            position: absolute; inset: 0; pointer-events: none;
-            background-image:
-                linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridDrift 12s linear infinite;
+        #splash-captcha-section.visible {
+            opacity: 1; transform: translateY(0);
+            pointer-events: auto;
         }
-        @keyframes gridDrift { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
-
-        /* Orbe violet */
-        .entry-orb {
-            position: absolute; pointer-events: none;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%);
-            border-radius: 50%;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            animation: orbPulse 4s ease-in-out infinite;
+        .splash-captcha-label {
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem; color: #334155;
+            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
         }
-        @keyframes orbPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        .splash-captcha-label::before {
+            content: ''; display: inline-block;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #6366f1;
+            box-shadow: 0 0 6px #6366f1;
+            animation: dotBlink 1.2s ease-in-out infinite;
         }
-
-        /* Carte captcha */
-        #entry-card {
-            position: relative; z-index: 2;
-            background: rgba(13, 16, 28, 0.98);
-            border: 1px solid rgba(99,102,241,0.2);
-            border-radius: 24px;
-            padding: 48px 56px;
-            text-align: center;
-            max-width: 440px; width: 90%;
-            box-shadow: 0 0 80px rgba(99,102,241,0.08), 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
-            animation: cardReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-        @keyframes cardReveal {
-            from { opacity: 0; transform: translateY(24px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        /* Ligne décorative haut de carte */
-        #entry-card::before {
-            content: '';
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 60%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent);
-        }
-
-        /* Icône shield redesignée */
-        .entry-shield-wrap {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 72px; height: 72px;
-            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1));
-            border: 1px solid rgba(99,102,241,0.25);
-            border-radius: 20px;
-            margin-bottom: 24px;
-            animation: shieldFloat 3s ease-in-out infinite;
-            box-shadow: 0 0 30px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
-        }
-        @keyframes shieldFloat {
-            0%, 100% { transform: translateY(0); box-shadow: 0 0 30px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.05); }
-            50% { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(99,102,241,0.25), inset 0 1px 0 rgba(255,255,255,0.05); }
-        }
-
-        .entry-eyebrow {
-            font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-            color: #6366f1; font-weight: 700; margin-bottom: 8px;
-            font-family: 'Outfit', sans-serif;
-        }
-        .entry-name {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem; font-weight: 800;
-            color: #f1f5f9; margin-bottom: 6px;
-            letter-spacing: -0.02em;
-        }
-        .entry-role {
-            font-size: 0.8rem; color: #475569;
-            margin-bottom: 0;
-        }
-        .entry-divider {
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.2), transparent);
-            margin: 22px 0;
-        }
-        .entry-hint {
-            font-size: 0.82rem; color: #64748b;
-            margin-bottom: 22px; line-height: 1.5;
-        }
-        .entry-hint strong { color: #94a3b8; font-weight: 600; }
+        @keyframes dotBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 
-    <!-- SPLASH -->
     <div id="splash-screen">
         <div class="splash-logo">
             <div class="splash-logo-icon">AP</div>
@@ -232,27 +153,13 @@
                 <div id="splash-bar-fill"></div>
             </div>
         </div>
-    </div>
-
-    <!-- CAPTCHA -->
-    <div id="entry-overlay">
-        <div class="entry-grid-bg"></div>
-        <div class="entry-orb"></div>
-        <div id="entry-card">
-            <div class="entry-shield-wrap">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L3 6v6c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V6L12 2z" fill="rgba(99,102,241,0.2)" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M9 12l2 2 4-4" stroke="#8b5cf6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <p class="entry-eyebrow">Vérification</p>
-            <h2 class="entry-name">Armel Plantier</h2>
-            <p class="entry-role">Étudiant Admin Sys & Réseau · Cybersécurité</p>
-            <div class="entry-divider"></div>
-            <p class="entry-hint">Confirmez que vous êtes <strong>humain</strong> pour accéder au portfolio.</p>
-            <div id="entry-captcha-container" style="display:flex; justify-content:center; min-height:65px;"></div>
+        <!-- Captcha directement ici -->
+        <div id="splash-captcha-section">
+            <div class="splash-captcha-label">Vérification humaine requise</div>
+            <div id="entry-captcha-container" style="display:flex; justify-content:flex-start; min-height:65px;"></div>
         </div>
     </div>
+
 
     <header class="app-header">
         <div class="header-left">
