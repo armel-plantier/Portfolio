@@ -1,28 +1,36 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
 // --- CAPTCHA ENTRÉE ---
+// Appelée par Turnstile via ?onload=onTurnstileLoad dès que le script est prêt
+function onTurnstileLoad() {
+    initEntryCaptcha();
+}
+
 function initEntryCaptcha() {
     const overlay = document.getElementById('entry-overlay');
     if (!overlay) return;
 
-    const tryRender = () => {
-        if (window.turnstile) {
-            turnstile.render('#entry-captcha-container', {
-                sitekey: config.profile.turnstileSiteKey,
-                theme: 'dark',
-                callback: function() {
-                    overlay.style.transition = 'opacity 0.4s ease';
-                    overlay.style.opacity = '0';
-                    setTimeout(() => { overlay.style.display = 'none'; }, 400);
-                }
-            });
-        } else {
-            setTimeout(tryRender, 300);
+    // Sécurité : si turnstile n'est pas encore là, on réessaie
+    if (!window.turnstile) {
+        setTimeout(initEntryCaptcha, 200);
+        return;
+    }
+
+    turnstile.render('#entry-captcha-container', {
+        sitekey: config.profile.turnstileSiteKey,
+        theme: 'dark',
+        callback: function() {
+            overlay.style.transition = 'opacity 0.4s ease';
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; }, 400);
         }
-    };
-    tryRender();
+    });
 }
-document.addEventListener('DOMContentLoaded', initEntryCaptcha);
+
+// Fallback : si DOMContentLoaded se déclenche après onTurnstileLoad
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.turnstile) initEntryCaptcha();
+});
 
 
 const escapeHTML = (str) => {
