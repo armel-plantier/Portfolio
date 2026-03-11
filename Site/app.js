@@ -1,5 +1,36 @@
 // --- FONCTIONS GLOBALES (Déplacées ici pour éviter l'erreur de scope) ---
 
+// --- CAPTCHA ENTRÉE ---
+function initEntryCaptcha() {
+    const overlay = document.getElementById('entry-overlay');
+    if (!overlay) return;
+
+    if (sessionStorage.getItem('entry_verified') === '1') {
+        overlay.style.display = 'none';
+        return;
+    }
+
+    const tryRender = () => {
+        if (window.turnstile) {
+            turnstile.render('#entry-captcha-container', {
+                sitekey: config.profile.turnstileSiteKey,
+                theme: 'dark',
+                callback: function() {
+                    sessionStorage.setItem('entry_verified', '1');
+                    overlay.style.transition = 'opacity 0.4s ease';
+                    overlay.style.opacity = '0';
+                    setTimeout(() => { overlay.style.display = 'none'; }, 400);
+                }
+            });
+        } else {
+            setTimeout(tryRender, 300);
+        }
+    };
+    tryRender();
+}
+document.addEventListener('DOMContentLoaded', initEntryCaptcha);
+
+
 const escapeHTML = (str) => {
     if (!str) return '';
     return String(str)
@@ -296,8 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         const commitDate = new Date(data[0].commit.author.date);
                         const formattedDate = commitDate.toLocaleDateString('fr-FR');
                         const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
-                        const diffDays = Math.ceil(Math.abs(new Date() - commitDate) / (1000 * 60 * 60 * 24)); 
-                        if (diffDays <= 30) { const bad = document.getElementById(badgeId); if(bad) bad.innerHTML = `<span class="new-badge">Nouveau</span>`; }
                     }
                 }).catch(() => {});
             }
@@ -482,11 +511,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (commits && commits.length > 0) {
                         const date = new Date(commits[0].commit.author.date);
                         const formatted = date.toLocaleDateString('fr-FR');
-                        const diffDays = Math.ceil(Math.abs(new Date() - date) / (1000 * 60 * 60 * 24));
-                        if (diffDays <= 30) {
-                            const bad = document.getElementById(badgeId);
-                            if (bad) bad.innerHTML = '<span class="new-badge">Nouveau</span>';
-                        }
                         const btn = document.getElementById(btnId);
                         if (btn) btn.setAttribute('data-date', formatted);
                     }
@@ -809,13 +833,11 @@ function togglePDF(id, url) {
     const loader = document.getElementById(`pdf-loader-${id}`);
     const embed = document.getElementById(`pdf-embed-${id}`);
 
-    // Affiche l'embed après un court délai
     setTimeout(() => {
         if(loader) loader.style.display = 'none';
         if(embed) embed.style.display = 'block';
     }, 800);
 
-    // Fallback si l'embed ne fonctionne pas (hauteur nulle)
     setTimeout(() => {
         if (embed && embed.offsetHeight < 10) {
             c.innerHTML = `
@@ -844,30 +866,7 @@ function toggleCertPDF(id, url) {
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
-
-    const iframeSrc = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
-    viewer.innerHTML = `
-        <div id="cert-loader-${id}" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:200px; gap:12px; color:#94a3b8; font-size:0.85rem;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="animation: spin 1s linear infinite;">
-                <circle cx="12" cy="12" r="10" stroke="rgba(99,102,241,0.2)" stroke-width="3"/>
-                <path d="M12 2a10 10 0 0 1 10 10" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            Chargement du PDF...
-        </div>
-        <iframe src="${iframeSrc}" width="100%" height="100%" style="border:none; display:none;"
-            onload="document.getElementById('cert-loader-${id}').style.display='none'; this.style.display='block';"></iframe>
-    `;
-
-    setTimeout(() => {
-        const loader = document.getElementById(`cert-loader-${id}`);
-        if (loader && loader.style.display !== 'none') {
-            loader.innerHTML = `
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="opacity:0.5"><circle cx="12" cy="12" r="10" stroke="#94a3b8" stroke-width="2"/><path d="M12 8v4m0 4h.01" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/></svg>
-                <span style="color:#94a3b8;">Le PDF n'a pas pu charger.</span>
-                <button onclick="toggleCertPDF('${id}', '${url}')" style="margin-top:4px; padding:6px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.4); color:#6366f1; border-radius:8px; cursor:pointer; font-size:0.82rem;">↺ Réessayer</button>
-            `;
-        }
-    }, 8000);
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 }
 
 function createToggleBtn(container, limit, txtMore) {
