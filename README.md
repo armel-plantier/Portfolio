@@ -16,25 +16,25 @@
 
 ## 🗂️ Sections du site
 
-<img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="20"/> **Accueil**
+**🏠 Accueil**
 Présentation rapide, statut de recherche et liens vers les réseaux.
 
-<img src="https://media.giphy.com/media/f3iwJFOVOwuy7K6FFw/giphy.gif" width="20"/> **Projet TechNova**
+**🌐 Projet TechNova**
 Projet principal : simulation d'une refonte complète d'architecture réseau PME, documentée sous forme de PDF évolutif.
 
-<img src="https://media.giphy.com/media/KzJkzjggfGN5Py6nkT/giphy.gif" width="20"/> **Parcours**
+**📅 Parcours**
 Timeline des expériences professionnelles (stages).
 
-<img src="https://media.giphy.com/media/IdyAQJVN2kVPNUrojM/giphy.gif" width="20"/> **Compétences**
+**⚙️ Compétences**
 Compétences techniques en Administration Système, Réseau et Cybersécurité.
 
-<img src="https://media.giphy.com/media/26u4lOMA8JKSnL9Uk/giphy.gif" width="20"/> **Certifications**
+**🎓 Certifications**
 Certifications obtenues ou en cours (RootMe, Cyber101, SecNumAcadémie).
 
-<img src="https://media.giphy.com/media/l46Cy1rHbQ92uuLXa/giphy.gif" width="20"/> **Procédures**
+**📋 Procédures**
 Fiches techniques personnelles au format PDF (configurations, mises en place de services…).
 
-<img src="https://media.giphy.com/media/l0IylOPCNkiqOgMyA/giphy.gif" width="20"/> **Veille**
+**📡 Veille**
 Veille technologique, sécurité, juridique et hardware, alimentée automatiquement via un script.
 
 ---
