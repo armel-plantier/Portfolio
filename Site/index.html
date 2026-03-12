@@ -37,126 +37,176 @@
 
     <!-- SPLASH SCREEN -->
     <style>
+        /* === FOND === */
         #splash-screen {
             position: fixed; inset: 0; z-index: 10000;
-            background: #07090f;
+            background: #06080f;
             display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.7s ease, visibility 0.7s ease;
+            transition: opacity 0.6s ease;
             overflow: hidden;
         }
-        #splash-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
 
-        /* Particules de fond */
-        .sp-bg {
-            position: absolute; inset: 0; pointer-events: none;
-            overflow: hidden;
+        /* Grille de fond façon terminal/cyber */
+        #splash-screen::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
         }
+
+        /* Halos lumineux */
+        .sp-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
         .sp-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(80px); opacity: 0.12;
+            filter: blur(100px);
         }
         .sp-orb-1 {
-            width: 400px; height: 400px;
+            width: 500px; height: 500px; opacity: 0.10;
             background: #6366f1;
-            top: -100px; right: -80px;
-            animation: orbFloat 8s ease-in-out infinite;
+            top: -150px; right: -100px;
+            animation: orbFloat 9s ease-in-out infinite;
         }
         .sp-orb-2 {
-            width: 300px; height: 300px;
-            background: #8b5cf6;
-            bottom: -80px; left: -60px;
-            animation: orbFloat 10s ease-in-out infinite reverse;
+            width: 380px; height: 380px; opacity: 0.08;
+            background: #a855f7;
+            bottom: -100px; left: -80px;
+            animation: orbFloat 12s ease-in-out infinite reverse;
+        }
+        .sp-orb-3 {
+            width: 200px; height: 200px; opacity: 0.06;
+            background: #06b6d4;
+            top: 40%; left: 20%;
+            animation: orbFloat 7s ease-in-out 2s infinite;
         }
         @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(20px, -20px); }
+            50% { transform: translate(25px, -25px); }
         }
 
-        /* Carte centrale */
+        /* === CARTE === */
         .sp-card {
             position: relative; z-index: 1;
-            width: min(420px, 92vw);
-            background: rgba(13, 15, 25, 0.9);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 20px;
-            padding: 44px 40px 40px;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 32px 64px rgba(0,0,0,0.6);
-            backdrop-filter: blur(20px);
-            animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            width: min(460px, 94vw);
+            background: rgba(10, 12, 22, 0.92);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 24px;
+            padding: 40px 40px 36px;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.03),
+                0 40px 80px rgba(0,0,0,0.7),
+                0 0 60px rgba(99,102,241,0.05) inset;
+            backdrop-filter: blur(24px);
+            animation: cardIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
         @keyframes cardIn {
-            from { opacity: 0; transform: translateY(24px) scale(0.97); }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
             to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Ligne déco en haut de la carte */
+        /* Barre lumineuse en haut */
         .sp-card::before {
             content: '';
-            position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent);
+            position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.7), rgba(168,85,247,0.5), transparent);
             border-radius: 99px;
         }
 
-        /* Logo */
-        .sp-logo {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 36px;
-            animation: itemIn 0.4s ease 0.15s both;
+        /* === EN-TÊTE : AVATAR + NOM === */
+        .sp-header {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 28px;
+            animation: itemIn 0.4s ease 0.05s both;
+        }
+
+        .sp-avatar-ring {
+            position: relative; flex-shrink: 0;
+            width: 56px; height: 56px;
+        }
+        /* Anneau rotatif */
+        .sp-avatar-ring::before {
+            content: '';
+            position: absolute; inset: -3px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #6366f1, #a855f7, #06b6d4, #6366f1);
+            animation: spinRing 4s linear infinite;
+        }
+        .sp-avatar-ring::after {
+            content: '';
+            position: absolute; inset: -1px;
+            border-radius: 50%;
+            background: #06080f; /* masque pour créer l'effet d'anneau */
+        }
+        @keyframes spinRing {
+            to { transform: rotate(360deg); }
         }
         .sp-logo-icon {
-            width: 46px; height: 46px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 13px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800; font-size: 1.05rem; color: #fff;
-            box-shadow: 0 8px 24px rgba(99,102,241,0.35);
-            flex-shrink: 0;
+            position: relative; z-index: 1;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(99,102,241,0.3);
+            background: #1e1b4b;
         }
+        .sp-logo-icon img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+        }
+
+        .sp-identity { display: flex; flex-direction: column; gap: 4px; }
         .sp-logo-name {
             font-family: 'Outfit', sans-serif;
-            font-weight: 700; font-size: 1.15rem;
-            color: #e2e8f0;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
+            font-weight: 700; font-size: 1.2rem;
+            color: #e2e8f0; letter-spacing: -0.02em; line-height: 1.1;
         }
         .sp-logo-name span { color: #818cf8; }
         .sp-logo-sub {
-            font-size: 0.72rem; color: #334155;
+            font-size: 0.73rem; color: #475569;
             font-family: 'Inter', sans-serif;
-            margin-top: 2px;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.03em;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .sp-logo-sub::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 6px rgba(16,185,129,0.6);
+            flex-shrink: 0;
         }
 
-        /* Séparateur */
+        /* === SÉPARATEUR === */
         .sp-sep {
             height: 1px;
-            background: linear-gradient(90deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1), transparent);
-            margin-bottom: 28px;
-            animation: itemIn 0.4s ease 0.25s both;
+            background: linear-gradient(90deg, rgba(99,102,241,0.2), rgba(139,92,246,0.1), transparent);
+            margin-bottom: 24px;
         }
 
-        /* Texte d'intro */
+        /* === TEXTE D'ACCUEIL === */
         .sp-intro {
-            margin-bottom: 24px;
-            animation: itemIn 0.4s ease 0.3s both;
+            margin-bottom: 28px;
+            animation: itemIn 0.4s ease 0.1s both;
         }
         .sp-intro-title {
             font-family: 'Outfit', sans-serif;
-            font-weight: 600; font-size: 0.95rem;
-            color: #cbd5e1;
-            margin-bottom: 6px;
+            font-weight: 700; font-size: 1.3rem;
+            color: #f1f5f9; margin-bottom: 8px; line-height: 1.2;
         }
+        .sp-intro-title span { color: #818cf8; }
         .sp-intro-desc {
-            font-size: 0.78rem; color: #334155;
+            font-size: 0.82rem; color: #475569;
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        /* Zone captcha */
+        /* === ZONE CAPTCHA === */
         #splash-captcha-section {
             opacity: 1;
             pointer-events: auto;
+            animation: itemIn 0.4s ease 0.15s both;
         }
         #entry-captcha-container {
             display: flex;
@@ -166,28 +216,29 @@
 
         /* Badge sécurité */
         .sp-security-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(99,102,241,0.08);
-            border: 1px solid rgba(99,102,241,0.15);
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(16,185,129,0.07);
+            border: 1px solid rgba(16,185,129,0.18);
             border-radius: 99px;
-            padding: 5px 12px;
-            font-size: 0.68rem; font-family: 'Inter', sans-serif;
-            color: #475569;
+            padding: 6px 14px;
+            font-size: 0.72rem; font-family: 'Inter', sans-serif;
+            color: #4ade80; font-weight: 500;
             margin-bottom: 16px;
         }
         .sp-security-badge-dot {
-            width: 5px; height: 5px; border-radius: 50%;
-            background: #818cf8;
-            box-shadow: 0 0 6px rgba(129,140,248,0.8);
-            animation: pulseDot 1.5s ease-in-out infinite;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16,185,129,0.8);
+            animation: pulseDot 1.8s ease-in-out infinite;
+            flex-shrink: 0;
         }
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 0.4; transform: scale(0.7); }
         }
 
         @keyframes itemIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(10px); }
             to   { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -196,12 +247,18 @@
         <div class="sp-bg">
             <div class="sp-orb sp-orb-1"></div>
             <div class="sp-orb sp-orb-2"></div>
+            <div class="sp-orb sp-orb-3"></div>
         </div>
 
         <div class="sp-card">
-            <div class="sp-logo">
-                <div class="sp-logo-icon">AP</div>
-                <div>
+
+            <div class="sp-header">
+                <div class="sp-avatar-ring">
+                    <div class="sp-logo-icon">
+                        <img id="splash-avatar" src="" alt="Armel Plantier">
+                    </div>
+                </div>
+                <div class="sp-identity">
                     <div class="sp-logo-name">armel<span>-plantier</span>.com</div>
                     <div class="sp-logo-sub">Admin Sys &amp; Réseau · Cybersécurité</div>
                 </div>
@@ -210,17 +267,18 @@
             <div class="sp-sep"></div>
 
             <div class="sp-intro">
-                <div class="sp-intro-title">Bienvenue sur mon portfolio</div>
-                <div class="sp-intro-desc">Une vérification rapide est requise avant d'accéder au site.</div>
+                <div class="sp-intro-title">Bienvenue <span>👋</span></div>
+                <div class="sp-intro-desc">Une vérification rapide est requise avant d'accéder au portfolio.</div>
             </div>
 
             <div id="splash-captcha-section">
                 <div class="sp-security-badge">
                     <div class="sp-security-badge-dot"></div>
-                    Vérification Cloudflare Turnstile
+                    Sécurisé par Cloudflare Turnstile
                 </div>
                 <div id="entry-captcha-container"></div>
             </div>
+
         </div>
     </div>
 
