@@ -3,10 +3,8 @@
 // === SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ ===
 (function() {
     const LINES = [
-        { text: '[ OK ] Chargement des modules réseau',  cls: 'ok',   delay: 0   },
-        { text: '[ OK ] Initialisation Active Directory', cls: 'ok',   delay: 200 },
-        { text: '[ OK ] Connexion GitHub API',            cls: 'ok',   delay: 380 },
-        { text: '[ .. ] Vérification sécurité...',        cls: 'warn', delay: 560 },
+        { text: '[ OK ] Connexion GitHub API',       cls: 'ok',   delay: 0   },
+        { text: '[ OK ] Connexion à MISTRAL (api)',  cls: 'ok',   delay: 220 },
     ];
 
     const linesEl    = document.getElementById('splash-lines');
