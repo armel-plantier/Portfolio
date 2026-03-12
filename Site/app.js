@@ -33,26 +33,11 @@
 
     function waitForTurnstile() {
         if (window.turnstile) {
-            finishBar();
+            if (captchaSec) captchaSec.classList.add('visible');
+            initEntryCaptcha();
         } else {
             setTimeout(waitForTurnstile, 150);
         }
-    }
-
-    function finishBar() {
-        let p = 89;
-        const fin = setInterval(() => {
-            p = Math.min(p + 1, 100);
-            if (barFill) barFill.style.width = p + '%';
-            if (pctEl)   pctEl.textContent   = p + '%';
-            if (p >= 100) {
-                clearInterval(fin);
-                setTimeout(() => {
-                    if (captchaSec) captchaSec.classList.add('visible');
-                    initEntryCaptcha();
-                }, 200);
-            }
-        }, 30);
     }
 })();
 
