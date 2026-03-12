@@ -407,10 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    // --- GITHUB AUTH HEADERS ---
-    const ghHeaders = config.githubToken
-        ? { headers: { 'Authorization': 'token ' + config.githubToken } }
-        : {};
+
 
     // --- PROCEDURES (Chargement statique depuis config.procedures) ---
     const procedureGrid = document.getElementById('procedure-grid');
@@ -586,7 +583,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Récupération date du dernier commit via GitHub API
             if (config.profile.githubUser && config.profile.githubRepo) {
                 const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
-                fetch(commitUrl, ghHeaders).then(r => r.json()).then(commits => {
+                fetch(commitUrl).then(r => r.json()).then(commits => {
                     if (commits && commits.length > 0) {
                         const date = new Date(commits[0].commit.author.date);
                         const formatted = date.toLocaleDateString('fr-FR');
@@ -745,7 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`, ghHeaders).then(r => r.json()).then(d => {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
             const date = new Date(d.pushed_at);
             updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
         }).catch(() => { updateEl.innerText = "System Ready"; });
