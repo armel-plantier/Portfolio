@@ -1,31 +1,11 @@
 // --- FONCTIONS GLOBALES ---
 
-// === SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ ===
+// === SPLASH SCREEN ===
 (function() {
-    const LINES = [
-        { text: '[ OK ] Connexion GitHub API',       cls: 'ok',   delay: 0   },
-        { text: '[ OK ] Connexion à MISTRAL (api)',  cls: 'ok',   delay: 220 },
-    ];
-
-    const linesEl    = document.getElementById('splash-lines');
     const splash     = document.getElementById('splash-screen');
     const captchaSec = document.getElementById('splash-captcha-section');
 
     if (!splash) return;
-
-    // Lignes de boot
-    LINES.forEach(({ text, cls, delay }) => {
-        setTimeout(() => {
-            if (!linesEl) return;
-            const span = document.createElement('span');
-            span.className = 'line ' + cls;
-            span.textContent = text;
-            linesEl.appendChild(span);
-        }, delay);
-    });
-
-    // Barre instantanée → captcha direct
-    waitForTurnstile();
 
     function waitForTurnstile() {
         if (window.turnstile) {
@@ -35,6 +15,8 @@
             setTimeout(waitForTurnstile, 150);
         }
     }
+
+    waitForTurnstile();
 })();
 
 // === CAPTCHA ===
