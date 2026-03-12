@@ -35,61 +35,128 @@
 </head>
 <body>
 
-    <!-- SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ -->
+    <!-- SPLASH SCREEN -->
     <style>
         #splash-screen {
             position: fixed; inset: 0; z-index: 10000;
-            background: #080a12;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            gap: 0;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
+            background: #07090f;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+            overflow: hidden;
         }
         #splash-screen.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
 
-        .splash-logo {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 40px;
-            animation: splashFadeIn 0.6s ease 0.1s both;
+        /* Particules de fond */
+        .sp-bg {
+            position: absolute; inset: 0; pointer-events: none;
+            overflow: hidden;
         }
-        .splash-logo-icon {
-            width: 44px; height: 44px;
+        .sp-orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); opacity: 0.12;
+        }
+        .sp-orb-1 {
+            width: 400px; height: 400px;
+            background: #6366f1;
+            top: -100px; right: -80px;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+        .sp-orb-2 {
+            width: 300px; height: 300px;
+            background: #8b5cf6;
+            bottom: -80px; left: -60px;
+            animation: orbFloat 10s ease-in-out infinite reverse;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        /* Carte centrale */
+        .sp-card {
+            position: relative; z-index: 1;
+            width: min(420px, 92vw);
+            background: rgba(13, 15, 25, 0.9);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 20px;
+            padding: 44px 40px 40px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 32px 64px rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px);
+            animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Ligne déco en haut de la carte */
+        .sp-card::before {
+            content: '';
+            position: absolute; top: 0; left: 20%; right: 20%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent);
+            border-radius: 99px;
+        }
+
+        /* Logo */
+        .sp-logo {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 36px;
+            animation: itemIn 0.4s ease 0.15s both;
+        }
+        .sp-logo-icon {
+            width: 46px; height: 46px;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 12px;
+            border-radius: 13px;
             display: flex; align-items: center; justify-content: center;
             font-family: 'Outfit', sans-serif;
-            font-weight: 800; font-size: 1.1rem; color: white;
-            box-shadow: 0 0 20px rgba(99,102,241,0.4);
+            font-weight: 800; font-size: 1.05rem; color: #fff;
+            box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+            flex-shrink: 0;
         }
-        .splash-logo-text {
+        .sp-logo-name {
             font-family: 'Outfit', sans-serif;
-            font-weight: 700; font-size: 1.2rem; color: #e2e8f0;
-            letter-spacing: -0.02em;
+            font-weight: 700; font-size: 1.15rem;
+            color: #e2e8f0;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
         }
-        .splash-logo-text span { color: #6366f1; }
+        .sp-logo-name span { color: #818cf8; }
+        .sp-logo-sub {
+            font-size: 0.72rem; color: #334155;
+            font-family: 'Inter', sans-serif;
+            margin-top: 2px;
+            letter-spacing: 0.02em;
+        }
 
-        .splash-boot-lines {
-            font-family: 'Courier New', monospace;
-            font-size: 0.72rem;
-            color: #334155;
+        /* Séparateur */
+        .sp-sep {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1), transparent);
             margin-bottom: 28px;
-            text-align: left;
-            width: 320px;
-            animation: splashFadeIn 0.4s ease 0.3s both;
-            line-height: 1.8;
+            animation: itemIn 0.4s ease 0.25s both;
         }
-        .splash-boot-lines .line { display: block; }
-        .splash-boot-lines .ok   { color: #10b981; }
-        .splash-boot-lines .warn { color: #6366f1; }
 
+        /* Texte d'intro */
+        .sp-intro {
+            margin-bottom: 24px;
+            animation: itemIn 0.4s ease 0.3s both;
+        }
+        .sp-intro-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600; font-size: 0.95rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+        }
+        .sp-intro-desc {
+            font-size: 0.78rem; color: #334155;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
 
-        @keyframes splashFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Captcha intégré dans le splash */
+        /* Zone captcha */
         #splash-captcha-section {
-            width: 320px;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(6px);
             transition: opacity 0.4s ease, transform 0.4s ease;
             pointer-events: none;
         }
@@ -97,29 +164,69 @@
             opacity: 1; transform: translateY(0);
             pointer-events: auto;
         }
-
-        .splash-captcha-label {
-            font-family: 'Courier New', monospace;
-            font-size: 0.72rem;
-            color: #6366f1;
-            margin-bottom: 10px;
-            line-height: 1.8;
+        #entry-captcha-container {
+            display: flex;
+            justify-content: flex-start;
+            min-height: 65px;
         }
 
-        @keyframes dotBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        /* Badge sécurité */
+        .sp-security-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(99,102,241,0.08);
+            border: 1px solid rgba(99,102,241,0.15);
+            border-radius: 99px;
+            padding: 5px 12px;
+            font-size: 0.68rem; font-family: 'Inter', sans-serif;
+            color: #475569;
+            margin-bottom: 16px;
+        }
+        .sp-security-badge-dot {
+            width: 5px; height: 5px; border-radius: 50%;
+            background: #818cf8;
+            box-shadow: 0 0 6px rgba(129,140,248,0.8);
+            animation: pulseDot 1.5s ease-in-out infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        @keyframes itemIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
     </style>
 
     <div id="splash-screen">
-        <div class="splash-logo">
-            <div class="splash-logo-icon">AP</div>
-            <div class="splash-logo-text">armel<span>-plantier</span>.com</div>
+        <div class="sp-bg">
+            <div class="sp-orb sp-orb-1"></div>
+            <div class="sp-orb sp-orb-2"></div>
         </div>
-        <div class="splash-boot-lines" id="splash-lines"></div>
 
-        <!-- Captcha intégré comme ligne de boot -->
-        <div id="splash-captcha-section">
-            <div class="splash-captcha-label">[ En cours ] Vérification de sécurité (captcha)</div>
-            <div id="entry-captcha-container" style="display:flex; justify-content:flex-start; min-height:65px; margin-top: 4px;"></div>
+        <div class="sp-card">
+            <div class="sp-logo">
+                <div class="sp-logo-icon">AP</div>
+                <div>
+                    <div class="sp-logo-name">armel<span>-plantier</span>.com</div>
+                    <div class="sp-logo-sub">Admin Sys &amp; Réseau · Cybersécurité</div>
+                </div>
+            </div>
+
+            <div class="sp-sep"></div>
+
+            <div class="sp-intro">
+                <div class="sp-intro-title">Bienvenue sur mon portfolio</div>
+                <div class="sp-intro-desc">Une vérification rapide est requise avant d'accéder au site.</div>
+            </div>
+
+            <div id="splash-captcha-section">
+                <div class="sp-security-badge">
+                    <div class="sp-security-badge-dot"></div>
+                    Vérification Cloudflare Turnstile
+                </div>
+                <div id="entry-captcha-container"></div>
+            </div>
         </div>
     </div>
 
