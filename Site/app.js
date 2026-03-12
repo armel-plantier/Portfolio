@@ -290,17 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
-            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
-                fetch(apiUrl).then(res => res.json()).then(data => {
-                    if (data && data.length > 0) {
-                        const commitDate = new Date(data[0].commit.author.date);
-                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
-                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
-                    }
-                }).catch(() => {});
-            }
-
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -579,19 +568,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const link = window.location.origin + '/procedures/' + slug;
                 copyToClipboard(link, e.currentTarget);
             });
-
-            // Récupération date du dernier commit via GitHub API
-            if (config.profile.githubUser && config.profile.githubRepo) {
-                const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
-                fetch(commitUrl).then(r => r.json()).then(commits => {
-                    if (commits && commits.length > 0) {
-                        const date = new Date(commits[0].commit.author.date);
-                        const formatted = date.toLocaleDateString('fr-FR');
-                        const btn = document.getElementById(btnId);
-                        if (btn) btn.setAttribute('data-date', formatted);
-                    }
-                }).catch(() => {});
-            }
 
             // Bouton info → modale
             const infoB = div.querySelector(`#${btnId}`);
