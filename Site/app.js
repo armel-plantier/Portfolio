@@ -15,14 +15,6 @@ function onTurnstileLoad() {
     });
 }
 
-// Injection immédiate de la photo de profil dans le splash
-(function() {
-    const img = document.getElementById('splash-avatar');
-    if (img && typeof config !== 'undefined' && config.profile && config.profile.avatar) {
-        img.src = config.profile.avatar;
-    }
-})();
-
 
 const escapeHTML = (str) => {
     if (!str) return '';
