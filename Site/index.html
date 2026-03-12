@@ -398,31 +398,23 @@
             var splash = document.getElementById('splash-screen');
             if (!splash) return;
 
-            // On attend que config.js et app.js soient chargés pour avoir config.profile.turnstileSiteKey
-            function tryRender() {
-                if (typeof config === 'undefined' || !window.turnstile) {
-                    setTimeout(tryRender, 50);
-                    return;
+            turnstile.render('#entry-captcha-container', {
+                sitekey: '0x4AAAAAACWdXwpSGlIddb_k',
+                theme: 'dark',
+                callback: function() {
+                    if (window._splashProgress) window._splashProgress.complete();
+                    setTimeout(function() {
+                        splash.style.transition = 'opacity 0.5s ease';
+                        splash.style.opacity = '0';
+                        setTimeout(function() { splash.style.display = 'none'; }, 500);
+                    }, 600);
                 }
-                turnstile.render('#entry-captcha-container', {
-                    sitekey: config.profile.turnstileSiteKey,
-                    theme: 'dark',
-                    callback: function() {
-                        if (window._splashProgress) window._splashProgress.complete();
-                        setTimeout(function() {
-                            splash.style.transition = 'opacity 0.5s ease';
-                            splash.style.opacity = '0';
-                            setTimeout(function() { splash.style.display = 'none'; }, 500);
-                        }, 600);
-                    }
-                });
-            }
-            tryRender();
+            });
         }
     </script>
 
     <!-- Chargé APRÈS le script inline : onTurnstileLoad existe déjà quand Cloudflare l'appelle -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit"></script>
 
     <header class="app-header">
         <div class="header-left">
