@@ -873,12 +873,41 @@ function copyToClipboard(text, btn) {
     });
 }
 
+function buildPdfFallback(url) {
+    return `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; color:var(--muted); text-align:center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <p style="margin:0; font-size:0.95rem;">Le document ne peut pas être affiché.</p>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+                <a href="${url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; background:var(--primary); color:white; border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none;">
+                    Ouvrir le PDF
+                </a>
+                <a href="${url}" download style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border:1px solid var(--border); color:var(--muted); border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none;">
+                    Télécharger
+                </a>
+            </div>
+        </div>`;
+}
+
 function togglePDF(id, url) {
     const c = document.getElementById(id);
     const card = c.closest('.project-card'); 
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    iframe.style.cssText = 'width:100%; height:600px; border:none; display:block;';
+    iframe.addEventListener('load', () => {
+        try {
+            if (!iframe.contentDocument && !iframe.contentWindow) throw new Error();
+        } catch(e) { /* cross-origin, on suppose que ça marche */ }
+    });
+    const fallbackTimer = setTimeout(() => {
+        if (c.contains(iframe)) { c.innerHTML = buildPdfFallback(url); }
+    }, 8000);
+    iframe.addEventListener('load', () => clearTimeout(fallbackTimer));
+    c.innerHTML = '';
+    c.appendChild(iframe);
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
 }
@@ -898,7 +927,15 @@ function toggleCertPDF(id, url) {
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    iframe.style.cssText = 'width:100%; height:100%; border:none; display:block;';
+    const fallbackTimer = setTimeout(() => {
+        if (viewer.contains(iframe)) { viewer.innerHTML = buildPdfFallback(url); }
+    }, 8000);
+    iframe.addEventListener('load', () => clearTimeout(fallbackTimer));
+    viewer.innerHTML = '';
+    viewer.appendChild(iframe);
 }
 
 function createToggleBtn(container, limit, txtMore) {
@@ -921,7 +958,6 @@ function createToggleBtn(container, limit, txtMore) {
 
 function toggleGlobalPDF(url) {
     const viewer = document.getElementById("global-cert-viewer");
-    
     if (!viewer) return;
 
     const encodedUrl = encodeURIComponent(url);
@@ -942,23 +978,27 @@ function toggleGlobalPDF(url) {
     }
 
     viewer.style.display = 'block';
-    
-    viewer.innerHTML = `
-        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
-        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
-    `;
 
-    const closeBtn = document.getElementById("btn-close-viewer");
-    if (closeBtn) {
-        closeBtn.addEventListener("click", closeViewer);
-    }
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://docs.google.com/viewer?url=${encodedUrl}&embedded=true`;
+    iframe.style.cssText = 'width:100%; height:600px; border:none; display:block; border-radius:4px;';
+
+    const fallbackTimer = setTimeout(() => {
+        if (viewer.contains(iframe)) {
+            const closeBtn = viewer.querySelector('#btn-close-viewer');
+            const fallback = document.createElement('div');
+            fallback.innerHTML = buildPdfFallback(url);
+            iframe.replaceWith(fallback.firstElementChild);
+        }
+    }, 8000);
+    iframe.addEventListener('load', () => clearTimeout(fallbackTimer));
+
+    viewer.innerHTML = `<button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>`;
+    viewer.appendChild(iframe);
+
+    document.getElementById("btn-close-viewer").addEventListener("click", closeViewer);
 
     const headerOffset = 120;
-    const elementPosition = viewer.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-    window.scrollTo({
-         top: offsetPosition,
-         behavior: "smooth"
-    });
+    const offsetPosition = viewer.getBoundingClientRect().top + window.scrollY - headerOffset;
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 }
