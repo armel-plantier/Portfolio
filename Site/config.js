@@ -118,21 +118,209 @@ experiences: [
     // Pour ajouter une procédure : remplis un bloc et dépose le PDF dans Documents/Procédures/
     procedures: [
 {
-    title: "Mise en place d’un LoganAlyser via Syslog",
-    description: "Mise en place d’un LoganAlyser via Syslog",
-	path: "loganalyzer.pdf",
-    icon: `<svg fill="#6366f1" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 548.291 548.291" xml:space="preserve" stroke="#6366f1"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M486.201,196.124h-13.166V132.59c0-0.396-0.062-0.795-0.115-1.196c-0.021-2.523-0.825-5-2.552-6.963L364.657,3.677 c-0.033-0.031-0.064-0.042-0.085-0.073c-0.63-0.707-1.364-1.292-2.143-1.795c-0.229-0.157-0.461-0.286-0.702-0.421 c-0.672-0.366-1.387-0.671-2.121-0.892c-0.2-0.055-0.379-0.136-0.577-0.188C358.23,0.118,357.401,0,356.562,0H96.757 C84.894,0,75.256,9.651,75.256,21.502v174.613H62.092c-16.971,0-30.732,13.756-30.732,30.733v159.812 c0,16.968,13.761,30.731,30.732,30.731h13.164V526.79c0,11.854,9.638,21.501,21.501,21.501h354.776 c11.853,0,21.501-9.647,21.501-21.501V417.392h13.166c16.966,0,30.729-13.764,30.729-30.731V226.854 C516.93,209.872,503.167,196.124,486.201,196.124z M96.757,21.502h249.054v110.009c0,5.939,4.817,10.75,10.751,10.75h94.972v53.861 H96.757V21.502z M317.816,303.427c0,47.77-28.973,76.746-71.558,76.746c-43.234,0-68.531-32.641-68.531-74.152 c0-43.679,27.887-76.319,70.906-76.319C293.389,229.702,317.816,263.213,317.816,303.427z M82.153,377.79V232.085h33.073v118.039 h57.944v27.66H82.153V377.79z M451.534,520.962H96.757v-103.57h354.776V520.962z M461.176,371.092 c-10.162,3.454-29.402,8.209-48.641,8.209c-26.589,0-45.833-6.698-59.24-19.664c-13.396-12.535-20.75-31.568-20.529-52.967 c0.214-48.436,35.448-76.108,83.229-76.108c18.814,0,33.292,3.688,40.431,7.139l-6.92,26.37 c-7.999-3.457-17.942-6.268-33.942-6.268c-27.449,0-48.209,15.567-48.209,47.134c0,30.049,18.807,47.771,45.831,47.771 c7.564,0,13.623-0.852,16.21-2.152v-30.488h-22.478v-25.723h54.258V371.092L461.176,371.092z"></path> <path d="M212.533,305.37c0,28.535,13.407,48.64,35.452,48.64c22.268,0,35.021-21.186,35.021-49.5 c0-26.153-12.539-48.655-35.237-48.655C225.504,255.854,212.533,277.047,212.533,305.37z"></path> </g> </g></svg>`,
+    title: "Rejoindre un domaine",
+    description: "Procédure de jonction d'une machine Windows ou Linux à un domaine Active Directory.",
+    path: "Rejoindre un domaine.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>`,
+    tags: ["Administration Système", "Active Directory"]
+},
+{
+    title: "Mettre en place un DHCP sur un Windows Server",
+    description: "Installation et configuration du rôle DHCP sur Windows Server, création des étendues et options.",
+    path: "Mettre en place un DHCP sur un Windows Server.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+    tags: ["Administration Système", "Réseau"]
+},
+{
+    title: "Mettre en place un système de Log via Graylog",
+    description: "Déploiement de Graylog pour la centralisation et l'analyse des journaux systèmes.",
+    path: "Mettre en place un système de Log via Graylog.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
     tags: ["Administration Système", "Cybersécurité"]
 },
 {
-    title: "Mise en place d’un serveur Apache avec un certificat autosigné TLS",
-    description: "Mise en place d’un serveur Apache avec un certificat autosigné TLS",
-	path: "certificat-tls.pdf",
-    icon: `<svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#6366f1;} .st1{fill:#E6E6E6;} .st2{fill:#4D5152;} </style> <path class="st0" d="M301,193.4v-10h-60v10H99.6v186.5c0,56.3,45.8,102.1,102.1,102.1H246v10h20v-10h44.3 c56.3,0,102.1-45.8,102.1-102.1V193.4H301z M284,398.2H228l18.7-57.7l-6.8-4.1c-9.7-5.8-15.6-16-15.6-27.3 c0-17.5,14.3-31.8,31.8-31.8s31.8,14.3,31.8,31.8c0,11.3-5.8,21.5-15.6,27.3l-6.8,4.1L284,398.2z"></path> <path class="st1" d="M256,51.1c-35.9,0-65,29.2-65,65v57.3h-21.1v-57.3c0-47.5,38.6-86.1,86.1-86.1c47.5,0,86.1,38.6,86.1,86.1v57.3 H321v-57.3C321,80.2,291.9,51.1,256,51.1z"></path> <g> <path class="st2" d="M311.5,418.2l-22.4-69.3c11.7-9.8,18.7-24.4,18.7-39.8c0-28.6-23.2-51.8-51.8-51.8s-51.8,23.2-51.8,51.8 c0,15.4,7,30,18.7,39.8l-22.4,69.3H311.5z M256,277.2c17.5,0,31.8,14.3,31.8,31.8c0,11.3-5.8,21.5-15.6,27.3l-6.8,4.1l18.7,57.7 H228l18.7-57.7l-6.8-4.1c-9.7-5.8-15.6-16-15.6-27.3C224.2,291.5,238.5,277.2,256,277.2z"></path> <path class="st2" d="M362.1,173.4v-57.3C362.1,57.6,314.5,10,256,10c-58.5,0-106.1,47.6-106.1,106.1v57.3H79.6v206.5 c0,67.3,54.8,122.1,122.1,122.1H246v-20h-44.3c-56.3,0-102.1-45.8-102.1-102.1V193.4H241v-20H211v-57.3c0-24.8,20.2-45,45-45 s45,20.2,45,45v77.3h111.3v186.5c0,56.3-45.8,102.1-102.1,102.1H266v20h44.3c67.3,0,122.1-54.8,122.1-122.1V173.4H362.1z M342.1,173.4H321v-57.3c0-35.9-29.2-65-65-65c-35.9,0-65,29.2-65,65v57.3h-21.1v-57.3c0-47.5,38.6-86.1,86.1-86.1 c47.5,0,86.1,38.6,86.1,86.1V173.4z"></path> <rect class="st2" height="20" width="20" x="261" y="173.4"></rect> </g> </g></svg>`,
+    title: "Déployer Pi-Hole sur un réseau local",
+    description: "Mise en place de Pi-Hole comme serveur DNS filtrant pour bloquer publicités et domaines malveillants.",
+    path: "Déployer Pi-Hole sur un réseau local.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>`,
+    tags: ["Réseau", "Cybersécurité"]
+},
+{
+    title: "Procédure Architecture 3-tiers",
+    description: "Mise en place d'une architecture applicative en 3 couches : présentation, logique métier et données.",
+    path: "Procédure Architecture 3-tiers.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="18" width="20" height="4" rx="1"/></svg>`,
+    tags: ["Administration Système", "Réseau"]
+},
+{
+    title: "Créer une VM Windows 11 client sur HyperV",
+    description: "Création et configuration d'une machine virtuelle Windows 11 sous Hyper-V.",
+    path: "Créer une VM Windows 11 client sur HyperV.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><polyline points="7 8 12 13 17 8"/></svg>`,
+    tags: ["Administration Système", "Virtualisation"]
+},
+{
+    title: "Paramétrer un accès SSH sur une machine Debian",
+    description: "Configuration sécurisée du serveur OpenSSH sur Debian : clés, port, restrictions d'accès.",
+    path: "Paramétrer un accès SSH sur une machine Debian.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
     tags: ["Administration Système", "Cybersécurité"]
-}, 
+},
+{
+    title: "Créer un domaine Active Directory sur Windows Serveur",
+    description: "Installation du rôle AD DS, promotion en contrôleur de domaine et configuration initiale.",
+    path: "Créer un domaine Active Directory sur Windows Serveur.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    tags: ["Administration Système", "Active Directory"]
+},
+{
+    title: "S'isoler dans un réseau local avec un routeur Pfsense",
+    description: "Configuration de pfSense pour créer un environnement réseau isolé et sécurisé.",
+    path: "S'isoler dans un réseau local avec un routeur Pfsense.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    tags: ["Réseau", "Cybersécurité"]
+},
+{
+    title: "HAProxy – Répartition des tâches serveur web",
+    description: "Mise en place de HAProxy comme load balancer pour distribuer la charge entre plusieurs serveurs web.",
+    path: "Procédure HAProxy - Répartition des taches serveur web.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+    tags: ["Réseau", "Administration Système"]
+},
+{
+    title: "Procédure MariaDB",
+    description: "Installation et configuration d'un serveur de base de données MariaDB sous Linux.",
+    path: "Procédure MariaDb.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
+    tags: ["Administration Système"]
+},
+{
+    title: "Compte Rendu TP DoS/DDoS",
+    description: "Analyse et documentation d'une attaque par déni de service, vecteurs d'attaque et contre-mesures.",
+    path: "Compte Rendu TP Dos_Ddos.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+    tags: ["Cybersécurité", "Réseau"]
+},
+{
+    title: "Procédure LAMP",
+    description: "Déploiement d'une stack LAMP (Linux, Apache, MySQL, PHP) pour héberger des applications web.",
+    path: "Procédure LAMP.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+    tags: ["Administration Système"]
+},
+{
+    title: "Procédure DNS dynamique",
+    description: "Configuration d'un serveur DNS dynamique (DDNS) pour la mise à jour automatique des enregistrements.",
+    path: "Procédure DNS dynamique.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>`,
+    tags: ["Réseau", "Administration Système"]
+},
+{
+    title: "Procédure SAMBA",
+    description: "Installation et configuration de Samba pour le partage de fichiers entre Linux et Windows.",
+    path: "Procédure SAMBA.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>`,
+    tags: ["Administration Système", "Réseau"]
+},
+{
+    title: "Attaque SSH (MITM + ARP Snooping)",
+    description: "Démonstration d'une attaque Man-in-the-Middle sur SSH par ARP Poisoning et capture de session.",
+    path: "Attaque SSH (MITM + ARP Snooping).pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`,
+    tags: ["Cybersécurité"]
+},
+{
+    title: "Bonnes pratiques sécurité du service OpenSSH",
+    description: "Durcissement de la configuration OpenSSH : authentification par clé, restrictions, bannières, fail2ban.",
+    path: "Bonnes pratiques et amélioration de la sécurité du service OpenSSH.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
+    tags: ["Cybersécurité", "Administration Système"]
+},
+{
+    title: "Contre-mesure – Attaque SSH (MITM + ARP Snooping)",
+    description: "Mise en place des défenses contre l'ARP Poisoning et les attaques MITM sur SSH.",
+    path: "Contre-mesure - Attaque SSH (MITM + ARP Snooping).pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
+    tags: ["Cybersécurité"]
+},
+{
+    title: "HAProxy DNS",
+    description: "Configuration de HAProxy comme proxy et répartiteur de charge pour les requêtes DNS.",
+    path: "HAPROXY DNS.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/><polyline points="17 1 21 5 17 9"/></svg>`,
+    tags: ["Réseau", "Administration Système"]
+},
+{
+    title: "VPN IPSec",
+    description: "Mise en place d'un tunnel VPN IPSec entre deux sites pour sécuriser les communications.",
+    path: "VPN IPSEC.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+    tags: ["Réseau", "Cybersécurité"]
+},
+{
+    title: "Active Directory – AGDLP",
+    description: "Application de la stratégie AGDLP (Account, Global, Domain Local, Permission) pour la gestion des accès AD.",
+    path: "Active Directory _ AGDLP .pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg>`,
+    tags: ["Administration Système", "Active Directory"]
+},
+{
+    title: "Active Directory – GPO",
+    description: "Création et application de stratégies de groupe (GPO) pour la gestion centralisée des postes.",
+    path: "Active Directory _ GPO.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    tags: ["Administration Système", "Active Directory"]
+},
+{
+    title: "Mise en place d'un serveur ProFTPd",
+    description: "Installation et sécurisation d'un serveur FTP avec ProFTPd sous Linux.",
+    path: "Mise en place d'un serveur ProFtd.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>`,
+    tags: ["Administration Système"]
+},
+{
+    title: "Serveur FTPS",
+    description: "Configuration d'un serveur FTP sécurisé (FTPS) avec chiffrement TLS des transferts.",
+    path: "Serveur FTPS.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/><rect x="3" y="11" width="5" height="4" rx="1"/></svg>`,
+    tags: ["Administration Système", "Cybersécurité"]
+},
+{
+    title: "Utiliser Samba 4 en tant que contrôleur de domaine",
+    description: "Configuration de Samba 4 comme contrôleur de domaine Active Directory sous Linux.",
+    path: "Utiliser Samba 4 en tant que contrôleur de domaine.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/><path d="M12 9v6"/><path d="M9 12h6"/></svg>`,
+    tags: ["Administration Système", "Active Directory"]
+},
+{
+    title: "Procédure DHCP + DNS",
+    description: "Déploiement conjoint d'un serveur DHCP et DNS sur Linux pour la gestion automatique du réseau.",
+    path: "Procédure Dhcp+Dns.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 15a5 5 0 0 1 5 5"/><circle cx="5" cy="19" r="1"/></svg>`,
+    tags: ["Réseau", "Administration Système"]
+},
+{
+    title: "Mise en place d'un serveur Zabbix pour superviser un réseau",
+    description: "Déploiement de Zabbix pour la supervision d'infrastructure : hôtes, métriques, alertes et dashboards.",
+    path: "Mise en place d'un serveur Zabbix afin de superviser un réseau.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    tags: ["Administration Système", "Réseau"]
+},
+{
+    title: "Mise en place d'un LogAnalyser via Syslog",
+    description: "Visualisation centralisée des journaux systèmes via LogAnalyzer et Syslog.",
+    path: "loganalyzer.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>`,
+    tags: ["Administration Système", "Cybersécurité"]
+},
+{
+    title: "Mise en place d'un serveur Apache avec certificat TLS autosigné",
+    description: "Configuration d'Apache avec HTTPS via un certificat TLS autosigné.",
+    path: "certificat-tls.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
+    tags: ["Administration Système", "Cybersécurité"]
+},
     ],
-
 // --- 7. CERTIFICATIONS ---
     certifications: [
         { 
