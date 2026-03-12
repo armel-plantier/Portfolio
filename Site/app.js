@@ -1,368 +1,1083 @@
-const config = {
+// --- FONCTIONS GLOBALES ---
 
-// --- 1. NAVIGATION ---
-    navigation: [
-        { title: "Accueil", link: "#" },
-        { title: "Projet TechNova", link: "#projets" }, 
-        { title: "Parcours", link: "#parcours" },
-        { title: "Compétences", link: "#competences" },
-        { title: "Certifs", link: "#certifications" },
-        { title: "Procédures", link: "#procedures" },
-        { title: "Veille", link: "#veille" } 
-    ],
+// === SPLASH SCREEN AVEC CAPTCHA INTÉGRÉ ===
+(function() {
+    const LINES = [
+        { text: '[ OK ] Chargement des modules réseau',  cls: 'ok',   delay: 0   },
+        { text: '[ OK ] Initialisation Active Directory', cls: 'ok',   delay: 200 },
+        { text: '[ OK ] Connexion GitHub API',            cls: 'ok',   delay: 380 },
+        { text: '[ .. ] Vérification sécurité...',        cls: 'warn', delay: 560 },
+    ];
 
-    // --- 2. PROFIL & RÉSEAUX ---
-    githubToken: "GITHUB_TOKEN_PLACEHOLDER",
+    const linesEl    = document.getElementById('splash-lines');
+    const barFill    = document.getElementById('splash-bar-fill');
+    const pctEl      = document.getElementById('splash-pct');
+    const splash     = document.getElementById('splash-screen');
+    const captchaSec = document.getElementById('splash-captcha-section');
 
-    profile: {
-        githubUser: "armel-plantier", 
-        githubRepo: "Portfolio", 
+    if (!splash) return;
 
-        favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%236366f1%22>AP</text></svg>",
-        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSga_rtaXowL4eH0pqlypM_kgAHCb_gGhUTLA&s",
-        name: "Armel Plantier",
-        typewriterText: "Etudiant Admin Sys & Réseau | Passionné de Cybersécurité",
-        bio: "Passionné par l'architecture réseau, le durcissement système et la cybersécurité, j'aime construire des environnements robustes, automatisés et sécurisés dès la conception",
-        status: "Recherche active d'alternance",
-        
-        emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
-        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
-    },
+    // Lignes de boot
+    LINES.forEach(({ text, cls, delay }) => {
+        setTimeout(() => {
+            if (!linesEl) return;
+            const span = document.createElement('span');
+            span.className = 'line ' + cls;
+            span.textContent = text;
+            linesEl.appendChild(span);
+        }, delay);
+    });
 
-    social: {
-        github: "https://github.com/armel-plantier",
-        linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
-    },
+    // Barre 0 → 100%
+    // La barre s'arrête à 90% et attend que Turnstile soit chargé pour finir
+    let pct = 0;
+    let barDone = false;
+    const interval = setInterval(() => {
+        const step = pct < 70 ? 3 : pct < 89 ? 1.2 : 0;
+        pct = Math.min(pct + step, 89);
+        if (barFill) barFill.style.width = pct + '%';
+        if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
 
-    // --- 3. TAGS HEADER ---
-   // skills: [ "🐧 Linux", "🪟 Windows", "🕸️ Réseau", "🛡️ Sécurité" ],
+        if (pct >= 89 && !barDone) {
+            barDone = true;
+            clearInterval(interval);
+            // Attendre que Turnstile soit prêt, puis finir la barre et afficher le captcha
+            waitForTurnstile();
+        }
+    }, 22);
 
-    // --- 4. PROJETS (AUTOMATISÉS) ---
-    // Pas de date ni de isNew ici. Le script va chercher la date du commit sur GitHub.
-projects: [
-{
-    title: "Mise en place du réseau TechNova",
-    longDescription: "Simulation d'une refonte complète de l'architecture réseau PME. Dans cette procédure vous trouverez l'essentiel de la mise en place du réseau. Le contenu est évolutif.",
-    path: "Mise_en_place_du_réseau_TechNova.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 12H21M12 8V12M6.5 12V16M17.5 12V16M10.1 8H13.9C14.4601 8 14.7401 8 14.954 7.89101C15.1422 7.79513 15.2951 7.64215 15.391 7.45399C15.5 7.24008 15.5 6.96005 15.5 6.4V4.6C15.5 4.03995 15.5 3.75992 15.391 3.54601C15.2951 3.35785 15.1422 3.20487 14.954 3.10899C14.7401 3 14.4601 3 13.9 3H10.1C9.53995 3 9.25992 3 9.04601 3.10899C8.85785 3.20487 8.70487 3.35785 8.60899 3.54601C8.5 3.75992 8.5 4.03995 8.5 4.6V6.4C8.5 6.96005 8.5 7.24008 8.60899 7.45399C8.70487 7.64215 8.85785 7.79513 9.04601 7.89101C9.25992 8 9.53995 8 10.1 8ZM15.6 21H19.4C19.9601 21 20.2401 21 20.454 20.891C20.6422 20.7951 20.7951 20.6422 20.891 20.454C21 20.2401 21 19.9601 21 19.4V17.6C21 17.0399 21 16.7599 20.891 16.546C20.7951 16.3578 20.6422 16.2049 20.454 16.109C20.2401 16 19.9601 16 19.4 16H15.6C15.0399 16 14.7599 16 14.546 16.109C14.3578 16.2049 14.2049 16.3578 14.109 16.546C14 16.7599 14 17.0399 14 17.6V19.4C14 19.9601 14 20.2401 14.109 20.454C14.2049 20.6422 14.3578 20.7951 14.546 20.891C14.7599 21 15.0399 21 15.6 21ZM4.6 21H8.4C8.96005 21 9.24008 21 9.45399 20.891C9.64215 20.7951 9.79513 20.6422 9.89101 20.454C10 20.2401 10 19.9601 10 19.4V17.6C10 17.0399 10 16.7599 9.89101 16.546C9.79513 16.3578 9.64215 16.2049 9.45399 16.109C9.24008 16 8.96005 16 8.4 16H4.6C4.03995 16 3.75992 16 3.54601 16.109C3.35785 16.2049 3.20487 16.3578 3.10899 16.546C3 16.7599 3 17.0399 3 17.6V19.4C3 19.9601 3 20.2401 3.10899 20.454C3.20487 20.6422 3.35785 20.7951 3.54601 20.891C3.75992 21 4.03995 21 4.6 21Z" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`,
-    tags: ["Administration Réseau", "Administration Système"]
-}, 
-{
-    title: "Gestion avancée de l'Active Directory",
-    longDescription: "Après avoir configuré le minimum de l'AD dans la partie précédente, la configuration doit être d'avantage poussée.",
-    path: "Gestion_avancée_de_l’AD.pdf",
-    icon: `<svg version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#FFFFFF;} .st1{fill:#3A559F;} .st2{fill:#F4F4F4;} .st3{fill:#FF0084;} .st4{fill:#0063DB;} .st5{fill:#00ACED;} .st6{fill:#FFEC06;} .st7{fill:#FF0000;} .st8{fill:#25D366;} .st9{fill:#0088FF;} .st10{fill:#314358;} .st11{fill:#EE6996;} .st12{fill:#01AEF3;} .st13{fill:#FFFEFF;} .st14{fill:#F06A35;} .st15{fill:#00ADEF;} .st16{fill:#1769FF;} .st17{fill:#1AB7EA;} .st18{fill:#6001D1;} .st19{fill:#E41214;} .st20{fill:#05CE78;} .st21{fill:#7B519C;} .st22{fill:#FF4500;} .st23{fill:#00F076;} .st24{fill:#FFC900;} .st25{fill:#00D6FF;} .st26{fill:#FF3A44;} .st27{fill:#FF6A36;} .st28{fill:#0061FE;} .st29{fill:#F7981C;} .st30{fill:#EE1B22;} .st31{fill:#EF3561;} .st32{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;} .st33{fill:#0097D3;} .st34{fill:#01308A;} .st35{fill:#019CDE;} .st36{fill:#FFD049;} .st37{fill:#16A05D;} .st38{fill:#4486F4;} .st39{fill:none;} .st40{fill:#34A853;} .st41{fill:#4285F4;} .st42{fill:#FBBC05;} .st43{fill:#EA4335;} </style> <g> <g> <g> <path class="st15" d="M30,15H17c-0.6,0-1-0.4-1-1V3.3c0-0.5,0.4-0.9,0.8-1l13-2.3c0.3,0,0.6,0,0.8,0.2C30.9,0.4,31,0.7,31,1v13 C31,14.6,30.6,15,30,15z"></path> </g> <g> <path class="st15" d="M13,15H1c-0.6,0-1-0.4-1-1V6c0-0.5,0.4-0.9,0.8-1l12-2c0.3,0,0.6,0,0.8,0.2C13.9,3.4,14,3.7,14,4v10 C14,14.6,13.6,15,13,15z"></path> </g> <g> <path class="st15" d="M30,32c-0.1,0-0.1,0-0.2,0l-13-2.3c-0.5-0.1-0.8-0.5-0.8-1V18c0-0.6,0.4-1,1-1h13c0.6,0,1,0.4,1,1v13 c0,0.3-0.1,0.6-0.4,0.8C30.5,31.9,30.2,32,30,32z"></path> </g> <g> <path class="st15" d="M13,29c-0.1,0-0.1,0-0.2,0l-12-2C0.4,26.9,0,26.5,0,26v-8c0-0.6,0.4-1,1-1h12c0.6,0,1,0.4,1,1v10 c0,0.3-0.1,0.6-0.4,0.8C13.5,28.9,13.2,29,13,29z"></path> </g> </g> </g> </g></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Mise en place d’un serveur de journalisation Graylog",
-    longDescription: "Graylog est une solution de gestion centralisée des logs qui permet de collecter, indexer et analyser vos données machine en temps réel",
-    path: "Mise_en_place_d_un_serveur_de_journalisation_(Graylog).pdf",
-    icon: `<svg viewBox="0 -4 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M128.002368,0 C202.384366,0 256.00329,57.2695747 256.00329,123.893941 C256.00329,191.659134 205.122353,247.559715 128.002368,247.559715 C50.8823831,247.559715 0.000720818792,191.659134 0.000720818792,123.893941 C-0.226719402,57.2695747 53.3922051,0 128.002368,0 Z M43.3529171,123.893941 C43.3529171,169.298902 82.3692409,209.227888 127.774203,209.227888 C173.179164,209.227888 212.195488,169.298902 212.195488,123.893941 C212.195488,74.8383287 173.179164,38.1036613 127.774203,38.1036613 C82.5974066,38.1036613 43.3529171,74.8383287 43.3529171,123.893941 Z" fill="#FF3633"> </path> <path d="M73.9271124,117.048971 C77.3495969,117.048971 80.3157502,118.874297 81.9129097,121.84045 L89.4423757,121.84045 L101.306989,93.3197452 C101.76332,91.9507514 103.132314,90.8099232 104.501308,90.353592 C107.01113,89.8972607 109.520952,91.2662545 109.977283,93.7760765 L122.526393,148.992161 L135.303669,74.6101631 L135.303669,74.6101631 C135.531834,72.784838 136.900828,71.4158442 138.726153,70.9595129 C141.235975,70.275016 143.745797,71.8721754 144.430294,74.3819974 L158.120232,130.282578 L165.193367,109.519505 C165.421533,108.606843 166.106029,107.69418 167.018692,107.009683 C169.072183,105.64069 172.038336,106.097021 173.40733,108.150512 L179.339636,116.59264 C179.567802,118.646131 179.567802,120.699622 179.567802,122.753112 C179.567802,125.4911 179.339636,128.229088 179.111471,130.73891 C178.198808,130.510744 177.514311,129.826247 176.829814,129.14175 L176.829814,129.14175 L170.897508,120.927787 L161.770882,148.535829 C160.85822,151.045651 158.348398,152.186479 155.838576,151.501983 C154.241416,151.045651 153.100588,149.676657 152.872423,148.307664 L152.872423,148.307664 L140.551478,98.5675549 L127.546037,174.09038 C127.089706,176.600202 124.808049,178.197362 122.298227,177.969196 C120.244737,177.741031 118.875743,176.143871 118.419411,174.09038 L104.501308,110.204002 L96.9718417,128.229088 C96.2873448,130.054413 94.4620197,131.195241 92.6366946,131.195241 L92.6366946,131.195241 L81.9129097,131.195241 C80.3157502,133.933229 77.3495969,135.758554 73.9271124,135.758554 C68.9074684,135.758554 64.5723213,131.651572 64.5723213,126.403763 C64.8004869,121.384119 68.9074684,117.048971 73.9271124,117.048971 Z" fill="#A6AFBD"> </path> </g> </g></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-{
-    title: "Connexion aux sessions sur Linux via les utilisateurs Active Directory",
-    longDescription: "Afin de centraliser l'ensemble des utilisateurs, il peut être interessant d'accéder à une session sur Linux à l'aide des utilisateurs Windows.",
-    path: "Connexion_aux_sessions_sur_Linux_via_les_utilisateurs_Active_Directory.pdf",
-    icon: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title>folder_type_linux_opened</title><path d="M27.9,6H18.2l-2,4H5V27H30V6ZM28,24H7V12H28Zm.1-14H20.3l1-2H28Z" style="fill:#dbc27b"></path><polygon points="25.9 14 0.3 14 4.1 27 29.7 27 25.9 14" style="fill:#dbc27b"></polygon><path d="M30.346,26.569h0a1.946,1.946,0,0,1-.306-.81,1.59,1.59,0,0,0-.45-.92h0a1.141,1.141,0,0,0-.171-.12,1.071,1.071,0,0,0-.175-.081,4.58,4.58,0,0,0-.158-3.245,10.824,10.824,0,0,0-1.98-3.052,4.522,4.522,0,0,1-1.419-2.954c.021-1.885.215-5.382-3.228-5.387-.14,0-.286.005-.439.017-3.847.3-2.826,4.217-2.883,5.528a4.634,4.634,0,0,1-.96,2.656A13.013,13.013,0,0,0,15.7,22.167a4.577,4.577,0,0,0-.262,2.187c-.035.03-.068.062-.1.094-.236.243-.41.538-.605.736a1.9,1.9,0,0,1-.724.339,1.292,1.292,0,0,0-.787.594h0a1.036,1.036,0,0,0-.118.509,3.152,3.152,0,0,0,.05.485,2.025,2.025,0,0,1,.035.852,1.6,1.6,0,0,0-.1,1.3,1.15,1.15,0,0,0,.855.5,9.363,9.363,0,0,1,2.526.514l.067-.123-.067.124a3.7,3.7,0,0,0,2.38.425,1.536,1.536,0,0,0,1.1-.829c.533,0,1.119-.22,2.056-.27.637-.05,1.431.218,2.347.169a1.147,1.147,0,0,0,.105.275h0a1.719,1.719,0,0,0,1.714.942,3.135,3.135,0,0,0,2.054-1.145l-.111-.09.112.089A7.4,7.4,0,0,1,30.4,28.524a.993.993,0,0,0,.6-.743C31.018,27.446,30.814,27.071,30.346,26.569Z" style="fill:#20201f"></path><path d="M30.71,27.765c-.013.206-.168.36-.455.526a7.191,7.191,0,0,0-2.238,1.381,2.858,2.858,0,0,1-1.855,1.047,1.4,1.4,0,0,1-1.434-.791h0a2.17,2.17,0,0,1,.049-1.486,9.675,9.675,0,0,0,.423-1.667h0a8.552,8.552,0,0,1,.177-1.587,1.23,1.23,0,0,1,.583-.864L26,24.3a1.257,1.257,0,0,0,.8,1.209,2.024,2.024,0,0,0,1.634-.669l.191-.007a1.029,1.029,0,0,1,.771.216h0a1.422,1.422,0,0,1,.357.771,1.984,1.984,0,0,0,.372.933h0C30.578,27.234,30.722,27.558,30.71,27.765ZM19.818,29.293h0A1.186,1.186,0,0,1,18.8,30.437a3.45,3.45,0,0,1-2.181-.4h0a8.838,8.838,0,0,0-2.6-.541.876.876,0,0,1-.657-.358,1.394,1.394,0,0,1,.111-1.082v-.005a2.065,2.065,0,0,0-.024-.982,1.351,1.351,0,0,1,.038-.822h0a.982.982,0,0,1,.63-.462,2.023,2.023,0,0,0,.832-.406h0c.231-.235.4-.529.608-.738a.8.8,0,0,1,.6-.3h.009a.875.875,0,0,1,.144.012,1.487,1.487,0,0,1,.93.657l.832,1.461h0a10.028,10.028,0,0,0,1.085,1.435A2.319,2.319,0,0,1,19.818,29.293Zm4.147-13.621a.794.794,0,0,0-.436-.338h0a7.111,7.111,0,0,1-.962-.383,2.084,2.084,0,0,0-1.1-.365,1.332,1.332,0,0,0-.425.069,2.091,2.091,0,0,0-.763.515h0c-.03.027-.068.052-.162.118s-.235.166-.438.313a.418.418,0,0,0-.177.5,1.215,1.215,0,0,0,.625.627h0a4.529,4.529,0,0,1,.557.438,1.259,1.259,0,0,0,.295.176,1.209,1.209,0,0,0,.407.086,1.612,1.612,0,0,0,.919-.227,4.226,4.226,0,0,1,.706-.383h0a1.468,1.468,0,0,0,.967-.74A.474.474,0,0,0,23.965,15.672Z" style="fill:#fdbb14"></path><path d="M28.782,24.555h-.177c.136-.415-.165-.721-.969-1.072-.834-.355-1.5-.32-1.611.4-.007.037-.013.076-.017.114a1.253,1.253,0,0,0-.188.081,1.513,1.513,0,0,0-.724,1.041,8.673,8.673,0,0,0-.186,1.638h0a6.2,6.2,0,0,1-.29,1.187,4.326,4.326,0,0,1-4.872.287c-.109-.166-.234-.331-.363-.493-.083-.1-.167-.207-.251-.309a1.058,1.058,0,0,0,.419-.075.529.529,0,0,0,.29-.288,1.134,1.134,0,0,0-.315-1.024A5.693,5.693,0,0,0,17.9,24.708h0a2.245,2.245,0,0,1-1.046-1.225,2.657,2.657,0,0,1-.014-1.445A8.448,8.448,0,0,1,18,19.612c.1-.07.035.129-.369.853-.362.661-1.04,2.188-.112,3.381a6.907,6.907,0,0,1,.587-2.523c.514-1.123,1.59-3.07,1.675-4.623.044.031.2.13.263.167h0a4.88,4.88,0,0,1,.537.424,1.351,1.351,0,0,0,.8.3h.1a1.829,1.829,0,0,0,.909-.252,4.843,4.843,0,0,1,.674-.369h0a1.816,1.816,0,0,0,.949-.615,20.736,20.736,0,0,0,1.583,3.927,8.96,8.96,0,0,1,1,2.65,1.745,1.745,0,0,1,.466.057,3.5,3.5,0,0,0-.992-3.481c-.2-.187-.21-.27-.11-.266a5.013,5.013,0,0,1,1.5,2.418,2.986,2.986,0,0,1,.017,1.464c.061.024.124.051.187.08C28.6,23.647,28.949,24.031,28.782,24.555ZM24.009,14.236a1.53,1.53,0,0,1-.139.672,1.328,1.328,0,0,1-.2.314c-.026-.012-.053-.023-.081-.034-.1-.04-.182-.073-.259-.1s-.136-.047-.2-.067c.045-.053.133-.114.165-.191a.953.953,0,0,0,.079-.365v-.017a.965.965,0,0,0-.054-.354.645.645,0,0,0-.17-.276.351.351,0,0,0-.242-.107H22.9a.367.367,0,0,0-.236.09.652.652,0,0,0-.19.264.982.982,0,0,0-.079.366v.016a1.136,1.136,0,0,0,.016.21,2.818,2.818,0,0,0-.553-.181,1.924,1.924,0,0,1-.016-.2v-.019a1.523,1.523,0,0,1,.138-.672,1.2,1.2,0,0,1,.391-.5.88.88,0,0,1,.539-.185h.01a.882.882,0,0,1,.533.175,1.182,1.182,0,0,1,.4.488,1.5,1.5,0,0,1,.151.651.054.054,0,0,0,0,.018Zm-2.948.246-.076.023a1.547,1.547,0,0,0-.357.166.941.941,0,0,0,0-.225v-.013a.986.986,0,0,0-.074-.288.554.554,0,0,0-.151-.213.25.25,0,0,0-.167-.068h-.018a.239.239,0,0,0-.172.1.536.536,0,0,0-.109.234.892.892,0,0,0-.021.309v.012a.886.886,0,0,0,.074.29.54.54,0,0,0,.151.212.355.355,0,0,0,.031.023c-.064.048-.107.082-.16.119l-.121.085a1.05,1.05,0,0,1-.251-.36,1.541,1.541,0,0,1-.139-.573h0a1.531,1.531,0,0,1,.07-.586.984.984,0,0,1,.26-.439.561.561,0,0,1,.38-.177h.033a.571.571,0,0,1,.366.134,1.022,1.022,0,0,1,.31.408,1.536,1.536,0,0,1,.139.574h0a1.809,1.809,0,0,1,0,.255Z" style="fill:#fff"></path><path d="M22.7,16.382a3.1,3.1,0,0,1-1.355.442,1.906,1.906,0,0,1-1.164-.434c-.14-.107-.254-.213-.34-.291-.149-.113-.131-.272-.07-.267.1.012.118.142.183.2.087.079.2.181.329.283a1.741,1.741,0,0,0,1.062.4,3,3,0,0,0,1.273-.42,6.787,6.787,0,0,0,.59-.4c.142-.1.137-.221.254-.208s.03.134-.134.272A3.544,3.544,0,0,1,22.7,16.382Zm-.986-1.391c.017.051.1.043.151.067s.078.068.126.07.118-.016.124-.06-.08-.095-.137-.117a.3.3,0,0,0-.236,0c-.016.008-.033.028-.028.044Zm-.5,0c-.016.051-.1.043-.15.067s-.078.068-.126.07-.119-.016-.125-.06.081-.095.138-.117a.3.3,0,0,1,.236,0c.015.008.033.028.027.044Z" style="fill:#20201f"></path></g></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Gestion des comptes locaux Linux",
-    longDescription: "Les comptes locaux doivent être gérés afin de couvrir un certaine surface d'attaque. C'est un point sensible au sein d'un SI, parfois négligé.",
-    path: "Gestion_des_comptes_locaux_Linux.pdf",
-    icon: `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#202020" d="M13.338 12.033c-.1-.112-.146-.319-.197-.54-.05-.22-.107-.457-.288-.61v-.001a.756.756 0 00-.223-.134c.252-.745.153-1.487-.1-2.157-.312-.823-.855-1.54-1.27-2.03-.464-.586-.918-1.142-.91-1.963.014-1.254.138-3.579-2.068-3.582-.09 0-.183.004-.28.012-2.466.198-1.812 2.803-1.849 3.675-.045.638-.174 1.14-.613 1.764-.515.613-1.24 1.604-1.584 2.637-.162.487-.24.984-.168 1.454-.023.02-.044.041-.064.063-.151.161-.263.357-.388.489-.116.116-.282.16-.464.225-.183.066-.383.162-.504.395v.001a.702.702 0 00-.077.339c0 .108.016.217.032.322.034.22.068.427.023.567-.144.395-.163.667-.061.865.102.199.31.286.547.335.473.1 1.114.075 1.619.342l.043-.082-.043.082c.54.283 1.089.383 1.526.284a.99.99 0 00.706-.552c.342-.002.717-.146 1.318-.18.408-.032.918.145 1.503.113a.806.806 0 00.068.183l.001.001c.227.455.65.662 1.1.627.45-.036.928-.301 1.315-.762l-.07-.06.07.06c.37-.448.982-.633 1.388-.878.203-.123.368-.276.38-.499.013-.222-.118-.471-.418-.805z"></path><path fill="#F8BF11" d="M13.571 12.828c-.007.137-.107.24-.29.35-.368.222-1.019.414-1.434.918-.362.43-.802.665-1.19.696-.387.03-.721-.13-.919-.526v-.002c-.123-.233-.072-.6.031-.987s.251-.785.271-1.108v-.001c.02-.415.044-.776.114-1.055.07-.28.179-.468.373-.575a.876.876 0 01.027-.014c.022.359.2.725.514.804.343.09.838-.204 1.047-.445l.122-.004c.184-.005.337.006.495.143v.001c.121.102.179.296.229.512.05.217.09.453.239.621.287.32.38.534.371.672zM6.592 13.843v.003c-.034.435-.28.672-.656.758-.377.086-.888 0-1.398-.266-.565-.3-1.237-.27-1.667-.36-.216-.045-.357-.113-.421-.238-.064-.126-.066-.345.071-.72v-.001l.001-.002c.068-.209.018-.438-.015-.653-.033-.214-.049-.41.024-.546l.001-.001c.094-.181.232-.246.403-.307.17-.062.373-.11.533-.27l.001-.001h.001c.148-.157.26-.353.39-.492.11-.117.22-.195.385-.196h.005a.61.61 0 01.093.008c.22.033.411.187.596.437l.533.971v.001c.142.296.441.622.695.954.254.333.45.666.425.921z"></path><path fill="#D6A312" d="M9.25 4.788c-.043-.084-.13-.164-.28-.225-.31-.133-.444-.142-.617-.254-.28-.181-.513-.244-.706-.244a.834.834 0 00-.272.047c-.236.08-.392.25-.49.342-.02.019-.044.035-.104.08-.06.043-.15.11-.28.208-.117.086-.154.2-.114.332.04.132.167.285.4.417h.001c.145.085.244.2.358.291a.801.801 0 00.189.117c.072.031.156.052.26.058.248.015.43-.06.59-.151.16-.092.296-.204.452-.255h.001c.32-.1.548-.301.62-.493a.324.324 0 00-.008-.27z"></path><path fill="#202020" d="M8.438 5.26c-.255.133-.552.294-.869.294-.316 0-.566-.146-.745-.289-.09-.07-.163-.142-.218-.193-.096-.075-.084-.181-.045-.178.066.008.076.095.117.134.056.052.126.12.211.187.17.135.397.266.68.266.284 0 .614-.166.816-.28.115-.064.26-.179.379-.266.09-.067.087-.147.162-.138.075.009.02.089-.085.18-.105.092-.27.214-.403.283z"></path><path fill="#ffffff" d="M12.337 10.694a1.724 1.724 0 00-.104 0h-.01c.088-.277-.106-.48-.621-.713-.534-.235-.96-.212-1.032.265-.005.025-.009.05-.011.076a.801.801 0 00-.12.054c-.252.137-.389.386-.465.692-.076.305-.098.674-.119 1.09-.013.208-.099.49-.186.79-.875.624-2.09.894-3.122.19-.07-.11-.15-.22-.233-.328a13.85 13.85 0 00-.16-.205.65.65 0 00.268-.05.34.34 0 00.186-.192c.063-.17 0-.408-.202-.68-.201-.273-.542-.58-1.043-.888-.368-.23-.574-.51-.67-.814-.097-.305-.084-.635-.01-.96.143-.625.51-1.233.743-1.614.063-.046.023.086-.236.567-.232.44-.667 1.455-.072 2.248.016-.564.15-1.14.377-1.677.329-.747 1.018-2.041 1.072-3.073.029.02.125.086.169.11.126.075.221.184.344.283a.85.85 0 00.575.2c.24 0 .427-.079.582-.168.17-.096.304-.204.433-.245.27-.085.486-.235.608-.41.21.83.7 2.027 1.014 2.611.167.31.5.969.643 1.762.091-.002.191.01.299.038.375-.973-.319-2.022-.636-2.314-.128-.124-.135-.18-.07-.177.343.304.795.917.96 1.608.075.315.09.646.01.973.04.017.08.034.12.054.603.293.826.548.719.897z"></path><path fill="#E6E6E6" d="M8.04 8.062c-.556.002-1.099.251-1.558.716-.46.464-.814 1.122-1.018 1.888l.061.038v.004c.47.298.805.598 1.012.878.219.296.316.584.223.834a.513.513 0 01-.27.283l-.041.015c.074.097.146.197.213.3.944.628 2.042.396 2.867-.172.08-.278.153-.536.163-.698.021-.415.042-.792.124-1.12.082-.33.242-.63.544-.795.017-.01.034-.015.051-.023a.756.756 0 01.022-.094c-.242-.622-.591-1.14-1.01-1.5-.42-.36-.897-.551-1.382-.554zm2.37 2.155l-.002.005v-.002l.001-.004z"></path><path fill="#ffffff" d="M9.278 3.833a1.05 1.05 0 01-.215.656 4.119 4.119 0 00-.218-.09l-.127-.045c.029-.035.085-.075.107-.127a.669.669 0 00.05-.243l.001-.01a.673.673 0 00-.035-.236.434.434 0 00-.108-.184.223.223 0 00-.156-.07H8.57a.228.228 0 00-.151.06.434.434 0 00-.122.175.676.676 0 00-.05.243v.01a.718.718 0 00.009.14 1.773 1.773 0 00-.354-.12 1.196 1.196 0 01-.01-.133v-.013a1.035 1.035 0 01.088-.447.793.793 0 01.25-.328.554.554 0 01.346-.123h.006c.125 0 .232.036.342.116a.78.78 0 01.257.324c.063.138.094.273.097.433l.001.012zM7.388 3.997a1.05 1.05 0 00-.277.125.623.623 0 00.002-.15v-.008a.651.651 0 00-.048-.192.37.37 0 00-.096-.141.158.158 0 00-.119-.045c-.042.004-.077.024-.11.065a.372.372 0 00-.07.156.626.626 0 00-.013.205v.008a.634.634 0 00.048.193.367.367 0 00.116.156l-.102.08-.078.056a.706.706 0 01-.16-.24c-.053-.12-.082-.24-.09-.381v-.001a1.071 1.071 0 01.045-.39.668.668 0 01.167-.292.359.359 0 01.264-.118c.084 0 .158.028.235.09a.68.68 0 01.199.271c.053.12.08.24.089.382v.001c.003.06.003.115-.002.17z"></path><path fill="#202020" d="M7.806 4.335c.01.034.065.029.097.045.027.014.05.045.08.046.03.001.076-.01.08-.04.005-.038-.052-.063-.088-.077-.047-.019-.107-.028-.151-.003-.01.005-.021.018-.018.03zM7.484 4.335c-.01.034-.065.029-.096.045-.028.014-.05.045-.081.046-.03.001-.076-.01-.08-.04-.005-.038.052-.063.088-.077.047-.019.108-.028.152-.003.01.005.02.018.017.03z"></path></g></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
+    function waitForTurnstile() {
+        if (window.turnstile) {
+            finishBar();
+        } else {
+            setTimeout(waitForTurnstile, 150);
+        }
+    }
+
+    function finishBar() {
+        // Finir la barre 89 → 100%
+        let p = 89;
+        const fin = setInterval(() => {
+            p = Math.min(p + 1, 100);
+            if (barFill) barFill.style.width = p + '%';
+            if (pctEl)   pctEl.textContent   = p + '%';
+            if (p >= 100) {
+                clearInterval(fin);
+                setTimeout(() => {
+                    if (captchaSec) captchaSec.classList.add('visible');
+                    initEntryCaptcha();
+                }, 200);
+            }
+        }, 30);
+    }
+})();
+
+// === CAPTCHA ===
+function onTurnstileLoad() {
+    window._turnstileReady = true;
 }
-],
 
-    // --- 5. EXPÉRIENCES ---
-experiences: [
-        {
-            date: "Décembre 2025 - Février 2026",
-            role: "Stage Administrateur Système et réseau (7 semaines)",
-            company: "Fondation Hospitalière de la Miséricorde",
-            // J'ai mis les \n ici pour toi :
-            description: "Mise en place du protocole 802.1x sur 3 éphad \nMasterisation et déploiement d'images Windows 25h2 via FOG, avec automatisation de la configuration de l'administrateur local.\n WSUS : Mise à jour du script pour Windows 11 25h2"
-        },
-        {
-            date: "Mai 2025 - Juin 2026",
-            role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
-            company: "Ellix Informatique",
-            // Idem ici :
-            description: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS) \n Serveur Graylog (Centralisation des logs) \n Active Directory (GPO, Audits, UO) \n Routeur Netgate (pfSense) \n Serveur DHCP (Windows & Debian)"
+function initEntryCaptcha() {
+    const splash = document.getElementById('splash-screen');
+    turnstile.render('#entry-captcha-container', {
+        sitekey: config.profile.turnstileSiteKey,
+        theme: 'dark',
+        callback: function() {
+            if (splash) {
+                splash.style.transition = 'opacity 0.5s ease';
+                splash.style.opacity = '0';
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
+            }
         }
-    ],
+    });
+}
 
-    // --- 6. COMPÉTENCES DÉTAILLÉES ---
-    competences: [
-        {
-            icon: `<svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M529.024595 370.352223c0-7.446623-4.534177-16.11014-10.118548-19.334549L208.567367 171.84387C199.260874 166.46906 191.702326 172.184409 191.702326 184.59386v642.162307c0 9.928037 6.046363 21.480186 13.492986 25.780986l276.603832 159.696373c26.064372 15.048037 47.225451-0.947795 47.225451-35.701879V370.352223z" fill="#4E6FBB"></path><path d="M831.552298 190.544967c0-4.608-2.805284-6.729823-6.260689-4.734214l-300.586865 173.544187c-3.455405 1.995609-6.26307 7.35613-6.26307 11.96413v617.019535c0 25.345191 15.433823 37.011647 34.442121 26.035795l272.407814-157.272112c3.455405-1.995609 6.260688-7.358512 6.260689-11.966511V190.544967z" fill="#4D6FBB"></path><path d="M540.207628 9.082642c-19.01306-10.978233-47.8208-12.171312-64.288149-2.664782L204.514233 163.113674c-16.464967 9.50653-14.397916 26.138195 4.617525 37.116428l275.613172 159.124838c19.01306 10.978233 47.8208 12.173693 64.288149 2.664781l271.405247-156.695814c16.467349-9.50653 14.397916-26.138195-4.615145-37.116428L540.207628 9.082642z" fill="#6D8ACA"></path><path d="M540.207628 663.661544c-19.01306-10.978233-47.8208-12.173693-64.288149-2.664781L204.514233 817.692577c-16.464967 9.50653-14.397916 26.138195 4.617525 37.116428l275.613172 159.124837c19.01306 10.978233 47.8208 12.173693 64.288149 2.664781l271.405247-156.695814c16.467349-9.50653 14.397916-26.138195-4.615145-37.116428l-275.615553-159.124837z" fill="#4D6FBB"></path><path d="M513.252614 533.239665L193.40026 348.571981v36.425824l319.852354 184.665302v-36.423442zM815.780316 358.573842l-302.527702 174.665823v36.423442l302.527702-174.663442v-36.425823z" fill="#4467AE"></path><path d="M454.636949 659.105935c0-2.138493-1.300242-4.62467-2.902921-5.551033l-210.898754-121.760744c-1.602679-0.926363-2.905302 0.057153-2.905302 2.195647v69.703442c0 2.136112 1.302623 4.622288 2.905302 5.548651l210.898754 121.763125c1.602679 0.923981 2.902921-0.059535 2.902921-2.195646v-69.703442zM454.636949 809.276726c0-2.136112-1.300242-4.622288-2.902921-5.548652l-210.898754-121.763125c-1.602679-0.923981-2.905302 0.059535-2.905302 2.195646v69.703442c0 2.138493 1.302623 4.62467 2.905302 5.548651l210.898754 121.763126c1.602679 0.926363 2.902921-0.057153 2.902921-2.195647v-69.703441z" fill="#6D8ACA"></path><path d="M440.348577 355.316093c7.887181 4.550847 14.288372 18.879702 14.288372 31.977377 0 13.095293-6.401191 20.032298-14.288372 15.47907-7.8848-4.553228-14.288372-18.882084-14.288372-31.977377 0-13.097674 6.403572-20.032298 14.288372-15.47907zM440.348577 421.995163c7.887181 4.550847 14.288372 18.879702 14.288372 31.977377 0 13.095293-6.401191 20.032298-14.288372 15.479069-7.8848-4.553228-14.288372-18.882084-14.288372-31.977376 0-13.097674 6.403572-20.032298 14.288372-15.47907z" fill="#EDEEF0"></path></g></svg>`,
-            name: "Administration Système",
-            details: [ "Administration Windows Server (Active Directory / GPO / DHCP / DNS / Unités Organisationnelles)", "Administration Linux (DNS/DHCP/LDAP/HaProxt/Samba/FTP/PostFix/Squid)", "Outils de virtualisation (Hyper V, VirtualBox, Proxmox)" ]
-        },
-        {
-            icon: `<svg viewBox="0 -127 1278 1278" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M186.97049 390.020858c249.283591-143.926213 654.058848-143.926213 903.342438 0 249.283591 143.921015 249.283591 377.621133 0 521.542148-249.283591 143.926213-654.058848 143.926213-903.342438 0-249.288789-143.921015-249.288789-377.621133 0-521.542148z" fill="#4467AE"></path><path d="M0.005198 368.719633h1277.273022v282.072299H0.005198z" fill="#4467AE"></path><path d="M186.97049 107.948559c249.283591-143.926213 654.058848-143.926213 903.342438 0 249.283591 143.921015 249.283591 377.621133 0 521.542148-249.283591 143.926213-654.058848 143.926213-903.342438 0-249.288789-143.921015-249.288789-377.621133 0-521.542148z" fill="#6D8ACA"></path><path d="M436.243685 524.263279l57.323062 33.095388-164.5621-6.819719-11.814955-95.008246 57.323063 33.095388 148.037797-85.475194 61.73093 35.642386-148.037797 85.469997zM846.320857 216.221989l-57.323063-33.09019 164.562101 6.819719 11.814954 95.008246-57.323062-33.095388-148.037797 85.469996-61.73093-35.637188 148.037797-85.475195zM445.418078 199.744468l57.323062-33.09019-164.5621 6.819718-11.814955 95.008246 57.323063-33.095388 148.042995 85.469997 61.730929-35.637189L445.418078 199.744468zM865.501316 513.560686l-57.323063 33.095388 164.5621-6.819718 11.814955-95.008246-57.323062 33.095388-148.037797-85.469997-61.73093 35.637189 148.037797 85.469996z" fill="#FFFFFF"></path></g></svg>`,
-            name: "Réseau",
-            details: [ "Gestion de routeur : Routage statique et dynamique via RIP / Implémentation du DHCP / Agent relais DHCP / Gestion d'ACL / Gestion NAT et PAT / Tunnel VPN (IPSec)", "Gestion de switch : Trunking / VTP / Gestion VLAN / Port mirroring / Sécurisation / SSH / TELNET / 802.1x"]
-        },
-        {
-            icon: `<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" overflow="visible" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g transform="translate(4.000000, 1.000000)"> <path fill="#85A4E6" d="M8,0l-9,4v6c0,5.6,3.8,10.7,9,12c5.2-1.3,9-6.4,9-12V4L8,0z M8,11h7c-0.5,4.1-3.3,7.8-7,8.9V11l-7,0V5.3 l7-3.1V11z"></path> <path fill="#5C85DE" d="M8,0v22c5.2-1.3,9-6.4,9-12V4L8,0z M15,11c-0.5,4.1-3.3,7.8-7,8.9V11L15,11z"></path> <path fill-rule="evenodd" fill="#3367D6" d="M17,11h-2c0,0,0,0.3-0.1,0.6L17,11z"></path> <polygon fill-rule="evenodd" fill="#3367D6" points="-1,11 1,11 1,10.4 "></polygon> </g> </g> </g></svg>`,
-            name: "Cybersécurité",
-            details: [ "Attaque + contre-mesure : DoS SYN Flood (Cisco TCP Intercept), MITM SSH (ARP Poisoning),Rogue DHCP (Snooping)" ]
-        }
-    ],
 
-// --- 7b. PROCÉDURES ---
-    // Pour ajouter une procédure : remplis un bloc et dépose le PDF dans Documents/Procédures/
-    procedures: [
-{
-    title: "Rejoindre un domaine",
-    description: "Procédure de jonction d'une machine Windows ou Linux à un domaine Active Directory.",
-    path: "Rejoindre un domaine.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Mettre en place un DHCP sur un Windows Server",
-    description: "Installation et configuration du rôle DHCP sur Windows Server, création des étendues et options.",
-    path: "Mettre en place un DHCP sur un Windows Server.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
-    tags: ["Administration Système", "Réseau"]
-},
-{
-    title: "Mettre en place un système de Log via Graylog",
-    description: "Déploiement de Graylog pour la centralisation et l'analyse des journaux systèmes.",
-    path: "Mettre en place un système de Log via Graylog.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-{
-    title: "Déployer Pi-Hole sur un réseau local",
-    description: "Mise en place de Pi-Hole comme serveur DNS filtrant pour bloquer publicités et domaines malveillants.",
-    path: "Déployer Pi-Hole sur un réseau local.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>`,
-    tags: ["Réseau", "Cybersécurité"]
-},
-{
-    title: "Procédure Architecture 3-tiers",
-    description: "Mise en place d'une architecture applicative en 3 couches : présentation, logique métier et données.",
-    path: "Procédure Architecture 3-tiers.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="4" rx="1"/><rect x="2" y="10" width="20" height="4" rx="1"/><rect x="2" y="18" width="20" height="4" rx="1"/></svg>`,
-    tags: ["Administration Système", "Réseau"]
-},
-{
-    title: "Créer une VM Windows 11 client sur HyperV",
-    description: "Création et configuration d'une machine virtuelle Windows 11 sous Hyper-V.",
-    path: "Créer une VM Windows 11 client sur HyperV.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><polyline points="7 8 12 13 17 8"/></svg>`,
-    tags: ["Administration Système", "Virtualisation"]
-},
-{
-    title: "Paramétrer un accès SSH sur une machine Debian",
-    description: "Configuration sécurisée du serveur OpenSSH sur Debian : clés, port, restrictions d'accès.",
-    path: "Paramétrer un accès SSH sur une machine Debian.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-{
-    title: "Créer un domaine Active Directory sur Windows Serveur",
-    description: "Installation du rôle AD DS, promotion en contrôleur de domaine et configuration initiale.",
-    path: "Créer un domaine Active Directory sur Windows Serveur.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "S'isoler dans un réseau local avec un routeur Pfsense",
-    description: "Configuration de pfSense pour créer un environnement réseau isolé et sécurisé.",
-    path: "S'isoler dans un réseau local avec un routeur Pfsense.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    tags: ["Réseau", "Cybersécurité"]
-},
-{
-    title: "HAProxy – Répartition des tâches serveur web",
-    description: "Mise en place de HAProxy comme load balancer pour distribuer la charge entre plusieurs serveurs web.",
-    path: "Procédure HAProxy - Répartition des taches serveur web.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
-    tags: ["Réseau", "Administration Système"]
-},
-{
-    title: "Procédure MariaDB",
-    description: "Installation et configuration d'un serveur de base de données MariaDB sous Linux.",
-    path: "Procédure MariaDb.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
-    tags: ["Administration Système"]
-},
-{
-    title: "Compte Rendu TP DoS/DDoS",
-    description: "Analyse et documentation d'une attaque par déni de service, vecteurs d'attaque et contre-mesures.",
-    path: "Compte Rendu TP Dos_Ddos.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-    tags: ["Cybersécurité", "Réseau"]
-},
-{
-    title: "Procédure LAMP",
-    description: "Déploiement d'une stack LAMP (Linux, Apache, MySQL, PHP) pour héberger des applications web.",
-    path: "Procédure LAMP.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-    tags: ["Administration Système"]
-},
-{
-    title: "Procédure DNS dynamique",
-    description: "Configuration d'un serveur DNS dynamique (DDNS) pour la mise à jour automatique des enregistrements.",
-    path: "Procédure DNS dynamique.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>`,
-    tags: ["Réseau", "Administration Système"]
-},
-{
-    title: "Procédure SAMBA",
-    description: "Installation et configuration de Samba pour le partage de fichiers entre Linux et Windows.",
-    path: "Procédure SAMBA.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>`,
-    tags: ["Administration Système", "Réseau"]
-},
-{
-    title: "Attaque SSH (MITM + ARP Snooping)",
-    description: "Démonstration d'une attaque Man-in-the-Middle sur SSH par ARP Poisoning et capture de session.",
-    path: "Attaque SSH (MITM + ARP Snooping).pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`,
-    tags: ["Cybersécurité"]
-},
-{
-    title: "Bonnes pratiques sécurité du service OpenSSH",
-    description: "Durcissement de la configuration OpenSSH : authentification par clé, restrictions, bannières, fail2ban.",
-    path: "Bonnes pratiques et amélioration de la sécurité du service OpenSSH.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`,
-    tags: ["Cybersécurité", "Administration Système"]
-},
-{
-    title: "Contre-mesure – Attaque SSH (MITM + ARP Snooping)",
-    description: "Mise en place des défenses contre l'ARP Poisoning et les attaques MITM sur SSH.",
-    path: "Contre-mesure - Attaque SSH (MITM + ARP Snooping).pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>`,
-    tags: ["Cybersécurité"]
-},
-{
-    title: "HAProxy DNS",
-    description: "Configuration de HAProxy comme proxy et répartiteur de charge pour les requêtes DNS.",
-    path: "HAPROXY DNS.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/><polyline points="17 1 21 5 17 9"/></svg>`,
-    tags: ["Réseau", "Administration Système"]
-},
-{
-    title: "VPN IPSec",
-    description: "Mise en place d'un tunnel VPN IPSec entre deux sites pour sécuriser les communications.",
-    path: "VPN IPSEC.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-    tags: ["Réseau", "Cybersécurité"]
-},
-{
-    title: "Active Directory – AGDLP",
-    description: "Application de la stratégie AGDLP (Account, Global, Domain Local, Permission) pour la gestion des accès AD.",
-    path: "Active Directory _ AGDLP .pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Active Directory – GPO",
-    description: "Création et application de stratégies de groupe (GPO) pour la gestion centralisée des postes.",
-    path: "Active Directory _ GPO.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Mise en place d'un serveur ProFTPd",
-    description: "Installation et sécurisation d'un serveur FTP avec ProFTPd sous Linux.",
-    path: "Mise en place d'un serveur ProFtd.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>`,
-    tags: ["Administration Système"]
-},
-{
-    title: "Serveur FTPS",
-    description: "Configuration d'un serveur FTP sécurisé (FTPS) avec chiffrement TLS des transferts.",
-    path: "Serveur FTPS.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/><rect x="3" y="11" width="5" height="4" rx="1"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-{
-    title: "Utiliser Samba 4 en tant que contrôleur de domaine",
-    description: "Configuration de Samba 4 comme contrôleur de domaine Active Directory sous Linux.",
-    path: "Utiliser Samba 4 en tant que contrôleur de domaine.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/><path d="M12 9v6"/><path d="M9 12h6"/></svg>`,
-    tags: ["Administration Système", "Active Directory"]
-},
-{
-    title: "Procédure DHCP + DNS",
-    description: "Déploiement conjoint d'un serveur DHCP et DNS sur Linux pour la gestion automatique du réseau.",
-    path: "Procédure Dhcp+Dns.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 15a5 5 0 0 1 5 5"/><circle cx="5" cy="19" r="1"/></svg>`,
-    tags: ["Réseau", "Administration Système"]
-},
-{
-    title: "Mise en place d'un serveur Zabbix pour superviser un réseau",
-    description: "Déploiement de Zabbix pour la supervision d'infrastructure : hôtes, métriques, alertes et dashboards.",
-    path: "Mise en place d'un serveur Zabbix afin de superviser un réseau.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-    tags: ["Administration Système", "Réseau"]
-},
-{
-    title: "Mise en place d'un LogAnalyser via Syslog",
-    description: "Visualisation centralisée des journaux systèmes via LogAnalyzer et Syslog.",
-    path: "loganalyzer.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-{
-    title: "Mise en place d'un serveur Apache avec certificat TLS autosigné",
-    description: "Configuration d'Apache avec HTTPS via un certificat TLS autosigné.",
-    path: "certificat-tls.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-},
-    ],
-// --- 7. CERTIFICATIONS ---
-    certifications: [
-        { 
-            name: "RootMe (En cours)", 
-            issuer: "root-me.org", 
-            url: "https://www.root-me.org/", 
-            pdf: "",
-            // Icône Terminal / Hacker
-            icon: `<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" x="0px" y="0px" style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve" id="svg72" sodipodi:docname="logo_rm_noir.svg" inkscape:version="0.92.2 2405546, 2018-03-11" viewBox="111.2 58.76 371.76 476.44" fill="#6366f2" width="100%" height="100%"><metadata id="metadata78"/><defs id="defs76">
-	
-</defs>
-<style type="text/css" id="style2">
-	.st0{fill:#9d9d9b;}
-	.st1{fill:#585856;}
-</style>
-<g id="Calque_2">
-</g>
-<g id="g13" transform="matrix(1.8928864,0,0,1.8928864,-264.72593,-165.92773)">
-		<path inkscape:connector-curvature="0" id="path5" d="m 299.2,319.9 c 0,0 0,0 0,0 -0.1,-0.1 -0.2,-0.2 -0.2,-0.3 -0.1,-0.1 -0.1,-0.1 -0.2,-0.2 0,0 0,0 0,0 -0.1,0 -0.1,-0.1 -0.2,-0.1 -0.1,-0.1 -0.2,-0.1 -0.3,-0.2 -0.1,0 -0.2,-0.1 -0.3,-0.1 -0.1,0 -0.2,-0.1 -0.2,-0.1 -0.1,0 -0.2,0 -0.3,-0.1 -0.1,0 -0.2,0 -0.3,0 -0.1,0 -0.2,0 -0.3,0 -0.1,0 -0.2,0 -0.3,0 -0.1,0 -0.2,0 -0.3,0 -0.1,0 -0.2,0 -0.3,0.1 -0.1,0 -0.2,0.1 -0.2,0.1 -0.1,0 -0.2,0.1 -0.3,0.1 -0.1,0 -0.2,0.1 -0.3,0.2 -0.1,0 -0.1,0.1 -0.2,0.1 0,0 0,0 0,0 -0.1,0.1 -0.1,0.1 -0.2,0.2 -0.1,0.1 -0.2,0.2 -0.2,0.2 0,0 0,0 0,0 l -8.1,10.1 c -1,1.3 -0.8,3.1 0.5,4.1 0.5,0.4 1.2,0.6 1.8,0.6 0.9,0 1.7,-0.4 2.3,-1.1 l 0.1,-0.1 c 3,-3.7 8.6,-3.7 11.5,0 l 0.1,0.1 c 0.6,0.7 1.4,1.1 2.3,1.1 0.6,0 1.3,-0.2 1.8,-0.6 1.3,-1 1.5,-2.9 0.5,-4.1 z"/>
-		<path inkscape:connector-curvature="0" id="path7" d="m 285.7,149.1 c -4.1,0 -7.5,3.2 -7.7,7.3 l -15.3,5.6 c -0.8,0.3 -1.4,1 -1.4,1.9 v 9.7 H 249 c -0.9,-3.3 -3.8,-5.7 -7.4,-5.7 -4.2,0 -7.7,3.4 -7.7,7.7 0,4.2 3.4,7.7 7.7,7.7 3.6,0 6.5,-2.4 7.4,-5.7 h 14.3 c 1.1,0 2,-0.9 2,-2 v -10.3 l 13.5,-5 c 1.3,2.5 3.9,4.2 6.8,4.2 4.2,0 7.7,-3.4 7.7,-7.7 0.1,-4.2 -3.4,-7.7 -7.6,-7.7 z"/>
-		<path style="fill:#9d9d9b" inkscape:connector-curvature="0" id="path9" d="m 269.5,292.3 c -2.5,-0.9 -4.9,-1.8 -7.2,-2.8 -1.7,-0.8 -3.4,-1.6 -5,-2.4 3.8,3.8 13,10.6 22.9,10.8 0.6,-0.7 1.1,-1.4 1.5,-2.3 -1.5,-0.3 -3,-0.6 -4.5,-1 -2.7,-0.7 -5.2,-1.4 -7.7,-2.3 z" class="st0"/>
-		<path inkscape:connector-curvature="0" id="path11" d="m 395,222.5 c 0,-4.7 -0.3,-9.4 -1,-13.9 0,-0.3 -0.1,-0.6 -0.1,-0.9 -6.1,-39.7 -36.2,-72.3 -75.8,-81 -1,-4.5 -5,-7.9 -9.8,-7.9 -5.6,0 -10.1,4.5 -10.1,10.1 0,4.8 3.4,8.8 7.9,9.8 v 36.9 c 0,0.6 0.3,1.2 0.8,1.6 0.3,0.2 0.7,0.3 1.1,0.3 0.2,0 0.5,0 0.7,-0.1 l 14.8,-5.6 c 1,1.5 2.5,2.5 4.3,3 v 17.4 c -7.5,9.2 -16.8,17.5 -26.7,24.9 l -11.3,-26.2 c 2.1,-1.4 3.5,-3.7 3.5,-6.4 0,-4.2 -3.4,-7.7 -7.7,-7.7 -4.2,0 -7.7,3.4 -7.7,7.7 0,4.2 3.4,7.7 7.7,7.7 0.1,0 0.3,0 0.4,0 l 11.8,27.3 c -6.9,5 -14,9.5 -21,13.6 L 243.2,223 c -0.4,-0.1 -0.8,-0.1 -1.2,0.1 l -10,3.9 c -1.4,-1.9 -3.6,-3.1 -6.2,-3.1 -4.2,0 -7.7,3.4 -7.7,7.7 0,4.2 3.4,7.7 7.7,7.7 4.2,0 7.7,-3.4 7.7,-7.7 0,-0.3 -0.1,-0.6 -0.1,-0.9 l 9.4,-3.7 29.3,8.8 c -25,14 -47.4,22.1 -51.1,23.4 l -1.8,0.6 c -1.6,-1.2 -3.6,-1.9 -5.8,-1.9 -0.1,0 -0.2,0 -0.3,0 -4.7,-11.1 -7.1,-23.2 -7.1,-35.3 0,-6 0.6,-11.9 1.7,-17.6 h 43.9 c 0.9,3.3 3.8,5.7 7.4,5.7 4.2,0 7.7,-3.4 7.7,-7.7 0,-4.2 -3.4,-7.7 -7.7,-7.7 -3.6,0 -6.5,2.4 -7.4,5.7 h -43 c 8.1,-32.9 34.1,-59.2 67.7,-67 1.8,2.9 5,4.9 8.6,4.9 5.6,0 10.1,-4.5 10.1,-10.1 0,-5.6 -4.5,-10.1 -10.1,-10.1 -4.9,0 -8.9,3.5 -9.9,8 -44.1,10 -76.4,49.7 -76.4,95.7 0,13.1 2.6,26.2 7.7,38.2 -1.9,1.8 -3,4.4 -3,7.2 0,4.5 2.9,8.2 6.9,9.6 v 39.4 c 0,0.7 0.2,1.4 0.6,2 l 2.2,1.5 29.9,21.1 v 25.2 c 0,2.1 1.7,3.8 3.8,3.8 h 100 c 2.1,0 3.8,-1.7 3.8,-3.8 v -25.2 l 30,-21.1 2.2,-1.6 c 0.4,-0.6 0.6,-1.3 0.6,-2 V 277 c 3.7,-1.5 6.3,-5.1 6.3,-9.3 0,-2.6 -1,-5 -2.6,-6.8 5.3,-11.9 8,-25.1 8,-38.4 z M 281.4,125.6 c 0.9,-1 2.2,-1.6 3.6,-1.6 2.7,0 4.9,2.2 4.9,4.9 0,2.7 -2.2,4.9 -4.9,4.9 -1,0 -1.9,-0.3 -2.7,-0.8 -1.3,-0.9 -2.2,-2.4 -2.2,-4 0,-1.4 0.5,-2.6 1.3,-3.4 z m 22,3.2 c 0,-2.7 2.2,-4.9 4.9,-4.9 1.4,0 2.6,0.6 3.5,1.5 0.8,0.9 1.3,2 1.3,3.3 0,1.6 -0.8,3.1 -2.1,4 -0.8,0.6 -1.7,0.9 -2.8,0.9 -2.6,0.1 -4.8,-2.1 -4.8,-4.8 z m 18.8,38.5 c 0,0.3 0.1,0.5 0.1,0.7 l -12.2,4.6 v -34 c 3,-0.5 5.5,-2.3 6.9,-4.8 10.7,2.4 20.7,6.7 29.6,12.6 -0.1,14.8 -5.8,28.4 -14.8,40.7 v -12.4 c 3.3,-0.9 5.7,-3.8 5.7,-7.4 0,-4.2 -3.4,-7.7 -7.7,-7.7 -4.2,0.1 -7.6,3.5 -7.6,7.7 z M 213.5,272.7 c -1.2,0 -2.3,-0.5 -3.2,-1.2 -1,-0.9 -1.7,-2.2 -1.7,-3.6 0,-0.6 0.1,-1.2 0.3,-1.7 0.7,-1.8 2.5,-3.1 4.5,-3.1 0.9,0 1.7,0.3 2.4,0.7 1.4,0.8 2.4,2.4 2.4,4.2 0,0.9 -0.3,1.7 -0.7,2.4 -0.7,1.4 -2.2,2.3 -4,2.3 z m 170,-1.9 c -0.9,1.1 -2.3,1.9 -3.8,1.9 -1.4,0 -2.6,-0.6 -3.5,-1.5 -0.8,-0.9 -1.3,-2 -1.3,-3.3 0,-2.1 1.3,-3.9 3.2,-4.5 0.5,-0.2 1.1,-0.3 1.7,-0.3 2.3,0 4.3,1.7 4.8,3.9 0.1,0.3 0.1,0.6 0.1,1 -0.2,1 -0.6,2 -1.2,2.8 z m -3,-13 c -0.3,0 -0.6,0 -0.9,0 -5.6,0 -10.1,4.5 -10.1,10.1 0,4.3 2.7,8 6.6,9.4 v 36.8 l -31.5,22.2 c -1,0.7 -1.6,1.9 -1.6,3.1 v 21.2 c 0,1.2 -1,2.2 -2.2,2.2 h -11.7 c -1.2,0 -2.2,-1 -2.2,-2.2 V 353 c 0,-2 -1.4,-3.8 -3.4,-4 -2.3,-0.2 -4.2,1.6 -4.2,3.8 v 7.9 c 0,1.2 -1,2.2 -2.2,2.2 h -14.3 c -1.2,0 -2.2,-1 -2.2,-2.2 V 349 c 0,-2 -1.4,-3.8 -3.4,-4 -2.3,-0.2 -4.2,1.6 -4.2,3.8 v 12 c 0,1.2 -1,2.2 -2.2,2.2 h -14.3 c -1.2,0 -2.2,-1 -2.2,-2.2 V 353 c 0,-2 -1.4,-3.8 -3.4,-4 -2.3,-0.2 -4.2,1.6 -4.2,3.8 v 7.9 c 0,1.2 -1,2.2 -2.2,2.2 h -11.7 c -1.2,0 -2.2,-1 -2.2,-2.2 v -21.2 c 0,-1.2 -0.6,-2.4 -1.6,-3.1 L 217.6,314.2 V 277 c 3.5,-1.6 5.9,-5.1 5.9,-9.2 0,-0.6 -0.1,-1.2 -0.2,-1.8 4,-1.4 34.5,-12.3 64.5,-31 40.6,-25.3 63.1,-54 65.7,-83.5 17.5,14.1 29.6,34.5 33.1,57.4 -0.5,50.1 -87.8,81 -88.7,81.3 -0.2,0.1 -0.7,0.2 -1.1,0.4 -1.1,-0.2 -2.2,-0.4 -3.4,-0.6 -0.8,-0.2 -1.7,-0.3 -2.5,-0.5 -1.3,-0.2 -2.6,-0.5 -3.9,-0.8 -0.2,-0.1 -0.5,-0.1 -0.7,-0.1 -0.5,-0.1 -1,-0.2 -1.5,-0.3 -0.6,-0.1 -1.2,-0.3 -1.8,-0.4 -1.4,-0.3 -2.8,-0.6 -4.1,-1 -2.5,-0.6 -4.9,-1.3 -7.3,-1.9 -2.3,-0.7 -4.7,-1.3 -6.9,-2 -0.1,0 -0.1,0 -0.2,0 -1.7,-0.5 -3.3,-1 -4.9,-1.6 -0.5,-0.2 -1.1,-0.4 -1.6,-0.5 -0.8,-0.3 -1.5,-0.5 -2.2,-0.7 -1.3,-0.4 -2.5,-0.8 -3.6,-1.3 0,0 -0.1,0 -0.1,0 -1.8,-0.6 -3.4,-1.2 -4.8,-1.8 -1.5,-0.6 -2.8,-1.1 -3.8,-1.5 -1,-0.5 -1.9,-0.8 -2.4,-1.1 -0.6,-0.3 -0.9,-0.4 -0.9,-0.4 0,0 0.2,0.3 0.6,0.7 0.4,0.5 1,1.2 1.9,2 0.8,0.8 1.9,1.8 3.2,2.8 1.3,1 2.8,2.1 4.4,3.2 0,0 0,0 0.1,0 -0.6,2 -1,4.2 -1,6.4 0,11.5 9.4,20.9 20.9,20.9 8.9,0 16.5,-5.6 19.5,-13.5 1,0.1 2.1,0.2 3.1,0.3 1.8,0.1 3.5,0.1 5.1,0.1 0.1,0 0.2,0.1 0.3,0.1 l 16.9,17.2 c 4.3,4.3 11,5 16,1.7 l 26.4,-14.8 c 2.3,-1.5 3.8,-4.1 3.8,-6.9 v -30.4 c 10.2,-8.1 19.4,-17.7 25.4,-28.6 -1.1,7.9 -3.2,15.4 -6.3,22.5 z m -98.8,37.8 c -0.4,0.8 -1,1.6 -1.5,2.3 v 0 c -2.4,2.8 -6,4.6 -10,4.6 -4,0 -7.6,-1.8 -10,-4.6 -2,-2.3 -3.1,-5.3 -3.1,-8.5 0,-0.8 0.1,-1.5 0.2,-2.3 0,0 0,0 0,0 1.6,0.8 3.3,1.6 5,2.4 2.3,1 4.7,2 7.2,2.8 2.5,0.9 5.1,1.6 7.7,2.3 1.5,0.4 3,0.7 4.5,1 z"/>
-	</g>
-</svg>`
-        },
-        { 
-            name: "Cyber101", 
-            issuer: "cyber101.com", 
-            url: "https://www.cyber101.com/fr/", 
-            pdf: "cyber101.pdf",
-            // Icône Bouclier / Sécurité
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
-        },
-        { 
-            name: "SecNumAcadémie", 
-            issuer: "ANSSI", 
-            url: "https://secnumacademie.gouv.fr/", 
-            pdf: "SecNum.pdf",
-            // Icône Médaille / Gouvernementale
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
-        }
-    ]
-    
+const escapeHTML = (str) => {
+    if (!str) return '';
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 };
-Object.freeze(config);
+
+const renderIcon = (iconString) => {
+    if (!iconString) return '';
+    const lower = iconString.toLowerCase();
+    if (lower.endsWith('.svg') || lower.endsWith('.png') || lower.endsWith('.jpg') || lower.endsWith('.jpeg')) {
+        return `<img src="${iconString}" alt="icon" class="project-icon-img" style="width: 100%; height: 100%; object-fit: contain;">`;
+    } else {
+        return iconString;
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- SCROLL REVEAL (Animation d'apparition) ---
+    const sections = document.querySelectorAll('.section-wrapper');
+    sections.forEach(sec => sec.classList.add('reveal'));
+    const revealSections = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+        document.querySelectorAll('.reveal').forEach(reveal => {
+            if (reveal.getBoundingClientRect().top < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    };
+    window.addEventListener('scroll', revealSections);
+    revealSections(); // Déclenchement initial
+
+    // --- VERIFICATION CONFIG ---
+    if (typeof config === 'undefined') { 
+        console.error("ERREUR : config.js n'est pas chargé."); 
+        return; 
+    }
+
+    // --- 1. THEME ---
+    const themeBtn = document.getElementById("theme-toggle");
+    const body = document.body;
+    
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        if(themeBtn) themeBtn.innerText = "🌙"; 
+    }
+    
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("light-mode");
+            if (body.classList.contains("light-mode")) {
+                themeBtn.innerText = "🌙"; 
+                localStorage.setItem("theme", "light");
+            } else {
+                themeBtn.innerText = "☀️"; 
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    }
+
+    // --- 2. REMPLISSAGE PROFIL ---
+    document.title = `${config.profile.name} | Portfolio`;
+    const avatarEl = document.getElementById("profile-avatar");
+    if(avatarEl) avatarEl.src = config.profile.avatar;
+    const faviconEl = document.getElementById("favicon-link");
+    if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
+    const nameEl = document.getElementById("profile-name");
+    if(nameEl) nameEl.innerText = config.profile.name;
+    const statusEl = document.getElementById("profile-status");
+    if(statusEl) statusEl.innerText = config.profile.status;
+    const bioEl = document.getElementById("profile-bio");
+    if(bioEl) bioEl.innerText = config.profile.bio;
+    const footerEl = document.getElementById("footer-copy");
+    if(footerEl) footerEl.innerHTML = `&copy; ${new Date().getFullYear()} ${escapeHTML(config.profile.name)}.`;
+    const ghBtn = document.getElementById("link-github");
+    if(ghBtn && config.social.github) ghBtn.href = config.social.github;
+    const lkBtn = document.getElementById("link-linkedin");
+    if(lkBtn && config.social.linkedin) lkBtn.href = config.social.linkedin;
+
+    // --- 3. MODALES (CONTACT, LEGAL & INFO) ---
+    function setupModal(triggerId, modalId, closeBtnId) {
+        const trigger = document.getElementById(triggerId);
+        const modal = document.getElementById(modalId);
+        const closeBtn = document.getElementById(closeBtnId);
+        if (trigger && modal) {
+            trigger.addEventListener("click", (e) => { 
+                e.preventDefault(); 
+                modal.style.display = "flex"; 
+                document.body.style.overflow = "hidden";
+            });
+        }
+        const closeFn = () => { 
+            if(modal) modal.style.display = "none"; 
+            document.body.style.overflow = "auto";
+        };
+        if (closeBtn) closeBtn.addEventListener("click", closeFn);
+        window.addEventListener("click", (e) => { if(e.target === modal) closeFn(); });
+    }
+
+    setupModal("email-trigger", "email-modal", "modal-close-btn");
+    setupModal("legal-trigger", "legal-modal", "legal-close-btn");
+    setupModal("info-trigger", "info-modal", "info-close-btn");
+    setupModal("rss-trigger", "rss-modal", "rss-close-btn");
+    
+    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
+    const emailTrigger = document.getElementById("email-trigger");
+    const captchaContainer = document.getElementById("captcha-container");
+    const emailResultArea = document.getElementById("email-result-area");
+    const emailText = document.getElementById("email-text");
+    const captchaInstruction = document.getElementById("captcha-instruction");
+    const copyBtn = document.getElementById("copy-email-btn");
+    let widgetId = null; let decodedEmail = ""; 
+
+    if(emailTrigger) {
+        emailTrigger.addEventListener("click", () => {
+            if(captchaContainer) captchaContainer.style.display = "flex";
+            if(emailResultArea) emailResultArea.style.display = "none";
+            if(captchaInstruction) captchaInstruction.style.display = "block";
+            if(emailText) emailText.innerText = "";
+            if(copyBtn) { copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = ""; }
+
+            if (window.turnstile) {
+                if (widgetId !== null) turnstile.reset(widgetId);
+                else {
+                    try {
+                        widgetId = turnstile.render('#captcha-container', {
+                            sitekey: config.profile.turnstileSiteKey, 
+                            theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
+                            callback: function(token) {
+                                try {
+                                    decodedEmail = atob(config.profile.emailEncoded);
+                                    if(emailText) emailText.innerText = decodedEmail;
+                                    if(captchaContainer) captchaContainer.style.display = "none";
+                                    if(captchaInstruction) captchaInstruction.style.display = "none";
+                                    if(emailResultArea) emailResultArea.style.display = "block";
+                                } catch (err) { console.error("Erreur décodage email"); }
+                            }
+                        });
+                    } catch (e) { console.error(e); if(captchaContainer) captchaContainer.innerHTML = "Erreur sécu."; }
+                }
+            }
+        });
+        if(copyBtn) {
+            copyBtn.addEventListener("click", () => {
+                if(decodedEmail) navigator.clipboard.writeText(decodedEmail).then(() => {
+                    copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
+                    setTimeout(() => { document.getElementById("email-modal").style.display = "none"; }, 2000); 
+                });
+            });
+        }
+    }
+
+    // --- MODALE PROJET (FERMETURE) ---
+    const projectModal = document.getElementById("project-modal");
+    const projectCloseBtn = document.getElementById("project-close-btn");
+    if(projectCloseBtn) projectCloseBtn.addEventListener("click", () => projectModal.style.display = "none");
+    window.addEventListener("click", (e) => { if(e.target === projectModal) projectModal.style.display = "none"; });
+
+    // --- 5. NAVIGATION ---
+    const navList = document.getElementById("nav-list");
+    if(navList && config.navigation) {
+        config.navigation.forEach(item => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.innerText = item.title; a.href = item.link; 
+            a.addEventListener('click', () => { const header = document.querySelector('.app-header'); if(header) header.classList.remove('menu-open'); });
+            li.appendChild(a); navList.appendChild(li);
+        });
+    }
+
+    // --- 6. COMPETENCES (HEADER TAGS) ---
+    const skillsContainer = document.getElementById("skills-section");
+    if(skillsContainer && config.skills) {
+        config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
+    }
+
+    // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
+    const grid = document.getElementById("project-grid");
+    const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Projet/`;
+    const PROJECT_LIMIT = 4; 
+
+    if (grid && config.projects) {
+        // 1. EXTRAIRE LES TAGS UNIQUES
+        const allTags = new Set();
+        config.projects.forEach(p => {
+            if (p.tags) p.tags.forEach(t => allTags.add(t));
+        });
+
+        // 2. CRÉATION DE LA BARRE DE CONTRÔLE (Recherche + Filtre)
+        const controlsContainer = document.createElement("div");
+        controlsContainer.className = "project-controls";
+        
+        // Input de recherche
+        const searchInput = document.createElement("input");
+        searchInput.type = "text";
+        searchInput.id = "project-search";
+        searchInput.className = "project-search-input";
+        searchInput.placeholder = "Rechercher par mot-clé (titre, description...)";
+        
+        // Bouton et Menu Filtre
+        const filterWrapper = document.createElement("div");
+        filterWrapper.className = "filter-dropdown-wrapper";
+        
+        const filterBtn = document.createElement("button");
+        filterBtn.className = "filter-toggle-btn";
+        filterBtn.innerHTML = `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+        
+        const filterMenu = document.createElement("div");
+        filterMenu.className = "filter-dropdown-menu";
+        
+        let menuHTML = `<div class="filter-option active" data-tag="all">Tous les projets</div>`;
+        allTags.forEach(tag => {
+            menuHTML += `<div class="filter-option" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</div>`;
+        });
+        filterMenu.innerHTML = menuHTML;
+        
+        filterWrapper.appendChild(filterBtn);
+        filterWrapper.appendChild(filterMenu);
+        
+        controlsContainer.appendChild(searchInput);
+        controlsContainer.appendChild(filterWrapper);
+        
+        // Insertion au-dessus de la grille
+        grid.parentNode.insertBefore(controlsContainer, grid);
+
+        // Message Aucun résultat
+        const noResultMessage = document.createElement("div");
+        noResultMessage.className = "no-result-msg";
+        noResultMessage.style.display = "none";
+        noResultMessage.innerHTML = "<p>Aucun projet ne correspond à votre recherche.</p>";
+        grid.parentNode.insertBefore(noResultMessage, grid.nextSibling);
+
+        // 3. VARIABLES D'ÉTAT DES FILTRES
+        let currentSearchTerm = "";
+        let currentFilterTag = "all";
+
+        // 4. GÉNÉRATION DES CARTES
+        config.projects.forEach((proj, index) => {
+            const vid = `viewer_${index}`;
+            const fullPdfUrl = baseUrl + proj.path;
+            const badgeId = `badge-project-${index}`;
+            const btnId = `info-btn-${index}`;
+
+            let cardTagsHTML = '';
+            if (proj.tags && Array.isArray(proj.tags) && proj.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proj.tags.slice(0, 3).forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
+                const remaining = proj.tags.length - 3;
+                if (remaining > 0) cardTagsHTML += `<span class="project-tag" style="opacity: 0.7; font-weight: 700;">+${remaining}</span>`;
+                cardTagsHTML += '</div>';
+            }
+
+            const div = document.createElement("div"); 
+            div.className = "project-card interactive-card"; 
+            div.setAttribute('data-hint', 'Voir le PDF 📄'); 
+            
+            // Attributs pour faciliter le filtrage JS
+            div.setAttribute('data-title', escapeHTML(proj.title || ""));
+            div.setAttribute('data-desc', escapeHTML(proj.description || proj.longDescription || ""));
+            div.setAttribute('data-tags', JSON.stringify(proj.tags || [])); 
+
+            if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
+
+            const renderedIcon = renderIcon(proj.icon);
+            div.innerHTML = `
+                <span id="${badgeId}" class="badge-container-abs"></span>
+                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+                <button class="copy-link-btn" data-no-hint="true" title="Copier le lien">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+                <div class="card-header">
+                    <div class="icon">${renderedIcon}</div>
+                    <div class="meta">
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description)}</p>
+                        ${cardTagsHTML}
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+            
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    if (data && data.length > 0) {
+                        const commitDate = new Date(data[0].commit.author.date);
+                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                    }
+                }).catch(() => {});
+            }
+
+            div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
+            div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const slug = proj.title
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // accents → ascii
+                    .toLowerCase()
+                    .replace(/[''\(\)]/g, '')       // apostrophes, parenthèses
+                    .replace(/\s+/g, '-')            // espaces → tirets
+                    .replace(/[^a-z0-9\-]/g, '')    // reste → supprimé
+                    .replace(/-+/g, '-')              // tirets multiples → un seul
+                    .replace(/^-|-$/g, '');           // tirets en début/fin
+                const link = window.location.origin + '/projet-technova/' + slug;
+                copyToClipboard(link, e.currentTarget);
+            });
+            const infoB = div.querySelector(`#${btnId}`);
+            if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
+
+            grid.appendChild(div);
+        });
+        
+        if (config.projects.length > PROJECT_LIMIT) createToggleBtn(grid, PROJECT_LIMIT, "Voir la suite");
+
+        // 5. FONCTION CENTRALE DE FILTRAGE
+        const applyFilters = () => {
+            const allCards = grid.querySelectorAll(".project-card");
+            const loadMoreContainer = grid.parentNode.querySelector(".load-more-container");
+            const isFiltering = currentSearchTerm !== "" || currentFilterTag !== "all";
+            let visibleCount = 0;
+
+            allCards.forEach((card, i) => {
+                const title = (card.getAttribute("data-title") || "").toLowerCase();
+                const desc = (card.getAttribute("data-desc") || "").toLowerCase();
+                const tagsData = JSON.parse(card.getAttribute("data-tags") || "[]");
+                const tagsLower = tagsData.map(t => t.toLowerCase());
+                
+                // Vérifications
+                const matchesSearch = title.includes(currentSearchTerm) || desc.includes(currentSearchTerm) || tagsLower.some(t => t.includes(currentSearchTerm));
+                const matchesTag = currentFilterTag === "all" || tagsData.includes(currentFilterTag);
+                
+                // Reset état
+                card.style.display = ""; 
+                card.classList.remove("hidden-item");
+
+                if (matchesSearch && matchesTag) {
+                    visibleCount++;
+                    // Si on ne filtre pas, on respecte la limite de pagination de base
+                    if (!isFiltering && i >= PROJECT_LIMIT) {
+                        const isExpanded = loadMoreContainer && loadMoreContainer.querySelector('button').innerText.includes('Masquer');
+                        if(!isExpanded) card.classList.add("hidden-item");
+                    } else {
+                        card.style.display = "flex"; 
+                    }
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            // Gérer le message "Aucun résultat"
+            noResultMessage.style.display = (visibleCount === 0) ? "block" : "none";
+
+            // Masquer "Voir la suite" si on est en train de rechercher/filtrer
+            if (loadMoreContainer) {
+                loadMoreContainer.style.display = (isFiltering || visibleCount === 0) ? "none" : "flex";
+            }
+        };
+
+        // 6. ÉVÈNEMENTS INTERFACE
+        searchInput.addEventListener("input", (e) => {
+            currentSearchTerm = e.target.value.toLowerCase();
+            applyFilters();
+        });
+
+        filterBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            filterMenu.classList.toggle("show");
+            filterBtn.classList.toggle("active");
+        });
+
+        filterMenu.addEventListener("click", (e) => {
+            if (e.target.classList.contains("filter-option")) {
+                currentFilterTag = e.target.dataset.tag;
+                
+                // MAJ Visuelle du menu
+                filterMenu.querySelectorAll(".filter-option").forEach(el => el.classList.remove("active"));
+                e.target.classList.add("active");
+                
+                // MAJ du bouton
+                filterBtn.innerHTML = currentFilterTag === "all" 
+                    ? `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>` 
+                    : `Tag: ${currentFilterTag} <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+                filterMenu.classList.remove("show");
+                applyFilters();
+            }
+        });
+
+        // Fermer le menu si clic à l'extérieur
+        window.addEventListener("click", (e) => {
+            if (!filterWrapper.contains(e.target)) {
+                filterMenu.classList.remove("show");
+                filterBtn.classList.remove("active", filterMenu.classList.contains("show"));
+            }
+        });
+    }
+
+
+    // --- GITHUB AUTH HEADERS ---
+    const ghHeaders = config.githubToken
+        ? { headers: { 'Authorization': 'token ' + config.githubToken } }
+        : {};
+
+    // --- PROCEDURES (Chargement statique depuis config.procedures) ---
+    const procedureGrid = document.getElementById('procedure-grid');
+    const PROC_LIMIT = 4;
+    const PROC_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Proc%C3%A9dures/`;
+
+    if (procedureGrid && config.procedures && config.procedures.length > 0) {
+        procedureGrid.innerHTML = '';
+
+        // --- CONTRÔLES : recherche + filtre par tag ---
+        const allProcTags = new Set();
+        config.procedures.forEach(p => { if (p.tags) p.tags.forEach(t => allProcTags.add(t)); });
+
+        const procControlsContainer = document.createElement('div');
+        procControlsContainer.className = 'project-controls';
+
+        const procSearchInput = document.createElement('input');
+        procSearchInput.type = 'text';
+        procSearchInput.id = 'proc-search';
+        procSearchInput.className = 'project-search-input';
+        procSearchInput.placeholder = 'Rechercher une procédure...';
+
+        const procFilterWrapper = document.createElement('div');
+        procFilterWrapper.className = 'filter-dropdown-wrapper';
+
+        const procFilterBtn = document.createElement('button');
+        procFilterBtn.className = 'filter-toggle-btn';
+        procFilterBtn.innerHTML = `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+        const procFilterMenu = document.createElement('div');
+        procFilterMenu.className = 'filter-dropdown-menu';
+
+        let procMenuHTML = `<div class="filter-option active" data-tag="all">Toutes les procédures</div>`;
+        allProcTags.forEach(tag => {
+            procMenuHTML += `<div class="filter-option" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</div>`;
+        });
+        procFilterMenu.innerHTML = procMenuHTML;
+
+        procFilterWrapper.appendChild(procFilterBtn);
+        procFilterWrapper.appendChild(procFilterMenu);
+        procControlsContainer.appendChild(procSearchInput);
+        procControlsContainer.appendChild(procFilterWrapper);
+
+        const procNoResult = document.createElement('p');
+        procNoResult.className = 'no-results-message';
+        procNoResult.style.cssText = 'display:none; color:var(--muted); font-style:italic; padding: 20px 0;';
+        procNoResult.textContent = 'Aucune procédure ne correspond à votre recherche.';
+
+        procedureGrid.parentNode.insertBefore(procControlsContainer, procedureGrid);
+        procedureGrid.parentNode.insertBefore(procNoResult, procedureGrid.nextSibling);
+
+        let currentProcSearch = '';
+        let currentProcTag = 'all';
+
+        function filterProcedures() {
+            const allCards = procedureGrid.querySelectorAll('.project-card');
+            const isFiltering = currentProcSearch || currentProcTag !== 'all';
+            let visibleCount = 0;
+            allCards.forEach(card => {
+                const title = (card.querySelector('h4')?.textContent || '').toLowerCase();
+                const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+                const tagsData = JSON.parse(card.getAttribute('data-tags') || '[]');
+                const tagsLower = tagsData.map(t => t.toLowerCase());
+                const matchesSearch = !currentProcSearch || title.includes(currentProcSearch) || desc.includes(currentProcSearch) || tagsLower.some(t => t.includes(currentProcSearch));
+                const matchesTag = currentProcTag === 'all' || tagsData.includes(currentProcTag);
+                const matches = matchesSearch && matchesTag;
+                // Si on filtre : afficher toutes les cartes qui matchent (ignorer hidden-item)
+                // Si on ne filtre plus : remettre hidden-item sur les cartes au-delà de la limite
+                if (isFiltering) {
+                    card.style.display = matches ? '' : 'none';
+                } else {
+                    card.style.display = '';
+                    if (parseInt(card.dataset.index) >= PROC_LIMIT) card.classList.add('hidden-item');
+                    else card.classList.remove('hidden-item');
+                }
+                if (matches && (!card.classList.contains('hidden-item') || isFiltering)) visibleCount++;
+            });
+            procNoResult.style.display = visibleCount === 0 ? 'block' : 'none';
+            // Cacher le bouton "Voir la suite" pendant la recherche/filtre
+            const loadMoreBtn = procedureGrid.parentNode.querySelector('.load-more-container');
+            if (loadMoreBtn) loadMoreBtn.style.display = isFiltering ? 'none' : '';
+        }
+
+        procSearchInput.addEventListener('input', (e) => {
+            currentProcSearch = e.target.value.toLowerCase().trim();
+            filterProcedures();
+        });
+
+        procFilterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            procFilterMenu.classList.toggle('show');
+            procFilterBtn.classList.toggle('active');
+        });
+
+        procFilterMenu.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-option')) {
+                currentProcTag = e.target.dataset.tag;
+                filterProcedures();
+                procFilterMenu.querySelectorAll('.filter-option').forEach(el => el.classList.remove('active'));
+                e.target.classList.add('active');
+                procFilterBtn.innerHTML = currentProcTag === 'all'
+                    ? `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`
+                    : `${escapeHTML(currentProcTag)} <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+                procFilterMenu.classList.remove('show');
+                procFilterBtn.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!procFilterWrapper.contains(e.target)) {
+                procFilterMenu.classList.remove('show');
+                procFilterBtn.classList.remove('active');
+            }
+        });
+
+        // --- RENDU DES CARTES ---
+        config.procedures.forEach((proc, index) => {
+            const fullPdfUrl = PROC_BASE_URL + encodeURIComponent(proc.path);
+            const vid = `proc_viewer_${index}`;
+            const btnId = `proc-info-btn-${index}`;
+            const badgeId = `badge-proc-${index}`;
+
+            const renderedIcon = proc.icon ? renderIcon(proc.icon) : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`;
+
+            let cardTagsHTML = '';
+            if (proc.tags && proc.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proc.tags.slice(0, 3).forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
+                cardTagsHTML += '</div>';
+            }
+
+            const div = document.createElement('div');
+            div.className = 'project-card interactive-card';
+            div.setAttribute('data-hint', 'Voir le PDF 📄');
+            div.setAttribute('data-tags', JSON.stringify(proc.tags || []));
+            div.dataset.index = index;
+            if (index >= PROC_LIMIT) div.classList.add('hidden-item');
+
+            div.innerHTML = `
+                <span id="${badgeId}" class="badge-container-abs"></span>
+                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </button>
+                <button class="copy-link-btn proc-copy-btn" data-no-hint="true" title="Copier le lien">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+                <div class="card-header">
+                    <div class="icon">${renderedIcon}</div>
+                    <div class="meta">
+                        <h4>${escapeHTML(proc.title)}</h4>
+                        <p>${escapeHTML(proc.description)}</p>
+                        ${cardTagsHTML}
+                    </div>
+                </div>
+                <div id="${vid}" class="pdf-container"></div>
+            `;
+
+            div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+            div.querySelector('.proc-copy-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const slug = proc.title
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .replace(/[''\(\)]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9\-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                const link = window.location.origin + '/procedures/' + slug;
+                copyToClipboard(link, e.currentTarget);
+            });
+
+            // Récupération date du dernier commit via GitHub API
+            if (config.profile.githubUser && config.profile.githubRepo) {
+                const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
+                fetch(commitUrl, ghHeaders).then(r => r.json()).then(commits => {
+                    if (commits && commits.length > 0) {
+                        const date = new Date(commits[0].commit.author.date);
+                        const formatted = date.toLocaleDateString('fr-FR');
+                        const btn = document.getElementById(btnId);
+                        if (btn) btn.setAttribute('data-date', formatted);
+                    }
+                }).catch(() => {});
+            }
+
+            // Bouton info → modale
+            const infoB = div.querySelector(`#${btnId}`);
+            if (infoB) infoB.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openProjectModal(proc, infoB.getAttribute('data-date') || '');
+            });
+
+            procedureGrid.appendChild(div);
+        });
+
+        if (config.procedures.length > PROC_LIMIT) createToggleBtn(procedureGrid, PROC_LIMIT, 'Voir la suite');
+
+    } else if (procedureGrid) {
+        procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucune procédure disponible pour le moment.</p>';
+    }
+
+    // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
+    const expList = document.getElementById("exp-list");
+    const EXP_LIMIT = 5;
+    if(expList && config.experiences) {
+        config.experiences.forEach((exp, index) => {
+            const li = document.createElement("li"); li.className = "timeline-item";
+            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+
+            const lines = exp.description.split('\n');
+            const listHtml = lines.map(line => {
+                const cleanLine = line.trim();
+                if (!cleanLine) return '';
+                return `
+                    <li style="display: flex; align-items: flex-start; margin-bottom: 6px;">
+                        <span style="display: inline-block; min-width: 6px; height: 6px; background-color: #6366f1; border-radius: 50%; margin-top: 9px; margin-right: 12px; box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);"></span>
+                        <span style="line-height: 1.6;">${escapeHTML(cleanLine)}</span>
+                    </li>`;
+            }).join('');
+
+            li.innerHTML = `
+                <span class="timeline-date" style="color:#6366f1; font-weight:bold;">${escapeHTML(exp.date)}</span>
+                <h4 class="timeline-title" style="margin-top:5px; margin-bottom:10px;">${escapeHTML(exp.role)} <span style="font-weight:400;opacity:0.8; font-size: 0.9em;">@ ${escapeHTML(exp.company)}</span></h4>
+                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary);">${listHtml}</ul>
+            `;
+            expList.appendChild(li);
+        });
+        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
+    }
+
+    // --- 9. COMPETENCES (SANS POINTS BLANCS) ---
+    const compList = document.getElementById("comp-list");
+    const COMP_LIMIT = 5;
+    if(compList && config.competences) {
+        config.competences.forEach((comp, index) => {
+            const li = document.createElement("li"); li.className = "comp-card-container"; 
+            if (index >= COMP_LIMIT) li.classList.add("hidden-item");
+            const dropId = `comp-drop-${index}`;
+            const details = comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join(''); 
+            const renderedIcon = renderIcon(comp.icon);
+
+            li.innerHTML = `
+                <div class="comp-header">
+                    <div class="cert-icon-box">${renderedIcon}</div>
+                    <span class="cert-name">${escapeHTML(comp.name)}</span>
+                    <button class="cert-btn comp-toggle">▼</button>
+                </div>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none; list-style: none;">${details}</ul>
+            `;
+            const h = li.querySelector('.comp-header');
+            h.addEventListener("click", () => { toggleComp(dropId, h); });
+            compList.appendChild(li);
+        });
+        if (config.competences.length > COMP_LIMIT) createToggleBtn(compList, COMP_LIMIT, "Voir la suite");
+    }
+
+    // --- 10. CERTIFICATIONS ---
+    const certSection = document.getElementById("certifications"); 
+    const certList = document.getElementById("cert-list");
+    const CERT_LIMIT = 5;
+    const certBaseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Certifs/`;
+    
+    // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
+    let globalViewer = document.getElementById("global-cert-viewer");
+    if (!globalViewer && certList) {
+        globalViewer = document.createElement("div");
+        globalViewer.id = "global-cert-viewer";
+        certList.parentNode.insertBefore(globalViewer, certList);
+    }
+
+    if(certList && config.certifications) {
+        config.certifications.forEach((cert, index) => {
+            const li = document.createElement("li"); li.className = "cert-card-container";
+            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
+            
+            const issuer = cert.issuer ? cert.issuer : "Certification"; 
+            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
+            
+            // Icône
+            const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
+            
+            let buttonsHtml = '';
+            if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
+            
+            li.innerHTML = `
+                <div class="cert-header-row">
+                    <div class="cert-icon-box">${iconDisplay}</div>
+                    <div class="cert-info">
+                        <span class="cert-name">${escapeHTML(cert.name)}</span>
+                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
+                    </div>
+                    <div class="cert-actions">${buttonsHtml}</div>
+                </div>
+            `;
+            
+            if (cert.pdf) {
+                const act = li.querySelector('.cert-actions');
+                const pBtn = document.createElement("button"); 
+                pBtn.className = "cert-btn pdf-btn"; 
+                pBtn.innerHTML = "📄";
+                pBtn.addEventListener("click", (e) => { 
+                    document.querySelectorAll('.pdf-btn').forEach(b => b.style.background = '');
+                    pBtn.style.background = 'var(--primary)';
+                    pBtn.style.color = 'white';
+                    toggleGlobalPDF(fullPdfUrl); 
+                });
+                act.appendChild(pBtn);
+            }
+            certList.appendChild(li);
+        });
+        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
+    }
+
+    // --- 11. MACHINE A ECRIRE ---
+    const textEl = document.getElementById("typewriter-area");
+    if(textEl && config.profile.typewriterText) {
+        const txt = config.profile.typewriterText; textEl.innerText = ""; let i=0;
+        function type() { if(i<txt.length) { textEl.textContent += txt.charAt(i); i++; setTimeout(type, 50); } }
+        setTimeout(type, 500);
+    }
+
+    // --- 12. HEADER SCROLL & MOBILE ---
+    const header = document.querySelector('.app-header');
+    const menuIcon = document.querySelector('.menu-icon'); 
+    const navCapsule = document.querySelector('.nav-capsule');
+    if (header) {
+        window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); } });
+        if (menuIcon) { menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); }); }
+        document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
+    }
+
+    // --- 13. GITHUB API FOOTER ---
+    const updateEl = document.getElementById("last-update");
+    if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`, ghHeaders).then(r => r.json()).then(d => {
+            const date = new Date(d.pushed_at);
+            updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
+        }).catch(() => { updateEl.innerText = "System Ready"; });
+    }
+
+    // --- 14. COMPTEUR DE VUES ---
+    const viewCountEl = document.getElementById("view-count");
+    if (viewCountEl && config.profile.githubUser) {
+        const namespace = config.profile.githubUser.replace(/[^a-zA-Z0-9]/g, '');
+        fetch(`https://api.countapi.xyz/hit/${namespace}/portfolio-visits`)
+            .then(res => res.json()).then(data => { viewCountEl.innerHTML = `👁️ ${data.value} Vues`; })
+            .catch(() => { viewCountEl.style.display = "none"; });
+    }
+    
+
+    
+    // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Ouverture auto d'un projet TechNova
+    const projParam = urlParams.get('proj');
+    if (projParam) {
+        const waitAndOpenProj = setInterval(() => {
+            const cards = document.querySelectorAll('#project-grid .project-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h4');
+                if (!title) return;
+                const cardSlug = title.innerText
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .replace(/[''\(\)]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9\-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                const paramSlug = decodeURIComponent(projParam).toLowerCase();
+                if (cardSlug === paramSlug) {
+                    clearInterval(waitAndOpenProj);
+                    const section = document.getElementById('projets');
+                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    window.history.replaceState({}, '', '/');
+                }
+            });
+        }, 300);
+        setTimeout(() => clearInterval(waitAndOpenProj), 5000);
+    }
+
+    const procParam = urlParams.get('proc');
+    if (procParam) {
+        const makeSlug = (str) => str
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[\u2019\u2018'`\(\)]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-]/g, '')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+
+        const paramSlug = makeSlug(decodeURIComponent(procParam));
+
+        const tryOpen = () => {
+            const cards = document.querySelectorAll('#procedure-grid .project-card');
+            let found = false;
+            cards.forEach(card => {
+                const titleEl = card.querySelector('h4');
+                if (!titleEl) return;
+                const cardSlug = makeSlug(titleEl.innerText);
+                if (cardSlug === paramSlug) {
+                    found = true;
+                    card.classList.remove('hidden-item');
+                    card.style.display = 'flex';
+                    const section = document.getElementById('procedures');
+                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    window.history.replaceState({}, '', '/');
+                }
+            });
+            return found;
+        };
+
+        // Attendre que les event listeners des cartes soient bien attachés
+        setTimeout(() => {
+            if (!tryOpen()) {
+                const waitAndOpen = setInterval(() => {
+                    if (tryOpen()) clearInterval(waitAndOpen);
+                }, 300);
+                setTimeout(() => clearInterval(waitAndOpen), 5000);
+            }
+        }, 1000);
+    }
+
+    initCursorHint();
+
+    // --- BOUTON RETOUR EN HAUT ---
+    const backToTop = document.getElementById('back-to-top');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") {
+            document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = "none");
+            document.querySelectorAll('.pdf-container, .cert-pdf-viewer').forEach(el => { el.style.display='none'; el.innerHTML=''; });
+            document.querySelectorAll('.comp-dropdown-menu').forEach(el => el.style.display='none');
+            document.querySelectorAll('.expanded').forEach(el => el.classList.remove('expanded'));
+            document.querySelectorAll('.comp-toggle').forEach(el => el.classList.remove('active'));
+        }
+        if ((e.key === "d" || e.key === "D") && e.target.tagName !== 'INPUT') { document.getElementById("theme-toggle").click(); }
+    });
+});
+
+// --- FONCTIONS AUXILIAIRES ---
+function initCursorHint() {
+    let hintEl = document.getElementById("cursor-hint");
+    if (!hintEl) { hintEl = document.createElement("div"); hintEl.id = "cursor-hint"; document.body.appendChild(hintEl); }
+    document.addEventListener("mousemove", (e) => { hintEl.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`; });
+    document.querySelectorAll('.interactive-card').forEach(el => {
+        el.addEventListener("mouseenter", () => { if (!el.classList.contains('expanded')) { hintEl.innerText = el.getAttribute('data-hint') || "Voir"; hintEl.classList.add("visible"); } });
+        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
+        el.addEventListener("mouseleave", () => hintEl.classList.remove("visible"));
+        el.addEventListener("click", () => hintEl.classList.remove("visible"));
+    });
+}
+
+function openProjectModal(proj, dateStr = "") {
+    const modal = document.getElementById("project-modal");
+    const titleEl = document.getElementById("modal-project-title");
+    const descEl = document.getElementById("modal-project-desc");
+    const tagsEl = document.getElementById("modal-project-tags");
+    if(modal && titleEl && descEl && tagsEl) {
+        titleEl.innerText = proj.title;
+        let dateHtml = dateStr ? `<div class="modal-date-display" style="margin-bottom:10px; font-size:0.8rem; opacity:0.7;">📅 Ajouté le : ${dateStr}</div>` : "";
+        descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
+        tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
+        modal.style.display = "flex";
+    }
+}
+
+
+function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+function togglePDF(id, url) {
+    const c = document.getElementById(id);
+    const card = c.closest('.project-card'); 
+    if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
+    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
+    c.style.display = 'block';
+    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+}
+
+function toggleComp(id, headerEl) {
+    const menu = document.getElementById(id);
+    const btn = headerEl.querySelector('.comp-toggle'); 
+    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
+    document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
+    const isOpened = menu.style.display === 'block';
+    menu.style.display = isOpened ? 'none' : 'block';
+    if(btn) isOpened ? btn.classList.remove('active') : btn.classList.add('active');
+}
+
+function toggleCertPDF(id, url) {
+    const viewer = document.getElementById(id);
+    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
+    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
+    viewer.style.display = 'block';
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+}
+
+function createToggleBtn(container, limit, txtMore) {
+    const div = document.createElement("div"); div.className = "load-more-container";
+    const btn = document.createElement("button"); btn.className = "load-more-btn"; btn.innerHTML = `<span>↓</span> ${txtMore}`;
+    let expanded = false;
+    btn.addEventListener("click", () => {
+        expanded = !expanded;
+        Array.from(container.children).forEach((child, i) => {
+            if (i >= limit) {
+                if (expanded) { child.classList.remove("hidden-item"); child.style.opacity = 0; setTimeout(() => child.style.opacity = 1, 50); }
+                else { child.classList.add("hidden-item"); child.style.opacity = 0; }
+            }
+        });
+        btn.innerHTML = expanded ? `<span>↑</span> Masquer` : `<span>↓</span> ${txtMore}`;
+    });
+    div.appendChild(btn);
+    container.parentNode.insertBefore(div, container.nextSibling);
+}
+
+function toggleGlobalPDF(url) {
+    const viewer = document.getElementById("global-cert-viewer");
+    
+    if (!viewer) return;
+
+    const encodedUrl = encodeURIComponent(url);
+    const currentIframe = viewer.querySelector('iframe');
+
+    const closeViewer = () => {
+        viewer.style.display = 'none';
+        viewer.innerHTML = ''; 
+        document.querySelectorAll('.pdf-btn').forEach(b => { 
+            b.style.background = ''; 
+            b.style.color = ''; 
+        });
+    };
+
+    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
+        closeViewer();
+        return;
+    }
+
+    viewer.style.display = 'block';
+    
+    viewer.innerHTML = `
+        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
+        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
+    `;
+
+    const closeBtn = document.getElementById("btn-close-viewer");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeViewer);
+    }
+
+    const headerOffset = 120;
+    const elementPosition = viewer.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
