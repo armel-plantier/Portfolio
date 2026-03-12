@@ -26,11 +26,11 @@
         }, delay);
     });
 
-    // Barre 0 → 100%
+    // Barre 0 → 100% rapide, puis captcha direct
     let pct = 0;
     let barDone = false;
     const interval = setInterval(() => {
-        const step = pct < 70 ? 3 : pct < 89 ? 1.2 : 0;
+        const step = pct < 89 ? 5 : 0;
         pct = Math.min(pct + step, 89);
         if (barFill) barFill.style.width = pct + '%';
         if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
@@ -40,7 +40,7 @@
             clearInterval(interval);
             waitForTurnstile();
         }
-    }, 22);
+    }, 16);
 
     function waitForTurnstile() {
         if (window.turnstile) {
