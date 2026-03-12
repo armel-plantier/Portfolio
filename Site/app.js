@@ -290,6 +290,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
             
+            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
+                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
+                fetch(apiUrl).then(res => res.json()).then(data => {
+                    if (data && data.length > 0) {
+                        const commitDate = new Date(data[0].commit.author.date);
+                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
+                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
+                    }
+                }).catch(() => {});
+            }
+
             div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -396,7 +407,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
+    // --- GITHUB AUTH HEADERS ---
+    const ghHeaders = config.githubToken
+        ? { headers: { 'Authorization': 'token ' + config.githubToken } }
+        : {};
 
     // --- PROCEDURES (Chargement statique depuis config.procedures) ---
     const procedureGrid = document.getElementById('procedure-grid');
@@ -569,6 +583,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 copyToClipboard(link, e.currentTarget);
             });
 
+            // Récupération date du dernier commit via GitHub API
+            if (config.profile.githubUser && config.profile.githubRepo) {
+                const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
+                fetch(commitUrl, ghHeaders).then(r => r.json()).then(commits => {
+                    if (commits && commits.length > 0) {
+                        const date = new Date(commits[0].commit.author.date);
+                        const formatted = date.toLocaleDateString('fr-FR');
+                        const btn = document.getElementById(btnId);
+                        if (btn) btn.setAttribute('data-date', formatted);
+                    }
+                }).catch(() => {});
+            }
+
             // Bouton info → modale
             const infoB = div.querySelector(`#${btnId}`);
             if (infoB) infoB.addEventListener('click', (e) => {
@@ -718,7 +745,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`, ghHeaders).then(r => r.json()).then(d => {
             const date = new Date(d.pushed_at);
             updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
         }).catch(() => { updateEl.innerText = "System Ready"; });
@@ -873,112 +900,14 @@ function copyToClipboard(text, btn) {
     });
 }
 
-const PDFJS_VIEWER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-
-function buildPdfFallback(url) {
-    return `
-        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; color:var(--muted); text-align:center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <p style="margin:0; font-size:0.95rem;">Le document ne peut pas être affiché.</p>
-            <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
-                <a href="${url}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; background:var(--primary); color:white; border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none;">
-                    Ouvrir le PDF
-                </a>
-                <a href="${url}" download style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; border:1px solid var(--border); color:var(--muted); border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none;">
-                    Télécharger
-                </a>
-            </div>
-        </div>`;
-}
-
-function renderPdfInContainer(container, url, height) {
-    container.innerHTML = `
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px; color:var(--muted); font-size:0.9rem;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-            Chargement du document...
-        </div>`;
-
-    const loadPdfJs = () => new Promise((resolve, reject) => {
-        if (window.pdfjsLib) { resolve(); return; }
-        const script = document.createElement('script');
-        script.src = PDFJS_VIEWER;
-        script.onload = () => {
-            window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-            resolve();
-        };
-        script.onerror = reject;
-        document.head.appendChild(script);
-    });
-
-    loadPdfJs().then(() => {
-        return pdfjsLib.getDocument(url).promise;
-    }).then(pdfDoc => {
-        const totalPages = pdfDoc.numPages;
-
-        // Barre de navigation
-        const nav = document.createElement('div');
-        nav.style.cssText = `display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:var(--card); border-bottom:1px solid var(--border); gap:10px; flex-wrap:wrap;`;
-        nav.innerHTML = `
-            <div style="display:flex; align-items:center; gap:8px;">
-                <button id="pdf-prev" style="padding:6px 14px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.85rem;">← Préc.</button>
-                <span id="pdf-page-info" style="font-size:0.85rem; color:var(--muted); white-space:nowrap;">Page 1 / ${totalPages}</span>
-                <button id="pdf-next" style="padding:6px 14px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer; font-size:0.85rem;">Suiv. →</button>
-            </div>
-            <a href="${url}" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem; color:var(--primary); text-decoration:none; font-weight:600;">Ouvrir ↗</a>`;
-
-        const canvas = document.createElement('canvas');
-        canvas.style.cssText = 'width:100%; display:block; background:#fff;';
-
-        container.innerHTML = '';
-        container.appendChild(nav);
-        container.appendChild(canvas);
-
-        let currentPage = 1;
-        let rendering = false;
-
-        const renderPage = (num) => {
-            if (rendering) return;
-            rendering = true;
-            pdfDoc.getPage(num).then(page => {
-                const viewport = page.getViewport({ scale: container.clientWidth / page.getViewport({ scale: 1 }).width });
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                const ctx = canvas.getContext('2d');
-                page.render({ canvasContext: ctx, viewport }).promise.then(() => {
-                    rendering = false;
-                    document.getElementById('pdf-page-info').textContent = `Page ${num} / ${totalPages}`;
-                    document.getElementById('pdf-prev').disabled = num <= 1;
-                    document.getElementById('pdf-next').disabled = num >= totalPages;
-                });
-            });
-        };
-
-        container.querySelector('#pdf-prev').addEventListener('click', () => { if (currentPage > 1) renderPage(--currentPage); });
-        container.querySelector('#pdf-next').addEventListener('click', () => { if (currentPage < totalPages) renderPage(++currentPage); });
-
-        // Ajouter l'animation spin dans le style si pas déjà présente
-        if (!document.getElementById('pdf-spin-style')) {
-            const s = document.createElement('style');
-            s.id = 'pdf-spin-style';
-            s.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-            document.head.appendChild(s);
-        }
-
-        renderPage(1);
-    }).catch(() => {
-        container.innerHTML = buildPdfFallback(url);
-    });
-}
-
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    const card = c.closest('.project-card');
+    const card = c.closest('.project-card'); 
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
+    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
     if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
-    renderPdfInContainer(c, url, 600);
 }
 
 function toggleComp(id, headerEl) {
@@ -996,7 +925,7 @@ function toggleCertPDF(id, url) {
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
-    renderPdfInContainer(viewer, url, 500);
+    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
 }
 
 function createToggleBtn(container, limit, txtMore) {
@@ -1019,27 +948,44 @@ function createToggleBtn(container, limit, txtMore) {
 
 function toggleGlobalPDF(url) {
     const viewer = document.getElementById("global-cert-viewer");
+    
     if (!viewer) return;
+
+    const encodedUrl = encodeURIComponent(url);
+    const currentIframe = viewer.querySelector('iframe');
 
     const closeViewer = () => {
         viewer.style.display = 'none';
-        viewer.innerHTML = '';
-        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+        viewer.innerHTML = ''; 
+        document.querySelectorAll('.pdf-btn').forEach(b => { 
+            b.style.background = ''; 
+            b.style.color = ''; 
+        });
     };
 
-    // Si déjà ouvert avec le même PDF, on ferme
-    if (viewer.style.display === 'block' && viewer.dataset.currentUrl === url) {
+    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
         closeViewer();
         return;
     }
 
-    viewer.dataset.currentUrl = url;
     viewer.style.display = 'block';
-    viewer.innerHTML = `<button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button><div id="global-pdf-inner"></div>`;
-    document.getElementById("btn-close-viewer").addEventListener("click", closeViewer);
+    
+    viewer.innerHTML = `
+        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
+        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
+    `;
 
-    renderPdfInContainer(document.getElementById('global-pdf-inner'), url, 600);
+    const closeBtn = document.getElementById("btn-close-viewer");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeViewer);
+    }
 
-    const offsetPosition = viewer.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    const headerOffset = 120;
+    const elementPosition = viewer.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
 }
