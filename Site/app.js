@@ -8,8 +8,6 @@
     ];
 
     const linesEl    = document.getElementById('splash-lines');
-    const barFill    = document.getElementById('splash-bar-fill');
-    const pctEl      = document.getElementById('splash-pct');
     const splash     = document.getElementById('splash-screen');
     const captchaSec = document.getElementById('splash-captcha-section');
 
@@ -27,8 +25,6 @@
     });
 
     // Barre instantanée → captcha direct
-    if (barFill) barFill.style.width = '100%';
-    if (pctEl)   pctEl.textContent   = '100%';
     waitForTurnstile();
 
     function waitForTurnstile() {
