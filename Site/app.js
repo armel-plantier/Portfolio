@@ -1,40 +1,16 @@
 // --- FONCTIONS GLOBALES ---
 
-// === SPLASH SCREEN ===
-(function() {
-    const splash     = document.getElementById('splash-screen');
-    const captchaSec = document.getElementById('splash-captcha-section');
-
-    if (!splash) return;
-
-    function waitForTurnstile() {
-        if (window.turnstile) {
-            if (captchaSec) captchaSec.classList.add('visible');
-            initEntryCaptcha();
-        } else {
-            setTimeout(waitForTurnstile, 150);
-        }
-    }
-
-    waitForTurnstile();
-})();
-
-// === CAPTCHA ===
+// === SPLASH SCREEN + CAPTCHA ===
 function onTurnstileLoad() {
-    window._turnstileReady = true;
-}
-
-function initEntryCaptcha() {
     const splash = document.getElementById('splash-screen');
+    if (!splash) return;
     turnstile.render('#entry-captcha-container', {
         sitekey: config.profile.turnstileSiteKey,
         theme: 'dark',
         callback: function() {
-            if (splash) {
-                splash.style.transition = 'opacity 0.5s ease';
-                splash.style.opacity = '0';
-                setTimeout(() => { splash.style.display = 'none'; }, 500);
-            }
+            splash.style.transition = 'opacity 0.5s ease';
+            splash.style.opacity = '0';
+            setTimeout(() => { splash.style.display = 'none'; }, 500);
         }
     });
 }
