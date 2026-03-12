@@ -29,7 +29,6 @@
     });
 
     // Barre 0 → 100%
-    // La barre s'arrête à 90% et attend que Turnstile soit chargé pour finir
     let pct = 0;
     let barDone = false;
     const interval = setInterval(() => {
@@ -41,7 +40,6 @@
         if (pct >= 89 && !barDone) {
             barDone = true;
             clearInterval(interval);
-            // Attendre que Turnstile soit prêt, puis finir la barre et afficher le captcha
             waitForTurnstile();
         }
     }, 22);
@@ -55,7 +53,6 @@
     }
 
     function finishBar() {
-        // Finir la barre 89 → 100%
         let p = 89;
         const fin = setInterval(() => {
             p = Math.min(p + 1, 100);
