@@ -12,6 +12,8 @@ const config = {
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
+    githubToken: "GITHUB_TOKEN_PLACEHOLDER",
+
     profile: {
         githubUser: "armel-plantier", 
         githubRepo: "Portfolio", 
