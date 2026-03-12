@@ -82,32 +82,7 @@
         .splash-boot-lines .ok   { color: #10b981; }
         .splash-boot-lines .warn { color: #6366f1; }
 
-        .splash-bar-wrap {
-            width: 320px;
-            margin-bottom: 32px;
-            animation: splashFadeIn 0.4s ease 0.4s both;
-        }
-        .splash-bar-label {
-            display: flex; justify-content: space-between;
-            font-size: 0.7rem; color: #334155;
-            font-family: 'Courier New', monospace;
-            margin-bottom: 8px;
-        }
-        #splash-pct { color: #6366f1; font-weight: 700; }
-        .splash-bar-track {
-            width: 100%; height: 3px;
-            background: #0f172a;
-            border-radius: 99px; overflow: hidden;
-        }
-        #splash-bar-fill {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #6366f1);
-            background-size: 200% 100%;
-            border-radius: 99px;
 
-            animation: barShimmer 1.5s linear infinite;
-        }
-        @keyframes barShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
         @keyframes splashFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Captcha intégré dans le splash */
@@ -140,14 +115,7 @@
             <div class="splash-logo-text">armel<span>-plantier</span>.com</div>
         </div>
         <div class="splash-boot-lines" id="splash-lines"></div>
-        <div class="splash-bar-wrap">
-            <div class="splash-bar-label">
-                <span id="splash-pct">0%</span>
-            </div>
-            <div class="splash-bar-track">
-                <div id="splash-bar-fill"></div>
-            </div>
-        </div>
+
         <!-- Captcha intégré comme ligne de boot -->
         <div id="splash-captcha-section">
             <div class="splash-captcha-label">[ En cours ] Vérification de sécurité (captcha)</div>
