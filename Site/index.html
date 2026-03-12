@@ -123,62 +123,12 @@
             pointer-events: auto;
         }
 
-        /* Label captcha amélioré */
         .splash-captcha-label {
             font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
-            margin-bottom: 12px;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .splash-captcha-label-text {
-            color: #334155;
-        }
-        .splash-captcha-label-text em {
-            font-style: normal;
+            font-size: 0.72rem;
             color: #6366f1;
-            font-weight: 600;
-        }
-        .splash-captcha-label::before {
-            content: ''; display: inline-block;
-            width: 6px; height: 6px; border-radius: 50%;
-            background: #6366f1;
-            box-shadow: 0 0 6px #6366f1;
-            animation: dotBlink 1.2s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-
-        /* Wrapper captcha avec bordure subtile */
-        .splash-captcha-wrapper {
-            background: rgba(99,102,241,0.04);
-            border: 1px solid rgba(99,102,241,0.12);
-            border-radius: 10px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .splash-captcha-icon {
-            flex-shrink: 0;
-            width: 32px; height: 32px;
-            background: rgba(99,102,241,0.1);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .splash-captcha-icon svg { opacity: 0.6; }
-        .splash-captcha-content { flex: 1; }
-        .splash-captcha-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.78rem; font-weight: 600;
-            color: #94a3b8;
-            margin-bottom: 2px;
-        }
-        .splash-captcha-sub {
-            font-family: 'Courier New', monospace;
-            font-size: 0.62rem;
-            color: #334155;
-        }
-        #entry-captcha-container {
-            margin-top: 12px;
+            margin-bottom: 10px;
+            line-height: 1.8;
         }
 
         @keyframes dotBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -192,31 +142,16 @@
         <div class="splash-boot-lines" id="splash-lines"></div>
         <div class="splash-bar-wrap">
             <div class="splash-bar-label">
-                <span>Initialisation système</span>
                 <span id="splash-pct">0%</span>
             </div>
             <div class="splash-bar-track">
                 <div id="splash-bar-fill"></div>
             </div>
         </div>
-        <!-- Captcha redesigné -->
+        <!-- Captcha intégré comme ligne de boot -->
         <div id="splash-captcha-section">
-            <div class="splash-captcha-label">
-                <span class="splash-captcha-label-text">Vérification <em>humaine</em> requise</span>
-            </div>
-            <div class="splash-captcha-wrapper">
-                <div class="splash-captcha-icon">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <polyline points="9 12 11 14 15 10"/>
-                    </svg>
-                </div>
-                <div class="splash-captcha-content">
-                    <div class="splash-captcha-title">Vérification de sécurité</div>
-                    <div class="splash-captcha-sub">Cloudflare Turnstile · Accès sécurisé</div>
-                </div>
-            </div>
-            <div id="entry-captcha-container" style="display:flex; justify-content:flex-start; min-height:65px;"></div>
+            <div class="splash-captcha-label">[ En cours ] Vérification de sécurité (captcha)</div>
+            <div id="entry-captcha-container" style="display:flex; justify-content:flex-start; min-height:65px; margin-top: 4px;"></div>
         </div>
     </div>
 
