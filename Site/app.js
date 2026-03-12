@@ -512,6 +512,104 @@ document.addEventListener("DOMContentLoaded", () => {
     if (procedureGrid && config.procedures && config.procedures.length > 0) {
         procedureGrid.innerHTML = '';
 
+        // --- CONTRÔLES : recherche + filtre par tag ---
+        const allProcTags = new Set();
+        config.procedures.forEach(p => { if (p.tags) p.tags.forEach(t => allProcTags.add(t)); });
+
+        const procControlsContainer = document.createElement('div');
+        procControlsContainer.className = 'project-controls';
+
+        const procSearchInput = document.createElement('input');
+        procSearchInput.type = 'text';
+        procSearchInput.id = 'proc-search';
+        procSearchInput.className = 'project-search-input';
+        procSearchInput.placeholder = 'Rechercher une procédure...';
+
+        const procFilterWrapper = document.createElement('div');
+        procFilterWrapper.className = 'filter-dropdown-wrapper';
+
+        const procFilterBtn = document.createElement('button');
+        procFilterBtn.className = 'filter-toggle-btn';
+        procFilterBtn.innerHTML = `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+        const procFilterMenu = document.createElement('div');
+        procFilterMenu.className = 'filter-dropdown-menu';
+
+        let procMenuHTML = `<div class="filter-option active" data-tag="all">Toutes les procédures</div>`;
+        allProcTags.forEach(tag => {
+            procMenuHTML += `<div class="filter-option" data-tag="${escapeHTML(tag)}">${escapeHTML(tag)}</div>`;
+        });
+        procFilterMenu.innerHTML = procMenuHTML;
+
+        procFilterWrapper.appendChild(procFilterBtn);
+        procFilterWrapper.appendChild(procFilterMenu);
+        procControlsContainer.appendChild(procSearchInput);
+        procControlsContainer.appendChild(procFilterWrapper);
+
+        const procNoResult = document.createElement('p');
+        procNoResult.className = 'no-results-message';
+        procNoResult.style.cssText = 'display:none; color:var(--muted); font-style:italic; padding: 20px 0;';
+        procNoResult.textContent = 'Aucune procédure ne correspond à votre recherche.';
+
+        procedureGrid.parentNode.insertBefore(procControlsContainer, procedureGrid);
+        procedureGrid.parentNode.insertBefore(procNoResult, procedureGrid.nextSibling);
+
+        let currentProcSearch = '';
+        let currentProcTag = 'all';
+
+        function filterProcedures() {
+            const allCards = procedureGrid.querySelectorAll('.project-card');
+            let visibleCount = 0;
+            allCards.forEach(card => {
+                const title = (card.querySelector('h4')?.textContent || '').toLowerCase();
+                const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+                const tagsData = JSON.parse(card.getAttribute('data-tags') || '[]');
+                const tagsLower = tagsData.map(t => t.toLowerCase());
+                const matchesSearch = !currentProcSearch || title.includes(currentProcSearch) || desc.includes(currentProcSearch) || tagsLower.some(t => t.includes(currentProcSearch));
+                const matchesTag = currentProcTag === 'all' || tagsData.includes(currentProcTag);
+                const visible = matchesSearch && matchesTag;
+                card.style.display = visible ? '' : 'none';
+                if (visible) visibleCount++;
+            });
+            procNoResult.style.display = visibleCount === 0 ? 'block' : 'none';
+            // Cacher le bouton "Voir la suite" pendant la recherche/filtre
+            const loadMoreBtn = procedureGrid.parentNode.querySelector('.load-more-container');
+            if (loadMoreBtn) loadMoreBtn.style.display = (currentProcSearch || currentProcTag !== 'all') ? 'none' : '';
+        }
+
+        procSearchInput.addEventListener('input', (e) => {
+            currentProcSearch = e.target.value.toLowerCase().trim();
+            filterProcedures();
+        });
+
+        procFilterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            procFilterMenu.classList.toggle('show');
+            procFilterBtn.classList.toggle('active');
+        });
+
+        procFilterMenu.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-option')) {
+                currentProcTag = e.target.dataset.tag;
+                filterProcedures();
+                procFilterMenu.querySelectorAll('.filter-option').forEach(el => el.classList.remove('active'));
+                e.target.classList.add('active');
+                procFilterBtn.innerHTML = currentProcTag === 'all'
+                    ? `Filtrer <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`
+                    : `${escapeHTML(currentProcTag)} <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+                procFilterMenu.classList.remove('show');
+                procFilterBtn.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!procFilterWrapper.contains(e.target)) {
+                procFilterMenu.classList.remove('show');
+                procFilterBtn.classList.remove('active');
+            }
+        });
+
+        // --- RENDU DES CARTES ---
         config.procedures.forEach((proc, index) => {
             const fullPdfUrl = PROC_BASE_URL + encodeURIComponent(proc.path);
             const vid = `proc_viewer_${index}`;
@@ -530,6 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const div = document.createElement('div');
             div.className = 'project-card interactive-card';
             div.setAttribute('data-hint', 'Voir le PDF 📄');
+            div.setAttribute('data-tags', JSON.stringify(proc.tags || []));
             if (index >= PROC_LIMIT) div.classList.add('hidden-item');
 
             div.innerHTML = `
