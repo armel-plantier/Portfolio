@@ -26,21 +26,10 @@
         }, delay);
     });
 
-    // Barre 0 → 100% rapide, puis captcha direct
-    let pct = 0;
-    let barDone = false;
-    const interval = setInterval(() => {
-        const step = pct < 89 ? 5 : 0;
-        pct = Math.min(pct + step, 89);
-        if (barFill) barFill.style.width = pct + '%';
-        if (pctEl)   pctEl.textContent   = Math.floor(pct) + '%';
-
-        if (pct >= 89 && !barDone) {
-            barDone = true;
-            clearInterval(interval);
-            waitForTurnstile();
-        }
-    }, 16);
+    // Barre instantanée → captcha direct
+    if (barFill) barFill.style.width = '100%';
+    if (pctEl)   pctEl.textContent   = '100%';
+    waitForTurnstile();
 
     function waitForTurnstile() {
         if (window.turnstile) {
