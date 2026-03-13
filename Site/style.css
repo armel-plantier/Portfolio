@@ -1179,9 +1179,11 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 .grid.view-list .project-card {
     flex-direction: row;
     align-items: center;
-    padding: 12px 16px;
+    padding: 10px 14px;
     min-height: unset;
-    gap: 14px;
+    gap: 0;
+    position: relative;
+    overflow: visible;
 }
 
 .grid.view-list .project-card .card-header {
@@ -1192,30 +1194,38 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
     min-width: 0;
     padding: 0;
     border: none;
+    padding-right: 80px; /* espace pour les boutons à droite */
 }
 
 .grid.view-list .project-card .icon {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 7px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 .grid.view-list .project-card .icon svg,
 .grid.view-list .project-card .icon img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+}
+
+.grid.view-list .project-card .meta {
+    min-width: 0;
+    flex: 1;
 }
 
 .grid.view-list .project-card .meta h4 {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .grid.view-list .project-card .meta p {
@@ -1224,171 +1234,68 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 
 .grid.view-list .project-card .tags-container {
     display: flex;
-    gap: 5px;
+    gap: 4px;
     flex-wrap: nowrap;
     margin-top: 3px;
+    overflow: hidden;
+}
+
+.grid.view-list .project-card .project-tag {
+    font-size: 0.68rem;
+    padding: 1px 7px;
+    white-space: nowrap;
 }
 
 .grid.view-list .project-card .badge-container-abs {
     display: none;
 }
 
+/* Boutons en liste : position absolue mais bien calée à droite */
 .grid.view-list .project-card .info-btn,
 .grid.view-list .project-card .copy-link-btn {
-    position: static !important;
-    width: 28px !important;
-    height: 28px !important;
+    position: absolute !important;
+    bottom: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 30px !important;
+    height: 30px !important;
     opacity: 1 !important;
-    flex-shrink: 0;
+}
+
+.grid.view-list .project-card .copy-link-btn {
+    right: 46px !important;
+}
+
+.grid.view-list .project-card .info-btn {
+    right: 10px !important;
+}
+
+/* Procédures : même positionnement */
+.grid.view-list .project-card .proc-copy-btn {
+    right: 46px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    bottom: auto !important;
+}
+
+#procedure-grid.view-list .info-btn {
+    top: 50% !important;
+    bottom: auto !important;
+    right: 10px !important;
+    transform: translateY(-50%) !important;
+    width: 30px !important;
+    height: 30px !important;
 }
 
 .grid.view-list .project-card .pdf-container {
-    flex: 0 0 100%;
-    order: 10;
-}
-
-/* ===== VUE TABLEAU ===== */
-.grid.view-table {
-    display: table;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.grid.view-table::before {
-    content: '';
-    display: table-row;
-}
-
-/* Fausse en-tête via le premier pseudo-élément du premier enfant */
-.grid.view-table .project-card:first-child::before {
-    content: 'Titre' attr(data-col2) attr(data-col3);
-    display: none;
-}
-
-/* Header injecté dynamiquement */
-.view-table-header {
-    display: table-row;
-    background: rgba(99,102,241,0.07);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-.view-table-header > span {
-    display: table-cell;
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
-}
-
-.grid.view-table .project-card {
-    display: table-row;
-    cursor: pointer;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    gap: 0;
-    transition: background 0.15s;
-}
-
-.grid.view-table .project-card:hover {
-    background: rgba(99,102,241,0.04);
-    transform: none;
-    box-shadow: none;
-}
-
-.grid.view-table .project-card > * {
-    display: table-cell;
-    padding: 11px 16px;
-    vertical-align: middle;
-    border-bottom: 1px solid rgba(99,102,241,0.07);
-}
-
-.grid.view-table .project-card .card-header {
-    display: table-cell;
-    padding: 11px 16px;
-    border: none;
-    background: transparent;
-    width: auto;
-    vertical-align: middle;
-}
-
-.grid.view-table .project-card .card-header .icon {
-    display: none;
-}
-.grid.view-table .project-card .card-header .meta p {
-    display: none;
-}
-.grid.view-table .project-card .card-header .meta h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-}
-.grid.view-table .project-card .card-header .tags-container {
-    display: none;
-}
-
-/* Cellule tags séparée */
-.grid.view-table .project-card .table-tags-cell {
-    display: table-cell;
-    padding: 11px 16px;
-    vertical-align: middle;
-    width: 240px;
-    border-bottom: 1px solid rgba(99,102,241,0.07);
-}
-.grid.view-table .project-card .table-tags-cell .tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin: 0;
-}
-
-/* Cellule actions */
-.grid.view-table .project-card .table-actions-cell {
-    display: table-cell;
-    padding: 8px 16px;
-    vertical-align: middle;
-    width: 80px;
-    text-align: right;
-    border-bottom: 1px solid rgba(99,102,241,0.07);
-}
-.grid.view-table .project-card .table-actions-cell .info-btn,
-.grid.view-table .project-card .table-actions-cell .copy-link-btn {
-    position: static !important;
-    width: 28px !important;
-    height: 28px !important;
-    opacity: 1 !important;
-    display: inline-flex;
-}
-
-/* Masquer les éléments non utilisés en vue tableau */
-.grid.view-table .project-card .badge-container-abs,
-.grid.view-table .project-card .pdf-container,
-.grid.view-table .project-card > .info-btn,
-.grid.view-table .project-card > .copy-link-btn {
     display: none !important;
 }
 
+
 @media (max-width: 600px) {
     .view-toggle-group { display: none; }
-    .grid.view-list,
-    .grid.view-table {
+    .grid.view-list {
         display: grid !important;
         grid-template-columns: 1fr;
-    }
-    .grid.view-table .project-card {
-        display: flex !important;
-        flex-direction: row;
-        padding: 12px 16px;
-    }
-    .grid.view-table .table-tags-cell,
-    .grid.view-table .table-actions-cell,
-    .grid.view-table .view-table-header {
-        display: none !important;
     }
 }
