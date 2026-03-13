@@ -236,9 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="view-btn" data-view="list" title="Liste">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             </button>
-            <button class="view-btn" data-view="table" title="Tableau">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-            </button>
         `;
 
         controlsContainer.appendChild(searchInput);
@@ -253,44 +250,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const applyProjectView = (view) => {
             currentProjectView = view;
             localStorage.setItem('projectView', view);
-            grid.className = view === 'grid' ? 'grid' : view === 'list' ? 'grid view-list' : 'grid view-table';
+            grid.className = view === 'grid' ? 'grid' : 'grid view-list';
             viewToggleGroup.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
-            
-            // Gestion de la ligne d'en-tête pour le tableau
-            const existingHeader = grid.querySelector('.view-table-header');
-            if (view === 'table') {
-                if (!existingHeader) {
-                    const header = document.createElement('div');
-                    header.className = 'view-table-header';
-                    header.innerHTML = `<span>Titre</span><span>Tags</span><span></span>`;
-                    grid.insertBefore(header, grid.firstChild);
-                }
-                // Ajouter les cellules tableau si pas encore présentes
-                grid.querySelectorAll('.project-card').forEach(card => {
-                    if (!card.querySelector('.table-tags-cell')) {
-                        const tagsData = JSON.parse(card.getAttribute('data-tags') || '[]');
-                        const tagsHtml = tagsData.map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('');
-                        const tagsCell = document.createElement('div');
-                        tagsCell.className = 'table-tags-cell';
-                        tagsCell.innerHTML = `<div class="tags-container">${tagsHtml}</div>`;
-                        const actionsCell = document.createElement('div');
-                        actionsCell.className = 'table-actions-cell';
-                        const infoBtn = card.querySelector('.info-btn');
-                        const copyBtn = card.querySelector('.copy-link-btn');
-                        if (infoBtn) actionsCell.appendChild(infoBtn.cloneNode(true));
-                        if (copyBtn) actionsCell.appendChild(copyBtn.cloneNode(true));
-                        // Réattacher les listeners sur les clones
-                        const cloneInfo = actionsCell.querySelector('.info-btn');
-                        const cloneCopy = actionsCell.querySelector('.copy-link-btn');
-                        if (cloneInfo) cloneInfo.addEventListener('click', (e) => { e.stopPropagation(); const idx = [...grid.querySelectorAll('.project-card')].indexOf(card); const proj = config.projects[idx]; if(proj) openProjectModal(proj, infoBtn.getAttribute('data-date') || ''); });
-                        if (cloneCopy) cloneCopy.addEventListener('click', (e) => { e.stopPropagation(); const slug = card.querySelector('h4').innerText.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/['\u2019\u2018\(\)]/g,'').replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,''); copyToClipboard(window.location.origin+'/projet-technova/'+slug, cloneCopy); });
-                        card.appendChild(tagsCell);
-                        card.appendChild(actionsCell);
-                    }
-                });
-            } else {
-                if (existingHeader) existingHeader.remove();
-            }
         };
         viewToggleGroup.querySelectorAll('.view-btn').forEach(b => {
             b.addEventListener('click', () => applyProjectView(b.dataset.view));
@@ -527,9 +488,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="view-btn" data-view="list" title="Liste">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             </button>
-            <button class="view-btn" data-view="table" title="Tableau">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-            </button>
         `;
 
         procControlsContainer.appendChild(procSearchInput);
@@ -541,42 +499,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const applyProcView = (view) => {
             currentProcView = view;
             localStorage.setItem('procView', view);
-            procedureGrid.className = view === 'grid' ? 'grid' : view === 'list' ? 'grid view-list' : 'grid view-table';
+            procedureGrid.className = view === 'grid' ? 'grid' : 'grid view-list';
             procViewToggleGroup.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
-
-            // Gestion de la ligne d'en-tête pour le tableau
-            const existingHeader = procedureGrid.querySelector('.view-table-header');
-            if (view === 'table') {
-                if (!existingHeader) {
-                    const header = document.createElement('div');
-                    header.className = 'view-table-header';
-                    header.innerHTML = `<span>Titre</span><span>Tags</span><span></span>`;
-                    procedureGrid.insertBefore(header, procedureGrid.firstChild);
-                }
-                procedureGrid.querySelectorAll('.project-card').forEach(card => {
-                    if (!card.querySelector('.table-tags-cell')) {
-                        const tagsData = JSON.parse(card.getAttribute('data-tags') || '[]');
-                        const tagsHtml = tagsData.map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('');
-                        const tagsCell = document.createElement('div');
-                        tagsCell.className = 'table-tags-cell';
-                        tagsCell.innerHTML = `<div class="tags-container">${tagsHtml}</div>`;
-                        const actionsCell = document.createElement('div');
-                        actionsCell.className = 'table-actions-cell';
-                        const infoBtn = card.querySelector('.info-btn');
-                        const copyBtn = card.querySelector('.proc-copy-btn');
-                        if (infoBtn) actionsCell.appendChild(infoBtn.cloneNode(true));
-                        if (copyBtn) actionsCell.appendChild(copyBtn.cloneNode(true));
-                        const cloneInfo = actionsCell.querySelector('.info-btn');
-                        const cloneCopy = actionsCell.querySelector('.proc-copy-btn');
-                        if (cloneInfo) cloneInfo.addEventListener('click', (e) => { e.stopPropagation(); const idx = parseInt(card.dataset.index); const proc = config.procedures[idx]; if(proc) openProjectModal(proc, infoBtn.getAttribute('data-date') || ''); });
-                        if (cloneCopy) cloneCopy.addEventListener('click', (e) => { e.stopPropagation(); const slug = card.querySelector('h4').innerText.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/['\u2019\u2018\(\)]/g,'').replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,''); copyToClipboard(window.location.origin+'/procedures/'+slug, cloneCopy); });
-                        card.appendChild(tagsCell);
-                        card.appendChild(actionsCell);
-                    }
-                });
-            } else {
-                if (existingHeader) existingHeader.remove();
-            }
         };
         procViewToggleGroup.querySelectorAll('.view-btn').forEach(b => {
             b.addEventListener('click', () => applyProcView(b.dataset.view));
