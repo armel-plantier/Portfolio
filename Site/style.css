@@ -1288,7 +1288,19 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 }
 
 .grid.view-list .project-card .pdf-container {
-    display: none !important;
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.grid.view-list .project-card.expanded {
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.grid.view-list .project-card.expanded .card-header {
+    flex: 0 0 calc(100% - 90px);
 }
 
 
