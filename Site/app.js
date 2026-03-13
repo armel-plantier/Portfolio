@@ -225,38 +225,12 @@ document.addEventListener("DOMContentLoaded", () => {
         
         filterWrapper.appendChild(filterBtn);
         filterWrapper.appendChild(filterMenu);
-
-        // Boutons de vue
-        const viewToggleGroup = document.createElement('div');
-        viewToggleGroup.className = 'view-toggle-group';
-        viewToggleGroup.innerHTML = `
-            <button class="view-btn active" data-view="grid" title="Grille">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            </button>
-            <button class="view-btn" data-view="list" title="Liste">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-            </button>
-        `;
-
+        
         controlsContainer.appendChild(searchInput);
         controlsContainer.appendChild(filterWrapper);
-        controlsContainer.appendChild(viewToggleGroup);
         
         // Insertion au-dessus de la grille
         grid.parentNode.insertBefore(controlsContainer, grid);
-
-        // Gestion des vues projets
-        let currentProjectView = localStorage.getItem('projectView') || 'grid';
-        const applyProjectView = (view) => {
-            currentProjectView = view;
-            localStorage.setItem('projectView', view);
-            grid.className = view === 'grid' ? 'grid' : 'grid view-list';
-            viewToggleGroup.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
-        };
-        viewToggleGroup.querySelectorAll('.view-btn').forEach(b => {
-            b.addEventListener('click', () => applyProjectView(b.dataset.view));
-        });
-        applyProjectView(currentProjectView);
 
         // Message Aucun résultat
         const noResultMessage = document.createElement("div");
@@ -477,35 +451,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         procFilterWrapper.appendChild(procFilterBtn);
         procFilterWrapper.appendChild(procFilterMenu);
-
-        // Boutons de vue procédures
-        const procViewToggleGroup = document.createElement('div');
-        procViewToggleGroup.className = 'view-toggle-group';
-        procViewToggleGroup.innerHTML = `
-            <button class="view-btn active" data-view="grid" title="Grille">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-            </button>
-            <button class="view-btn" data-view="list" title="Liste">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-            </button>
-        `;
-
         procControlsContainer.appendChild(procSearchInput);
         procControlsContainer.appendChild(procFilterWrapper);
-        procControlsContainer.appendChild(procViewToggleGroup);
-
-        // Gestion des vues procédures
-        let currentProcView = localStorage.getItem('procView') || 'grid';
-        const applyProcView = (view) => {
-            currentProcView = view;
-            localStorage.setItem('procView', view);
-            procedureGrid.className = view === 'grid' ? 'grid' : 'grid view-list';
-            procViewToggleGroup.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
-        };
-        procViewToggleGroup.querySelectorAll('.view-btn').forEach(b => {
-            b.addEventListener('click', () => applyProcView(b.dataset.view));
-        });
-        applyProcView(currentProcView);
 
         const procNoResult = document.createElement('p');
         procNoResult.className = 'no-results-message';
