@@ -47,8 +47,8 @@ jobs:
         git config --local user.name "GitHub Action Bot"
         git add Veille/securite/index.html Veille/techno/index.html Veille/legale/index.html Veille/hardware/index.html
         git diff --staged --quiet && echo "Aucune modification" && exit 0
-        git pull --rebase origin main
         git commit -m "Automated: Mise à jour de la veille 🤖"
+        git pull --rebase origin main
         git push
 
     - name: 📁 Préparation de la structure du site
