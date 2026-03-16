@@ -1,22 +1,27 @@
 name: Générateur de Veille Cyber
+
 on:
   schedule:
     # S'exécute tous les jours à 22h00 UTC (~23h00 en France)
     - cron: '0 22 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
+
 jobs:
   build_and_deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
     - name: 📥 Récupération du code
       uses: actions/checkout@v4
@@ -28,14 +33,14 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip uninstall -y mistralai || true
-        pip install --no-cache-dir "mistralai>=1.0.0" feedparser markdown requests
+        pip install --no-cache-dir "mistralai==1.2.5" feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
-      run: python Veille/veille.py
+      run: |
+        cd Veille && python veille.py
 
     - name: 🚀 Commit de la nouvelle veille
       run: |
