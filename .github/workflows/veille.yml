@@ -1,27 +1,22 @@
 name: Générateur de Veille Cyber
-
 on:
   schedule:
     # S'exécute tous les jours à 22h00 UTC (~23h00 en France)
     - cron: '0 22 * * *'
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   build_and_deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
     - name: 📥 Récupération du code
       uses: actions/checkout@v4
@@ -33,7 +28,7 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install mistralai feedparser markdown requests
+        pip install "mistralai>=1.0.0" feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
@@ -46,10 +41,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action Bot"
         git add Veille/securite/index.html Veille/techno/index.html Veille/legale/index.html Veille/hardware/index.html
-        git stash
+        git diff --staged --quiet && echo "Aucune modification" && exit 0
         git pull --rebase origin main
-        git stash pop
-        git commit -m "Automated: Mise à jour de la veille 🤖" || echo "Aucune modification"
+        git commit -m "Automated: Mise à jour de la veille 🤖"
         git push
 
     - name: 📁 Préparation de la structure du site
