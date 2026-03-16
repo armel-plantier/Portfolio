@@ -1,15 +1,14 @@
 import feedparser
 import sys
 import os
+from zoneinfo import ZoneInfo
 
 # Correction du répertoire de travail : toujours exécuter depuis la racine du repo
-# même si le script est lancé depuis Veille/ ou ailleurs
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 os.chdir(REPO_ROOT)
 
 # Correction du sys.path : on retire le dossier Veille/ pour éviter les conflits
-# avec les packages installés (ex: mistralai)
 sys.path = [p for p in sys.path if os.path.abspath(p) != SCRIPT_DIR]
 
 from mistralai import Mistral
@@ -24,7 +23,8 @@ import time
 
 client = Mistral(api_key=os.environ.get("MISTRAL_API_KEY"))
 
-maintenant = datetime.now()
+# Heure française (évite le décalage UTC sur le runner GitHub)
+maintenant = datetime.now(ZoneInfo("Europe/Paris")).replace(tzinfo=None)
 jours_depuis_lundi = maintenant.weekday()
 date_lundi = maintenant - timedelta(days=jours_depuis_lundi)
 date_lundi_debut = date_lundi.replace(hour=0, minute=0, second=0, microsecond=0)
@@ -242,7 +242,7 @@ P�riode couverte : du {str_lundi} au {str_aujourdhui}.
 
 RÈGLES STRICTES DE FORMATAGE :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
-2. Utilise ## (Titre 2) UNIQUEMENT pour chaque JOUR (ex: ## Lundi 2 Juin). Ordre chronologique obligatoire.
+2. Utilise ## (Titre 2) UNIQUEMENT pour chaque DATE (ex: ## 16 Mars 2026). Sans le nom du jour. Ordre chronologique obligatoire.
 3. Utilise ### (Titre 3) pour le nom ou sujet principal de chaque article.
 4. Pour CHAQUE article, génère EXACTEMENT ce bloc HTML (rien d'autre) :
 
