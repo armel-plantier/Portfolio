@@ -28,7 +28,8 @@ jobs:
 
     - name: 📦 Installation des dépendances
       run: |
-        pip install "mistralai>=1.0.0" feedparser markdown requests
+        pip uninstall -y mistralai || true
+        pip install --no-cache-dir "mistralai>=1.0.0" feedparser markdown requests
 
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
