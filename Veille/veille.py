@@ -198,8 +198,8 @@ CATEGORIES = [
 # 3. FONCTIONS UTILITAIRES
 # ==============================================================================
 
-def recuperer_articles(flux_list, mots_cles):
-    """Récupère et filtre les articles depuis une liste de flux RSS."""
+def recuperer_articles(flux_list):
+    """Récupère tous les articles de la semaine depuis une liste de flux RSS."""
     articles = []
     for url in flux_list:
         try:
@@ -211,18 +211,16 @@ def recuperer_articles(flux_list, mots_cles):
                     if dt_publi >= date_lundi_debut:
                         titre = entry.get("title", "")
                         resume = entry.get("description", "")
-                        texte = (titre + " " + resume).lower()
-                        if any(mot in texte for mot in mots_cles):
-                            if len(resume) > 200:
-                                resume = resume[:200] + "..."
-                            date_str = dt_publi.strftime("%d/%m/%Y")
-                            articles.append(
-                                f"- Date: {date_str}\n"
-                                f"  Source: {nom_site}\n"
-                                f"  Titre: {titre}\n"
-                                f"  Lien: {entry.link}\n"
-                                f"  Résumé: {resume}\n"
-                            )
+                        if len(resume) > 300:
+                            resume = resume[:300] + "..."
+                        date_str = dt_publi.strftime("%d/%m/%Y")
+                        articles.append(
+                            f"- Date: {date_str}\n"
+                            f"  Source: {nom_site}\n"
+                            f"  Titre: {titre}\n"
+                            f"  Lien: {entry.link}\n"
+                            f"  Résumé: {resume}\n"
+                        )
         except Exception as e:
             print(f"  ⚠️ Erreur flux {url} : {e}")
     return articles
@@ -234,24 +232,27 @@ def generer_contenu_ia(articles, cat):
         return "<p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>"
 
     contenu_brut = "\n".join(articles[:MAX_ARTICLES])
+    nb_articles = min(10, max(5, len(articles) // 4))
+    cat_nom_prompt = cat["nom"]
 
     prompt = f"""
 Tu es {cat["prompt_role"]}. Nous sommes le {str_aujourdhui}.
 {cat["prompt_consigne"]}
 P�riode couverte : du {str_lundi} au {str_aujourdhui}.
 
-RÈGLES STRICTES DE FORMATAGE :
-1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
-2. Utilise ## (Titre 2) UNIQUEMENT pour chaque DATE avec le nom du jour (ex: ## Lundi 16 Mars 2026). Ordre chronologique obligatoire.
-3. Utilise ### (Titre 3) pour le nom ou sujet principal de chaque article. N'ajoute JAMAIS la date entre parenthèses ou crochets dans ce titre.
-4. Pour CHAQUE article, génère EXACTEMENT ce bloc HTML (rien d'autre) :
+RÈGLES STRICTES :
+1. SÉLECTIONNE les {nb_articles} articles les plus importants, pertinents et variés pour la catégorie "{cat_nom_prompt}". Écarte les doublons, les articles anodins ou hors-sujet.
+2. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
+3. Utilise ## (Titre 2) UNIQUEMENT pour chaque DATE avec le nom du jour (ex: ## Lundi 16 Mars 2026). Ordre chronologique obligatoire.
+4. Utilise ### (Titre 3) pour le nom ou sujet principal de chaque article. N'ajoute JAMAIS la date entre parenthèses ou crochets dans ce titre.
+5. Pour CHAQUE article sélectionné, génère EXACTEMENT ce bloc HTML (rien d'autre) :
 
 <div class="article-box">
 <p><strong>Résumé</strong> : Ton paragraphe explicatif ici (2-4 phrases, concis et factuel).</p>
 <a href="URL_DE_L_ARTICLE" class="btn-source" target="_blank">🔗 Lire sur NOM_DE_LA_SOURCE</a>
 </div>
 
-Données à analyser :
+Articles disponibles cette semaine :
 {contenu_brut}
 """
 
@@ -368,7 +369,7 @@ for cat in CATEGORIES:
     print(f"{'='*60}")
 
     print("  → Récupération des articles RSS...")
-    articles = recuperer_articles(cat["flux"], cat["mots_cles"])
+    articles = recuperer_articles(cat["flux"])
     print(f"  → {len(articles)} articles filtrés.")
 
     print("  → Génération IA en cours...")
