@@ -1,6 +1,18 @@
 import feedparser
-from mistralai import Mistral
+import sys
 import os
+
+# Correction du répertoire de travail : toujours exécuter depuis la racine du repo
+# même si le script est lancé depuis Veille/ ou ailleurs
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+os.chdir(REPO_ROOT)
+
+# Correction du sys.path : on retire le dossier Veille/ pour éviter les conflits
+# avec les packages installés (ex: mistralai)
+sys.path = [p for p in sys.path if os.path.abspath(p) != SCRIPT_DIR]
+
+from mistralai import Mistral
 from datetime import datetime, timedelta
 import markdown
 import requests
@@ -222,12 +234,11 @@ def generer_contenu_ia(articles, cat):
         return "<p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>"
 
     contenu_brut = "\n".join(articles[:MAX_ARTICLES])
-    couleur = cat["couleur"]
 
     prompt = f"""
 Tu es {cat["prompt_role"]}. Nous sommes le {str_aujourdhui}.
 {cat["prompt_consigne"]}
-Période couverte : du {str_lundi} au {str_aujourdhui}.
+P�riode couverte : du {str_lundi} au {str_aujourdhui}.
 
 RÈGLES STRICTES DE FORMATAGE :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
@@ -266,9 +277,7 @@ def generer_page_html(cat, contenu_html):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veille {cat["nom"]} | {cat["titre_page"]} — {str_lundi} au {str_aujourdhui}</title>
-
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22{couleur.replace(chr(35), chr(37)+chr(50)+chr(51))}%22>{cat["initiales"]}</text></svg>">
-
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -306,7 +315,6 @@ def generer_page_html(cat, contenu_html):
         .veille-content strong {{ color: var(--text); }}
         .veille-content a:not(.btn-source) {{ color: {couleur}; text-decoration: none; font-weight: 500; }}
         .veille-content a:not(.btn-source):hover {{ text-decoration: underline; }}
-
         .veille-header-badge {{
             display: inline-flex; align-items: center; gap: 8px;
             background: rgba({couleur_rgba}, 0.1);
@@ -329,19 +337,16 @@ def generer_page_html(cat, contenu_html):
 <body>
     <div class="container" style="padding-top: 40px; padding-bottom: 60px;">
         <a href="/" class="btn-home" style="display: inline-block; margin-bottom: 30px;">↩ Retour au Portfolio</a>
-
         <div class="veille-header-badge">{cat["emoji"]} {cat["nom"]}</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">{cat["titre_page"]}</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">{cat["sous_titre"]}</p>
         <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du {str_lundi} au {str_aujourdhui} · Généré par IA</p>
-
         <nav class="veille-nav">
             <a href="/Veille/securite" {"class='active'" if cat["id"] == "securite" else ""}>🛡️ Sécurité</a>
             <a href="/Veille/techno"   {"class='active'" if cat["id"] == "techno"   else ""}>💻 Techno</a>
             <a href="/Veille/legale"   {"class='active'" if cat["id"] == "legale"   else ""}>⚖️ Légale</a>
             <a href="/Veille/hardware" {"class='active'" if cat["id"] == "hardware" else ""}>🖥️ Hardware</a>
         </nav>
-
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             {contenu_html}
         </div>
@@ -355,7 +360,7 @@ def generer_page_html(cat, contenu_html):
 # 4. BOUCLE PRINCIPALE — GÉNÉRATION DES 4 PAGES
 # ==============================================================================
 
-resultats = {}  # Stocke les contenus HTML pour la newsletter
+resultats = {}
 
 for cat in CATEGORIES:
     print(f"\n{'='*60}")
@@ -396,7 +401,6 @@ if BREVO_API_KEY:
 
     def section_newsletter(cat, contenu_html):
         c = cat["couleur"]
-        cr = cat["couleur_rgba"]
         return f"""
         <div style="margin-bottom: 40px;">
             <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid {c};">
@@ -406,9 +410,7 @@ if BREVO_API_KEY:
                     <div style="font-size:1.1rem; font-weight:700; color:#f1f5f9;">{cat["titre_page"]}</div>
                 </div>
             </div>
-            <div style="padding-left: 4px;">
-                {contenu_html}
-            </div>
+            <div style="padding-left: 4px;">{contenu_html}</div>
             <div style="text-align:right; margin-top:10px;">
                 <a href="https://armel-plantier.com/Veille/{cat['id']}"
                    style="font-size:0.82rem; color:{c}; text-decoration:none; font-weight:600;">
@@ -426,15 +428,12 @@ if BREVO_API_KEY:
     <html>
     <body style="font-family: Arial, sans-serif; background-color: #0b0d14; padding: 20px; color: #f1f5f9;">
         <div style="max-width: 680px; margin: 0 auto; background: #151925; padding: 36px; border-radius: 12px; border-top: 5px solid #6366f1;">
-
             <h1 style="font-size:1.5rem; color:#f1f5f9; margin-bottom:4px;">🔍 Veille Cyber & Tech</h1>
             <p style="color:#94a3b8; font-size:0.9rem; margin-top:0; margin-bottom:32px;">
                 Semaine du <strong style="color:#6366f1;">{str_lundi}</strong> au <strong style="color:#6366f1;">{str_aujourdhui}</strong>
                 &nbsp;·&nbsp; Généré automatiquement par IA
             </p>
-
             {corps_newsletter}
-
             <hr style="border:none; border-top:1px solid #2d3748; margin:32px 0;">
             <p style="text-align:center; font-size:12px; color:#64748b;">
                 Généré par le Portfolio de
