@@ -242,8 +242,8 @@ P�riode couverte : du {str_lundi} au {str_aujourdhui}.
 
 RÈGLES STRICTES DE FORMATAGE :
 1. AUCUNE INTRODUCTION NI CONCLUSION. Commence directement.
-2. Utilise ## (Titre 2) UNIQUEMENT pour chaque DATE (ex: ## 16 Mars 2026). Sans le nom du jour. Ordre chronologique obligatoire.
-3. Utilise ### (Titre 3) pour le nom ou sujet principal de chaque article.
+2. Utilise ## (Titre 2) UNIQUEMENT pour chaque DATE avec le nom du jour (ex: ## Lundi 16 Mars 2026). Ordre chronologique obligatoire.
+3. Utilise ### (Titre 3) pour le nom ou sujet principal de chaque article. N'ajoute JAMAIS la date entre parenthèses ou crochets dans ce titre.
 4. Pour CHAQUE article, génère EXACTEMENT ce bloc HTML (rien d'autre) :
 
 <div class="article-box">
