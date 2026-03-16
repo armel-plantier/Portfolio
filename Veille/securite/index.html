@@ -76,52 +76,64 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Vulnérabilité dans Google Chrome</h3>
+<h3>Vulnérabilité critique dans Wing FTP Server (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3909) dans Google Chrome permet des attaques actives. Elle affecte les systèmes utilisant le navigateur et nécessite une mise à jour urgente. Google a confirmé l'exploitation active de cette faille.</p>
+<p><strong>Résumé</strong> : CISA alerte sur une vulnérabilité activement exploitée dans Wing FTP Server, permettant des attaques par exécution de code à distance (RCE). Les instances non patchées sont vulnérables à des attaques en chaîne. Un correctif est disponible via l'éditeur.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-wing-ftp-server-flaw-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Exploit actif dans Google Chrome (CVE-2026-3909)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-3909) dans Google Chrome est activement exploitée, permettant des attaques par exécution de code arbitraire. Google a publié un correctif urgent via Chrome 123.0.6312.86/87. Les utilisateurs doivent mettre à jour immédiatement.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0297/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+<h3>Attaque Stryker : effacement massif de dispositifs sans malware</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles dans Microsoft Edge, dont la CVE-2026-3910 activement exploitée, permettent des contournements de sécurité. Les systèmes Windows avec Edge installé sont vulnérables. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0298/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : L'attaque cyber contre Stryker (géant des technologies médicales) a ciblé son environnement Microsoft interne, provoquant l'effacement à distance de dizaines de milliers d'appareils d'employés. Aucune charge utile malveillante n'a été détectée, suggérant une attaque par destruction ciblée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/stryker-attack-wiped-tens-of-thousands-of-devices-no-malware-needed/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>UK’s Companies House confirms security flaw exposed business data</h3>
+<h3>Campagne GlassWorm : compromission de dépôts Python via GitHub</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de sécurité dans le service WebFiling de Companies House a exposé des données d'entreprises britanniques depuis octobre 2025. Le service a été temporairement fermé pour correction.</p>
+<p><strong>Résumé</strong> : La campagne GlassWorm utilise des tokens GitHub volés pour injecter du malware dans des centaines de dépôts Python (Django, ML, PyPI). Les attaquants forcent des push malveillants via des commandes automatisées. Des correctifs sont en cours de déploiement par les mainteneurs de projets.</p>
+<a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fuite de données chez Companies House (Royaume-Uni)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un défaut de sécurité dans le service WebFiling de Companies House (agence britannique) a exposé des données d'entreprises depuis octobre 2025. Le service a été temporairement fermé pour correction. Aucune preuve de fuite massive n'a été confirmée, mais l'incident soulève des questions sur la protection des registres publics.</p>
 <a href="https://www.bleepingcomputer.com/news/security/uks-companies-house-confirms-security-flaw-exposed-business-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>ClickFix Campaigns Spread MacSync macOS Infostealer via Fake AI Tool Installers</h3>
+<h3>DRILLAPP : backdoor ciblant l'Ukraine via Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois campagnes ClickFix distribuent le malware MacSync, un stealer macOS, via des installateurs d'outils IA factices. Les attaques reposent sur l'interaction utilisateur et ciblent les systèmes macOS.</p>
-<a href="https://thehackernews.com/2026/03/clickfix-campaigns-spread-macsync-macos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>DRILLAPP Backdoor Targets Ukraine, Abuses Microsoft Edge Debugging for Stealth Espionage</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne ciblant l'Ukraine utilise le backdoor DRILLAPP, exploitant les fonctionnalités de débogage de Microsoft Edge pour une espionnage furtif. Liée à des acteurs russes, elle a été observée en février 2026.</p>
+<p><strong>Résumé</strong> : Une campagne d'espionnage (DRILLAPP) vise des entités ukrainiennes, exploitant des vulnérabilités dans Microsoft Edge pour déployer une backdoor. Les attaquants abusent des outils de débogage du navigateur pour rester furtifs. Un correctif Microsoft est attendu pour Edge 123+.</p>
 <a href="https://thehackernews.com/2026/03/drillapp-backdoor-targets-ukraine.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Android 17 Blocks Non-Accessibility Apps from Accessibility API to Prevent Malware Abuse</h3>
+<h3>CVE-2026-XXXX : faille critique dans Oracle EBS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Android 17 Beta 2 introduit une fonctionnalité de sécurité bloquant les applications non accessibilité d'utiliser l'API Accessibility, réduisant les risques de malware. Cette mise à jour vise à renforcer la protection des utilisateurs.</p>
-<a href="https://thehackernews.com/2026/03/android-17-blocks-non-accessibility.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité non divulguée dans Oracle E-Business Suite (EBS) est exploitée en attaque ciblée. Seuls 4 grands groupes (Broadcom, Bechtel, Estée Lauder, Abbott) n'ont pas encore communiqué sur l'impact. Oracle a publié un correctif prioritaire le 15/03/2026.</p>
+<a href="https://www.securityweek.com/oracle-ebs-hack-only-4-corporate-giants-still-silent-on-potential-impact/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>CrackArmor Flaws Expose Linux Systems to Privilege Escalation</h3>
+<h3>MacSync : infostealer macOS distribué via faux installateurs IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités dans CrackArmor (AppArmor) permettent une élévation de privilèges sur les systèmes Linux, des attaques par déni de service et des fuites de données. Les correctifs sont en cours de déploiement.</p>
+<p><strong>Résumé</strong> : Trois campagnes ClickFix propagent un infostealer macOS (MacSync) via de faux installateurs d'outils IA. La méthode repose sur l'interaction utilisateur (copier-coller de commandes). Apple n'a pas encore publié de correctif spécifique, mais recommande de désactiver les installations non vérifiées.</p>
+<a href="https://thehackernews.com/2026/03/clickfix-campaigns-spread-macsync-macos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CrackArmor : failles critiques dans AppArmor (Linux)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités dans CrackArmor (module AppArmor) permettent une élévation de privilèges locale sur Linux, la rupture de conteneurs et des attaques par déni de service (DoS). Les correctifs sont disponibles via les distributions majeures (Ubuntu, Debian, RHEL).</p>
 <a href="https://www.infosecurity-magazine.com/news/crackarmor-linux-privilege/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
 
-<h3>Security Flaw in AWS Bedrock Code Interpreter Raises Alarms</h3>
+<h3>GoPix : trojan bancaire brésilien résidant uniquement en mémoire</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans AWS Bedrock AgentCore permet l'exfiltration de données via des attaques DNS. Les sandboxes AI sont vulnérables, nécessitant des correctifs urgents pour éviter les fuites de données cloud.</p>
-<a href="https://www.infosecurity-magazine.com/news/security-flaw-aws-bedrock/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+<p><strong>Résumé</strong> : Le trojan bancaire GoPix (Brésil) utilise des implants en mémoire uniquement, des fichiers PAC pour des attaques MITM et des campagnes de malvertising via Google Ads. Kaspersky classe cette menace comme "sans précédent" en complexité pour un malware bancaire.</p>
+<a href="https://securelist.com/gopix-banking-trojan/119173/" class="btn-source" target="_blank">🔗 Lire sur Securelist</a>
 </div>
         </div>
     </div>
