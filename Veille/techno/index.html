@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 16/03/2026 au 16/03/2026</title>
+    <title>Veille Techno | Updates & Outils — 16/03/2026 au 17/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 16/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 17/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,47 +76,102 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Debian 13.4</h3>
+<h3>Debian 13.4 est disponible</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Debian 13.4 apporte des correctifs de sécurité et des résolutions de bugs pour la branche Trixie. Cette version consolide les mises à jour critiques, essentielle pour maintenir la stabilité et la sécurité des serveurs et infrastructures critiques.</p>
+<p><strong>Résumé</strong> : Debian 13.4 (Trixie) consolide des correctifs de sécurité critiques et des résolutions de bugs majeurs. Cette version est essentielle pour maintenir la stabilité des serveurs Debian avant les prochaines mises à jour majeures.</p>
 <a href="https://www.it-connect.fr/debian-13-4-est-disponible-quapporte-cette-version/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <h3>Proxmox VE Helper-Scripts</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cette collection de scripts Bash automatise la configuration et le déploiement d'applications sur Proxmox VE. Idéal pour les administrateurs cherchant à optimiser la gestion de leurs hyperviseurs et conteneurs.</p>
+<p><strong>Résumé</strong> : Les Helper-Scripts pour Proxmox VE automatisent la configuration avancée (réseaux, stockage) et le déploiement d'applications via des scripts Bash optimisés. Idéal pour les administrateurs cherchant à industrialiser leur infrastructure Proxmox.</p>
 <a href="https://www.it-connect.fr/tuto-proxmox-ve-helper-scripts/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Google Chrome : Mises à jour zero-day</h3>
+<h3>Windows 11 : nouveau paramètre pour supprimer les apps indésirables</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a publié deux mises à jour en 48h pour corriger les failles CVE-2026-3909 et CVE-2026-3910. Les administrateurs doivent appliquer ces correctifs rapidement pour protéger les postes de travail et serveurs exposés.</p>
-<a href="https://www.it-connect.fr/google-chrome-2-mises-a-jour-en-2-jours-pour-patcher-plusieurs-failles-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft introduit une option via GPO pour supprimer les applications préinstallées (bloatware) sur Windows 11, offrant plus de contrôle aux administrateurs système. Cette évolution répond aux critiques des entreprises sur la rigidité de Microsoft.</p>
+<a href="https://www.it-connect.fr/windows-11-le-nouveau-parametre-qui-permet-de-supprimer-toutes-les-apps-indesirables/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>FFmpeg 8.1</h3>
+<h3>Windows 11 – KB5084957 : mise à jour sécurité hors bande</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : FFmpeg 8.1 introduit le support expérimental de xHE-AAC MPS212 et améliore l'accélération Vulkan. Cette version est cruciale pour les pipelines multimédias et les traitements vidéo/audio automatisés.</p>
+<p><strong>Résumé</strong> : Microsoft publie KB5084957 (hors bande) pour corriger 3 failles de sécurité critiques dans Windows 11. Cette mise à jour cible uniquement certains PC (via Intune ou GPO), ce qui est inhabituel pour un patch de sécurité.</p>
+<a href="https://www.it-connect.fr/windows-11-kb5084957-mise-a-jour-securite-hors-bande-mars-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>FFmpeg 8.1 Released</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FFmpeg 8.1 apporte des améliorations de performance significatives (x86_64 FMA pour cosh) et une prise en charge expérimentale du codec audio xHE-AAC MPS212. Ces optimisations sont cruciales pour les administrateurs gérant des flux multimédias complexes.</p>
 <a href="https://www.phoronix.com/news/FFmpeg-8.1-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Linux 7.1 : Optimisations et retraits</h3>
+<h3>GNU C Library Lands x86_64 FMA'ed cosh</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.1 retire UDP-Lite et ajoute des optimisations comme SCX_ENQ_IMMED pour le scheduler. Ces changements améliorent les performances et simplifient le code, bénéfique pour les environnements serveurs.</p>
-<a href="https://www.phoronix.com/news/Linux-7.1-Retiring-UDP-Lite" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Glibc intègre une optimisation x86_64 FMA pour la fonction cosh, améliorant les performances de ~35% sur les CPU modernes (AMD Ryzen 9000, Intel Core Ultra). Cette évolution impacte directement les applications scientifiques et serveurs.</p>
+<a href="https://www.phoronix.com/news/Glibc-Faster-cosh-x86-64-FMA" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>GlassWorm : Attaque via GitHub Tokens</h3>
+<h3>Linux 7.1 sched_ext ajoute SCX_ENQ_IMMED</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware GlassWorm exploite des tokens GitHub volés pour injecter du code malveillant dans des dépôts Python (Django, ML, PyPI). Les administrateurs doivent auditer les accès CI/CD et les tokens exposés.</p>
-<a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le noyau Linux 7.1 (sched_ext) introduit SCX_ENQ_IMMED pour un contrôle plus fin des tâches CPU lors de leur exécution. Cette fonctionnalité est particulièrement utile pour les administrateurs système utilisant des politiques d'ordonnancement personnalisées (BPF).</p>
+<a href="https://www.phoronix.com/news/Linux-sched-ext-SCX-ENQ-IMMED" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Android 17 : Restrictions sur l'API Accessibility</h3>
+<h3>Fedora Workstation 44 Beta sur AMD Ryzen AI Max</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Android 17 bloque l'accès à l'API Accessibility pour les apps non dédiées, limitant l'abus par des malwares. Cette mesure renforce la sécurité des terminaux mobiles en entreprise.</p>
-<a href="https://thehackernews.com/2026/03/android-17-blocks-non-accessibility.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Fedora 44 Beta intègre des optimisations pour le processeur AMD Ryzen AI Max+ 395 "Strix Halo", offrant des performances accrues pour les environnements de bureau et serveurs. Cette version est un indicateur fort des évolutions futures de RHEL.</p>
+<a href="https://www.phoronix.com/review/fedora-44-beta" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
+
+<hr />
+<h2>Mardi 17 Mars 2026</h2>
+<h3>CVE-2026-32136 : AdGuard Home vulnérable à une compromission totale</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-32136) dans AdGuard Home permet de contourner l'authentification et d'exécuter du code arbitraire. Les administrateurs doivent appliquer le correctif immédiatement ou désactiver le service en attendant.</p>
+<a href="https://www.it-connect.fr/votre-adguard-home-est-vulnerable-a-une-compromission-totale-cve-2026-32136/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Cloudflare lance /crawl pour aspirer des sites en deux commandes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cloudflare dévoile un endpoint /crawl capable d'aspirer l'intégralité d'un site web via deux commandes CLI. Cet outil, bien que conçu pour le scraping, intéresse les administrateurs pour l'extraction de données ou la sauvegarde de sites statiques.</p>
+<a href="https://www.it-connect.fr/cloudflare-le-gardien-du-web-lance-loutil-ultime-pour-aspirer-votre-site-scraping/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Google Chrome : 2 mises à jour en 48h pour patcher des zero-days</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google a publié deux mises à jour urgentes (KB508xxx) pour corriger CVE-2026-3909 et CVE-2026-3910, des failles zero-day exploitées activement. Les administrateurs doivent appliquer ces patches dès leur disponibilité via WSUS ou Intune.</p>
+<a href="https://www.it-connect.fr/google-chrome-2-mises-a-jour-en-2-jours-pour-patcher-plusieurs-failles-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>CISA Flags Wing FTP Vulnerability (CVE-2025-47813) en exploitation active</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA ajoute CVE-2025-47813 (score 4.3) à son catalogue KEV, car cette faille d'information disclosure dans Wing FTP est exploitée en production. Les administrateurs doivent patcher Wing FTP ou segmenter le service FTP de l'entreprise.</p>
+<a href="https://thehackernews.com/2026/03/cisa-flags-actively-exploited-wing-ftp.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>NVIDIA Agents Toolkit : d'OpenShell à NanoClaw</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : NVIDIA structure sa communication autour des Agents Toolkit (OpenShell, NanoClaw), une stack pour l'orchestration d'agents IA dans les environnements DevOps/Cloud. Les administrateurs doivent surveiller l'adoption de ces outils pour éviter une surface d'attaque non maîtrisée.</p>
+<a href="https://www.silicon.fr/data-ia-1372/nvidia-agentique-gtc-2026-226282" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>systemd 260 Released : SysV Service Scripts Removed &amp; AI Agents Documentation</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Systemd 260 supprime définitivement les scripts SysV et intègre une documentation pour les agents IA (mstack). Cette version, essentielle pour les distributions Linux 2026, impacte directement les scripts d'init et les environnements serveurs.</p>
+<a href="https://www.phoronix.com/news/systemd-260-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>AMD MLIR-AIE 1.3 : nouveau compilateur AIECC pour Ryzen AI NPUs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : AMD publie MLIR-AIE 1.3 avec un compilateur AIECC C++ pour optimiser les charges de travail sur les NPUs Ryzen AI. Les administrateurs système doivent tester ces outils pour exploiter pleinement les capacités IA des serveurs AMD.</p>
+<a href="https://www.phoronix.com/news/MLIR-AIE-1.3" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Meta stoppe le chiffrement de bout en bout (E2EE) sur Instagram le 8 mai 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Meta annonce la fin du support E2EE sur la messagerie Instagram, exposant les échanges aux analyses de sécurité et aux demandes légales. Les administrateurs doivent alerter leurs utilisateurs sur cette perte de confidentialité.</p>
+<a href="https://www.it-connect.fr/fin-du-chiffrement-de-bout-en-bout-sur-instagram-des-le-8-mai-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
         </div>
     </div>
 </body>
