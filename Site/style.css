@@ -440,18 +440,138 @@ body.light-mode .card-header .icon { background: rgba(99, 102, 241, 0.05); }
 /* ========================================================================= */
 
 
-/* TIMELINE REVISITÉE */
-.timeline-list { list-style: none; padding-left: 25px; border-left: 2px solid rgba(99, 102, 241, 0.2); width: 100%; position: relative; }
-.timeline-item { margin-bottom: 40px; position: relative; transition: transform 0.3s ease; }
-.timeline-item::before { 
-    content:''; position: absolute; left: -32px; top: 4px; 
-    width: 14px; height: 14px; background: var(--bg); border: 2px solid var(--primary); border-radius: 50%; 
-    transition: all 0.3s ease; box-shadow: 0 0 0 4px var(--bg); z-index: 2;
+/* TIMELINE — CARTES GLASSMORPHISM */
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    position: relative;
 }
-.timeline-item:hover { transform: translateX(8px); }
-.timeline-item:hover::before { 
-    background: var(--primary); box-shadow: 0 0 15px var(--primary), 0 0 0 4px var(--bg); transform: scale(1.3); 
+
+.timeline-item {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 30px;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
+body.light-mode .timeline-item { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+
+/* Barre colorée à gauche */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), #a855f7);
+    border-radius: 16px 0 0 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+}
+.timeline-item:hover::before { opacity: 1; }
+
+/* En-tête : date + badge entreprise */
+.timeline-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.timeline-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.timeline-company {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+body.light-mode .timeline-company { background: #f9fafb; }
+.timeline-item:hover .timeline-company {
+    border-color: rgba(99, 102, 241, 0.3);
+    color: var(--text);
+}
+
+/* Titre du poste */
+.timeline-title {
+    font-size: 1.1rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.35;
+    transition: color 0.2s;
+}
+.timeline-item:hover .timeline-title { color: var(--primary); }
+
+/* Liste de missions */
+.timeline-missions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.timeline-missions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+.timeline-missions li .bullet {
+    display: inline-block;
+    min-width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(99, 102, 241, 0.4);
+    opacity: 0.7;
+    transition: opacity 0.2s, box-shadow 0.2s;
+}
+.timeline-item:hover .timeline-missions li .bullet {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+}
+
 .timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
 .timeline-title { font-size: 1.1rem; margin-bottom: 5px; font-weight: 600; }
 .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
