@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Attributs pour faciliter le filtrage JS
             div.setAttribute('data-title', escapeHTML(proj.title || ""));
-            div.setAttribute('data-desc', escapeHTML(proj.description || proj.longDescription || ""));
+            div.setAttribute('data-desc', escapeHTML(proj.longDescription || ""));
             div.setAttribute('data-tags', JSON.stringify(proj.tags || [])); 
 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
@@ -286,7 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
-                        <p>${escapeHTML(proj.description)}</p>
                         ${cardTagsHTML}
                     </div>
                 </div>
