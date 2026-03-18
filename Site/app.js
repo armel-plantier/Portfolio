@@ -631,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li"); li.className = "timeline-item";
             if (index >= EXP_LIMIT) li.classList.add("hidden-item");
 
-            const lines = exp.description.split('\n');
+            const lines = exp.longDescription.split('\n');
             const listHtml = lines.map(line => {
                 const cleanLine = line.trim();
                 if (!cleanLine) return '';
