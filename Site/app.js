@@ -767,21 +767,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }).catch(() => { updateEl.innerText = "System Ready"; });
     }
 
-    // --- 14. COMPTEUR DE VUES ---
-    const viewCountEl = document.getElementById("view-count");
-    if (viewCountEl && config.profile.githubUser) {
-        const namespace = config.profile.githubUser.replace(/[^a-zA-Z0-9]/g, '');
-        fetch(`https://api.countapi.xyz/hit/${namespace}/portfolio-visits`)
-            .then(res => res.json()).then(data => { viewCountEl.innerHTML = `👁️ ${data.value} Vues`; })
-            .catch(() => { viewCountEl.style.display = "none"; });
-    }
-    
-
-    
     // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
     const urlParams = new URLSearchParams(window.location.search);
 
-    // Ouverture auto d'un projet TechNova
     const projParam = urlParams.get('proj');
     if (projParam) {
         const waitAndOpenProj = setInterval(() => {
@@ -843,7 +831,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return found;
         };
 
-        // Attendre que les event listeners des cartes soient bien attachés
         setTimeout(() => {
             if (!tryOpen()) {
                 const waitAndOpen = setInterval(() => {
@@ -906,7 +893,6 @@ function openProjectModal(proj, dateStr = "") {
     }
 }
 
-
 function copyToClipboard(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
         const original = btn.innerHTML;
@@ -918,7 +904,7 @@ function copyToClipboard(text, btn) {
 
 function togglePDF(id, url) {
     const c = document.getElementById(id);
-    const card = c.closest('.project-card'); 
+    const card = c.closest('.project-card');
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
     c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
@@ -928,7 +914,7 @@ function togglePDF(id, url) {
 
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
-    const btn = headerEl.querySelector('.comp-toggle'); 
+    const btn = headerEl.querySelector('.comp-toggle');
     document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
     document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
     const isOpened = menu.style.display === 'block';
@@ -964,44 +950,27 @@ function createToggleBtn(container, limit, txtMore) {
 
 function toggleGlobalPDF(url) {
     const viewer = document.getElementById("global-cert-viewer");
-    
     if (!viewer) return;
-
     const encodedUrl = encodeURIComponent(url);
     const currentIframe = viewer.querySelector('iframe');
-
     const closeViewer = () => {
         viewer.style.display = 'none';
-        viewer.innerHTML = ''; 
-        document.querySelectorAll('.pdf-btn').forEach(b => { 
-            b.style.background = ''; 
-            b.style.color = ''; 
-        });
+        viewer.innerHTML = '';
+        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
     };
-
     if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
         closeViewer();
         return;
     }
-
     viewer.style.display = 'block';
-    
     viewer.innerHTML = `
         <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
         <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
     `;
-
     const closeBtn = document.getElementById("btn-close-viewer");
-    if (closeBtn) {
-        closeBtn.addEventListener("click", closeViewer);
-    }
-
+    if (closeBtn) closeBtn.addEventListener("click", closeViewer);
     const headerOffset = 120;
     const elementPosition = viewer.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-    window.scrollTo({
-         top: offsetPosition,
-         behavior: "smooth"
-    });
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 }
