@@ -1,0 +1,87 @@
+name: Mise à jour score Root-Me
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'  # Tous les lundis à 8h UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update_rootme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Récupération du code
+      uses: actions/checkout@v4
+
+    - name: 🐍 Configuration de Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: 📦 Installation des dépendances
+      run: pip install requests
+
+    - name: 🎯 Récupération du score Root-Me
+      env:
+        ROOTME_API_KEY: ${{ secrets.ROOTME_API_KEY }}
+      run: |
+        python3 << 'EOF'
+        import requests
+        import re
+        import sys
+
+        username = "armelpltr"
+        api_key = "${{ secrets.ROOTME_API_KEY }}"
+
+        headers = {
+            "Authorization": f"Basic {api_key}",
+            "Accept": "application/json"
+        }
+
+        try:
+            r = requests.get(
+                f"https://api.www.root-me.org/challenges?username={username}",
+                headers=headers,
+                timeout=10
+            )
+            r.raise_for_status()
+            data = r.json()
+            solved = data.get("challenges_info", {}).get("challenges_solved", None)
+            if solved is None:
+                print("Impossible de trouver challenges_solved dans la réponse")
+                print(data)
+                sys.exit(1)
+            print(f"Challenges résolus : {solved}")
+
+            # Mise à jour dans config.js
+            with open("Site/config.js", "r", encoding="utf-8") as f:
+                content = f.read()
+
+            # Remplace la ligne name: "RootMe (En cours)" par "RootMe (X challenges)"
+            new_content = re.sub(
+                r'name: "RootMe \([^"]*\)"',
+                f'name: "RootMe ({solved} challenges)"',
+                content
+            )
+
+            with open("Site/config.js", "w", encoding="utf-8") as f:
+                f.write(new_content)
+
+            print(f"config.js mis à jour avec {solved} challenges résolus")
+
+        except Exception as e:
+            print(f"Erreur : {e}")
+            sys.exit(1)
+        EOF
+
+    - name: 💾 Commit de la mise à jour
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+        git add Site/config.js
+        git diff --staged --quiet && echo "Aucune modification du score" && exit 0
+        git commit -m "Automated: Mise à jour score Root-Me 🎯"
+        git push
