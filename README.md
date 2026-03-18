@@ -12,7 +12,7 @@
 
 ---
 
-## 🗂️ Sections du site
+## 🗂️ Sections du site 
 
 **🏠 Accueil**
 Présentation rapide, statut de recherche et liens vers les réseaux.
