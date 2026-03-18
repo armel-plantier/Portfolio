@@ -34,10 +34,8 @@ const config = {
         linkedin: "https://fr.linkedin.com/in/armel-plantier-9372a2360",
     },
 
-    // --- 3. TAGS HEADER ---
-   // skills: [ "🐧 Linux", "🪟 Windows", "🕸️ Réseau", "🛡️ Sécurité" ],
 
-    // --- 4. PROJETS (AUTOMATISÉS) ---
+    // --- 3. PROJETS (AUTOMATISÉS) ---
     // Pas de date ni de isNew ici. Le script va chercher la date du commit sur GitHub.
 projects: [
 {
