@@ -599,9 +599,7 @@ body.light-mode .timeline-company { background: #f9fafb; }
     box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
 }
 
-.timeline-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 5px; }
-.timeline-title { font-size: 1.1rem; margin-bottom: 5px; font-weight: 600; }
-.timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
 
 /* CERTIFS & COMPETENCES */
 .cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
