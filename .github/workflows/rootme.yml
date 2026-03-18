@@ -32,35 +32,35 @@ jobs:
         import requests
         import re
         import sys
+        import os
 
         username = "armelpltr"
-        api_key = "${{ secrets.ROOTME_API_KEY }}"
+        api_key = os.environ["ROOTME_API_KEY"]
 
-        headers = {
-            "Authorization": f"Basic {api_key}",
-            "Accept": "application/json"
-        }
+        # Root-Me utilise un cookie api_key pour l'authentification
+        cookies = {"api_key": api_key}
 
         try:
             r = requests.get(
                 f"https://api.www.root-me.org/challenges?username={username}",
-                headers=headers,
+                cookies=cookies,
                 timeout=10
             )
             r.raise_for_status()
             data = r.json()
+            print("Réponse API:", data)
             solved = data.get("challenges_info", {}).get("challenges_solved", None)
             if solved is None:
+                # Essai avec un autre format de réponse
+                solved = data.get("challenges_solved", None)
+            if solved is None:
                 print("Impossible de trouver challenges_solved dans la réponse")
-                print(data)
                 sys.exit(1)
             print(f"Challenges résolus : {solved}")
 
-            # Mise à jour dans config.js
             with open("Site/config.js", "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Remplace la ligne name: "RootMe (En cours)" par "RootMe (X challenges)"
             new_content = re.sub(
                 r'name: "RootMe \([^"]*\)"',
                 f'name: "RootMe ({solved} challenges)"',
