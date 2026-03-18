@@ -176,12 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 6. COMPETENCES (HEADER TAGS) ---
-    const skillsContainer = document.getElementById("skills-section");
-    if(skillsContainer && config.skills) {
-        config.skills.forEach(s => { const span = document.createElement("span"); span.className = "skill-tag"; span.innerText = s; skillsContainer.appendChild(span); });
-    }
-
     // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
