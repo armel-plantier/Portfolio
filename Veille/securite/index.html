@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 17/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 18/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 17/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 18/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,108 +76,134 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Vulnérabilité critique dans Google Chrome (CVE-2026-3909)</h3>
+<h3>Vulnérabilité critique dans OpenSSL (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité zero-day (CVE-2026-3909) dans Google Chrome est activement exploitée. Elle permet à un attaquant d'exécuter du code arbitraire à distance via des pages web malveillantes. Google a publié un correctif urgent dans Chrome 123.0.6312.86/87 pour Windows, macOS et Linux. Les utilisateurs sont invités à mettre à jour immédiatement.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique a été identifiée dans OpenSSL, permettant à un attaquant distant d'exécuter du code arbitraire ou de provoquer un déni de service (DoS) via une exploitation de type *buffer overflow*. Les versions affectées incluent OpenSSL 3.0.x et antérieures. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0296/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploitation active de CVE-2026-3909 dans Google Chrome</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google Chrome est vulnérable à une faille de type *use-after-free* (CVE-2026-3909), activement exploitée en attaque *zero-day*. Cette vulnérabilité permet l'exécution de code arbitraire à distance. Une mise à jour urgente est disponible via le canal stable de Chrome.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0297/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active d'une faille dans Wing FTP Server (CVE-2025-47813)</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge (CVE-2026-3910 exploitée)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté CVE-2025-47813 (score CVSS 4.3) à son catalogue KEV, signalant une exploitation active. Cette faille dans Wing FTP Server permet la fuite du chemin d'installation local du serveur, potentiellement exploitable pour des attaques en chaîne (RCE). Un correctif est disponible dans la version 6.4.8. Les administrateurs doivent appliquer le patch sans délai.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-wing-ftp-server-flaw-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Microsoft Edge est touché par plusieurs vulnérabilités, dont CVE-2026-3910 (exploitée activement), permettant un contournement des politiques de sécurité et une exécution de code non autorisée. Les correctifs sont inclus dans la mise à jour cumulative du 16/03/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0298/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Campagne GlassWorm : compromission de 400+ dépôts via GitHub, npm et VSCode</h3>
+<h3>Marché noir de 30 000 cartes bancaires françaises exposées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La campagne GlassWorm a ciblé plus de 400 dépôts et extensions (GitHub, npm, VSCode/OpenVSX) en utilisant des tokens GitHub volés pour injecter du malware dans des projets Python, Django et ML. Les attaquants ont modifié des fichiers de dépendances pour exfiltrer des données. Aucun correctif global n'est disponible ; les utilisateurs doivent vérifier les dépendances et révoquer les tokens compromis.</p>
-<a href="https://www.bleepingcomputer.com/news/security/glassworm-malware-hits-400-plus-code-repos-on-github-npm-vscode-openvsx/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Attaque Stryker : effacement de dizaines de milliers d'appareils sans malware</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'attaque contre Stryker (géant des technologies médicales) a ciblé son environnement Microsoft interne, entraînant l'effacement à distance de dizaines de milliers d'appareils d'employés. Aucune charge utile malveillante n'a été détectée, suggérant une exploitation native des outils Microsoft. Stryker n'a pas communiqué de détails techniques ni de correctif spécifique.</p>
-<a href="https://www.bleepingcomputer.com/news/security/stryker-attack-wiped-tens-of-thousands-of-devices-no-malware-needed/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données massives chez Companies House (Royaume-Uni)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Companies House, l'agence gouvernementale britannique, a confirmé une faille exposant les données de millions d'entreprises depuis octobre 2025. La vulnérabilité dans le service WebFiling a été corrigée, mais l'impact potentiel (vol de données et altération de registres) reste inconnu. Aucune preuve d'exploitation active n'a été publiée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/uks-companies-house-confirms-security-flaw-exposed-business-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de 30 000 cartes bancaires françaises sur le dark web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un marché du dark web vend les données de 30 000 cartes bancaires françaises, issues de fuites récentes. Les informations incluent numéros de carte, dates d'expiration et codes CVV. Aucune source officielle n'a confirmé l'origine de la fuite. Les victimes sont invitées à bloquer leurs cartes via leur banque.</p>
+<p><strong>Résumé</strong> : Un marché clandestin sur le dark web propose à la vente les données de 30 000 cartes bancaires françaises, issues de fuites récentes. Les victimes sont ciblées via des campagnes de phishing et des skimmers physiques. Aucune solution technique ne couvre ce risque, une vigilance accrue est recommandée.</p>
 <a href="https://www.zataz.com/marche-noir-de-cartes-bancaires-30-000-francais-exposes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Microsoft (CVE-2026-3910 exploitée)</h3>
+<h3>GlassWorm attaque les dépôts Python via tokens GitHub volés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé des vulnérabilités critiques dans ses produits, dont CVE-2026-3910 (activement exploitée) dans Microsoft Edge. Les failles permettent un contournement des politiques de sécurité et l'exécution de code arbitraire. Les correctifs sont disponibles via Windows Update (KB5056611). Une mise à jour urgente est recommandée pour tous les systèmes concernés.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0299/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Panorama des cybermenaces 2025 : espionnage et rançongiciels en hausse</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'ANSSI publie un rapport sur l'évolution des cybermenaces en 2025, mettant en avant une augmentation de l'espionnage, des rançongiciels et des attaques de sabotage. Les acteurs étatiques (Chine, Iran, Russie) et les groupes cybercriminels (ShinyHunters) sont particulièrement actifs. Aucune solution technique unique n'est proposée, mais une vigilance accrue est recommandée.</p>
-<a href="https://www.zataz.com/cybermenaces-2025-espionnage-extorsion-et-sabotage/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : La campagne *GlassWorm* injecte du malware dans des centaines de dépôts Python (Django, ML, PyPI) en exploitant des tokens GitHub compromis. Les attaquants forcent des *push* malveillants pour propager un chargeur de malware. Un audit des tokens et une rotation des identifiants sont urgents.</p>
+<a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Mars 2026</h2>
-<h3>Faille critique dans Xen (CVE non attribuée)</h3>
+<h3>Multiples vulnérabilités critiques dans Xen (élévation de privilèges, DoS, fuite de données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Xen permettent une élévation de privilèges, un déni de service à distance (DoS) et une fuite de données. Aucune CVE spécifique n'a été attribuée, mais les correctifs sont disponibles dans Xen 4.18.2 et les versions ultérieures. Les administrateurs de machines virtuelles doivent appliquer les mises à jour immédiatement pour éviter des compromissions en chaîne.</p>
+<p><strong>Résumé</strong> : Xen est affecté par plusieurs failles (CVE-2026-XXXX) permettant une élévation de privilèges locale, un déni de service à distance et une fuite de données sensibles. Les systèmes virtualisés utilisant Xen sont exposés. Les correctifs sont disponibles via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0304/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Ransomware LeakNet : attaques furtives via ClickFix et Deno</h3>
+<h3>Exploitation de CVE-2026-20131 par le ransomware Interlock (Cisco FMC)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe LeakNet utilise la technique ClickFix (fausses alertes système) via des sites compromis pour obtenir un accès initial, puis déploie un chargeur malveillant basé sur Deno (runtime JavaScript/TypeScript). Les attaques ciblent les environnements d'entreprise avec des exfiltrations de données. Aucun decryptor n'est disponible ; les sauvegardes et la segmentation réseau sont essentielles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/leaknet-ransomware-uses-clickfix-and-deno-runtime-in-stealthy-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le ransomware *Interlock* exploite une faille critique (CVE-2026-20131, CVSS 10.0) dans Cisco Secure Firewall Management Center (FMC) pour obtenir un accès root non autorisé. Les attaques en *zero-day* sont en cours depuis janvier 2026. Cisco a publié un correctif urgent.</p>
+<a href="https://thehackernews.com/2026/03/interlock-ransomware-exploits-cisco-fmc.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilités dans Spring AI : injection SQL et contournement de sécurité</h3>
+<h3>Faille critique non corrigée dans telnetd (CVE-2026-32746, RCE root)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des failles critiques dans Spring AI permettent une injection SQL (SQLi) et un contournement des politiques de sécurité, exposant les bases de données et les applications à des attaques. Les correctifs sont disponibles dans Spring AI 1.0.4 et versions ultérieures. Les développeurs doivent mettre à jour leurs dépendances immédiatement.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0305/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-32746, CVSS 9.8) dans le démon *telnetd* (GNU InetUtils) permet une exécution de code à distance non authentifiée avec privilèges root. Aucune correction n'est encore disponible. Une désactivation immédiate du service est recommandée.</p>
+<a href="https://thehackernews.com/2026/03/critical-telnetd-flaw-cve-2026-32746.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attaques par infostealer MacSync via des faux installateurs d'IA</h3>
+<h3>Campagne LeakNet : ransomware utilisant ClickFix et Deno</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois campagnes ClickFix ciblent les utilisateurs macOS en se faisant passer pour des installateurs d'outils d'IA (ex : faux "AI Optimizer"). Elles distribuent MacSync, un infostealer capable de voler des mots de passe, cookies et fichiers. Aucune signature malveillante n'est détectée par les outils de sécurité traditionnels. Les utilisateurs doivent télécharger les logiciels uniquement depuis les sources officielles.</p>
-<a href="https://thehackernews.com/2026/03/clickfix-campaigns-spread-macsync-macos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille dans Amazon Bedrock et LangSmith permettant l'exfiltration de données</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs ont découvert des failles dans Amazon Bedrock AgentCore Code Interpreter et LangSmith permettant l'exfiltration de données sensibles via des requêtes DNS. Les attaques ciblent les environnements d'exécution de code IA, avec un risque d'exécution de code à distance (RCE). Amazon a corrigé les vulnérabilités, mais les entreprises doivent auditer leurs configurations IA.</p>
-<a href="https://thehackernews.com/2026/03/ai-flaws-in-amazon-bedrock-langsmith.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe *LeakNet* utilise la technique *ClickFix* (via sites compromis) pour inciter les victimes à exécuter des commandes malveillantes, puis déploie un chargeur basé sur *Deno* pour contourner les détections. Les attaques ciblent les environnements Windows et Linux.</p>
+<a href="https://thehackernews.com/2026/03/leaknet-ransomware-uses-clickfix-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <h3>Sanctions de l'UE contre des entités chinoises et iraniennes pour cyberattaques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'UE a sanctionné trois entités et deux individus (Chine et Iran) pour des cyberattaques ciblant des infrastructures critiques européennes. Les attaques incluent des campagnes de ransomware et d'espionnage. Aucune CVE spécifique n'est liée à ces sanctions, mais les entreprises européennes doivent renforcer leur résilience face aux menaces étatiques.</p>
+<p><strong>Résumé</strong> : L'UE a sanctionné trois entités et deux individus pour leur implication dans des cyberattaques contre des infrastructures critiques européennes. Les activités incluent des campagnes de ransomware et des attaques par déni de service. Les sanctions visent à geler les avoirs et interdire les transactions.</p>
 <a href="https://www.bleepingcomputer.com/news/security/europe-sanctions-chinese-and-iranian-firms-for-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Botnet RondoDox : exploitation de 174 vulnérabilités</h3>
+<h3>9 failles critiques dans les KVM IP (accès root non authentifié)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le botnet RondoDox cible désormais 174 vulnérabilités connues, avec jusqu'à 15 000 tentatives d'exploitation par jour. Les attaques combinent des techniques d'exfiltration de données et de déploiement de ransomware. Les correctifs pour les vulnérabilités ciblées doivent être appliqués en priorité, notamment pour les produits Microsoft, Apache et Cisco.</p>
-<a href="https://www.securityweek.com/rondodox-botnet-targeted-174-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Neuf vulnérabilités critiques (CVE-2026-XXXX) affectant les KVM IP de quatre fournisseurs (dont GL-iNet) permettent un accès root non authentifié. Les attaques permettent un contrôle total des machines connectées. Les correctifs sont en cours de déploiement par les éditeurs.</p>
+<a href="https://thehackernews.com/2026/03/9-critical-ip-kvm-flaws-enable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Correctif Microsoft pour les problèmes d'accès au lecteur C: sur les PC Samsung</h3>
+<h3>Fuite de données à la BnF via un prestataire compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié un correctif pour résoudre les problèmes d'accès au lecteur C: et les défaillances d'applications sur certains PC Samsung sous Windows 11 (versions 24H2/25H2). Le problème était lié à une application Samsung malveillante distribuée via le Microsoft Store. Les utilisateurs doivent installer la mise à jour KB5056612 et désinstaller l'application incriminée.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-shares-fix-for-windows-c-drive-access-issues-on-samsung-pcs/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La Bibliothèque nationale de France (BnF) a subi une cyberattaque via un prestataire tiers, exposant des données personnelles. Les autorités françaises coordonnent une réponse pour limiter l'impact. Aucune information sur le vecteur d'attaque n'a été divulguée.</p>
+<a href="https://www.zataz.com/cyberattaque-a-la-bnf-donnees-exposees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Campagne de phishing ciblant Outpost24 via des marques légitimes</h3>
+<h3>Vulnérabilités dans Spring AI (injection SQL et contournement de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de phishing sophistiquée a tenté de compromettre un cadre de Outpost24 en utilisant des domaines et marques légitimes (ex : Microsoft 365). L'attaque en 7 étapes visait à voler des identifiants. Aucune compromission n'a été confirmée, mais l'incident souligne la nécessité de formations anti-phishing et de vérifications multi-facteurs.</p>
-<a href="https://www.darkreading.com/threat-intelligence/hackers-target-cybersecurity-firm-outpost24-phish" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : *Spring AI* est affecté par des failles permettant une injection SQL (SQLi) et un contournement des politiques de sécurité. Les attaquants peuvent exfiltrer des données ou exécuter des commandes arbitraires. Les correctifs sont disponibles via les mises à jour Spring.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0305/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h2>Mercredi 18 Mars 2026</h2>
+<h3>Correctif Apple pour CVE-2026-20643 (WebKit, contournement Same-Origin)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Apple a publié une mise à jour de sécurité (*Background Security Improvements*) pour corriger une faille dans WebKit (CVE-2026-20643) permettant de contourner la politique *Same-Origin*. Les systèmes iOS, iPadOS et macOS sont concernés. La mise à jour est disponible sans mise à jour majeure du système.</p>
+<a href="https://thehackernews.com/2026/03/apple-fixes-webkit-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Ransomware Marquis : fuite de données de 672 000 personnes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe *Marquis* a volé les données de 672 000 individus lors d'une attaque par ransomware en août 2025, affectant 74 banques aux États-Unis. Les données incluent des informations personnelles sensibles. Aucune rançon n'a été payée, mais les données sont toujours exposées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/marquis-ransomware-gang-stole-data-of-672-000-people-in-2025-cyberattack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans ConnectWise ScreenConnect (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : *ConnectWise* a corrigé une vulnérabilité critique dans *ScreenConnect* permettant une prise de contrôle non autorisée et une élévation de privilèges via une faille de vérification de signature cryptographique. Les correctifs sont disponibles en urgence pour les clients.</p>
+<a href="https://www.bleepingcomputer.com/news/security/connectwise-patches-new-flaw-allowing-screenconnect-hijacking/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA ordonne le patch de Zimbra XSS activement exploitée (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger une faille XSS dans *Zimbra Collaboration Suite* (CVE-2026-XXXX) activement exploitée. Les attaquants utilisent cette faille pour voler des sessions ou exécuter du code JavaScript malveillant. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-zimbra-xss-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Exploit iOS "Darksword" utilisé dans des attaques par infostealer</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un nouvel exploit iOS nommé *Darksword* est utilisé pour déployer des infostealers ciblant les portefeuilles cryptographiques et les données personnelles. L'exploit contourne les protections de sandboxing d'Apple. Aucune correction n'est encore disponible pour les versions vulnérables.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-darksword-ios-exploit-used-in-infostealer-attack-on-iphones/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Vulnérabilité critique dans Ubuntu (CVE-2026-3888, élévation de privilèges)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Ubuntu (versions 24.04+) est vulnérable à CVE-2026-3888, une faille permettant une élévation de privilèges root via une exploitation de timing dans *systemd*. Le correctif est disponible via les mises à jour de sécurité standard.</p>
+<a href="https://thehackernews.com/2026/03/ubuntu-cve-2026-3888-bug-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille dans les produits Atlassian (RCE, DoS, fuite de données)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits *Atlassian* (Jira, Confluence) permettent une exécution de code arbitraire à distance (RCE), un déni de service et une fuite de données. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0314/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Sanctions OFAC contre un réseau de travailleurs IT nord-coréens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Trésor américain (OFAC) a sanctionné six individus et deux entités pour un réseau de travailleurs IT nord-coréens fraudant des entreprises américaines via de faux emplois à distance. Les fonds servaient à financer des programmes d'armes de destruction massive.</p>
+<a href="https://thehackernews.com/2026/03/ofac-sanctions-dprk-it-worker-network.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
