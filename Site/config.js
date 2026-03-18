@@ -85,7 +85,7 @@ experiences: [
             longDescription: "Mise en place du protocole 802.1x sur 3 éphad \nMasterisation et déploiement d'images Windows 25h2 via FOG, avec automatisation de la configuration de l'administrateur local.\n WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
-            date: "Mai 2025 - Juin 2026",
+            date: "Mai 2025 - Juin 2025",
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
             // Idem ici :
