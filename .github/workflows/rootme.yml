@@ -48,14 +48,11 @@ jobs:
             )
             r.raise_for_status()
             data = r.json()
-            print("Réponse API:", data)
-            solved = data.get("challenges_info", {}).get("challenges_solved", None)
-            if solved is None:
-                # Essai avec un autre format de réponse
-                solved = data.get("challenges_solved", None)
-            if solved is None:
-                print("Impossible de trouver challenges_solved dans la réponse")
-                sys.exit(1)
+            # La réponse est une liste de challenges résolus — on compte les éléments
+            if isinstance(data, list):
+                solved = len(data)
+            else:
+                solved = data.get("challenges_info", {}).get("challenges_solved", len(data))
             print(f"Challenges résolus : {solved}")
 
             with open("Site/config.js", "r", encoding="utf-8") as f:
