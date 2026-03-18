@@ -189,6 +189,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const PROJECT_LIMIT = 4; 
 
     if (grid && config.projects) {
+        // BADGE COMPTEUR
+        const projTitle = document.querySelector('#projets h3');
+        if (projTitle) {
+            const badge = document.createElement('span');
+            badge.className = 'section-count-badge';
+            badge.textContent = config.projects.length;
+            projTitle.appendChild(badge);
+        }
+
         // 1. EXTRAIRE LES TAGS UNIQUES
         const allTags = new Set();
         config.projects.forEach(p => {
@@ -419,6 +428,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (procedureGrid && config.procedures && config.procedures.length > 0) {
         procedureGrid.innerHTML = '';
+
+        // BADGE COMPTEUR
+        const procTitle = document.querySelector('#procedures h3');
+        if (procTitle) {
+            const badge = document.createElement('span');
+            badge.className = 'section-count-badge';
+            badge.textContent = config.procedures.length;
+            procTitle.appendChild(badge);
+        }
 
         // --- CONTRÔLES : recherche + filtre par tag ---
         const allProcTags = new Set();
