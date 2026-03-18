@@ -482,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let visibleCount = 0;
             allCards.forEach(card => {
                 const title = (card.querySelector('h4')?.textContent || '').toLowerCase();
-                const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+                const desc = (card.getAttribute('data-desc') || '').toLowerCase();
                 const tagsData = JSON.parse(card.getAttribute('data-tags') || '[]');
                 const tagsLower = tagsData.map(t => t.toLowerCase());
                 const matchesSearch = !currentProcSearch || title.includes(currentProcSearch) || desc.includes(currentProcSearch) || tagsLower.some(t => t.includes(currentProcSearch));
@@ -557,6 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = 'project-card interactive-card';
             div.setAttribute('data-hint', 'Voir le PDF 📄');
             div.setAttribute('data-tags', JSON.stringify(proc.tags || []));
+            div.setAttribute('data-desc', escapeHTML(proc.longDescription || proc.description || ""));
             div.dataset.index = index;
             if (index >= PROC_LIMIT) div.classList.add('hidden-item');
 
@@ -572,7 +573,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
                         <h4>${escapeHTML(proc.title)}</h4>
-                        <p>${escapeHTML(proc.description)}</p>
                         ${cardTagsHTML}
                     </div>
                 </div>
@@ -900,7 +900,7 @@ function openProjectModal(proj, dateStr = "") {
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
         let dateHtml = dateStr ? `<div class="modal-date-display" style="margin-bottom:10px; font-size:0.8rem; opacity:0.7;">📅 Ajouté le : ${dateStr}</div>` : "";
-        descEl.innerHTML = dateHtml + (proj.longDescription ? proj.longDescription : proj.description);
+        descEl.innerHTML = dateHtml + (proj.longDescription || "");
         tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
         modal.style.display = "flex";
     }
