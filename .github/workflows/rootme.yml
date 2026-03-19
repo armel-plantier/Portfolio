@@ -33,7 +33,6 @@ jobs:
         import sys
         import os
         import json
-        import re
         from collections import defaultdict
         from datetime import datetime, timezone
 
@@ -78,10 +77,10 @@ jobs:
                     break
 
             if not id_auteur:
-                print(f"❌ Utilisateur '{username}' introuvable")
+                print(f"Utilisateur '{username}' introuvable")
                 sys.exit(1)
 
-            print(f"✅ id_auteur : {id_auteur}")
+            print(f"id_auteur : {id_auteur}")
 
             # Étape 2 : profil
             r2 = requests.get(
@@ -99,9 +98,9 @@ jobs:
             if isinstance(validations, dict):
                 validations = list(validations.values())
 
-            print(f"📊 {len(validations)} validations")
+            print(f"{len(validations)} validations")
 
-            # Étape 3 : compter par thème
+            # Étape 3 : challenges résolus par thème
             counts = defaultdict(int)
             for chall in validations:
                 if isinstance(chall, dict):
@@ -110,13 +109,30 @@ jobs:
                         counts[CATEGORIES[id_rub]] += 1
 
             total = sum(counts.values())
+
+            # Étape 4 : total disponible par rubrique
+            total_available = {}
+            for id_rub, cat_name in CATEGORIES.items():
+                try:
+                    r_cat = requests.get(
+                        f"https://api.www.root-me.org/challenges?id_rubrique={id_rub}",
+                        cookies=cookies, timeout=10
+                    )
+                    if r_cat.status_code == 200:
+                        data = r_cat.json()
+                        n = len(data) if isinstance(data, (list, dict)) else 0
+                        total_available[cat_name] = n
+                        print(f"  {cat_name}: {n} dispo")
+                except Exception as e:
+                    print(f"  {cat_name} indisponible : {e}")
+
             themes = [
-                {"name": cat, "count": n}
+                {"name": cat, "count": n, "total": total_available.get(cat, 0)}
                 for cat, n in sorted(counts.items(), key=lambda x: -x[1])
                 if n > 0
             ]
 
-            # Étape 4 : classement global
+            # Étape 5 : classement global
             top_percent = None
             try:
                 r3 = requests.get(
@@ -131,9 +147,9 @@ jobs:
                         if last and "place" in last:
                             total_users = int(last["place"])
                             top_percent = round((position / total_users) * 100, 1)
-                            print(f"✅ Top {top_percent}% ({position}/{total_users})")
+                            print(f"Top {top_percent}% ({position}/{total_users})")
             except Exception as e:
-                print(f"⚠️ Classement indisponible : {e}")
+                print(f"Classement indisponible : {e}")
 
             updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -147,24 +163,16 @@ jobs:
                 "updated_at": updated_at
             }, ensure_ascii=False, separators=(",", ":"))
 
-            # Remplacement robuste : gère le format mono-ligne ET multi-lignes
+            # Remplacement dans config.js
             with open("Site/config.js", "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Regex qui matche rootmeStats: { ... } en mono ou multi-lignes
-            # On utilise un compteur d'accolades pour trouver la fermeture exacte
             start = content.find("rootmeStats:")
             if start == -1:
-                print("❌ 'rootmeStats:' introuvable dans config.js")
+                print("'rootmeStats:' introuvable dans config.js")
                 sys.exit(1)
 
-            # Trouver l'accolade ouvrante
             brace_start = content.find("{", start)
-            if brace_start == -1:
-                print("❌ Accolade ouvrante introuvable")
-                sys.exit(1)
-
-            # Compter les accolades pour trouver la fermeture
             depth = 0
             brace_end = brace_start
             for i, ch in enumerate(content[brace_start:], brace_start):
@@ -176,15 +184,6 @@ jobs:
                         brace_end = i
                         break
 
-            # Récupérer l'indentation de la ligne rootmeStats
-            line_start = content.rfind("\n", 0, start) + 1
-            indent = len(content[line_start:start]) - len(content[line_start:start].lstrip())
-
-            # Reconstruire : tout ce qui est avant + nouvelle ligne + tout ce qui est après
-            # On cherche aussi la virgule éventuelle après l'accolade fermante
-            after = content[brace_end + 1:]
-            trailing_comma = "," if after.lstrip().startswith((",", "\n")) and "," in after[:5] else ","
-
             new_content = (
                 content[:start]
                 + f"rootmeStats: {stats_json},"
@@ -194,11 +193,11 @@ jobs:
             with open("Site/config.js", "w", encoding="utf-8") as f:
                 f.write(new_content)
 
-            top_str = f" · top {top_percent}%" if top_percent else ""
-            print(f"✅ config.js mis à jour : {total} challenges, position {position}{top_str}")
+            top_str = f" top {top_percent}%" if top_percent else ""
+            print(f"config.js mis a jour : {total} challenges, position {position}{top_str}")
 
         except Exception as e:
-            print(f"❌ Erreur : {e}")
+            print(f"Erreur : {e}")
             import traceback; traceback.print_exc()
             sys.exit(1)
         EOF
@@ -209,5 +208,5 @@ jobs:
         git config --local user.name "GitHub Action Bot"
         git add Site/config.js
         git diff --staged --quiet && echo "Aucune modification du score" && exit 0
-        git commit -m "Automated: Mise à jour score Root-Me 🎯"
+        git commit -m "Automated: Mise à jour score Root-Me"
         git push
