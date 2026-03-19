@@ -2,7 +2,7 @@ name: Mise à jour score Root-Me
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Tous les lundis à 8h UTC
+    - cron: '0 8 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -56,48 +56,55 @@ jobs:
         }
 
         try:
-            # Étape 1 : récupérer l'id_auteur depuis le nom
+            # Étape 1 : récupérer l'id_auteur
             r = requests.get(
                 f"https://api.www.root-me.org/auteurs?nom={username}",
-                cookies=cookies,
-                timeout=10
+                cookies=cookies, timeout=10
             )
             r.raise_for_status()
             auteurs = r.json()
 
-            # La réponse est {"0": {"id_auteur": "...", "nom": "..."}, ...}
-            auteurs_list = list(auteurs.values()) if isinstance(auteurs, dict) else auteurs
+            # La réponse est [ {"0": {"id_auteur": "...", "nom": "..."}} ]
+            flat = []
+            for item in auteurs:
+                if isinstance(item, dict):
+                    for v in item.values():
+                        if isinstance(v, dict):
+                            flat.append(v)
+
             id_auteur = None
-            for a in auteurs_list:
-                if isinstance(a, dict) and a.get("nom", "").lower() == username.lower():
+            for a in flat:
+                if a.get("nom", "").lower() == username.lower():
                     id_auteur = a.get("id_auteur")
                     break
 
             if not id_auteur:
-                print(f"❌ Utilisateur '{username}' introuvable dans /auteurs")
+                print(f"❌ Utilisateur '{username}' introuvable")
                 sys.exit(1)
 
             print(f"✅ id_auteur trouvé : {id_auteur}")
 
-            # Étape 2 : récupérer le profil complet avec les challenges validés
+            # Étape 2 : profil complet
             r2 = requests.get(
                 f"https://api.www.root-me.org/auteurs/{id_auteur}",
-                cookies=cookies,
-                timeout=10
+                cookies=cookies, timeout=10
             )
             r2.raise_for_status()
             profil = r2.json()
 
-            # Les challenges validés sont dans profil["challenges"]
-            challenges_valides = profil.get("challenges", [])
-            if isinstance(challenges_valides, dict):
-                challenges_valides = list(challenges_valides.values())
+            position = int(profil.get("position", 0))
+            score    = int(profil.get("score", 0))
+            rang     = profil.get("rang", "")
 
-            print(f"📊 {len(challenges_valides)} challenges validés au total")
+            validations = profil.get("validations", [])
+            if isinstance(validations, dict):
+                validations = list(validations.values())
 
-            # Étape 3 : compter par id_rubrique
+            print(f"📊 {len(validations)} challenges validés")
+
+            # Étape 3 : compter par thème
             counts = defaultdict(int)
-            for chall in challenges_valides:
+            for chall in validations:
                 if isinstance(chall, dict):
                     id_rub = str(chall.get("id_rubrique", ""))
                     if id_rub in CATEGORIES:
@@ -109,33 +116,61 @@ jobs:
                 for cat, n in sorted(counts.items(), key=lambda x: -x[1])
                 if n > 0
             ]
+
+            # Étape 4 : estimer le total users via /classement
+            top_percent = None
+            try:
+                r3 = requests.get(
+                    "https://api.www.root-me.org/classement?debut_classement=500000",
+                    cookies=cookies, timeout=10
+                )
+                if r3.status_code == 200:
+                    data = r3.json()
+                    items = list(data.values()) if isinstance(data, dict) else data
+                    if items:
+                        last = items[-1] if isinstance(items[-1], dict) else None
+                        if last and "place" in last:
+                            total_users = int(last["place"])
+                            top_percent = round((position / total_users) * 100, 1)
+                            print(f"✅ Position {position}/{total_users} → top {top_percent}%")
+            except Exception as e:
+                print(f"⚠️ Classement indisponible : {e}")
+
             updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-            stats_json = json.dumps(
-                {"total": total, "themes": themes, "updated_at": updated_at},
-                ensure_ascii=False
-            )
+            stats_json = json.dumps({
+                "total": total,
+                "themes": themes,
+                "position": position,
+                "score": score,
+                "rang": rang,
+                "top_percent": top_percent,
+                "updated_at": updated_at
+            }, ensure_ascii=False, separators=(",", ":"))
 
+            # Remplacement ligne par ligne (robuste peu importe le format)
             with open("Site/config.js", "r", encoding="utf-8") as f:
-                content = f.read()
+                lines = f.readlines()
 
-            new_content = re.sub(
-                r'rootmeStats:\s*\{[^}]*\}',
-                f'rootmeStats: {stats_json}',
-                content,
-                flags=re.DOTALL
-            )
+            new_lines = []
+            replaced = False
+            for line in lines:
+                if "rootmeStats:" in line:
+                    indent = len(line) - len(line.lstrip())
+                    new_lines.append(" " * indent + f"rootmeStats: {stats_json},\n")
+                    replaced = True
+                else:
+                    new_lines.append(line)
 
-            if new_content == content:
-                print("❌ Regex non matchée — vérifier le format rootmeStats dans config.js")
+            if not replaced:
+                print("❌ Ligne rootmeStats introuvable dans config.js")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
-                f.write(new_content)
+                f.writelines(new_lines)
 
-            print(f"✅ config.js mis à jour — {total} challenges, {len(themes)} thèmes")
-            for t in themes:
-                print(f"   {t['name']}: {t['count']}")
+            top_str = f" · top {top_percent}%" if top_percent else ""
+            print(f"✅ config.js mis à jour : {total} challenges, position {position}{top_str}")
 
         except Exception as e:
             print(f"❌ Erreur : {e}")
