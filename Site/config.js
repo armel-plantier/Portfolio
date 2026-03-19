@@ -326,7 +326,7 @@ experiences: [
             issuer: "root-me.org", 
             url: "https://www.root-me.org/", 
             pdf: "",
-            rootmeStats: {
+            rootmeStats: {"total":25,"themes":[{"name":"Réseau","count":18},{"name":"Web-Client","count":7}],"position":51009,"score":330,"rang":"curious","top_percent":null,"updated_at":"2026-03-19T14:15:01Z"},
                 total: 0,
                 themes: [],
                 updated_at: ""
