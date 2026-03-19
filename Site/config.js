@@ -322,7 +322,7 @@ experiences: [
 // --- 7. CERTIFICATIONS ---
     certifications: [
         { 
-            name: "RootMe (2 challenges)", 
+            name: "RootMe (0 challenges)", 
             issuer: "root-me.org", 
             url: "https://www.root-me.org/", 
             pdf: "",
