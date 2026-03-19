@@ -2,7 +2,7 @@ name: Mise à jour score Root-Me
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # Tous les lundis à 8h UTC
+    - cron: '0 8 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -56,7 +56,7 @@ jobs:
         }
 
         try:
-            # Étape 1 : récupérer l'id_auteur depuis le nom
+            # Étape 1 : récupérer l'id_auteur
             r = requests.get(
                 f"https://api.www.root-me.org/auteurs?nom={username}",
                 cookies=cookies,
@@ -65,21 +65,34 @@ jobs:
             r.raise_for_status()
             auteurs = r.json()
 
-            # La réponse est {"0": {"id_auteur": "...", "nom": "..."}, ...}
+            # DEBUG : afficher la réponse brute pour comprendre la structure
+            print("=== Réponse brute /auteurs ===")
+            print(json.dumps(auteurs, indent=2, ensure_ascii=False)[:800])
+            print("==============================")
+
             auteurs_list = list(auteurs.values()) if isinstance(auteurs, dict) else auteurs
+
             id_auteur = None
+            # Cherche d'abord correspondance exacte
             for a in auteurs_list:
                 if isinstance(a, dict) and a.get("nom", "").lower() == username.lower():
                     id_auteur = a.get("id_auteur")
+                    print(f"✅ Correspondance exacte : {a.get('nom')} → id {id_auteur}")
                     break
 
+            # Sinon prend le premier résultat (la recherche est déjà filtrée)
             if not id_auteur:
-                print(f"❌ Utilisateur '{username}' introuvable dans /auteurs")
+                for a in auteurs_list:
+                    if isinstance(a, dict) and "id_auteur" in a:
+                        id_auteur = a.get("id_auteur")
+                        print(f"⚠️ Correspondance approx : {a.get('nom')} → id {id_auteur}")
+                        break
+
+            if not id_auteur:
+                print(f"❌ Aucun utilisateur trouvé pour '{username}'")
                 sys.exit(1)
 
-            print(f"✅ id_auteur trouvé : {id_auteur}")
-
-            # Étape 2 : récupérer le profil complet avec les challenges validés
+            # Étape 2 : profil complet
             r2 = requests.get(
                 f"https://api.www.root-me.org/auteurs/{id_auteur}",
                 cookies=cookies,
@@ -88,14 +101,19 @@ jobs:
             r2.raise_for_status()
             profil = r2.json()
 
-            # Les challenges validés sont dans profil["challenges"]
+            # DEBUG : afficher les clés du profil
+            print(f"=== Clés du profil : {list(profil.keys()) if isinstance(profil, dict) else type(profil)} ===")
+
             challenges_valides = profil.get("challenges", [])
             if isinstance(challenges_valides, dict):
                 challenges_valides = list(challenges_valides.values())
 
-            print(f"📊 {len(challenges_valides)} challenges validés au total")
+            print(f"📊 {len(challenges_valides)} challenges validés")
 
-            # Étape 3 : compter par id_rubrique
+            # DEBUG : afficher les 2 premiers challenges pour vérifier la structure
+            if challenges_valides:
+                print("Exemple challenge[0] :", json.dumps(challenges_valides[0], ensure_ascii=False))
+
             counts = defaultdict(int)
             for chall in challenges_valides:
                 if isinstance(chall, dict):
@@ -127,7 +145,7 @@ jobs:
             )
 
             if new_content == content:
-                print("❌ Regex non matchée — vérifier le format rootmeStats dans config.js")
+                print("❌ Regex non matchée")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
