@@ -771,14 +771,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     totalEl.className = "rootme-total";
                     totalEl.textContent = `${stats.total} challenges r\u00E9solus`;
                     header.appendChild(totalEl);
-                    if (stats.updated_at) {
-                        const updEl = document.createElement("span");
-                        updEl.className = "rootme-updated";
-                        updEl.textContent = "m\u00E0j " + new Date(stats.updated_at)
-                            .toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
-                        header.appendChild(updEl);
-                    }
                     statsDiv.appendChild(header);
+
+                    // Themes : nom + nb challenges realises (moved before date)
 
                     // Themes : nom + nb challenges realises
                     stats.themes.forEach(t => {
@@ -787,6 +782,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><span class="rootme-bar-count">${t.count} chall réalisé${t.count > 1 ? "s" : ""}</span>`;
                         statsDiv.appendChild(row);
                     });
+
+                    // MAJ date en bas
+                    if (stats.updated_at) {
+                        const updRow = document.createElement("div");
+                        updRow.className = "rootme-upd-row";
+                        const dateStr = new Date(stats.updated_at)
+                            .toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
+                        updRow.innerHTML = `<span class="rootme-upd-dot"></span><span class="rootme-upd-text">MAJ : ${dateStr}</span>`;
+                        statsDiv.appendChild(updRow);
+                    }
 
                     li.appendChild(statsDiv);
 
