@@ -735,6 +735,59 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
                 act.appendChild(pBtn);
             }
+
+            // ── Barres de progression Root-Me par thème ──────────────────────
+            if (cert.issuer === "root-me.org" && cert.rootmeStats) {
+                const stats = cert.rootmeStats;
+                if (stats.themes && stats.themes.length > 0) {
+                    const maxCount = stats.themes[0].count; // déjà trié desc
+
+                    const statsDiv = document.createElement("div");
+                    statsDiv.className = "rootme-stats";
+
+                    // En-tête : total + date
+                    const header = document.createElement("div");
+                    header.className = "rootme-stats-header";
+                    const totalEl = document.createElement("span");
+                    totalEl.className = "rootme-total";
+                    totalEl.textContent = `${stats.total} challenges résolus`;
+                    header.appendChild(totalEl);
+
+                    if (stats.updated_at) {
+                        const updEl = document.createElement("span");
+                        updEl.className = "rootme-updated";
+                        updEl.textContent = "màj " + new Date(stats.updated_at)
+                            .toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
+                        header.appendChild(updEl);
+                    }
+                    statsDiv.appendChild(header);
+
+                    // Une barre par thème
+                    stats.themes.forEach(t => {
+                        const row = document.createElement("div");
+                        row.className = "rootme-bar-row";
+                        row.innerHTML = `
+                            <span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span>
+                            <div class="rootme-bar-track">
+                                <div class="rootme-bar-fill" data-pct="${Math.round((t.count / maxCount) * 100)}"></div>
+                            </div>
+                            <span class="rootme-bar-count">${t.count}</span>
+                        `;
+                        statsDiv.appendChild(row);
+                    });
+
+                    li.appendChild(statsDiv);
+
+                    // Animer les barres après insertion dans le DOM
+                    requestAnimationFrame(() => {
+                        statsDiv.querySelectorAll(".rootme-bar-fill").forEach(bar => {
+                            bar.style.width = bar.dataset.pct + "%";
+                        });
+                    });
+                }
+            }
+            // ─────────────────────────────────────────────────────────────────
+
             certList.appendChild(li);
         });
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
