@@ -76,7 +76,6 @@ jobs:
             for a in flat:
                 if a.get("nom", "").lower() == username.lower():
                     id_auteur = a.get("id_auteur")
-                    print(f"✅ id_auteur trouvé : {id_auteur}")
                     break
 
             if not id_auteur:
@@ -92,40 +91,14 @@ jobs:
             r2.raise_for_status()
             profil = r2.json()
 
-            # DEBUG : structure complète du profil
-            print("=== Clés du profil ===")
-            if isinstance(profil, dict):
-                for k, v in profil.items():
-                    if isinstance(v, list):
-                        print(f"  {k}: liste de {len(v)} éléments")
-                        if v:
-                            print(f"    exemple[0]: {json.dumps(v[0], ensure_ascii=False)[:200]}")
-                    elif isinstance(v, dict):
-                        print(f"  {k}: dict avec clés {list(v.keys())[:5]}")
-                    else:
-                        print(f"  {k}: {v}")
-            elif isinstance(profil, list):
-                print(f"Profil est une liste de {len(profil)} éléments")
-                if profil:
-                    print(f"exemple[0]: {json.dumps(profil[0], ensure_ascii=False)[:300]}")
-            print("======================")
-
-            # Chercher les challenges dans toutes les clés possibles
-            challenges_valides = []
-            for key in ["challenges", "validations", "solved", "challs", "challenge"]:
-                val = profil.get(key) if isinstance(profil, dict) else None
-                if val:
-                    challenges_valides = list(val.values()) if isinstance(val, dict) else val
-                    print(f"✅ Clé trouvée : '{key}' → {len(challenges_valides)} éléments")
-                    break
-
-            if not challenges_valides:
-                print("❌ Aucune clé de challenges trouvée dans le profil")
-                sys.exit(1)
+            # Les challenges validés sont dans "validations"
+            validations = profil.get("validations", [])
+            if isinstance(validations, dict):
+                validations = list(validations.values())
 
             # Étape 3 : compter par thème
             counts = defaultdict(int)
-            for chall in challenges_valides:
+            for chall in validations:
                 if isinstance(chall, dict):
                     id_rub = str(chall.get("id_rubrique", ""))
                     if id_rub in CATEGORIES:
@@ -155,15 +128,13 @@ jobs:
             )
 
             if new_content == content:
-                print("❌ Regex non matchée")
+                print("❌ Regex non matchée — vérifier rootmeStats dans config.js")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
                 f.write(new_content)
 
-            print(f"✅ config.js mis à jour — {total} challenges, {len(themes)} thèmes")
-            for t in themes:
-                print(f"   {t['name']}: {t['count']}")
+            print(f"✅ Root-Me mis à jour : {total} challenges — " + " · ".join(f"{t['name']}: {t['count']}" for t in themes))
 
         except Exception as e:
             print(f"❌ Erreur : {e}")
