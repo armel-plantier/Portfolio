@@ -780,14 +780,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     statsDiv.appendChild(header);
 
-                    // Barres
+                    // Themes : nom + nb challenges realises
                     stats.themes.forEach(t => {
                         const row = document.createElement("div");
                         row.className = "rootme-bar-row";
-                        const barMax = (t.total && t.total > 0) ? t.total : maxCount;
-                        const pct = Math.min(100, Math.round((t.count / barMax) * 100));
-                        const countLabel = (t.total && t.total > 0) ? `${t.count}/${t.total}` : `${t.count}`;
-                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><div class="rootme-bar-track"><div class="rootme-bar-fill" data-pct="${pct}"></div></div><span class="rootme-bar-count">${countLabel}</span>`;
+                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><span class="rootme-bar-count">${t.count} chall réalisé${t.count > 1 ? "s" : ""}</span>`;
                         statsDiv.appendChild(row);
                     });
 
@@ -801,13 +798,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         expanded = !expanded;
                         statsDiv.style.display = expanded ? "" : "none";
                         chevron.style.transform = expanded ? "rotate(180deg)" : "rotate(0deg)";
-                        if (expanded) {
-                            requestAnimationFrame(() => {
-                                statsDiv.querySelectorAll(".rootme-bar-fill").forEach(bar => {
-                                    bar.style.width = bar.dataset.pct + "%";
-                                });
-                            });
-                        }
                     });
                 }
             }
