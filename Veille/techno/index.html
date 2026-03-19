@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 16/03/2026 au 18/03/2026</title>
+    <title>Veille Techno | Updates & Outils — 16/03/2026 au 19/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 18/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 19/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,134 +76,88 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Debian 13.4 est disponible</h3>
+<h3>GlassWorm Backdoor exploite des tokens GitHub volés pour injecter du malware dans des dépôts Python</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Debian 13.4 (Trixie) apporte des correctifs de sécurité et des résolutions de bugs majeurs. Cette version consolide les mises à jour critiques pour renforcer la stabilité des serveurs et postes de travail. Idéal pour les environnements critiques nécessitant une base Linux fiable.</p>
-<a href="https://www.it-connect.fr/debian-13-4-est-disponible-quapporte-cette-version/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Proxmox VE Helper-Scripts : automatisation pour Proxmox</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cette collection de scripts Bash simplifie la configuration et le déploiement d'applications sur Proxmox VE. Permet d'automatiser des tâches répétitives comme la création de conteneurs LXC ou la gestion des réseaux. Gain de temps et réduction des erreurs humaines pour les administrateurs.</p>
-<a href="https://www.it-connect.fr/tuto-proxmox-ve-helper-scripts/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Windows 11 : suppression des apps indésirables via GPO</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft introduit un nouveau paramètre GPO pour supprimer les applications préinstallées (bloatware) sur Windows 11. Permet aux administrateurs de déployer des postes plus légers et sécurisés, alignés sur les besoins métiers. Compatible avec les environnements Active Directory.</p>
-<a href="https://www.it-connect.fr/windows-11-le-nouveau-parametre-qui-permet-de-supprimer-toutes-les-apps-indesirables/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Windows 11 – KB5084957 : mise à jour de sécurité ciblée</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft publie une mise à jour hors bande (KB5084957) pour corriger 3 vulnérabilités critiques dans Windows 11. Patch réservé à certains PC, nécessitant une évaluation préalable des risques. Priorité aux systèmes exposés à des attaques par exécution de code à distance.</p>
-<a href="https://www.it-connect.fr/windows-11-kb5084957-mise-a-jour-securite-hors-bande-mars-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Amazon S3 fête ses 20 ans : impact sur le cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : S3 reste l'API fondatrice du cloud moderne, avec une adoption massive dans l'IA générative et le stockage distribué. Son modèle de facturation à l'usage et sa scalabilité en font un standard pour les architectures DevOps. À surveiller pour les migrations vers le cloud hybride.</p>
-<a href="https://www.silicon.fr/cloud-1370/amazon-s3-fete-ses-20-ans-lapi-qui-a-colonise-le-cloud-226255" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<h3>GlassWorm : attaque sur les dépôts Python</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des tokens GitHub volés sont utilisés pour injecter du malware dans des centaines de dépôts Python (Django, ML, PyPI). Menace directe pour les pipelines CI/CD et les environnements de développement. Nécessite une revue des permissions et une surveillance des commits suspects.</p>
+<p><strong>Résumé</strong> : La campagne GlassWorm utilise des tokens GitHub compromis pour injecter du malware dans des centaines de dépôts Python, ciblant des projets Django, ML, Streamlit et PyPI. Les attaquants forcent des modifications malveillantes via des commandes manuelles.</p>
 <a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Android 17 : restrictions sur l'API Accessibility</h3>
+<h3>Possible nouvelle avancée en factorisation quantique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Android 17 bloque l'accès à l'API Accessibility pour les apps non liées à l'accessibilité. Réduit les risques de malware exploitant ces permissions pour des attaques par phishing ou vol de données. Impact sur les apps tierces nécessitant ces droits (ex : outils de productivité).</p>
-<a href="https://thehackernews.com/2026/03/android-17-blocks-non-accessibility.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une étude prépubliée suggère une avancée potentielle en factorisation quantique, susceptible de menacer les algorithmes de cryptographie asymétrique comme RSA. Si validée, cette découverte pourrait impacter la sécurité des infrastructures critiques.</p>
+<a href="https://www.schneier.com/blog/archives/2026/03/possible-new-result-in-quantum-factorization.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Mars 2026</h2>
-<h3>CVE-2026-32136 : faille critique dans AdGuard Home</h3>
+<h3>NVIDIA étend son influence sur l'agentique avec OpenShell et NanoClaw</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité permet de contourner l'authentification dans AdGuard Home, exposant les réseaux à une compromission totale. Patch urgent requis pour les serveurs DNS locaux utilisés comme filtres de contenu ou pare-feu. Vérifier les versions installées et appliquer les correctifs.</p>
-<a href="https://www.it-connect.fr/votre-adguard-home-est-vulnerable-a-une-compromission-totale-cve-2026-32136/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : NVIDIA renforce sa position dans l'agentique avec des outils comme Agents Toolkit et des solutions comme OpenShell et NanoClaw, visant à standardiser les interactions entre IA et systèmes. Pertinent pour les architectures DevOps intégrant des agents autonomes.</p>
+<a href="https://www.silicon.fr/data-ia-1372/nvidia-agentique-gtc-2026-226282" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>CVE-2026-3888 : élévation de privilèges sur Ubuntu</h3>
+<h3>Android 17 bloque l'accès à l'API d'accessibilité pour les apps non conformes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le nettoyage système de Ubuntu (liée aux paquets Snap) permet d'obtenir un accès root. Exploitable via des fichiers temporaires mal nettoyés. Priorité aux postes de travail et serveurs Ubuntu 24.04+ avec Snap installé. Mise à jour des paquets Snap recommandée.</p>
-<a href="https://www.it-connect.fr/cve-2026-3888-quand-le-nettoyage-systeme-dubuntu-offre-un-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Android 17 introduit un mode de protection avancé (AAPM) pour restreindre l'accès à l'API d'accessibilité, limitant les abus des applications malveillantes. Utile pour sécuriser les terminaux mobiles en entreprise.</p>
+<a href="https://thehackernews.com/2026/03/android-17-blocks-non-accessibility.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CISA : vulnérabilité Wing FTP activement exploitée</h3>
+<h3>AI flaws dans Amazon Bedrock et LangSmith permettent l'exfiltration de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CVE-2025-47813 (fuites de chemins de fichiers) est exploitée en attaque réelle. Ajoutée au catalogue KEV (Known Exploited Vulnerabilities). Impact sur les serveurs FTP internes utilisés pour le partage de fichiers. Audit immédiat des instances Wing FTP recommandé.</p>
-<a href="https://thehackernews.com/2026/03/cisa-flags-actively-exploited-wing-ftp.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>AI flaws in Amazon Bedrock et LangSmith</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des failles dans les environnements d'exécution de code IA (Amazon Bedrock) permettent l'exfiltration de données via requêtes DNS. Menace pour les applications utilisant des agents IA pour des tâches sensibles (ex : analyse de logs). Limiter les permissions des outils d'exécution.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités dans Amazon Bedrock et LangSmith permettent l'exfiltration de données via des requêtes DNS depuis des environnements d'exécution de code IA. Critique pour les équipes DevOps utilisant ces services en production.</p>
 <a href="https://thehackernews.com/2026/03/ai-flaws-in-amazon-bedrock-langsmith.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Sortie de Primtux 9 : distribution éducative</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Primtux 9, distribution Linux française dédiée à l'éducation, est disponible. Basée sur Debian, elle inclut des outils pédagogiques et une interface simplifiée. Solution alternative pour les environnements scolaires ou les postes dédiés à la formation.</p>
-<a href="https://linuxfr.org/news/sortie-de-la-primtux-9" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
-</div>
-
-<h3>Maintenant : monitoring unifié pour Docker/Kubernetes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'outil "Maintenant" permet de monitorer une stack Docker/Kubernetes depuis un seul conteneur. Fonctionnalités : auto-découverte des services, métriques système, alertes. Idéal pour les équipes DevOps cherchant à simplifier leur observabilité sans complexifier l'architecture.</p>
-<a href="https://linuxfr.org/news/maintenant-monitorer-toute-sa-stack-docker-depuis-un-seul-conteneur" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
 </div>
 
 <hr />
 <h2>Mercredi 18 Mars 2026</h2>
-<h3>CVE-2026-32746 : faille Telnet critique sur Linux</h3>
+<h3>CVE-2026-32746 : Faille critique dans Telnetd affectant les serveurs Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans le démon Telnet (GNU InetUtils) permet une exécution de code à distance sans authentification. Impact sur les serveurs exposant le port 23 (même en interne). Désactiver Telnet au profit de SSH et appliquer les correctifs urgents.</p>
-<a href="https://www.it-connect.fr/cve-2026-32746-les-serveurs-linux-menaces-par-une-nouvelle-faille-telnet/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une faille RCE non authentifiée (CVSS 9.8) dans le démon Telnetd (CVE-2026-32746) menace les serveurs Linux exposés. Priorité absolue pour les administrateurs système : désactiver Telnet et migrer vers SSH.</p>
+<a href="https://thehackernews.com/2026/03/critical-telnetd-flaw-cve-2026-32746.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>9 failles critiques dans les KVM low-cost</h3>
+<h3>CVE-2026-3888 : Exploit dans Ubuntu via le nettoyage système et Snap</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités dans les boîtiers KVM (GL-iNet, Sipeed, etc.) permettent un accès root non authentifié. Menace pour les salles serveurs où ces appareils sont utilisés pour la gestion physique. Mise à jour des firmwares ou remplacement des équipements compromis recommandée.</p>
-<a href="https://www.it-connect.fr/failles-de-securite-quand-un-simple-kvm-a-50e-devient-le-maillon-faible-de-votre-reseau/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une faille d'escalade de privilèges (CVSS 7.8) dans Ubuntu 24.04+ permet un accès root via un timing d'exploit dans systemd et les paquets Snap. Mise à jour urgente requise pour les environnements Ubuntu.</p>
+<a href="https://thehackernews.com/2026/03/ubuntu-cve-2026-3888-bug-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Firefox 149 : VPN gratuit intégré</h3>
+<h3>9 failles critiques dans des KVM IP low-cost (GL-iNet, Sipeed, etc.)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 149 intègre un VPN gratuit avec 50 Go/mois de données. Solution pratique pour sécuriser les connexions des utilisateurs nomades ou des postes distants. Alternative aux solutions payantes comme ProtonVPN ou NordVPN. À déployer via GPO pour les entreprises.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités non authentifiées dans des KVM IP à 50€ permettent un accès root distant. Impact majeur pour les infrastructures critiques : isoler ces appareils et appliquer les correctifs constructeur.</p>
+<a href="https://thehackernews.com/2026/03/9-critical-ip-kvm-flaws-enable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Firefox 149 intègre un VPN gratuit avec 50 Go/mois</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Firefox 149 propose un VPN intégré (50 Go/mois) et des fonctionnalités comme l'affichage scindé. Idéal pour sécuriser les connexions des utilisateurs finaux sans coût supplémentaire.</p>
 <a href="https://www.it-connect.fr/firefox-149-integre-un-vpn-gratuit-avec-50-go-de-donnees-par-mois/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>PowerToys 0.98 : nouveau dock pour Windows</h3>
+<hr />
+<h2>Jeudi 19 Mars 2026</h2>
+<h3>Betterleaks : Nouveau scanner de secrets open source pour remplacer Gitleaks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : PowerToys 0.98 introduit un dock pour la Palette de commandes, améliorant la productivité sous Windows. Fonctionnalités : gestion des fenêtres, raccourcis personnalisés, intégration avec les outils Sysinternals. Idéal pour les administrateurs système et les power users.</p>
-<a href="https://www.it-connect.fr/powertoys-0-98-est-disponible-et-apporte-un-nouveau-dock-bien-pratique-a-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Betterleaks offre une détection plus rapide et précise des secrets exposés dans les dépôts Git, avec une intégration DevSecOps simplifiée. Alternative mature à Gitleaks pour les pipelines CI/CD.</p>
+<a href="https://www.it-connect.fr/betterleaks-le-nouveau-scanner-de-secrets-open-source-qui-succede-a-gitleaks/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CVE-2026-20131 : ransomware Interlock exploite Cisco FMC</h3>
+<h3>Mistral AI lance Forge, plateforme d'entraînement de modèles IA pour entreprises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-20131, score CVSS 10.0) dans Cisco FMC permet une exécution de code à distance. Exploitée par le ransomware Interlock pour obtenir un accès root. Priorité aux pare-feux Cisco Secure Firewall Management Center. Mise à jour immédiate requise.</p>
-<a href="https://thehackernews.com/2026/03/interlock-ransomware-exploits-cisco-fmc.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Forge permet aux entreprises de créer des modèles IA "frontier" à partir de leurs données internes. Pertinent pour les équipes DataOps cherchant à personnaliser des LLMs sans dépendre des fournisseurs cloud.</p>
+<a href="https://www.silicon.fr/data-ia-1372/mistral-ai-lance-forge-plateforme-dentrainement-de-modeles-ia-pour-les-entreprises-226342" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>Apple corrige une faille WebKit</h3>
+<h3>DarkSword : Kit d'exploitation iOS utilisant 3 zero-days et 6 failles</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple patch une vulnérabilité dans WebKit (CVE-2026-20643) permettant de contourner la politique de même origine. Impact sur iOS, iPadOS et macOS. Mise à jour critique pour les appareils exposés à des attaques par phishing ou injection de code malveillant.</p>
-<a href="https://thehackernews.com/2026/03/apple-fixes-webkit-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : DarkSword cible les appareils iOS avec un exploit kit complet (6 failles, 3 zero-days) pour un takeover total. Priorité pour les administrateurs gérant des flottes mobiles Apple.</p>
+<a href="https://thehackernews.com/2026/03/darksword-ios-exploit-kit-uses-6-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Sailfish OS 5.0 : nouveautés</h3>
+<h3>CISA alerte sur des exploits actifs de Zimbra et SharePoint</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Sailfish OS 5.0 apporte des améliorations en termes de compatibilité Android, de gestion des permissions et d'interface utilisateur. Alternative viable pour les appareils mobiles nécessitant une solution open source et sécurisée. Intéressant pour les environnements BYOD ou les terminaux dédiés.</p>
-<a href="https://linuxfr.org/news/nouveautes-de-sailfish-os-5-0" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
-</div>
-
-<h3>AMDGPU SVM sur DRM_GPUSVM</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : AMD expérimente une implémentation de la mémoire virtuelle partagée (SVM) via le framework DRM_GPUSVM. Potentiel pour optimiser les charges de travail GPU dans les environnements virtualisés ou conteneurisés. À surveiller pour les déploiements HPC ou IA sur GPU.</p>
-<a href="https://www.phoronix.com/news/AMDGPU-Experiment-DRM-GPUSVM" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La CISA recommande d'appliquer les correctifs pour des vulnérabilités Zimbra et SharePoint déjà exploitées. Action immédiate requise pour les environnements hybrides ou cloud.</p>
+<a href="https://thehackernews.com/2026/03/cisa-warns-of-zimbra-sharepoint-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>

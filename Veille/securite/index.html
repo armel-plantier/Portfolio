@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 18/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 19/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 18/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 19/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,134 +76,112 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Vulnérabilité critique dans OpenSSL (CVE-2026-XXXX)</h3>
+<h3>Vulnérabilité critique dans Google Chrome (CVE-2026-3909)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique a été identifiée dans OpenSSL, permettant à un attaquant distant d'exécuter du code arbitraire ou de provoquer un déni de service (DoS) via une exploitation de type *buffer overflow*. Les versions affectées incluent OpenSSL 3.0.x et antérieures. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0296/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exploitation active de CVE-2026-3909 dans Google Chrome</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google Chrome est vulnérable à une faille de type *use-after-free* (CVE-2026-3909), activement exploitée en attaque *zero-day*. Cette vulnérabilité permet l'exécution de code arbitraire à distance. Une mise à jour urgente est disponible via le canal stable de Chrome.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3909) dans Google Chrome permet une exploitation active par des attaquants pour provoquer des problèmes de sécurité non spécifiés. Cette faille, déjà exploitée en conditions réelles, nécessite une mise à jour urgente du navigateur pour éviter des compromissions.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0297/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Edge (CVE-2026-3910 exploitée)</h3>
+<h3>Fuite massive de cartes bancaires françaises sur le dark web</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft Edge est touché par plusieurs vulnérabilités, dont CVE-2026-3910 (exploitée activement), permettant un contournement des politiques de sécurité et une exécution de code non autorisée. Les correctifs sont inclus dans la mise à jour cumulative du 16/03/2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0298/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Marché noir de 30 000 cartes bancaires françaises exposées</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un marché clandestin sur le dark web propose à la vente les données de 30 000 cartes bancaires françaises, issues de fuites récentes. Les victimes sont ciblées via des campagnes de phishing et des skimmers physiques. Aucune solution technique ne couvre ce risque, une vigilance accrue est recommandée.</p>
+<p><strong>Résumé</strong> : Un marché noir du dark web expose les données de 30 000 Français, incluant des cartes bancaires volées. Les cybercriminels exploitent ces informations pour des fraudes financières, soulignant l'urgence de surveiller les transactions suspectes et de renforcer les protections bancaires.</p>
 <a href="https://www.zataz.com/marche-noir-de-cartes-bancaires-30-000-francais-exposes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>GlassWorm attaque les dépôts Python via tokens GitHub volés</h3>
+<h3>Fin de BreachForums et ShinyHunters : guerre psychologique cybercriminelle</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La campagne *GlassWorm* injecte du malware dans des centaines de dépôts Python (Django, ML, PyPI) en exploitant des tokens GitHub compromis. Les attaquants forcent des *push* malveillants pour propager un chargeur de malware. Un audit des tokens et une rotation des identifiants sont urgents.</p>
-<a href="https://thehackernews.com/2026/03/glassworm-attack-uses-stolen-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La fermeture de BreachForums et l'implication de ShinyHunters dans une opération de désinformation marquent une escalade dans les stratégies cybercriminelles. Cette manœuvre pourrait refléter une tentative de manipulation de la réputation des acteurs de la menace ou une lutte interne pour le contrôle des marchés illégaux.</p>
+<a href="https://www.zataz.com/breachforums-et-shinyhunters-autopsie-dun-message-de-guerre-psychologique/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Mars 2026</h2>
 <h3>Multiples vulnérabilités critiques dans Xen (élévation de privilèges, DoS, fuite de données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Xen est affecté par plusieurs failles (CVE-2026-XXXX) permettant une élévation de privilèges locale, un déni de service à distance et une fuite de données sensibles. Les systèmes virtualisés utilisant Xen sont exposés. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Xen est affecté par plusieurs failles critiques permettant une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité des données. Ces vulnérabilités, non détaillées par l'éditeur, nécessitent une application immédiate des correctifs disponibles pour les environnements virtualisés.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0304/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation de CVE-2026-20131 par le ransomware Interlock (Cisco FMC)</h3>
+<h3>Injection SQL et contournement de sécurité dans Spring AI (CVE non assigné)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware *Interlock* exploite une faille critique (CVE-2026-20131, CVSS 10.0) dans Cisco Secure Firewall Management Center (FMC) pour obtenir un accès root non autorisé. Les attaques en *zero-day* sont en cours depuis janvier 2026. Cisco a publié un correctif urgent.</p>
-<a href="https://thehackernews.com/2026/03/interlock-ransomware-exploits-cisco-fmc.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille critique non corrigée dans telnetd (CVE-2026-32746, RCE root)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-32746, CVSS 9.8) dans le démon *telnetd* (GNU InetUtils) permet une exécution de code à distance non authentifiée avec privilèges root. Aucune correction n'est encore disponible. Une désactivation immédiate du service est recommandée.</p>
-<a href="https://thehackernews.com/2026/03/critical-telnetd-flaw-cve-2026-32746.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne LeakNet : ransomware utilisant ClickFix et Deno</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe *LeakNet* utilise la technique *ClickFix* (via sites compromis) pour inciter les victimes à exécuter des commandes malveillantes, puis déploie un chargeur basé sur *Deno* pour contourner les détections. Les attaques ciblent les environnements Windows et Linux.</p>
-<a href="https://thehackernews.com/2026/03/leaknet-ransomware-uses-clickfix-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Sanctions de l'UE contre des entités chinoises et iraniennes pour cyberattaques</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'UE a sanctionné trois entités et deux individus pour leur implication dans des cyberattaques contre des infrastructures critiques européennes. Les activités incluent des campagnes de ransomware et des attaques par déni de service. Les sanctions visent à geler les avoirs et interdire les transactions.</p>
-<a href="https://www.bleepingcomputer.com/news/security/europe-sanctions-chinese-and-iranian-firms-for-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>9 failles critiques dans les KVM IP (accès root non authentifié)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Neuf vulnérabilités critiques (CVE-2026-XXXX) affectant les KVM IP de quatre fournisseurs (dont GL-iNet) permettent un accès root non authentifié. Les attaques permettent un contrôle total des machines connectées. Les correctifs sont en cours de déploiement par les éditeurs.</p>
-<a href="https://thehackernews.com/2026/03/9-critical-ip-kvm-flaws-enable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fuite de données à la BnF via un prestataire compromis</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La Bibliothèque nationale de France (BnF) a subi une cyberattaque via un prestataire tiers, exposant des données personnelles. Les autorités françaises coordonnent une réponse pour limiter l'impact. Aucune information sur le vecteur d'attaque n'a été divulguée.</p>
-<a href="https://www.zataz.com/cyberattaque-a-la-bnf-donnees-exposees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Vulnérabilités dans Spring AI (injection SQL et contournement de sécurité)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : *Spring AI* est affecté par des failles permettant une injection SQL (SQLi) et un contournement des politiques de sécurité. Les attaquants peuvent exfiltrer des données ou exécuter des commandes arbitraires. Les correctifs sont disponibles via les mises à jour Spring.</p>
+<p><strong>Résumé</strong> : Spring AI présente des vulnérabilités critiques permettant une injection SQL (SQLi) et un contournement des politiques de sécurité. Ces failles exposent les applications utilisant ce framework à des attaques ciblant les bases de données et les mécanismes d'authentification.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0305/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Attaques russes via Zimbra sur des entités gouvernementales ukrainiennes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe APT28 (lié au GRU russe) exploite une faille non corrigée dans Zimbra Collaboration Suite pour cibler des entités gouvernementales ukrainiennes. Cette campagne active souligne l'importance de patcher rapidement les solutions de messagerie et de collaboration exposées en ligne.</p>
+<a href="https://www.bleepingcomputer.com/news/security/russian-apt28-military-hackers-exploit-zimbra-flaw-in-ukrainian-govt-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA ordonne le patch des serveurs Zimbra XSS exploités en attaque</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA impose aux agences fédérales américaines de corriger une faille XSS dans Zimbra Collaboration Suite, déjà exploitée en conditions réelles. Cette vulnérabilité permet des attaques par injection de code malveillant, compromettant la confidentialité et l'intégrité des données.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-zimbra-xss-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 18 Mars 2026</h2>
-<h3>Correctif Apple pour CVE-2026-20643 (WebKit, contournement Same-Origin)</h3>
+<h3>Ransomware Interlock exploite une faille zero-day Cisco FMC (CVE-2026-20131)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple a publié une mise à jour de sécurité (*Background Security Improvements*) pour corriger une faille dans WebKit (CVE-2026-20643) permettant de contourner la politique *Same-Origin*. Les systèmes iOS, iPadOS et macOS sont concernés. La mise à jour est disponible sans mise à jour majeure du système.</p>
-<a href="https://thehackernews.com/2026/03/apple-fixes-webkit-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le ransomware Interlock cible Cisco Secure Firewall Management Center (FMC) via une vulnérabilité zero-day (CVE-2026-20131, score CVSS 10.0). Cette faille permet une exécution de code à distance avec accès root, utilisée depuis janvier 2026 pour des attaques ciblées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/interlock-ransomware-exploited-secure-fmc-flaw-in-zero-day-attacks-since-january/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Ransomware Marquis : fuite de données de 672 000 personnes</h3>
+<h3>CISA alerte sur Microsoft Intune après l'attaque Stryker</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe *Marquis* a volé les données de 672 000 individus lors d'une attaque par ransomware en août 2025, affectant 74 banques aux États-Unis. Les données incluent des informations personnelles sensibles. Aucune rançon n'a été payée, mais les données sont toujours exposées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/marquis-ransomware-gang-stole-data-of-672-000-people-in-2025-cyberattack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Après l'attaque dévastatrice contre Stryker (80 000 appareils effacés), la CISA recommande aux organisations de sécuriser Microsoft Intune, outil exploité pour propager l'attaque. Cette faille met en lumière les risques liés aux solutions de gestion des endpoints non protégées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-businesses-to-secure-microsoft-intune-systems-after-stryker-breach/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille critique dans ConnectWise ScreenConnect (CVE-2026-XXXX)</h3>
+<h3>Fuite de données chez Aura : 900 000 contacts marketing exposés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : *ConnectWise* a corrigé une vulnérabilité critique dans *ScreenConnect* permettant une prise de contrôle non autorisée et une élévation de privilèges via une faille de vérification de signature cryptographique. Les correctifs sont disponibles en urgence pour les clients.</p>
+<p><strong>Résumé</strong> : Aura, spécialiste de la protection d'identité, confirme une fuite de 900 000 enregistrements clients (noms et emails) due à un accès non autorisé. Cette exposition soulève des questions sur la gestion des données personnelles et la résilience des systèmes de sécurité.</p>
+<a href="https://www.bleepingcomputer.com/news/security/aura-confirms-data-breach-exposing-900-000-marketing-contacts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>ConnectWise corrige une faille permettant le détournement de ScreenConnect</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : ConnectWise patche une vulnérabilité critique dans ScreenConnect, permettant un détournement d'accès et une escalade de privilèges via une vérification de signature cryptographique défaillante. Les clients doivent appliquer le correctif sans délai pour éviter des compromissions.</p>
 <a href="https://www.bleepingcomputer.com/news/security/connectwise-patches-new-flaw-allowing-screenconnect-hijacking/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CISA ordonne le patch de Zimbra XSS activement exploitée (CVE-2026-XXXX)</h3>
+<h3>Cyberattaque à la BnF : données personnelles exposées via un prestataire</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger une faille XSS dans *Zimbra Collaboration Suite* (CVE-2026-XXXX) activement exploitée. Les attaquants utilisent cette faille pour voler des sessions ou exécuter du code JavaScript malveillant. Un correctif est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-zimbra-xss-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La Bibliothèque nationale de France (BnF) subit une cyberattaque via un prestataire, entraînant l'exposition de données personnelles. Les autorités françaises coordonnent une réponse pour limiter l'impact et identifier les vecteurs d'intrusion.</p>
+<a href="https://www.zataz.com/cyberattaque-a-la-bnf-donnees-exposees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Exploit iOS "Darksword" utilisé dans des attaques par infostealer</h3>
+<hr />
+<h2>Jeudi 19 Mars 2026</h2>
+<h3>Fuite de données chez Navia : 2,7 millions de personnes affectées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouvel exploit iOS nommé *Darksword* est utilisé pour déployer des infostealers ciblant les portefeuilles cryptographiques et les données personnelles. L'exploit contourne les protections de sandboxing d'Apple. Aucune correction n'est encore disponible pour les versions vulnérables.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-darksword-ios-exploit-used-in-infostealer-attack-on-iphones/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Navia Benefit Solutions informe 2,7 millions d'individus d'une fuite de données sensibles, incluant des informations personnelles et financières. Cette exposition massive nécessite une surveillance accrue des tentatives d'usurpation d'identité et une notification rapide aux victimes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/navia-discloses-data-breach-impacting-27-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité critique dans Ubuntu (CVE-2026-3888, élévation de privilèges)</h3>
+<h3>Malware Perseus : vol de données via surveillance des notes Android</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ubuntu (versions 24.04+) est vulnérable à CVE-2026-3888, une faille permettant une élévation de privilèges root via une exploitation de timing dans *systemd*. Le correctif est disponible via les mises à jour de sécurité standard.</p>
-<a href="https://thehackernews.com/2026/03/ubuntu-cve-2026-3888-bug-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le nouveau malware Perseus cible les applications de notes Android pour extraire des données sensibles (mots de passe, phrases de récupération, informations financières). Cette technique permet aux attaquants de contourner les protections traditionnelles et de voler des identifiants critiques.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-perseus-android-malware-checks-user-notes-for-secrets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille dans les produits Atlassian (RCE, DoS, fuite de données)</h3>
+<h3>Speagle : malware exploitant Cobra DocGuard pour voler des données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits *Atlassian* (Jira, Confluence) permettent une exécution de code arbitraire à distance (RCE), un déni de service et une fuite de données. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0314/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le malware Speagle détourne l'infrastructure de Cobra DocGuard, un outil légitime, pour exfiltrer des données sensibles depuis des serveurs compromis. Cette technique de "living-off-the-land" rend la détection plus complexe et nécessite une analyse approfondie des processus système.</p>
+<a href="https://thehackernews.com/2026/03/speagle-malware-hijacks-cobra-docguard.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Sanctions OFAC contre un réseau de travailleurs IT nord-coréens</h3>
+<h3>DarkSword : kit d'exploitation iOS utilisant 3 zero-days pour un takeover complet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le Trésor américain (OFAC) a sanctionné six individus et deux entités pour un réseau de travailleurs IT nord-coréens fraudant des entreprises américaines via de faux emplois à distance. Les fonds servaient à financer des programmes d'armes de destruction massive.</p>
-<a href="https://thehackernews.com/2026/03/ofac-sanctions-dprk-it-worker-network.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le kit d'exploitation DarkSword cible les appareils iOS via 6 failles, dont 3 zero-days, pour prendre le contrôle total des dispositifs. Utilisé depuis novembre 2025 par plusieurs acteurs de la menace, il représente une menace majeure pour la confidentialité et la sécurité des utilisateurs Apple.</p>
+<a href="https://thehackernews.com/2026/03/darksword-ios-exploit-kit-uses-6-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA et Microsoft alertent sur une faille SharePoint exploitée en attaque</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique dans Microsoft SharePoint, corrigée en janvier 2026 mais désormais exploitée en conditions réelles, permet des attaques par exécution de code à distance. La CISA recommande une application immédiate des correctifs pour éviter des compromissions massives.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/critical-microsoft-sharepoint-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
