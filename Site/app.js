@@ -740,10 +740,22 @@ document.addEventListener("DOMContentLoaded", () => {
             if (cert.issuer === "root-me.org" && cert.rootmeStats) {
                 const stats = cert.rootmeStats;
                 if (stats.themes && stats.themes.length > 0) {
-                    const maxCount = stats.themes[0].count; // déjà trié desc
+                    const maxCount = stats.themes[0].count;
 
                     const statsDiv = document.createElement("div");
                     statsDiv.className = "rootme-stats";
+
+                    // Badges : top % + rang
+                    if (stats.top_percent !== null && stats.top_percent !== undefined) {
+                        const badgeRow = document.createElement("div");
+                        badgeRow.className = "rootme-badges";
+                        badgeRow.innerHTML = `
+                            <span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>
+                            ${stats.rang ? `<span class="rootme-badge rootme-badge-rang">${escapeHTML(stats.rang)}</span>` : ""}
+                            ${stats.score ? `<span class="rootme-badge rootme-badge-score">${stats.score} pts</span>` : ""}
+                        `;
+                        statsDiv.appendChild(badgeRow);
+                    }
 
                     // En-tête : total + date
                     const header = document.createElement("div");
@@ -752,7 +764,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     totalEl.className = "rootme-total";
                     totalEl.textContent = `${stats.total} challenges résolus`;
                     header.appendChild(totalEl);
-
                     if (stats.updated_at) {
                         const updEl = document.createElement("span");
                         updEl.className = "rootme-updated";
@@ -762,7 +773,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     statsDiv.appendChild(header);
 
-                    // Une barre par thème
+                    // Barres par thème
                     stats.themes.forEach(t => {
                         const row = document.createElement("div");
                         row.className = "rootme-bar-row";
@@ -778,7 +789,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     li.appendChild(statsDiv);
 
-                    // Animer les barres après insertion dans le DOM
                     requestAnimationFrame(() => {
                         statsDiv.querySelectorAll(".rootme-bar-fill").forEach(bar => {
                             bar.style.width = bar.dataset.pct + "%";
