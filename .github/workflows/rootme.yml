@@ -63,12 +63,19 @@ jobs:
             r.raise_for_status()
             data = r.json()
 
-            # Compter les challenges résolus par catégorie
-            counts = defaultdict(int)
-            if isinstance(data, list):
-                challenges = data
-            else:
+            print(f"Type data: {type(data)}")
+            if isinstance(data, dict):
+                first_val = list(data.values())[0] if data else {}
+                print(f"Type première valeur: {type(first_val)}")
+                print(f"Première valeur: {first_val}")
+            elif isinstance(data, list):
+                print(f"Premier élément: {data[0] if data else {}}")
+
+            # La réponse est un dict avec clés numériques {"0": {...}, "1": {...}}
+            if isinstance(data, dict):
                 challenges = list(data.values())
+            else:
+                challenges = data
 
             for chall in challenges:
                 if isinstance(chall, dict):
