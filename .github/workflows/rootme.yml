@@ -97,7 +97,16 @@ jobs:
             with open("Site/config.js", "w", encoding="utf-8") as f:
                 f.write(new_content)
 
-            print("config.js mis à jour")
+            # Vérification
+            if name_value in new_content:
+                print(f"✅ config.js mis à jour : {name_value}")
+            else:
+                print("❌ La modification n'a pas été appliquée — regex non matché")
+                print("Ligne RootMe actuelle dans config.js :")
+                for line in new_content.split('\n'):
+                    if 'RootMe' in line:
+                        print(f"  >>> {line.strip()}")
+                sys.exit(1)
 
         except Exception as e:
             print(f"Erreur : {e}")
