@@ -1,13 +1,21 @@
-name: Debug Root-Me API
+name: Mise à jour score Root-Me
 
 on:
+  schedule:
+    - cron: '0 8 * * 1'  # Tous les lundis à 8h UTC
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  debug_rootme:
+  update_rootme:
     runs-on: ubuntu-latest
 
     steps:
+    - name: 📥 Récupération du code
+      uses: actions/checkout@v4
+
     - name: 🐍 Configuration de Python
       uses: actions/setup-python@v5
       with:
@@ -16,41 +24,91 @@ jobs:
     - name: 📦 Installation des dépendances
       run: pip install requests
 
-    - name: 🔍 Exploration de l'API Root-Me
+    - name: 🎯 Récupération du score Root-Me
       env:
         ROOTME_API_KEY: ${{ secrets.ROOTME_API_KEY }}
       run: |
         python3 << 'EOF'
         import requests
-        import json
+        import re
+        import sys
         import os
+        from collections import defaultdict
 
+        username = "armelpltr"
         api_key = os.environ["ROOTME_API_KEY"]
         cookies = {"api_key": api_key}
 
-        # Catégories qu'on veut tester
-        categories = {
-            "68": "Web - Serveur",
-            "16": "Web - Client",
+        # Mapping id_rubrique → nom court
+        CATEGORIES = {
+            "68": "Web-Serveur",
+            "16": "Web-Client",
             "18": "Cryptanalyse",
             "69": "Cracking",
             "182": "Réseau",
             "67": "Stéganographie",
-            "189": "App - Script",
+            "189": "App-Script",
             "17": "Programmation",
             "70": "Réaliste",
+            "208": "Forensic",
+            "203": "App-Système",
         }
 
-        for id_rub, nom in categories.items():
+        try:
             r = requests.get(
-                f"https://api.www.root-me.org/challenges?id_rubrique={id_rub}",
+                f"https://api.www.root-me.org/challenges?username={username}",
                 cookies=cookies,
                 timeout=10
             )
-            if r.status_code == 200:
-                data = r.json()
-                total = len(data) if isinstance(data, list) else len(data.get("0", {}))
-                print(f"{nom} (id={id_rub}): {total} challenges total")
+            r.raise_for_status()
+            data = r.json()
+
+            # Compter les challenges résolus par catégorie
+            counts = defaultdict(int)
+            if isinstance(data, list):
+                challenges = data
             else:
-                print(f"{nom}: status {r.status_code}")
+                challenges = list(data.values())
+
+            for chall in challenges:
+                if isinstance(chall, dict):
+                    id_rub = chall.get("id_rubrique", "")
+                    if id_rub in CATEGORIES:
+                        counts[CATEGORIES[id_rub]] += 1
+
+            total = sum(counts.values())
+
+            # Construire la string des catégories (seulement celles > 0, triées par count desc)
+            cat_parts = [f"{cat}: {n}" for cat, n in sorted(counts.items(), key=lambda x: -x[1]) if n > 0]
+            cat_str = " · ".join(cat_parts)
+
+            name_value = f"RootMe ({total} challenges — {cat_str})" if cat_str else f"RootMe ({total} challenges)"
+            print(f"Résultat: {name_value}")
+
+            with open("Site/config.js", "r", encoding="utf-8") as f:
+                content = f.read()
+
+            new_content = re.sub(
+                r'name: "RootMe \([^"]*\)"',
+                f'name: "{name_value}"',
+                content
+            )
+
+            with open("Site/config.js", "w", encoding="utf-8") as f:
+                f.write(new_content)
+
+            print("config.js mis à jour")
+
+        except Exception as e:
+            print(f"Erreur : {e}")
+            sys.exit(1)
         EOF
+
+    - name: 💾 Commit de la mise à jour
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action Bot"
+        git add Site/config.js
+        git diff --staged --quiet && echo "Aucune modification du score" && exit 0
+        git commit -m "Automated: Mise à jour score Root-Me 🎯"
+        git push
