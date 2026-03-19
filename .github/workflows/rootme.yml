@@ -59,8 +59,7 @@ jobs:
             # Étape 1 : récupérer l'id_auteur
             r = requests.get(
                 f"https://api.www.root-me.org/auteurs?nom={username}",
-                cookies=cookies,
-                timeout=10
+                cookies=cookies, timeout=10
             )
             r.raise_for_status()
             auteurs = r.json()
@@ -85,13 +84,11 @@ jobs:
             # Étape 2 : profil complet
             r2 = requests.get(
                 f"https://api.www.root-me.org/auteurs/{id_auteur}",
-                cookies=cookies,
-                timeout=10
+                cookies=cookies, timeout=10
             )
             r2.raise_for_status()
             profil = r2.json()
 
-            # Les challenges validés sont dans "validations"
             validations = profil.get("validations", [])
             if isinstance(validations, dict):
                 validations = list(validations.values())
@@ -114,25 +111,29 @@ jobs:
 
             stats_json = json.dumps(
                 {"total": total, "themes": themes, "updated_at": updated_at},
-                ensure_ascii=False
+                ensure_ascii=False, separators=(",", ":")
             )
 
             with open("Site/config.js", "r", encoding="utf-8") as f:
-                content = f.read()
+                lines = f.readlines()
 
-            new_content = re.sub(
-                r'rootmeStats:\s*\{[^}]*\}',
-                f'rootmeStats: {stats_json}',
-                content,
-                flags=re.DOTALL
-            )
+            # Remplacer la ligne qui contient rootmeStats (ligne unique garantie)
+            new_lines = []
+            replaced = False
+            for line in lines:
+                if "rootmeStats:" in line:
+                    indent = len(line) - len(line.lstrip())
+                    new_lines.append(" " * indent + f"rootmeStats: {stats_json},\n")
+                    replaced = True
+                else:
+                    new_lines.append(line)
 
-            if new_content == content:
-                print("❌ Regex non matchée — vérifier rootmeStats dans config.js")
+            if not replaced:
+                print("❌ Ligne rootmeStats introuvable dans config.js")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
-                f.write(new_content)
+                f.writelines(new_lines)
 
             print(f"✅ Root-Me mis à jour : {total} challenges — " + " · ".join(f"{t['name']}: {t['count']}" for t in themes))
 
