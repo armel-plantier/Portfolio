@@ -29,31 +29,31 @@ jobs:
         api_key = os.environ["ROOTME_API_KEY"]
         cookies = {"api_key": api_key}
 
-        # Test endpoint /auteurs/
-        print("=== /auteurs/ ===")
+        # Test endpoint /rubriques/ pour avoir le total par catégorie
+        print("=== /rubriques/ ===")
         r = requests.get(
-            f"https://api.www.root-me.org/auteurs/{username}",
+            "https://api.www.root-me.org/rubriques",
             cookies=cookies,
             timeout=10
         )
         print(f"Status: {r.status_code}")
         if r.status_code == 200:
-            print(json.dumps(r.json(), indent=2, ensure_ascii=False))
+            data = r.json()
+            print(json.dumps(data[:3] if isinstance(data, list) else data, indent=2, ensure_ascii=False))
 
-        # Test endpoint /challenges avec details
-        print("\n=== /challenges (premiers éléments) ===")
+        # Test endpoint /challenges sans username pour avoir tous les challenges
+        print("\n=== /challenges (sans username, premier élément) ===")
         r2 = requests.get(
-            f"https://api.www.root-me.org/challenges?username={username}",
+            "https://api.www.root-me.org/challenges",
             cookies=cookies,
             timeout=10
         )
         print(f"Status: {r2.status_code}")
         if r2.status_code == 200:
-            data = r2.json()
-            if isinstance(data, list):
-                print(f"Nombre total: {len(data)}")
-                print("Exemple premier élément:")
-                print(json.dumps(data[0] if data else {}, indent=2, ensure_ascii=False))
+            data2 = r2.json()
+            if isinstance(data2, list):
+                print(f"Total challenges: {len(data2)}")
+                print(json.dumps(data2[0], indent=2, ensure_ascii=False))
             else:
-                print(json.dumps(data, indent=2, ensure_ascii=False))
+                print(json.dumps(data2, indent=2, ensure_ascii=False))
         EOF
