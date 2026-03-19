@@ -56,18 +56,48 @@ jobs:
         }
 
         try:
+            # Étape 1 : récupérer l'id_auteur depuis le nom
             r = requests.get(
-                f"https://api.www.root-me.org/challenges?username={username}",
+                f"https://api.www.root-me.org/auteurs?nom={username}",
                 cookies=cookies,
                 timeout=10
             )
             r.raise_for_status()
-            data = r.json()
+            auteurs = r.json()
 
-            challenges = list(data.values()) if isinstance(data, dict) else data
+            # La réponse est {"0": {"id_auteur": "...", "nom": "..."}, ...}
+            auteurs_list = list(auteurs.values()) if isinstance(auteurs, dict) else auteurs
+            id_auteur = None
+            for a in auteurs_list:
+                if isinstance(a, dict) and a.get("nom", "").lower() == username.lower():
+                    id_auteur = a.get("id_auteur")
+                    break
 
-            counts = defaultdict(int)  # ← corrigé : manquait dans l'ancienne version
-            for chall in challenges:
+            if not id_auteur:
+                print(f"❌ Utilisateur '{username}' introuvable dans /auteurs")
+                sys.exit(1)
+
+            print(f"✅ id_auteur trouvé : {id_auteur}")
+
+            # Étape 2 : récupérer le profil complet avec les challenges validés
+            r2 = requests.get(
+                f"https://api.www.root-me.org/auteurs/{id_auteur}",
+                cookies=cookies,
+                timeout=10
+            )
+            r2.raise_for_status()
+            profil = r2.json()
+
+            # Les challenges validés sont dans profil["challenges"]
+            challenges_valides = profil.get("challenges", [])
+            if isinstance(challenges_valides, dict):
+                challenges_valides = list(challenges_valides.values())
+
+            print(f"📊 {len(challenges_valides)} challenges validés au total")
+
+            # Étape 3 : compter par id_rubrique
+            counts = defaultdict(int)
+            for chall in challenges_valides:
                 if isinstance(chall, dict):
                     id_rub = str(chall.get("id_rubrique", ""))
                     if id_rub in CATEGORIES:
@@ -81,7 +111,6 @@ jobs:
             ]
             updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-            # Sérialiser le bloc rootmeStats en JSON compact (sur une ligne pour la regex)
             stats_json = json.dumps(
                 {"total": total, "themes": themes, "updated_at": updated_at},
                 ensure_ascii=False
@@ -90,7 +119,6 @@ jobs:
             with open("Site/config.js", "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Remplace le bloc rootmeStats: { ... } (multi-ligne, non-greedy)
             new_content = re.sub(
                 r'rootmeStats:\s*\{[^}]*\}',
                 f'rootmeStats: {stats_json}',
@@ -99,7 +127,7 @@ jobs:
             )
 
             if new_content == content:
-                print("❌ La regex n'a rien matché — vérifier le format de rootmeStats dans config.js")
+                print("❌ Regex non matchée — vérifier le format rootmeStats dans config.js")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
