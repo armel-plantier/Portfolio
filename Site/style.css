@@ -1378,3 +1378,25 @@ body.light-mode .rootme-bar-track {
 
 body.light-mode .rootme-badge-rang { color: #854d0e; }
 body.light-mode .rootme-badge-score { color: #166534; }
+
+/* MAJ date row */
+.rootme-upd-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+.rootme-upd-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    flex-shrink: 0;
+}
+.rootme-upd-text {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+}
