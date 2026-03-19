@@ -745,12 +745,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     const statsDiv = document.createElement("div");
                     statsDiv.className = "rootme-stats";
 
-                    // Badges : top % + rang
-                    if (stats.top_percent !== null && stats.top_percent !== undefined) {
+                    // Badges : top % (ou position brute) + rang + score
+                    if (stats.top_percent !== null && stats.top_percent !== undefined || stats.position) {
                         const badgeRow = document.createElement("div");
                         badgeRow.className = "rootme-badges";
+                        const topBadge = stats.top_percent !== null && stats.top_percent !== undefined
+                            ? `<span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>`
+                            : `<span class="rootme-badge rootme-badge-top">🌍 #${stats.position.toLocaleString("fr-FR")}</span>`;
                         badgeRow.innerHTML = `
-                            <span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>
+                            ${topBadge}
                             ${stats.rang ? `<span class="rootme-badge rootme-badge-rang">${escapeHTML(stats.rang)}</span>` : ""}
                             ${stats.score ? `<span class="rootme-badge rootme-badge-score">${stats.score} pts</span>` : ""}
                         `;
