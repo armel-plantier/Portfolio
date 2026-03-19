@@ -57,7 +57,6 @@ jobs:
 
         try:
             # Étape 1 : récupérer l'id_auteur
-            # La réponse est de la forme : [{"0": {"id_auteur": "...", "nom": "..."}}]
             r = requests.get(
                 f"https://api.www.root-me.org/auteurs?nom={username}",
                 cookies=cookies,
@@ -66,7 +65,6 @@ jobs:
             r.raise_for_status()
             auteurs = r.json()
 
-            # Aplatir : [ {"0": {...}, "1": {...}} ] → [ {...}, {...} ]
             flat = []
             for item in auteurs:
                 if isinstance(item, dict):
@@ -82,10 +80,10 @@ jobs:
                     break
 
             if not id_auteur:
-                print(f"❌ Utilisateur '{username}' introuvable. Résultats : {flat}")
+                print(f"❌ Utilisateur '{username}' introuvable")
                 sys.exit(1)
 
-            # Étape 2 : profil complet avec challenges validés
+            # Étape 2 : profil complet
             r2 = requests.get(
                 f"https://api.www.root-me.org/auteurs/{id_auteur}",
                 cookies=cookies,
@@ -94,11 +92,36 @@ jobs:
             r2.raise_for_status()
             profil = r2.json()
 
-            challenges_valides = profil.get("challenges", [])
-            if isinstance(challenges_valides, dict):
-                challenges_valides = list(challenges_valides.values())
+            # DEBUG : structure complète du profil
+            print("=== Clés du profil ===")
+            if isinstance(profil, dict):
+                for k, v in profil.items():
+                    if isinstance(v, list):
+                        print(f"  {k}: liste de {len(v)} éléments")
+                        if v:
+                            print(f"    exemple[0]: {json.dumps(v[0], ensure_ascii=False)[:200]}")
+                    elif isinstance(v, dict):
+                        print(f"  {k}: dict avec clés {list(v.keys())[:5]}")
+                    else:
+                        print(f"  {k}: {v}")
+            elif isinstance(profil, list):
+                print(f"Profil est une liste de {len(profil)} éléments")
+                if profil:
+                    print(f"exemple[0]: {json.dumps(profil[0], ensure_ascii=False)[:300]}")
+            print("======================")
 
-            print(f"📊 {len(challenges_valides)} challenges validés")
+            # Chercher les challenges dans toutes les clés possibles
+            challenges_valides = []
+            for key in ["challenges", "validations", "solved", "challs", "challenge"]:
+                val = profil.get(key) if isinstance(profil, dict) else None
+                if val:
+                    challenges_valides = list(val.values()) if isinstance(val, dict) else val
+                    print(f"✅ Clé trouvée : '{key}' → {len(challenges_valides)} éléments")
+                    break
+
+            if not challenges_valides:
+                print("❌ Aucune clé de challenges trouvée dans le profil")
+                sys.exit(1)
 
             # Étape 3 : compter par thème
             counts = defaultdict(int)
@@ -132,7 +155,7 @@ jobs:
             )
 
             if new_content == content:
-                print("❌ Regex non matchée — vérifier rootmeStats dans config.js")
+                print("❌ Regex non matchée")
                 sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
