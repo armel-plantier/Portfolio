@@ -33,23 +33,24 @@ jobs:
         import re
         import sys
         import os
+        import json
         from collections import defaultdict
+        from datetime import datetime, timezone
 
         username = "armelpltr"
         api_key = os.environ["ROOTME_API_KEY"]
         cookies = {"api_key": api_key}
 
-        # Mapping id_rubrique → nom court
         CATEGORIES = {
-            "68": "Web-Serveur",
-            "16": "Web-Client",
-            "18": "Cryptanalyse",
-            "69": "Cracking",
+            "68":  "Web-Serveur",
+            "16":  "Web-Client",
+            "18":  "Cryptanalyse",
+            "69":  "Cracking",
             "182": "Réseau",
-            "67": "Stéganographie",
+            "67":  "Stéganographie",
             "189": "App-Script",
-            "17": "Programmation",
-            "70": "Réaliste",
+            "17":  "Programmation",
+            "70":  "Réaliste",
             "208": "Forensic",
             "203": "App-Système",
         }
@@ -63,60 +64,54 @@ jobs:
             r.raise_for_status()
             data = r.json()
 
-            print(f"Type data: {type(data)}")
-            if isinstance(data, dict):
-                first_val = list(data.values())[0] if data else {}
-                print(f"Type première valeur: {type(first_val)}")
-                print(f"Première valeur: {first_val}")
-            elif isinstance(data, list):
-                print(f"Premier élément: {data[0] if data else {}}")
+            challenges = list(data.values()) if isinstance(data, dict) else data
 
-            # La réponse est un dict avec clés numériques {"0": {...}, "1": {...}}
-            if isinstance(data, dict):
-                challenges = list(data.values())
-            else:
-                challenges = data
-
+            counts = defaultdict(int)  # ← corrigé : manquait dans l'ancienne version
             for chall in challenges:
                 if isinstance(chall, dict):
-                    id_rub = chall.get("id_rubrique", "")
+                    id_rub = str(chall.get("id_rubrique", ""))
                     if id_rub in CATEGORIES:
                         counts[CATEGORIES[id_rub]] += 1
 
             total = sum(counts.values())
+            themes = [
+                {"name": cat, "count": n}
+                for cat, n in sorted(counts.items(), key=lambda x: -x[1])
+                if n > 0
+            ]
+            updated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-            # Construire la string des catégories (seulement celles > 0, triées par count desc)
-            cat_parts = [f"{cat}: {n}" for cat, n in sorted(counts.items(), key=lambda x: -x[1]) if n > 0]
-            cat_str = " · ".join(cat_parts)
-
-            name_value = f"RootMe ({total} challenges — {cat_str})" if cat_str else f"RootMe ({total} challenges)"
-            print(f"Résultat: {name_value}")
+            # Sérialiser le bloc rootmeStats en JSON compact (sur une ligne pour la regex)
+            stats_json = json.dumps(
+                {"total": total, "themes": themes, "updated_at": updated_at},
+                ensure_ascii=False
+            )
 
             with open("Site/config.js", "r", encoding="utf-8") as f:
                 content = f.read()
 
+            # Remplace le bloc rootmeStats: { ... } (multi-ligne, non-greedy)
             new_content = re.sub(
-                r'name: "RootMe \([^"]*\)"',
-                f'name: "{name_value}"',
-                content
+                r'rootmeStats:\s*\{[^}]*\}',
+                f'rootmeStats: {stats_json}',
+                content,
+                flags=re.DOTALL
             )
+
+            if new_content == content:
+                print("❌ La regex n'a rien matché — vérifier le format de rootmeStats dans config.js")
+                sys.exit(1)
 
             with open("Site/config.js", "w", encoding="utf-8") as f:
                 f.write(new_content)
 
-            # Vérification
-            if name_value in new_content:
-                print(f"✅ config.js mis à jour : {name_value}")
-            else:
-                print("❌ La modification n'a pas été appliquée — regex non matché")
-                print("Ligne RootMe actuelle dans config.js :")
-                for line in new_content.split('\n'):
-                    if 'RootMe' in line:
-                        print(f"  >>> {line.strip()}")
-                sys.exit(1)
+            print(f"✅ config.js mis à jour — {total} challenges, {len(themes)} thèmes")
+            for t in themes:
+                print(f"   {t['name']}: {t['count']}")
 
         except Exception as e:
-            print(f"Erreur : {e}")
+            print(f"❌ Erreur : {e}")
+            import traceback; traceback.print_exc()
             sys.exit(1)
         EOF
 
