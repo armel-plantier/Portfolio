@@ -784,7 +784,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     stats.themes.forEach(t => {
                         const row = document.createElement("div");
                         row.className = "rootme-bar-row";
-                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><div class="rootme-bar-track"><div class="rootme-bar-fill" data-pct="${Math.round((t.count / maxCount) * 100)}"></div></div><span class="rootme-bar-count">${t.count}</span>`;
+                        const barMax = (t.total && t.total > 0) ? t.total : maxCount;
+                        const pct = Math.min(100, Math.round((t.count / barMax) * 100));
+                        const countLabel = (t.total && t.total > 0) ? `${t.count}/${t.total}` : `${t.count}`;
+                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><div class="rootme-bar-track"><div class="rootme-bar-fill" data-pct="${pct}"></div></div><span class="rootme-bar-count">${countLabel}</span>`;
                         statsDiv.appendChild(row);
                     });
 
