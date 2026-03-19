@@ -25,35 +25,32 @@ jobs:
         import json
         import os
 
-        username = "armelpltr"
         api_key = os.environ["ROOTME_API_KEY"]
         cookies = {"api_key": api_key}
 
-        # Test endpoint /rubriques/ pour avoir le total par catégorie
-        print("=== /rubriques/ ===")
-        r = requests.get(
-            "https://api.www.root-me.org/rubriques",
-            cookies=cookies,
-            timeout=10
-        )
-        print(f"Status: {r.status_code}")
-        if r.status_code == 200:
-            data = r.json()
-            print(json.dumps(data[:3] if isinstance(data, list) else data, indent=2, ensure_ascii=False))
+        # Catégories qu'on veut tester
+        categories = {
+            "68": "Web - Serveur",
+            "16": "Web - Client",
+            "18": "Cryptanalyse",
+            "69": "Cracking",
+            "182": "Réseau",
+            "67": "Stéganographie",
+            "189": "App - Script",
+            "17": "Programmation",
+            "70": "Réaliste",
+        }
 
-        # Test endpoint /challenges sans username pour avoir tous les challenges
-        print("\n=== /challenges (sans username, premier élément) ===")
-        r2 = requests.get(
-            "https://api.www.root-me.org/challenges",
-            cookies=cookies,
-            timeout=10
-        )
-        print(f"Status: {r2.status_code}")
-        if r2.status_code == 200:
-            data2 = r2.json()
-            if isinstance(data2, list):
-                print(f"Total challenges: {len(data2)}")
-                print(json.dumps(data2[0], indent=2, ensure_ascii=False))
+        for id_rub, nom in categories.items():
+            r = requests.get(
+                f"https://api.www.root-me.org/challenges?id_rubrique={id_rub}",
+                cookies=cookies,
+                timeout=10
+            )
+            if r.status_code == 200:
+                data = r.json()
+                total = len(data) if isinstance(data, list) else len(data.get("0", {}))
+                print(f"{nom} (id={id_rub}): {total} challenges total")
             else:
-                print(json.dumps(data2, indent=2, ensure_ascii=False))
+                print(f"{nom}: status {r.status_code}")
         EOF
