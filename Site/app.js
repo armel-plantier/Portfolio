@@ -736,66 +736,75 @@ document.addEventListener("DOMContentLoaded", () => {
                 act.appendChild(pBtn);
             }
 
-            // ── Barres de progression Root-Me par thème ──────────────────────
+            // ── Root-Me : stats dépliables au clic ───────────────────────────
             if (cert.issuer === "root-me.org" && cert.rootmeStats) {
                 const stats = cert.rootmeStats;
                 if (stats.themes && stats.themes.length > 0) {
                     const maxCount = stats.themes[0].count;
 
+                    // Chevron
+                    const headerRow = li.querySelector(".cert-header-row");
+                    const chevron = document.createElement("span");
+                    chevron.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+                    chevron.style.cssText = "display:flex;align-items:center;color:var(--muted);transition:transform 0.3s ease;margin-left:6px;flex-shrink:0;";
+                    headerRow.appendChild(chevron);
+
                     const statsDiv = document.createElement("div");
                     statsDiv.className = "rootme-stats";
+                    statsDiv.style.display = "none";
 
-                    // Badges : top % (ou position brute) + rang + score
-                    if (stats.top_percent !== null && stats.top_percent !== undefined || stats.position) {
-                        const badgeRow = document.createElement("div");
-                        badgeRow.className = "rootme-badges";
-                        const topBadge = stats.top_percent !== null && stats.top_percent !== undefined
-                            ? `<span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>`
-                            : `<span class="rootme-badge rootme-badge-top">🌍 #${stats.position.toLocaleString("fr-FR")}</span>`;
-                        badgeRow.innerHTML = `
-                            ${topBadge}
-                            ${stats.rang ? `<span class="rootme-badge rootme-badge-rang">${escapeHTML(stats.rang)}</span>` : ""}
-                            ${stats.score ? `<span class="rootme-badge rootme-badge-score">${stats.score} pts</span>` : ""}
-                        `;
-                        statsDiv.appendChild(badgeRow);
-                    }
+                    // Badges
+                    const badgeRow = document.createElement("div");
+                    badgeRow.className = "rootme-badges";
+                    const topBadge = (stats.top_percent !== null && stats.top_percent !== undefined)
+                        ? `<span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>`
+                        : `<span class="rootme-badge rootme-badge-top">\uD83C\uDF0D #${stats.position.toLocaleString("fr-FR")}</span>`;
+                    badgeRow.innerHTML = topBadge
+                        + (stats.rang ? `<span class="rootme-badge rootme-badge-rang">${escapeHTML(stats.rang)}</span>` : "")
+                        + (stats.score ? `<span class="rootme-badge rootme-badge-score">${stats.score} pts</span>` : "");
+                    statsDiv.appendChild(badgeRow);
 
-                    // En-tête : total + date
+                    // Total + date
                     const header = document.createElement("div");
                     header.className = "rootme-stats-header";
                     const totalEl = document.createElement("span");
                     totalEl.className = "rootme-total";
-                    totalEl.textContent = `${stats.total} challenges résolus`;
+                    totalEl.textContent = `${stats.total} challenges r\u00E9solus`;
                     header.appendChild(totalEl);
                     if (stats.updated_at) {
                         const updEl = document.createElement("span");
                         updEl.className = "rootme-updated";
-                        updEl.textContent = "màj " + new Date(stats.updated_at)
+                        updEl.textContent = "m\u00E0j " + new Date(stats.updated_at)
                             .toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
                         header.appendChild(updEl);
                     }
                     statsDiv.appendChild(header);
 
-                    // Barres par thème
+                    // Barres
                     stats.themes.forEach(t => {
                         const row = document.createElement("div");
                         row.className = "rootme-bar-row";
-                        row.innerHTML = `
-                            <span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span>
-                            <div class="rootme-bar-track">
-                                <div class="rootme-bar-fill" data-pct="${Math.round((t.count / maxCount) * 100)}"></div>
-                            </div>
-                            <span class="rootme-bar-count">${t.count}</span>
-                        `;
+                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><div class="rootme-bar-track"><div class="rootme-bar-fill" data-pct="${Math.round((t.count / maxCount) * 100)}"></div></div><span class="rootme-bar-count">${t.count}</span>`;
                         statsDiv.appendChild(row);
                     });
 
                     li.appendChild(statsDiv);
 
-                    requestAnimationFrame(() => {
-                        statsDiv.querySelectorAll(".rootme-bar-fill").forEach(bar => {
-                            bar.style.width = bar.dataset.pct + "%";
-                        });
+                    // Toggle
+                    let expanded = false;
+                    li.style.cursor = "pointer";
+                    li.addEventListener("click", (e) => {
+                        if (e.target.closest("a, button")) return;
+                        expanded = !expanded;
+                        statsDiv.style.display = expanded ? "" : "none";
+                        chevron.style.transform = expanded ? "rotate(180deg)" : "rotate(0deg)";
+                        if (expanded) {
+                            requestAnimationFrame(() => {
+                                statsDiv.querySelectorAll(".rootme-bar-fill").forEach(bar => {
+                                    bar.style.width = bar.dataset.pct + "%";
+                                });
+                            });
+                        }
                     });
                 }
             }
