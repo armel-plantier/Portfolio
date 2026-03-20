@@ -1,7 +1,7 @@
 // === BYPASS SI DÉJÀ VÉRIFIÉ (24h) ===
 (function() {
     var STORAGE_KEY = 'ap_verified';
-    var EXPIRY_MS   = 24 * 60 * 60 * 1000; // 24 heures
+    var EXPIRY_MS   = 30 * 60 * 1000; // 30 minutes
 
     function skipSplash() {
         var splash = document.getElementById('splash-screen');
