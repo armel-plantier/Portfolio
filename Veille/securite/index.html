@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 19/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 20/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 19/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 20/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,112 +76,93 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Vulnérabilité critique dans Google Chrome (CVE-2026-3909)</h3>
+<h3>Multiples vulnérabilités critiques dans Microsoft Edge (CVE-2026-3910 activement exploité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3909) dans Google Chrome permet une exploitation active par des attaquants pour provoquer des problèmes de sécurité non spécifiés. Cette faille, déjà exploitée en conditions réelles, nécessite une mise à jour urgente du navigateur pour éviter des compromissions.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0297/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Fuite massive de cartes bancaires françaises sur le dark web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un marché noir du dark web expose les données de 30 000 Français, incluant des cartes bancaires volées. Les cybercriminels exploitent ces informations pour des fraudes financières, soulignant l'urgence de surveiller les transactions suspectes et de renforcer les protections bancaires.</p>
-<a href="https://www.zataz.com/marche-noir-de-cartes-bancaires-30-000-francais-exposes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Fin de BreachForums et ShinyHunters : guerre psychologique cybercriminelle</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La fermeture de BreachForums et l'implication de ShinyHunters dans une opération de désinformation marquent une escalade dans les stratégies cybercriminelles. Cette manœuvre pourrait refléter une tentative de manipulation de la réputation des acteurs de la menace ou une lutte interne pour le contrôle des marchés illégaux.</p>
-<a href="https://www.zataz.com/breachforums-et-shinyhunters-autopsie-dun-message-de-guerre-psychologique/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités ont été découvertes dans Microsoft Edge, dont la CVE-2026-3910, permettant un contournement de la politique de sécurité et d'autres risques non spécifiés. Microsoft confirme que cette faille est déjà exploitée en conditions réelles. Un correctif est attendu dans les prochaines mises à jour.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0298/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Mars 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Xen (élévation de privilèges, DoS, fuite de données)</h3>
+<h3>Vulnérabilité critique dans Xen (élévation de privilèges et fuite de données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Xen est affecté par plusieurs failles critiques permettant une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité des données. Ces vulnérabilités, non détaillées par l'éditeur, nécessitent une application immédiate des correctifs disponibles pour les environnements virtualisés.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Xen permettent une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité des données. Ces failles affectent les environnements virtualisés utilisant cette plateforme. Un correctif est disponible via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0304/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Injection SQL et contournement de sécurité dans Spring AI (CVE non assigné)</h3>
+<hr />
+<h3>Vulnérabilité critique dans Spring AI (injection SQL et contournement de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Spring AI présente des vulnérabilités critiques permettant une injection SQL (SQLi) et un contournement des politiques de sécurité. Ces failles exposent les applications utilisant ce framework à des attaques ciblant les bases de données et les mécanismes d'authentification.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Spring AI exposent les systèmes à des attaques par injection SQL (SQLi) et à un contournement de la politique de sécurité. Ces failles pourraient permettre à un attaquant d'exécuter du code arbitraire ou de manipuler les données. Un correctif est disponible via les mises à jour Spring.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0305/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Attaques russes via Zimbra sur des entités gouvernementales ukrainiennes</h3>
+<hr />
+<h3>Fuite de données massive chez Navia (2,7 millions de personnes impactées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe APT28 (lié au GRU russe) exploite une faille non corrigée dans Zimbra Collaboration Suite pour cibler des entités gouvernementales ukrainiennes. Cette campagne active souligne l'importance de patcher rapidement les solutions de messagerie et de collaboration exposées en ligne.</p>
-<a href="https://www.bleepingcomputer.com/news/security/russian-apt28-military-hackers-exploit-zimbra-flaw-in-ukrainian-govt-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CISA ordonne le patch des serveurs Zimbra XSS exploités en attaque</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA impose aux agences fédérales américaines de corriger une faille XSS dans Zimbra Collaboration Suite, déjà exploitée en conditions réelles. Cette vulnérabilité permet des attaques par injection de code malveillant, compromettant la confidentialité et l'intégrité des données.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-zimbra-xss-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Navia Benefit Solutions a subi une fuite de données affectant 2,7 millions de personnes, exposant des informations sensibles. L'incident a été confirmé par l'entreprise, mais les détails techniques restent limités. Aucune preuve d'exploitation malveillante n'a été signalée pour l'instant.</p>
+<a href="https://www.bleepingcomputer.com/news/security/navia-discloses-data-breach-impacting-27-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 18 Mars 2026</h2>
-<h3>Ransomware Interlock exploite une faille zero-day Cisco FMC (CVE-2026-20131)</h3>
+<h3>Vulnérabilité critique dans Citrix XenServer (CVE-2026-20131)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware Interlock cible Cisco Secure Firewall Management Center (FMC) via une vulnérabilité zero-day (CVE-2026-20131, score CVSS 10.0). Cette faille permet une exécution de code à distance avec accès root, utilisée depuis janvier 2026 pour des attaques ciblées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/interlock-ransomware-exploited-secure-fmc-flaw-in-zero-day-attacks-since-january/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-20131) dans Citrix XenServer permet un contournement de la politique de sécurité. La CISA a ordonné aux agences fédérales de corriger cette faille d'ici le 22 mars 2026. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-cisco-flaw-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CISA alerte sur Microsoft Intune après l'attaque Stryker</h3>
+<hr />
+<h3>Vulnérabilité critique dans Oracle Identity Manager (CVE-2026-21992)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Après l'attaque dévastatrice contre Stryker (80 000 appareils effacés), la CISA recommande aux organisations de sécuriser Microsoft Intune, outil exploité pour propager l'attaque. Cette faille met en lumière les risques liés aux solutions de gestion des endpoints non protégées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-businesses-to-secure-microsoft-intune-systems-after-stryker-breach/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Oracle a publié un correctif d'urgence pour une faille critique (CVE-2026-21992) dans Identity Manager et Web Services Manager, permettant une exécution de code à distance (RCE) sans authentification. Cette faille est activement exploitée et nécessite une application immédiate du patch.</p>
+<a href="https://www.bleepingcomputer.com/news/security/oracle-pushes-emergency-fix-for-critical-identity-manager-rce-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez Aura : 900 000 contacts marketing exposés</h3>
+<hr />
+<h3>Attaques de phishing ciblant Signal et WhatsApp (liées aux services de renseignement russes)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Aura, spécialiste de la protection d'identité, confirme une fuite de 900 000 enregistrements clients (noms et emails) due à un accès non autorisé. Cette exposition soulève des questions sur la gestion des données personnelles et la résilience des systèmes de sécurité.</p>
-<a href="https://www.bleepingcomputer.com/news/security/aura-confirms-data-breach-exposing-900-000-marketing-contacts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>ConnectWise corrige une faille permettant le détournement de ScreenConnect</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : ConnectWise patche une vulnérabilité critique dans ScreenConnect, permettant un détournement d'accès et une escalade de privilèges via une vérification de signature cryptographique défaillante. Les clients doivent appliquer le correctif sans délai pour éviter des compromissions.</p>
-<a href="https://www.bleepingcomputer.com/news/security/connectwise-patches-new-flaw-allowing-screenconnect-hijacking/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Cyberattaque à la BnF : données personnelles exposées via un prestataire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La Bibliothèque nationale de France (BnF) subit une cyberattaque via un prestataire, entraînant l'exposition de données personnelles. Les autorités françaises coordonnent une réponse pour limiter l'impact et identifier les vecteurs d'intrusion.</p>
-<a href="https://www.zataz.com/cyberattaque-a-la-bnf-donnees-exposees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Le FBI alerte sur des campagnes de phishing ciblant Signal et WhatsApp, attribuées à des acteurs liés aux services de renseignement russes. Des milliers de comptes ont déjà été compromis, avec des risques d'espionnage et d'ingérence. Aucune solution technique immédiate n'est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fbi-links-signal-phishing-attacks-to-russian-intelligence-services/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Jeudi 19 Mars 2026</h2>
-<h3>Fuite de données chez Navia : 2,7 millions de personnes affectées</h3>
+<h3>Vulnérabilité critique dans Magento (PolyShell, exécution de code à distance)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Navia Benefit Solutions informe 2,7 millions d'individus d'une fuite de données sensibles, incluant des informations personnelles et financières. Cette exposition massive nécessite une surveillance accrue des tentatives d'usurpation d'identité et une notification rapide aux victimes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/navia-discloses-data-breach-impacting-27-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une nouvelle vulnérabilité nommée 'PolyShell' affecte toutes les installations stables de Magento Open Source et Adobe Commerce, permettant une exécution de code à distance (RCE) non authentifiée et un détournement de compte. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-polyshell-flaw-allows-unauthenticated-rce-on-magento-e-stores/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Malware Perseus : vol de données via surveillance des notes Android</h3>
+<hr />
+<h3>Attaque présumée du groupe Lazarus sur Bitrefill</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le nouveau malware Perseus cible les applications de notes Android pour extraire des données sensibles (mots de passe, phrases de récupération, informations financières). Cette technique permet aux attaquants de contourner les protections traditionnelles et de voler des identifiants critiques.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-perseus-android-malware-checks-user-notes-for-secrets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Bitrefill, une plateforme de cartes cadeaux crypto, attribue une attaque récente au groupe nord-coréen Lazarus (Bluenoroff). L'incident a entraîné des perturbations opérationnelles, mais aucune perte financière n'a été confirmée. Une enquête est en cours.</p>
+<a href="https://www.bleepingcomputer.com/news/security/bitrefill-blames-north-korean-lazarus-group-for-cyberattack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Speagle : malware exploitant Cobra DocGuard pour voler des données</h3>
+<hr />
+<h2>Vendredi 20 Mars 2026</h2>
+<h3>Vulnérabilités critiques dans les noyaux Linux (Red Hat, Ubuntu, Debian, SUSE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware Speagle détourne l'infrastructure de Cobra DocGuard, un outil légitime, pour exfiltrer des données sensibles depuis des serveurs compromis. Cette technique de "living-off-the-land" rend la détection plus complexe et nécessite une analyse approfondie des processus système.</p>
-<a href="https://thehackernews.com/2026/03/speagle-malware-hijacks-cobra-docguard.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les noyaux Linux de Red Hat, Ubuntu, Debian LTS et SUSE, permettant une élévation de privilèges, une exécution de code arbitraire et une atteinte à la confidentialité des données. Des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0328/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Debian)</a>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0330/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0331/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
 </div>
 
-<h3>DarkSword : kit d'exploitation iOS utilisant 3 zero-days pour un takeover complet</h3>
+<hr />
+<h3>Attaque massive contre des botnets DDoS (Aisuru, KimWolf, JackSkid, Mossad)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le kit d'exploitation DarkSword cible les appareils iOS via 6 failles, dont 3 zero-days, pour prendre le contrôle total des dispositifs. Utilisé depuis novembre 2025 par plusieurs acteurs de la menace, il représente une menace majeure pour la confidentialité et la sécurité des utilisateurs Apple.</p>
-<a href="https://thehackernews.com/2026/03/darksword-ios-exploit-kit-uses-6-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une opération internationale coordonnée par les États-Unis, l'Allemagne et le Canada a permis de démanteler les infrastructures de commande et contrôle (C2) de quatre botnets majeurs (Aisuru, KimWolf, JackSkid, Mossad), utilisés pour des attaques DDoS massives. Aucune preuve de reprise d'activité n'a été signalée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/aisuru-kimwolf-jackskid-and-mossad-botnets-disrupted-in-joint-action/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CISA et Microsoft alertent sur une faille SharePoint exploitée en attaque</h3>
+<hr />
+<h3>Correctifs Microsoft brisant les connexions Microsoft Account (Teams, OneDrive)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Microsoft SharePoint, corrigée en janvier 2026 mais désormais exploitée en conditions réelles, permet des attaques par exécution de code à distance. La CISA recommande une application immédiate des correctifs pour éviter des compromissions massives.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/critical-microsoft-sharepoint-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Les mises à jour de mars 2026 pour Windows 11 provoquent des dysfonctionnements dans les connexions Microsoft Account, affectant Teams et OneDrive. Microsoft travaille sur un correctif urgent, mais recommande de ne pas installer les mises à jour en attendant.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/kb5079473-march-windows-11-update-breaks-microsoft-account-sign-ins/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
