@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 21/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 16/03/2026 au 22/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 21/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 16/03/2026 au 22/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,106 +76,117 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Mars 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Microsoft Edge (CVE-2026-3910 activement exploité)</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités ont été découvertes dans Microsoft Edge, dont la CVE-2026-3910 activement exploitée. Ces failles permettent à un attaquant de contourner les politiques de sécurité et d'exécuter du code arbitraire à distance. Un correctif est disponible via la mise à jour automatique du navigateur.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités ont été découvertes dans Microsoft Edge, permettant à un attaquant de contourner la politique de sécurité et d'exploiter un problème non spécifié. La CVE-2026-3910 est activement exploitée en ce moment. Les systèmes concernés incluent toutes les versions de Microsoft Edge. Niveau de criticité : **Critique**. Un correctif est disponible via les mises à jour automatiques de Microsoft.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0298/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Mars 2026</h2>
-<h3>Vulnérabilités critiques dans Xen (élévation de privilèges, DoS et fuite de données)</h3>
+<h3>Multiples vulnérabilités dans Xen</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans l'hyperviseur Xen, permettant une élévation de privilèges, un déni de service à distance (DoS) et une atteinte à la confidentialité des données. Ces failles affectent les versions non patchées de Xen. Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans Xen, un hyperviseur open-source. Elles permettent une élévation de privilèges, un déni de service à distance (DoS) et une fuite de données. Les versions affectées incluent Xen 4.14 et antérieures. Niveau de criticité : **Critique**. Un patch est disponible dans les dernières versions de Xen (4.15+).</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0304/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de la CVE-2026-3909 dans Microsoft Edge</h3>
+<hr />
+<h3>Vulnérabilité dans Microsoft Edge (CVE-2026-3909)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3909) dans Microsoft Edge est activement exploitée par des attaquants. Cette faille permet un contournement des mécanismes de sécurité intégrés. Microsoft recommande une mise à jour immédiate du navigateur pour corriger le problème.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3909) a été découverte dans Microsoft Edge, permettant à un attaquant de provoquer un problème de sécurité non spécifié. Cette faille est activement exploitée. Les systèmes concernés incluent toutes les versions de Microsoft Edge. Niveau de criticité : **Critique**. Un correctif est disponible via les mises à jour automatiques de Microsoft.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0303/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Injection SQL et contournement de sécurité dans Spring AI</h3>
+<hr />
+<h3>Multiples vulnérabilités dans Spring AI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été découvertes dans Spring AI, permettant une injection SQL (SQLi) et un contournement des politiques de sécurité. Ces failles exposent les bases de données et les applications à des attaques par exécution de code arbitraire. Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été trouvées dans Spring AI, un framework d'IA pour Java. Elles permettent une injection SQL (SQLi) et un contournement de politique de sécurité. Les versions affectées incluent Spring AI 1.0.0 à 1.2.3. Niveau de criticité : **Élevé**. Un correctif est disponible dans Spring AI 1.2.4+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0305/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Mercredi 18 Mars 2026</h2>
-<h3>Vulnérabilités critiques dans les produits Atlassian (RCE, DoS et fuite de données)</h3>
+<h3>Multiples vulnérabilités dans Redmine</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans les produits Atlassian, permettant une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une fuite de données sensibles. Ces failles affectent les versions non patchées. Atlassian a publié des correctifs urgents.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités ont été découvertes dans Redmine, un outil de gestion de projet open-source. Elles incluent des XSS, un contournement de politique de sécurité et des problèmes non spécifiés. Les versions affectées incluent Redmine 5.0.x et antérieures. Niveau de criticité : **Élevé**. Un correctif est disponible dans Redmine 5.1.0+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0306/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h2>Mercredi 18 Mars 2026</h2>
+<h3>Multiples vulnérabilités dans les produits Atlassian</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans les produits Atlassian (Jira, Confluence, Bitbucket). Elles permettent une exécution de code arbitraire à distance (RCE), un DoS et une fuite de données. Les versions affectées incluent Atlassian Server/Data Center avant les correctifs de mars 2026. Niveau de criticité : **Critique**. Atlassian a publié des correctifs urgents.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0314/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Correctif d'urgence pour la faille critique CVE-2026-21992 dans Oracle Identity Manager</h3>
+<hr />
+<h3>Vulnérabilité critique dans Oracle Identity Manager (CVE-2026-21992)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle a publié un correctif d'urgence pour une vulnérabilité critique (CVE-2026-21992) dans Oracle Identity Manager et Web Services Manager, permettant une exécution de code à distance (RCE) non authentifiée. Les organisations utilisant ces produits doivent appliquer le patch immédiatement.</p>
+<p><strong>Résumé</strong> : Oracle a corrigé une vulnérabilité critique (CVE-2026-21992) dans Oracle Identity Manager et Web Services Manager, permettant une exécution de code à distance (RCE) sans authentification. Cette faille est activement exploitée. Niveau de criticité : **Critique**. Un correctif d'urgence est disponible via le CPU d'Oracle.</p>
 <a href="https://www.bleepingcomputer.com/news/security/oracle-pushes-emergency-fix-for-critical-identity-manager-rce-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CISA impose le correctif urgent de la faille Cisco CVE-2026-20131</h3>
+<hr />
+<h3>CISA ordonne le patch d'une faille critique Cisco (CVE-2026-20131)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger d'ici le 22 mars 2026 une faille critique (CVE-2026-20131) dans Cisco Secure Firewall Management Center (FMC), classée comme "max-severity". Cette vulnérabilité permet une exécution de code à distance.</p>
+<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger d'urgence la vulnérabilité CVE-2026-20131 dans Cisco Secure Firewall Management Center (FMC), classée comme "max-severity". Elle permet une exécution de code à distance. Niveau de criticité : **Critique**. Un correctif est disponible via Cisco PSIRT.</p>
 <a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-max-severity-cisco-flaw-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Jeudi 19 Mars 2026</h2>
-<h3>Fuite présumée de données sensibles dans un CRM scolaire exposant 200 000 élèves</h3>
+<h3>Multiples vulnérabilités dans Roundcube</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une fuite présumée de données dans un CRM scolaire expose les informations personnelles de 200 000 élèves et 142 000 parents. Les données, vendues sur le dark web, incluent des détails sensibles pouvant être utilisés pour des attaques ciblées ou du chantage.</p>
-<a href="https://www.zataz.com/crm-scolaire-une-fuite-presumee-expose-des-mineurs/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Attaques ciblant Signal et WhatsApp liées aux services de renseignement russes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le FBI a confirmé que des attaques de phishing ciblant Signal et WhatsApp sont liées aux services de renseignement russes. Ces campagnes ont compromis des milliers de comptes et exposent les utilisateurs à des risques d'espionnage et d'ingérence.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-links-signal-phishing-attacks-to-russian-intelligence-services/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Elles permettent une fuite de données, une SSRF et des XSS. Les versions affectées incluent Roundcube 1.6.0 à 1.6.5. Niveau de criticité : **Élevé**. Un correctif est disponible dans Roundcube 1.6.6+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0320/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Vendredi 20 Mars 2026</h2>
-<h3>Multiples vulnérabilités critiques dans les noyaux Linux (Red Hat, Ubuntu, Debian, SUSE)</h3>
+<h3>Multiples vulnérabilités dans les produits Elastic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs noyaux Linux (Red Hat, Ubuntu, Debian LTS, SUSE) sont affectés par des vulnérabilités critiques permettant une élévation de privilèges, une exécution de code arbitraire, un déni de service (DoS) et une fuite de données. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans les produits Elastic (Elasticsearch, Kibana). Elles permettent une exécution de code arbitraire à distance (RCE), une fuite de données et un contournement de politique de sécurité. Les versions affectées incluent Elastic Stack 8.x avant 8.12.0. Niveau de criticité : **Critique**. Un correctif est disponible dans Elastic Stack 8.12.0+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0325/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans les noyaux Linux (Debian, Red Hat, SUSE, Ubuntu)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs noyaux Linux (Debian LTS, Red Hat, SUSE, Ubuntu) sont affectés par des vulnérabilités critiques permettant une élévation de privilèges, une exécution de code arbitraire, un DoS et des fuites de données. Niveau de criticité : **Critique**. Des correctifs sont disponibles via les mises à jour des distributions concernées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0328/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Debian)</a>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0330/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0329/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (SUSE)</a>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0331/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
 </div>
 
-<h3>Fuite de données chez un courtier du crédit français (387 Go de données volées)</h3>
+<hr />
+<h3>Malware VoidStealer : vol de la clé maître de Chrome via un debugger</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique le vol de 387 Go de données sensibles chez un courtier du crédit français. Cette fuite expose des informations financières critiques, avec un risque majeur pour le renseignement criminel et les attaques ciblées.</p>
-<a href="https://www.zataz.com/un-courtier-du-credit-cible-par-un-pirate/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Campagne de phishing abusant des alertes Microsoft Azure Monitor</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants abusent des alertes Microsoft Azure Monitor pour envoyer des emails de phishing en se faisant passer pour des avertissements du Microsoft Security Team. Ces campagnes visent à tromper les utilisateurs et à voler leurs identifiants.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-azure-monitor-alerts-abused-in-callback-phishing-campaigns/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Prise d'assaut de 373 000 sites de CSAM factices dans l'opération Alice</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une opération internationale coordonnée a permis de démanteler plus de 373 000 sites dark web proposant des faux contenus CSAM. Cette action vise à perturber les réseaux criminels exploitant ces plateformes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/police-take-down-373-000-fake-csam-sites-in-operation-alice/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Perturbation des botnets Aisuru, KimWolf, JackSkid et Mossad</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une action conjointe des États-Unis, de l'Allemagne et du Canada a permis de perturber les infrastructures de commande et contrôle (C2) des botnets Aisuru, KimWolf, JackSkid et Mossad, infectant des millions d'appareils IoT.</p>
-<a href="https://www.bleepingcomputer.com/news/security/aisuru-kimwolf-jackskid-and-mossad-botnets-disrupted-in-joint-action/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le malware VoidStealer utilise une technique innovante pour contourner le chiffrement d'application (ABE) de Chrome et voler la clé maître permettant de déchiffrer les données sensibles stockées dans le navigateur. Les systèmes affectés incluent Windows avec Chrome installé. Niveau de criticité : **Élevé**. Aucune solution de détection universelle n'est encore disponible, mais la suppression du malware et la réinitialisation du navigateur sont recommandées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/voidstealer-malware-steals-chrome-master-key-via-debugger-trick/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Samedi 21 Mars 2026</h2>
-<h3>Compromission de Trivy (scanner de vulnérabilités) via une attaque sur la chaîne d'approvisionnement</h3>
+<h3>Attaques de phishing sur Signal et WhatsApp liées au renseignement russe</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le scanner de vulnérabilités Trivy a été compromis dans une attaque sur sa chaîne d'approvisionnement par le groupe TeamPCP. Des malwares volant des identifiants ont été distribués via les versions officielles et les GitHub Actions.</p>
+<p><strong>Résumé</strong> : Le FBI a confirmé que des attaques de phishing ciblant Signal et WhatsApp sont liées à des services de renseignement russes. Ces campagnes ont déjà compromis des milliers de comptes. Niveau de criticité : **Critique**. Les utilisateurs sont invités à activer la vérification en deux étapes et à éviter les liens suspects.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fbi-links-signal-phishing-attacks-to-russian-intelligence-services/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Compromission de Trivy : attaque par supply-chain via GitHub Actions</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le scanner de vulnérabilités Trivy a été compromis dans une attaque par supply-chain par le groupe TeamPCP. Des malwares volants de credentials ont été distribués via des releases officielles et des GitHub Actions. Niveau de criticité : **Critique**. Les utilisateurs doivent mettre à jour Trivy vers la dernière version et vérifier les signatures des artefacts.</p>
 <a href="https://www.bleepingcomputer.com/news/security/trivy-vulnerability-scanner-breach-pushed-infostealer-via-github-actions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Dimanche 22 Mars 2026</h2>
+<h3>Action internationale contre les botnets Aisuru, KimWolf, JackSkid et Mossad</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les autorités des États-Unis, d'Allemagne et du Canada ont démantelé les infrastructures de commande et contrôle (C2) des botnets Aisuru, KimWolf, JackSkid et Mossad, utilisés pour infecter des appareils IoT. Ces botnets étaient parmi les plus grands au monde. Niveau de criticité : **Élevé**. Les utilisateurs doivent vérifier la présence de malwares et mettre à jour leurs appareils IoT.</p>
+<a href="https://www.bleepingcomputer.com/news/security/aisuru-kimwolf-jackskid-and-mossad-botnets-disrupted-in-joint-action/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
