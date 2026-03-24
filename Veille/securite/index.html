@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 23/03/2026 au 23/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 23/03/2026 au 24/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 23/03/2026 au 23/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 23/03/2026 au 24/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,65 +75,139 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 23 Mars 2026</h2>
-<h3>Vulnérabilité critique dans CPython (CVE-2026-XXX)</h3>
+            <h2>Lundi 23 Mars 2026</h2>
+<h3>Vulnérabilité critique dans CPython (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans CPython (interpréteur Python officiel) permet à un attaquant distant de contourner les politiques de sécurité via une manipulation des modules intégrés. Cette faille, non encore assignée à un CVE spécifique, affecte toutes les versions de CPython et expose les applications Python à des risques d'exécution de code arbitraire ou d'accès non autorisé aux données.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité dans CPython permet à un attaquant de contourner les politiques de sécurité, exposant potentiellement les systèmes à des attaques par exécution de code arbitraire ou fuite de données. Le langage Python étant largement utilisé, cette faille impacte de nombreux environnements applicatifs et infrastructures critiques.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0335/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de CVE-2025-32975 (CVSS 10.0) sur Quest KACE SMA</h3>
+<h3>Multiples vulnérabilités critiques dans Qnap (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent activement CVE-2025-32975, une faille de sécurité critique (CVSS 10.0) dans Quest KACE Systems Management Appliance (SMA). Cette vulnérabilité permet une prise de contrôle à distance sans authentification, avec des preuves d'attaques observées depuis le 9 mars 2026. Un correctif est disponible via Quest Software.</p>
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans les produits Qnap (NAS, solutions de stockage) permettent une exécution de code à distance (RCE), un déni de service (DoS) et une fuite de données. Ces vulnérabilités, non patchées pour l'instant, exposent les données sensibles stockées sur ces appareils.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0336/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Citrix NetScaler (CVE-2026-3055 critique)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Citrix a corrigé une faille critique (CVE-2026-3055, CVSS 9.3) dans NetScaler ADC et Gateway, permettant une fuite de données non authentifiée. Une seconde vulnérabilité (CVE non attribuée) affecte la validation des entrées. Les correctifs sont disponibles en urgence.</p>
+<a href="https://thehackernews.com/2026/03/citrix-urges-patching-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilité critique dans Quest KACE SMA (CVE-2025-32975, CVSS 10.0)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille zero-day (CVE-2025-32975) dans Quest KACE Systems Management Appliance est activement exploitée pour prendre le contrôle total des systèmes non patchés. Les attaquants exploitent cette vulnérabilité pour déployer des malwares ou voler des données. Un correctif est attendu d'urgence.</p>
 <a href="https://thehackernews.com/2026/03/hackers-exploit-cve-2025-32975-cvss-100.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Oracle corrige une vulnérabilité critique non authentifiée (CVE-2026-21992)</h3>
+<h3>Fuite de données chez Mazda (sans CVE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle a publié un correctif d'urgence pour CVE-2026-21992, une faille critique dans Oracle Identity Manager permettant une exécution de code à distance sans authentification. La vulnérabilité, potentiellement exploitée en conditions réelles, affecte les versions 12c et 13c. Un patch est disponible via le Critical Patch Update d'Oracle.</p>
-<a href="https://www.securityweek.com/oracle-releases-emergency-patch-for-critical-identity-manager-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Attaques par ransomware contre Trio-Tech via sa filiale singapourienne</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Trio-Tech, entreprise de services pour semi-conducteurs, a subi une attaque par ransomware ciblant sa filiale singapourienne. Les attaquants ont chiffré les données critiques, entraînant des perturbations opérationnelles. L'identité du groupe de ransomware n'a pas été divulguée.</p>
-<a href="https://www.securityweek.com/chip-services-firm-trio-tech-says-subsidiary-hit-by-ransomware/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Retour en force de Tycoon2FA malgré une opération policière</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le service de phishing Tycoon2FA, démantelé par Europol début mars 2026, a repris ses activités à pleine capacité. Le groupe utilise des techniques d'AITM (Adversary-in-the-Middle) pour contourner l'authentification multifactorielle (MFA). Aucune correction n'est disponible, nécessitant une vigilance accrue des utilisateurs.</p>
-<a href="https://www.securityweek.com/tycoon-2fa-fully-operational-despite-law-enforcement-takedown/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Attaque par supply chain sur Trivy : infostealer et wiper Kubernetes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La faille dans Trivy (scanner de vulnérabilités open source) a été exploitée pour distribuer un infostealer via Docker Hub (versions 0.69.4/0.69.5). Les attaquants ont également compromis des dépôts GitHub et déployé un wiper ciblant les clusters Kubernetes configurés pour l'Iran. Un correctif est disponible pour les versions 0.69.6+.</p>
-<a href="https://www.bleepingcomputer.com/news/security/trivy-supply-chain-attack-spreads-to-docker-github-repos/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CISA ordonne le patch de trois vulnérabilités iOS exploitées (DarkSword)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté trois vulnérabilités iOS (CVE-2026-XXX) à son catalogue KEV, ciblant des attaques de cryptojacking et de cyberespionnage via le kit d'exploitation DarkSword. Les failles permettent l'exécution de code arbitraire et sont exploitées activement. Un correctif est disponible via Apple iOS 17.4.1+.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-darksword-ios-flaws-exploited-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données chez Mazda : 60 000 employés et partenaires exposés</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Mazda a révélé une fuite de données affectant les informations personnelles de 60 000 employés et partenaires, détectée en décembre 2025. Les données exposées incluent noms, adresses et numéros de sécurité sociale. Aucune preuve d'exploitation malveillante n'a été communiquée.</p>
+<p><strong>Résumé</strong> : Mazda a révélé une fuite de données affectant ses employés et partenaires, détectée en décembre 2025. Les informations exposées incluent des données personnelles et professionnelles, potentiellement utilisées pour des attaques ciblées ou du phishing. Aucune confirmation sur l'origine de l'attaque n'a été publiée.</p>
 <a href="https://www.bleepingcomputer.com/news/security/mazda-discloses-security-breach-exposing-employee-and-partner-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Campagne de phishing IRS : 29 000 utilisateurs ciblés avec RMM malware</h3>
+<h3>Attaque par supply chain via Trivy (TeamPCP)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a alerté sur une campagne de phishing exploitant la saison fiscale américaine, ciblant 29 000 utilisateurs via des faux emails de remboursement. Les attaquants déploient un malware RMM (Remote Monitoring and Management) pour prendre le contrôle des systèmes. Aucune solution spécifique n'est disponible au-delà des bonnes pratiques anti-phishing.</p>
+<p><strong>Résumé</strong> : Le groupe TeamPCP a compromis des images Docker de Trivy (versions 0.69.4 et 0.69.5) pour y injecter un infostealer ciblant les secrets CI/CD (clés SSH, tokens, identifiants cloud). Cette attaque en chaîne affecte les environnements de développement et les pipelines DevOps.</p>
+<a href="https://thehackernews.com/2026/03/trivy-hack-spreads-infostealer-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne de phishing IRS ciblant 29 000 utilisateurs (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing exploitant la saison fiscale américaine a compromis 29 000 utilisateurs via des emails frauduleux imitant des remboursements IRS. Les attaquants ont déployé des outils de prise de contrôle à distance (RMM) pour voler des données ou déployer des malwares.</p>
 <a href="https://thehackernews.com/2026/03/microsoft-warns-irs-phishing-hits-29000.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attaques par wiper CanisterWorm ciblant l'Iran</h3>
+<h3>Attaque ciblant Kubernetes par TeamPCP (Iran)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un groupe de cybercriminalité financière a déployé CanisterWorm, un ver auto-propagateur qui cible les systèmes configurés pour l'Iran (fuseau horaire ou langue Farsi). Le malware efface les données et se propage via des services cloud mal sécurisés. Aucune solution de contournement n'est documentée.</p>
-<a href="https://krebsonsecurity.com/2026/03/canisterworm-springs-wiper-attack-targeting-iran/" class="btn-source" target="_blank">🔗 Lire sur Krebs on Security</a>
+<p><strong>Résumé</strong> : Le groupe TeamPCP cible des clusters Kubernetes avec un script malveillant qui détruit toutes les machines dès qu'il détecte une configuration liée à l'Iran. Cette attaque wiper illustre une stratégie géopolitiquement motivée et hautement destructive.</p>
+<a href="https://www.bleepingcomputer.com/news/security/teampcp-deploys-iran-targeted-wiper-in-kubernetes-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Violation de données chez Infinite Campus (ShinyHunters)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Infinite Campus, un système d'information scolaire utilisé par des millions d'élèves, a subi une fuite de données après une tentative d'extorsion par le groupe ShinyHunters. Les données volées incluent des informations personnelles d'élèves et de personnel éducatif.</p>
+<a href="https://www.bleepingcomputer.com/news/security/infinite-campus-warns-of-breach-after-shinyhunters-claims-data-theft/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données chez Crunchyroll (6,8 millions d'utilisateurs)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Crunchyroll, plateforme majeure de streaming d'anime, enquête sur une fuite de données revendiquée par un hacker, exposant les données personnelles de 6,8 millions d'utilisateurs. Les données pourraient inclure emails, mots de passe et informations de paiement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/crunchyroll-probes-breach-after-hacker-claims-to-steal-68m-users-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Mardi 24 Mars 2026</h2>
+<h3>Multiples vulnérabilités dans Google Chrome (CVE non attribuées)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans Google Chrome permettent des attaques par exécution de code à distance (RCE), déni de service (DoS) et fuite de données. Ces vulnérabilités, non détaillées par l'éditeur, nécessitent une mise à jour urgente pour éviter des exploitations massives.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0342/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité SSRF dans Spring Cloud Config (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille de falsification de requêtes côté serveur (SSRF) dans Spring Cloud Config permet à un attaquant d'accéder à des ressources internes non autorisées. Cette vulnérabilité expose les configurations sensibles et les données applicatives.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0343/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité DoS dans strongSwan (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans strongSwan, solution VPN open source, permet un déni de service à distance (DoS) via des paquets malformés. Les systèmes utilisant strongSwan pour des connexions VPN critiques sont exposés à des interruptions de service.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0344/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exécution de code à distance dans LibreNMS (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans LibreNMS, outil de monitoring réseau, permet une exécution de code arbitraire à distance (RCE) et une atteinte à l'intégrité des données. Les attaquants peuvent prendre le contrôle des serveurs de monitoring pour espionner ou saboter les infrastructures.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0345/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exécution de code à distance dans VMware Tanzu pour Postgres (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique dans VMware Tanzu pour Postgres permet une exécution de code arbitraire à distance (RCE). Les attaquants peuvent compromettre les bases de données PostgreSQL hébergées via cette solution, exposant les données sensibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0346/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Contournement de politique de sécurité dans Xen (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans l'hyperviseur Xen permet à un attaquant de contourner les politiques de sécurité, potentiellement pour échapper à l'isolation des machines virtuelles. Cette faille affecte les environnements cloud et virtualisés critiques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0347/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exécution de code à distance dans Trend Micro Deep Discovery Inspector (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Trend Micro Deep Discovery Inspector permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). Les attaquants peuvent compromettre les appliances de sécurité pour désactiver les protections ou voler des données.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0348/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Ruby on Rails (CVE non attribuées)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans Ruby on Rails permettent une exécution de code à distance (RCE), un déni de service (DoS) et une atteinte à l'intégrité des données. Ces vulnérabilités affectent les applications web développées avec ce framework largement adopté.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0349/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Violation de données chez HackerOne (Navia)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : HackerOne, plateforme de bug bounty, a subi une fuite de données affectant des centaines d'employés après le piratage de Navia, son administrateur de prestations sociales. Les données volées incluent des informations personnelles et financières sensibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackerone-discloses-employee-data-breach-after-navia-hack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne Ghost : 7 paquets npm malveillants (sans CVE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne nommée "Ghost" a publié 7 paquets npm malveillants conçus pour voler des portefeuilles cryptographiques et des identifiants. Ces paquets, publiés par un utilisateur suspect, ciblent les développeurs et les utilisateurs de crypto-monnaies.</p>
+<a href="https://thehackernews.com/2026/03/ghost-campaign-uses-7-npm-packages-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaque par backdoor dans LiteLLM (TeamPCP)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe TeamPCP a compromis des versions de LiteLLM (1.82.7–1.82.8) pour y injecter un harvester de credentials, un outil de mouvement latéral Kubernetes et une backdoor persistante. Cette attaque affecte les applications utilisant cette bibliothèque d'intégration LLM.</p>
+<a href="https://thehackernews.com/2026/03/teampcp-backdoors-litellm-versions.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne de malvertising ciblant les déclarations fiscales (HwAudKiller)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de malvertising active depuis janvier 2026 cible les utilisateurs américains recherchant des documents fiscaux. Les attaquants servent des installateurs malveillants pour ConnectWise ScreenConnect, désactivant les EDR via un outil nommé HwAudKiller.</p>
+<a href="https://thehackernews.com/2026/03/tax-search-ads-deliver-screenconnect.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
