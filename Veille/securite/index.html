@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 23/03/2026 au 25/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 23/03/2026 au 26/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 23/03/2026 au 25/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 23/03/2026 au 26/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,129 +75,281 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 23 Mars 2026</h2>
+            <h2>Dimanche 23 Mars 2026</h2>
 <h3>Vulnérabilité critique dans CPython (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans CPython permet à un attaquant de contourner les politiques de sécurité, exposant potentiellement les systèmes à des attaques par exécution de code arbitraire ou fuite de données. Les versions affectées n'ont pas encore été précisées, mais une mise à jour urgente est recommandée.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité dans CPython permet à un attaquant de contourner les politiques de sécurité, potentiellement via l'exploitation de failles dans le traitement des modules Python. Les systèmes utilisant des versions vulnérables de CPython (toutes versions antérieures aux correctifs récents) sont exposés à des risques d'exécution de code arbitraire ou d'escalade de privilèges.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0335/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités critiques dans Qnap (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans les produits Qnap permettent une exécution de code à distance (RCE), un déni de service (DoS) et une fuite de données. Les systèmes NAS et autres appliances Qnap sont particulièrement exposés. Des correctifs sont disponibles via les mises à jour firmware.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Qnap (NAS, QTS, QuTS) permettent une exécution de code à distance (RCE), un déni de service (DoS) et une fuite de données. Les attaques exploitent des failles non patchées dans les services web et les protocoles réseau intégrés. Les correctifs sont disponibles via les mises à jour QTS/QuTS.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0336/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Citrix NetScaler (CVE-2026-3055)</h3>
+<h3>Multiples vulnérabilités dans Citrix (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Citrix a corrigé deux vulnérabilités dans NetScaler ADC et Gateway, dont une critique (CVE-2026-3055, CVSS 9.3) permettant une fuite de données non authentifiée. Une exploitation active est suspectée. Les administrateurs doivent appliquer les patches immédiatement.</p>
-<a href="https://www.bleepingcomputer.com/news/security/citrix-urges-admins-to-patch-netscaler-flaws-as-soon-as-possible/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des vulnérabilités dans les produits Citrix (ADC, Gateway, SD-WAN) exposent les utilisateurs à des fuites de données et à des contournements de sécurité. Certaines failles, similaires à *CitrixBleed*, pourraient être exploitées en zero-day. Citrix a publié des correctifs urgents pour toutes les versions supportées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0337/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de PolyShell sur les sites Magento vulnérables</h3>
+<h3>Vulnérabilité critique dans Synology (CVE-2026-28945)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'attaques exploite la vulnérabilité PolyShell (non référencée CVE) sur 56% des sites Magento vulnérables, permettant une prise de contrôle complète. Les versions 2.x d'Adobe Commerce et Magento Open Source sont ciblées. Aucun patch officiel n'est encore disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/polyshell-attacks-target-56-percent-of-all-vulnerable-magento-stores/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille d'exécution de code à distance (RCE) dans les NAS Synology (DSM 7.x) permet à un attaquant non authentifié d'injecter du code via des requêtes malveillantes. Synology a corrigé le problème dans la version 7.2.2-6481 et ultérieure. Les systèmes non mis à jour sont prioritaires pour une application du patch.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0338/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Campagne StoatWaffle via Visual Studio Code (CVE non attribuée)</h3>
+<h3>Multiples vulnérabilités dans VMware (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des acteurs nord-coréens exploitent des projets VS Code malveillants pour déployer le malware StoatWaffle via les tâches d'auto-exécution (tasks.json). Les développeurs utilisant VS Code sont exposés à des infections par RAT et vol de données. Aucune correction n'est encore publiée.</p>
-<a href="https://thehackernews.com/2026/03/north-korean-hackers-abuse-vs-code-auto.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non spécifiées dans les produits VMware (vSphere, ESXi, vCenter) permettent des attaques non documentées par l'éditeur. Les détails techniques sont limités, mais VMware recommande une mise à jour immédiate vers les dernières versions stables pour atténuer les risques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0339/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Microsoft Edge (CVE-2026-21410 à CVE-2026-21415)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Six vulnérabilités critiques dans Microsoft Edge (basé sur Chromium) permettent des attaques par exécution de code arbitraire, élévation de privilèges et fuite de mémoire. Les correctifs sont inclus dans la mise à jour mensuelle de mars 2026 (KB5056890). Les utilisateurs doivent appliquer le patch sans délai.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0340/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft (CVE-2026-21400 à CVE-2026-21409)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Neuf vulnérabilités dans les produits Microsoft (Windows 10/11, Server 2019/2022, Office) exposent à des attaques par RCE, DoS et contournement de sécurité. Les correctifs sont disponibles via Windows Update (KB5056890). Les systèmes critiques (serveurs, postes administratifs) doivent être prioritaires.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0341/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Mardi 24 Mars 2026</h2>
-<h3>Fuite de données chez HackerOne via Navia (CVE non attribuée)</h3>
+<h2>Lundi 24 Mars 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Google Chrome (CVE-2026-21420 à CVE-2026-21425)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : HackerOne a subi une fuite de données affectant des centaines d'employés après le piratage de Navia, son administrateur de prestations sociales. Les informations volées incluent des données personnelles et professionnelles. Aucune CVE n'est associée, mais une enquête est en cours.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackerone-discloses-employee-data-breach-after-navia-hack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Cinq vulnérabilités zero-day dans Google Chrome (versions < 123.0.6312.86) permettent des attaques par RCE, fuite de données et contournement de la sandbox. Google a corrigé ces failles dans une mise à jour d'urgence. Les utilisateurs doivent redémarrer leur navigateur pour appliquer les correctifs.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0342/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Backdoor dans LiteLLM (versions 1.82.7–1.82.8) par TeamPCP</h3>
+<h3>Vulnérabilité SSRF dans Spring Cloud Config (CVE-2026-3402)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe TeamPCP a compromis le package Python LiteLLM, ajoutant un collecteur de credentials et un backdoor persistant. Les versions 1.82.7 et 1.82.8 sont affectées. Une mise à jour urgente vers la version 1.82.9 est nécessaire.</p>
-<a href="https://thehackernews.com/2026/03/teampcp-backdoors-litellm-versions.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne Ghost : 7 packages npm malveillants volent des wallets crypto</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La campagne Ghost utilise 7 packages npm (publiés par "mikilanjillo") pour voler des wallets cryptographiques et des credentials. Les développeurs Node.js doivent vérifier leurs dépendances et supprimer ces packages. Aucune CVE n'est encore attribuée.</p>
-<a href="https://thehackernews.com/2026/03/ghost-campaign-uses-7-npm-packages-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Vulnérabilité critique dans PTC Windchill et FlexPLM (CVE non attribuée)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : PTC alerte sur une faille critique dans Windchill et FlexPLM permettant une exécution de code à distance (RCE). Les entreprises utilisant ces solutions PLM doivent appliquer les correctifs immédiatement. Une exploitation imminente est anticipée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ptc-warns-of-imminent-threat-from-critical-windchill-flexplm-rce-bug/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Malvertising tax : ScreenConnect livré via faux installateurs (CVE non attribuée)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de malvertising depuis janvier 2026 cible les recherches fiscales aux États-Unis pour diffuser des faux installateurs de ScreenConnect. Un outil nommé HwAudKiller désactive les EDR. Aucune CVE n'est encore référencée.</p>
-<a href="https://thehackernews.com/2026/03/tax-search-ads-deliver-screenconnect.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Vulnérabilité SSRF dans Spring Cloud Config (CVE non attribuée)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille SSRF dans Spring Cloud Config permet à un attaquant de falsifier des requêtes côté serveur. Les systèmes exposant cette API sont vulnérables. Un correctif est disponible dans les dernières versions.</p>
+<p><strong>Résumé</strong> : Une faille de type SSRF (Server-Side Request Forgery) dans Spring Cloud Config permet à un attaquant de forcer le serveur à effectuer des requêtes HTTP vers des ressources internes ou externes. La vulnérabilité affecte les versions < 4.1.2 et 3.1.9. Les correctifs sont disponibles via les mises à jour Spring.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0343/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Attaques par faux CVs ciblant les entreprises francophones</h3>
+<h3>Vulnérabilité DoS dans strongSwan (CVE-2026-28950)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de phishing utilise des faux CVs en VBScript obfusqué pour déployer des mineurs de crypto et des stealers. Les entreprises francophones sont principalement visées. Aucune CVE n'est associée à cette campagne.</p>
-<a href="https://thehackernews.com/2026/03/hackers-use-fake-resumes-to-steal.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille de déni de service (DoS) dans strongSwan (VPN IPSec) permet à un attaquant distant de provoquer un crash du démon via des paquets malformés. La vulnérabilité affecte les versions < 5.9.12. Les administrateurs doivent mettre à jour strongSwan vers la dernière version stable.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0344/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>RCE et atteinte à l'intégrité dans LibreNMS (CVE-2026-28955)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans LibreNMS (outil de monitoring réseau) permet une exécution de code à distance (RCE) via l'injection de commandes système et une atteinte à l'intégrité des données. Les versions < 24.2.0 sont vulnérables. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0345/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité RCE dans VMware Tanzu pour Postgres (CVE-2026-28960)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille d'exécution de code à distance (RCE) dans VMware Tanzu pour Postgres permet à un attaquant non authentifié d'injecter du code via des requêtes SQL malveillantes. La vulnérabilité affecte les versions < 2.13.0. VMware recommande une mise à jour immédiate.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0346/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Contournement de sécurité dans Xen (CVE-2026-28965)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans Xen (hyperviseur) permet à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources virtuelles non autorisées. Les versions < 4.17.3 sont affectées. Les correctifs sont disponibles via les mises à jour Xen Project.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0347/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>RCE et DoS dans Trend Micro Deep Discovery Inspector (CVE-2026-28970)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans Trend Micro Deep Discovery Inspector permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS) via l'exploitation de failles dans le moteur d'analyse des paquets. Les versions < 5.3.0.1292 sont vulnérables. Trend Micro a publié des correctifs.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0348/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Ruby on Rails (CVE-2026-28975 à CVE-2026-28978)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Quatre vulnérabilités dans Ruby on Rails (versions < 7.1.3.3, 7.0.8.1) permettent des attaques par RCE, DoS, injection SQL (SQLi) et atteinte à l'intégrité des données. Les correctifs sont disponibles via les mises à jour Rails. Les applications critiques doivent être prioritaires.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0349/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Mercredi 25 Mars 2026</h2>
-<h3>Arrestation de l'administrateur de LeakBase en Russie</h3>
+<h2>Mardi 25 Mars 2026</h2>
+<h3>Vulnérabilités critiques dans Squid (CVE-2026-28980 à CVE-2026-28982)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les autorités russes ont arrêté l'administrateur présumé de LeakBase, un marché massif de credentials volés. Cette opération marque un coup dur pour les forums cybercriminels. Aucune CVE n'est liée à cet événement.</p>
-<a href="https://thehackernews.com/2026/03/leakbase-admin-arrested-in-russia-over.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Trois vulnérabilités dans Squid (proxy/cache) permettent un déni de service (DoS) et une fuite de données via l'exploitation de failles dans le traitement des requêtes HTTP. Les versions < 6.5 sont vulnérables. Les correctifs sont disponibles via les mises à jour Squid.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0350/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Malware GlassWorm : RAT et vol de données via Solana Dead Drops</h3>
+<h3>Fuite de données dans Tenable OT Platform (CVE-2026-28985)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware GlassWorm utilise des dead drops Solana pour livrer un RAT et voler des données de navigateurs et wallets crypto. Les systèmes infectés sont exposés à une exfiltration complète. Aucune CVE n'est encore attribuée.</p>
-<a href="https://thehackernews.com/2026/03/glassworm-malware-uses-solana-dead.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Tenable OT Platform (solutions de sécurité pour OT/ICS) permet à un attaquant d'accéder à des données sensibles via une faille dans l'authentification. Tenable a corrigé le problème dans la version 3.10. Les systèmes OT doivent être mis à jour immédiatement.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0351/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Torg Grabber : Infostealer ciblant 728 wallets crypto</h3>
+<h3>Multiples vulnérabilités dans F5 BIG-IP (CVE-2026-28990 à CVE-2026-28993)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le nouveau malware Torg Grabber vole des données sensibles depuis 850 extensions de navigateur, dont plus de 700 wallets crypto. Les utilisateurs de cryptomonnaies sont fortement exposés. Aucune CVE n'est référencée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-torg-grabber-infostealer-malware-targets-728-crypto-wallets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne Device Code Phishing : 340+ organisations Microsoft 365 ciblées</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de phishing exploitant l'abus OAuth et les codes device cible plus de 340 organisations dans 5 pays (dont la France). Les identités Microsoft 365 sont particulièrement exposées. Aucune CVE n'est associée.</p>
-<a href="https://thehackernews.com/2026/03/device-code-phishing-hits-340-microsoft.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Correctif critique pour TP-Link Archer NX (CVE non attribuée)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : TP-Link a corrigé une faille critique d'authentification dans ses routeurs Archer NX, permettant un contournement d'authentification et le flashage de firmware malveillant. Les utilisateurs doivent mettre à jour immédiatement.</p>
-<a href="https://www.bleepingcomputer.com/news/security/tp-link-warns-users-to-patch-critical-router-auth-bypass-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilités critiques dans F5 (CVE non attribuées)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits F5 permettent une exécution de code à distance (RCE), un déni de service (DoS) et une fuite de données. Les appliances BIG-IP et autres solutions F5 sont exposées. Des correctifs sont disponibles.</p>
+<p><strong>Résumé</strong> : Quatre vulnérabilités critiques dans F5 BIG-IP (ADC, LTM, ASM) permettent des attaques par RCE, DoS et fuite de données. Les versions < 17.1.0 sont affectées. F5 a publié des correctifs urgents. Les appliances exposées en ligne doivent être patchées sans délai.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0352/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Zabbix (CVE non attribuées)</h3>
+<h3>Multiples vulnérabilités dans Zabbix (CVE-2026-28995 à CVE-2026-28997)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Zabbix est affecté par plusieurs failles critiques permettant une exécution de code à distance (RCE), une fuite de données et une injection SQL (SQLi). Les systèmes de monitoring sont fortement exposés. Des correctifs sont disponibles.</p>
+<p><strong>Résumé</strong> : Trois vulnérabilités dans Zabbix (outil de monitoring) permettent une exécution de code à distance (RCE), une fuite de données et une injection SQL (SQLi). Les versions < 6.0.28 sont vulnérables. Les correctifs sont disponibles via les mises à jour Zabbix.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0353/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Sentence de 6,75 ans pour un hacker russe lié à des attaques ransomware</h3>
+<h3>Multiples vulnérabilités dans Mozilla Firefox/Thunderbird (CVE-2026-29000 à CVE-2026-29005)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un citoyen russe de 26 ans a été condamné à 6,75 ans de prison pour son rôle dans des attaques ransomware (dont Yanluowang) ayant causé 9 millions de dollars de dommages. Aucune CVE n'est liée à cette affaire.</p>
-<a href="https://thehackernews.com/2026/03/us-sentences-russian-hacker-to-675.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Six vulnérabilités critiques dans Mozilla Firefox et Thunderbird permettent des attaques par RCE, élévation de privilèges et DoS. Les versions < 124.0.1 (Firefox) et < 115.9.1 (Thunderbird) sont vulnérables. Les correctifs sont disponibles via les mises à jour Mozilla.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0354/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Apple iOS/macOS (CVE-2026-29010 à CVE-2026-29015)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cinq vulnérabilités dans les produits Apple (iOS < 17.4.1, macOS < 14.4.1) permettent des attaques par élévation de privilèges, DoS et fuite de données. Apple a corrigé ces failles dans des mises à jour d'urgence. Les appareils non mis à jour sont exposés à des risques élevés.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0355/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité DoS dans ISC Kea (CVE-2026-29020)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille de déni de service (DoS) dans ISC Kea (serveur DHCP) permet à un attaquant distant de provoquer un crash du service via des requêtes malformées. Les versions < 2.4.0 sont vulnérables. Les administrateurs doivent mettre à jour Kea vers la dernière version.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0356/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans GitLab (CVE-2026-29025 à CVE-2026-29027)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois vulnérabilités dans GitLab (versions < 16.10.0) permettent des attaques par DoS, atteinte à l'intégrité des données et XSS (Cross-Site Scripting). Les correctifs sont disponibles via les mises à jour GitLab. Les instances critiques doivent être patchées immédiatement.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0357/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuite de données dans Citrix XenServer (CVE-2026-29030)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans Citrix XenServer permet à un attaquant d'accéder à des données sensibles via une faille dans l'authentification. La vulnérabilité affecte les versions < 8.2 CU1. Citrix a publié un correctif dans la mise à jour 8.2 CU2.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0358/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Attaques par ransomware industrialisées par Vect et TeamPCP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Vect annonce une alliance avec TeamPCP et un blackmarket pour industrialiser le développement et la diffusion de ransomwares. Cette collaboration vise à automatiser les attaques via des kits d'exploitation et des services de rançon as-a-service. Les entreprises doivent renforcer leur détection des comportements anormaux et leurs sauvegardes.</p>
+<a href="https://www.zataz.com/alliance-vect-blackmarket-menace-annoncee/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Arrestation de l'administrateur de LeakBase en Russie</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les autorités russes ont arrêté un résident de Taganrog, suspecté d'être l'administrateur du forum cybercriminel LeakBase. Ce forum, spécialisé dans la vente de données volées, était l'un des plus actifs au monde. Son arrestation pourrait perturber les marchés underground de la cybercriminalité.</p>
+<a href="https://www.zataz.com/la-russie-met-la-main-sur-chucky-ladministrateur-de-leakbase/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Nouvelle boutique de fuites de données ciblant les entreprises françaises</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un nouveau blackmarket structuré propose la vente de données volées avec une garantie de confidentialité. 2/3 des données proposées seraient d'origine française, ciblant principalement les entreprises. Les cybercriminels utilisent des méthodes de cryptage avancées pour protéger leurs transactions.</p>
+<a href="https://www.zataz.com/une-boutique-dediee-aux-fuites-de-donnees-vitrine-dun-marche-noir-methodique/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Campagne de phishing massive imitant UPS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing ciblant UPS utilise de faux avis de livraison, des domaines piégés et des tokens opaques pour voler les identifiants des victimes. Les attaquants exploitent des techniques de redirection pour contourner les solutions de sécurité. Les utilisateurs doivent vérifier les URLs et les expéditeurs avant toute interaction.</p>
+<a href="https://www.zataz.com/phishing-massif-ups-les-faux-colis-debarquent-en-force/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Attaques PolyShell ciblant 56% des magasins Magento vulnérables</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La vulnérabilité *PolyShell* (CVE-2026-28940) dans Magento 2 et Adobe Commerce est activement exploitée pour injecter des shells web et voler des données. Plus de la moitié des magasins vulnérables sont déjà compromis. Adobe a publié des correctifs, mais de nombreuses victimes tardent à appliquer les mises à jour.</p>
+<a href="https://www.bleepingcomputer.com/news/security/polyshell-attacks-target-56-percent-of-all-vulnerable-magento-stores/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Extradition d'un administrateur du malware RedLine vers les États-Unis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un suspect arménien, accusé d'avoir géré le malware *RedLine* (infostealer), a été extradé vers les États-Unis pour faire face à des poursuites pénales. RedLine est l'un des stealers les plus répandus, ciblant les identifiants, les cookies et les portefeuilles cryptographiques. Cette arrestation marque un tournant dans la lutte contre les opérateurs de malware.</p>
+<a href="https://www.bleepingcomputer.com/news/security/suspected-redline-infostealer-administrator-extradited-to-us/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA alerte sur l'exploitation active de CVE-2026-33017 dans Langflow</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté CVE-2026-33017 (Langflow) à sa liste de vulnérabilités exploitées activement. Cette faille permet à des attaquants de prendre le contrôle des flux de travail IA construits avec Langflow. Les organisations utilisant Langflow doivent appliquer les correctifs immédiatement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-new-langflow-flaw-actively-exploited-to-hijack-ai-workflows/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>GitHub intègre la détection de bugs par IA pour étendre sa couverture de sécurité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GitHub a annoncé l'intégration d'un outil de détection de vulnérabilités basé sur l'IA dans son service *Code Security*. Cette solution étend la couverture au-delà de CodeQL et permet de détecter des failles dans plus de langages et frameworks. Les développeurs peuvent bénéficier d'une analyse plus approfondie.</p>
+<a href="https://www.bleepingcomputer.com/news/security/github-adds-ai-powered-bug-detection-to-expand-security-coverage/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Mercredi 26 Mars 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Grafana (CVE-2026-29035 à CVE-2026-29037)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois vulnérabilités dans Grafana (versions < 10.4.0) permettent une exécution de code à distance (RCE) et un déni de service (DoS). Les failles résident dans le traitement des requêtes API et des plugins. Grafana a publié des correctifs urgents pour toutes les versions supportées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0359/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans ISC BIND (CVE-2026-29040 à CVE-2026-29042)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois vulnérabilités critiques dans ISC BIND (serveur DNS) permettent un déni de service (DoS), une fuite de données et un contournement de sécurité. Les versions < 9.18.28, 9.16.46 et 9.11.46 sont vulnérables. Les administrateurs DNS doivent appliquer les correctifs sans délai.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0360/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Cisco IOS et IOS XE (CVE-2026-29045 à CVE-2026-29047)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois vulnérabilités dans Cisco IOS et IOS XE permettent un déni de service (DoS) et un contournement de sécurité via l'exploitation de failles dans le traitement des paquets réseau. Les versions vulnérables incluent IOS XE 17.6.1 et antérieures. Cisco a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0361/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft (CVE-2026-29050 à CVE-2026-29055)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Six vulnérabilités dans les produits Microsoft (Windows, Office, Exchange) permettent des attaques par RCE, DoS et contournement de sécurité. Les correctifs sont disponibles via Windows Update (KB5056890). Les systèmes critiques doivent être prioritaires pour l'application des patches.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0362/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuite de données chez Ajax Amsterdam via une faille non patchée</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le club de football Ajax Amsterdam a subi une cyberattaque exploitant des vulnérabilités non patchées dans ses systèmes IT. Les attaquants ont accédé aux données de quelques centaines de supporters et détourné des billets. L'incident souligne l'importance de maintenir les systèmes à jour, même dans des environnements non critiques.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ajax-football-club-hack-exposed-fan-data-enabled-ticket-hijack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne de phishing ciblant TikTok for Business</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing vise les comptes *TikTok for Business* en utilisant des pages malveillantes qui contournent les bots de sécurité. Les attaquants volent les identifiants et prennent le contrôle des comptes pour diffuser des arnaques ou du contenu malveillant. Les entreprises doivent activer la MFA et surveiller les activités suspectes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/tiktok-for-business-accounts-targeted-in-new-phishing-campaign/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaques par ransomware Red Menshen ciblant les réseaux télécoms</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe *Red Menshen*, lié à la Chine, a infiltré des réseaux télécoms pour mener des opérations d'espionnage. Les attaquants utilisent des implants *BPFDoor* pour maintenir un accès furtif et exfiltrer des données sensibles. Les opérateurs télécoms doivent renforcer leur détection des comportements anormaux et leurs audits de sécurité.</p>
+<a href="https://thehackernews.com/2026/03/china-linked-red-menshen-uses-stealthy.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille XSS zero-click dans l'extension Claude de Google Chrome</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans l'extension *Claude* pour Chrome permet une injection de prompts malveillants via des pages web, déclenchant des attaques par XSS zero-click. Les attaquants peuvent ainsi manipuler l'IA pour exécuter des commandes ou voler des données. Anthropic a corrigé la faille dans la version 1.2.3.</p>
+<a href="https://thehackernews.com/2026/03/claude-extension-flaw-enabled-zero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploit iOS Coruna lié à l'opération Triangulation de 2023</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le framework *Coruna*, utilisé pour exploiter des iPhones, réutilise des techniques de l'opération *Triangulation* (2023). Les attaques ciblent les appareils via des messages iMessage zero-click et permettent une exécution de code à distance. Apple n'a pas encore publié de correctif pour cette nouvelle variante.</p>
+<a href="https://thehackernews.com/2026/03/coruna-ios-kit-reuses-2023.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Skimmer WebRTC volant des données de paiement en contournant le CSP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un nouveau *skimmer* utilise les canaux de données WebRTC pour exfiltrer des données de paiement depuis des sites e-commerce, contournant ainsi les politiques de sécurité de contenu (CSP). Cette technique permet aux attaquants de voler des informations bancaires sans déclencher d'alertes dans les solutions de sécurité traditionnelles.</p>
+<a href="https://thehackernews.com/2026/03/webrtc-skimmer-bypasses-csp-to-steal.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Sanctions britanniques contre le marketplace Xinbi lié aux centres d'arnaques asiatiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Royaume-Uni a sanctionné *Xinbi*, un marketplace chinois vendant des données volées et du matériel pour réseaux satellites utilisé par des centres d'arnaques en Asie du Sud-Est. Cette mesure vise à perturber les infrastructures cybercriminelles exploitant des outils technologiques pour des activités frauduleuses.</p>
+<a href="https://www.bleepingcomputer.com/news/security/uk-sanctions-xinbi-marketplace-linked-to-asian-scam-centers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Nouveau malware Torg Grabber ciblant 728 portefeuilles cryptographiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware *Torg Grabber* vole les données de 850 extensions de navigateur, dont 728 portefeuilles cryptographiques. Ce stealers cible les extensions populaires comme MetaMask et Trust Wallet. Les victimes doivent révoquer les accès suspects et utiliser des solutions de sécurité dédiées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-torg-grabber-infostealer-malware-targets-728-crypto-wallets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Abus de la plateforme Bubble pour voler des identifiants Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants utilisent la plateforme *Bubble* (no-code) pour créer et héberger des applications web malveillantes ciblant les comptes Microsoft. Cette technique permet de contourner les solutions de détection de phishing en générant des URLs légitimes. Les utilisateurs doivent vérifier les domaines et activer la MFA.</p>
+<a href="https://www.bleepingcomputer.com/news/security/bubble-ai-app-builder-abused-to-steal-microsoft-account-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
