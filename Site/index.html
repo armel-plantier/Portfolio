@@ -809,6 +809,11 @@
             transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, background 0.2s ease;
             pointer-events: none;
         }
+        body.light-mode #back-to-top {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(99,102,241,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
         #back-to-top.visible {
             opacity: 1; transform: translateY(0) scale(1);
             pointer-events: auto;
