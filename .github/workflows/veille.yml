@@ -1,46 +1,37 @@
 name: Générateur de Veille Cyber
-
 on:
   schedule:
     # S'exécute tous les jours à 22h00 UTC (~23h00 en France)
     - cron: '0 22 * * *'
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   build_and_deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
     - name: 📥 Récupération du code
       uses: actions/checkout@v4
-
     - name: 🐍 Configuration de Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
-
     - name: 📦 Installation des dépendances
       run: |
         pip install --no-cache-dir "mistralai==1.2.5" feedparser markdown requests
-
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
         BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: python Veille/veille.py
-
     - name: 🚀 Commit de la nouvelle veille
       run: |
         git config --local user.email "action@github.com"
@@ -50,23 +41,22 @@ jobs:
         git commit -m "Automated: Mise à jour de la veille 🤖"
         git pull --rebase origin main
         git push
-
     - name: 📁 Préparation de la structure du site
       run: |
-        cp -r Documents Site/
-        cp -r Veille Site/
-        cp -r assets Site/
-        mkdir -p "Site/Documents/Procédures"
+        find . -maxdepth 1 -mindepth 1 \
+          ! -name 'Site' \
+          ! -name '.github' \
+          ! -name '.git' \
+          ! -name 'README.md' \
+          ! -name 'CNAME' \
+          -exec cp -r {} Site/ \;
         sed -i 's/GITHUB_TOKEN_PLACEHOLDER/${{ secrets.GH_TOKEN }}/g' Site/config.js
-
     - name: ⚙️ Configuration de GitHub Pages
       uses: actions/configure-pages@v5
-
     - name: 📤 Upload de l'artéfact Site
       uses: actions/upload-pages-artifact@v3
       with:
         path: './Site'
-
     - name: 🌐 Déploiement final
       id: deployment
       uses: actions/deploy-pages@v4
