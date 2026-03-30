@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 30/03/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 31/03/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 30/03/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 31/03/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,7 +75,66 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>
+            <h2>Dimanche 30 Mars 2026</h2>
+<h3>Vulnérabilité critique dans Citrix NetScaler (CVE-2026-3055)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3055) dans Citrix NetScaler ADC et NetScaler Gateway permet à des attaquants d'exploiter une faille de mémoire pour obtenir des identifiants administratifs authentifiés. L'exploitation active est confirmée par plusieurs sources, avec déploiement de webshells sur les appareils non corrigés. Systèmes concernés : NetScaler ADC et Gateway. Criticité : Critique. Patch : Disponible via les mises à jour officielles Citrix.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-citrix-netscaler-memory-flaw-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>F5 BIG-IP : Vulnérabilité DoS reclassée en RCE critique (CVE-2025-53521)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Initialement classée comme faille de déni de service (DoS), la vulnérabilité CVE-2025-53521 dans F5 BIG-IP APM a été reclassée en faille d'exécution de code à distance (RCE) critique. Des attaquants exploitent activement cette faille pour déployer des webshells sur les appareils non corrigés. Systèmes concernés : F5 BIG-IP APM. Criticité : Critique. Patch : Mise à jour disponible via F5.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-now-exploit-critical-f5-big-ip-flaw-in-attacks-patch-now/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>DeepLoad : Nouveau malware IA volant des identifiants et contournant la détection</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware DeepLoad utilise des techniques d'obfuscation basées sur l'IA (génération de code aléatoire) et la persistance WMI pour voler les identifiants du navigateur. Il combine la tactique ClickFix avec des injections de processus pour éviter la détection statique. Systèmes concernés : Windows. Criticité : Élevée. Patch : Non applicable (malware).</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/ai-powered-deepload-steals-credentials-evades-detection" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Fuite de données chez CareCloud (Healthcare IT)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le fournisseur de solutions médicales CareCloud a subi une cyberattaque entraînant le vol de données sensibles de patients et une interruption de réseau de 8 heures. L'incident est en cours d'investigation. Systèmes concernés : Environnements EHR (Electronic Health Records). Criticité : Élevée. Patch : Non applicable (incident en cours).</p>
+<a href="https://www.bleepingcomputer.com/news/security/healthcare-tech-firm-carecloud-says-hackers-stole-patient-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Exploitation active d'une faille critique dans Fortinet FortiClient EMS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Fortinet FortiClient EMS est désormais exploitée activement par des attaquants pour compromettre des systèmes. La faille permet une escalade de privilèges ou un accès non autorisé. Systèmes concernés : FortiClient EMS. Criticité : Critique. Patch : Mise à jour disponible via Fortinet.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-fortinet-forticlient-ems-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données confirmée à la Commission européenne (ShinyHunters)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La Commission européenne a confirmé une fuite de données après une cyberattaque sur sa plateforme Europa.eu, revendiquée par le groupe ShinyHunters. Plus de 350 Go de données cloud ont été volés. Systèmes concernés : Infrastructure AWS de la Commission européenne. Criticité : Élevée. Patch : Non applicable (incident en cours).</p>
+<a href="https://www.securityweek.com/european-commission-reports-cyber-intrusion-and-data-theft/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Vulnérabilité Roundcube permettant un contournement de politique de sécurité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Roundcube permet à un attaquant de contourner les politiques de sécurité, potentiellement pour accéder à des données sensibles ou exécuter du code. Systèmes concernés : Roundcube (webmail). Criticité : Moyenne. Patch : Mise à jour disponible via Roundcube.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0373/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Faille SSRF dans Docker Desktop</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité de falsification de requêtes côté serveur (SSRF) dans Docker Desktop permet à un attaquant d'accéder à des ressources internes ou de contourner des restrictions réseau. Systèmes concernés : Docker Desktop. Criticité : Moyenne. Patch : Mise à jour disponible via Docker.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0374/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Microsoft Edge permettent un contournement de politique de sécurité et des problèmes non spécifiés par Microsoft. Ces failles pourraient mener à des exécutions de code ou des fuites de données. Systèmes concernés : Microsoft Edge. Criticité : Élevée. Patch : Mise à jour disponible via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0375/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>CISA ajoute une vulnérabilité exploitée à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA a ajouté une nouvelle vulnérabilité à son catalogue KEV (Known Exploited Vulnerabilities) basée sur des preuves d'exploitation active. La faille affecte un composant non spécifié mais critique pour les infrastructures fédérales américaines. Systèmes concernés : Non précisés. Criticité : Critique. Patch : Voir détails CISA.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/03/30/cisa-adds-one-known-exploited-vulnerability-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
+</div>
         </div>
     </div>
 </body>
