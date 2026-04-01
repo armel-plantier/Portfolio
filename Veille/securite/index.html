@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 01/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 02/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 01/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 02/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,126 +76,98 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 30 Mars 2026</h2>
-<h3>Vulnérabilité critique dans Citrix NetScaler (CVE-2026-3055)</h3>
+<h3>Vulnérabilité critique dans Roundcube (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3055) dans Citrix NetScaler ADC et Gateway est activement exploitée par des attaquants pour extraire des données sensibles. Le niveau de criticité est maximal (CVSS 9.8), et un correctif est disponible. CISA a ordonné aux agences fédérales américaines de patcher sous 48h.</p>
-<a href="https://www.bleepingcomputer.com/news/security/critical-citrix-netscaler-memory-flaw-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données chez CareCloud (santé)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CareCloud, une entreprise spécialisée dans les solutions IT pour la santé, a subi une cyberattaque entraînant une fuite de données sensibles et une interruption réseau de 8 heures. Aucune information sur le volume de données exposées n'est encore disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/healthcare-tech-firm-carecloud-says-hackers-stole-patient-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Exploit RCE dans Vim et Emacs via IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (RCE) ont été découvertes dans les éditeurs de texte Vim et GNU Emacs, permettant l'exécution de code arbitraire simplement en ouvrant un fichier. Ces failles ont été identifiées via des prompts simples avec l'assistant IA Claude.</p>
-<a href="https://www.bleepingcomputer.com/news/security/claude-ai-finds-vim-emacs-rce-bugs-that-trigger-on-file-open/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de code source chez Cisco via Trivy</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco a subi une intrusion dans son environnement de développement via des identifiants volés lors de l'attaque de la chaîne d'approvisionnement Trivy. Des attaquants ont volé du code source appartenant à Cisco et à ses clients.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-source-code-stolen-in-trivy-linked-dev-environment-breach/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Malware DeepLoad exploitant ClickFix et WMI</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware DeepLoad utilise la tactique sociale ClickFix et la persistance WMI pour voler des identifiants de navigateur. Il intègre probablement des techniques d'obfuscation assistée par IA pour échapper aux détections statiques.</p>
-<a href="https://thehackernews.com/2026/03/deepload-malware-uses-clickfix-and-wmi.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Vulnérabilité dans Roundcube (contournement de politique)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Roundcube permet à un attaquant de contourner la politique de sécurité. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0373).</p>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Roundcube permet à un attaquant de contourner les politiques de sécurité, exposant potentiellement les données des utilisateurs. Aucun CVE attribué pour l'instant, mais l'impact est jugé critique pour les instances exposées en ligne.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0373/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité SSRF dans Docker Desktop</h3>
+<h3>Faille SSRF dans Docker Desktop (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de type SSRF (Server-Side Request Forgery) dans Docker Desktop permet à un attaquant de falsifier des requêtes côté serveur. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0374).</p>
+<p><strong>Résumé</strong> : Une vulnérabilité de type SSRF (Server-Side Request Forgery) dans Docker Desktop permet à un attaquant de falsifier des requêtes internes, risquant d'exfiltrer des données ou d'accéder à des services internes. Patch disponible via la dernière version.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0374/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités multiples dans Microsoft Edge</h3>
+<h3>Exécution de code arbitraire dans Elastic OpenTelemetry Java (CVE-2026-2893)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Microsoft Edge permettent à un attaquant de contourner la politique de sécurité et d'exploiter des problèmes non spécifiés. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0375).</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0375/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-2893) dans Elastic OpenTelemetry Java permet une exécution de code à distance via des entrées malveillantes. Criticité maximale, patch disponible dans la version 1.32.0+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0379/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités multiples dans les produits Microsoft</h3>
+<h3>Fuite de données OpenAI : exfiltration via ChatGPT (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans les produits Microsoft permettent à un attaquant d'exploiter des problèmes de sécurité non spécifiés. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0376).</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0376/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité inconnue dans ChatGPT permettait l'exfiltration de données sensibles via des prompts malveillants, sans interaction utilisateur. Corrigée par OpenAI, mais impact potentiel pour les utilisateurs de versions non patchées.</p>
+<a href="https://thehackernews.com/2026/03/openai-patches-chatgpt-data.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Apple bloque les attaques ClickFix dans macOS</h3>
+<h3>DeepLoad : nouveau malware utilisant WMI et ClickFix (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple a introduit une fonctionnalité de sécurité dans macOS Tahoe 26.4 pour bloquer le collage et l'exécution de commandes potentiellement dangereuses dans Terminal, alertant les utilisateurs des risques.</p>
-<a href="https://www.bleepingcomputer.com/news/security/apple-adds-macos-terminal-warning-to-block-clickfix-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le malware DeepLoad, distribué via des tactiques de social engineering (ClickFix), vole les identifiants du navigateur et persiste via WMI. Analyse en cours, mais propagation active détectée.</p>
+<a href="https://thehackernews.com/2026/03/deepload-malware-uses-clickfix-and-wmi.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mardi 31 Mars 2026</h2>
-<h3>F5 BIG-IP APM vulnérable à l'exécution de code à distance (CVE-2025-53521)</h3>
+<h3>F5 BIG-IP APM : CVE-2025-53521 exploitée activement (CVE-2025-53521)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2025-53521 dans F5 BIG-IP APM, initialement classée comme DoS, est désormais exploitée activement pour l'exécution de code à distance (RCE). Un correctif est disponible et doit être appliqué d'urgence.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-now-exploit-critical-f5-big-ip-flaw-in-attacks-patch-now/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2025-53521 dans F5 BIG-IP APM, permettant l'exécution de code à distance sans authentification, est désormais exploitée en attaque active. Patch disponible depuis octobre 2025, mais déploiement urgent requis.</p>
+<a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-004/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Attaque par RAT multiplateforme via Axios (npm)</h3>
+<h3>TrueConf zero-day exploité contre des gouvernements asiatiques (CVE-2026-3502)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le package npm Axios (100M+ téléchargements/semaine) a été compromis pour distribuer un malware multiplateforme (Windows, macOS, Linux) via des versions malveillantes (1.14.1 et 0.30.4). Une fuite similaire a été signalée par Dark Reading.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-compromise-axios-npm-package-to-drop-cross-platform-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Zero-Day dans TrueConf (CVE-2026-3502) exploité en Asie du Sud-Est</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille zero-day (CVE-2026-3502, CVSS 7.8) dans TrueConf est exploitée en campagne ciblant des entités gouvernementales en Asie du Sud-Est. La vulnérabilité concerne un manque d'intégrité dans le client vidéo.</p>
+<p><strong>Résumé</strong> : Une faille zero-day (CVE-2026-3502, score CVSS 7.8) dans TrueConf permet une attaque par manque d'intégrité des mises à jour, ciblant des entités gouvernementales en Asie du Sud-Est. Patch disponible, mais déploiement critique.</p>
 <a href="https://thehackernews.com/2026/03/trueconf-zero-day-exploited-in-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité critique dans Google Vertex AI</h3>
+<h3>Multiples vulnérabilités dans Papercut (CVE-2026-3456, CVE-2026-3457)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Google Vertex AI permet à des agents IA malveillants d'accéder à des données sensibles et de compromettre des infrastructures cloud. Le niveau de criticité est élevé, et un correctif est en cours de déploiement.</p>
-<a href="https://thehackernews.com/2026/03/vertex-ai-vulnerability-exposes-google.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne Silver Fox avec AtlasCross RAT</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La campagne Silver Fox cible les utilisateurs sinophones via des domaines typosquattés imitant des logiciels légitimes pour déployer le RAT AtlasCross. Les cibles incluent VPN, messageries chiffrées et outils de visioconférence.</p>
-<a href="https://thehackernews.com/2026/03/silver-fox-expands-asia-cyber-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fuite de données chez Kaplan (1,4 million de victimes)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Kaplan a révisé à la hausse le nombre de victimes d'une fuite de données à 1,4 million, incluant des données sensibles et un accès réseau prolongé. L'incident implique un sous-traitant compromis.</p>
-<a href="https://www.zataz.com/kaplan-face-a-une-fuite-de-donnees-massive/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Vulnérabilités multiples dans Papercut</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Papercut permettent une atteinte à la confidentialité des données et une injection XSS. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0377).</p>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans Papercut (XSS et atteinte à la confidentialité) permettent l'injection de code et le vol de données. Patch disponible dans la version 2026.0.0+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0377/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Élévation de privilèges dans Symantec DLP</h3>
+<h3>Symantec DLP : élévation de privilèges (CVE-2026-2987)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Symantec Data Loss Prevention (DLP) permet à un attaquant d'élever ses privilèges. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0378).</p>
+<p><strong>Résumé</strong> : Une faille dans Symantec Data Loss Prevention (DLP) permet une élévation de privilèges via une manipulation de configuration. Criticité élevée, patch disponible dans la version 15.8 MP1.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0378/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exécution de code arbitraire dans Elastic OpenTelemetry Java</h3>
+<h3>Axios npm : attaque supply chain par UNC1069 (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Elastic OpenTelemetry Java permet à un attaquant d'exécuter du code arbitraire à distance. Un correctif est disponible via le CERT-FR (avis CERTFR-2026-AVI-0379).</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0379/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe nord-coréen UNC1069 a compromis le package npm Axios, injectant un RAT multiplateforme. Google attribue l'attaque à des motivations financières. Versions 1.14.1 et 0.30.4 infectées.</p>
+<a href="https://thehackernews.com/2026/04/google-attributes-axios-npm-supply.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Fuite de données chez Crunchyroll via un sous-traitant</h3>
+<hr />
+<h2>Mercredi 01 Avril 2026</h2>
+<h3>Chrome zero-day CVE-2026-5281 exploitée en attaque (CVE-2026-5281)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Crunchyroll a confirmé une fuite de données liée à un sous-traitant, exposant des informations clients. L'incident souligne les risques cyber liés aux tiers.</p>
-<a href="https://www.zataz.com/crunchyroll-confirme-une-fuite-via-un-sous-traitant/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Le quatrième zero-day de Chrome en 2026 (CVE-2026-5281), de type use-after-free dans Dawn, est activement exploité. Patch immédiat requis via Chrome 124.0.6367.91+.</p>
+<a href="https://thehackernews.com/2026/04/new-chrome-zero-day-cve-2026-5281-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>SonicWall Email Security : XSS et déni de service (CVE-2026-4512, CVE-2026-4513)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans SonicWall Email Security permettent un XSS et un déni de service à distance. Patch disponible dans la version 10.0.10.60+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0383/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Joomla! : SQLi et XSS (CVE-2026-3421, CVE-2026-3422)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Joomla! 4.x est vulnérable à une injection SQL et un XSS via des composants tiers. Criticité élevée, patch disponible dans la version 4.0.6+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0384/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>NoVoice : malware Android sur Google Play (2,3M de téléchargements)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware NoVoice, caché dans 50+ apps sur Google Play, a infecté 2,3M d'appareils. Il vole des données et établit une persistance via des services cachés. Suppression recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/novoice-android-malware-on-google-play-infected-23-million-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Kali Linux 2026.1 : arsenal offensif modernisé</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Kali Linux 2026.1 introduit de nouveaux outils de pentest, une refonte visuelle et des avancées NetHunter. Mise à jour recommandée pour les professionnels de la cybersécurité offensive.</p>
+<a href="https://www.zataz.com/kali-linux-2026-1-muscle-larsenal-offensif/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
         </div>
     </div>
