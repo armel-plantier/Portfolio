@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 02/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 30/03/2026 au 03/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 02/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 30/03/2026 au 03/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,99 +75,99 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 30 Mars 2026</h2>
-<h3>Vulnérabilité critique dans Roundcube (CVE non attribué)</h3>
+            <h2>Lundi 31 Mars 2026</h2>
+<h3>Vulnérabilité critique CVE-2025-53521 dans F5 BIG-IP APM exploitée activement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Roundcube permet à un attaquant de contourner les politiques de sécurité, exposant potentiellement les données des utilisateurs. Aucun CVE attribué pour l'instant, mais l'impact est jugé critique pour les instances exposées en ligne.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0373/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Faille SSRF dans Docker Desktop (CVE non attribué)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de type SSRF (Server-Side Request Forgery) dans Docker Desktop permet à un attaquant de falsifier des requêtes internes, risquant d'exfiltrer des données ou d'accéder à des services internes. Patch disponible via la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0374/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exécution de code arbitraire dans Elastic OpenTelemetry Java (CVE-2026-2893)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-2893) dans Elastic OpenTelemetry Java permet une exécution de code à distance via des entrées malveillantes. Criticité maximale, patch disponible dans la version 1.32.0+.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0379/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Fuite de données OpenAI : exfiltration via ChatGPT (CVE non attribué)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité inconnue dans ChatGPT permettait l'exfiltration de données sensibles via des prompts malveillants, sans interaction utilisateur. Corrigée par OpenAI, mais impact potentiel pour les utilisateurs de versions non patchées.</p>
-<a href="https://thehackernews.com/2026/03/openai-patches-chatgpt-data.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>DeepLoad : nouveau malware utilisant WMI et ClickFix (CVE non attribué)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware DeepLoad, distribué via des tactiques de social engineering (ClickFix), vole les identifiants du navigateur et persiste via WMI. Analyse en cours, mais propagation active détectée.</p>
-<a href="https://thehackernews.com/2026/03/deepload-malware-uses-clickfix-and-wmi.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 31 Mars 2026</h2>
-<h3>F5 BIG-IP APM : CVE-2025-53521 exploitée activement (CVE-2025-53521)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2025-53521 dans F5 BIG-IP APM, permettant l'exécution de code à distance sans authentification, est désormais exploitée en attaque active. Patch disponible depuis octobre 2025, mais déploiement urgent requis.</p>
+<p><strong>Résumé</strong> : F5 a confirmé que la vulnérabilité CVE-2025-53521, affectant BIG-IP APM, est désormais exploitée activement par des attaquants non authentifiés pour exécuter du code à distance. Plus de 14 000 instances restent exposées malgré les correctifs disponibles. Criticité maximale (CVSS 9.8).</p>
 <a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-004/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>TrueConf zero-day exploité contre des gouvernements asiatiques (CVE-2026-3502)</h3>
+<h3>Multiples vulnérabilités dans Papercut (atteinte confidentialité et XSS)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille zero-day (CVE-2026-3502, score CVSS 7.8) dans TrueConf permet une attaque par manque d'intégrité des mises à jour, ciblant des entités gouvernementales en Asie du Sud-Est. Patch disponible, mais déploiement critique.</p>
-<a href="https://thehackernews.com/2026/03/trueconf-zero-day-exploited-in-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Papercut (CVE-2026-3456, CVE-2026-3457)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans Papercut (XSS et atteinte à la confidentialité) permettent l'injection de code et le vol de données. Patch disponible dans la version 2026.0.0+.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Papercut permettent une atteinte à la confidentialité des données et une injection XSS à distance. Les correctifs sont disponibles pour les versions concernées. Criticité élevée (CVSS non précisé).</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0377/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Symantec DLP : élévation de privilèges (CVE-2026-2987)</h3>
+<h3>Exécution de code arbitraire dans Elastic OpenTelemetry Java</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Symantec Data Loss Prevention (DLP) permet une élévation de privilèges via une manipulation de configuration. Criticité élevée, patch disponible dans la version 15.8 MP1.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0378/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille dans Elastic OpenTelemetry Java permet une exécution de code arbitraire à distance (RCE). Un correctif est disponible pour les versions impactées. Criticité critique (CVSS non précisé).</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0379/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Axios npm : attaque supply chain par UNC1069 (CVE non attribué)</h3>
+<h3>Fuite de données chez Kaplan : 1,4 million de victimes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen UNC1069 a compromis le package npm Axios, injectant un RAT multiplateforme. Google attribue l'attaque à des motivations financières. Versions 1.14.1 et 0.30.4 infectées.</p>
-<a href="https://thehackernews.com/2026/04/google-attributes-axios-npm-supply.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Kaplan a révisé à 1,4 million le nombre de victimes d’une fuite de données impliquant des informations sensibles et un accès réseau prolongé. L’incident met en lumière les risques liés aux sous-traitants. Criticité élevée (données sensibles exposées).</p>
+<a href="https://www.zataz.com/kaplan-face-a-une-fuite-de-donnees-massive/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>CrystalRAT : nouveau malware-as-a-service avec RAT, voleur et fonctionnalités malveillantes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CrystalRAT, promu sur Telegram, offre des capacités de RAT, vol de données, keylogging et détournement du presse-papiers. Distribué via des campagnes ciblées. Criticité élevée (actif en exploitation).</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-crystalrat-malware-adds-rat-stealer-and-prankware-features/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h2>Mercredi 01 Avril 2026</h2>
-<h3>Chrome zero-day CVE-2026-5281 exploitée en attaque (CVE-2026-5281)</h3>
+<h2>Mardi 1 Avril 2026</h2>
+<h3>Zero-day CVE-2026-5281 dans Google Chrome exploité activement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le quatrième zero-day de Chrome en 2026 (CVE-2026-5281), de type use-after-free dans Dawn, est activement exploité. Patch immédiat requis via Chrome 124.0.6367.91+.</p>
+<p><strong>Résumé</strong> : Google a corrigé CVE-2026-5281, une faille *use-after-free* dans le moteur Dawn de Chrome, activement exploitée en attaque ciblée. Un patch est disponible pour toutes les versions concernées. Criticité maximale (actif en exploitation).</p>
 <a href="https://thehackernews.com/2026/04/new-chrome-zero-day-cve-2026-5281-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>SonicWall Email Security : XSS et déni de service (CVE-2026-4512, CVE-2026-4513)</h3>
+<h3>Fuite du code source de Claude Code via une erreur de packaging npm</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans SonicWall Email Security permettent un XSS et un déni de service à distance. Patch disponible dans la version 10.0.10.60+.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0383/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Anthropic a confirmé la fuite accidentelle du code interne de Claude Code via une erreur de packaging npm. Aucune donnée client sensible n’a été exposée. Criticité modérée (risque de réutilisation malveillante).</p>
+<a href="https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Joomla! : SQLi et XSS (CVE-2026-3421, CVE-2026-3422)</h3>
+<h3>Campagne de phishing CERT-UA distribuant AGEWHEEZE à 1 million d’emails</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Joomla! 4.x est vulnérable à une injection SQL et un XSS via des composants tiers. Criticité élevée, patch disponible dans la version 4.0.6+.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0384/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Des attaquants ont usurpé l’identité du CERT-UA pour diffuser le malware AGEWHEEZE via 1 million d’emails. Le malware est un outil d’administration à distance (RAT). Criticité élevée (campagne massive).</p>
+<a href="https://thehackernews.com/2026/04/cert-ua-impersonation-campaign-spread.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>NoVoice : malware Android sur Google Play (2,3M de téléchargements)</h3>
+<h3>Apple étend les mises à jour iOS 18 pour bloquer les attaques DarkSword</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware NoVoice, caché dans 50+ apps sur Google Play, a infecté 2,3M d'appareils. Il vole des données et établit une persistance via des services cachés. Suppression recommandée.</p>
+<p><strong>Résumé</strong> : Apple a étendu les mises à jour de sécurité iOS 18.7.7 à davantage d’appareils pour contrer l’exploit kit DarkSword, activement utilisé en attaques ciblées. Un patch est disponible. Criticité élevée (actif en exploitation).</p>
+<a href="https://thehackernews.com/2026/04/apple-expands-ios-1877-update-to-more.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploitation d’un zero-day TrueConf pour pousser des mises à jour malveillantes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants exploitent une faille zero-day dans TrueConf pour exécuter des fichiers arbitraires sur tous les endpoints connectés. Un correctif est en cours de déploiement. Criticité critique (RCE possible).</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-trueconf-zero-day-to-push-malicious-software-updates/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Mercredi 2 Avril 2026</h2>
+<h3>Faille d’authentification critique CVE-2026-XXXX dans Cisco IMC (accès Admin)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco a corrigé une faille d’authentification critique (CVSS 9.8) dans l’Integrated Management Controller (IMC), permettant un contournement d’authentification et un accès Admin à distance. Les correctifs sont disponibles. Criticité maximale.</p>
+<a href="https://thehackernews.com/2026/04/cisco-patches-98-cvss-imc-and-ssm-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Netgate (RCE et XSS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Netgate permettent une exécution de code arbitraire à distance (RCE) et une injection XSS. Les correctifs sont disponibles pour les versions impactées. Criticité élevée.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0387/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploitation de CVE-2025-55182 pour voler des identifiants sur 766 hôtes Next.js</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne massive exploite CVE-2025-55182 (React2Shell) pour voler des identifiants (AWS, GitHub, Stripe, etc.) sur 766 hôtes Next.js. Criticité critique (vol de données sensibles).</p>
+<a href="https://thehackernews.com/2026/04/hackers-exploit-cve-2025-55182-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>NoVoice : malware Android rootkit distribué via Google Play (2,3 millions de téléchargements)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware NoVoice, distribué via 50+ apps sur Google Play, a infecté 2,3 millions d’appareils en exploitant des vulnérabilités connues pour obtenir un accès root. Criticité élevée (actif en exploitation).</p>
 <a href="https://www.bleepingcomputer.com/news/security/novoice-android-malware-on-google-play-infected-23-million-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Kali Linux 2026.1 : arsenal offensif modernisé</h3>
+<h3>Faille pré-authentification dans Progress ShareFile (RCE possible)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Kali Linux 2026.1 introduit de nouveaux outils de pentest, une refonte visuelle et des avancées NetHunter. Mise à jour recommandée pour les professionnels de la cybersécurité offensive.</p>
-<a href="https://www.zataz.com/kali-linux-2026-1-muscle-larsenal-offensif/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités dans Progress ShareFile peuvent être enchaînées pour une exfiltration de fichiers non authentifiée (RCE pré-auth). Un correctif est disponible. Criticité critique (CVSS non précisé).</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-progress-sharefile-flaws-can-be-chained-in-pre-auth-rce-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
