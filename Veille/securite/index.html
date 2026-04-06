@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 06/04/2026 au 06/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 06/04/2026 au 07/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 06/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 07/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,7 +75,55 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>
+            <h2>Lundi 06 Avril 2026</h2>
+<h3>GPUBreach : Exploit critique permettant une prise de contrôle via Rowhammer sur GPU</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle attaque nommée GPUBreach exploite des bit-flips via Rowhammer sur les mémoires GDDR6 des GPU pour élever des privilèges et compromettre entièrement le système. Cette vulnérabilité cible les systèmes modernes utilisant des GPU récents et ne nécessite pas d'accès physique. Les chercheurs soulignent l'absence de correctif immédiat, rendant les systèmes vulnérables à une exploitation à distance.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-gpubreach-attack-enables-system-takeover-via-gpu-rowhammer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>BlueHammer : Fuite d'un zero-day Windows non corrigé</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un chercheur mécontent a publié un exploit pour une faille critique de privilège escalation dans Windows (non corrigée), permettant d'obtenir des droits SYSTEM ou administrateur. Cette vulnérabilité, nommée BlueHammer, est activement exploitée dans la nature. Microsoft n'a pas encore publié de correctif, exposant des millions de systèmes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/disgruntled-researcher-leaks-bluehammer-windows-zero-day-exploit/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CVE-2026-35616 : Zero-day critique dans FortiClient EMS exploité en attaque</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Fortinet a corrigé en urgence un zero-day (CVE-2026-35616) dans FortiClient EMS, permettant une exécution de code à distance sans authentification. CISA a ordonné aux agences fédérales de patcher sous 48h. Les attaques en cours ciblent les environnements d'entreprise utilisant ce composant.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/fortinet-emergency-patch-forticlient-zero-day" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Medusa Ransomware : Groupe affilié lié à des attaques zero-day</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft associe le groupe Storm-1175 (affilié à Medusa Ransomware) à des attaques exploitant des zero-days et n-days à haute fréquence. Les cibles incluent des infrastructures critiques, avec des ransomwares déployés après une compromission initiale via des vulnérabilités non patchées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-links-medusa-ransomware-affiliate-to-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Qilin et Warlock : Ransomwares désactivant 300+ outils EDR via pilotes vulnérables</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les groupes Qilin et Warlock utilisent la technique BYOVD (Bring Your Own Vulnerable Driver) pour désactiver plus de 300 solutions de sécurité sur les hôtes compromis. Cette méthode contourne les protections EDR en exploitant des pilotes légitimes mais vulnérables, rendant les attaques plus furtives.</p>
+<a href="https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Iran : Campagne de password-spraying ciblant 300+ organisations israéliennes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un acteur lié à l'Iran mène une campagne de password-spraying contre des environnements Microsoft 365 en Israël et aux Émirats Arabes Unis. Trois vagues d'attaques distinctes ont été observées, exploitant des comptes faibles ou réutilisés pour infiltrer des organisations critiques.</p>
+<a href="https://thehackernews.com/2026/04/iran-linked-password-spraying-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Drift Protocol : Vol de 280M$ de crypto via une opération physique de 6 mois</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le protocole Drift a subi un vol de plus de 280 millions de dollars, résultant d'une opération longue de 6 mois incluant une infiltration physique dans son écosystème. Les attaquants ont exploité des failles de sécurité internes et des vulnérabilités non documentées pour siphonner les fonds.</p>
+<a href="https://www.bleepingcomputer.com/news/security/drift-280m-crypto-theft-linked-to-6-month-in-person-operation/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h2>Mardi 07 Avril 2026</h2>
+<h3>REvil : Identification des leaders derrière 130 attaques par ransomware en Allemagne</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Bureau Fédéral Criminel Allemand (BKA) a identifié les leaders du groupe REvil, dont "UNKN", responsable d'au moins 130 attaques par ransomware en Allemagne. Cette révélation fait suite à une enquête internationale et marque une étape majeure dans la lutte contre les cybercriminels russes.</p>
+<a href="https://thehackernews.com/2026/04/bka-identifies-revil-leaders-behind-130.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
         </div>
     </div>
 </body>
