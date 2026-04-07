@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/04/2026 au 07/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/04/2026 au 08/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 07/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 08/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,35 +75,97 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 07 Avril 2026</h2>
-<h3>CVE-2026-35616 : faille critique Fortinet FortiClient EMS exploitée en zero-day</h3>
+            <h2>Lundi 06 Avril 2026</h2>
+<h3>CVE-2026-35616 : faille critique Fortinet déjà exploitée en zero-day</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-35616) dans Fortinet FortiClient EMS est activement exploitée en tant que zero-day. Un correctif urgent est disponible pour éviter des compromissions massives des infrastructures sécurisées par cette solution. Priorité absolue pour les équipes DevOps gérant des endpoints critiques.</p>
+<p><strong>Résumé</strong> : La CVE-2026-35616 affecte FortiClient EMS et permet une exécution de code à distance sans authentification. Exploitée activement, elle nécessite un correctif urgent pour éviter des compromissions massives des infrastructures sécurisées par Fortinet.</p>
 <a href="https://www.it-connect.fr/cve-2026-35616-deja-exploitee-cette-faille-fortinet-a-ete-patchee-en-urgence/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Google accélère sa migration vers la cryptographie post-quantique d’ici 2029</h3>
+<h3>Google annonce une transition vers la cryptographie post-quantique d’ici 2029</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google annonce un plan ambitieux pour migrer l’ensemble de ses services vers des algorithmes post-quantum d’ici 2029. Cette transition impacte directement les infrastructures DevOps et cloud, nécessitant une refonte des protocoles TLS et des systèmes de chiffrement actuels.</p>
+<p><strong>Résumé</strong> : Google prévoit de migrer l’ensemble de ses services vers des algorithmes post-quantum d’ici 2029, anticipant les risques liés aux futures attaques quantiques. Une initiative stratégique pour sécuriser les données sensibles à long terme.</p>
 <a href="https://www.schneier.com/blog/archives/2026/04/google-wants-to-transition-to-post-quantum-cryptography-by-2029.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<h3>Rust Coreutils 0.8 : gains de performance significatifs pour les systèmes Linux</h3>
+<h3>Docker Engine vulnérable avec CVE-2026-34040 : risque d’escalade de privilèges</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 0.8 de Rust Coreutils apporte des améliorations majeures en performance par rapport à GNU Coreutils, tout en maintenant la compatibilité POSIX. Idéal pour les environnements embarqués ou les serveurs où l’optimisation des ressources est critique.</p>
-<a href="https://www.phoronix.com/news/Rust-Coreutils-0.8-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Une faille critique dans Docker Engine (CVE-2026-34040, CVSS 8.8) permet de contourner les plugins d’autorisation et d’obtenir un accès hôte. Les environnements conteneurisés doivent appliquer le correctif immédiatement pour éviter des attaques en chaîne.</p>
+<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>FreeBSD améliore la compatibilité laptop avec une matrice matérielle dédiée</h3>
+<h3>Bull confirme son renouveau dans l’IA et le HPC avec 500 embauches prévues</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : FreeBSD publie une matrice matérielle pour identifier les composants laptop compatibles, incluant gestion de l’énergie, audio et pilotes graphiques. Une avancée majeure pour les administrateurs gérant des infrastructures hybrides (serveurs + postes de travail).</p>
+<p><strong>Résumé</strong> : Après son rachat par l’État français, Bull annonce une croissance de 16 % et un plan d’embauche massif pour renforcer ses capacités en calcul haute performance et IA. Une opportunité pour les administrateurs systèmes de se former sur des infrastructures modernes.</p>
+<a href="https://www.silicon.fr/business-1367/bull-confirme-son-renouveau-dans-lia-et-le-hpc-226533" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>FreeBSD améliore le support des laptops avec une matrice matérielle dédiée</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FreeBSD travaille sur une matrice matérielle pour identifier les composants compatibles, améliorant la prise en charge des laptops. Un projet utile pour les administrateurs gérant des parcs hybrides (Linux/BSD).</p>
 <a href="https://www.phoronix.com/news/FreeBSD-Laptop-Matrix" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>NetBSD 11.0 RC3 : dernière étape avant la sortie stable</h3>
+<h3>Rust Coreutils 0.8 : gains de performance significatifs pour les outils système</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La troisième release candidate de NetBSD 11.0 est disponible, avec des corrections de stabilité et de sécurité. Une mise à jour à planifier pour les environnements critiques nécessitant une base système ultra-fiable.</p>
-<a href="https://www.phoronix.com/news/NetBSD-11.0-RC3" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La version 0.8 de Rust Coreutils apporte des optimisations majeures, offrant une alternative plus rapide aux GNU Coreutils. Idéal pour les environnements où la performance des commandes système est critique.</p>
+<a href="https://www.phoronix.com/news/Rust-Coreutils-0.8-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h2>Mardi 07 Avril 2026</h2>
+<h3>Google Gemma 4 : nouveau modèle IA open source sous licence Apache 2.0</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google publie Gemma 4, une famille de modèles IA open source optimisés pour l’inférence locale. Un outil clé pour les administrateurs souhaitant déployer des LLM en interne sans dépendre de solutions cloud coûteuses.</p>
+<a href="https://www.it-connect.fr/google-devoile-gemma-4-son-nouveau-modele-ia-open-source/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Windows 11 25H2 déployé automatiquement sur les éditions Famille et Pro</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft commence le déploiement de Windows 11 25H2, incluant des améliorations de sécurité et de gestion pour les administrateurs. Une mise à jour à planifier pour éviter les interruptions.</p>
+<a href="https://www.it-connect.fr/microsoft-deploie-windows-11-25h2-sur-les-pc-avec-windows-famille-et-pro/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>OpenRSAT : alternative open source multi-OS pour administrer Active Directory</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenRSAT permet de gérer Active Directory, DNS et autres services depuis Linux, Windows ou macOS, sans dépendre des outils Microsoft RSAT. Une solution pratique pour les environnements multi-OS.</p>
+<a href="https://www.it-connect.fr/openrsat-alternative-multi-os-et-open-source-pour-administrer-votre-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Flatpak 1.16.4 corrige des failles critiques de contournement de sandbox</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Flatpak 1.16.4 corrige des vulnérabilités permettant l’échappement de sandbox et la suppression de fichiers hôtes. Une mise à jour obligatoire pour sécuriser les applications conteneurisées.</p>
+<a href="https://www.phoronix.com/news/Flatpak-1.16.4-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Lemonade 10.1 : améliorations pour les LLM locaux sur GPU/NPU AMD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Lemonade 10.1 optimise le support des NPU Ryzen AI et des GPU AMD pour l’exécution locale de LLM. Un outil précieux pour les administrateurs déployant des IA génératives en edge computing.</p>
+<a href="https://www.phoronix.com/news/Lemonade-10.1-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>APT28 exploite des routeurs SOHO pour des attaques DNS hijacking</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe APT28 (Russie) cible des routeurs MikroTik et TP-Link pour détourner des requêtes DNS. Une menace pour les réseaux d’entreprise mal sécurisés, nécessitant une hardening immédiat des équipements.</p>
+<a href="https://thehackernews.com/2026/04/russian-state-linked-apt28-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Flowise AI : vulnérabilité RCE critique (CVE-2025-59528) exploitée massivement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plus de 12 000 instances de Flowise (plateforme IA open source) sont exposées à une faille RCE critique (CVSS 10.0). Les administrateurs doivent isoler ou mettre à jour ces services sans délai.</p>
+<a href="https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Google intègre des outils de santé mentale dans Gemini</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Sous la pression juridique, Google ajoute des fonctionnalités de détection de crise et d’orientation psychologique dans Gemini. Une évolution à surveiller pour les administrateurs gérant des assistants IA en entreprise.</p>
+<a href="https://www.silicon.fr/data-ia-1372/google-integre-des-outils-de-sante-mentale-dans-gemini-226538" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Intel QAT Driver (Linux 7.1) : support du Zstd pour l’accélération matérielle</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le pilote Intel QuickAssist (QAT) pour Linux 7.1 ajoute le support du Zstd pour la compression/décompression matérielle. Une optimisation clé pour les serveurs gérant de gros volumes de données.</p>
+<a href="https://www.phoronix.com/news/Intel-QAT-Linux-7.1-Zstd" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
