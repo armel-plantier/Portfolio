@@ -721,10 +721,10 @@ function buildEntryRow(title, index, sectionLabel, sectionKey, nameKey, iconSvg)
     html += '<div class="e-icon">' + iconSvg + '</div>';
     html += '<div class="e-info"><div class="e-title">' + safeTitle + '</div><div class="e-sub">' + sectionLabel + ' #' + (index + 1) + '</div></div>';
     html += '<div class="e-actions">';
-    html += '<button class="btn-icon" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="openEditFromBtn(this)">';
+    html += '<button class="btn-icon btn-edit-entry" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '">';
     html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
     html += '</button>';
-    html += '<button class="btn-icon danger" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="confirmDeleteFromBtn(this)">';
+    html += '<button class="btn-icon danger btn-delete-entry" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '">';
     html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
     html += '</button>';
     html += '</div></div>';
@@ -777,6 +777,26 @@ async function loadManageEntries() {
         $('manage-content').innerHTML = html;
         $('manage-loading').style.display = 'none';
         $('manage-content').style.display = 'block';
+
+        // Event delegation for edit/delete buttons (CSP-safe, no inline onclick)
+        $('manage-content').addEventListener('click', function(e) {
+            var editBtn = e.target.closest('.btn-edit-entry');
+            if (editBtn) {
+                var section = editBtn.getAttribute('data-section');
+                var key = editBtn.getAttribute('data-key');
+                var value = editBtn.getAttribute('data-value');
+                openEdit(section, key, value);
+                return;
+            }
+            var deleteBtn = e.target.closest('.btn-delete-entry');
+            if (deleteBtn) {
+                var section = deleteBtn.getAttribute('data-section');
+                var key = deleteBtn.getAttribute('data-key');
+                var value = deleteBtn.getAttribute('data-value');
+                confirmDelete(section, key, value);
+                return;
+            }
+        });
 
     } catch (err) {
         console.error(err);
