@@ -152,6 +152,7 @@ async function doLogin() {
         $('session-user').textContent = ghUser;
         $('lock-screen').style.display = 'none';
         $('admin-panel').style.display = 'block';
+        loadDashboard();
     } catch (err) {
         ghToken = null;
         $('lock-error-text').textContent = err.message;
@@ -466,3 +467,103 @@ async function publish(type) {
 
 $('proc-submit').addEventListener('click', function() { publish('proc'); });
 $('proj-submit').addEventListener('click', function() { publish('proj'); });
+
+// ============================================================================
+// DASHBOARD
+// ============================================================================
+async function loadDashboard() {
+    try {
+        // 1. Fetch config.js to count entries
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var configContent = atob(configData.content.replace(/\n/g, ''));
+
+        // Count procedures
+        var procMatch = configContent.match(/procedures:\s*\[([\s\S]*?)\]/);
+        var procCount = 0;
+        if (procMatch && procMatch[1].trim()) {
+            procCount = (procMatch[1].match(/title:\s*"/g) || []).length;
+        }
+        $('dash-proc-count').textContent = procCount;
+
+        // Count projects
+        var projMatch = configContent.match(/projects:\s*\[([\s\S]*?)\]/);
+        var projCount = 0;
+        if (projMatch && projMatch[1].trim()) {
+            projCount = (projMatch[1].match(/title:\s*"/g) || []).length;
+        }
+        $('dash-proj-count').textContent = projCount;
+
+        // Count certifications
+        var certMatch = configContent.match(/certifications:\s*\[([\s\S]*?)\]/);
+        var certCount = 0;
+        if (certMatch && certMatch[1].trim()) {
+            certCount = (certMatch[1].match(/name:\s*"/g) || []).length;
+        }
+        $('dash-cert-count').textContent = certCount;
+
+        // 2. Fetch recent commits
+        var commits = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/commits?per_page=8');
+        if (commits && commits.length > 0) {
+            // Last commit date
+            var lastDate = new Date(commits[0].commit.author.date);
+            var now = new Date();
+            var diffMs = now - lastDate;
+            var diffMins = Math.floor(diffMs / 60000);
+            var diffHours = Math.floor(diffMs / 3600000);
+            var diffDays = Math.floor(diffMs / 86400000);
+            var timeAgo;
+            if (diffMins < 1) timeAgo = "à l'instant";
+            else if (diffMins < 60) timeAgo = 'il y a ' + diffMins + ' min';
+            else if (diffHours < 24) timeAgo = 'il y a ' + diffHours + 'h';
+            else timeAgo = 'il y a ' + diffDays + 'j';
+            $('dash-last-commit').textContent = timeAgo;
+
+            // Commit list
+            var commitHTML = '<div class="commit-list">';
+            commits.forEach(function(c) {
+                var d = new Date(c.commit.author.date);
+                var dateStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+                var msg = c.commit.message.split('\n')[0];
+                if (msg.length > 80) msg = msg.substring(0, 80) + '...';
+                var sha = c.sha.substring(0, 7);
+                commitHTML += '<div class="commit-item">';
+                commitHTML += '<div class="commit-dot"></div>';
+                commitHTML += '<div>';
+                commitHTML += '<div class="commit-msg">' + msg + '</div>';
+                commitHTML += '<div class="commit-meta">' + sha + ' — ' + dateStr + ' par ' + (c.commit.author.name || 'inconnu') + '</div>';
+                commitHTML += '</div></div>';
+            });
+            commitHTML += '</div>';
+            $('dash-commits').innerHTML = commitHTML;
+        }
+
+        // 3. Fetch deploy status (GitHub Pages workflow)
+        try {
+            var workflows = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/actions/runs?per_page=1');
+            if (workflows && workflows.workflow_runs && workflows.workflow_runs.length > 0) {
+                var run = workflows.workflow_runs[0];
+                var status = run.conclusion || run.status;
+                var deployDate = new Date(run.updated_at);
+                var deployDateStr = deployDate.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+                var badgeClass = 'pending';
+                var statusText = 'En cours...';
+                if (status === 'success') { badgeClass = 'success'; statusText = 'Déployé avec succès'; }
+                else if (status === 'failure') { badgeClass = 'failure'; statusText = 'Échec du déploiement'; }
+                else if (status === 'in_progress' || status === 'queued') { badgeClass = 'pending'; statusText = 'Déploiement en cours...'; }
+
+                $('dash-deploy').innerHTML = '<div class="deploy-badge ' + badgeClass + '">' +
+                    '<span class="deploy-dot"></span>' +
+                    '<span>' + statusText + '</span>' +
+                    '<span style="color:var(--muted);font-size:0.8rem;margin-left:8px;">' + deployDateStr + '</span>' +
+                    '</div>';
+            } else {
+                $('dash-deploy').innerHTML = '<span style="color:var(--muted);font-size:0.85rem;">Aucun workflow trouvé</span>';
+            }
+        } catch (e) {
+            $('dash-deploy').innerHTML = '<span style="color:var(--muted);font-size:0.85rem;">Impossible de charger le statut (scope Actions requis)</span>';
+        }
+
+    } catch (err) {
+        console.error('Dashboard error:', err);
+    }
+}
