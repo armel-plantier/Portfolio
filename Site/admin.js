@@ -477,29 +477,39 @@ async function loadDashboard() {
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
         var configContent = atob(configData.content.replace(/\n/g, ''));
 
-        // Count procedures
-        var procMatch = configContent.match(/procedures:\s*\[([\s\S]*?)\]/);
-        var procCount = 0;
-        if (procMatch && procMatch[1].trim()) {
-            procCount = (procMatch[1].match(/title:\s*"/g) || []).length;
+        // Robust section extractor: finds "key: [" then counts bracket depth
+        function extractSection(content, key) {
+            var startPattern = key + ':';
+            var idx = content.indexOf(startPattern);
+            if (idx === -1) return '';
+            // Find the opening bracket
+            var bracketStart = content.indexOf('[', idx);
+            if (bracketStart === -1) return '';
+            var depth = 0;
+            var i = bracketStart;
+            while (i < content.length) {
+                if (content[i] === '[') depth++;
+                else if (content[i] === ']') { depth--; if (depth === 0) break; }
+                i++;
+            }
+            return content.substring(bracketStart, i + 1);
         }
-        $('dash-proc-count').textContent = procCount;
 
-        // Count projects
-        var projMatch = configContent.match(/projects:\s*\[([\s\S]*?)\]/);
-        var projCount = 0;
-        if (projMatch && projMatch[1].trim()) {
-            projCount = (projMatch[1].match(/title:\s*"/g) || []).length;
+        // Count top-level objects by counting "title:" or "name:" at the right depth
+        function countEntries(sectionStr, key) {
+            // Count occurrences of the key pattern outside of nested arrays
+            var re = new RegExp('\\b' + key + '\\s*:', 'g');
+            return (sectionStr.match(re) || []).length;
         }
-        $('dash-proj-count').textContent = projCount;
 
-        // Count certifications
-        var certMatch = configContent.match(/certifications:\s*\[([\s\S]*?)\]/);
-        var certCount = 0;
-        if (certMatch && certMatch[1].trim()) {
-            certCount = (certMatch[1].match(/name:\s*"/g) || []).length;
-        }
-        $('dash-cert-count').textContent = certCount;
+        var procSection = extractSection(configContent, 'procedures');
+        $('dash-proc-count').textContent = countEntries(procSection, 'title');
+
+        var projSection = extractSection(configContent, 'projects');
+        $('dash-proj-count').textContent = countEntries(projSection, 'title');
+
+        var certSection = extractSection(configContent, 'certifications');
+        $('dash-cert-count').textContent = countEntries(certSection, 'name');
 
         // 2. Fetch recent commits
         var commits = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/commits?per_page=8');
