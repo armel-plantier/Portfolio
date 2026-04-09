@@ -582,6 +582,7 @@ async function loadDashboard() {
     }
 }
 
+
 // ============================================================================
 // CERTIFICATIONS
 // ============================================================================
@@ -620,7 +621,6 @@ $('cert-submit').addEventListener('click', async function() {
     var pdfName = '';
 
     try {
-        // Upload cert PDF if provided
         if (certFile) {
             showProgress('Publication en cours...', 'Upload du certificat PDF...', 20);
             var b64 = await fileToBase64(certFile);
@@ -632,7 +632,7 @@ $('cert-submit').addEventListener('click', async function() {
             pdfName = certFile.name;
         }
 
-        showProgress('Publication en cours...', 'Mise à jour de config.js...', 60);
+        showProgress('Publication en cours...', 'Mise \u00e0 jour de config.js...', 60);
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
         var raw = configData.content.replace(/\n/g, '');
         var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
@@ -641,14 +641,9 @@ $('cert-submit').addEventListener('click', async function() {
         var iconSvg = escapeForJS(ICON_LIBRARY[selectedCertIcon].svg);
         var entry = '{ \n            name: "' + escapeForJS(name) + '", \n            issuer: "' + escapeForJS(issuer) + '", \n            url: "' + escapeForJS(url) + '", \n            pdf: "' + escapeForJS(pdfName) + '",\n            icon: `' + iconSvg + '`\n        }';
 
-        var sectionRegex = /(certifications:\s*\[)([\s\S]*?)(\]\s*\n?\s*};?\s*$)/;
+        var sectionRegex = /(certifications:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
         var match = currentContent.match(sectionRegex);
-        if (!match) {
-            // Fallback: try simpler regex
-            sectionRegex = /(certifications:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
-            match = currentContent.match(sectionRegex);
-        }
-        if (!match) throw new Error('Section "certifications" non trouvée dans config.js');
+        if (!match) throw new Error('Section "certifications" non trouv\u00e9e dans config.js');
 
         var existingEntries = match[2].trim();
         var separator = existingEntries.endsWith(',') || existingEntries === '' ? '\n        ' : ',\n        ';
@@ -683,7 +678,6 @@ $('cert-submit').addEventListener('click', async function() {
 var manageConfigSha = null;
 var manageConfigContent = '';
 
-// Load entries when switching to manage tab
 document.querySelectorAll('.tab-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         if (btn.dataset.tab === 'manage' && ghToken) {
@@ -691,6 +685,53 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
         }
     });
 });
+
+function extractSectionGlobal(content, key) {
+    var startPattern = key + ':';
+    var idx = content.indexOf(startPattern);
+    if (idx === -1) return '';
+    var bracketStart = content.indexOf('[', idx);
+    if (bracketStart === -1) return '';
+    var depth = 0;
+    var i = bracketStart;
+    while (i < content.length) {
+        if (content[i] === '[') depth++;
+        else if (content[i] === ']') { depth--; if (depth === 0) break; }
+        i++;
+    }
+    return content.substring(bracketStart, i + 1);
+}
+
+function parseEntries(content, sectionKey, nameKey) {
+    var section = extractSectionGlobal(content, sectionKey);
+    if (!section) return [];
+    var entries = [];
+    var re = new RegExp(nameKey + '\\s*:\\s*"([^"]*)"', 'g');
+    var m;
+    while ((m = re.exec(section)) !== null) {
+        entries.push(m[1]);
+    }
+    return entries;
+}
+
+function buildEntryRow(title, index, sectionLabel, sectionKey, nameKey, iconSvg) {
+    var safeTitle = title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    var escapedTitle = title.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    var html = '<div class="entry-row">';
+    html += '<div class="e-icon">' + iconSvg + '</div>';
+    html += '<div class="e-info"><div class="e-title">' + safeTitle + '</div><div class="e-sub">' + sectionLabel + ' #' + (index + 1) + '</div></div>';
+    html += '<div class="e-actions"><button class="btn-icon danger" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="confirmDeleteFromBtn(this)">';
+    html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+    html += '</button></div></div>';
+    return html;
+}
+
+function confirmDeleteFromBtn(btn) {
+    var section = btn.getAttribute('data-section');
+    var key = btn.getAttribute('data-key');
+    var value = btn.getAttribute('data-value');
+    confirmDelete(section, key, value);
+}
 
 async function loadManageEntries() {
     $('manage-loading').style.display = 'flex';
@@ -703,76 +744,29 @@ async function loadManageEntries() {
         var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
         manageConfigContent = new TextDecoder('utf-8').decode(bytes);
 
-        // Parse entries using title/name patterns
-        function parseEntries(content, sectionKey, nameKey) {
-            var section = extractSection(content, sectionKey);
-            if (!section) return [];
-            var entries = [];
-            var re = new RegExp(nameKey + '\\s*:\\s*"([^"]*)"', 'g');
-            var m;
-            while ((m = re.exec(section)) !== null) {
-                entries.push(m[1]);
-            }
-            return entries;
-        }
-
-        // Reuse extractSection from dashboard
-        function extractSection(content, key) {
-            var startPattern = key + ':';
-            var idx = content.indexOf(startPattern);
-            if (idx === -1) return '';
-            var bracketStart = content.indexOf('[', idx);
-            if (bracketStart === -1) return '';
-            var depth = 0;
-            var i = bracketStart;
-            while (i < content.length) {
-                if (content[i] === '[') depth++;
-                else if (content[i] === ']') { depth--; if (depth === 0) break; }
-                i++;
-            }
-            return content.substring(bracketStart, i + 1);
-        }
-
         var procedures = parseEntries(manageConfigContent, 'procedures', 'title');
         var projects = parseEntries(manageConfigContent, 'projects', 'title');
         var certifications = parseEntries(manageConfigContent, 'certifications', 'name');
 
+        var procIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+        var projIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/></svg>';
+        var certIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>';
+
         var html = '';
 
-        // Procedures
-        html += '<div class="manage-section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Procédures <span class="count-badge">' + procedures.length + '</span></div>';
+        html += '<div class="manage-section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Proc\u00e9dures <span class="count-badge">' + procedures.length + '</span></div>';
         html += '<div class="entry-list">';
-        procedures.forEach(function(title, i) {
-            html += '<div class="entry-row">';
-            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>';
-            html += '<div class="e-info"><div class="e-title">' + title + '</div><div class="e-sub">Procédure #' + (i + 1) + '</div></div>';
-            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'procedures\',\'title\',\'' + escapeForJS(title).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
-            html += '</div>';
-        });
+        procedures.forEach(function(title, i) { html += buildEntryRow(title, i, 'Proc\u00e9dure', 'procedures', 'title', procIcon); });
         html += '</div>';
 
-        // Projects
         html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/><rect x="14" y="16" width="7" height="5" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Projets <span class="count-badge">' + projects.length + '</span></div>';
         html += '<div class="entry-list">';
-        projects.forEach(function(title, i) {
-            html += '<div class="entry-row">';
-            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/></svg></div>';
-            html += '<div class="e-info"><div class="e-title">' + title + '</div><div class="e-sub">Projet #' + (i + 1) + '</div></div>';
-            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'projects\',\'title\',\'' + escapeForJS(title).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
-            html += '</div>';
-        });
+        projects.forEach(function(title, i) { html += buildEntryRow(title, i, 'Projet', 'projects', 'title', projIcon); });
         html += '</div>';
 
-        // Certifications
         html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Certifications <span class="count-badge">' + certifications.length + '</span></div>';
         html += '<div class="entry-list">';
-        certifications.forEach(function(name, i) {
-            html += '<div class="entry-row">';
-            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>';
-            html += '<div class="e-info"><div class="e-title">' + name + '</div><div class="e-sub">Certification #' + (i + 1) + '</div></div>';
-            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'certifications\',\'name\',\'' + escapeForJS(name).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
-            html += '</div>';
-        });
+        certifications.forEach(function(name, i) { html += buildEntryRow(name, i, 'Certification', 'certifications', 'name', certIcon); });
         html += '</div>';
 
         $('manage-content').innerHTML = html;
@@ -790,7 +784,7 @@ var pendingDelete = null;
 
 function confirmDelete(section, key, value) {
     pendingDelete = { section: section, key: key, value: value };
-    $('confirm-title').textContent = 'Supprimer cette entrée ?';
+    $('confirm-title').textContent = 'Supprimer cette entr\u00e9e ?';
     $('confirm-msg').textContent = 'Voulez-vous supprimer "' + value + '" de la section ' + section + ' ? Cette action modifiera config.js.';
     $('confirm-delete').classList.add('active');
 }
@@ -810,30 +804,27 @@ $('confirm-ok').addEventListener('click', async function() {
     pendingDelete = null;
 
     try {
-        showProgress('Suppression...', 'Mise à jour de config.js...', 40);
+        showProgress('Suppression...', 'Mise \u00e0 jour de config.js...', 40);
 
-        // Re-fetch config to get latest SHA
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
         var raw = configData.content.replace(/\n/g, '');
         var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
         var content = new TextDecoder('utf-8').decode(bytes);
 
-        // Find the entry block and remove it
-        // Strategy: find the key:"value" pattern, then expand to the full { ... } object
+        // Find the entry by key:"value", then expand to full { ... } block
         var searchStr = key + ': "' + value + '"';
         var idx = content.indexOf(searchStr);
         if (idx === -1) {
-            // Try with extra spaces
             searchStr = key + ':"' + value + '"';
             idx = content.indexOf(searchStr);
         }
-        if (idx === -1) throw new Error('Entrée "' + value + '" non trouvée');
+        if (idx === -1) throw new Error('Entr\u00e9e "' + value + '" non trouv\u00e9e');
 
         // Walk backwards to find the opening {
         var start = idx;
         while (start > 0 && content[start] !== '{') start--;
 
-        // Walk forwards to find the closing }
+        // Walk forwards to find the matching closing }
         var depth = 0;
         var end = start;
         while (end < content.length) {
@@ -844,21 +835,29 @@ $('confirm-ok').addEventListener('click', async function() {
 
         // Include trailing comma and whitespace
         var afterEnd = end + 1;
-        while (afterEnd < content.length && (content[afterEnd] === ',' || content[afterEnd] === ' ' || content[afterEnd] === '\n' || content[afterEnd] === '\r' || content[afterEnd] === '\t')) {
+        while (afterEnd < content.length && (content[afterEnd] === ' ' || content[afterEnd] === '\n' || content[afterEnd] === '\r' || content[afterEnd] === '\t')) {
             afterEnd++;
-            if (content[afterEnd - 1] === ',') break; // Stop after the comma
+        }
+        if (afterEnd < content.length && content[afterEnd] === ',') {
+            afterEnd++;
+        }
+        // Also eat whitespace/newline after comma
+        while (afterEnd < content.length && (content[afterEnd] === ' ' || content[afterEnd] === '\n' || content[afterEnd] === '\r' || content[afterEnd] === '\t')) {
+            afterEnd++;
         }
 
-        // Also check for leading comma
-        var beforeStart = start;
-        while (beforeStart > 0 && (content[beforeStart - 1] === ' ' || content[beforeStart - 1] === '\n' || content[beforeStart - 1] === '\r' || content[beforeStart - 1] === '\t')) {
-            beforeStart--;
-        }
-        if (beforeStart > 0 && content[beforeStart - 1] === ',') {
-            beforeStart--;
+        // If no trailing comma was found, check for leading comma
+        if (content[end + 1] !== ',') {
+            var beforeStart = start;
+            while (beforeStart > 0 && (content[beforeStart - 1] === ' ' || content[beforeStart - 1] === '\n' || content[beforeStart - 1] === '\r' || content[beforeStart - 1] === '\t')) {
+                beforeStart--;
+            }
+            if (beforeStart > 0 && content[beforeStart - 1] === ',') {
+                start = beforeStart - 1;
+            }
         }
 
-        var newContent = content.substring(0, beforeStart) + content.substring(afterEnd);
+        var newContent = content.substring(0, start) + content.substring(afterEnd);
 
         showProgress('Suppression...', 'Commit...', 75);
         var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
@@ -867,8 +866,7 @@ $('confirm-ok').addEventListener('click', async function() {
             body: JSON.stringify({ message: '[admin] Suppression : ' + value, content: encoded, sha: configData.sha })
         });
 
-        progressSuccess('"' + value + '" supprimé.');
-        // Reload manage entries
+        progressSuccess('"' + value + '" supprim\u00e9.');
         setTimeout(function() { loadManageEntries(); }, 1500);
 
     } catch (err) {
