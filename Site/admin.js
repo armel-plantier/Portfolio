@@ -475,7 +475,9 @@ async function loadDashboard() {
     try {
         // 1. Fetch config.js to count entries
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
-        var configContent = atob(configData.content.replace(/\n/g, ''));
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var configContent = new TextDecoder('utf-8').decode(bytes);
 
         // Robust section extractor: finds "key: [" then counts bracket depth
         function extractSection(content, key) {
