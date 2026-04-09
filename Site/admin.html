@@ -803,6 +803,17 @@
             <label>Tags <span style="color:var(--muted);font-size:0.78rem;">(séparés par des virgules)</span></label>
             <input type="text" id="edit-tags" placeholder="Administration Système, Réseau, Cybersécurité">
         </div>
+        <div class="field" id="edit-pdf-field">
+            <label>Remplacer le PDF <span style="color:var(--muted);font-size:0.78rem;">(optionnel)</span></label>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <span id="edit-pdf-current" style="font-size:0.82rem;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+                <label style="padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:0.82rem;cursor:pointer;transition:0.2s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;" id="edit-pdf-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    Nouveau PDF
+                    <input type="file" accept=".pdf" id="edit-pdf-file" style="display:none;">
+                </label>
+            </div>
+        </div>
         <div class="confirm-actions" style="margin-top:20px;">
             <button class="btn btn-cancel" id="edit-cancel">Annuler</button>
             <button class="btn btn-submit" id="edit-save">Enregistrer</button>
