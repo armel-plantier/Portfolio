@@ -442,7 +442,9 @@ async function publish(type) {
         });
         showProgress('Publication en cours...', 'Mise à jour de config.js...', 60);
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
-        var currentContent = atob(configData.content.replace(/\n/g, ''));
+        var rawPub = configData.content.replace(/\n/g, '');
+        var bytesPub = Uint8Array.from(atob(rawPub), function(c) { return c.charCodeAt(0); });
+        var currentContent = new TextDecoder('utf-8').decode(bytesPub);
         var iconSvg = escapeForJS(ICON_LIBRARY[iconIdx].svg);
         var entry = '{\n    title: "' + escapeForJS(title) + '",\n    longDescription: "' + escapeForJS(desc) + '",\n    path: "' + escapeForJS(file.name) + '",\n    icon: `' + iconSvg + '`,\n    tags: [' + tags.map(function(t) { return '"' + escapeForJS(t) + '"'; }).join(', ') + ']\n}';
         var sectionRegex = new RegExp('(' + section + ':\\s*\\[)([\\s\\S]*?)(\\])');
@@ -454,7 +456,7 @@ async function publish(type) {
         showProgress('Publication en cours...', 'Commit de config.js...', 85);
         await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
             method: 'PUT',
-            body: JSON.stringify({ message: '[admin] config.js : ajout ' + title, content: btoa(unescape(encodeURIComponent(newContent))), sha: configData.sha })
+            body: JSON.stringify({ message: '[admin] config.js : ajout ' + title, content: btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join('')), sha: configData.sha })
         });
         showProgress('Publication en cours...', 'Déploiement GitHub Pages...', 100);
         progressSuccess('"' + title + '" sera en ligne dans ~1 min (GitHub Pages rebuild).');
@@ -579,3 +581,298 @@ async function loadDashboard() {
         console.error('Dashboard error:', err);
     }
 }
+
+// ============================================================================
+// CERTIFICATIONS
+// ============================================================================
+var selectedCertIcon = 0;
+var certFile = null;
+
+var certIconGrid = renderIconGrid('cert-icons', 'cert-icon-search', function(i) { selectedCertIcon = i; });
+
+setupUpload('cert-upload', 'cert-file', function(f) {
+    certFile = f; setUploadState('cert-upload', f);
+});
+
+['cert-name', 'cert-issuer'].forEach(function(id) {
+    $(id).addEventListener('input', function() {
+        var name = $('cert-name').value.trim();
+        var issuer = $('cert-issuer').value.trim();
+        $('cert-submit').disabled = !(name && issuer);
+    });
+});
+
+$('cert-reset').addEventListener('click', function() {
+    $('cert-name').value = '';
+    $('cert-issuer').value = '';
+    $('cert-url').value = '';
+    certFile = null;
+    selectedCertIcon = 0;
+    setUploadState('cert-upload', null);
+    certIconGrid.reset();
+    $('cert-submit').disabled = true;
+});
+
+$('cert-submit').addEventListener('click', async function() {
+    var name = $('cert-name').value.trim();
+    var issuer = $('cert-issuer').value.trim();
+    var url = $('cert-url').value.trim();
+    var pdfName = '';
+
+    try {
+        // Upload cert PDF if provided
+        if (certFile) {
+            showProgress('Publication en cours...', 'Upload du certificat PDF...', 20);
+            var b64 = await fileToBase64(certFile);
+            var pdfPath = 'Documents/Certifs/' + certFile.name;
+            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(pdfPath), {
+                method: 'PUT',
+                body: JSON.stringify({ message: '[admin] Ajout certif PDF : ' + name, content: b64 })
+            });
+            pdfName = certFile.name;
+        }
+
+        showProgress('Publication en cours...', 'Mise à jour de config.js...', 60);
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var currentContent = new TextDecoder('utf-8').decode(bytes);
+
+        var iconSvg = escapeForJS(ICON_LIBRARY[selectedCertIcon].svg);
+        var entry = '{ \n            name: "' + escapeForJS(name) + '", \n            issuer: "' + escapeForJS(issuer) + '", \n            url: "' + escapeForJS(url) + '", \n            pdf: "' + escapeForJS(pdfName) + '",\n            icon: `' + iconSvg + '`\n        }';
+
+        var sectionRegex = /(certifications:\s*\[)([\s\S]*?)(\]\s*\n?\s*};?\s*$)/;
+        var match = currentContent.match(sectionRegex);
+        if (!match) {
+            // Fallback: try simpler regex
+            sectionRegex = /(certifications:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
+            match = currentContent.match(sectionRegex);
+        }
+        if (!match) throw new Error('Section "certifications" non trouvée dans config.js');
+
+        var existingEntries = match[2].trim();
+        var separator = existingEntries.endsWith(',') || existingEntries === '' ? '\n        ' : ',\n        ';
+        var newContent = currentContent.replace(sectionRegex, match[1] + match[2] + (existingEntries ? separator : '\n        ') + entry + '\n    ' + match[3]);
+
+        showProgress('Publication en cours...', 'Commit de config.js...', 85);
+        var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+            method: 'PUT',
+            body: JSON.stringify({ message: '[admin] config.js : ajout certif ' + name, content: encoded, sha: configData.sha })
+        });
+
+        progressSuccess('"' + name + '" sera en ligne dans ~1 min.');
+        $('cert-name').value = '';
+        $('cert-issuer').value = '';
+        $('cert-url').value = '';
+        certFile = null;
+        selectedCertIcon = 0;
+        setUploadState('cert-upload', null);
+        certIconGrid.reset();
+        $('cert-submit').disabled = true;
+
+    } catch (err) {
+        console.error(err);
+        progressError(err.message);
+    }
+});
+
+// ============================================================================
+// MANAGE ENTRIES (list + delete)
+// ============================================================================
+var manageConfigSha = null;
+var manageConfigContent = '';
+
+// Load entries when switching to manage tab
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        if (btn.dataset.tab === 'manage' && ghToken) {
+            loadManageEntries();
+        }
+    });
+});
+
+async function loadManageEntries() {
+    $('manage-loading').style.display = 'flex';
+    $('manage-content').style.display = 'none';
+
+    try {
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        manageConfigSha = configData.sha;
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        manageConfigContent = new TextDecoder('utf-8').decode(bytes);
+
+        // Parse entries using title/name patterns
+        function parseEntries(content, sectionKey, nameKey) {
+            var section = extractSection(content, sectionKey);
+            if (!section) return [];
+            var entries = [];
+            var re = new RegExp(nameKey + '\\s*:\\s*"([^"]*)"', 'g');
+            var m;
+            while ((m = re.exec(section)) !== null) {
+                entries.push(m[1]);
+            }
+            return entries;
+        }
+
+        // Reuse extractSection from dashboard
+        function extractSection(content, key) {
+            var startPattern = key + ':';
+            var idx = content.indexOf(startPattern);
+            if (idx === -1) return '';
+            var bracketStart = content.indexOf('[', idx);
+            if (bracketStart === -1) return '';
+            var depth = 0;
+            var i = bracketStart;
+            while (i < content.length) {
+                if (content[i] === '[') depth++;
+                else if (content[i] === ']') { depth--; if (depth === 0) break; }
+                i++;
+            }
+            return content.substring(bracketStart, i + 1);
+        }
+
+        var procedures = parseEntries(manageConfigContent, 'procedures', 'title');
+        var projects = parseEntries(manageConfigContent, 'projects', 'title');
+        var certifications = parseEntries(manageConfigContent, 'certifications', 'name');
+
+        var html = '';
+
+        // Procedures
+        html += '<div class="manage-section-title"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Procédures <span class="count-badge">' + procedures.length + '</span></div>';
+        html += '<div class="entry-list">';
+        procedures.forEach(function(title, i) {
+            html += '<div class="entry-row">';
+            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>';
+            html += '<div class="e-info"><div class="e-title">' + title + '</div><div class="e-sub">Procédure #' + (i + 1) + '</div></div>';
+            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'procedures\',\'title\',\'' + escapeForJS(title).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
+            html += '</div>';
+        });
+        html += '</div>';
+
+        // Projects
+        html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/><rect x="14" y="16" width="7" height="5" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg> Projets <span class="count-badge">' + projects.length + '</span></div>';
+        html += '<div class="entry-list">';
+        projects.forEach(function(title, i) {
+            html += '<div class="entry-row">';
+            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/></svg></div>';
+            html += '<div class="e-info"><div class="e-title">' + title + '</div><div class="e-sub">Projet #' + (i + 1) + '</div></div>';
+            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'projects\',\'title\',\'' + escapeForJS(title).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
+            html += '</div>';
+        });
+        html += '</div>';
+
+        // Certifications
+        html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Certifications <span class="count-badge">' + certifications.length + '</span></div>';
+        html += '<div class="entry-list">';
+        certifications.forEach(function(name, i) {
+            html += '<div class="entry-row">';
+            html += '<div class="e-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>';
+            html += '<div class="e-info"><div class="e-title">' + name + '</div><div class="e-sub">Certification #' + (i + 1) + '</div></div>';
+            html += '<div class="e-actions"><button class="btn-icon danger" onclick="confirmDelete(\'certifications\',\'name\',\'' + escapeForJS(name).replace(/'/g, "\\'") + '\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div>';
+            html += '</div>';
+        });
+        html += '</div>';
+
+        $('manage-content').innerHTML = html;
+        $('manage-loading').style.display = 'none';
+        $('manage-content').style.display = 'block';
+
+    } catch (err) {
+        console.error(err);
+        $('manage-loading').innerHTML = '<span style="color:var(--danger);">Erreur : ' + err.message + '</span>';
+    }
+}
+
+// Confirm delete flow
+var pendingDelete = null;
+
+function confirmDelete(section, key, value) {
+    pendingDelete = { section: section, key: key, value: value };
+    $('confirm-title').textContent = 'Supprimer cette entrée ?';
+    $('confirm-msg').textContent = 'Voulez-vous supprimer "' + value + '" de la section ' + section + ' ? Cette action modifiera config.js.';
+    $('confirm-delete').classList.add('active');
+}
+
+$('confirm-cancel').addEventListener('click', function() {
+    $('confirm-delete').classList.remove('active');
+    pendingDelete = null;
+});
+
+$('confirm-ok').addEventListener('click', async function() {
+    $('confirm-delete').classList.remove('active');
+    if (!pendingDelete) return;
+
+    var section = pendingDelete.section;
+    var key = pendingDelete.key;
+    var value = pendingDelete.value;
+    pendingDelete = null;
+
+    try {
+        showProgress('Suppression...', 'Mise à jour de config.js...', 40);
+
+        // Re-fetch config to get latest SHA
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var content = new TextDecoder('utf-8').decode(bytes);
+
+        // Find the entry block and remove it
+        // Strategy: find the key:"value" pattern, then expand to the full { ... } object
+        var searchStr = key + ': "' + value + '"';
+        var idx = content.indexOf(searchStr);
+        if (idx === -1) {
+            // Try with extra spaces
+            searchStr = key + ':"' + value + '"';
+            idx = content.indexOf(searchStr);
+        }
+        if (idx === -1) throw new Error('Entrée "' + value + '" non trouvée');
+
+        // Walk backwards to find the opening {
+        var start = idx;
+        while (start > 0 && content[start] !== '{') start--;
+
+        // Walk forwards to find the closing }
+        var depth = 0;
+        var end = start;
+        while (end < content.length) {
+            if (content[end] === '{') depth++;
+            else if (content[end] === '}') { depth--; if (depth === 0) break; }
+            end++;
+        }
+
+        // Include trailing comma and whitespace
+        var afterEnd = end + 1;
+        while (afterEnd < content.length && (content[afterEnd] === ',' || content[afterEnd] === ' ' || content[afterEnd] === '\n' || content[afterEnd] === '\r' || content[afterEnd] === '\t')) {
+            afterEnd++;
+            if (content[afterEnd - 1] === ',') break; // Stop after the comma
+        }
+
+        // Also check for leading comma
+        var beforeStart = start;
+        while (beforeStart > 0 && (content[beforeStart - 1] === ' ' || content[beforeStart - 1] === '\n' || content[beforeStart - 1] === '\r' || content[beforeStart - 1] === '\t')) {
+            beforeStart--;
+        }
+        if (beforeStart > 0 && content[beforeStart - 1] === ',') {
+            beforeStart--;
+        }
+
+        var newContent = content.substring(0, beforeStart) + content.substring(afterEnd);
+
+        showProgress('Suppression...', 'Commit...', 75);
+        var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+            method: 'PUT',
+            body: JSON.stringify({ message: '[admin] Suppression : ' + value, content: encoded, sha: configData.sha })
+        });
+
+        progressSuccess('"' + value + '" supprimé.');
+        // Reload manage entries
+        setTimeout(function() { loadManageEntries(); }, 1500);
+
+    } catch (err) {
+        console.error(err);
+        progressError(err.message);
+    }
+});
