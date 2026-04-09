@@ -720,9 +720,14 @@ function buildEntryRow(title, index, sectionLabel, sectionKey, nameKey, iconSvg)
     var html = '<div class="entry-row">';
     html += '<div class="e-icon">' + iconSvg + '</div>';
     html += '<div class="e-info"><div class="e-title">' + safeTitle + '</div><div class="e-sub">' + sectionLabel + ' #' + (index + 1) + '</div></div>';
-    html += '<div class="e-actions"><button class="btn-icon danger" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="confirmDeleteFromBtn(this)">';
+    html += '<div class="e-actions">';
+    html += '<button class="btn-icon" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="openEditFromBtn(this)">';
+    html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+    html += '</button>';
+    html += '<button class="btn-icon danger" data-section="' + sectionKey + '" data-key="' + nameKey + '" data-value="' + escapedTitle + '" onclick="confirmDeleteFromBtn(this)">';
     html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
-    html += '</button></div></div>';
+    html += '</button>';
+    html += '</div></div>';
     return html;
 }
 
@@ -867,6 +872,157 @@ $('confirm-ok').addEventListener('click', async function() {
         });
 
         progressSuccess('"' + value + '" supprim\u00e9.');
+        setTimeout(function() { loadManageEntries(); }, 1500);
+
+    } catch (err) {
+        console.error(err);
+        progressError(err.message);
+    }
+});
+
+// ============================================================================
+// EDIT ENTRIES
+// ============================================================================
+var pendingEdit = null;
+
+function openEditFromBtn(btn) {
+    var section = btn.getAttribute('data-section');
+    var key = btn.getAttribute('data-key');
+    var value = btn.getAttribute('data-value');
+    openEdit(section, key, value);
+}
+
+function findEntryBlock(content, key, value) {
+    var searchStr = key + ': "' + value + '"';
+    var idx = content.indexOf(searchStr);
+    if (idx === -1) {
+        searchStr = key + ':"' + value + '"';
+        idx = content.indexOf(searchStr);
+    }
+    if (idx === -1) return null;
+
+    var start = idx;
+    while (start > 0 && content[start] !== '{') start--;
+
+    var depth = 0;
+    var end = start;
+    while (end < content.length) {
+        if (content[end] === '{') depth++;
+        else if (content[end] === '}') { depth--; if (depth === 0) break; }
+        end++;
+    }
+    return { start: start, end: end, block: content.substring(start, end + 1) };
+}
+
+function extractField(block, fieldName) {
+    var re = new RegExp(fieldName + '\\s*:\\s*"([^"]*)"');
+    var m = block.match(re);
+    return m ? m[1] : '';
+}
+
+function extractTags(block) {
+    var m = block.match(/tags\s*:\s*\[([^\]]*)\]/);
+    if (!m) return '';
+    var inner = m[1];
+    var tags = [];
+    var re = /"([^"]*)"/g;
+    var tm;
+    while ((tm = re.exec(inner)) !== null) {
+        tags.push(tm[1]);
+    }
+    return tags.join(', ');
+}
+
+function openEdit(section, key, value) {
+    var content = manageConfigContent;
+    var found = findEntryBlock(content, key, value);
+    if (!found) { toast('Bloc non trouv\u00e9', 'error'); return; }
+
+    var block = found.block;
+    var isCert = section === 'certifications';
+
+    // Show/hide fields based on section type
+    $('edit-desc-field').style.display = isCert ? 'none' : '';
+    $('edit-issuer-field').style.display = isCert ? '' : 'none';
+    $('edit-url-field').style.display = isCert ? '' : 'none';
+    $('edit-tags-field').style.display = isCert ? 'none' : '';
+    $('edit-label-name').textContent = isCert ? 'Nom' : 'Titre';
+
+    // Pre-fill fields
+    $('edit-name').value = value;
+    if (isCert) {
+        $('edit-issuer').value = extractField(block, 'issuer');
+        $('edit-url').value = extractField(block, 'url');
+    } else {
+        $('edit-desc').value = extractField(block, 'longDescription');
+        $('edit-tags').value = extractTags(block);
+    }
+
+    pendingEdit = { section: section, key: key, originalValue: value, blockInfo: found };
+    $('edit-overlay').classList.add('active');
+}
+
+$('edit-cancel').addEventListener('click', function() {
+    $('edit-overlay').classList.remove('active');
+    pendingEdit = null;
+});
+
+$('edit-save').addEventListener('click', async function() {
+    if (!pendingEdit) return;
+    $('edit-overlay').classList.remove('active');
+
+    var section = pendingEdit.section;
+    var key = pendingEdit.key;
+    var originalValue = pendingEdit.originalValue;
+    var isCert = section === 'certifications';
+    pendingEdit = null;
+
+    try {
+        showProgress('Modification...', 'Mise \u00e0 jour de config.js...', 40);
+
+        // Re-fetch config to get latest SHA
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var content = new TextDecoder('utf-8').decode(bytes);
+
+        // Find the block again in the fresh content
+        var found = findEntryBlock(content, key, originalValue);
+        if (!found) throw new Error('Entr\u00e9e "' + originalValue + '" non trouv\u00e9e');
+
+        var oldBlock = found.block;
+        var newBlock = oldBlock;
+
+        var newName = $('edit-name').value.trim();
+
+        if (isCert) {
+            var newIssuer = $('edit-issuer').value.trim();
+            var newUrl = $('edit-url').value.trim();
+
+            newBlock = newBlock.replace(new RegExp('(name\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
+            newBlock = newBlock.replace(new RegExp('(issuer\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newIssuer) + '"');
+            newBlock = newBlock.replace(new RegExp('(url\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newUrl) + '"');
+        } else {
+            var newDesc = $('edit-desc').value.trim();
+            var newTagsStr = $('edit-tags').value.trim();
+            var newTags = newTagsStr.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t.length > 0; });
+            var tagsFormatted = '[' + newTags.map(function(t) { return '"' + escapeForJS(t) + '"'; }).join(', ') + ']';
+
+            newBlock = newBlock.replace(new RegExp('(title\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
+            newBlock = newBlock.replace(new RegExp('(longDescription\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newDesc) + '"');
+            newBlock = newBlock.replace(/tags\s*:\s*\[[^\]]*\]/, 'tags: ' + tagsFormatted);
+        }
+
+        var newContent = content.substring(0, found.start) + newBlock + content.substring(found.end + 1);
+
+        showProgress('Modification...', 'Commit...', 75);
+        var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+            method: 'PUT',
+            body: JSON.stringify({ message: '[admin] Modification : ' + newName, content: encoded, sha: configData.sha })
+        });
+
+        progressSuccess('"' + newName + '" modifi\u00e9.');
         setTimeout(function() { loadManageEntries(); }, 1500);
 
     } catch (err) {
