@@ -779,6 +779,37 @@
     </div>
 </div>
 
+<!-- Edit modal -->
+<div class="confirm-overlay" id="edit-overlay">
+    <div class="confirm-card" style="max-width:520px;text-align:left;">
+        <h3 style="margin-bottom:16px;">Modifier l'entrée</h3>
+        <div class="field">
+            <label id="edit-label-name">Titre</label>
+            <input type="text" id="edit-name">
+        </div>
+        <div class="field" id="edit-desc-field">
+            <label>Description</label>
+            <textarea id="edit-desc" style="min-height:60px;"></textarea>
+        </div>
+        <div class="field" id="edit-issuer-field" style="display:none;">
+            <label>Organisme</label>
+            <input type="text" id="edit-issuer">
+        </div>
+        <div class="field" id="edit-url-field" style="display:none;">
+            <label>URL</label>
+            <input type="text" id="edit-url">
+        </div>
+        <div class="field" id="edit-tags-field">
+            <label>Tags <span style="color:var(--muted);font-size:0.78rem;">(séparés par des virgules)</span></label>
+            <input type="text" id="edit-tags" placeholder="Administration Système, Réseau, Cybersécurité">
+        </div>
+        <div class="confirm-actions" style="margin-top:20px;">
+            <button class="btn btn-cancel" id="edit-cancel">Annuler</button>
+            <button class="btn btn-submit" id="edit-save">Enregistrer</button>
+        </div>
+    </div>
+</div>
+
 <!-- Progress overlay -->
 <div class="progress-overlay" id="progress">
     <div class="progress-card" id="progress-card">
