@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/04/2026 au 09/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/04/2026 au 10/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 09/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 10/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,105 +75,84 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mardi 08 Avril 2026</h2>
-<h3>Docker CVE-2026-34040 : Faille critique permettant un accès root sur l'hôte</h3>
+            <h2>Mercredi 06 Avril 2026</h2>
+<h3>### Python Supply-Chain Compromise</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de sécurité critique (CVE-2026-34040, score CVSS 8.8) dans Docker Engine permet de contourner les plugins d'autorisation (AuthZ) et d'obtenir un accès root sur l'hôte. Cette vulnérabilité, issue d'un correctif incomplet pour CVE-2024-41110, expose les environnements conteneurisés à des risques d'escalade de privilèges. Les administrateurs doivent appliquer les correctifs urgents et auditer leurs configurations AuthZ.</p>
-<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Nouvelles variantes du malware Chaos ciblent les déploiements cloud mal configurés</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle variante du malware Chaos intègre un proxy SOCKS et étend ses attaques aux déploiements cloud mal configurés. Cette évolution marque une expansion des capacités du botnet, désormais capable de compromettre des infrastructures cloud exposées. Les équipes DevOps doivent renforcer la configuration de leurs services cloud et surveiller les activités anormales via des outils de détection d'intrusion.</p>
-<a href="https://thehackernews.com/2026/04/new-chaos-variant-targets-misconfigured.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Anthropic lance Claude Mythos pour la détection de failles zero-day</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Anthropic dévoile Claude Mythos, un modèle d'IA frontier dédié à la cybersécurité, capable de détecter des vulnérabilités critiques dans des systèmes sécurisés. Dans le cadre du projet Glasswing, ce modèle est utilisé par 12 géants du secteur pour renforcer les processus de détection des failles. Les administrateurs système peuvent anticiper une intégration de ces outils dans les pipelines de sécurité automatisés.</p>
-<a href="https://www.silicon.fr/data-ia-1372/claude-mythos-anthropic-devoile-un-modele-frontier-dedie-a-la-cybersecurite-226543" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<h3>GPUBreach : Nouvelle attaque RowHammer exploitant les GPU pour une escalade de privilèges</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs ont identifié plusieurs variantes de l'attaque RowHammer (GPUBreach, GDDRHammer, GeForceHammer) ciblant les GPU modernes. Ces attaques permettent une escalade de privilèges complète, voire un contrôle total de la machine hôte. Les administrateurs doivent appliquer les correctifs matériels (GPU) et logiciels (pilotes) et surveiller les accès mémoire anormaux.</p>
-<a href="https://thehackernews.com/2026/04/new-gpubreach-attack-enables-full-cpu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>OpenVINO 2026.1 : Support étendu pour Llama.cpp et nouvelles architectures Intel</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Intel publie OpenVINO 2026.1 avec un backend dédié à Llama.cpp, une meilleure prise en charge des GPU Arc Pro et des optimisations pour les modèles d'IA. Cette version facilite le déploiement d'inférences IA sur des infrastructures hybrides (CPU/GPU). Les équipes DevOps peuvent exploiter ces améliorations pour accélérer les workloads IA dans leurs environnements de production.</p>
-<a href="https://www.phoronix.com/news/OpenVINO-2026.1-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Chrome 147 : Restrictions renforcées et nouvelle API d'impression web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google publie Chrome 147 avec des restrictions accrues sur les API sensibles et une nouvelle API d'impression web. Les administrateurs doivent évaluer l'impact de ces changements sur les applications internes et configurer les politiques de groupe (GPO) pour les déploiements d'entreprise.</p>
-<a href="https://www.phoronix.com/news/Chrome-147-Stable-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Flowise AI : Exploitation active d'une RCE critique (CVE-2025-59528)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plus de 12 000 instances de Flowise, une plateforme open-source de construction d'agents IA, sont exposées à une faille d'injection de code (CVSS 10.0). Des attaquants exploitent activement cette vulnérabilité pour prendre le contrôle des serveurs. Les administrateurs doivent mettre à jour Flowise immédiatement et vérifier les logs pour détecter d'éventuelles compromissions.</p>
-<a href="https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Lundi 07 Avril 2026</h2>
-<h3>Microsoft déploie Windows 11 25H2 sur les éditions Famille et Pro</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft commence le déploiement automatique de Windows 11 25H2 pour les utilisateurs des éditions Famille et Pro encore sous la version 24H2. Cette mise à jour introduit des "Feature Flags" pour tester des fonctionnalités expérimentales. Les administrateurs doivent planifier les tests de compatibilité et préparer les scripts de déploiement pour les environnements d'entreprise.</p>
-<a href="https://www.it-connect.fr/microsoft-deploie-windows-11-25h2-sur-les-pc-avec-windows-famille-et-pro/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>OpenRSAT : Alternative open-source multi-OS pour l'administration Active Directory</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : OpenRSAT est une solution open-source compatible Windows, Linux et macOS, conçue pour remplacer les outils RSAT de Microsoft. Elle permet d'administrer Active Directory, DNS et d'autres services via une interface unifiée. Les administrateurs système peuvent l'utiliser pour standardiser les outils d'administration dans des environnements multi-OS.</p>
-<a href="https://www.it-connect.fr/openrsat-alternative-multi-os-et-open-source-pour-administrer-votre-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Flatpak 1.16.4 : Correctifs critiques pour des vulnérabilités de sandbox escape</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Flatpak 1.16.4 corrige des failles critiques permettant une évasion de sandbox et la suppression de fichiers hôtes arbitraires. Les administrateurs Linux doivent appliquer cette mise à jour pour sécuriser les environnements utilisant Flatpak, notamment dans les distributions basées sur GNOME ou KDE.</p>
-<a href="https://www.phoronix.com/news/Flatpak-1.16.4-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>XDG-Desktop-Portal 1.20.4 : Protection contre la corruption de fichiers hôtes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : XDG-Desktop-Portal 1.20.4 introduit des mesures pour empêcher les applications sandboxées de modifier ou supprimer des fichiers hôtes. Cette mise à jour renforce la sécurité des environnements de bureau Linux utilisant Flatpak ou Snap. Les administrateurs doivent mettre à jour ce composant pour éviter les risques de corruption de fichiers système.</p>
-<a href="https://www.phoronix.com/news/XDG-Desktop-Portal-1.20.4" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Google accélère sa transition vers la cryptographie post-quantique d'ici 2029</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google annonce son intention de migrer entièrement vers des algorithmes post-quantum d'ici 2029 pour sécuriser ses communications et services. Cette initiative s'inscrit dans une tendance plus large du secteur pour anticiper les risques liés aux ordinateurs quantiques. Les administrateurs doivent évaluer l'impact de cette transition sur leurs infrastructures et planifier les mises à jour des protocoles TLS et SSH.</p>
-<a href="https://www.schneier.com/blog/archives/2026/04/google-wants-to-transition-to-post-quantum-cryptography-by-2029.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
-</div>
-
-<hr />
-<h2>Vendredi 06 Avril 2026</h2>
-<h3>PyPI : Compromission de la supply chain via le package litellm</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une compromission de la supply chain a été détectée dans le package Python litellm (version 1.82.8). La wheel malveillante contenait un fichier .pth exécutant du code arbitraire lors de l'import du module. Les administrateurs doivent auditer leurs dépendances Python et utiliser des outils comme `pip-audit` ou `safety` pour détecter les packages compromis.</p>
+<p><strong>Résumé</strong> : Une compromission de la chaîne d'approvisionnement a été identifiée dans le package Python litellm (version 1.82.8) sur PyPI. Le wheel malveillant contenait un fichier .pth exécutant du code arbitraire, exposant les environnements de développement à des risques de vol de données ou d'exécution de commandes.</p>
 <a href="https://www.schneier.com/blog/archives/2026/04/python-supply-chain-compromise.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<h3>Nord-Corée : Campagne de diffusion de 1 700 packages malveillants sur npm, PyPI et Go</h3>
+<hr />
+<h2>Jeudi 07 Avril 2026</h2>
+<h3>### Docker CVE-2026-34040 Lets Attackers Bypass Authorization and Gain Host Access</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen Contagious Interview a publié 1 700 packages malveillants sur les registries npm, PyPI, Go et Rust, imitant des outils de développement légitimes. Ces packages visent à exfiltrer des données ou à compromettre les environnements de build. Les équipes DevOps doivent scanner leurs dépendances et utiliser des solutions comme `dependabot` ou `renovate` pour détecter les anomalies.</p>
-<a href="https://thehackernews.com/2026/04/n-korean-hackers-spread-1700-malicious.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-34040, CVSS 8.8) dans Docker Engine permet de contourner les plugins d'autorisation (AuthZ) via des requêtes HTTP spécifiques, offrant un accès root à l'hôte. Cette faille exploite une correction incomplète pour CVE-2024-41110 et nécessite une attention immédiate pour les environnements de production.</p>
+<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Bull confirme son renouveau dans l'IA et le HPC avec 500 embauches prévues</h3>
+<hr />
+<h3>### New GPUBreach Attack Enables Full CPU Privilege Escalation via GDDR6 Bit-Flips</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Bull, racheté par l'État français, annonce une croissance de 16 % et prévoit 500 embauches mondiales pour renforcer ses activités dans l'IA et le calcul haute performance (HPC). Cette initiative s'inscrit dans une stratégie de souveraineté technologique européenne. Les administrateurs système peuvent anticiper une demande accrue pour des infrastructures HPC et IA dans les années à venir.</p>
-<a href="https://www.silicon.fr/business-1367/bull-confirme-son-renouveau-dans-lia-et-le-hpc-226533" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Des chercheurs ont démontré une nouvelle attaque RowHammer (GPUBreach) ciblant les GPU modernes (GDDR6), permettant une élévation de privilèges complète et potentiellement un contrôle total de la machine hôte. Cette vulnérabilité matérielle nécessite une mitigation urgente via des correctifs firmware ou des protections logicielles.</p>
+<a href="https://thehackernews.com/2026/04/new-gpubreach-attack-enables-full-cpu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Hugging Face contribue Safetensors au PyTorch Foundation</h3>
+<hr />
+<h3>### Google intègre des outils de santé mentale dans Gemini</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Hugging Face a transféré son projet Safetensors à la PyTorch Foundation (Linux Foundation) pour sécuriser l'exécution des modèles d'IA. Safetensors vise à prévenir les exécutions de code arbitraire lors du chargement des poids des modèles. Les administrateurs peuvent utiliser cette bibliothèque pour renforcer la sécurité des pipelines d'IA dans leurs environnements de production.</p>
-<a href="https://www.phoronix.com/news/PyTorch-Safetensors" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Sous la pression réglementaire, Google ajoute des fonctionnalités de détection de crise et d'orientation psychologique dans son assistant IA Gemini. Une évolution pertinente pour les administrateurs gérant des environnements collaboratifs sensibles aux enjeux de bien-être numérique.</p>
+<a href="https://www.silicon.fr/data-ia-1372/google-integre-des-outils-de-sante-mentale-dans-gemini-226538" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<hr />
+<h2>Vendredi 08 Avril 2026</h2>
+<h3>### APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe APT28 (Forest Blizzard) déploie un nouveau malware (PRISMEX) via des campagnes de spear-phishing ciblant l'Ukraine et les alliés de l'OTAN. Ce malware combine stéganographie avancée et composants COM pour exfiltrer des données sensibles. Une menace critique pour les infrastructures stratégiques.</p>
+<a href="https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>### Shrinking the IAM Attack Surface through Identity Visibility and Intelligence Platforms (IVIP)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les plateformes IVIP émergent pour réduire la surface d'attaque liée à l'IAM (Identity and Access Management) dans les entreprises. Elles permettent une visibilité centralisée sur les identités machine et utilisateur, essentielle pour contrer les attaques par usurpation d'identité et les fuites de credentials.</p>
+<a href="https://thehackernews.com/2026/04/shrinking-iam-attack-surface-through.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>### Anthropic's Claude Mythos Finds Thousands of Zero-Day Flaws Across Major Systems</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Anthropic lance le projet Glasswing avec son modèle Claude Mythos, capable d'identifier des milliers de vulnérabilités zero-day dans des systèmes critiques. Une avancée majeure pour la cybersécurité proactive, mais nécessitant une intégration rigoureuse dans les processus de patch management.</p>
+<a href="https://thehackernews.com/2026/04/anthropics-claude-mythos-finds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>### OVHcloud crée une division « Défense »</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OVHcloud annonce la création d'une division dédiée à la Défense pour répondre aux besoins des ministères des Armées. Une initiative stratégique pour renforcer la souveraineté numérique européenne et proposer des solutions cloud conformes aux exigences de sécurité nationale.</p>
+<a href="https://www.silicon.fr/business-1367/ovhcloud-cree-une-division-defense-226564" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<hr />
+<h2>Samedi 09 Avril 2026</h2>
+<h3>### EngageLab SDK Flaw Exposed 50M Android Users, Including 30M Crypto Wallets</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans le SDK EngageLab (Android) a exposé 50 millions d'utilisateurs, dont 30 millions de portefeuilles crypto. Le bug permettait à des apps malveillantes de contourner les restrictions Android et d'accéder à des données sensibles. Une mise à jour urgente est requise pour les développeurs utilisant ce SDK.</p>
+<a href="https://thehackernews.com/2026/04/engagelab-sdk-flaw-exposed-50m-android.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>### Adobe Reader Zero-Day Exploited via Malicious PDFs Since December 2025</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité zero-day dans Adobe Reader (exploitée via des PDF malveillants) est active depuis décembre 2025. Les attaquants utilisent des techniques sophistiquées pour contourner les protections et exécuter du code arbitraire. Une mise à jour immédiate d'Adobe Reader est impérative.</p>
+<a href="https://thehackernews.com/2026/04/adobe-reader-zero-day-exploited-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>### L’Etat réaffirme son intention de réduire ses dépendances numériques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La DINUM (Direction interministérielle du numérique) est chargée de coordonner la réduction des dépendances aux solutions numériques extra-européennes. Une feuille de route stratégique pour les administrateurs système visant à sécuriser les infrastructures critiques et favoriser l'innovation locale.</p>
+<a href="https://www.silicon.fr/business-1367/letat-reaffirme-son-intention-de-reduire-ses-dependances-numeriques-226570" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>

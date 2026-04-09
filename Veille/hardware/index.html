@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hardware | Serveurs & Composants — 06/04/2026 au 09/04/2026</title>
+    <title>Veille Hardware | Serveurs & Composants — 06/04/2026 au 10/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%2310b981%22>HW</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🖥️ Hardware</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Serveurs & Composants</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles architectures, vulnérabilités firmware et tendances datacenter</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 09/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 10/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,103 +76,160 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Mercredi 09 Avril 2026</h2>
-<h3>Intel et SambaNova lancent une plateforme d'inférence IA hétérogène</h3>
+<h3>Intel Arc GPUs : support amélioré mais encore instable</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel et SambaNova annoncent une plateforme d'inférence IA hétérogène exploitant les Xeon 6, les RDU SambaNova SN50 et les GPU Nvidia. Cette solution permet d'optimiser les charges de travail en répartissant dynamiquement les tâches entre différents accélérateurs matériels, réduisant ainsi les coûts et améliorant les performances pour les datacenters hybrides.</p>
+<p><strong>Résumé</strong> : Le dernier pilote Intel Arc permet désormais de lancer *Crimson Desert* avec des performances proches de 60 FPS en ultra sur un Arc B580. Cependant, des plantages occasionnels et des artefacts visuels persistent, limitant son adoption en production. Les entreprises doivent attendre une stabilisation avant d'envisager des déploiements critiques.</p>
+<a href="https://www.tomshardware.com/pc-components/gpus/intel-arc-gpus-can-finally-boot-up-and-play-crimson-desert-but-youll-probably-want-to-wait-for-official-support" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Intel dépasse les 300 milliards de dollars de capitalisation</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Portée par ses avancées en IA, CPU et fonderie (notamment via le partenariat TeraFab avec SpaceX, xAI et Tesla), Intel atteint sa plus haute valorisation boursière en 25 ans. Cette dynamique renforce sa position face à AMD et Nvidia, avec un impact direct sur les stratégies d'infrastructure des entreprises.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/fueled-by-musks-terafab-tie-in-intels-market-cap-hits-highest-level-in-25-years-tops-usd300-billion-on-cpu-ai-and-foundry-momentum" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Geekbench 6.7 intègre une détection des benchmarks truqués (BOT)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La nouvelle version de Geekbench inclut une détection des scores artificiellement gonflés via l'outil Intel BOT, désormais marqués comme invalides. Cette mesure vise à garantir des benchmarks plus représentatifs des performances réelles, impactant les évaluations matérielles pour les datacenters.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/geekbench-6-7-adds-intel-bot-detection-to-spoof-out-unrealistic-cpu-scores-benchmark-runs-with-bot-enabled-will-be-marked-as-invalid" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Nvidia N1/N1X SoC : fuite d'un processeur ARM haut de gamme</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des images d'un SoC Nvidia N1 (ARM) ont fuité, révélant un design avec 128 Go de LPDDR5X-8533 et une alimentation robuste (8+6+2 phases VRM). Ce composant, repéré à ~1 400 $ sur un marché chinois, pourrait cibler les serveurs AI légers et les stations de travail mobiles, bouleversant l'écosystème actuel dominé par x86.</p>
+<a href="https://www.tomshardware.com/pc-components/motherboards/alleged-images-of-the-long-awaited-nvidia-n1-n1x-soc-surface-on-laptop-motherboard-board-features-128-gb-of-lpddr5x-memory-alongside-8-6-2-phase-vrm" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Intel et Google étendent leur partenariat pour l'IA en datacenter</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google déploiera des Xeon avec des IPU (Infrastructure Processing Units) personnalisées d'Intel pour ses workloads AI et cloud, malgré le développement interne de puces Arm (Axion). Cette collaboration renforce l'écosystème Intel dans les datacenters critiques, avec un impact sur les choix d'architecture des entreprises.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/intel-and-google-announce-multi-year-chip-deal-google-will-deploy-intel-xeon-with-custom-ipus-for-next-gen-ai-cloud-infrastructure" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Intel prépare le déploiement d'EMIB-T pour les accélérateurs AI</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Intel annonce le déploiement de sa technologie EMIB-T (Embedded Multi-Die Interconnect Bridge - Thin) d'ici fin 2026, en réponse aux limites de capacité de TSMC CoWoS. Cette solution, plus économique, vise à accélérer la production d'accélérateurs AI avancés, réduisant les coûts et les délais pour les datacenters.</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/intels-emib-t-heads-for-fab-rollout-this-year" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Dell Pro Rugged 12 : une tablette résistante pour environnements extrêmes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Dell lance une tablette Windows 12 Pro Rugged, conçue pour résister aux chocs, à la poussière et aux températures extrêmes. Idéale pour les techniciens de datacenter ou les équipes terrain, elle intègre des certifications militaires (MIL-STD-810H) et un écran tactile 12" robuste.</p>
+<a href="https://www.servethehome.com/dell-pro-rugged-12-tablet-review-the-resilient-road-warrior/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>NVIDIA Vera Rubin NVL72 : nouvelle architecture pour l'IA à grande échelle</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Présentée au GTC 2026, la plateforme Vera Rubin NVL72 (via Pegatron) combine CPU Grace, GPU Blackwell et accélérateurs dédiés pour l'IA. Conçue pour les datacenters hyperscale, elle promet une densité 2x supérieure aux solutions actuelles, avec un refroidissement liquide optimisé.</p>
+<a href="https://www.servethehome.com/nvidia-vera-rubin-nvl72-rack-and-more-in-the-pegatron-booth-at-gtc-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>CoreWeave mise sur l'ingénierie financière pour ses datacenters</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CoreWeave, spécialiste des datacenters AI, combine une conception technique innovante (GPU NVIDIA) avec des stratégies financières agressives (levées de fonds, partenariats). Cette approche redéfinit les modèles de financement des infrastructures AI, avec des implications pour les entreprises cherchant à externaliser leurs workloads.</p>
+<a href="https://www.nextplatform.com/cloud/2026/04/09/coreweave-takes-as-much-financial-engineering-as-it-does-datacenter-design/5215794" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
+</div>
+
+<hr />
+<h2>Mardi 08 Avril 2026</h2>
+<h3>Intel et SambaNova unissent leurs forces pour une plateforme AI hétérogène</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Intel et SambaNova annoncent une collaboration pour une plateforme d'inférence AI hétérogène, combinant Xeon 6, SambaNova SN50 (RDU) et GPUs Nvidia. Cette solution vise à optimiser les workloads AI en répartissant dynamiquement les tâches entre CPU, accélérateurs dédiés et GPU, réduisant les coûts et la latence.</p>
 <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/intel-and-sambanova-team-up-on-heterogenous-ai-inference-platform-different-hardware-performs-different-workloads" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>AMD dévoile le prix du Ryzen 9 9950X3D2 à 899 $</h3>
+<h3>AMD Ryzen 9 9950X3D2 : premier CPU X3D à double cache à 899 $</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD annonce un prix de 899 $ pour le Ryzen 9 9950X3D2, soit 200 $ de plus que le Ryzen 9 9950X3D. Ce processeur 16 cœurs avec double cache 3D V-Cache cible les utilisateurs exigeants en calcul haute performance et gaming, avec une sortie prévue le 22 avril 2026.</p>
+<p><strong>Résumé</strong> : AMD annonce le Ryzen 9 9950X3D2 à 899 $, soit 200 $ de plus que le 9950X3D. Ce processeur, doté de deux caches 3D V-Cache, cible les workloads haut de gamme (simulation, rendu 3D). Son prix élevé pourrait limiter son adoption en entreprise, sauf pour les stations de travail dédiées.</p>
 <a href="https://www.tomshardware.com/pc-components/cpus/amd-reveals-usd899-price-tag-for-ryzen-9-9950x3d2-first-dual-cache-x3d-cpu-is-usd200-more-expensive-than-the-ryzen-9-9950x3d" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>PCIe 8.0 : vers 1 To/s et défis d'intégration</h3>
+<h3>Bain Capital évince un locataire suspecté de trafic de GPUs Nvidia vers la Chine</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La roadmap PCI Express révèle des défis majeurs pour l'intégration de PCIe 6.0 et au-delà, avec un objectif de 1 To/s pour PCIe 8.0. Les fabricants devront surmonter des obstacles techniques liés à la dissipation thermique et à la compatibilité des connecteurs, impactant les architectures serveurs futures.</p>
-<a href="https://www.tomshardware.com/pc-components/motherboards/pci-express-roadmap-the-path-to-1tb-s-with-pci-8-0-the-challenges-of-integration-and-beyond" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Megaspeed évincé d'un datacenter pour trafic illicite de GPU Nvidia</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Bridge Data Centers résilie le contrat de Megaspeed, suspecté d'avoir détourné pour 2 milliards de dollars de GPU Nvidia vers la Chine via des réseaux illicites. Ce cas illustre les risques de conformité pour les opérateurs de datacenters hébergeant des acteurs malveillants.</p>
+<p><strong>Résumé</strong> : Bridge Data Centers (filiale de Bain Capital) a résilié le bail de Megaspeed, accusé d'avoir détourné ~2 milliards de dollars de GPUs Nvidia vers la Chine via des canaux illicites. Cet incident souligne les risques géopolitiques dans la chaîne d'approvisionnement des datacenters AI.</p>
 <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/bain-capitals-data-center-unit-removes-disgraced-tenant-suspected-of-smuggling-nvidia-gpus-to-china-megaspeed-previously-alleged-to-have-spent-roughly-usd2-billion-on-ai-processors-for-illicit-distribution" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Vulnérabilité critique dans macOS : compte à rebours de 49,7 jours</h3>
+<h3>PCIe 8.0 : vers 1 To/s avec des défis d'intégration majeurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un bug dans le stack réseau de macOS déclenche un compte à rebours de 49,7 jours, bloquant les machines jusqu'à un redémarrage. Cette faille, découverte par Photon, affecte les infrastructures critiques utilisant des systèmes Apple en production.</p>
-<a href="https://www.tomshardware.com/software/macos/macos-has-a-49-7-day-networking-time-bomb-built-in-that-only-a-reboot-fixes-comparison-operation-on-unreliable-time-value-stops-machines-dead-in-their-tracks" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Le standard PCIe 8.0 promet des débits jusqu'à 1 To/s, mais son intégration pose des défis techniques (consommation, dissipation thermique, compatibilité). Les fabricants de cartes mères et serveurs devront adapter leurs designs, avec un impact sur les roadmaps produits d'ici 2027-2028.</p>
+<a href="https://www.tomshardware.com/pc-components/motherboards/pci-express-roadmap-the-path-to-1tb-s-with-pci-8-0-the-challenges-of-integration-and-beyond" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h2>Mardi 08 Avril 2026</h2>
+<h3>Meta renforce son moteur MTIA pour l'IA maison</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Meta dévoile une feuille de route mise à jour pour son accélérateur MTIA (Meta Training and Inference Accelerator), conçu pour réduire la dépendance aux GPU tiers. Cette stratégie, couplée à des investissements massifs dans les datacenters, vise à autonomiser Meta dans le domaine de l'IA générative.</p>
+<a href="https://www.nextplatform.com/compute/2026/04/08/contemplating-metas-homegrown-mtia-compute-engine-roadmap/5214899" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
+</div>
+
+<h3>Rebellions AI lève des fonds pour des systèmes d'inférence</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Rebellions AI, startup sud-coréenne, a levé 500 millions de dollars pour industrialiser ses accélérateurs d'inférence AI. Ses solutions, basées sur des architectures RISC-V personnalisées, ciblent les datacenters hyperscale et les entreprises cherchant à réduire leurs coûts d'inférence.</p>
+<a href="https://www.nextplatform.com/compute/2026/04/06/rebellions-ai-rings-up-the-money-to-rack-up-ai-inference-systems/5214660" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
+</div>
+
+<hr />
+<h2>Lundi 07 Avril 2026</h2>
 <h3>Anthropic identifie des milliers de vulnérabilités zero-day dans les OS et navigateurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le modèle Claude Mythos Preview d'Anthropic a détecté des milliers de vulnérabilités zero-day dans les principaux OS et navigateurs, dont certaines non patchées depuis des décennies. Les entreprises doivent prioriser les correctifs pour éviter des attaques massives.</p>
+<p><strong>Résumé</strong> : Le modèle Claude Mythos Preview d'Anthropic a détecté des milliers de vulnérabilités critiques (dont certaines non patchées depuis des décennies) dans les principaux OS (Windows, Linux, macOS) et navigateurs. Les entreprises doivent prioriser les mises à jour firmware et logicielles pour éviter des exploits massifs.</p>
 <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-latest-ai-model-identifies-thousands-of-zero-day-vulnerabilities-in-every-major-operating-system-and-every-major-web-browser-claude-mythos-preview-sparks-race-to-fix-critical-bugs-some-unpatched-for-decades" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Intel rejoint le projet TeraFab d'Elon Musk pour révolutionner les fabs de semi-conducteurs</h3>
+<h3>Intel introduit sa technologie de compression neuronale pour GPU</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel intègre le projet TeraFab, aux côtés de SpaceX, xAI et Tesla, visant à repenser les technologies de fabrication de puces. Cette collaboration pourrait accélérer l'innovation dans les procédés de gravure et réduire les coûts pour les datacenters.</p>
-<a href="https://www.tomshardware.com/tech-industry/semiconductors/intel-joins-elon-musks-terafab-project-intel-is-proud-to-join-the-terafab-project-with-spacex-xai-and-tesla-to-help-refactor-silicon-fab-technology" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Broadcom fournira 3,5 GW de capacité TPU Google à Anthropic dès 2027</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Broadcom a annoncé un accord pour fournir 3,5 GW de capacité TPU Google à Anthropic à partir de 2027, soutenant la croissance de ses modèles IA. Cette collaboration renforce l'infrastructure cloud dédiée à l'IA générative.</p>
-<a href="https://www.tomshardware.com/tech-industry/broadcom-expands-anthropic-deal-to-3-5gw-of-google-tpu-capacity-from-2027" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>MSI présente des serveurs IA au NVIDIA GTC 2026</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : MSI dévoile des solutions serveurs dédiées IA, dont le XpertStation WS300 et des stations multi-GPU refroidies par air/liquide. Ces systèmes ciblent les charges de travail intensives en inférence et entraînement, avec des configurations optimisées pour les GPU Nvidia.</p>
-<a href="https://www.servethehome.com/msi-xpertstation-ws300-nvidia-gb300-station-and-more-at-the-msi-nvidia-gtc-2026-booth/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
-</div>
-
-<h3>Redox OS interdit les contributions générées par IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le système d'exploitation open-source Redox OS adopte une politique interdisant les contributions issues de modèles de langage (LLM), citant des risques de qualité et de sécurité. Cette décision reflète les défis éthiques et techniques liés à l'IA dans le développement logiciel.</p>
-<a href="https://www.phoronix.com/news/Redox-OS-March-2026" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h2>Lundi 07 Avril 2026</h2>
-<h3>Intel lance sa technologie de compression neuronale pour GPU sans cœurs IA dédiés</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Intel introduit une technologie de compression neuronale (NTC) pour GPU, incluant un mode de repli compatible avec les cartes sans cœurs XMX. Cette innovation améliore les performances des modèles IA sur des infrastructures existantes, réduisant les coûts de mise à niveau.</p>
+<p><strong>Résumé</strong> : Intel lance sa propre solution de compression neuronale (NTC), compatible même avec les GPU sans cœurs AI dédiés. Cette technologie, comparable à Nvidia NTC, vise à optimiser les performances graphiques et l'efficacité énergétique dans les datacenters et stations de travail.</p>
 <a href="https://www.tomshardware.com/pc-components/gpus/intel-introduces-its-own-neural-compression-technology-with-a-fallback-mode-that-works-on-gpus-without-dedicated-ai-cores-early-performance-is-on-the-level-of-nvidia-ntc" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Les investisseurs poussent Amazon, Microsoft et Google à révéler leur consommation énergétique et hydrique</h3>
+<h3>macOS : un bug réseau provoque un compte à rebours de 49,7 jours</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus d'une douzaine d'investisseurs exigent une transparence accrue sur la consommation d'eau et d'énergie des datacenters de Amazon, Microsoft et Google. Cette pression pourrait entraîner des audits indépendants et des rapports ESG plus stricts pour les opérateurs cloud.</p>
+<p><strong>Résumé</strong> : Un bug dans le stack réseau de macOS crée un compte à rebours de 49,7 jours qui bloque les machines (comparaison sur une valeur temporelle instable). La seule solution actuelle est un redémarrage, posant un risque pour les serveurs macOS en production.</p>
+<a href="https://www.tomshardware.com/software/macos/macos-has-a-49-7-day-networking-time-bomb-built-in-that-only-a-reboot-fixes-comparison-operation-on-unreliable-time-value-stops-machines-dead-in-their-tracks" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Broadcom fournit 3,5 GW de TPU Google à Anthropic dès 2027</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Broadcom a signé un accord pour fournir à Anthropic 3,5 GW de capacité TPU (via Google) à partir de 2027, alimentant les modèles Claude. Cette collaboration renforce la position de Broadcom dans l'écosystème AI et impacte les stratégies d'approvisionnement des entreprises.</p>
+<a href="https://www.tomshardware.com/tech-industry/broadcom-expands-anthropic-deal-to-3-5gw-of-google-tpu-capacity-from-2027" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Framework alerte sur la hausse persistante des prix RAM/SSD en 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Framework prévient que les prix de la RAM et des SSD continueront d'augmenter en 2026 en raison de la crise des semi-conducteurs, malgré une stabilisation temporaire. Les entreprises doivent anticiper des coûts supplémentaires pour les mises à niveau de serveurs et postes de travail.</p>
+<a href="https://www.tomshardware.com/laptops/framework-warns-of-even-more-rising-ram-and-ssd-prices-through-2026-as-memory-crisis-persists-some-reprieve-as-prices-plateau-in-latest-monthly-update" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>La plupart des entreprises achèteront plutôt que de construire leurs stacks AI</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Selon une analyse du Next Platform, la majorité des néoclouds, États souverains et entreprises externaliseront leurs stacks AI (via des fournisseurs comme Nvidia, AWS ou Google) plutôt que de les développer en interne, en raison des coûts et de la complexité.</p>
+<a href="https://www.nextplatform.com/control/2026/04/08/most-neoclouds-sovereigns-and-enterprises-will-buy-not-build-their-ai-stacks/5214751" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
+</div>
+
+<hr />
+<h2>Dimanche 06 Avril 2026</h2>
+<h3>Investisseurs poussent Amazon, Microsoft et Google à révéler leur consommation énergétique et hydrique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une coalition d'investisseurs demande à Amazon, Microsoft et Google de publier des données détaillées sur la consommation d'eau et d'énergie de leurs datacenters américains. Cette transparence, attendue avant les assemblées générales, pourrait influencer les régulations futures et les choix d'hébergement des entreprises.</p>
 <a href="https://www.tomshardware.com/tech-industry/investors-push-amazon-microsoft-and-google-to-disclose-data-center-water-and-power-consumption" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Flatpak corrige des failles critiques de contournement de sandbox</h3>
+<h3>Intel rejoint le projet TeraFab d'Elon Musk</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Flatpak 1.16.4 corrige des vulnérabilités critiques permettant l'échappement de sandbox et la suppression de fichiers hôtes. Ces correctifs sont critiques pour les environnements Linux sécurisés, notamment dans les datacenters utilisant des conteneurs.</p>
-<a href="https://www.phoronix.com/news/Flatpak-1.16.4-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Intel intègre le projet TeraFab, une initiative d'Elon Musk (SpaceX, xAI, Tesla) visant à révolutionner les technologies de fonderie de semi-conducteurs. Cette collaboration pourrait accélérer l'innovation dans les procédés de fabrication, avec des retombées pour les datacenters (coûts, performance).</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/intel-joins-elon-musks-terafab-project-intel-is-proud-to-join-the-terafab-project-with-spacex-xai-and-tesla-to-help-refactor-silicon-fab-technology" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h2>Vendredi 06 Avril 2026</h2>
-<h3>Les États-Unis envisagent d'interdire l'export de machines DUV vers la Chine</h3>
+<h3>MSI dévoile des serveurs pour accélérateurs Nvidia GB300 au GTC 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un groupe bipartisan de sénateurs propose d'interdire l'export de machines de lithographie DUV vers des entreprises chinoises comme Huawei, SMIC et YMTC. Cette mesure pourrait perturber les chaînes d'approvisionnement des datacenters utilisant des équipements fabriqués en Chine.</p>
-<a href="https://www.tomshardware.com/tech-industry/semiconductors/u-s-lawmakers-aim-to-ban-export-of-duv-chipmaking-and-etching-tools-to-leading-firms-in-china-bipartisan-proposal-would-ban-lithography-equipment-for-huawei-smic-and-others" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : MSI présente une gamme de serveurs (XpertStation WS300, EdgeXpert) optimisés pour les GPU Nvidia GB300 (Blackwell) au GTC 2026. Ces solutions ciblent les workloads AI intensifs, avec des options de refroidissement air/liquide et des configurations multi-GPU.</p>
+<a href="https://www.servethehome.com/msi-xpertstation-ws300-nvidia-gb300-station-and-more-at-the-msi-nvidia-gtc-2026-booth/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>WD annonce des disques durs de 60 To (ePMR) et 100 To (HAMR) d'ici 2029</h3>
+<h3>Rebellions AI lève des fonds pour des systèmes d'inférence</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Western Digital révèle sa feuille de route pour atteindre 60 To avec l'ePMR d'ici 2029, et 100 To via HAMR. Ces avancées permettront de réduire les coûts de stockage par To dans les datacenters, tout en repoussant les limites physiques des HDD.</p>
-<a href="https://www.tomshardware.com/pc-components/hdds/wd-innovation-day-2026-press-q-and-a-transcript-roadmap-plans-to-reach-60tb-with-epmr-and-100tb-via-hamr-by-2029-at-some-point-the-laws-of-physics-will-require-us-to-transition-to-hamr" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Intel modifie un CPU Bartlett Lake pour le faire fonctionner sur carte mère Z790</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le Core 9 273QPE (Bartlett Lake, 12 cœurs P) a été modifié pour fonctionner sur une carte mère Z790, surpassant le Ryzen 9 9900X3D en Cinebench multi-cœur. Cette démonstration souligne les possibilités d'optimisation des CPU OEM pour des usages non standard.</p>
-<a href="https://www.tomshardware.com/pc-components/cpus/intels-oem-only-bartlett-lake-cpu-modded-to-run-on-consumer-z790-motherboard-beats-amds-ryzen-9-9900x3d-in-cinebench-multi-core-test-core-9-273qpe-has-12-cores-24-threads-and-hits-5-4ghz" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Rebellions AI, startup sud-coréenne, a levé 500 millions de dollars pour industrialiser ses accélérateurs d'inférence AI. Ses solutions, basées sur des architectures RISC-V personnalisées, ciblent les datacenters hyperscale et les entreprises cherchant à réduire leurs coûts d'inférence.</p>
+<a href="https://www.nextplatform.com/compute/2026/04/06/rebellions-ai-rings-up-the-money-to-rack-up-ai-inference-systems/5214660" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
 </div>
         </div>
     </div>
