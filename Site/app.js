@@ -980,9 +980,73 @@ function togglePDF(id, url) {
     const card = c.closest('.project-card');
     if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
     document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
     c.style.display = 'block';
-    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+    if(card) card.classList.add('expanded');
+    renderPDFViewer(c, url);
+    setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100);
+}
+
+function renderPDFViewer(container, url) {
+    container.innerHTML = '<div class="pdf-loading"><div style="width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px;"></div>Chargement du PDF...</div>';
+    var pdfState = { doc: null, currentPage: 1, totalPages: 0, rendering: false };
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        pdfState.doc = pdf;
+        pdfState.totalPages = pdf.numPages;
+
+        container.innerHTML = '';
+        var viewer = document.createElement('div');
+        viewer.className = 'pdf-viewer-inner';
+        container.appendChild(viewer);
+
+        var controls = document.createElement('div');
+        controls.className = 'pdf-controls';
+        var prevBtn = document.createElement('button');
+        prevBtn.textContent = 'Précédent';
+        var pageInfo = document.createElement('span');
+        var nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        var dlBtn = document.createElement('button');
+        dlBtn.textContent = 'Télécharger';
+        dlBtn.style.marginLeft = '12px';
+        controls.appendChild(prevBtn);
+        controls.appendChild(pageInfo);
+        controls.appendChild(nextBtn);
+        controls.appendChild(dlBtn);
+        container.appendChild(controls);
+
+        function renderPage(num) {
+            if (pdfState.rendering) return;
+            pdfState.rendering = true;
+            pdfState.currentPage = num;
+            pageInfo.textContent = 'Page ' + num + ' / ' + pdfState.totalPages;
+            prevBtn.disabled = num <= 1;
+            nextBtn.disabled = num >= pdfState.totalPages;
+
+            pdf.getPage(num).then(function(page) {
+                viewer.innerHTML = '';
+                var scale = Math.min((container.clientWidth - 40) / page.getViewport({scale: 1}).width, 2);
+                var viewport = page.getViewport({scale: scale});
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                viewer.appendChild(canvas);
+                page.render({canvasContext: ctx, viewport: viewport}).promise.then(function() {
+                    pdfState.rendering = false;
+                });
+            });
+        }
+
+        prevBtn.addEventListener('click', function() { if (pdfState.currentPage > 1) renderPage(pdfState.currentPage - 1); });
+        nextBtn.addEventListener('click', function() { if (pdfState.currentPage < pdfState.totalPages) renderPage(pdfState.currentPage + 1); });
+        dlBtn.addEventListener('click', function() { window.open(url, '_blank'); });
+
+        renderPage(1);
+    }).catch(function(err) {
+        console.error('PDF.js error:', err);
+        container.innerHTML = '<div class="pdf-error">Impossible de charger le PDF. <a href="' + url + '" target="_blank" style="color:var(--primary);">Ouvrir dans un nouvel onglet</a></div>';
+    });
 }
 
 function toggleComp(id, headerEl) {
@@ -1000,7 +1064,7 @@ function toggleCertPDF(id, url) {
     if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
     document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
     viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+    renderPDFViewer(viewer, url);
 }
 
 function createToggleBtn(container, limit, txtMore) {
@@ -1024,24 +1088,22 @@ function createToggleBtn(container, limit, txtMore) {
 function toggleGlobalPDF(url) {
     const viewer = document.getElementById("global-cert-viewer");
     if (!viewer) return;
-    const encodedUrl = encodeURIComponent(url);
-    const currentIframe = viewer.querySelector('iframe');
-    const closeViewer = () => {
+    if (viewer.style.display === 'block' && viewer.dataset.currentUrl === url) {
         viewer.style.display = 'none';
         viewer.innerHTML = '';
+        viewer.dataset.currentUrl = '';
         document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
-    };
-    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
-        closeViewer();
         return;
     }
+    viewer.dataset.currentUrl = url;
     viewer.style.display = 'block';
-    viewer.innerHTML = `
-        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
-        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
-    `;
+    viewer.innerHTML = '<button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">\u00d7</button><div id="global-pdf-inner" class="pdf-container" style="display:block;"></div>';
     const closeBtn = document.getElementById("btn-close-viewer");
-    if (closeBtn) closeBtn.addEventListener("click", closeViewer);
+    if (closeBtn) closeBtn.addEventListener("click", function() {
+        viewer.style.display = 'none'; viewer.innerHTML = ''; viewer.dataset.currentUrl = '';
+        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+    });
+    renderPDFViewer(document.getElementById("global-pdf-inner"), url);
     const headerOffset = 120;
     const elementPosition = viewer.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.scrollY - headerOffset;
