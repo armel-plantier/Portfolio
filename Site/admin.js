@@ -904,6 +904,16 @@ $('confirm-ok').addEventListener('click', async function() {
 // EDIT ENTRIES
 // ============================================================================
 var pendingEdit = null;
+var editNewPdfFile = null;
+
+$('edit-pdf-file').addEventListener('change', function() {
+    var f = $('edit-pdf-file').files[0];
+    if (f && f.type === 'application/pdf') {
+        editNewPdfFile = f;
+        $('edit-pdf-current').textContent = 'Nouveau : ' + f.name;
+        $('edit-pdf-current').style.color = 'var(--success)';
+    }
+});
 
 function openEditFromBtn(btn) {
     var section = btn.getAttribute('data-section');
@@ -968,6 +978,13 @@ function openEdit(section, key, value) {
     $('edit-tags-field').style.display = isCert ? 'none' : '';
     $('edit-label-name').textContent = isCert ? 'Nom' : 'Titre';
 
+    // PDF field: show for all types
+    var currentPdf = extractField(block, 'path') || extractField(block, 'pdf') || '';
+    $('edit-pdf-current').textContent = currentPdf ? 'Actuel : ' + currentPdf : 'Aucun PDF';
+    $('edit-pdf-current').style.color = 'var(--muted)';
+    $('edit-pdf-file').value = '';
+    editNewPdfFile = null;
+
     // Pre-fill fields
     $('edit-name').value = value;
     if (isCert) {
@@ -998,15 +1015,32 @@ $('edit-save').addEventListener('click', async function() {
     pendingEdit = null;
 
     try {
-        showProgress('Modification...', 'Mise \u00e0 jour de config.js...', 40);
+        // Step 1: Upload new PDF if provided
+        var newPdfName = '';
+        if (editNewPdfFile) {
+            showProgress('Modification...', 'Upload du nouveau PDF...', 20);
+            var b64 = await fileToBase64(editNewPdfFile);
+            var dir;
+            if (section === 'procedures') dir = PROC_DIR;
+            else if (section === 'projects') dir = PROJ_DIR;
+            else dir = 'Documents/Certifs';
+            var pdfPath = dir + '/' + editNewPdfFile.name;
+            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(pdfPath), {
+                method: 'PUT',
+                body: JSON.stringify({ message: '[admin] Remplacement PDF : ' + editNewPdfFile.name, content: b64 })
+            });
+            newPdfName = editNewPdfFile.name;
+            editNewPdfFile = null;
+        }
 
-        // Re-fetch config to get latest SHA
+        // Step 2: Update config.js
+        showProgress('Modification...', 'Mise \u00e0 jour de config.js...', 50);
+
         var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
         var raw = configData.content.replace(/\n/g, '');
         var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
         var content = new TextDecoder('utf-8').decode(bytes);
 
-        // Find the block again in the fresh content
         var found = findEntryBlock(content, key, originalValue);
         if (!found) throw new Error('Entr\u00e9e "' + originalValue + '" non trouv\u00e9e');
 
@@ -1022,6 +1056,9 @@ $('edit-save').addEventListener('click', async function() {
             newBlock = newBlock.replace(new RegExp('(name\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
             newBlock = newBlock.replace(new RegExp('(issuer\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newIssuer) + '"');
             newBlock = newBlock.replace(new RegExp('(url\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newUrl) + '"');
+            if (newPdfName) {
+                newBlock = newBlock.replace(new RegExp('(pdf\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newPdfName) + '"');
+            }
         } else {
             var newDesc = $('edit-desc').value.trim();
             var newTagsStr = $('edit-tags').value.trim();
@@ -1031,11 +1068,14 @@ $('edit-save').addEventListener('click', async function() {
             newBlock = newBlock.replace(new RegExp('(title\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
             newBlock = newBlock.replace(new RegExp('(longDescription\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newDesc) + '"');
             newBlock = newBlock.replace(/tags\s*:\s*\[[^\]]*\]/, 'tags: ' + tagsFormatted);
+            if (newPdfName) {
+                newBlock = newBlock.replace(new RegExp('(path\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newPdfName) + '"');
+            }
         }
 
         var newContent = content.substring(0, found.start) + newBlock + content.substring(found.end + 1);
 
-        showProgress('Modification...', 'Commit...', 75);
+        showProgress('Modification...', 'Commit...', 80);
         var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
         await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
             method: 'PUT',
