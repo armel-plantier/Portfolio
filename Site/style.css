@@ -462,16 +462,7 @@ body.light-mode .card-header .icon { background: rgba(99, 102, 241, 0.05); }
 
 .hidden-item { display: none !important; }
 .pdf-container { display: none; border-top: 1px solid var(--border); background: var(--card); overflow: hidden; border-radius: 0 0 16px 16px; }
-.pdf-container .pdf-viewer-inner { max-height: 700px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 8px; background: #2a2a2a; }
-body.light-mode .pdf-container .pdf-viewer-inner { background: #e5e5e5; }
-.pdf-container canvas { max-width: 100%; height: auto !important; box-shadow: 0 2px 12px rgba(0,0,0,0.3); }
-.pdf-container .pdf-controls { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); }
-body.light-mode .pdf-container .pdf-controls { background: rgba(0,0,0,0.05); }
-.pdf-container .pdf-controls button { background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
-.pdf-container .pdf-controls button:hover { background: var(--primary); border-color: var(--primary); color: white; }
-.pdf-container .pdf-controls span { font-size: 0.85rem; color: var(--muted); min-width: 80px; text-align: center; }
-.pdf-container .pdf-loading { padding: 40px; text-align: center; color: var(--muted); font-size: 0.9rem; }
-.pdf-container .pdf-error { padding: 20px; text-align: center; color: var(--danger); font-size: 0.9rem; }
+.pdf-container iframe { display: block; width: 100%; border: none; background-color: var(--card); }
 
 /* ========================================================================= */
 
