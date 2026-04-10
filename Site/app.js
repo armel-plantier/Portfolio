@@ -813,6 +813,40 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
+    // --- DOCUMENTS E5 ---
+    const e5Grid = document.getElementById('e5-grid');
+    if (e5Grid && config.documentsE5 && config.documentsE5.length > 0) {
+        const e5Title = document.querySelector('#documents-e5 h3');
+        if (e5Title) {
+            const badge = document.createElement('span');
+            badge.className = 'section-count-badge';
+            badge.textContent = config.documentsE5.length;
+            e5Title.appendChild(badge);
+        }
+        e5Grid.innerHTML = '';
+        config.documentsE5.forEach(doc => {
+            const card = document.createElement('a');
+            card.className = 'e5-card';
+            card.href = window.location.origin + '/Documents/' + doc.path;
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
+            card.innerHTML = `
+                <div class="e5-card-icon">${doc.icon}</div>
+                <div class="e5-card-body">
+                    <h4>${doc.title}</h4>
+                    <p>${doc.description}</p>
+                </div>
+                <span class="e5-card-badge">${doc.type.toUpperCase()}</span>
+                <div class="e5-card-dl">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+            `;
+            e5Grid.appendChild(card);
+        });
+    } else if (e5Grid) {
+        e5Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
+    }
+
     // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
     if(textEl && config.profile.typewriterText) {
