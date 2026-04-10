@@ -8,7 +8,8 @@ const config = {
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
         { title: "Procédures", link: "#procedures" },
-        { title: "Veille", link: "#veille" } 
+        { title: "Veille", link: "#veille" },
+        { title: "Documents E5", link: "#documents-e5" } 
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
@@ -358,6 +359,17 @@ experiences: [
             pdf: "SecNum.pdf",
             // Icône Médaille / Gouvernementale
             icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
+        }
+    ],
+
+    // --- DOCUMENTS E5 ---
+    documentsE5: [
+        {
+            title: "Tableau de synthèse E5",
+            description: "Tableau de synthèse des réalisations professionnelles — BTS SIO Session 2026",
+            path: "E5/03-_tableau-de-synthese-E5.xlsx",
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+            type: "xlsx"
         }
     ]
     
