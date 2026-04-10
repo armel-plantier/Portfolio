@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 06/04/2026 au 10/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 06/04/2026 au 11/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 10/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 11/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,245 +75,269 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 06 Avril 2026</h2>
-<h3>Iran-Linked Password-Spraying Campaign Targets 300+ Israeli Microsoft 365 Organizations</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de password-spraying attribuée à un acteur iranien cible plus de 300 organisations israéliennes utilisant Microsoft 365. L'attaque, menée en trois vagues distinctes, exploite des techniques de force brute pour compromettre les comptes et pourrait avoir des implications géopolitiques dans le contexte du conflit en cours au Moyen-Orient.</p>
-<a href="https://thehackernews.com/2026/04/iran-linked-password-spraying-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>DPRK-Linked Hackers Use GitHub as C2 in Multi-Stage Attacks Targeting South Korea</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des acteurs liés à la Corée du Nord utilisent GitHub comme infrastructure de commande et contrôle (C2) dans des attaques en plusieurs étapes ciblant des organisations en Corée du Sud. Cette tactique permet de contourner les détections traditionnelles et d'exfiltrer des données sensibles.</p>
-<a href="https://thehackernews.com/2026/04/dprk-linked-hackers-use-github-as-c2-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 07 Avril 2026</h2>
+            <h2>Lundi 07 Avril 2026</h2>
 <h3>Multiples vulnérabilités dans Google Android</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités ont été découvertes dans Google Android, permettant à un attaquant de provoquer un déni de service et des problèmes de sécurité non spécifiés. Ces failles affectent les versions récentes d'Android et nécessitent une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Google Android, permettant à un attaquant de provoquer un déni de service (DoS) ou d'exécuter du code arbitraire. Ces failles affectent les versions récentes d'Android et pourraient être exploitées via des applications malveillantes ou des vecteurs réseau. Aucun CVE spécifique n'est encore attribué pour toutes les vulnérabilités.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0399/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans Fortinet FortiClientEMS (CVE-2026-35616)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-35616) dans Fortinet FortiClientEMS permet une exécution de code arbitraire à distance, une élévation de privilèges et un contournement de la politique de sécurité. Fortinet indique que cette faille est activement exploitée en conditions réelles.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-35616, CVSS 9.8) dans Fortinet FortiClientEMS permet une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un contournement de la politique de sécurité. Fortinet confirme une exploitation active. Les systèmes exposés à Internet sont particulièrement à risque.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0400/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans GLPI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans GLPI permettent une exécution de code arbitraire à distance, une injection SQL (SQLi) et une injection de code indirecte à distance (XSS). Ces vulnérabilités exposent les systèmes à des attaques par des acteurs malveillants.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectent GLPI, dont une RCE à distance, une injection SQL (SQLi) et une XSS indirecte. Ces failles pourraient permettre à un attaquant de prendre le contrôle du serveur GLPI ou d'exfiltrer des données sensibles. Un correctif est disponible dans les dernières versions.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0401/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Docker CVE-2026-34040 : Autorisation contournée et accès à l'hôte</h3>
+<h3>KFC France alerte sur une fuite de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité haute sévérité (CVE-2026-34040, CVSS 8.8) dans Docker Engine permet à un attaquant de contourner les plugins d'autorisation (AuthZ) et d'obtenir un accès à l'hôte sous certaines conditions. Cette faille est liée à une correction incomplète d'une précédente vulnérabilité.</p>
-<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : KFC France a signalé une fuite de données touchant le programme "Colonel Club", exposant potentiellement les informations personnelles de millions de clients. Les attaquants pourraient exploiter ces données pour des campagnes de phishing ou des SMS frauduleux. Aucune confirmation sur l'étendue exacte de la fuite n'est encore disponible.</p>
+<a href="https://www.zataz.com/kfc-france-alerte-sur-une-fuite-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Flowise AI Agent Builder sous exploitation active d'une RCE CVSS 10.0</h3>
+<h3>Nissan face à une revendication explosive : 910 Go de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'injection de code (CVE-2025-59528, CVSS 10.0) dans Flowise, une plateforme open-source d'IA, est activement exploitée. Plus de 12 000 instances exposées sont ciblées, permettant une exécution de code à distance (RCE) critique.</p>
-<a href="https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un groupe de menace revendique l'exfiltration de 910 Go de données chez Nissan, incluant des exports clients et des fichiers CSV sensibles. La négociation est en cours, mais l'authenticité des données n'a pas été confirmée. Cette fuite pourrait impacter des millions d'utilisateurs.</p>
+<a href="https://www.zataz.com/nissan-face-a-une-revendication-explosive-910-go-de-donnees-et-des-exports-clients/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>GPUBreach : Attaque par bit-flip sur les GPU pour une élévation de privilèges complète</h3>
+<h3>Axios compromis : une attaque discrète au cœur du code</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle recherche académique révèle des attaques RowHammer contre les GPU (GPUBreach, GDDRHammer, GeForce Hammer) permettant une élévation de privilèges complète et, dans certains cas, un contrôle total de l'hôte. Ces attaques exploitent des vulnérabilités matérielles critiques.</p>
-<a href="https://thehackernews.com/2026/04/new-gpubreach-attack-enables-full-cpu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Storm-1175 exploite des zero-days pour déployer rapidement Medusa Ransomware</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un acteur chinois (Storm-1175) déploie le ransomware Medusa en combinant des zero-days et des vulnérabilités N-day pour mener des attaques à haute vélocité. Les systèmes exposés sont compromis en quelques heures, avec des impacts majeurs sur les infrastructures critiques.</p>
-<a href="https://thehackernews.com/2026/04/china-linked-storm-1175-exploits-zero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le package npm Axios a été compromis via une attaque de supply chain, distribuant deux versions malveillantes intégrant un RAT (Remote Access Trojan). Ce malware cible Windows, macOS et Linux, permettant une exfiltration de données et un contrôle à distance. Les versions 1.6.0 et 1.6.1 sont concernées.</p>
+<a href="https://www.zataz.com/axios-compromis-une-attaque-discrete-au-coeur-du-code/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
 <hr />
-<h2>Mercredi 08 Avril 2026</h2>
+<h2>Mardi 08 Avril 2026</h2>
 <h3>Vulnérabilité dans HPE Aruba Networking Private 5G Core</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans HPE Aruba Networking Private 5G Core permet à un attaquant de contourner la politique de sécurité. Cette vulnérabilité affecte les infrastructures 5G privées et nécessite une correction urgente pour éviter des accès non autorisés.</p>
+<p><strong>Résumé</strong> : Une faille de sécurité dans HPE Aruba Networking Private 5G Core permet à un attaquant de contourner les politiques de sécurité, potentiellement en accédant à des ressources réseau non autorisées. Aucune exploitation publique n'a été signalée, mais les correctifs doivent être appliqués rapidement.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0402/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans OpenSSL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans OpenSSL permettent une exécution de code arbitraire à distance, un déni de service et une atteinte à la confidentialité des données. Ces vulnérabilités affectent les versions récentes et nécessitent une mise à jour immédiate.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans OpenSSL (dont certaines non encore publiquement détaillées) permettent une RCE à distance, un DoS et une fuite de données. Ces failles affectent les versions 3.x et pourraient être exploitées via des requêtes réseau malveillantes. Des correctifs sont disponibles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0403/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Mozilla</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités multiples dans les produits Mozilla permettent une exécution de code arbitraire à distance et des problèmes de sécurité non spécifiés. Ces failles exposent les utilisateurs à des attaques par des acteurs malveillants.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités non spécifiées dans les produits Mozilla (Firefox, Thunderbird) permettent une RCE à distance et d'autres attaques non détaillées. Ces failles pourraient être exploitées via des pages web malveillantes ou des pièces jointes. Les mises à jour de sécurité sont urgentes.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0404/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans les produits Moxa</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans les produits Moxa permet une élévation de privilèges, une atteinte à la confidentialité et à l'intégrité des données. Cette vulnérabilité affecte les systèmes industriels et nécessite une correction urgente.</p>
+<p><strong>Résumé</strong> : Une faille dans les produits Moxa (équipements industriels) permet une élévation de privilèges, une atteinte à la confidentialité et à l'intégrité des données. Les systèmes exposés à Internet ou connectés à des réseaux critiques sont particulièrement vulnérables. Un correctif est attendu.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0405/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CISA ordonne aux agences fédérales de corriger une faille Ivanti EPMM exploitée</h3>
+<h3>Nearly 4,000 US industrial devices exposed to Iranian cyberattacks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger sous 4 jours une faille critique (CVE non spécifiée) dans Ivanti Endpoint Manager Mobile (EPMM), exploitée depuis janvier 2026. Cette faille permet une exécution de code arbitraire à distance.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-exploited-ivanti-epmm-flaw-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Près de 4 000 automates programmables (PLC) Rockwell Automation exposés sur Internet sont ciblés par des cyberattaques liées à l'Iran. Ces dispositifs, utilisés dans les infrastructures critiques américaines, pourraient être compromis pour des attaques en chaîne ou du sabotage. Une mise à jour immédiate est recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/nearly-4-000-us-industrial-devices-exposed-to-iranian-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Masjesu Botnet : Service DDoS-for-Hire ciblant les appareils IoT mondiaux</h3>
+<h3>Lapsus$ relance sa vitrine de recrutement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau botnet, Masjesu, est proposé comme service DDoS-for-Hire via Telegram depuis 2023. Il cible les appareils IoT mal configurés et peut lancer des attaques massives à l'échelle mondiale, avec des impacts sur les infrastructures critiques.</p>
-<a href="https://thehackernews.com/2026/04/masjesu-botnet-emerges-as-ddos-for-hire.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe Lapsus$ relance ses activités de recrutement d'initiés, exposant une nouvelle série de victimes via des fuites de données, des accès internes et des pressions informationnelles. Le groupe cible désormais des secteurs variés, augmentant le risque d'attaques ciblées.</p>
+<a href="https://www.zataz.com/lapsus-relance-sa-vitrine-de-recrutement/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>APT28 déploie le malware PRISMEX dans une campagne ciblant l'Ukraine et les alliés de l'OTAN</h3>
+<h3>New Chaos Variant Targets Misconfigured Cloud Deployments</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'acteur russe APT28 (Forest Blizzard) déploie une suite de malware appelée PRISMEX dans une campagne de spear-phishing ciblant l'Ukraine et ses alliés. PRISMEX combine stéganographie avancée et composants malveillants pour exfiltrer des données sensibles.</p>
-<a href="https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Iran-Linked Hackers Disrupt U.S. Critical Infrastructure by Targeting Internet-Exposed PLCs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des acteurs iraniens ciblent des automates programmables (PLC) exposés sur Internet dans les infrastructures critiques américaines, provoquant des perturbations majeures. Ces attaques exploitent des vulnérabilités dans les systèmes OT et nécessitent une réponse urgente.</p>
-<a href="https://thehackernews.com/2026/04/iran-linked-hackers-disrupt-us-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Hackers exploitent une zero-day dans Adobe Reader depuis décembre 2025</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une zero-day dans Adobe Reader est exploitée depuis décembre 2025 via des documents PDF malveillants. Cette faille permet une exécution de code arbitraire à distance et expose les utilisateurs à des attaques ciblées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-exploiting-acrobat-reader-zero-day-flaw-since-december/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne massive de vol de cartes bancaires via SVG pixel-large sur Magento</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne massive affectant près de 100 boutiques en ligne utilisant Magento cache un voleur de cartes bancaires dans une image SVG de taille pixel. Cette technique permet de contourner les détections et d'exfiltrer des données sensibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-use-pixel-large-svg-trick-to-hide-credit-card-stealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une nouvelle variante du malware Chaos cible les déploiements cloud mal configurés, ajoutant une fonctionnalité de proxy SOCKS pour exfiltrer des données ou lancer des attaques en chaîne. Les environnements cloud (AWS, Azure, GCP) non sécurisés sont particulièrement exposés.</p>
+<a href="https://thehackernews.com/2026/04/new-chaos-variant-targets-misconfigured.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Jeudi 09 Avril 2026</h2>
+<h2>Mercredi 09 Avril 2026</h2>
 <h3>Multiples vulnérabilités dans Google Chrome</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans Google Chrome permettent des problèmes de sécurité non spécifiés. Ces vulnérabilités exposent les utilisateurs à des attaques par des acteurs malveillants et nécessitent une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées dans Google Chrome permettent des attaques non spécifiées (probablement RCE ou fuite de données). Ces failles affectent les versions récentes du navigateur et pourraient être exploitées via des pages web malveillantes. Les mises à jour sont urgentes.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0407/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Juniper Networks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans les produits Juniper Networks permettent une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Ces failles affectent les infrastructures réseau critiques et nécessitent une correction immédiate.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Juniper Networks permettent une RCE à distance, une élévation de privilèges et un DoS. Ces failles affectent les routeurs et commutateurs Juniper, avec un risque élevé d'exploitation active. Des correctifs sont disponibles pour les versions concernées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0408/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Sonicwall Secure Mobile Access</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles dans Sonicwall Secure Mobile Access permettent une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité. Ces vulnérabilités exposent les utilisateurs mobiles à des attaques ciblées.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Sonicwall Secure Mobile Access permettent une élévation de privilèges, une fuite de données et un contournement de la politique de sécurité. Les appliances exposées à Internet sont particulièrement vulnérables. Un correctif est attendu.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0409/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans GitLab</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans GitLab permettent une exécution de code arbitraire à distance, un déni de service et une atteinte à la confidentialité des données. Ces failles affectent les environnements DevOps et nécessitent une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans GitLab permettent une RCE à distance, un DoS et une fuite de données. Ces failles affectent les instances auto-hébergées et pourraient être exploitées pour prendre le contrôle des serveurs. Les correctifs doivent être appliqués immédiatement.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0410/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Mitel MiCollab</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles dans Mitel MiCollab permettent une élévation de privilèges et une injection SQL (SQLi). Ces vulnérabilités exposent les systèmes de communication unifiée à des attaques par des acteurs malveillants.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Mitel MiCollab permettent une élévation de privilèges et une injection SQL (SQLi). Ces failles pourraient être exploitées pour accéder à des données sensibles ou prendre le contrôle du système. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0411/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Palo Alto Networks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans les produits Palo Alto Networks permettent une exécution de code arbitraire à distance, une atteinte à la confidentialité et à l'intégrité des données. Ces failles affectent les pare-feux et nécessitent une correction urgente.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Palo Alto Networks permettent une RCE à distance, une fuite de données et une atteinte à l'intégrité. Ces failles affectent les pare-feux et appliances de sécurité. Les correctifs sont disponibles pour les versions concernées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0412/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Elastic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans les produits Elastic permettent une exécution de code arbitraire à distance, une atteinte à la confidentialité et à l'intégrité des données. Ces failles affectent les solutions de recherche et d'analyse et nécessitent une mise à jour immédiate.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Elastic (Elasticsearch, Kibana) permettent une RCE à distance, une fuite de données et une atteinte à l'intégrité. Ces failles affectent les versions récentes et pourraient être exploitées pour compromettre des infrastructures critiques. Des correctifs sont disponibles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0413/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>EngageLab SDK Flaw Exposed 50M Android Users, Including 30M Crypto Wallets</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le SDK EngageLab expose 50 millions d'utilisateurs Android, dont 30 millions de portefeuilles de cryptomonnaies. Cette vulnérabilité permet à des applications malveillantes de contourner les restrictions Android et d'accéder à des données sensibles.</p>
-<a href="https://thehackernews.com/2026/04/engagelab-sdk-flaw-exposed-50m-android.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>UAT-10362 Targets Taiwanese NGOs with LucidRook Malware in Spear-Phishing Campaigns</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un cluster de menace non documenté (UAT-10362) cible des ONG taïwanaises et des universités avec un nouveau malware Lua appelé LucidRook. Ce malware sophistiqué agit comme un stager et permet une exécution de code à distance.</p>
-<a href="https://thehackernews.com/2026/04/uat-10362-targets-taiwanese-ngos-with.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <h3>New ‘LucidRook’ malware used in targeted attacks on NGOs, universities</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau malware Lua, LucidRook, est utilisé dans des campagnes de spear-phishing ciblant des ONG et des universités à Taïwan. Ce malware permet une exécution de code à distance et une exfiltration de données sensibles.</p>
+<p><strong>Résumé</strong> : Un nouveau malware Lua, nommé LucidRook, est utilisé dans des campagnes de spear-phishing ciblant des ONG et universités à Taïwan. Ce malware permet une exfiltration de données et un contrôle à distance. Les attaques utilisent des emails personnalisés pour maximiser l'impact.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-lucidrook-malware-used-in-targeted-attacks-on-ngos-universities/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>New VENOM phishing attacks steal senior executives' Microsoft logins</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle plateforme de phishing-as-a-service (PhaaS) appelée "VENOM" cible les identifiants des cadres supérieurs (C-suite) dans plusieurs secteurs. Cette campagne utilise des techniques avancées pour contourner les mesures de sécurité et voler des accès Microsoft.</p>
+<p><strong>Résumé</strong> : Une nouvelle plateforme de phishing-as-a-service (PhaaS) appelée "VENOM" cible les identifiants de cadres supérieurs via des attaques sophistiquées. Les attaques contournent les protections MFA et volent les sessions Microsoft, exposant les entreprises à des risques majeurs.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-venom-phishing-attacks-steal-senior-executives-microsoft-logins/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>Healthcare IT solutions provider ChipSoft hit by ransomware attack</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : ChipSoft, un fournisseur néerlandais de solutions IT pour la santé, a été victime d'une attaque par ransomware. Cette attaque a forcé la mise hors ligne de son site web et de ses services numériques, perturbant les soins aux patients et les prestataires de santé.</p>
+<p><strong>Résumé</strong> : ChipSoft, fournisseur de solutions IT pour le secteur de la santé aux Pays-Bas, a été victime d'une attaque par ransomware. Les services numériques (site web, applications patients) ont été mis hors ligne, impactant des milliers d'utilisateurs. Aucune information sur le groupe responsable n'a été divulguée.</p>
 <a href="https://www.bleepingcomputer.com/news/security/healthcare-it-solutions-provider-chipsoft-hit-by-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>Google Chrome adds infostealer protection against session cookie theft</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a déployé dans Chrome 146 une protection appelée Device Bound Session Credentials (DBSC) pour bloquer les malwares voleurs de cookies de session. Cette fonctionnalité renforce la sécurité des utilisateurs contre les attaques par infostealers.</p>
+<p><strong>Résumé</strong> : Google a déployé Device Bound Session Credentials (DBSC) dans Chrome 146 pour Windows, bloquant le vol de cookies de session par des infostealers. Cette protection renforce la sécurité des sessions utilisateurs contre les attaques de type "session hijacking".</p>
 <a href="https://www.bleepingcomputer.com/news/security/google-chrome-adds-infostealer-protection-against-session-cookie-theft/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>Smart Slider updates hijacked to push malicious WordPress, Joomla versions</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants ont compromis le système de mise à jour du plugin Smart Slider 3 Pro pour WordPress et Joomla, poussant une version malveillante avec plusieurs backdoors. Cette attaque supply chain affecte des milliers de sites web.</p>
+<p><strong>Résumé</strong> : Le système de mise à jour du plugin Smart Slider 3 Pro (WordPress/Joomla) a été compromis, distribuant une version malveillante intégrant des backdoors. Les sites utilisant ce plugin sont exposés à des attaques persistantes. Une mise à jour immédiate est nécessaire.</p>
 <a href="https://www.bleepingcomputer.com/news/security/smart-slider-updates-hijacked-to-push-malicious-wordpress-joomla-versions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>EngageLab SDK Flaw Exposed 50M Android Users</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans l'SDK EngageLab (utilisé par 50 millions d'utilisateurs Android, dont 30 millions de portefeuilles crypto) permet à des applications malveillantes de contourner les restrictions Android et d'accéder à des données sensibles. Un correctif a été publié.</p>
+<a href="https://thehackernews.com/2026/04/engagelab-sdk-flaw-exposed-50m-android.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Adobe Reader Zero-Day Exploited via Malicious PDFs Since December 2025</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille zero-day dans Adobe Reader (exploitée via des PDF malveillants) est active depuis décembre 2025. Cette vulnérabilité hautement sophistiquée permet une exécution de code arbitraire. Adobe n'a pas encore publié de correctif.</p>
+<a href="https://thehackernews.com/2026/04/adobe-reader-zero-day-exploited-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <h3>Eurail says December data breach impacts 300,000 individuals</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Eurail B.V., un opérateur européen de passes ferroviaires numériques, révèle qu'une fuite de données survenue en décembre 2025 a compromis les informations personnelles de plus de 300 000 individus. Cette faille expose les données sensibles des voyageurs.</p>
+<p><strong>Résumé</strong> : Eurail B.V. a confirmé qu'une fuite de données en décembre 2025 a exposé les informations personnelles de 300 000 individus. Les attaquants ont accédé à des données sensibles, exposant les victimes à des risques de phishing et d'usurpation d'identité.</p>
 <a href="https://www.bleepingcomputer.com/news/security/eurail-says-december-data-breach-impacts-300-000-individuals/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Jeudi 10 Avril 2026</h2>
+<h3>Multiples vulnérabilités dans Tenable Security Center</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Tenable Security Center permettent une RCE à distance et une fuite de données. Ces failles affectent les appliances de sécurité et pourraient être exploitées pour compromettre des infrastructures critiques. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0415/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans les produits Juniper Networks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Juniper Networks permet une élévation de privilèges. Cette faille affecte les routeurs et commutateurs de l'éditeur, avec un risque élevé d'exploitation. Un correctif est disponible pour les versions concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0416/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Spring Cloud Gateway</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité non détaillée dans Spring Cloud Gateway permet des attaques non spécifiées. Cette faille pourrait être exploitée pour contourner des protections ou accéder à des données sensibles. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0417/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Apache Tomcat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Apache Tomcat permettent une fuite de données, une atteinte à l'intégrité et un contournement de la politique de sécurité. Ces failles affectent les serveurs web et pourraient être exploitées pour des attaques en chaîne. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0418/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Mattermost Desktop App</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées dans Mattermost Desktop App permettent des attaques non spécifiées. Ces failles pourraient être exploitées pour accéder à des données sensibles ou exécuter du code arbitraire. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0419/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Microsoft (Windows, Office, Exchange) permettent des attaques non spécifiées. Ces failles pourraient être exploitées pour une RCE, un DoS ou une fuite de données. Les correctifs sont disponibles via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0420/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux d'Ubuntu permettent une élévation de privilèges, une fuite de données et une atteinte à l'intégrité. Ces failles affectent les versions récentes et pourraient être exploitées pour compromettre des systèmes critiques. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0421/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux de Red Hat permettent une RCE, une élévation de privilèges et un DoS. Ces failles affectent les serveurs et postes de travail Red Hat, avec un risque élevé d'exploitation. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0423/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits IBM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits IBM (AIX, Power Systems) permettent une RCE à distance, un DoS et une fuite de données. Ces failles affectent les infrastructures critiques et pourraient être exploitées pour des attaques ciblées. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0424/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Marimo RCE Flaw CVE-2026-39987 Exploited Within 10 Hours of Disclosure</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille RCE critique (CVE-2026-39987, CVSS 9.3) dans Marimo, un notebook Python open-source, a été exploitée moins de 10 heures après sa publication. Cette vulnérabilité permet une exécution de code arbitraire à distance. Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/04/marimo-rce-flaw-cve-2026-39987.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Backdoored Smart Slider 3 Pro Update Distributed via Compromised Nextend Servers</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le plugin Smart Slider 3 Pro (WordPress/Joomla) a été compromis via ses serveurs de mise à jour Nextend, distribuant une version backdoorée. Cette attaque permet une prise de contrôle à distance des sites web. Une mise à jour immédiate est nécessaire.</p>
+<a href="https://thehackernews.com/2026/04/backdoored-smart-slider-3-pro-update.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GlassWorm Campaign Uses Zig Dropper to Infect Multiple Developer IDEs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne GlassWorm utilise un nouveau dropper en Zig pour infecter les environnements de développement (IDE) des développeurs. Cette technique permet une infection persistante et une exfiltration de code source. Les IDEs populaires (VS Code, IntelliJ) sont ciblés.</p>
+<a href="https://thehackernews.com/2026/04/glassworm-campaign-uses-zig-dropper-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CPUID hacked to deliver malware via CPU-Z, HWMonitor downloads</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le projet CPUID a été compromis, permettant aux attaquants de modifier les liens de téléchargement des outils populaires CPU-Z et HWMonitor pour distribuer des exécutables malveillants. Les utilisateurs téléchargeant ces outils sont exposés à des infections.</p>
+<a href="https://www.bleepingcomputer.com/news/security/supply-chain-attack-at-cpuid-pushes-malware-with-cpu-z-hwmonitor/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft: Canadian employees targeted in payroll pirate attacks</h3>
+<div class="article=">
+<p><strong>Résumé</strong> : Le groupe Storm-2755 cible les employés canadiens de Microsoft dans des attaques de "payroll piracy", détournant les paiements de salaire après avoir compromis leurs comptes. Ces attaques combinent phishing et usurpation d'identité pour maximiser l'impact financier.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-canadian-employees-targeted-in-payroll-pirate-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>Hackers steal $3.6 million from crypto ATM giant Bitcoin Depot</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Bitcoin Depot, un géant des distributeurs automatiques de cryptomonnaies, révèle qu'une attaque a permis aux pirates de voler 3,665 millions de dollars en Bitcoin depuis ses portefeuilles crypto. Cette faille met en lumière les risques de sécurité dans les infrastructures de crypto-monnaies.</p>
+<p><strong>Résumé</strong> : Bitcoin Depot, opérateur majeur de distributeurs automatiques de crypto-monnaies, a subi un vol de 3,665 millions de dollars en Bitcoin après une compromission de ses portefeuilles. Les attaquants ont exploité une faille dans ses systèmes pour siphonner les fonds.</p>
 <a href="https://www.bleepingcomputer.com/news/security/crypto-atm-giant-bitcoin-depot-says-hackers-stole-36-million-from-its-wallets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Russian State-Linked APT28 Exploits SOHO Routers in Global DNS Hijacking Campaign</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'acteur russe APT28 exploite des routeurs SOHO (MikroTik, TP-Link) vulnérables pour détourner les requêtes DNS et transformer ces appareils en infrastructure malveillante. Cette campagne d'espionnage cyber est en cours depuis plusieurs mois.</p>
-<a href="https://thehackernews.com/2026/04/russian-state-linked-apt28-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Bitter-Linked Hack-for-Hire Campaign Targets Journalists Across MENA Region</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de "hack-for-hire" attribuée à un acteur lié à l'Inde cible des journalistes, activistes et responsables gouvernementaux dans la région MENA. Cette attaque utilise des techniques avancées pour exfiltrer des données sensibles et compromettre les communications.</p>
-<a href="https://thehackernews.com/2026/04/bitter-linked-hack-for-hire-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>N. Korean Hackers Spread 1,700 Malicious Packages Across npm, PyPI, Go, Rust</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des acteurs nord-coréens (campagne Contagious Interview) ont publié 1 700 paquets malveillants sur npm, PyPI, Go et Rust. Ces paquets imitent des outils légitimes tout en exécutant discrètement des charges utiles malveillantes.</p>
-<a href="https://thehackernews.com/2026/04/n-korean-hackers-spread-1700-malicious.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>New Chaos Variant Targets Misconfigured Cloud Deployments, Adds SOCKS Proxy</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle variante du malware Chaos cible les déploiements cloud mal configurés et ajoute une fonctionnalité de proxy SOCKS. Cette évolution permet aux attaquants de contourner les mesures de sécurité et d'exfiltrer des données.</p>
-<a href="https://thehackernews.com/2026/04/new-chaos-variant-targets-misconfigured.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>

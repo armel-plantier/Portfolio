@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/04/2026 au 10/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/04/2026 au 11/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 10/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/04/2026 au 11/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,83 +76,138 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Mercredi 06 Avril 2026</h2>
-<h3>### Python Supply-Chain Compromise</h3>
+<h3>### Docker CVE-2026-34040 : faille critique permettant un accès root sur l'hôte</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une compromission de la chaîne d'approvisionnement a été identifiée dans le package Python litellm (version 1.82.8) sur PyPI. Le wheel malveillant contenait un fichier .pth exécutant du code arbitraire, exposant les environnements de développement à des risques de vol de données ou d'exécution de commandes.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-34040, CVSS 8.8) dans Docker Engine permet de contourner les plugins d'autorisation (AuthZ) via une requête HTTP malveillante, offrant un accès root sur l'hôte. Cette faille exploite une correction incomplète de CVE-2024-41110 et nécessite une attention immédiate pour les environnements de production.</p>
+<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### Python : compromission de la supply chain via le package litellm</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque par supply chain a été détectée dans le package Python litellm (version 1.82.8) sur PyPI. Le wheel malveillant contient un fichier .pth exécutant du code arbitraire, mettant en danger les environnements utilisant cette dépendance. Une vérification immédiate des dépendances est recommandée.</p>
 <a href="https://www.schneier.com/blog/archives/2026/04/python-supply-chain-compromise.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+</div>
+
+<h3>### Google annonce une transition vers la cryptographie post-quantique d'ici 2029</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google prévoit de migrer entièrement vers des algorithmes post-quantum d'ici 2029 pour sécuriser ses communications et services cloud. Cette initiative vise à anticiper les risques liés aux futurs ordinateurs quantiques, avec un déploiement progressif à partir de 2026.</p>
+<a href="https://www.schneier.com/blog/archives/2026/04/google-wants-to-transition-to-post-quantum-cryptography-by-2029.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+</div>
+
+<h3>### Campagne iranienne : attaques par spray de mots de passe sur 300+ organisations Microsoft 365 en Israël</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un acteur lié à l'Iran mène une campagne de spray de mots de passe ciblant des organisations israéliennes et émiraties utilisant Microsoft 365. Trois vagues d'attaques ont été observées, exploitant des identifiants faibles ou réutilisés. Une alerte est nécessaire pour renforcer les politiques de mot de passe.</p>
+<a href="https://thehackernews.com/2026/04/iran-linked-password-spraying-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Jeudi 07 Avril 2026</h2>
-<h3>### Docker CVE-2026-34040 Lets Attackers Bypass Authorization and Gain Host Access</h3>
+<h3>### APT28 exploite des routeurs SOHO pour des attaques DNS hijacking</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-34040, CVSS 8.8) dans Docker Engine permet de contourner les plugins d'autorisation (AuthZ) via des requêtes HTTP spécifiques, offrant un accès root à l'hôte. Cette faille exploite une correction incomplète pour CVE-2024-41110 et nécessite une attention immédiate pour les environnements de production.</p>
-<a href="https://thehackernews.com/2026/04/docker-cve-2026-34040-lets-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe APT28 (Forest Blizzard) a compromis des routeurs MikroTik et TP-Link pour en faire des infrastructures malveillantes dans le cadre d'une campagne d'espionnage global. Cette technique permet de rediriger le trafic DNS et d'intercepter les communications. Une mise à jour immédiate des firmwares est cruciale.</p>
+<a href="https://thehackernews.com/2026/04/russian-state-linked-apt28-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>### New GPUBreach Attack Enables Full CPU Privilege Escalation via GDDR6 Bit-Flips</h3>
+<h3>### Nouvelle attaque RowHammer (GPUBreach) contre les GPU modernes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs ont démontré une nouvelle attaque RowHammer (GPUBreach) ciblant les GPU modernes (GDDR6), permettant une élévation de privilèges complète et potentiellement un contrôle total de la machine hôte. Cette vulnérabilité matérielle nécessite une mitigation urgente via des correctifs firmware ou des protections logicielles.</p>
+<p><strong>Résumé</strong> : Des chercheurs ont démontré des attaques RowHammer (GPUBreach, GDDRHammer) exploitant des vulnérabilités matérielles dans les GPU pour escalader les privilèges et prendre le contrôle complet d'un hôte. Cette technique cible les GPU haut de gamme utilisant GDDR6, avec un risque accru dans les environnements virtualisés.</p>
 <a href="https://thehackernews.com/2026/04/new-gpubreach-attack-enables-full-cpu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>### Google intègre des outils de santé mentale dans Gemini</h3>
+<h3>### Flowise AI : exploitation active d'une RCE critique (CVSS 10.0)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Sous la pression réglementaire, Google ajoute des fonctionnalités de détection de crise et d'orientation psychologique dans son assistant IA Gemini. Une évolution pertinente pour les administrateurs gérant des environnements collaboratifs sensibles aux enjeux de bien-être numérique.</p>
-<a href="https://www.silicon.fr/data-ia-1372/google-integre-des-outils-de-sante-mentale-dans-gemini-226538" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Une vulnérabilité d'injection de code (CVE-2025-59528, CVSS 10.0) dans Flowise, une plateforme open source d'agents IA, est activement exploitée. Plus de 12 000 instances exposées sont ciblées pour des attaques de type RCE. Une mise à jour urgente est nécessaire pour éviter une compromission.</p>
+<a href="https://thehackernews.com/2026/04/flowise-ai-agent-builder-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Vendredi 08 Avril 2026</h2>
-<h3>### APT28 Deploys PRISMEX Malware in Campaign Targeting Ukraine and NATO Allies</h3>
+<h3>### Debian APT 3.2 : gestion de l'historique et des rollbacks de paquets</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe APT28 (Forest Blizzard) déploie un nouveau malware (PRISMEX) via des campagnes de spear-phishing ciblant l'Ukraine et les alliés de l'OTAN. Ce malware combine stéganographie avancée et composants COM pour exfiltrer des données sensibles. Une menace critique pour les infrastructures stratégiques.</p>
-<a href="https://thehackernews.com/2026/04/apt28-deploys-prismex-malware-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La nouvelle version d'APT (3.2) pour Debian introduit des fonctionnalités avancées de gestion de l'historique des paquets et de retour arrière (rollback). Idéal pour les environnements critiques, cette mise à jour permet de restaurer rapidement un état stable après une mise à jour problématique.</p>
+<a href="https://www.it-connect.fr/debian-le-nouveau-apt-3-2-gere-lhistorique-et-les-retours-arriere/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>### Shrinking the IAM Attack Surface through Identity Visibility and Intelligence Platforms (IVIP)</h3>
+<h3>### Ventoy 1.1.11 : support des Linux immuables et 6 ans d'évolution</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les plateformes IVIP émergent pour réduire la surface d'attaque liée à l'IAM (Identity and Access Management) dans les entreprises. Elles permettent une visibilité centralisée sur les identités machine et utilisateur, essentielle pour contrer les attaques par usurpation d'identité et les fuites de credentials.</p>
-<a href="https://thehackernews.com/2026/04/shrinking-iam-attack-surface-through.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Ventoy 1.1.11 célèbre ses 6 ans avec des améliorations majeures, notamment le support des distributions Linux immuables (ex: Fedora Silverblue). Cet outil multiboot reste indispensable pour les administrateurs système pour créer des clés USB bootables polyvalentes.</p>
+<a href="https://www.it-connect.fr/ventoy-1-1-11-le-celebre-outil-multiboot-fete-ses-6-ans-et-sadapte-aux-linux-immuables/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>### Anthropic's Claude Mythos Finds Thousands of Zero-Day Flaws Across Major Systems</h3>
+<h3>### AWS S3 Files : unification du stockage objet et des systèmes de fichiers</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Anthropic lance le projet Glasswing avec son modèle Claude Mythos, capable d'identifier des milliers de vulnérabilités zero-day dans des systèmes critiques. Une avancée majeure pour la cybersécurité proactive, mais nécessitant une intégration rigoureuse dans les processus de patch management.</p>
-<a href="https://thehackernews.com/2026/04/anthropics-claude-mythos-finds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : AWS lance S3 Files, une solution permettant de transformer les buckets S3 en systèmes de fichiers accessibles via des protocoles standards (NFS, SMB). Cette innovation réduit les coûts et simplifie la gestion des données pour les entreprises utilisant à la fois du stockage objet et des systèmes de fichiers traditionnels.</p>
+<a href="https://www.silicon.fr/cloud-1370/aws-lance-s3-files-et-rapproche-stockage-objet-et-systeme-de-fichiers-226577" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<hr />
-<h3>### OVHcloud crée une division « Défense »</h3>
+<h3>### Masjesu : nouveau botnet DDoS-for-hire ciblant les appareils IoT</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OVHcloud annonce la création d'une division dédiée à la Défense pour répondre aux besoins des ministères des Armées. Une initiative stratégique pour renforcer la souveraineté numérique européenne et proposer des solutions cloud conformes aux exigences de sécurité nationale.</p>
-<a href="https://www.silicon.fr/business-1367/ovhcloud-cree-une-division-defense-226564" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Le botnet Masjesu, promu via Telegram depuis 2023, est désormais utilisé comme service de DDoS-for-hire. Il cible les appareils IoT mal sécurisés à l'échelle mondiale, avec une capacité de saturation élevée. Une surveillance des flux réseau et une segmentation des appareils sont recommandées.</p>
+<a href="https://thehackernews.com/2026/04/masjesu-botnet-emerges-as-ddos-for-hire.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Samedi 09 Avril 2026</h2>
-<h3>### EngageLab SDK Flaw Exposed 50M Android Users, Including 30M Crypto Wallets</h3>
+<h3>### Zabbix : supervision des équipements réseau avec SNMPv3</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le SDK EngageLab (Android) a exposé 50 millions d'utilisateurs, dont 30 millions de portefeuilles crypto. Le bug permettait à des apps malveillantes de contourner les restrictions Android et d'accéder à des données sensibles. Une mise à jour urgente est requise pour les développeurs utilisant ce SDK.</p>
+<p><strong>Résumé</strong> : Un tutoriel détaillé explique comment configurer Zabbix pour superviser des équipements réseau (Cisco, etc.) via SNMPv3, incluant la gestion des traps. Cette configuration renforce la sécurité et la granularité des métriques collectées, essentielle pour les infrastructures critiques.</p>
+<a href="https://www.it-connect.fr/tuto-zabbix-supervision-reseau-snmpv3/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>### EngageLab SDK : faille exposant 50M utilisateurs Android, dont 30M portefeuilles crypto</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans le SDK EngageLab permet à des applications sur le même appareil d'accéder aux données d'autres apps, y compris les portefeuilles cryptographiques. Une mise à jour immédiate des SDK intégrés est nécessaire pour éviter des fuites de données sensibles.</p>
 <a href="https://thehackernews.com/2026/04/engagelab-sdk-flaw-exposed-50m-android.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>### Adobe Reader Zero-Day Exploited via Malicious PDFs Since December 2025</h3>
+<h3>### UAT-10362 : campagne de spear-phishing ciblant les ONG taïwanaises avec LucidRook</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité zero-day dans Adobe Reader (exploitée via des PDF malveillants) est active depuis décembre 2025. Les attaquants utilisent des techniques sophistiquées pour contourner les protections et exécuter du code arbitraire. Une mise à jour immédiate d'Adobe Reader est impérative.</p>
-<a href="https://thehackernews.com/2026/04/adobe-reader-zero-day-exploited-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un nouveau groupe (UAT-10362) déploie un malware Lua-based (LucidRook) via des emails de spear-phishing ciblant les ONG et universités taïwanaises. Ce malware utilise des techniques de stéganographie avancées pour échapper à la détection. Une formation des utilisateurs et une analyse des emails suspects sont recommandées.</p>
+<a href="https://thehackernews.com/2026/04/uat-10362-targets-taiwanese-ngos-with.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h3>### L’Etat réaffirme son intention de réduire ses dépendances numériques</h3>
+<h2>Dimanche 10 Avril 2026</h2>
+<h3>### Adobe Reader : faille zero-day exploitée via des PDF malveillants depuis décembre 2025</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La DINUM (Direction interministérielle du numérique) est chargée de coordonner la réduction des dépendances aux solutions numériques extra-européennes. Une feuille de route stratégique pour les administrateurs système visant à sécuriser les infrastructures critiques et favoriser l'innovation locale.</p>
-<a href="https://www.silicon.fr/business-1367/letat-reaffirme-son-intention-de-reduire-ses-dependances-numeriques-226570" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Une faille zero-day dans Adobe Reader (exploitée via des PDFs piégés) est activement utilisée depuis décembre 2025 pour voler des données. Les administrateurs doivent appliquer les correctifs urgents et sensibiliser les utilisateurs à ne pas ouvrir de fichiers PDF suspects.</p>
+<a href="https://thehackernews.com/2026/04/adobe-reader-zero-day-exploited-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### GlassWorm : campagne utilisant un dropper Zig pour infecter les IDE des développeurs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne GlassWorm évolue avec un dropper écrit en Zig, conçu pour infecter silencieusement tous les IDE (VS Code, IntelliJ, etc.) sur une machine de développeur. Cette technique permet de voler des informations sensibles ou d'injecter du code malveillant dans les projets. Une vérification des extensions et des dépendances est cruciale.</p>
+<a href="https://thehackernews.com/2026/04/glassworm-campaign-uses-zig-dropper-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### Chrome 146 : déploiement de DBSC pour bloquer le vol de sessions sur Windows</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google rend Device Bound Session Credentials (DBSC) disponible pour tous les utilisateurs Windows de Chrome 146. Cette fonctionnalité lie les sessions à un appareil spécifique, empêchant le vol de cookies de session via des attaques de type session hijacking. Une migration vers cette version est fortement recommandée.</p>
+<a href="https://thehackernews.com/2026/04/google-rolls-out-dbsc-in-chrome-146-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### Marimo RCE (CVE-2026-39987) : exploitation en moins de 10 heures après la disclosure</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité RCE critique (CVE-2026-39987, CVSS 9.3) dans Marimo, un notebook Python open source, a été exploitée en moins de 10 heures après sa publication. Les environnements utilisant Marimo doivent être mis à jour immédiatement pour éviter une compromission.</p>
+<a href="https://thehackernews.com/2026/04/marimo-rce-flaw-cve-2026-39987.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### Smart Slider 3 Pro : backdoor distribué via des serveurs Nextend compromis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont compromis les serveurs de mise à jour de Smart Slider 3 Pro (WordPress/Joomla) pour distribuer une version backdoorée (3.5.1.35). Cette campagne cible les sites web utilisant ce plugin populaire. Une vérification des logs et une mise à jour manuelle sont nécessaires.</p>
+<a href="https://thehackernews.com/2026/04/backdoored-smart-slider-3-pro-update.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>### Proton Calendar : nouvel outil de prise de rendez-vous intégré</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Proton lance un outil de planification de rendez-vous directement intégré à Proton Calendar, offrant une alternative open source et sécurisée à Calendly. Cette fonctionnalité est idéale pour les entreprises soucieuses de confidentialité et de conformité RGPD.</p>
+<a href="https://www.it-connect.fr/oubliez-calendly-proton-lance-son-outil-de-prise-de-rendez-vous/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>### HVTools : outil open source d'inventaire pour Hyper-V</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : HVTools est une alternative open source à RVTools, spécialement conçue pour l'inventaire et la gestion des environnements Hyper-V. Cet outil fournit une vue d'ensemble complète des serveurs, clusters et machines virtuelles, utile pour les administrateurs système sous Windows.</p>
+<a href="https://www.it-connect.fr/hvtools-un-outil-dinventaire-open-source-pour-hyper-v/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
