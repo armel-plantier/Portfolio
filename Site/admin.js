@@ -6,6 +6,7 @@ const GITHUB_REPO  = 'Portfolio';
 const ALLOWED_USER = 'armel-plantier';
 const PROC_DIR     = 'Documents/Procédures';
 const PROJ_DIR     = 'Documents/Projet';
+const E5_DIR       = 'Documents/E5';
 const CONFIG_PATH  = 'Site/config.js';
 
 // ============================================================================
@@ -83,8 +84,10 @@ let selectedProcTags = new Set();
 let selectedProjTags = new Set();
 let selectedProcIcon = 0;
 let selectedProjIcon = 0;
+let selectedE5Icon = 0;
 let procFile = null;
 let projFile = null;
+let e5File = null;
 
 // ============================================================================
 // UTILS
@@ -515,6 +518,9 @@ async function loadDashboard() {
         var certSection = extractSection(configContent, 'certifications');
         $('dash-cert-count').textContent = countEntries(certSection, 'name');
 
+        var e5Section = extractSection(configContent, 'documentsE5');
+        if ($('dash-e5-count')) $('dash-e5-count').textContent = countEntries(e5Section, 'title');
+
         // 2. Fetch recent commits
         var commits = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/commits?per_page=8');
         if (commits && commits.length > 0) {
@@ -673,6 +679,92 @@ $('cert-submit').addEventListener('click', async function() {
 });
 
 // ============================================================================
+// E5 DOCUMENTS
+// ============================================================================
+var e5IconGrid = renderIconGrid('e5-icons', 'e5-icon-search', function(i) { selectedE5Icon = i; validateE5(); updateE5Preview(); });
+
+setupUpload('e5-upload', 'e5-file', function(f) { e5File = f; setUploadState('e5-upload', f); validateE5(); updateE5Preview(); });
+
+['e5-title', 'e5-desc'].forEach(function(id) { $(id).addEventListener('input', function() { validateE5(); updateE5Preview(); }); });
+
+function validateE5() {
+    var title = $('e5-title').value.trim();
+    var desc = $('e5-desc').value.trim();
+    $('e5-submit').disabled = !(title && desc && e5File);
+}
+
+function updateE5Preview() {
+    var title = $('e5-title').value.trim();
+    var desc = $('e5-desc').value.trim();
+    var container = $('e5-preview');
+    var content = $('e5-preview-content');
+    if (!title) { container.style.display = 'none'; return; }
+    container.style.display = '';
+    var ext = e5File ? e5File.name.split('.').pop().toUpperCase() : '—';
+    var iconSvg = ICON_LIBRARY[selectedE5Icon].svg;
+    content.innerHTML = '<div style="display:flex;align-items:center;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:center;">' + iconSvg + '</div><div style="flex:1;"><strong style="font-size:0.95rem;">' + title + '</strong><br><span style="color:var(--muted);font-size:0.82rem;">' + (desc || '—') + '</span></div><span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;border-radius:6px;background:rgba(99,102,241,0.1);color:var(--primary);">' + ext + '</span></div>';
+}
+
+function resetE5() {
+    $('e5-title').value = '';
+    $('e5-desc').value = '';
+    e5File = null;
+    selectedE5Icon = 0;
+    setUploadState('e5-upload', null);
+    e5IconGrid.reset();
+    $('e5-preview').style.display = 'none';
+    validateE5();
+}
+$('e5-reset').addEventListener('click', resetE5);
+
+$('e5-submit').addEventListener('click', async function() {
+    var title = $('e5-title').value.trim();
+    var desc = $('e5-desc').value.trim();
+    var ext = e5File.name.split('.').pop().toLowerCase();
+
+    try {
+        showProgress('Publication en cours...', 'Upload du document E5...', 20);
+        var b64 = await fileToBase64(e5File);
+        var filePath = E5_DIR + '/' + e5File.name;
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(filePath), {
+            method: 'PUT',
+            body: JSON.stringify({ message: '[admin] Ajout document E5 : ' + title, content: b64 })
+        });
+
+        showProgress('Publication en cours...', 'Mise \u00e0 jour de config.js...', 60);
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var currentContent = new TextDecoder('utf-8').decode(bytes);
+
+        var iconSvg = escapeForJS(ICON_LIBRARY[selectedE5Icon].svg);
+        var entry = '{\n            title: "' + escapeForJS(title) + '",\n            description: "' + escapeForJS(desc) + '",\n            path: "E5/' + escapeForJS(e5File.name) + '",\n            icon: `' + iconSvg + '`,\n            type: "' + ext + '"\n        }';
+
+        var sectionRegex = /(documentsE5:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
+        var match = currentContent.match(sectionRegex);
+        if (!match) throw new Error('Section "documentsE5" non trouv\u00e9e dans config.js');
+
+        var existingEntries = match[2].trim();
+        var separator = existingEntries.endsWith(',') || existingEntries === '' ? '\n        ' : ',\n        ';
+        var newContent = currentContent.replace(sectionRegex, match[1] + match[2] + (existingEntries ? separator : '\n        ') + entry + '\n    ' + match[3]);
+
+        showProgress('Publication en cours...', 'Commit de config.js...', 85);
+        var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+            method: 'PUT',
+            body: JSON.stringify({ message: '[admin] config.js : ajout doc E5 ' + title, content: encoded, sha: configData.sha })
+        });
+
+        progressSuccess('"' + title + '" sera en ligne dans ~1 min.');
+        resetE5();
+
+    } catch (err) {
+        console.error(err);
+        progressError(err.message);
+    }
+});
+
+// ============================================================================
 // MANAGE ENTRIES (list + delete)
 // ============================================================================
 var manageConfigSha = null;
@@ -752,10 +844,12 @@ async function loadManageEntries() {
         var procedures = parseEntries(manageConfigContent, 'procedures', 'title');
         var projects = parseEntries(manageConfigContent, 'projects', 'title');
         var certifications = parseEntries(manageConfigContent, 'certifications', 'name');
+        var docsE5 = parseEntries(manageConfigContent, 'documentsE5', 'title');
 
         var procIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
         var projIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/></svg>';
         var certIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>';
+        var e5Icon = '<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
 
         var html = '';
 
@@ -772,6 +866,11 @@ async function loadManageEntries() {
         html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Certifications <span class="count-badge">' + certifications.length + '</span></div>';
         html += '<div class="entry-list">';
         certifications.forEach(function(name, i) { html += buildEntryRow(name, i, 'Certification', 'certifications', 'name', certIcon); });
+        html += '</div>';
+
+        html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Documents E5 <span class="count-badge">' + docsE5.length + '</span></div>';
+        html += '<div class="entry-list">';
+        docsE5.forEach(function(title, i) { html += buildEntryRow(title, i, 'Document E5', 'documentsE5', 'title', e5Icon); });
         html += '</div>';
 
         $('manage-content').innerHTML = html;
@@ -970,19 +1069,26 @@ function openEdit(section, key, value) {
 
     var block = found.block;
     var isCert = section === 'certifications';
+    var isE5 = section === 'documentsE5';
 
     // Show/hide fields based on section type
     $('edit-desc-field').style.display = isCert ? 'none' : '';
     $('edit-issuer-field').style.display = isCert ? '' : 'none';
     $('edit-url-field').style.display = isCert ? '' : 'none';
-    $('edit-tags-field').style.display = isCert ? 'none' : '';
+    $('edit-tags-field').style.display = (isCert || isE5) ? 'none' : '';
     $('edit-label-name').textContent = isCert ? 'Nom' : 'Titre';
 
     // PDF field: show for all types
     var currentPdf = extractField(block, 'path') || extractField(block, 'pdf') || '';
-    $('edit-pdf-current').textContent = currentPdf ? 'Actuel : ' + currentPdf : 'Aucun PDF';
+    $('edit-pdf-current').textContent = currentPdf ? 'Actuel : ' + currentPdf : 'Aucun fichier';
     $('edit-pdf-current').style.color = 'var(--muted)';
     $('edit-pdf-file').value = '';
+    if (isE5) {
+        $('edit-pdf-file').accept = '.pdf,.xlsx,.xls,.pptx,.docx';
+        $('edit-pdf-label').querySelector('span') && ($('edit-pdf-label').childNodes[$('edit-pdf-label').childNodes.length - 1].textContent = 'Nouveau fichier');
+    } else {
+        $('edit-pdf-file').accept = '.pdf';
+    }
     editNewPdfFile = null;
 
     // Pre-fill fields
@@ -990,6 +1096,8 @@ function openEdit(section, key, value) {
     if (isCert) {
         $('edit-issuer').value = extractField(block, 'issuer');
         $('edit-url').value = extractField(block, 'url');
+    } else if (isE5) {
+        $('edit-desc').value = extractField(block, 'description');
     } else {
         $('edit-desc').value = extractField(block, 'longDescription');
         $('edit-tags').value = extractTags(block);
@@ -1012,17 +1120,19 @@ $('edit-save').addEventListener('click', async function() {
     var key = pendingEdit.key;
     var originalValue = pendingEdit.originalValue;
     var isCert = section === 'certifications';
+    var isE5 = section === 'documentsE5';
     pendingEdit = null;
 
     try {
         // Step 1: Upload new PDF if provided
         var newPdfName = '';
         if (editNewPdfFile) {
-            showProgress('Modification...', 'Upload du nouveau PDF...', 20);
+            showProgress('Modification...', 'Upload du nouveau fichier...', 20);
             var b64 = await fileToBase64(editNewPdfFile);
             var dir;
             if (section === 'procedures') dir = PROC_DIR;
             else if (section === 'projects') dir = PROJ_DIR;
+            else if (isE5) dir = E5_DIR;
             else dir = 'Documents/Certifs';
             var pdfPath = dir + '/' + editNewPdfFile.name;
             await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(pdfPath), {
@@ -1058,6 +1168,16 @@ $('edit-save').addEventListener('click', async function() {
             newBlock = newBlock.replace(new RegExp('(url\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newUrl) + '"');
             if (newPdfName) {
                 newBlock = newBlock.replace(new RegExp('(pdf\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newPdfName) + '"');
+            }
+        } else if (isE5) {
+            var newDesc = $('edit-desc').value.trim();
+
+            newBlock = newBlock.replace(new RegExp('(title\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
+            newBlock = newBlock.replace(new RegExp('(description\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newDesc) + '"');
+            if (newPdfName) {
+                var newExt = newPdfName.split('.').pop().toLowerCase();
+                newBlock = newBlock.replace(new RegExp('(path\\s*:\\s*)"[^"]*"'), '$1"E5/' + escapeForJS(newPdfName) + '"');
+                newBlock = newBlock.replace(new RegExp('(type\\s*:\\s*)"[^"]*"'), '$1"' + newExt + '"');
             }
         } else {
             var newDesc = $('edit-desc').value.trim();
