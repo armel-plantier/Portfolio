@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 13/04/2026 au 13/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 13/04/2026 au 14/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 13/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 14/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,7 +75,67 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>
+            <h2>Dimanche 13 Avril 2026</h2>
+<h3>NixOS et Sécurix : une alternative Linux souveraine pour l'État français</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'État français envisage d'adopter NixOS via le projet Sécurix pour remplacer Windows sur les postes des agents publics. Cette distribution immutable offre une gestion déclarative des configurations, idéale pour la reproductibilité et la sécurité des environnements critiques. Son modèle de configuration modulaire (Nixpkgs) simplifie aussi la maintenance à grande échelle.</p>
+<a href="https://www.it-connect.fr/securix-et-bureautix-le-linux-de-etat-pour-remplacer-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Amazon S3 Files : le stockage objet S3 se transforme en système de fichiers natif</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : AWS annonce Amazon S3 Files, une fonctionnalité permettant d'utiliser des buckets S3 comme des systèmes de fichiers classiques (via EFS). Cette évolution simplifie l'intégration des données cloud dans les workflows locaux et réduit la complexité des migrations hybrides, tout en conservant les avantages du stockage objet (scalabilité, durabilité).</p>
+<a href="https://www.it-connect.fr/amazon-s3-files-le-stockage-objet-s3-devient-du-stockage-fichiers-chez-aws/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>GreenBoost-Proton : étendre la VRAM des GPU NVIDIA avec la RAM système</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GreenBoost, solution open-source de tiering mémoire, propose désormais GreenBoost-Proton pour les jeux sous Linux. Cette technologie permet d'utiliser la RAM système et le stockage NVMe comme extension de la VRAM des GPU NVIDIA, idéale pour les configurations limitées en mémoire graphique. Une avancée majeure pour les environnements HPC et gaming.</p>
+<a href="https://www.phoronix.com/news/GreenBoost-Proton-NVIDIA-vRAM" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Coreboot arrive enfin sur le StarBook MK VI (AMD Ryzen)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Après 3 ans d'attente, Coreboot est désormais disponible pour le StarBook MK VI (AMD Ryzen 5000). Cette compatibilité améliore la sécurité (firmware open-source) et la personnalisation du matériel, tout en réduisant la dépendance aux BIOS propriétaires. Un pas important pour les administrateurs gérant des parcs de machines.</p>
+<a href="https://www.phoronix.com/news/Coreboot-StarBook-MK-VI" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>FTRFS : un nouveau système de fichiers tolérant aux fautes pour Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FTRFS (Fault-Tolerant File-System) est proposé comme une alternative aux systèmes existants (Btrfs, ZFS) avec une approche axée sur la résilience aux pannes matérielles. Son architecture vise à réduire les risques de corruption de données en cas de défaillances critiques, un atout pour les environnements critiques (bases de données, stockage distribué).</p>
+<a href="https://www.phoronix.com/news/FTRFS-Linux-File-System" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>CVE-2026-34621 : Adobe corrige une zero-day dans Acrobat et Reader</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Adobe a publié un patch urgent pour une faille zero-day (CVE-2026-34621) dans Acrobat et Reader, exploitée activement. Cette vulnérabilité permet l'exécution de code à distance via des PDF malveillants. Une priorité pour les administrateurs système afin de sécuriser les postes clients.</p>
+<a href="https://www.it-connect.fr/cve-2026-34621-adobe-a-publie-un-patch-pour-la-zero-day-exploitee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>W3LL Phishing Network démantelé : 20M$ de fraudes évités</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le FBI et la police indonésienne ont démantelé un réseau de phishing (W3LL) utilisant un outil clé en main pour voler des identifiants et effectuer des fraudes financières. Cette opération illustre l'importance des solutions de détection avancée (EDR, sandboxing) et de la collaboration internationale pour contrer les cybermenaces.</p>
+<a href="https://thehackernews.com/2026/04/fbi-and-indonesian-police-dismantle.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>JUNN : la France lance son programme de jumeaux numériques souverains</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'IGN, le Cerema et Inria lancent JUNN, un projet de 25M€ financé par France 2030, pour créer une infrastructure souveraine de jumeaux numériques des territoires. Cette initiative vise à moderniser la gestion des données géospatiales et à renforcer l'autonomie technologique de l'État.</p>
+<a href="https://www.silicon.fr/data-ia-1372/junn-la-france-lance-son-programme-de-jumeaux-numeriques-nationaux-226599" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Rust pour Linux 7.1 : optimisations et performances accrues</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La prise en charge de Rust dans le noyau Linux (Rust for Linux) s'améliore avec Linux 7.1, incluant une option expérimentale pour booster les performances du code Rust. Cette évolution accélère l'adoption de Rust dans les environnements critiques, offrant une alternative plus sûre au C pour les modules noyau.</p>
+<a href="https://www.phoronix.com/news/Linux-7.1-Rust" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h2>Lundi 14 Avril 2026</h2>
+<h3>Btrfs sous Linux 7.1 : améliorations de performance et stabilité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les mises à jour de Btrfs pour Linux 7.1 apportent des optimisations de performance (écriture, lecture) et stabilisent l'ioctl de shutdown. Ces améliorations renforcent la fiabilité du système de fichiers pour les environnements de production, notamment dans les déploiements cloud et virtualisés.</p>
+<a href="https://www.phoronix.com/news/Btrfs-Linux-7.1" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
         </div>
     </div>
 </body>
