@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 13/04/2026 au 16/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 13/04/2026 au 17/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 16/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 17/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,123 +75,131 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 13 Avril 2026</h2>
+            <h2>Lundi 13 Avril 2026</h2>
 <h3>Vulnérabilité critique dans Foxit PDF Services API (SSRF)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de type SSRF (Server-Side Request Forgery) a été découverte dans Foxit PDF Services API, permettant à un attaquant d'accéder à des ressources internes non autorisées. Les versions affectées ne sont pas précisées, mais Foxit recommande une mise à jour immédiate. La criticité est estimée élevée en raison du potentiel d'exfiltration de données.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (non associée à un CVE spécifique) a été découverte dans Foxit PDF Services API, permettant à un attaquant de provoquer une falsification de requêtes côté serveur (SSRF). Cette faille pourrait être exploitée pour accéder à des ressources internes non autorisées ou contourner des protections réseau.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0425/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exécution de code arbitraire dans Adobe Acrobat (CVE-2026-34621)</h3>
+<h3>Multiples vulnérabilités critiques dans Python (exécution de code arbitraire)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Adobe Acrobat est vulnérable à une faille d'exécution de code arbitraire (CVE-2026-34621), activement exploitée en attaque. Les systèmes sous Windows et macOS sont concernés. Adobe a publié un correctif urgent via son bulletin de sécurité. La criticité est maximale (CVSS 9.8).</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE non spécifiés) ont été identifiées dans Python, permettant à un attaquant de provoquer une exécution de code arbitraire à distance et de contourner les politiques de sécurité. Ces failles affectent les versions récentes et nécessitent une mise à jour urgente.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0426/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploitation active de CVE-2026-34621 dans Adobe Acrobat (RCE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Adobe Acrobat est vulnérable à une faille critique (CVE-2026-34621) permettant une exécution de code arbitraire à distance. Adobe confirme que cette vulnérabilité est activement exploitée dans la nature, ce qui en fait une priorité absolue pour les correctifs.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0429/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>JanelaRAT cible les banques latino-américaines</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge (contournement de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware JanelaRAT, une variante de BX RAT, a ciblé 14 739 attaques en 2025 au Brésil et au Mexique, volant des données financières et cryptographiques. Les vecteurs d'infection incluent des pièces jointes malveillantes et des liens de phishing. Aucune solution de contournement n'est connue.</p>
-<a href="https://thehackernews.com/2026/04/janelarat-malware-targets-latin.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs failles critiques (CVE non spécifiés) ont été découvertes dans Microsoft Edge, permettant à un attaquant de contourner les politiques de sécurité et d'exécuter du code arbitraire. Ces vulnérabilités affectent les versions stables et bêta du navigateur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0427/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Démantèlement du réseau de phishing W3LL (20M$ de fraudes)</h3>
+<h3>Multiples vulnérabilités dans les produits Microsoft (non spécifiées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le FBI et la police indonésienne ont démantelé le réseau W3LL, responsable de 20 millions de dollars de tentatives de fraude via des attaques de phishing ciblées. L'outil W3LL était utilisé pour voler des identifiants et contourner l'authentification multifactorielle.</p>
-<a href="https://thehackernews.com/2026/04/fbi-and-indonesian-police-dismantle.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>APT37 utilise Facebook pour livrer RokRAT</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen APT37 (ScarCruft) a mené une campagne de social engineering via Facebook pour livrer le malware RokRAT. Les cibles incluent des entités gouvernementales et des dissidents. Aucune preuve d'exploitation active n'est signalée, mais la technique est innovante.</p>
-<a href="https://thehackernews.com/2026/04/north-koreas-apt37-uses-facebook-social.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le CERT-FR rapporte plusieurs vulnérabilités critiques dans divers produits Microsoft, bien que les détails techniques ne soient pas divulgués. Ces failles pourraient permettre des attaques par exécution de code, élévation de privilèges ou déni de service.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0428/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Lundi 14 Avril 2026</h2>
-<h3>Multiples vulnérabilités dans Python (exécution de code à distance)</h3>
+<h2>Mardi 14 Avril 2026</h2>
+<h3>Multiples vulnérabilités dans Synology SSL VPN Client (atteintes à la confidentialité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Python permettent une exécution de code arbitraire à distance (CVE non spécifié). Les versions 3.11 et antérieures sont affectées. Un correctif est disponible via les mises à jour officielles. La criticité est élevée (CVSS ≥ 8.5).</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0430/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Faille critique dans Synology SSL VPN Client (atteinte à la confidentialité)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Synology SSL VPN Client est vulnérable à des failles permettant une atteinte à la confidentialité et à l'intégrité des données (CVE non spécifié). Les versions 1.4.0 et antérieures sont concernées. Synology a publié un correctif urgent. La criticité est élevée.</p>
+<p><strong>Résumé</strong> : Synology SSL VPN Client est affecté par plusieurs vulnérabilités critiques permettant à un attaquant d'accéder à des données sensibles (confidentialité et intégrité). Ces failles pourraient être exploitées pour intercepter des communications ou modifier des données en transit.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0431/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans les produits Siemens (exécution de code à distance)</h3>
+<h3>Vulnérabilités critiques dans les produits Siemens (RCE, DoS, élévation de privilèges)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Siemens permettent une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service (CVE non spécifiés). Les systèmes industriels (SCADA, PLC) sont exposés. Siemens a publié des correctifs. Criticité maximale.</p>
+<p><strong>Résumé</strong> : Plusieurs produits Siemens sont vulnérables à des attaques permettant une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une élévation de privilèges. Ces failles concernent des systèmes industriels critiques et nécessitent une application immédiate des correctifs.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0432/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Faille critique dans ShowDoc (CVE-2025-0520) activement exploitée</h3>
+<h3>Faille critique dans PHP Composer (exécution de commandes arbitraires)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2025-0520 (CVSS 9.4) dans ShowDoc, un outil de gestion de documents, est activement exploitée pour une exécution de code à distance (RCE). Les serveurs non patchés sont vulnérables. Un correctif est disponible. Criticité maximale.</p>
-<a href="https://thehackernews.com/2026/04/showdoc-rce-flaw-cve-2025-0520-actively.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques (CVE-2026-XXXX) ont été découvertes dans PHP Composer, permettant une exécution de commandes arbitraires via une injection de commande. Les correctifs sont disponibles, mais de nombreux environnements restent exposés en raison de mises à jour retardées.</p>
+<a href="https://thehackernews.com/2026/04/new-php-composer-flaws-enable-arbitrary.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>108 extensions Chrome malveillantes volent des données</h3>
+<h3>Exploitation active de CVE-2026-33032 dans nginx-ui (prise de contrôle totale)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus de 100 extensions Chrome (dont 108 identifiées) communiquent avec une même infrastructure C2 pour voler des données Google/Télégram et injecter des publicités malveillantes. Plus de 20 000 utilisateurs sont affectés. Aucune solution de contournement n'est connue.</p>
-<a href="https://thehackernews.com/2026/04/108-malicious-chrome-extensions-steal.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Mirax Android RAT transforme les appareils en proxies SOCKS5</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware Mirax, distribué via des publicités Meta, transforme les appareils Android en proxies SOCKS5 pour des attaques anonymes. Plus de 220 000 comptes ont été touchés. Aucune solution de désinfection n'est disponible. Criticité élevée.</p>
-<a href="https://thehackernews.com/2026/04/mirax-android-rat-turns-devices-into.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CISA ajoute 6 failles exploitées à son catalogue KEV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté 6 vulnérabilités à son catalogue KEV, dont CVE-2026-21643 (Fortinet, CVSS 9.1) et CVE-2026-21644 (Microsoft, CVSS 8.8), toutes activement exploitées. Les correctifs sont disponibles pour Fortinet, Microsoft et Adobe. Criticité maximale.</p>
-<a href="https://thehackernews.com/2026/04/cisa-adds-6-known-exploited-flaws-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 15 Avril 2026</h2>
-<h3>Faille critique dans Nginx UI (CVE-2026-33032) activement exploitée</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-33032 (CVSS 9.8) dans nginx-ui permet une prise de contrôle complète du serveur Nginx sans authententification. Les attaques sont en cours. Un correctif est disponible. Criticité maximale.</p>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-33032 (CVSS 9.8) dans nginx-ui, un outil de gestion web pour Nginx, est activement exploitée pour contourner l'authentification et prendre le contrôle complet du serveur Nginx sans authentification préalable.</p>
 <a href="https://thehackernews.com/2026/04/critical-nginx-ui-vulnerability-cve.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités critiques dans SAP (exécution de code à distance)</h3>
+<h3>Campagne de phishing utilisant n8n Webhooks (depuis octobre 2025)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SAP Business Planning and Consolidation et SAP Business Warehouse sont vulnérables à une faille d'injection SQL (CVE non spécifiée) permettant une exécution de code arbitraire. Les correctifs sont disponibles via le Patch Tuesday d'avril 2026. Criticité maximale.</p>
-<a href="https://thehackernews.com/2026/04/april-patch-tuesday-fixes-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des attaquants exploitent les webhooks de n8n, une plateforme d'automatisation IA, pour déployer des malwares via des emails de phishing depuis octobre 2025. Cette méthode abuse de la confiance accordée à n8n pour contourner les filtres de sécurité.</p>
+<a href="https://thehackernews.com/2026/04/n8n-webhooks-abused-since-october-2025.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Microsoft corrige 169 vulnérabilités dont une zero-day exploitée</h3>
+<hr />
+<h2>Mercredi 15 Avril 2026</h2>
+<h3>Zero-Day "RedSun" dans Microsoft Defender (élévation de privilèges SYSTEM)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé 169 vulnérabilités dans son Patch Tuesday d'avril 2026, dont une zero-day (CVE-2026-21645) activement exploitée. Les produits concernés incluent SharePoint, Windows et .NET. La criticité est maximale pour plusieurs failles.</p>
+<p><strong>Résumé</strong> : Un chercheur a publié un proof-of-concept pour un zero-day dans Microsoft Defender (nommé "RedSun"), permettant à un attaquant d'obtenir des privilèges SYSTEM. Cette faille est la deuxième zero-day publiée par ce chercheur en deux semaines, soulignant des tensions avec Microsoft.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/new-microsoft-defender-redsun-zero-day-poc-grants-system-privileges/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Multiples vulnérabilités critiques dans les produits Fortinet (RCE, DoS, élévation de privilèges)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Fortinet a corrigé plusieurs vulnérabilités critiques dans ses produits, permettant une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une élévation de privilèges. Certaines de ces failles sont déjà exploitées dans la nature.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0440/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Python (DoS à distance)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Python permet à un attaquant de provoquer un déni de service à distance (DoS). Bien que moins dangereuse qu'une exécution de code, cette faille peut paralyser des services critiques dépendant de Python.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0437/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Microsoft Windows (RCE, élévation de privilèges, DoS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé 169 vulnérabilités dans son Patch Tuesday d'avril 2026, dont 8 critiques. Parmi elles, des failles permettant une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service (DoS) dans Windows et ses composants.</p>
 <a href="https://thehackernews.com/2026/04/microsoft-issues-patches-for-sharepoint.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>AgingFly : nouveau malware ciblant l'Ukraine</h3>
+<h3>Malware AgingFly ciblant l'Ukraine (vol de données et authentifiants)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware AgingFly, découvert dans des attaques contre des gouvernements et hôpitaux ukrainiens, vole des données d'authentification depuis les navigateurs Chromium et WhatsApp. Aucune solution de contournement n'est connue. Criticité élevée.</p>
+<p><strong>Résumé</strong> : Une nouvelle famille de malware, AgingFly, a été identifiée dans des attaques contre des gouvernements et hôpitaux ukrainiens. Ce malware vole des données d'authentification depuis les navigateurs Chromium et WhatsApp Messenger.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-agingfly-malware-used-in-attacks-on-ukraine-govt-hospitals/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>WordPress : 30 plugins compromis pour distribuer des malwares</h3>
+<hr />
+<h2>Jeudi 16 Avril 2026</h2>
+<h3>Fuite de données chez McGraw Hill (13,5 millions de comptes compromis)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus de 30 plugins WordPress (package EssentialPlugin) ont été compromis pour injecter du code malveillant, permettant un accès non autorisé aux sites. Aucune solution de contournement n'est connue. Criticité élevée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/wordpress-plugin-suite-hacked-to-push-malware-to-thousands-of-sites/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters a divulgué les données de 13,5 millions de comptes utilisateurs de McGraw Hill, obtenues après avoir compromis l'environnement Salesforce de l'entreprise. Cette fuite inclut des informations personnelles sensibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/data-breach-at-edtech-giant-mcgraw-hill-affects-135-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité dans Tenable Identity Exposure (élévation de privilèges)</h3>
+<h3>Malware ZionSiphon ciblant les systèmes de traitement d'eau</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Tenable Identity Exposure permettent une élévation de privilèges, un déni de service à distance et une atteinte à la confidentialité. Les versions 2025.1 et antérieures sont affectées. Un correctif est disponible. Criticité élevée.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0436/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un nouveau malware, ZionSiphon, conçu pour les environnements OT, cible spécifiquement les systèmes de traitement d'eau et de dessalement afin de saboter leurs opérations. Cette menace représente un risque critique pour les infrastructures critiques.</p>
+<a href="https://www.bleepingcomputer.com/news/security/zionsiphon-malware-designed-to-sabotage-water-treatment-systems/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CISA alerte sur une faille dans Windows Task Host</h3>
+<h3>Botnet PowMix ciblant la République tchèque (C2 aléatoire)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté une faille d'élévation de privilèges dans Windows Task Host (CVE-2026-21646) à son catalogue KEV, activement exploitée pour obtenir des privilèges SYSTEM. Microsoft a publié un correctif. Criticité maximale.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-windows-task-host-vulnerability-as-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un nouveau botnet, PowMix, est actif depuis décembre 2025 et cible les travailleurs en République tchèque. Il utilise des intervalles de beaconing aléatoires pour éviter la détection et maintenir ses communications C2.</p>
+<a href="https://thehackernews.com/2026/04/newly-discovered-powmix-botnet-hits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille critique dans Cisco Webex Services (action client requise)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco a corrigé une faille critique (CVE-2026-XXXX) dans ses services Webex, nécessitant une action manuelle des clients pour appliquer les correctifs. Cette vulnérabilité permet une exécution de code arbitraire à distance.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-says-critical-webex-services-flaw-requires-customer-action/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Vulnérabilités critiques dans Cisco Identity Services et Webex (exécution de code)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco a publié des correctifs pour quatre vulnérabilités critiques dans ses services Identity et Webex, permettant une exécution de code arbitraire et l'usurpation d'identité des utilisateurs. Les détails incluent CVE-2026-20184 et d'autres.</p>
+<a href="https://thehackernews.com/2026/04/cisco-patches-four-critical-identity.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
