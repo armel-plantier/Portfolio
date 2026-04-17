@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 13/04/2026 au 17/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 13/04/2026 au 18/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 17/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 18/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,111 +75,61 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 14 Avril 2026</h2>
-<h3>Nouvelle version majeure d'OpenSSL 4.0 avec support ECH et nettoyage des options Legacy</h3>
+            <h2>Mercredi 16 Avril 2026</h2>
+<h3>OpenSSL 4.0 : support d’ECH et nettoyage des options Legacy</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OpenSSL 4.0 introduit des fonctionnalités majeures comme le support de l'Encrypted Client Hello (ECH) pour renforcer la confidentialité des connexions TLS, ainsi qu'un nettoyage complet des options legacy jugées obsolètes. Cette version est critique pour les administrateurs systèmes gérant des infrastructures sécurisées.</p>
+<p><strong>Résumé</strong> : OpenSSL 4.0 introduit une version majeure avec le support de l'Encrypted Client Hello (ECH), améliorant la confidentialité des échanges TLS. Les options Legacy sont supprimées pour renforcer la sécurité et simplifier la maintenance.</p>
 <a href="https://www.it-connect.fr/nouveautes-openssl-4-0-support-dech-et-nettoyage-des-options-legacy/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Google intègre un parseur DNS en Rust dans les modems Pixel 10 pour renforcer la sécurité</h3>
+<h3>Cisco Webex : CVE-2026-20184 nécessite une action admin</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a intégré un parseur DNS écrit en Rust dans les modems des futurs Pixel 10, réduisant significativement les risques de vulnérabilités mémoire. Cette initiative s'inscrit dans la stratégie de Google pour promouvoir le code mémoire-sûr à la base des appareils mobiles.</p>
-<a href="https://thehackernews.com/2026/04/google-adds-rust-based-dns-parser-into.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Vulnérabilités critiques dans PHP Composer permettant l'exécution de commandes arbitraires</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités de type injection de commande (CVE non encore assignées) ont été découvertes dans Composer, le gestionnaire de paquets PHP. Les correctifs sont disponibles et doivent être appliqués d'urgence pour éviter des compromissions de serveurs via des dépôts malveillants.</p>
-<a href="https://thehackernews.com/2026/04/new-php-composer-flaws-enable-arbitrary.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>CISA ajoute 6 vulnérabilités connues exploitées à son catalogue KEV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté 6 vulnérabilités (dont CVE-2026-21643 dans Fortinet et CVE-2026-20184 dans Cisco Webex) à son catalogue des vulnérabilités exploitées (KEV). Les administrateurs doivent prioriser ces correctifs pour éviter des attaques ciblant ces failles déjà actives dans la nature.</p>
-<a href="https://thehackernews.com/2026/04/cisa-adds-6-known-exploited-flaws-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 15 Avril 2026</h2>
-<h3>Patch Tuesday Avril 2026 : 167 vulnérabilités corrigées dont 2 zero-days</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié son Patch Tuesday d'avril 2026 avec 167 correctifs, dont deux zero-days (CVE-2026-21643 et CVE-2026-21644) exploités activement. Les administrateurs doivent appliquer ces mises à jour sans délai pour protéger les infrastructures Windows contre des attaques en cours.</p>
-<a href="https://www.it-connect.fr/patch-tuesday-avril-2026-recapitulatif-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h3>OpenAI lance GPT-5.4-Cyber pour les équipes de sécurité</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : OpenAI a dévoilé GPT-5.4-Cyber, une version optimisée pour la cybersécurité défensive, en réponse directe à Claude Mythos d'Anthropic. Cet outil permet aux équipes SOC d'automatiser la détection de vulnérabilités et la réponse aux incidents avec une précision accrue.</p>
-<a href="https://www.it-connect.fr/cybersecurite-openai-fait-sauter-les-garde-fous-de-ia-pour-gpt-5-4-cyber/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h3>Vulnérabilité critique dans nginx-ui (CVE-2026-33032) permettant le takeover de serveurs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'authentification par contournement (CVSS 9.8) dans nginx-ui, un outil de gestion web pour Nginx, est activement exploitée. Les administrateurs doivent mettre à jour nginx-ui vers la dernière version ou appliquer un correctif manuel pour éviter des prises de contrôle complètes.</p>
-<a href="https://thehackernews.com/2026/04/critical-nginx-ui-vulnerability-cve.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>n8n webhooks abusés depuis octobre 2025 pour des campagnes de phishing</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent les webhooks de n8n, une plateforme d'automatisation IA, pour envoyer des emails de phishing sophistiqués. Les organisations utilisant n8n doivent surveiller les activités suspectes et restreindre l'accès aux workflows automatisés.</p>
-<a href="https://thehackernews.com/2026/04/n8n-webhooks-abused-since-october-2025.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Piratage d'Europa.eu : une faille IAM critique en cause</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le piratage du site Europa.eu a été facilité par une configuration IAM trop permissive sur AWS. Cet incident souligne l'importance de revoir les politiques d'accès et de mettre en place des audits réguliers des permissions cloud.</p>
-<a href="https://www.silicon.fr/cybersecurite-1371/piratage-europa-eu-iam-226672" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<hr />
-<h3>Stellantis et Microsoft signent un partenariat de 5 ans autour de l'IA et du cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Stellantis et Microsoft ont annoncé un accord de 5 ans pour déployer l'IA, renforcer la cybersécurité et migrer vers le cloud à l'échelle du groupe. Ce partenariat inclut des solutions Azure et des outils d'IA générative pour optimiser les processus industriels.</p>
-<a href="https://www.silicon.fr/business-1367/stellantis-et-microsoft-signent-un-accord-de-cinq-ans-autour-de-lia-et-du-cloud-226680" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<hr />
-<h2>Mercredi 16 Avril 2026</h2>
-<h3>Cisco corrige une faille critique (CVE-2026-20184) dans Webex nécessitant une action manuelle</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco a corrigé une faille critique dans Webex (CVE-2026-20184) permettant l'exécution de code arbitraire. Contrairement aux correctifs automatiques, cette mise à jour nécessite une intervention manuelle des administrateurs pour être appliquée.</p>
+<p><strong>Résumé</strong> : Cisco corrige une faille critique (CVE-2026-20184) dans Webex, permettant l'exécution de code arbitraire. Une intervention manuelle est requise pour appliquer le correctif.</p>
 <a href="https://www.it-connect.fr/cisco-webex-cve-2026-20184-cette-faille-critique-necessite-une-action-de-ladmin/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Vaultwarden 1.35.5 corrige trois vulnérabilités dans le gestionnaire de mots de passe</h3>
+<h3>Vaultwarden 1.35.5 corrige trois vulnérabilités</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Vaultwarden, l'implémentation open source de Bitwarden, a publié la version 1.35.5 pour corriger trois vulnérabilités de sécurité. Les administrateurs doivent mettre à jour leurs instances Vaultwarden immédiatement pour éviter des fuites de données.</p>
+<p><strong>Résumé</strong> : La mise à jour 1.35.5 de Vaultwarden corrige trois failles de sécurité critiques dans ce gestionnaire de mots de passe auto-hébergé. Une mise à jour immédiate est fortement recommandée.</p>
 <a href="https://www.it-connect.fr/vaultwarden-1-35-5-corrige-trois-vulnerabilites-dans-le-password-manager/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>PowMix : un nouveau botnet ciblant les travailleurs tchèques avec des techniques avancées</h3>
+<h3>IPv8 : un nouveau draft IETF pour ressusciter IPv4</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un botnet nommé PowMix, actif depuis décembre 2025, cible les travailleurs en République tchèque avec des intervalles de beaconing aléatoires pour éviter la détection. Les administrateurs doivent surveiller les communications sortantes et bloquer les IP suspectes.</p>
-<a href="https://thehackernews.com/2026/04/newly-discovered-powmix-botnet-hits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un draft IETF propose IPv8, une solution rétrocompatible avec IPv4, visant à simplifier la gestion réseau tout en évitant la migration vers IPv6. Une piste à suivre pour les administrateurs réseau.</p>
+<a href="https://www.it-connect.fr/cest-quoi-ipv8-un-nouveau-draft-ietf-veut-ressusciter-ipv4/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Zorin OS 18.1 disponible avec une version Lite pour les environnements légers</h3>
+<h3>Zorin OS 18.1 disponible avec une version Lite</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Zorin OS 18.1 est sorti avec des améliorations significatives et une version Lite optimisée pour les machines peu puissantes. Idéal pour les administrateurs gérant des postes de travail en entreprise ou des environnements virtualisés.</p>
+<p><strong>Résumé</strong> : Zorin OS 18.1 apporte des améliorations et une version Lite optimisée pour les machines moins puissantes. Idéal pour les environnements bureautiques légers.</p>
 <a href="https://www.it-connect.fr/zorin-os-18-1-est-disponible-accompagne-dune-version-lite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <hr />
-<h3>108 extensions Chrome malveillantes volent des données Google et Telegram</h3>
+<h2>Jeudi 17 Avril 2026</h2>
+<h3>Trois failles zero-day dans Microsoft Defender exploitées activement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne a infecté 20 000 utilisateurs via 108 extensions Chrome malveillantes, volant des données sensibles et injectant des publicités. Les administrateurs doivent auditer les extensions installées et bloquer les domaines C2 identifiés.</p>
-<a href="https://thehackernews.com/2026/04/108-malicious-chrome-extensions-steal.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Trois vulnérabilités zero-day (dont RedSun) dans Microsoft Defender sont activement exploitées pour obtenir des privilèges SYSTEM. Une mise à jour urgente est nécessaire.</p>
+<a href="https://thehackernews.com/2026/04/three-microsoft-defender-zero-days.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>NIST limite l’enrichissement des CVE après une explosion des soumissions</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Face à une augmentation de 263% des soumissions de CVE, le NIST restreint l’enrichissement automatique des vulnérabilités pour maintenir la qualité des données.</p>
+<a href="https://thehackernews.com/2026/04/nist-limits-cve-enrichment-after-263.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Google bloque 8,3 milliards de publicités non conformes en 2025</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google a bloqué 8,3 milliards de publicités et suspendu 24,9 millions de comptes en 2025 pour violations de politiques. Une mise à jour des règles de confidentialité est déployée sur Android 17.</p>
+<a href="https://thehackernews.com/2026/04/google-blocks-83b-policy-violating-ads.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Cloud souverain : l’UE choisit quatre champions européens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La Commission européenne attribue un contrat de 180 millions € à Post Telecom, StackIT, Scaleway et Proximus pour héberger ses données pendant six ans.</p>
+<a href="https://www.silicon.fr/cloud-1370/cloud-souverain-bruxelles-choisit-ses-quatre-champions-europeens-226725" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>
