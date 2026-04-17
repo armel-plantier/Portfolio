@@ -1028,14 +1028,104 @@ function copyToClipboard(text, btn) {
     });
 }
 
+// === MODAL PDF PLEIN ÉCRAN ===
+// Crée la modal une seule fois et la réutilise
+function ensurePDFModal() {
+    let modal = document.getElementById('pdf-modal');
+    if (modal) return modal;
+
+    modal = document.createElement('div');
+    modal.id = 'pdf-modal';
+    modal.className = 'pdf-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content" role="document">
+            <div class="pdf-modal-header">
+                <h3 class="pdf-modal-title">Document</h3>
+                <div class="pdf-modal-actions">
+                    <a class="pdf-modal-btn" id="pdf-modal-open" target="_blank" rel="noopener" title="Ouvrir dans un nouvel onglet">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        <span>Nouvel onglet</span>
+                    </a>
+                    <a class="pdf-modal-btn" id="pdf-modal-download" download title="Télécharger le PDF">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Télécharger</span>
+                    </a>
+                    <button class="pdf-modal-close" id="pdf-modal-close" title="Fermer (Échap)" aria-label="Fermer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="pdf-modal-body">
+                <div class="pdf-modal-loader">Chargement du document...</div>
+                <iframe class="pdf-modal-iframe" title="Visionneuse PDF"></iframe>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    // Fermeture par l'overlay, le bouton X et la touche Échap
+    modal.querySelector('.pdf-modal-overlay').addEventListener('click', closePDFModal);
+    modal.querySelector('#pdf-modal-close').addEventListener('click', closePDFModal);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closePDFModal();
+    });
+
+    return modal;
+}
+
+function openPDFModal(url, title) {
+    const modal = ensurePDFModal();
+    const iframe = modal.querySelector('.pdf-modal-iframe');
+    const loader = modal.querySelector('.pdf-modal-loader');
+    const titleEl = modal.querySelector('.pdf-modal-title');
+    const openBtn = modal.querySelector('#pdf-modal-open');
+    const dlBtn = modal.querySelector('#pdf-modal-download');
+
+    titleEl.textContent = title || 'Document';
+    openBtn.href = url;
+    dlBtn.href = url;
+
+    loader.style.display = 'block';
+    iframe.style.opacity = '0';
+    iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+    iframe.onload = () => {
+        loader.style.display = 'none';
+        iframe.style.opacity = '1';
+    };
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('pdf-modal-open');
+}
+
+function closePDFModal() {
+    const modal = document.getElementById('pdf-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('pdf-modal-open');
+    // Vider l'iframe pour stopper le chargement
+    const iframe = modal.querySelector('.pdf-modal-iframe');
+    if (iframe) iframe.src = 'about:blank';
+    // Réinitialiser les boutons de certifs (effet visuel actif)
+    document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
+}
+
+// Wrappers pour conserver la compatibilité avec les appels existants
 function togglePDF(id, url) {
-    const c = document.getElementById(id);
-    const card = c.closest('.project-card');
-    if (c.style.display === 'block') { c.style.display = 'none'; c.innerHTML = ''; if(card) card.classList.remove('expanded'); return; }
-    document.querySelectorAll('.pdf-container').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; const p = el.closest('.project-card'); if(p) p.classList.remove('expanded'); });
-    c.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="600px" style="border:none;"></iframe>`;
-    c.style.display = 'block';
-    if(card) { card.classList.add('expanded'); setTimeout(() => { window.scrollTo({top: card.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth'}); }, 100); }
+    // id était l'ancien conteneur inline ; on récupère un titre depuis la carte si possible
+    const container = document.getElementById(id);
+    let title = 'Document';
+    if (container) {
+        const card = container.closest('.project-card');
+        const h = card ? card.querySelector('.meta h4') : null;
+        if (h) title = h.textContent.trim();
+    }
+    openPDFModal(url, title);
 }
 
 function toggleComp(id, headerEl) {
@@ -1049,11 +1139,7 @@ function toggleComp(id, headerEl) {
 }
 
 function toggleCertPDF(id, url) {
-    const viewer = document.getElementById(id);
-    if (viewer.style.display === 'block') { viewer.style.display = 'none'; viewer.innerHTML = ''; return; }
-    document.querySelectorAll('.cert-pdf-viewer').forEach(el => { el.style.display = 'none'; el.innerHTML = ''; });
-    viewer.style.display = 'block';
-    viewer.innerHTML = `<iframe src="https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true" width="100%" height="100%" style="border:none;"></iframe>`;
+    openPDFModal(url, 'Certification');
 }
 
 function createToggleBtn(container, limit, txtMore) {
@@ -1075,28 +1161,5 @@ function createToggleBtn(container, limit, txtMore) {
 }
 
 function toggleGlobalPDF(url) {
-    const viewer = document.getElementById("global-cert-viewer");
-    if (!viewer) return;
-    const encodedUrl = encodeURIComponent(url);
-    const currentIframe = viewer.querySelector('iframe');
-    const closeViewer = () => {
-        viewer.style.display = 'none';
-        viewer.innerHTML = '';
-        document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
-    };
-    if (viewer.style.display === 'block' && currentIframe && currentIframe.src.includes(encodedUrl)) {
-        closeViewer();
-        return;
-    }
-    viewer.style.display = 'block';
-    viewer.innerHTML = `
-        <button id="btn-close-viewer" class="global-close-btn" title="Fermer le document">×</button>
-        <iframe src="https://docs.google.com/viewer?url=${encodedUrl}&embedded=true"></iframe>
-    `;
-    const closeBtn = document.getElementById("btn-close-viewer");
-    if (closeBtn) closeBtn.addEventListener("click", closeViewer);
-    const headerOffset = 120;
-    const elementPosition = viewer.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - headerOffset;
-    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    openPDFModal(url, 'Certification');
 }
