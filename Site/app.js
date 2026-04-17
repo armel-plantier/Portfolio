@@ -1477,9 +1477,19 @@ function toggleGlobalPDF(url) {
 
     // --- 5. SCHEMA.ORG JSON-LD (SEO) ---
     function initStructuredData() {
-        if (typeof config === 'undefined' || !config.profile) return;
+        if (typeof config === 'undefined' || !config.profile) {
+            console.warn('[JSON-LD] config ou config.profile indisponible');
+            return;
+        }
         const existing = document.querySelector('script[type="application/ld+json"][data-auto]');
         if (existing) return;
+
+        // Les liens sociaux sont dans config.social, pas config.profile
+        const social = config.social || {};
+        const sameAs = [
+            social.github || (config.profile.githubUser ? `https://github.com/${config.profile.githubUser}` : null),
+            social.linkedin || null
+        ].filter(Boolean);
 
         const data = {
             "@context": "https://schema.org",
@@ -1488,11 +1498,8 @@ function toggleGlobalPDF(url) {
             "jobTitle": config.profile.status || "",
             "description": config.profile.bio || "",
             "url": window.location.origin,
-            "image": config.profile.avatar || "",
-            "sameAs": [
-                config.profile.github ? `https://github.com/${config.profile.githubUser}` : null,
-                config.profile.linkedin || null
-            ].filter(Boolean)
+            "image": config.profile.avatar ? new URL(config.profile.avatar, window.location.href).href : "",
+            "sameAs": sameAs
         };
 
         const script = document.createElement('script');
@@ -1500,6 +1507,7 @@ function toggleGlobalPDF(url) {
         script.setAttribute('data-auto', 'true');
         script.textContent = JSON.stringify(data);
         document.head.appendChild(script);
+        console.info('[JSON-LD] Données structurées injectées');
     }
 
     // --- INIT ---
