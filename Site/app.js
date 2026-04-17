@@ -48,7 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
-    if (localStorage.getItem("theme") === "light") {
+    // Si aucun thème enregistré, on suit la préférence système
+    const savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        if (prefersLight) {
+            body.classList.add("light-mode");
+            if(themeBtn) themeBtn.innerText = "🌙";
+        }
+    } else if (savedTheme === "light") {
         body.classList.add("light-mode");
         if(themeBtn) themeBtn.innerText = "🌙"; 
     }
@@ -1090,12 +1098,33 @@ function openPDFModal(url, title) {
     dlBtn.href = url;
 
     loader.style.display = 'block';
+    loader.innerHTML = 'Chargement du document...';
     iframe.style.opacity = '0';
     iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
+
+    // Nettoyer tout timeout précédent
+    if (modal._timeoutId) clearTimeout(modal._timeoutId);
+
+    let loaded = false;
     iframe.onload = () => {
+        loaded = true;
         loader.style.display = 'none';
         iframe.style.opacity = '1';
     };
+
+    // Fallback : si l'iframe n'a pas chargé en 8s, on propose d'ouvrir en nouvel onglet
+    modal._timeoutId = setTimeout(() => {
+        if (!loaded) {
+            loader.innerHTML = `
+                <div style="margin-bottom: 14px;">⚠️ Le visualiseur met du temps à charger.</div>
+                <a href="${url}" target="_blank" rel="noopener" class="pdf-modal-btn" style="display:inline-flex; color: var(--primary); border-color: var(--primary);">
+                    Ouvrir directement le PDF →
+                </a>
+            `;
+            // Supprimer l'animation du spinner
+            loader.style.setProperty('--no-spinner', '1');
+        }
+    }, 8000);
 
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
@@ -1163,3 +1192,328 @@ function createToggleBtn(container, limit, txtMore) {
 function toggleGlobalPDF(url) {
     openPDFModal(url, 'Certification');
 }
+
+/* ==========================================================
+   AMÉLIORATIONS UX — ajoutées le 2026-04-18
+   Tout auto-initialisé, zéro modif HTML nécessaire
+   ========================================================== */
+(function() {
+    'use strict';
+
+    // --- 1. SCROLL PROGRESS BAR (barre de progression en haut) ---
+    function initScrollProgress() {
+        const bar = document.createElement('div');
+        bar.id = 'scroll-progress';
+        document.body.appendChild(bar);
+
+        let ticking = false;
+        const update = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+            bar.style.width = pct + '%';
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(update);
+                ticking = true;
+            }
+        }, { passive: true });
+        update();
+    }
+
+    // --- 2. BOUTON RETOUR EN HAUT ---
+    function initBackToTop() {
+        const btn = document.createElement('button');
+        btn.id = 'back-to-top';
+        btn.setAttribute('aria-label', 'Retour en haut');
+        btn.title = 'Retour en haut';
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+        document.body.appendChild(btn);
+
+        const toggle = () => {
+            if (window.scrollY > 500) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        };
+
+        window.addEventListener('scroll', toggle, { passive: true });
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        toggle();
+    }
+
+    // --- 3. REVEAL ANIMATION SUR LES CARTES (IntersectionObserver) ---
+    function initCardReveal() {
+        if (!('IntersectionObserver' in window)) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('card-revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        // Observer les cartes existantes ET celles ajoutées après
+        const observeCards = () => {
+            document.querySelectorAll('.project-card:not(.card-reveal-init), .cert-list li:not(.card-reveal-init)').forEach(card => {
+                card.classList.add('card-reveal-init');
+                observer.observe(card);
+            });
+        };
+
+        observeCards();
+        // Re-scan périodique pour les cartes chargées dynamiquement (projets, procédures, certifs)
+        const scanInterval = setInterval(observeCards, 500);
+        setTimeout(() => clearInterval(scanInterval), 8000); // stop après 8s
+    }
+
+    // --- 4. RECHERCHE GLOBALE CMD+K / CTRL+K ---
+    function initGlobalSearch() {
+        if (typeof config === 'undefined') return;
+
+        // Créer la palette
+        const palette = document.createElement('div');
+        palette.id = 'cmdk-palette';
+        palette.innerHTML = `
+            <div class="cmdk-overlay"></div>
+            <div class="cmdk-content" role="dialog" aria-label="Recherche globale">
+                <div class="cmdk-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="cmdk-input" placeholder="Rechercher un projet, une procédure, une certif..." autocomplete="off">
+                    <kbd class="cmdk-esc">Échap</kbd>
+                </div>
+                <div class="cmdk-results" id="cmdk-results"></div>
+                <div class="cmdk-footer">
+                    <span><kbd>↑</kbd><kbd>↓</kbd> naviguer</span>
+                    <span><kbd>↵</kbd> ouvrir</span>
+                    <span><kbd>Échap</kbd> fermer</span>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(palette);
+
+        const input = palette.querySelector('#cmdk-input');
+        const results = palette.querySelector('#cmdk-results');
+        const overlay = palette.querySelector('.cmdk-overlay');
+        let selectedIndex = 0;
+        let currentItems = [];
+
+        // Construire l'index recherchable
+        const buildIndex = () => {
+            const items = [];
+            (config.projects || []).forEach(p => {
+                items.push({
+                    type: 'Projet',
+                    icon: '📁',
+                    title: p.title,
+                    desc: p.shortDescription || p.longDescription || '',
+                    tags: p.tags || [],
+                    action: () => {
+                        const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Projet/`;
+                        openPDFModal(baseUrl + p.path, p.title);
+                    }
+                });
+            });
+            (config.procedures || []).forEach(p => {
+                items.push({
+                    type: 'Procédure',
+                    icon: '📋',
+                    title: p.title,
+                    desc: p.shortDescription || p.longDescription || p.description || '',
+                    tags: p.tags || [],
+                    action: () => {
+                        const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Proc%C3%A9dures/`;
+                        openPDFModal(baseUrl + encodeURIComponent(p.path), p.title);
+                    }
+                });
+            });
+            (config.certifications || []).forEach(c => {
+                if (!c.pdf) return;
+                items.push({
+                    type: 'Certif',
+                    icon: '🎓',
+                    title: c.title || c.name,
+                    desc: c.issuer || c.description || '',
+                    tags: [],
+                    action: () => {
+                        const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Certifs/`;
+                        openPDFModal(baseUrl + c.pdf, c.title || c.name);
+                    }
+                });
+            });
+            // Sections (nav interne)
+            ['projets','parcours','competences','certifications','procedures','veille','documents-e5'].forEach(sec => {
+                const el = document.getElementById(sec);
+                if (!el) return;
+                const h = el.querySelector('h3');
+                if (!h) return;
+                items.push({
+                    type: 'Section',
+                    icon: '📍',
+                    title: h.textContent.trim(),
+                    desc: 'Aller à la section',
+                    tags: [],
+                    action: () => {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            return items;
+        };
+
+        let fullIndex = null;
+
+        const normalize = (s) => (s || '').toString().toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+        const render = (query) => {
+            if (!fullIndex) fullIndex = buildIndex();
+            const q = normalize(query.trim());
+            currentItems = !q ? fullIndex.slice(0, 8) : fullIndex.filter(item => {
+                const hay = normalize(item.title + ' ' + item.desc + ' ' + (item.tags || []).join(' ') + ' ' + item.type);
+                return hay.includes(q);
+            }).slice(0, 12);
+            selectedIndex = 0;
+
+            if (currentItems.length === 0) {
+                results.innerHTML = `<div class="cmdk-empty">Aucun résultat pour "${escapeHTML(query)}"</div>`;
+                return;
+            }
+            results.innerHTML = currentItems.map((item, i) => `
+                <div class="cmdk-item ${i === 0 ? 'selected' : ''}" data-idx="${i}">
+                    <span class="cmdk-icon">${item.icon}</span>
+                    <div class="cmdk-text">
+                        <div class="cmdk-title">${escapeHTML(item.title)}</div>
+                        <div class="cmdk-desc">${escapeHTML(item.desc).slice(0, 90)}${item.desc.length > 90 ? '…' : ''}</div>
+                    </div>
+                    <span class="cmdk-type">${item.type}</span>
+                </div>
+            `).join('');
+
+            results.querySelectorAll('.cmdk-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const idx = parseInt(el.dataset.idx, 10);
+                    executeItem(idx);
+                });
+                el.addEventListener('mouseenter', () => {
+                    selectedIndex = parseInt(el.dataset.idx, 10);
+                    updateSelection();
+                });
+            });
+        };
+
+        const updateSelection = () => {
+            results.querySelectorAll('.cmdk-item').forEach((el, i) => {
+                el.classList.toggle('selected', i === selectedIndex);
+                if (i === selectedIndex) {
+                    el.scrollIntoView({ block: 'nearest' });
+                }
+            });
+        };
+
+        const executeItem = (idx) => {
+            const item = currentItems[idx];
+            if (!item) return;
+            close();
+            setTimeout(() => item.action(), 100);
+        };
+
+        const open = () => {
+            palette.classList.add('open');
+            document.body.classList.add('cmdk-open');
+            input.value = '';
+            render('');
+            setTimeout(() => input.focus(), 50);
+        };
+
+        const close = () => {
+            palette.classList.remove('open');
+            document.body.classList.remove('cmdk-open');
+        };
+
+        // Raccourcis clavier
+        document.addEventListener('keydown', (e) => {
+            // Cmd+K ou Ctrl+K
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                palette.classList.contains('open') ? close() : open();
+                return;
+            }
+            if (!palette.classList.contains('open')) return;
+            if (e.key === 'Escape') { e.preventDefault(); close(); }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                selectedIndex = Math.min(selectedIndex + 1, currentItems.length - 1);
+                updateSelection();
+            }
+            if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                selectedIndex = Math.max(selectedIndex - 1, 0);
+                updateSelection();
+            }
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeItem(selectedIndex);
+            }
+        });
+
+        input.addEventListener('input', (e) => render(e.target.value));
+        overlay.addEventListener('click', close);
+
+        // Bouton flottant pour mobile/découvrabilité
+        const fab = document.createElement('button');
+        fab.id = 'cmdk-fab';
+        fab.setAttribute('aria-label', 'Ouvrir la recherche');
+        fab.title = 'Recherche (Ctrl+K)';
+        fab.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+        fab.addEventListener('click', open);
+        document.body.appendChild(fab);
+    }
+
+    // --- 5. SCHEMA.ORG JSON-LD (SEO) ---
+    function initStructuredData() {
+        if (typeof config === 'undefined' || !config.profile) return;
+        const existing = document.querySelector('script[type="application/ld+json"][data-auto]');
+        if (existing) return;
+
+        const data = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": config.profile.name || "",
+            "jobTitle": config.profile.status || "",
+            "description": config.profile.bio || "",
+            "url": window.location.origin,
+            "image": config.profile.avatar || "",
+            "sameAs": [
+                config.profile.github ? `https://github.com/${config.profile.githubUser}` : null,
+                config.profile.linkedin || null
+            ].filter(Boolean)
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.setAttribute('data-auto', 'true');
+        script.textContent = JSON.stringify(data);
+        document.head.appendChild(script);
+    }
+
+    // --- INIT ---
+    const start = () => {
+        try { initScrollProgress(); } catch(e) { console.warn('scroll progress:', e); }
+        try { initBackToTop(); } catch(e) { console.warn('back to top:', e); }
+        try { initCardReveal(); } catch(e) { console.warn('card reveal:', e); }
+        try { initGlobalSearch(); } catch(e) { console.warn('global search:', e); }
+        try { initStructuredData(); } catch(e) { console.warn('structured data:', e); }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+    } else {
+        start();
+    }
+})();
