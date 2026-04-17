@@ -1225,23 +1225,32 @@ function toggleGlobalPDF(url) {
     }
 
     // --- 2. BOUTON RETOUR EN HAUT ---
+    // Un bouton #back-to-top peut déjà exister dans le HTML (styles inline).
+    // On le récupère s'il existe, sinon on le crée.
     function initBackToTop() {
-        const btn = document.createElement('button');
-        btn.id = 'back-to-top';
-        btn.setAttribute('aria-label', 'Retour en haut');
-        btn.title = 'Retour en haut';
-        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
-        document.body.appendChild(btn);
+        let btn = document.getElementById('back-to-top');
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.id = 'back-to-top';
+            btn.setAttribute('aria-label', 'Retour en haut');
+            btn.title = 'Retour en haut';
+            btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>';
+            document.body.appendChild(btn);
+        }
 
         const toggle = () => {
             if (window.scrollY > 500) btn.classList.add('visible');
             else btn.classList.remove('visible');
         };
 
-        window.addEventListener('scroll', toggle, { passive: true });
-        btn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        // Évite de doubler les listeners si le HTML en avait déjà branché
+        if (!btn._backToTopBound) {
+            btn._backToTopBound = true;
+            window.addEventListener('scroll', toggle, { passive: true });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
         toggle();
     }
 
