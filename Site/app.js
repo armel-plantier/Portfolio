@@ -1652,3 +1652,263 @@ function toggleGlobalPDF(url) {
         start();
     }
 })();
+
+/* ==========================================================
+   AMÉLIORATIONS VISUELLES v2 — Radar / Timeline / Toast
+   ========================================================== */
+(function() {
+    'use strict';
+
+    // =========================================================
+    // 1. SYSTÈME DE TOAST GLOBAL (réutilisable)
+    // =========================================================
+    function ensureToastContainer() {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    /**
+     * Affiche un toast discret
+     * @param {string} message - Message à afficher
+     * @param {'success'|'info'|'error'} [type='success']
+     * @param {number} [duration=3000] - Durée en ms
+     */
+    window.showToast = function(message, type = 'success', duration = 3000) {
+        const container = ensureToastContainer();
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        const icons = {
+            success: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+            info:    '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+            error:   '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+        };
+        toast.innerHTML = `
+            <span class="toast-icon">${icons[type] || icons.info}</span>
+            <span class="toast-msg">${message}</span>
+        `;
+        container.appendChild(toast);
+
+        // Animation d'apparition
+        requestAnimationFrame(() => toast.classList.add('visible'));
+
+        // Disparition
+        setTimeout(() => {
+            toast.classList.remove('visible');
+            toast.classList.add('leaving');
+            setTimeout(() => toast.remove(), 300);
+        }, duration);
+    };
+
+    // --- Brancher le toast sur la copie d'email ---
+    function wireEmailCopyToast() {
+        const copyBtn = document.getElementById('copy-email-btn');
+        if (!copyBtn || copyBtn._toastWired) return;
+        copyBtn._toastWired = true;
+
+        copyBtn.addEventListener('click', () => {
+            // Un toast est affiché en plus du comportement existant
+            setTimeout(() => {
+                window.showToast('Adresse e-mail copiée !', 'success');
+            }, 50);
+        }, { capture: true });
+    }
+
+    // --- Brancher le toast sur les boutons "copy-link" (projets, procs) ---
+    function wireCopyLinkToast() {
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.copy-link-btn, #pdf-modal-share');
+            if (!btn) return;
+            // Laisser le comportement original s'exécuter, puis toast
+            setTimeout(() => {
+                window.showToast('Lien copié dans le presse-papier', 'success');
+            }, 50);
+        }, { capture: false });
+    }
+
+    // =========================================================
+    // 2. RADAR CHART DES COMPÉTENCES (SVG pur)
+    // =========================================================
+    function initSkillsRadar() {
+        if (typeof config === 'undefined' || !config.competences || config.competences.length < 3) return;
+        const section = document.getElementById('competences');
+        if (!section) return;
+        if (document.getElementById('skills-radar-wrapper')) return;
+
+        const compList = section.querySelector('#comp-list');
+        if (!compList) return;
+
+        // Compétences à afficher
+        const skills = config.competences.map(c => {
+            // level explicite, sinon déduit du nombre de détails
+            const lvl = typeof c.level === 'number' ? c.level : Math.min(5, Math.max(2, (c.details || []).length));
+            return { name: c.name, level: lvl };
+        });
+
+        // Construction du SVG
+        const size = 380;
+        const cx = size / 2;
+        const cy = size / 2;
+        const radius = 130;
+        const levels = 5;
+        const n = skills.length;
+        const angleStep = (Math.PI * 2) / n;
+        const startAngle = -Math.PI / 2; // commence en haut
+
+        // Helper : point à un angle/niveau donné
+        const pt = (i, level) => {
+            const angle = startAngle + i * angleStep;
+            const r = (radius * level) / levels;
+            return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) };
+        };
+
+        // Grille concentrique (polygones)
+        let gridPolys = '';
+        for (let l = 1; l <= levels; l++) {
+            const pts = [];
+            for (let i = 0; i < n; i++) {
+                const p = pt(i, l);
+                pts.push(`${p.x.toFixed(1)},${p.y.toFixed(1)}`);
+            }
+            const opacity = 0.08 + (l / levels) * 0.06;
+            gridPolys += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(99,102,241,${opacity * 3})" stroke-width="1"/>`;
+        }
+
+        // Axes (lignes du centre vers chaque sommet)
+        let axes = '';
+        for (let i = 0; i < n; i++) {
+            const p = pt(i, levels);
+            axes += `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="rgba(99,102,241,0.18)" stroke-width="1"/>`;
+        }
+
+        // Polygone des compétences (avec animation)
+        const dataPts = skills.map((s, i) => pt(i, s.level));
+        const dataStr = dataPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+        // Labels + dots
+        let labels = '';
+        let dots = '';
+        for (let i = 0; i < n; i++) {
+            const labelP = pt(i, levels + 0.9);
+            // Ajustements pour que les labels ne sortent pas
+            const angle = startAngle + i * angleStep;
+            let anchor = 'middle';
+            if (Math.cos(angle) > 0.3) anchor = 'start';
+            else if (Math.cos(angle) < -0.3) anchor = 'end';
+            let dy = '0.35em';
+            if (Math.sin(angle) < -0.5) dy = '0em';
+            else if (Math.sin(angle) > 0.5) dy = '0.9em';
+
+            labels += `<text x="${labelP.x.toFixed(1)}" y="${labelP.y.toFixed(1)}" 
+                             text-anchor="${anchor}" dy="${dy}" 
+                             class="radar-label">${skills[i].name}</text>`;
+
+            const dp = dataPts[i];
+            dots += `<circle class="radar-dot" cx="${dp.x.toFixed(1)}" cy="${dp.y.toFixed(1)}" r="4"/>`;
+        }
+
+        const wrapper = document.createElement('div');
+        wrapper.id = 'skills-radar-wrapper';
+        wrapper.innerHTML = `
+            <div class="skills-radar-card">
+                <div class="skills-radar-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span>Vue d'ensemble</span>
+                </div>
+                <svg class="skills-radar-svg" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" aria-label="Radar des compétences">
+                    <defs>
+                        <linearGradient id="radar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#6366f1" stop-opacity="0.45"/>
+                            <stop offset="100%" stop-color="#a855f7" stop-opacity="0.25"/>
+                        </linearGradient>
+                    </defs>
+                    ${gridPolys}
+                    ${axes}
+                    <polygon class="radar-data" points="${dataStr}" fill="url(#radar-grad)" stroke="#6366f1" stroke-width="2" stroke-linejoin="round"/>
+                    ${dots}
+                    ${labels}
+                </svg>
+                <div class="skills-radar-legend">
+                    ${skills.map(s => `<span class="radar-legend-item"><span class="radar-legend-dot"></span>${s.name} <strong>${s.level}/5</strong></span>`).join('')}
+                </div>
+            </div>
+        `;
+
+        // Insérer AVANT la liste, en haut de la section
+        compList.parentNode.insertBefore(wrapper, compList);
+
+        // Animation à l'entrée
+        if ('IntersectionObserver' in window) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        wrapper.classList.add('animated');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            obs.observe(wrapper);
+        } else {
+            wrapper.classList.add('animated');
+        }
+    }
+
+    // =========================================================
+    // 3. TIMELINE AMÉLIORÉE — ajout de dots sur la ligne
+    // =========================================================
+    function enhanceTimeline() {
+        const expList = document.getElementById('exp-list');
+        if (!expList) return;
+        if (expList.classList.contains('timeline-enhanced')) return;
+        expList.classList.add('timeline-enhanced');
+
+        // Chaque item reçoit un dot sur la ligne (via un span qu'on ajoute)
+        // On marque aussi le premier comme "actuel" pour le pulse
+        const items = expList.querySelectorAll('.timeline-item');
+        items.forEach((item, idx) => {
+            if (item.querySelector('.timeline-dot')) return;
+            const dot = document.createElement('span');
+            dot.className = 'timeline-dot';
+            if (idx === 0) dot.classList.add('timeline-dot-current');
+            item.insertBefore(dot, item.firstChild);
+        });
+
+        // Re-scan si des items sont ajoutés plus tard
+        const mo = new MutationObserver(() => {
+            expList.querySelectorAll('.timeline-item:not(:has(.timeline-dot))').forEach((item, idx) => {
+                const dot = document.createElement('span');
+                dot.className = 'timeline-dot';
+                item.insertBefore(dot, item.firstChild);
+            });
+        });
+        mo.observe(expList, { childList: true });
+        setTimeout(() => mo.disconnect(), 5000);
+    }
+
+    // =========================================================
+    // INIT
+    // =========================================================
+    const start = () => {
+        try { wireEmailCopyToast(); } catch(e) { console.warn('email toast:', e); }
+        try { wireCopyLinkToast(); } catch(e) { console.warn('copy link toast:', e); }
+
+        // Les compétences et le parcours sont rendus dans le DOMContentLoaded principal
+        // On laisse un petit délai pour s'assurer que tout est en place
+        setTimeout(() => {
+            try { initSkillsRadar(); } catch(e) { console.warn('skills radar:', e); }
+            try { enhanceTimeline(); } catch(e) { console.warn('timeline:', e); }
+            // Re-brancher le bouton email qui n'existe peut-être pas encore
+            try { wireEmailCopyToast(); } catch(e) {}
+        }, 400);
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+    } else {
+        start();
+    }
+})();
