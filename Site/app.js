@@ -1534,3 +1534,182 @@ function toggleGlobalPDF(url) {
         start();
     }
 })();
+
+/* ==========================================================
+   PWA — Service Worker + Stats live
+   ========================================================== */
+(function() {
+    'use strict';
+
+    // --- ENREGISTREMENT DU SERVICE WORKER ---
+    function registerSW() {
+        if (!('serviceWorker' in navigator)) return;
+        // On attend que la page soit chargée pour ne pas voler de bande passante
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => {
+                    console.info('[SW] Enregistré, scope:', reg.scope);
+                    // Détection d'une mise à jour dispo
+                    reg.addEventListener('updatefound', () => {
+                        const newWorker = reg.installing;
+                        if (!newWorker) return;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.info('[SW] Nouvelle version disponible');
+                                showUpdateToast(reg);
+                            }
+                        });
+                    });
+                })
+                .catch(err => console.warn('[SW] Erreur enregistrement:', err));
+        });
+    }
+
+    function showUpdateToast(reg) {
+        const toast = document.createElement('div');
+        toast.id = 'sw-update-toast';
+        toast.innerHTML = `
+            <span>🔄 Nouvelle version disponible</span>
+            <button id="sw-update-btn">Actualiser</button>
+            <button id="sw-update-close" aria-label="Fermer">×</button>
+        `;
+        document.body.appendChild(toast);
+        document.getElementById('sw-update-btn').addEventListener('click', () => {
+            if (reg.waiting) reg.waiting.postMessage('SKIP_WAITING');
+            window.location.reload();
+        });
+        document.getElementById('sw-update-close').addEventListener('click', () => toast.remove());
+    }
+
+    // --- STATS LIVE DANS LE HERO ---
+    function initHeroStats() {
+        if (typeof config === 'undefined') return;
+        const hero = document.querySelector('.hero-section');
+        if (!hero) return;
+        if (document.getElementById('hero-stats')) return;
+
+        const stats = [
+            { label: 'Projets',     count: (config.projects       || []).length, icon: '📁', href: '#projets' },
+            { label: 'Procédures',  count: (config.procedures     || []).length, icon: '📋', href: '#procedures' },
+            { label: 'Certifs',     count: (config.certifications || []).length, icon: '🎓', href: '#certifications' }
+        ].filter(s => s.count > 0);
+
+        if (stats.length === 0) return;
+
+        const el = document.createElement('div');
+        el.id = 'hero-stats';
+        el.innerHTML = stats.map(s => `
+            <a href="${s.href}" class="hero-stat">
+                <span class="hero-stat-icon">${s.icon}</span>
+                <span class="hero-stat-count" data-target="${s.count}">0</span>
+                <span class="hero-stat-label">${s.label}</span>
+            </a>
+        `).join('');
+
+        // Insertion avant #skills-section si présent, sinon à la fin du hero
+        const skills = document.getElementById('skills-section');
+        if (skills) skills.parentNode.insertBefore(el, skills);
+        else hero.appendChild(el);
+
+        // Animation du compteur quand le hero entre à l'écran
+        const animate = (counter) => {
+            const target = parseInt(counter.dataset.target, 10);
+            const duration = 1200;
+            const start = performance.now();
+            const tick = (now) => {
+                const progress = Math.min((now - start) / duration, 1);
+                // ease-out
+                const eased = 1 - Math.pow(1 - progress, 3);
+                counter.textContent = Math.round(target * eased);
+                if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        };
+
+        if ('IntersectionObserver' in window) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animate(entry.target);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            el.querySelectorAll('.hero-stat-count').forEach(c => obs.observe(c));
+        } else {
+            el.querySelectorAll('.hero-stat-count').forEach(animate);
+        }
+    }
+
+    // --- BOUTON PARTAGER SUR LA MODAL PDF ---
+    // Ajoute un bouton "Copier le lien" qui reconstruit un lien partageable
+    function enhancePDFModal() {
+        // Attendre que la modal soit créée (au premier clic)
+        const observer = new MutationObserver(() => {
+            const modal = document.getElementById('pdf-modal');
+            if (!modal || modal.dataset.shareEnhanced) return;
+            modal.dataset.shareEnhanced = 'true';
+
+            const actions = modal.querySelector('.pdf-modal-actions');
+            if (!actions) return;
+            const dl = modal.querySelector('#pdf-modal-download');
+            if (!dl) return;
+
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'pdf-modal-btn';
+            shareBtn.id = 'pdf-modal-share';
+            shareBtn.title = 'Copier le lien de partage';
+            shareBtn.type = 'button';
+            shareBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Partager</span>
+            `;
+            actions.insertBefore(shareBtn, dl);
+
+            shareBtn.addEventListener('click', () => {
+                const titleEl = modal.querySelector('.pdf-modal-title');
+                const title = titleEl ? titleEl.textContent.trim() : '';
+                const slug = title
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .toLowerCase()
+                    .replace(/[\u2019\u2018'`\(\)]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/[^a-z0-9\-]/g, '')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                // Détecter si c'est une procédure ou un projet en regardant l'index config
+                const isProc = (config.procedures || []).some(p => p.title && p.title.toLowerCase() === title.toLowerCase());
+                const path = isProc ? '/procedures/' : '/projet-technova/';
+                const url = window.location.origin + path + slug;
+
+                navigator.clipboard.writeText(url).then(() => {
+                    const original = shareBtn.innerHTML;
+                    shareBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Copié !</span>`;
+                    shareBtn.classList.add('copied');
+                    setTimeout(() => {
+                        shareBtn.innerHTML = original;
+                        shareBtn.classList.remove('copied');
+                    }, 2000);
+                }).catch(() => {
+                    alert('Lien : ' + url);
+                });
+            });
+
+            observer.disconnect();
+        });
+        observer.observe(document.body, { childList: true, subtree: false });
+    }
+
+    // --- INIT ---
+    const start = () => {
+        try { registerSW(); } catch(e) { console.warn('SW:', e); }
+        try { initHeroStats(); } catch(e) { console.warn('hero stats:', e); }
+        try { enhancePDFModal(); } catch(e) { console.warn('pdf share:', e); }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start);
+    } else {
+        start();
+    }
+})();
