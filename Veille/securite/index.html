@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 13/04/2026 au 18/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 13/04/2026 au 19/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 18/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/04/2026 au 19/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,112 +76,78 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Dimanche 13 Avril 2026</h2>
-<h3>Vulnérabilité SSRF dans Foxit PDF Services API</h3>
+<h3>Vulnérabilité critique dans Adobe Acrobat (CVE-2026-34621)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité SSRF (Server-Side Request Forgery) a été identifiée dans Foxit PDF Services API, permettant à un attaquant d'interagir avec des services internes non exposés. Aucune exploitation active signalée à ce stade. Un correctif est attendu dans les prochains jours.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0425/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Exécution de code arbitraire dans Adobe Acrobat (CVE-2026-34621)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Adobe Acrobat est vulnérable à une faille d'exécution de code arbitraire (CVE-2026-34621), activement exploitée selon l'éditeur. Les systèmes Windows et macOS sont concernés. Adobe a publié un correctif urgent via son gestionnaire de mises à jour.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-34621) dans Adobe Acrobat permet une exécution de code arbitraire à distance. Adobe confirme une exploitation active en cours. Les systèmes affectés incluent toutes les versions non patchées d'Adobe Acrobat Reader DC et Adobe Acrobat. La criticité est maximale (CVSS 9.8). Un correctif est disponible via la mise à jour Adobe Acrobat du 13/04/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0429/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Multiples vulnérabilités dans Microsoft Edge et produits Microsoft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Edge et d'autres produits Microsoft permettent des contournements de politique de sécurité et des problèmes non spécifiés. Les correctifs sont disponibles via Windows Update. Criticité élevée pour les environnements exposés à Internet.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0427/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
 <h2>Lundi 14 Avril 2026</h2>
-<h3>Vulnérabilités critiques dans Synology SSL VPN Client</h3>
+<h3>Multiples vulnérabilités dans les produits Siemens (SSRF, RCE, DoS)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Synology SSL VPN Client est affecté par des failles permettant une atteinte à la confidentialité et à l'intégrité des données (CVE non attribué). Un correctif est disponible via le Centre de gestion des paquets Synology. Priorité absolue pour les infrastructures VPN.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0431/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Exploitation active de CVE-2026-34197 dans Apache ActiveMQ</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA signale une exploitation active de CVE-2026-34197 (CVSS 9.8) dans Apache ActiveMQ, permettant une exécution de code à distance. Apache a publié un correctif le 1er avril 2026. Les systèmes non patchés sont fortement exposés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-apache-activemq-flaw-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Campagne de ransomware Payouts King utilisant QEMU pour contourner la sécurité</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware Payouts King exploite QEMU pour déployer des machines virtuelles cachées via un reverse SSH, contournant les solutions EDR. Les attaques ciblent principalement les environnements Windows. Aucune solution de contournement connue à ce jour.</p>
-<a href="https://www.bleepingcomputer.com/news/security/payouts-king-ransomware-uses-qemu-vms-to-bypass-endpoint-security/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Siemens (SCADA, SIMATIC) permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service (DoS). Les systèmes affectés incluent SIMATIC PCS 7, SIMATIC WinCC OA et SIMATIC NET. La criticité varie de 7.5 à 9.8 (CVSS). Des correctifs sont disponibles via les bulletins Siemens SSA-547045 et SSA-661046.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0432/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 15 Avril 2026</h2>
 <h3>Trois zero-days Microsoft Defender activement exploités (BlueHammer, RedSun)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois vulnérabilités zero-day dans Microsoft Defender (BlueHammer, RedSun, et une troisième non nommée) sont exploitées pour obtenir des privilèges SYSTEM. Deux restent non patchées. Microsoft travaille sur des correctifs urgents. Criticité maximale.</p>
+<p><strong>Résumé</strong> : Trois vulnérabilités zero-day dans Microsoft Defender (BlueHammer, RedSun, et une troisième non nommée) sont activement exploitées pour obtenir des privilèges SYSTEM. Les attaques ciblent les systèmes Windows 10/11 et Windows Server. La criticité est maximale (CVSS 10.0). Deux des vulnérabilités restent non patchées à ce jour. Un correctif partiel est disponible pour BlueHammer via la mise à jour du 15/04/2026.</p>
 <a href="https://thehackernews.com/2026/04/three-microsoft-defender-zero-days.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h3>Vulnérabilités critiques dans les produits Fortinet (exécution de code à distance)</h3>
+<h3>Vulnérabilité critique dans Apache ActiveMQ (CVE-2026-34197)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Fortinet annonce des failles critiques dans plusieurs produits (CVE non attribuées) permettant une exécution de code à distance, une élévation de privilèges et un déni de service. Les correctifs sont disponibles via le support Fortinet. Priorité pour les pare-feux FortiGate.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0440/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Malware ZionSiphon ciblant les systèmes de traitement d'eau</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau malware, ZionSiphon, est conçu pour saboter les systèmes de traitement d'eau et de dessalement. Il cible spécifiquement les environnements OT (Operational Technology). Aucune signature antivirus connue à ce stade. Recommandation : isolation réseau immédiate.</p>
-<a href="https://www.bleepingcomputer.com/news/security/zionsiphon-malware-designed-to-sabotage-water-treatment-systems/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-34197, CVSS 9.8) dans Apache ActiveMQ permet une exécution de code arbitraire à distance. La vulnérabilité, non détectée pendant 13 ans, est désormais exploitée activement. Les systèmes affectés incluent Apache ActiveMQ 5.15.0 à 5.18.3. Un correctif est disponible via la mise à jour 5.18.4.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-flags-apache-activemq-flaw-as-actively-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 16 Avril 2026</h2>
-<h3>Exploitation de CVE-2026-20184 dans Cisco Identity Services (code execution)</h3>
+<h3>Malware ZionSiphon ciblant les systèmes de traitement d'eau</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco corrige CVE-2026-20184 (CVSS 9.9), une faille critique permettant une exécution de code arbitraire dans Cisco Identity Services Engine. Les attaquants peuvent usurper des utilisateurs. Correctif disponible via Cisco PSIRT.</p>
-<a href="https://thehackernews.com/2026/04/cisco-patches-four-critical-identity.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un nouveau malware, ZionSiphon, est conçu pour saboter les systèmes de traitement d'eau et de dessalement. Il cible spécifiquement les environnements OT (Operational Technology) et permet une exfiltration de données et une interruption de service. La criticité est élevée en raison de son impact potentiel sur les infrastructures critiques. Aucun correctif spécifique n'est disponible, une détection via des solutions EDR/OT est recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/zionsiphon-malware-designed-to-sabotage-water-treatment-systems/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Campagne UAC-0247 ciblant les cliniques ukrainiennes avec un malware de vol de données</h3>
+<h3>Exploit PoC pour protobuf.js (JavaScript RCE critique)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe UAC-0247 cible les cliniques et institutions gouvernementales ukrainiennes avec un malware de vol de données (via navigateurs Chromium). L'objectif est l'exfiltration de données sensibles. Recommandation : renforcement des contrôles d'accès et surveillance réseau.</p>
-<a href="https://thehackernews.com/2026/04/uac-0247-targets-ukrainian-clinics-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Botnet PowMix ciblant les travailleurs tchèques avec trafic C2 aléatoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le botnet PowMix, actif depuis décembre 2025, cible les travailleurs tchèques avec des intervalles de beaconing C2 aléatoires pour éviter la détection. Il est distribué via des campagnes de phishing. Aucune solution de mitigation connue à ce jour.</p>
-<a href="https://thehackernews.com/2026/04/newly-discovered-powmix-botnet-hits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un exploit Proof-of-Concept (PoC) a été publié pour une vulnérabilité critique dans protobuf.js (CVE non attribué, CVSS estimé 9.8), permettant une exécution de code arbitraire en JavaScript. La bibliothèque est largement utilisée dans les applications web et backend. Les systèmes affectés incluent toutes les versions non patchées de protobuf.js. Aucun correctif n'est encore disponible à ce jour.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-flaw-in-protobuf-library-enables-javascript-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Jeudi 17 Avril 2026</h2>
-<h3>Boucles de redémarrage après les correctifs d'avril 2026 de Microsoft</h3>
+<h3>Ransomware Payouts King utilisant QEMU pour contourner la sécurité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft avertit que certains contrôleurs de domaine Windows entrent en boucle de redémarrage après l'application des correctifs d'avril 2026. Un correctif dédié (KBXXXXXXX) est en cours de déploiement. Recommandation : tester les correctifs sur un environnement de staging.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-warns-of-reboot-loops-affecting-some-domain-controllers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le ransomware Payouts King utilise des machines virtuelles QEMU comme backdoor SSH pour exécuter des VM cachées sur les systèmes compromis, contournant ainsi les solutions de sécurité endpoint. Les attaques ciblent les environnements Windows et Linux. La criticité est élevée en raison de la persistance et de l'évasion des détections. Aucun correctif ne neutralise cette technique, une isolation des VM et une surveillance réseau sont recommandées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/payouts-king-ransomware-uses-qemu-vms-to-bypass-endpoint-security/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Operation PowerOFF : saisie de 53 domaines DDoS et exposition de 75 000 utilisateurs</h3>
+<h3>Opération PowerOFF : démantèlement de 53 domaines DDoS et exposition de 75 000 utilisateurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une opération internationale a permis la saisie de 53 domaines liés au DDoS commercial et l'identification de 75 000 utilisateurs. Quatre arrestations ont été effectuées. Les attaques DDoS restent une menace majeure malgré cette action.</p>
-<a href="https://thehackernews.com/2026/04/operation-poweroff-seizes-53-ddos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une opération internationale a démantelé 53 domaines liés aux attaques DDoS et identifié 75 000 utilisateurs criminels. Les domaines ciblaient des infrastructures critiques et des services en ligne. La criticité est liée à l'impact opérationnel des attaques DDoS. Aucun correctif n'est applicable, mais une réduction des surfaces d'attaque via le blocage des IP/ASN est recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/operation-poweroff-identifies-75k-ddos-users-takes-down-53-domains/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Exploitation de zero-days Windows récemment fuitées (SYSTEM privileges)</h3>
+<h2>Vendredi 18 Avril 2026</h2>
+<h3>Fuite de zero-days Windows exploités en attaque (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent trois zero-days Windows récemment fuitées pour obtenir des privilèges SYSTEM ou administrateur. Les vulnérabilités affectent les versions récentes de Windows 10/11 et Server. Microsoft n'a pas encore publié de correctif.</p>
+<p><strong>Résumé</strong> : Trois vulnérabilités zero-day dans Windows, récemment fuitées, sont désormais exploitées pour obtenir des privilèges SYSTEM ou administrateur. Les attaques ciblent les systèmes Windows 10/11 et Windows Server 2019/2022. La criticité est maximale (CVSS 10.0). Aucun correctif n'est disponible à ce jour. Microsoft recommande une application stricte des mesures de mitigation (ex : restrictions GPO, blocage des ports RPC vulnérables).</p>
 <a href="https://www.bleepingcomputer.com/news/security/recently-leaked-windows-zero-days-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Nouvelle variante Mirai (Nexcorium) exploitant CVE-2024-3721 sur TBK DVR</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La variante Mirai Nexcorium exploite CVE-2024-3721 (CVSS 9.8) dans les DVR TBK et les routeurs TP-Link obsolètes pour recruter des appareils dans un botnet DDoS. Les systèmes affectés incluent les DVR TBK non patchés et les routeurs TP-Link EoL. La criticité est élevée en raison de la taille potentielle du botnet. Un correctif existe pour CVE-2024-3721, mais les appareils EoL ne sont plus supportés.</p>
+<a href="https://thehackernews.com/2026/04/mirai-variant-nexcorium-exploits-cve.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
