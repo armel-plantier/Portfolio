@@ -1581,66 +1581,6 @@ function toggleGlobalPDF(url) {
         document.getElementById('sw-update-close').addEventListener('click', () => toast.remove());
     }
 
-    // --- STATS LIVE DANS LE HERO ---
-    function initHeroStats() {
-        if (typeof config === 'undefined') return;
-        const hero = document.querySelector('.hero-section');
-        if (!hero) return;
-        if (document.getElementById('hero-stats')) return;
-
-        const stats = [
-            { label: 'Projets',     count: (config.projects       || []).length, icon: '📁', href: '#projets' },
-            { label: 'Procédures',  count: (config.procedures     || []).length, icon: '📋', href: '#procedures' },
-            { label: 'Certifs',     count: (config.certifications || []).length, icon: '🎓', href: '#certifications' }
-        ].filter(s => s.count > 0);
-
-        if (stats.length === 0) return;
-
-        const el = document.createElement('div');
-        el.id = 'hero-stats';
-        el.innerHTML = stats.map(s => `
-            <a href="${s.href}" class="hero-stat">
-                <span class="hero-stat-icon">${s.icon}</span>
-                <span class="hero-stat-count" data-target="${s.count}">0</span>
-                <span class="hero-stat-label">${s.label}</span>
-            </a>
-        `).join('');
-
-        // Insertion avant #skills-section si présent, sinon à la fin du hero
-        const skills = document.getElementById('skills-section');
-        if (skills) skills.parentNode.insertBefore(el, skills);
-        else hero.appendChild(el);
-
-        // Animation du compteur quand le hero entre à l'écran
-        const animate = (counter) => {
-            const target = parseInt(counter.dataset.target, 10);
-            const duration = 1200;
-            const start = performance.now();
-            const tick = (now) => {
-                const progress = Math.min((now - start) / duration, 1);
-                // ease-out
-                const eased = 1 - Math.pow(1 - progress, 3);
-                counter.textContent = Math.round(target * eased);
-                if (progress < 1) requestAnimationFrame(tick);
-            };
-            requestAnimationFrame(tick);
-        };
-
-        if ('IntersectionObserver' in window) {
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animate(entry.target);
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            el.querySelectorAll('.hero-stat-count').forEach(c => obs.observe(c));
-        } else {
-            el.querySelectorAll('.hero-stat-count').forEach(animate);
-        }
-    }
-
     // --- BOUTON PARTAGER SUR LA MODAL PDF ---
     // Ajoute un bouton "Copier le lien" qui reconstruit un lien partageable
     function enhancePDFModal() {
@@ -1703,7 +1643,6 @@ function toggleGlobalPDF(url) {
     // --- INIT ---
     const start = () => {
         try { registerSW(); } catch(e) { console.warn('SW:', e); }
-        try { initHeroStats(); } catch(e) { console.warn('hero stats:', e); }
         try { enhancePDFModal(); } catch(e) { console.warn('pdf share:', e); }
     };
 
