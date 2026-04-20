@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 20/04/2026 au 20/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 20/04/2026 au 21/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 20/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 21/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,7 +75,66 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>
+            <h2>Lundi 20 Avril 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Spring Framework (CVE-2026-38857, CVE-2026-38858)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-38857 et CVE-2026-38858) ont été découvertes dans Spring Framework, permettant à un attaquant distant de provoquer un déni de service (DoS) ou un contournement de la politique de sécurité via des requêtes malveillantes. Les systèmes exposés incluent les applications Java utilisant Spring Core, Spring Web et Spring Security. Un correctif est disponible dans les versions 6.1.12+ et 6.2.0+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0457/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité critique dans Xen (CVE-2026-39001) permettant une fuite de données</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-39001) dans l'hyperviseur Xen permet à un attaquant local d'accéder à des données sensibles en contournant les mécanismes de protection mémoire. Les systèmes affectés incluent les versions de Xen antérieures à 4.18.1. Un patch est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0460/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploit critique dans SGLang (CVE-2026-5760, CVSS 9.8) via des modèles GGUF malveillants</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-5760, CVSS 9.8) dans SGLang permet une exécution de code à distance (RCE) via des fichiers GGUF malveillants. Les systèmes utilisant des modèles d'IA locaux sont exposés, notamment les environnements de développement et les serveurs d'inférence. Un correctif est disponible dans la version 0.3.0+.</p>
+<a href="https://thehackernews.com/2026/04/sglang-cve-2026-5760-cvss-98-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>KelpDAO victime d'un vol de 290 millions de dollars lié aux hackers Lazarus</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le projet DeFi KelpDAO a subi un vol de 290 millions de dollars attribué à des hackers nord-coréens (groupe Lazarus). L'attaque exploite des failles dans les contrats intelligents et des mécanismes de gouvernance. Aucune solution de récupération n'est disponible pour les victimes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/kelpdao-suffers-290-million-heist-tied-to-lazarus-hackers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>26 applications malveillantes dans l'App Store d'Apple volent des phrases de récupération de crypto-monnaies</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Vingt-six applications frauduleuses imitant des portefeuilles crypto (Metamask, Coinbase, Trust Wallet) ont été identifiées dans l'App Store chinois, volant des phrases de récupération pour drainer les actifs. Les utilisateurs d'iOS sont exposés, et Apple n'a pas encore retiré toutes les applications malveillantes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/chinas-apple-app-store-infiltrated-by-crypto-stealing-wallet-apps/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>The Gentlemen Ransomware intègre SystemBC pour des attaques botnet</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le ransomware The Gentlemen utilise désormais le malware SystemBC (botnet de 1 570 hôtes) pour des attaques coordonnées et une exfiltration de données. Les entreprises déjà infectées par The Gentlemen sont particulièrement exposées. Aucun decryptor public n'est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/the-gentlemen-ransomware-now-uses-systembc-for-bot-powered-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA ajoute 8 vulnérabilités exploitées activement au catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté 8 nouvelles vulnérabilités à son catalogue KEV, dont CVE-2026-38857 (Spring Framework), CVE-2026-39001 (Xen), et CVE-2024-3721 (DVR TBK). Ces failles sont activement exploitées en attaque, et des correctifs doivent être appliqués d'urgence. La liste complète est disponible sur le site de la CISA.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/04/20/cisa-adds-eight-known-exploited-vulnerabilities-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
+</div>
+
+<h3>ZionSiphon : nouveau malware ciblant les infrastructures OT israéliennes d'eau et dessalement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware ZionSiphon, découvert par Darktrace, cible spécifiquement les systèmes OT israéliens de traitement d'eau et dessalement. Il permet une persistance, une exfiltration de données et une perturbation des processus industriels. Aucune solution de détection ou de nettoyage n'est encore largement disponible.</p>
+<a href="https://thehackernews.com/2026/04/researchers-detect-zionsiphon-malware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilités critiques dans les convertisseurs Serial-to-IP (Lantronix, Silex) exposant OT et santé</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Vingt nouvelles vulnérabilités (dont CVE-2026-XXXX) ont été découvertes dans les produits Lantronix et Silex, permettant à des attaquants de prendre le contrôle d'appareils OT et médicaux. Les systèmes de santé et industriels sont particulièrement exposés. Des correctifs sont en cours de déploiement.</p>
+<a href="https://www.securityweek.com/serial-to-ip-converter-flaws-expose-ot-and-healthcare-systems-to-hacking/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Compromission de la chaîne d'approvisionnement de l'Axios npm (200 millions de téléchargements)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'Axios npm package (200 millions de téléchargements hebdomadaires) a été compromis, permettant l'injection de code malveillant dans des applications JavaScript. Une attaque attribuée à des acteurs nord-coréens (groupe Andariel) a été identifiée. Un correctif est disponible via la version 4.0.1+.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/04/20/supply-chain-compromise-impacts-axios-node-package-manager" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
+</div>
         </div>
     </div>
 </body>
