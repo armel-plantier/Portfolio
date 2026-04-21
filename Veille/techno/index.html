@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 20/04/2026 au 21/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 20/04/2026 au 22/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 21/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 22/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,53 +75,79 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 20 Avril 2026</h2>
-<h3>AdGuard Home : réplication de configuration automatisée pour les serveurs DNS</h3>
+            <h2>Lundi 20 Avril 2026</h2>
+<h3>Mises à jour critiques pour Windows Server : stabilisation d'Active Directory et correctifs hors bande</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Tutoriel pratique pour déployer l'outil open source <code>adguardhome-sync</code> afin de synchroniser automatiquement la configuration entre deux instances AdGuard Home, que ce soit sur Docker, Raspberry Pi ou autres plateformes. Idéal pour assurer une haute disponibilité et une cohérence des règles DNS à l'échelle.</p>
-<a href="https://www.it-connect.fr/tuto-adguard-home-sync-repliquer-configuration/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft a publié en urgence des correctifs hors bande pour Windows Server le 19 avril 2026 afin de corriger une faille critique affectant Active Directory, nécessitant une application immédiate pour éviter des risques de compromission. Ces mises à jour s'ajoutent aux correctifs mensuels du 14 avril (KB5082063), avec des améliorations de stabilité et de sécurité pour les environnements critiques.</p>
+<a href="https://www.it-connect.fr/windows-server-mises-a-jour-hors-bande-avril-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CVE-2026-5760 : Exécution de code à distance dans SGLang via des modèles GGUF malveillants</h3>
+<h3>Vulnérabilités critiques dans les convertisseurs série-IP Lantronix et Silex (BRIDGE:BREAK)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVSS 9.8) dans SGLang permet une exécution de code à distance via des fichiers de modèles GGUF corrompus. Les administrateurs doivent mettre à jour immédiatement SGLang et auditer les modèles utilisés dans leurs pipelines LLM pour éviter une compromission.</p>
-<a href="https://thehackernews.com/2026/04/sglang-cve-2026-5760-cvss-98-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : 22 nouvelles vulnérabilités (BRIDGE:BREAK) ont été découvertes dans les convertisseurs série-IP de Lantronix et Silex, permettant l'exécution de code à distance et le détournement de données. Ces équipements, souvent utilisés dans les infrastructures industrielles, nécessitent une mise à jour urgente pour éviter des attaques ciblant les systèmes OT.</p>
+<a href="https://thehackernews.com/2026/04/22-bridgebreak-flaws-expose-20000.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité critique dans le protocole MCP d'Anthropic : risque d'exécution de code</h3>
+<h3>NTFS-3G : première mise à jour en 4 ans pour le pilote FUSE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faiblesse structurelle dans le Model Context Protocol (MCP) d'Anthropic permet une exécution de code arbitraire, menaçant toute la chaîne d'approvisionnement IA. Les équipes DevOps doivent évaluer l'impact sur leurs déploiements MCP et appliquer les correctifs fournis par Anthropic.</p>
-<a href="https://thehackernews.com/2026/04/anthropic-mcp-design-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le pilote NTFS-3G, utilisé pour monter des partitions NTFS sous Linux, bénéficie d'une première mise à jour majeure depuis 2022. Cette version 2026 améliore la compatibilité et la stabilité, notamment pour les systèmes modernes, et corrige des problèmes de corruption de données.</p>
+<a href="https://www.phoronix.com/news/NTFS-3G-Driver-2026" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Linux 7.1 : support expérimental de pKVM et optimisations mémoire majeures</h3>
+<h3>Linux 7.1 : support expérimental pour les invités protégés pKVM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.1 introduit un support "très expérimental" pour les invités protégés pKVM (Protected KVM) et des améliorations significatives du sous-système mémoire (MM). Ces changements optimisent la gestion des ressources et renforcent la sécurité des environnements virtualisés critiques.</p>
+<p><strong>Résumé</strong> : Le noyau Linux 7.1 intègre un support "très expérimental" pour les invités protégés pKVM (Protected KVM), renforçant la sécurité des machines virtuelles sur architectures ARM. Cette fonctionnalité, utile pour les environnements sensibles, nécessite une configuration avancée.</p>
 <a href="https://www.phoronix.com/news/Linux-7.1-KVM" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Git 2.54 : nouvelle commande expérimentale "git history" et optimisations</h3>
+<h3>CISA ajoute 8 vulnérabilités exploitées à son catalogue KEV avec échéances fédérales</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Git 2.54 ajoute une commande expérimentale <code>git history</code> pour analyser l'historique des dépôts, ainsi que des optimisations de performance. Utile pour les équipes DevOps gérant des repositories de grande taille ou des migrations complexes.</p>
-<a href="https://www.phoronix.com/news/Git-2.54-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La CISA a ajouté 8 nouvelles vulnérabilités à son catalogue KEV, dont 3 affectant Cisco Catalyst SD-WAN Manager. Les agences fédérales américaines doivent appliquer les correctifs avant mai 2026 pour se conformer aux exigences de sécurité.</p>
+<a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>GNU Coreutils 9.11 : jusqu'à 15x plus rapide pour cat et wc</h3>
+<hr />
+<h2>Mardi 21 Avril 2026</h2>
+<h3>Firefox 150 : améliorations du lecteur PDF et gestion réseau</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La sortie de GNU Coreutils 9.11 apporte des gains de performance significatifs, notamment un <code>cat</code> jusqu'à 15x plus rapide et un <code>wc</code> plusieurs fois optimisé. Ces améliorations réduisent les temps d'exécution des scripts shell et des pipelines CI/CD.</p>
-<a href="https://www.phoronix.com/news/GNU-Coreutils-9.11" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Firefox 150 introduit des optimisations pour le lecteur PDF intégré, une vue scindée améliorée et une meilleure gestion des accès réseau. Ces mises à jour renforcent la productivité et la sécurité pour les utilisateurs professionnels.</p>
+<a href="https://www.it-connect.fr/firefox-150-est-disponible-decouvrez-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Vercel piraté via un tiers : impact limité mais rappel sur la sécurité des supply chains</h3>
+<h3>Proton 11 : support ARM et améliorations pour le gaming sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La plateforme Vercel a subi une intrusion via un outil tiers (Context.ai), exposant des identifiants clients limités. Cet incident souligne l'importance de sécuriser les chaînes d'approvisionnement logicielles et de limiter les accès des employés aux outils externes.</p>
-<a href="https://thehackernews.com/2026/04/vercel-breach-tied-to-context-ai-hack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Valve publie la bêta de Proton 11, basée sur Wine 11, avec un support natif pour les architectures ARM et des améliorations de compatibilité pour les jeux Windows sous Linux. Idéal pour les environnements hybrides ou embarqués.</p>
+<a href="https://www.it-connect.fr/le-gaming-sous-linux-franchit-un-nouveau-cap-avec-proton-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Box64 0.4.2 : support POWER PPC64LE et compatibilité SteamRT3/Proton 11</h3>
+<h3>Mozilla Thunderbolt : client IA open source pour entreprises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 0.4.2 de Box64 étend sa compatibilité aux architectures POWER PPC64LE et ajoute le support de SteamRT3 et Proton 11. Idéal pour les administrateurs gérant des environnements hybrides ou des migrations de jeux Windows vers Linux.</p>
-<a href="https://www.phoronix.com/news/Box64-0.4.2-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Mozilla lance Thunderbolt, un client IA front-end open source conçu pour les entreprises, facilitant l'intégration d'outils d'IA générative dans les workflows existants. Compatible avec les environnements cloud et on-premise.</p>
+<a href="https://www.it-connect.fr/thunderbolt-mozilla-devoile-un-client-ia-open-source-pour-les-entreprises/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Vulnérabilité critique dans SGLang (CVE-2026-5760) permettant l'exécution de code à distance</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVSS 9.8) dans SGLang permet l'exécution de code à distance via des fichiers GGUF malveillants. Les systèmes utilisant des modèles d'IA locaux doivent appliquer les correctifs immédiatement.</p>
+<a href="https://thehackernews.com/2026/04/sglang-cve-2026-5760-cvss-98-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Linux 7.1 : support du matériel Intel IRDMA Gen4 et optimisations RADV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux 7.1 ajoute le support des contrôleurs réseau Intel IRDMA Gen4 et active par défaut le transfert d'images GPU hôte (VK_EXT_host_image_copy) pour les GPU RDNA2+, réduisant l'usage mémoire dans les environnements graphiques intensifs.</p>
+<a href="https://www.phoronix.com/news/Intel-IRDMA-Gen4-Linux-7.1" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>AMD Ryzen 9 9950X3D2 : performances optimisées pour Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les benchmarks du nouveau Ryzen 9 9950X3D2 Dual Edition montrent des performances supérieures pour les développeurs (compilation) et les workloads créatifs sous Linux, avec un cache 3D V-Cache amélioré pour les tâches multi-threadées.</p>
+<a href="https://www.phoronix.com/review/amd-ryzen-9950x3d2-linux" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Framework Laptop 13 Pro : nouveau design modulaire et OCuLink Dev Kit</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Framework annonce le Laptop 13 Pro avec un design repensé et un kit de développement OCuLink pour connecter des périphériques haut débit (ex : eGPU). Idéal pour les administrateurs système nécessitant des configurations personnalisables et portables.</p>
+<a href="https://www.phoronix.com/news/Framework-Laptop-13-Pro" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
