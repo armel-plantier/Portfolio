@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 20/04/2026 au 23/04/2026</title>
+    <title>Veille Techno | Updates & Outils — 20/04/2026 au 24/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 23/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/04/2026 au 24/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,109 +75,93 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mardi 22 Avril 2026</h2>
-<h3>Rufus 4.14 Bêta : automatisation et nettoyage des bloatwares Windows</h3>
+            <h2>Mercredi 23 Avril 2026</h2>
+<h3>Piratage de Bitwarden CLI via NPM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 4.14 Bêta de Rufus introduit des fonctionnalités clés pour les administrateurs système, comme l'installation silencieuse de Windows 11 et la suppression automatisée des applications intégrées (bloatwares). Idéal pour déployer des machines propres en entreprise ou en environnement virtualisé.</p>
-<a href="https://www.it-connect.fr/marre-des-bloatwares-rufus-4-14-automatise-et-nettoie-linstallation-de-windows-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une version malveillante de Bitwarden CLI (2026.4.0) a été publiée sur NPM dans le cadre d'une campagne de supply chain. Le fichier malicieux "bw1.js" permet de voler des données sensibles. Les utilisateurs doivent vérifier les versions installées et éviter les packages non vérifiés.</p>
+<a href="https://www.it-connect.fr/piratage-bitwarden-cli-une-version-malveillante-diffusee-via-npm/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Firefox 150 : 271 vulnérabilités découvertes par IA et correctifs critiques</h3>
+<h3>Patch critique pour ASP.NET Core (CVE-2026-40372)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 150, dernière version du navigateur, fait face à 271 failles de sécurité identifiées par l'IA Claude Mythos. Les correctifs sont urgents pour les environnements exposés, notamment les postes clients et serveurs web. Une mise à jour prioritaire est recommandée.</p>
-<a href="https://www.it-connect.fr/claude-mythos-a-decouvert-271-failles-de-securite-dans-firefox-150/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft a corrigé une faille critique d'escalade de privilèges (CVSS 9.1) dans ASP.NET Core via une mise à jour hors bande (v10.0.7). Les administrateurs doivent appliquer ce patch immédiatement pour éviter les exploitations potentielles.</p>
+<a href="https://www.it-connect.fr/microsoft-a-publie-un-patch-pour-une-faille-critique-dans-asp-net-cve-2026-40372/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft 365 : support natif du Markdown dans OneDrive et SharePoint</h3>
+<h3>Apple corrige la faille iOS exploitable par le FBI (CVE-2026-28950)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft étend le support du Markdown (.md) dans OneDrive et SharePoint, avec un éditeur intégré. Utile pour les équipes DevOps documentant des configurations ou des pipelines via des fichiers texte versionnés. Simplifie la collaboration sur des documents techniques.</p>
-<a href="https://www.it-connect.fr/microsoft-365-ledition-native-markdown-debarque-dans-onedrive-et-sharepoint/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Apple a patché un bug dans iOS/iPadOS permettant de récupérer des messages Signal supprimés via les notifications. Cette faille (CVE-2026-28950) était utilisée par des agences gouvernementales pour des enquêtes forensiques.</p>
+<a href="https://thehackernews.com/2026/04/apple-patches-ios-flaw-that-stored.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Menace sur les supply chains : malwares dans les images Docker Checkmarx</h3>
+<h3>Microsoft intègre Claude Mythos à son SDL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des images malveillantes ont été poussées sur le dépôt officiel "checkmarx/kics" de Docker Hub, exploitant des tags existants. Les administrateurs doivent scanner leurs environnements pour détecter ces images compromises et révoquer les accès suspects aux registries internes.</p>
-<a href="https://thehackernews.com/2026/04/malicious-kics-docker-images-and-vs.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft intègre le modèle IA Claude Mythos Preview (spécialisé en cybersécurité) à son Security Development Lifecycle (SDL). Cette intégration vise à automatiser la détection de vulnérabilités dans les logiciels développés par Microsoft.</p>
+<a href="https://www.silicon.fr/cybersecurite-1371/microsoft-integre-claude-mythos-a-son-programme-de-developpement-securise-226878" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>CVE-2026-40372 : faille critique dans ASP.NET Core corrigée par Microsoft</h3>
+<h3>Kubernetes : gaspillage massif des ressources cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de type élévation de privilèges (CVSS 9.1) dans ASP.NET Core nécessite une mise à jour urgente. Les applications web exposées ou internes doivent être patchées pour éviter des attaques par escalade de droits, notamment dans les environnements .NET 6/7/8.</p>
-<a href="https://thehackernews.com/2026/04/microsoft-patches-critical-aspnet-core.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le rapport CAST AI révèle une sous-utilisation chronique des ressources Kubernetes (CPU à 8%, GPU à 5%). Les administrateurs doivent optimiser les clusters via des outils comme KEDA ou Vertical Pod Autoscaler pour réduire les coûts.</p>
+<a href="https://www.silicon.fr/cloud-1370/kubernetes-cpu-a-8-gpu-a-5-le-gaspillage-cloud-aggrave-annee-en-annee-226885" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>Proton 11 : améliorations majeures pour le gaming sous Linux</h3>
+<hr />
+<h2>Mardi 22 Avril 2026</h2>
+<h3>Mozilla Thunderbolt : client IA open source pour entreprises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Proton 11 (basé sur Wine 11) améliore la compatibilité des jeux Windows sous Linux et ajoute le support ARM. Les administrateurs système peuvent désormais déployer des postes de travail hybrides (Linux/Windows) pour les équipes techniques ou les environnements de test.</p>
-<a href="https://www.it-connect.fr/le-gaming-sous-linux-franchit-un-nouveau-cap-avec-proton-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Thunderbolt : client IA open source pour entreprises par Mozilla</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Mozilla lance Thunderbolt, un client IA front-end open source conçu pour les entreprises. Permet d'intégrer des modèles d'IA locaux dans des workflows internes (ex : analyse de logs, automatisation de tâches). Alternative aux solutions SaaS pour les environnements sensibles.</p>
+<p><strong>Résumé</strong> : Mozilla lance Thunderbolt, un client IA front-end open source conçu pour les entreprises. Il permet de déployer des modèles IA en local avec une interface unifiée, réduisant la dépendance aux solutions SaaS.</p>
 <a href="https://www.it-connect.fr/thunderbolt-mozilla-devoile-un-client-ia-open-source-pour-les-entreprises/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Arm AGI CPU : premier processeur serveur orienté IA et datacenters</h3>
+<h3>Firefox 150 : 271 vulnérabilités corrigées via IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Arm commercialise son premier CPU serveur (AGI CPU) optimisé pour les workloads IA. Idéal pour les infrastructures légères ou les environnements edge nécessitant une faible consommation énergétique. Compatible avec les stacks Kubernetes et les outils DevOps modernes.</p>
-<a href="https://www.silicon.fr/cloud-1370/arm-agi-cpu-226857" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Firefox 150 intègre les correctifs pour 271 failles découvertes par l'IA Claude Mythos. Les nouveautés incluent un lecteur PDF amélioré et une gestion renforcée des accès réseau.</p>
+<a href="https://www.it-connect.fr/firefox-150-est-disponible-decouvrez-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Google Cloud Next 2026 : stratégie centrée sur les agents autonomes</h3>
+<h3>Proton 11 : amélioration du gaming sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google mise sur les agents IA autonomes lors de sa conférence Next 2026, avec de nouveaux TPU et une refonte de Vertex AI. Les administrateurs cloud peuvent anticiper des outils d'automatisation avancés pour la gestion des infrastructures (ex : scaling dynamique, maintenance prédictive).</p>
+<p><strong>Résumé</strong> : Valve publie Proton 11 (bêta), basé sur Wine 11, avec un support étendu pour les jeux Linux et l'architecture ARM. Idéal pour les administrateurs gérant des postes de travail hybrides.</p>
+<a href="https://www.it-connect.fr/le-gaming-sous-linux-franchit-un-nouveau-cap-avec-proton-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Google Cloud Next 26 : focus sur les agents autonomes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google mise sur les agents IA autonomes lors de son événement Next 26, avec des annonces sur les nouveaux TPU et une refonte de Vertex AI. Les administrateurs cloud doivent anticiper l'intégration de ces agents dans leurs workflows.</p>
 <a href="https://www.silicon.fr/data-ia-1372/google-cloud-next-26-google-mise-tout-sur-les-agents-autonomes-226847" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>CISA ajoute 8 vulnérabilités à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté 8 vulnérabilités exploitées activement à son catalogue KEV, dont 3 affectant Cisco Catalyst SD-WAN Manager. Les administrateurs doivent prioriser ces correctifs avant le 1er mai 2026.</p>
+<a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Lundi 21 Avril 2026</h2>
-<h3>Correctifs urgents pour Windows Server : stabilisation d'Active Directory</h3>
+<h3>Rufus 4.14 : nettoyage des bloatwares Windows 11</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié des mises à jour hors bande pour Windows Server (avril 2026) afin de corriger un bug critique affectant Active Directory. Les environnements critiques doivent appliquer ces correctifs immédiatement pour éviter des interruptions de service ou des attaques par rebond.</p>
-<a href="https://www.it-connect.fr/windows-server-mises-a-jour-hors-bande-avril-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Rufus 4.14 (bêta) introduit une option pour supprimer automatiquement les applications intégrées (bloatwares) lors de l'installation de Windows 11. Utile pour les administrateurs déployant des postes standardisés.</p>
+<a href="https://www.it-connect.fr/marre-des-bloatwares-rufus-4-14-automatise-et-nettoie-linstallation-de-windows-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Firefox 150 : nouvelles fonctionnalités et gestion réseau améliorée</h3>
+<h3>Markdown natif dans Microsoft 365 (OneDrive/SharePoint)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 150 introduit un lecteur PDF intégré, une vue scindée pour le multitâche, et des contrôles renforcés sur les accès réseau. Les administrateurs peuvent configurer ces options via des politiques de groupe pour les postes clients en entreprise.</p>
-<a href="https://www.it-connect.fr/firefox-150-est-disponible-decouvrez-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft ajoute un support natif du Markdown (.md) dans OneDrive et SharePoint, avec un éditeur intégré. Les administrateurs peuvent désormais documenter des projets directement dans ces outils.</p>
+<a href="https://www.it-connect.fr/microsoft-365-ledition-native-markdown-debarque-dans-onedrive-et-sharepoint/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CISA ajoute 8 vulnérabilités à son catalogue KEV avec échéances fédérales</h3>
+<h3>22 vulnérabilités BRIDGE:BREAK dans les convertisseurs Lantronix/Silex</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté 8 failles exploitées activement à son catalogue KEV, dont 3 impactant Cisco Catalyst SD-WAN Manager. Les agences fédérales américaines doivent appliquer les correctifs avant mai 2026. Les entreprises privées sont encouragées à suivre ces alertes pour leurs équipements réseau.</p>
-<a href="https://thehackernews.com/2026/04/cisa-adds-8-exploited-flaws-to-kev-sets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>BRIDGE:BREAK : 22 vulnérabilités critiques dans les convertisseurs Lantronix/Silex</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : 22 failles (dont certaines critiques) ont été découvertes dans les convertisseurs série-IP de Lantronix et Silex. Ces équipements IoT/OT sont souvent utilisés dans les environnements industriels. Les administrateurs doivent isoler ces appareils et appliquer les correctifs constructeur.</p>
+<p><strong>Résumé</strong> : 22 failles critiques (BRIDGE:BREAK) ont été découvertes dans les convertisseurs série-IP de Lantronix et Silex, exposant des milliers d'appareils industriels. Les correctifs doivent être appliqués en urgence.</p>
 <a href="https://thehackernews.com/2026/04/22-bridgebreak-flaws-expose-20000.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité critique dans le sandbox Terrarium (CVE-2026-5752)</h3>
+<h3>Arm AGI CPU : premier processeur serveur orienté IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le sandbox Python Terrarium (CVSS 9.3) permet l'exécution de code arbitraire et l'échappement de conteneurs. Les environnements utilisant ce sandbox pour l'IA ou le traitement de données doivent être mis à jour ou migrés vers des alternatives sécurisées.</p>
-<a href="https://thehackernews.com/2026/04/cohere-ai-terrarium-sandbox-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>SGLang : RCE via des fichiers GGUF malveillants (CVE-2026-5760)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une injection de commande dans SGLang (CVSS 9.8) permet une exécution de code à distance via des fichiers GGUF (modèles LLM). Les administrateurs doivent restreindre les permissions des utilisateurs et scanner les dépôts de modèles pour détecter les fichiers compromis.</p>
-<a href="https://thehackernews.com/2026/04/sglang-cve-2026-5760-cvss-98-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Anthropic MCP : faille de conception permettant l'exécution de code</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faiblesse architecturale dans le Model Context Protocol (MCP) d'Anthropic permet une exécution de code arbitraire, menaçant toute la chaîne d'approvisionnement IA. Les entreprises utilisant des outils basés sur MCP doivent revoir leur configuration et appliquer les correctifs urgents.</p>
-<a href="https://thehackernews.com/2026/04/anthropic-mcp-design-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>AdGuard Home : réplication de configuration entre serveurs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un tutoriel détaille comment automatiser la réplication de configurations entre serveurs AdGuard Home (DNS filtrant) via Docker ou Raspberry Pi. Solution idéale pour les administrateurs gérant des infrastructures distribuées ou des clusters de filtrage.</p>
-<a href="https://www.it-connect.fr/tuto-adguard-home-sync-repliquer-configuration/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Arm commercialise son premier CPU serveur (AGI) optimisé pour les workloads IA. Les administrateurs cloud doivent évaluer ce processeur pour les charges de travail intensives en calcul.</p>
+<a href="https://www.silicon.fr/cloud-1370/arm-agi-cpu-226857" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>
