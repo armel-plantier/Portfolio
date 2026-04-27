@@ -1298,39 +1298,87 @@ async function loadParcoursEntries() {
 
 function parseExperiencesFromConfig(content) {
     var results = [];
+
     var m = content.match(/experiences\s*:\s*\[/);
     if (!m) return results;
-    var start = content.indexOf(m[0]) + m[0].length;
-    // Find closing ] of experiences array
-    var depth = 1, i = start;
-    while (i < content.length && depth > 0) {
-        if (content[i] === '[' || content[i] === '{') depth++;
-        else if (content[i] === ']' || content[i] === '}') depth--;
-        i++;
+    var arrayStart = content.indexOf(m[0]) + m[0].length;
+
+    function scanToClose(src, pos, openChar, closeChar) {
+        var depth = 1;
+        var i = pos;
+        while (i < src.length && depth > 0) {
+            var c = src[i];
+            if (c === '/' && src[i+1] === '/') {
+                while (i < src.length && src[i] !== '\n') i++;
+                continue;
+            }
+            if (c === '/' && src[i+1] === '*') {
+                i += 2;
+                while (i < src.length && !(src[i] === '*' && src[i+1] === '/')) i++;
+                i += 2;
+                continue;
+            }
+            if (c === '"' || c === "'" || c === '`') {
+                var q = c; i++;
+                while (i < src.length) {
+                    if (src[i] === '\\') { i += 2; continue; }
+                    if (src[i] === q) { i++; break; }
+                    i++;
+                }
+                continue;
+            }
+            if (c === openChar) depth++;
+            else if (c === closeChar) depth--;
+            i++;
+        }
+        return i;
     }
-    var block = content.substring(start, i - 1);
-    // Split into individual objects
+
+    var arrayEnd = scanToClose(content, arrayStart, '[', ']');
+    var arrayBlock = content.substring(arrayStart, arrayEnd - 1);
+
     var entries = [];
-    var d = 0, cur = '', inStr = false, strChar = '', escape = false;
-    for (var j = 0; j < block.length; j++) {
-        var c = block[j];
-        if (escape) { cur += c; escape = false; continue; }
-        if (c === '\\') { cur += c; escape = true; continue; }
-        if (!inStr && (c === '"' || c === "'")) { inStr = true; strChar = c; cur += c; continue; }
-        if (inStr && c === strChar) { inStr = false; cur += c; continue; }
-        if (inStr) { cur += c; continue; }
-        if (c === '{') { d++; cur += c; }
-        else if (c === '}') { d--; cur += c; if (d === 0) { entries.push(cur.trim()); cur = ''; } }
-        else { cur += c; }
+    var i = 0;
+    while (i < arrayBlock.length) {
+        while (i < arrayBlock.length && arrayBlock[i] !== '{') i++;
+        if (i >= arrayBlock.length) break;
+        var entryStart = i;
+        var entryEnd = scanToClose(arrayBlock, i + 1, '{', '}');
+        entries.push(arrayBlock.substring(entryStart, entryEnd));
+        i = entryEnd;
     }
+
+    function extractFieldRobust(block, fieldName) {
+        var re = new RegExp(fieldName + '\\s*:\\s*"');
+        var m2 = re.exec(block);
+        if (!m2) return '';
+        var pos = m2.index + m2[0].length;
+        var val = '';
+        while (pos < block.length) {
+            var c = block[pos];
+            if (c === '\\') {
+                var next = block[pos+1];
+                if (next === 'n') { val += '\n'; pos += 2; continue; }
+                if (next === '\\') { val += '\\'; pos += 2; continue; }
+                if (next === '"') { val += '"'; pos += 2; continue; }
+                val += next; pos += 2; continue;
+            }
+            if (c === '"') break;
+            val += c;
+            pos++;
+        }
+        return val;
+    }
+
     entries.forEach(function(e) {
-        var date = extractField(e, 'date') || '';
-        var role = extractField(e, 'role') || '';
-        var company = extractField(e, 'company') || '';
-        var desc = extractField(e, 'longDescription') || '';
-        var photo = extractField(e, 'photo') || '';
+        var date    = extractFieldRobust(e, 'date');
+        var role    = extractFieldRobust(e, 'role');
+        var company = extractFieldRobust(e, 'company');
+        var desc    = extractFieldRobust(e, 'longDescription');
+        var photo   = extractFieldRobust(e, 'photo');
         if (role) results.push({ date: date, role: role, company: company, longDescription: desc, photo: photo, _raw: e });
     });
+
     return results;
 }
 
