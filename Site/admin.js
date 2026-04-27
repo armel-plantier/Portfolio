@@ -128,7 +128,14 @@ function fileToBase64(file) {
 }
 
 function escapeForJS(str) {
-    return str.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '')
+        .replace(/`/g, '\\`')
+        .replace(/\$/g, '\\$');
 }
 
 function escapeHTML(str) {
