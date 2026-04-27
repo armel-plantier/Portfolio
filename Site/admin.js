@@ -1210,3 +1210,347 @@ $('edit-save').addEventListener('click', async function() {
         progressError(err.message);
     }
 });
+
+// =============================================
+// ONGLET PARCOURS PROFESSIONNEL
+// =============================================
+
+const ASSETS_DIR = 'assets';
+var parcoursPhotoFile = null;
+var parcoursEditingIndex = null; // null = ajout, number = modification
+
+// --- Chargement du tab parcours ---
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    if (btn.getAttribute('data-tab') === 'parcours') {
+        btn.addEventListener('click', function() {
+            if (ghToken) loadParcoursEntries();
+        });
+    }
+});
+
+async function loadParcoursEntries() {
+    $('parcours-list-loading').style.display = 'flex';
+    $('parcours-entry-list').style.display = 'none';
+
+    try {
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var content = new TextDecoder('utf-8').decode(bytes);
+
+        // Parse experiences array
+        var experiences = parseExperiencesFromConfig(content);
+
+        var html = '';
+        if (experiences.length === 0) {
+            html = '<p style="color:var(--muted);font-size:0.9rem;">Aucune expérience pour l\'instant.</p>';
+        } else {
+            experiences.forEach(function(exp, i) {
+                html += '<div class="entry-row" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;">';
+                if (exp.photo) {
+                    html += '<img src="../assets/' + escapeHTML(exp.photo) + '" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--border);" onerror="this.style.display=\'none\'">';
+                } else {
+                    html += '<div style="width:40px;height:40px;border-radius:6px;background:rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>';
+                }
+                html += '<div style="flex:1;min-width:0;">';
+                html += '<div style="font-weight:600;font-size:0.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHTML(exp.role) + '</div>';
+                html += '<div style="font-size:0.8rem;color:var(--muted);">' + escapeHTML(exp.company) + ' · ' + escapeHTML(exp.date) + '</div>';
+                html += '</div>';
+                html += '<button class="btn-icon" style="flex-shrink:0;" data-parcours-edit="' + i + '" title="Modifier">';
+                html += '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+                html += '</button>';
+                html += '<button class="btn-icon danger" style="flex-shrink:0;" data-parcours-delete="' + i + '" data-parcours-role="' + escapeHTML(exp.role) + '" title="Supprimer">';
+                html += '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>';
+                html += '</button>';
+                html += '</div>';
+            });
+        }
+
+        $('parcours-entry-list').innerHTML = html;
+        $('parcours-list-loading').style.display = 'none';
+        $('parcours-entry-list').style.display = 'block';
+
+        // Store for later use
+        $('parcours-entry-list')._experiences = experiences;
+        $('parcours-entry-list')._configContent = content;
+        $('parcours-entry-list')._configSha = configData.sha;
+
+        // Event delegation
+        $('parcours-entry-list').onclick = function(e) {
+            var editBtn = e.target.closest('[data-parcours-edit]');
+            if (editBtn) {
+                var idx = parseInt(editBtn.getAttribute('data-parcours-edit'));
+                openParcoursEdit(idx);
+                return;
+            }
+            var delBtn = e.target.closest('[data-parcours-delete]');
+            if (delBtn) {
+                var idx = parseInt(delBtn.getAttribute('data-parcours-delete'));
+                var role = delBtn.getAttribute('data-parcours-role');
+                confirmParcoursDelete(idx, role);
+            }
+        };
+
+    } catch (err) {
+        $('parcours-list-loading').innerHTML = '<span style="color:var(--danger);">Erreur : ' + err.message + '</span>';
+    }
+}
+
+function parseExperiencesFromConfig(content) {
+    var results = [];
+    var m = content.match(/experiences\s*:\s*\[/);
+    if (!m) return results;
+    var start = content.indexOf(m[0]) + m[0].length;
+    // Find closing ] of experiences array
+    var depth = 1, i = start;
+    while (i < content.length && depth > 0) {
+        if (content[i] === '[' || content[i] === '{') depth++;
+        else if (content[i] === ']' || content[i] === '}') depth--;
+        i++;
+    }
+    var block = content.substring(start, i - 1);
+    // Split into individual objects
+    var entries = [];
+    var d = 0, cur = '', inStr = false, strChar = '', escape = false;
+    for (var j = 0; j < block.length; j++) {
+        var c = block[j];
+        if (escape) { cur += c; escape = false; continue; }
+        if (c === '\\') { cur += c; escape = true; continue; }
+        if (!inStr && (c === '"' || c === "'")) { inStr = true; strChar = c; cur += c; continue; }
+        if (inStr && c === strChar) { inStr = false; cur += c; continue; }
+        if (inStr) { cur += c; continue; }
+        if (c === '{') { d++; cur += c; }
+        else if (c === '}') { d--; cur += c; if (d === 0) { entries.push(cur.trim()); cur = ''; } }
+        else { cur += c; }
+    }
+    entries.forEach(function(e) {
+        var date = extractField(e, 'date') || '';
+        var role = extractField(e, 'role') || '';
+        var company = extractField(e, 'company') || '';
+        var desc = extractField(e, 'longDescription') || '';
+        var photo = extractField(e, 'photo') || '';
+        if (role) results.push({ date: date, role: role, company: company, longDescription: desc, photo: photo, _raw: e });
+    });
+    return results;
+}
+
+function openParcoursEdit(idx) {
+    var list = $('parcours-entry-list');
+    var experiences = list._experiences;
+    var exp = experiences[idx];
+
+    parcoursEditingIndex = idx;
+    $('parcours-form-title').textContent = 'Modifier l\'expérience';
+    $('parcours-submit-label').textContent = 'Enregistrer les modifications';
+    $('parcours-edit-index').value = idx;
+
+    $('parcours-date').value = exp.date;
+    $('parcours-role').value = exp.role;
+    $('parcours-company').value = exp.company;
+    $('parcours-desc').value = exp.longDescription;
+
+    // Photo
+    parcoursPhotoFile = null;
+    $('parcours-photo-preview').style.display = 'none';
+    if (exp.photo) {
+        $('parcours-photo-current').textContent = 'Photo actuelle : ' + exp.photo;
+        $('parcours-photo-current').style.display = 'block';
+    } else {
+        $('parcours-photo-current').style.display = 'none';
+    }
+
+    validateParcours();
+    // Scroll to form
+    $('parcours-form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetParcoursForm() {
+    parcoursEditingIndex = null;
+    $('parcours-form-title').textContent = 'Ajouter une expérience';
+    $('parcours-submit-label').textContent = 'Publier l\'expérience';
+    $('parcours-edit-index').value = '';
+    $('parcours-date').value = '';
+    $('parcours-role').value = '';
+    $('parcours-company').value = '';
+    $('parcours-desc').value = '';
+    parcoursPhotoFile = null;
+    $('parcours-photo-preview').style.display = 'none';
+    $('parcours-photo-current').style.display = 'none';
+    $('parcours-submit').disabled = true;
+}
+
+function validateParcours() {
+    var ok = $('parcours-date').value.trim() && $('parcours-role').value.trim() && $('parcours-company').value.trim() && $('parcours-desc').value.trim();
+    $('parcours-submit').disabled = !ok;
+}
+
+['parcours-date', 'parcours-role', 'parcours-company', 'parcours-desc'].forEach(function(id) {
+    $(id).addEventListener('input', validateParcours);
+});
+
+$('parcours-reset').addEventListener('click', resetParcoursForm);
+
+// Photo upload
+setupUpload('parcours-photo-upload', 'parcours-photo-file', function(f) {
+    parcoursPhotoFile = f;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        $('parcours-photo-img').src = e.target.result;
+        $('parcours-photo-name').textContent = f.name;
+        $('parcours-photo-preview').style.display = 'block';
+    };
+    reader.readAsDataURL(f);
+});
+
+$('parcours-photo-remove').addEventListener('click', function() {
+    parcoursPhotoFile = null;
+    $('parcours-photo-preview').style.display = 'none';
+    $('parcours-photo-file').value = '';
+});
+
+// Submit (ajout ou modification)
+$('parcours-submit').addEventListener('click', async function() {
+    var date = $('parcours-date').value.trim();
+    var role = $('parcours-role').value.trim();
+    var company = $('parcours-company').value.trim();
+    var desc = $('parcours-desc').value.trim();
+    var editIdx = parcoursEditingIndex;
+
+    try {
+        var photoName = '';
+
+        // 1. Upload photo si fournie
+        if (parcoursPhotoFile) {
+            showProgress('Publication...', 'Upload de la photo...', 20);
+            var b64 = await fileToBase64(parcoursPhotoFile);
+            var photoPath = ASSETS_DIR + '/' + parcoursPhotoFile.name;
+            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(photoPath), {
+                method: 'PUT',
+                body: JSON.stringify({ message: '[admin] Photo parcours : ' + parcoursPhotoFile.name, content: b64 })
+            });
+            photoName = parcoursPhotoFile.name;
+        }
+
+        // 2. Lire config.js
+        showProgress('Publication...', 'Mise à jour de config.js...', 50);
+        var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+        var raw = configData.content.replace(/\n/g, '');
+        var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+        var content = new TextDecoder('utf-8').decode(bytes);
+
+        var photoLine = photoName ? '\n            photo: "' + escapeForJS(photoName) + '",' : '';
+        var newEntry = '{\n            date: "' + escapeForJS(date) + '",\n            role: "' + escapeForJS(role) + '",\n            company: "' + escapeForJS(company) + '",' + photoLine + '\n            longDescription: "' + escapeForJS(desc) + '"\n        }';
+
+        var newContent;
+
+        if (editIdx !== null) {
+            // Modification : remplacer le bloc existant
+            var experiences = parseExperiencesFromConfig(content);
+            var exp = experiences[editIdx];
+            // Keep existing photo if no new one uploaded
+            if (!photoName && exp.photo) {
+                photoLine = '\n            photo: "' + escapeForJS(exp.photo) + '",';
+                newEntry = '{\n            date: "' + escapeForJS(date) + '",\n            role: "' + escapeForJS(role) + '",\n            company: "' + escapeForJS(company) + '",' + photoLine + '\n            longDescription: "' + escapeForJS(desc) + '"\n        }';
+            }
+            newContent = content.replace(exp._raw, newEntry);
+        } else {
+            // Ajout : insérer au début du tableau experiences
+            var match = content.match(/experiences\s*:\s*\[/);
+            if (!match) throw new Error('Section "experiences" non trouvée dans config.js');
+            var insertPos = content.indexOf(match[0]) + match[0].length;
+            var before = content.substring(0, insertPos);
+            var after = content.substring(insertPos);
+            // If array not empty, add comma separator
+            var trimmed = after.trimStart();
+            if (trimmed[0] !== ']') {
+                newContent = before + '\n        ' + newEntry + ',\n        ' + after.trimStart();
+            } else {
+                newContent = before + '\n        ' + newEntry + '\n    ' + after.trimStart();
+            }
+        }
+
+        // 3. Commit config.js
+        showProgress('Publication...', 'Commit de config.js...', 80);
+        var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+        await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+            method: 'PUT',
+            body: JSON.stringify({
+                message: '[admin] Parcours : ' + (editIdx !== null ? 'modification' : 'ajout') + ' - ' + role,
+                content: encoded,
+                sha: configData.sha
+            })
+        });
+
+        progressSuccess('"' + role + '" ' + (editIdx !== null ? 'modifié' : 'ajouté') + ' avec succès !');
+        resetParcoursForm();
+        setTimeout(function() { loadParcoursEntries(); }, 1500);
+
+    } catch (err) {
+        console.error(err);
+        progressError(err.message);
+    }
+});
+
+// Suppression d'une expérience
+var pendingParcoursDelete = null;
+
+function confirmParcoursDelete(idx, role) {
+    pendingParcoursDelete = { idx: idx, role: role };
+    $('confirm-title').textContent = 'Supprimer cette expérience ?';
+    $('confirm-msg').textContent = 'Voulez-vous supprimer "' + role + '" ? Cette action modifiera config.js.';
+    $('confirm-delete').classList.add('active');
+    // Override confirm-ok for this flow
+    parcoursDeletePending = true;
+}
+
+var parcoursDeletePending = false;
+var origConfirmOk = null;
+
+// Patch confirm-ok to handle parcours delete
+(function() {
+    var btn = $('confirm-ok');
+    btn.addEventListener('click', async function() {
+        if (!parcoursDeletePending || !pendingParcoursDelete) return;
+        parcoursDeletePending = false;
+        var idx = pendingParcoursDelete.idx;
+        var role = pendingParcoursDelete.role;
+        pendingParcoursDelete = null;
+
+        try {
+            showProgress('Suppression...', 'Mise à jour de config.js...', 40);
+            var configData = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH);
+            var raw = configData.content.replace(/\n/g, '');
+            var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
+            var content = new TextDecoder('utf-8').decode(bytes);
+
+            var experiences = parseExperiencesFromConfig(content);
+            var exp = experiences[idx];
+            if (!exp) throw new Error('Expérience introuvable');
+
+            // Remove the block + surrounding comma/whitespace
+            var rawBlock = exp._raw;
+            var pos = content.indexOf(rawBlock);
+            if (pos === -1) throw new Error('Bloc introuvable dans config.js');
+
+            // Remove block and trailing comma if present
+            var before = content.substring(0, pos);
+            var after = content.substring(pos + rawBlock.length);
+            // Clean up leading/trailing comma
+            after = after.replace(/^\s*,/, '');
+            before = before.replace(/,\s*$/, '');
+            var newContent = before + after;
+
+            showProgress('Suppression...', 'Commit...', 80);
+            var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
+            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
+                method: 'PUT',
+                body: JSON.stringify({ message: '[admin] Parcours : suppression - ' + role, content: encoded, sha: configData.sha })
+            });
+
+            progressSuccess('"' + role + '" supprimé.');
+            setTimeout(function() { loadParcoursEntries(); }, 1500);
+        } catch (err) {
+            progressError(err.message);
+        }
+    }, true); // capture phase so it runs before existing listener
+})();
