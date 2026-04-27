@@ -81,10 +81,8 @@ experiences: [
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
-            photo: "images.png",
-            longDescription: "Mise en place du protocole 802.1x sur 3 éphad 
-Masterisation et déploiement d'images Windows 25h2 via FOG, avec automatisation de la configuration de l'administrateur local.
- WSUS : Mise à jour du script pour Windows 11 25h2"
+            // J'ai mis les \n ici pour toi :
+            longDescription: "Mise en place du protocole 802.1x sur 3 éphad \nMasterisation et déploiement d'images Windows 25h2 via FOG, avec automatisation de la configuration de l'administrateur local.\n WSUS : Mise à jour du script pour Windows 11 25h2"
         },
         {
             date: "Mai 2025 - Juin 2025",
