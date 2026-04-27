@@ -646,12 +646,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 return `<li><span class="bullet"></span><span>${escapeHTML(cleanLine)}</span></li>`;
             }).join('');
 
-            const photoHtml = exp.photo
-                ? `<img src="assets/${escapeHTML(exp.photo)}" alt="${escapeHTML(exp.company)}" style="width:32px;height:32px;border-radius:6px;object-fit:cover;border:1px solid var(--border,#2a2f45);float:right;margin-left:8px;" onerror="this.remove()">`
-                : '';
             li.innerHTML = `
                 <div class="timeline-header">
-                    ${photoHtml}
                     <span class="timeline-date">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                         ${escapeHTML(exp.date)}
@@ -1872,6 +1868,26 @@ function toggleGlobalPDF(url) {
         setTimeout(() => {
             try { enhanceTimeline(); } catch(e) { console.warn('timeline:', e); }
             try { wireEmailCopyToast(); } catch(e) {}
+            // Inject company photos after enhanceTimeline has rebuilt the DOM
+            try {
+                if (config.experiences) {
+                    const items = document.querySelectorAll('#exp-list .timeline-item');
+                    config.experiences.forEach((exp, i) => {
+                        if (!exp.photo || !items[i]) return;
+                        const header = items[i].querySelector('.timeline-header, [class*="header"]') || items[i].firstElementChild;
+                        if (!header) return;
+                        const img = document.createElement('img');
+                        img.src = 'assets/' + exp.photo;
+                        img.alt = exp.company || '';
+                        img.style.cssText = 'width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
+                        img.onerror = function() { this.remove(); };
+                        header.style.display = 'flex';
+                        header.style.alignItems = 'center';
+                        header.style.gap = '10px';
+                        header.insertBefore(img, header.firstChild);
+                    });
+                }
+            } catch(e) { console.warn('photo inject:', e); }
         }, 400);
     };
 
