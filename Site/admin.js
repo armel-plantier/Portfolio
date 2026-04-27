@@ -1488,9 +1488,17 @@ $('parcours-submit').addEventListener('click', async function() {
             showProgress('Publication...', 'Upload de la photo...', 20);
             var b64 = await fileToBase64(parcoursPhotoFile);
             var photoPath = ASSETS_DIR + '/' + parcoursPhotoFile.name;
+            // Récupérer le sha si le fichier existe déjà
+            var photoSha = null;
+            try {
+                var existingPhoto = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(photoPath));
+                photoSha = existingPhoto.sha;
+            } catch(e) { /* fichier n'existe pas encore, pas de sha nécessaire */ }
+            var photoBody = { message: '[admin] Photo parcours : ' + parcoursPhotoFile.name, content: b64 };
+            if (photoSha) photoBody.sha = photoSha;
             await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(photoPath), {
                 method: 'PUT',
-                body: JSON.stringify({ message: '[admin] Photo parcours : ' + parcoursPhotoFile.name, content: b64 })
+                body: JSON.stringify(photoBody)
             });
             photoName = parcoursPhotoFile.name;
         }
