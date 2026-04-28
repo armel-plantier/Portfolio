@@ -1122,17 +1122,11 @@ function openPDFModal(url, title) {
         iframe.style.opacity = '1';
     };
 
-    // Fallback : si l'iframe n'a pas chargé en 8s, on propose d'ouvrir en nouvel onglet
+    // Fallback : si l'iframe n'a pas chargé en 8s, ouvrir directement dans un nouvel onglet
     modal._timeoutId = setTimeout(() => {
         if (!loaded) {
-            loader.innerHTML = `
-                <div style="margin-bottom: 14px;">⚠️ Le visualiseur met du temps à charger.</div>
-                <a href="${url}" target="_blank" rel="noopener" class="pdf-modal-btn" style="display:inline-flex; color: var(--primary); border-color: var(--primary);">
-                    Ouvrir directement le PDF →
-                </a>
-            `;
-            // Supprimer l'animation du spinner
-            loader.style.setProperty('--no-spinner', '1');
+            window.open(url, '_blank', 'noopener');
+            closePDFModal();
         }
     }, 8000);
 
