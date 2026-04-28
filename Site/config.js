@@ -126,15 +126,7 @@ experiences: [
     longDescription: "",
     path: "Synthèse Bloc2.pdf",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/><rect x="14" y="16" width="7" height="5" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>`,
-    tags: ["Réseau",
-{
-    title: "Mise en place d’un serveur Zabbix afin de superviser un réseau + Grafana",
-    longDescription: "",
-    path: "Mise en place d’un serveur Zabbix afin de superviser un réseau.pdf",
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-    tags: ["Administration Système", "Cybersécurité"]
-}
-]
+    tags: ["Réseau"]
 }
 ]
 },
@@ -320,7 +312,13 @@ experiences: [
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 15a5 5 0 0 1 5 5"/><circle cx="5" cy="19" r="1"/></svg>`,
     tags: ["Réseau", "Administration Système"]
 },
-
+{
+    title: "Mise en place d'un serveur Zabbix afin de superviser un réseau + Grafana",
+    longDescription: "Déploiement de Zabbix pour la supervision d'infrastructure : hôtes, métriques, alertes et dashboards.",
+    path: "Mise en place d'un serveur Zabbix afin de superviser un réseau.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    tags: ["Administration Système", "Réseau"]
+},
 {
     title: "Mise en place d'un LogAnalyser via Syslog",
     longDescription: "Visualisation centralisée des journaux systèmes via LogAnalyzer et Syslog.",
