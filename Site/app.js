@@ -1126,6 +1126,7 @@ function openPDFModal(url, title) {
     modal._timeoutId = setTimeout(() => {
         if (!loaded) {
             loader.style.pointerEvents = 'auto';
+            loader.classList.add('has-fallback');
             loader.innerHTML = `
                 <div style="margin-bottom: 14px; pointer-events: none;">⚠️ Le visualiseur met du temps à charger.</div>
                 <a href="${url}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:8px; border:1px solid var(--primary); color:var(--primary); text-decoration:none; font-weight:600; font-size:0.9rem; pointer-events:auto; cursor:pointer;">
