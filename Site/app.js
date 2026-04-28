@@ -1122,11 +1122,16 @@ function openPDFModal(url, title) {
         iframe.style.opacity = '1';
     };
 
-    // Fallback : si l'iframe n'a pas chargé en 8s, ouvrir directement dans un nouvel onglet
+    // Fallback : si l'iframe n'a pas chargé en 8s, afficher bouton cliquable vers raw GitHub
     modal._timeoutId = setTimeout(() => {
         if (!loaded) {
-            window.open(url, '_blank', 'noopener');
-            closePDFModal();
+            loader.style.pointerEvents = 'auto';
+            loader.innerHTML = `
+                <div style="margin-bottom: 14px; pointer-events: none;">⚠️ Le visualiseur met du temps à charger.</div>
+                <a href="${url}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:8px; border:1px solid var(--primary); color:var(--primary); text-decoration:none; font-weight:600; font-size:0.9rem; pointer-events:auto; cursor:pointer;">
+                    Ouvrir le PDF dans un nouvel onglet →
+                </a>
+            `;
         }
     }, 8000);
 
