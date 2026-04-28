@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 28/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 29/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 28/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 29/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,96 +75,121 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 27 Avril 2026</h2>
-<h3>Multiples vulnérabilités dans Zabbix Agent2</h3>
+            <h2>Dimanche 27 Avril 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Zabbix Agent2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités non détaillées ont été découvertes dans Zabbix Agent2, permettant potentiellement à un attaquant de compromettre la sécurité du système. Aucun CVE spécifique n'est mentionné, mais l'éditeur recommande une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées ont été découvertes dans Zabbix Agent2, permettant potentiellement à un attaquant de compromettre la sécurité du système. Ces failles, bien que non spécifiées par l'éditeur, nécessitent une mise à jour urgente pour éviter des exploitations futures. Zabbix Agent2 est largement déployé pour la surveillance des infrastructures, ce qui en fait une cible privilégiée.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0498/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Moxa</h3>
+<h3>Exécution de code arbitraire dans les produits FoxIT</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Moxa (DDoS, fuite de données, contournement de sécurité) exposent les systèmes industriels à des risques élevés. Un correctif est disponible pour certaines versions.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0499/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans VMware Tanzu</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles de sécurité non spécifiées affectent VMware Tanzu, avec un potentiel impact sur la confidentialité et l'intégrité des données. VMware n'a pas encore publié de correctif pour toutes les versions.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0500/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exécution de code arbitraire dans FoxIT Reader</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE non attribués) dans FoxIT Reader permettent une exécution de code à distance, un DDoS et des fuites de données. Un patch est disponible via la dernière mise à jour.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits FoxIT (lecteurs PDF et suites bureautiques) permettent une exécution de code arbitraire à distance, un déni de service et une fuite de données. Ces failles, exploitées via des fichiers PDF ou des documents malveillants, ciblent principalement les environnements Windows et Linux. Un correctif est attendu sous 48h selon les analystes.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0501/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Microsoft Edge et produits Microsoft</h3>
+<h3>Campagne GlassWorm : 73 extensions VS Code malveillantes sur Open VSX</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles non détaillées dans Microsoft Edge et d'autres produits Microsoft (CVE-2026-XXXX à confirmer) permettent des attaques par exécution de code ou élévation de privilèges. Microsoft a déployé des correctifs via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0502/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>GlassWorm v2 : 73 extensions VS Code malveillantes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de malware ciblant l'écosystème OpenVSX a infecté 73 extensions VS Code via des mises à jour "sleeper", permettant une exécution de code arbitraire et le vol de données. Les extensions légitimes ont été clonées et modifiées.</p>
+<p><strong>Résumé</strong> : Une nouvelle vague de l'attaque GlassWorm cible l'écosystème Open VSX avec 73 extensions VS Code clonées et infectées par un malware. Ces extensions, initialement inoffensives, deviennent malveillantes après une mise à jour, permettant le vol de données et l'infiltration des environnements de développement. Aucune solution de désinfection n'est disponible pour les versions déjà installées.</p>
 <a href="https://www.bleepingcomputer.com/news/security/glassworm-malware-attacks-return-via-73-openvsx-sleeper-extensions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez ADT : 5,5 millions de personnes affectées</h3>
+<h3>Fuite de données confirmée chez Vimeo via la compromission d'Anodot</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters a volé les données personnelles de 5,5 millions de clients ADT (informations de contact, adresses) via une intrusion non divulguée plus tôt en avril 2026. La fuite inclut potentiellement des données de géolocalisation.</p>
-<a href="https://www.bleepingcomputer.com/news/security/home-security-giant-adt-data-breach-affects-55-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Vimeo a confirmé une fuite de données affectant certains utilisateurs et clients, suite à la compromission du service d'anomalie de données Anodot. Les attaquants ont accédé à des informations sensibles sans autorisation, bien que l'étendue exacte des données exposées reste inconnue. Une enquête est en cours pour évaluer l'impact.</p>
+<a href="https://www.bleepingcomputer.com/news/security/video-service-vimeo-confirms-anodot-breach-exposed-user-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>PhantomRPC : Faille non corrigée dans Windows permettant une élévation de privilèges</h3>
+<h3>PyPI : Package Python elementary-data compromis pour distribuer un infostealer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille architecturale dans le mécanisme RPC de Windows (CVE-2026-3324) permet une élévation de privilèges via 5 vecteurs d'exploitation différents. Microsoft n'a pas encore publié de correctif.</p>
+<p><strong>Résumé</strong> : Le package Python elementary-data (1,1M téléchargements/mois) a été compromis pour distribuer un malware infostealer. L'attaquant a injecté une version malveillante visant à voler des données de développeurs et des portefeuilles cryptographiques. PyPI a retiré le package, mais les utilisateurs doivent vérifier leurs environnements.</p>
+<a href="https://www.bleepingcomputer.com/news/security/pypi-package-with-11m-monthly-downloads-hacked-to-push-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Failles critiques dans les produits Microsoft (avril 2026)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a publié des correctifs pour plusieurs vulnérabilités critiques dans ses produits (Edge, Windows, Office), incluant des risques d'exécution de code à distance et de contournement de sécurité. Ces failles, non détaillées par Microsoft, nécessitent une application immédiate des patches pour éviter des exploitations massives. Une vulnérabilité spécifique (CVE-2026-32202) est déjà exploitée en attaque.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0503/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploitation active de la faille PhantomRPC dans Windows</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille non corrigée dans le mécanisme RPC de Windows (nommée PhantomRPC) permet une élévation de privilèges via cinq vecteurs d'attaque distincts. Les attaquants peuvent exploiter cette vulnérabilité architecturale pour impersonner des services système et obtenir des droits SYSTEM. Aucune solution n'est disponible à ce jour.</p>
 <a href="https://www.darkreading.com/vulnerabilities-threats/unpatched-phantomrpc-flaw-windows-privilege-escalation" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>OpenSSH : Faille critique permettant un accès root complet (CVE-2026-1185)</h3>
+<h3>Arrestations liées à l'exploitation d'un "SMS blaster" à Toronto</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de réutilisation de code dans OpenSSH (présente depuis 15 ans) permet à un attaquant d'obtenir un shell root via des certificats malformés. Un correctif est disponible dans OpenSSH 9.8.</p>
-<a href="https://www.securityweek.com/openssh-flaw-allowing-full-root-shell-access-lurked-for-15-years/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Trois hommes ont été arrêtés à Toronto pour avoir exploité un dispositif "SMS blaster" imitant une tour cellulaire, permettant l'envoi de SMS de phishing à grande échelle. Ce type d'attaque cible les utilisateurs mobiles pour voler des identifiants ou installer des malwares. L'enquête révèle des liens avec des réseaux criminels internationaux.</p>
+<a href="https://www.bleepingcomputer.com/news/security/canada-arrests-three-for-operating-sms-blaster-device-in-toronto/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fast16 : Malware de sabotage pré-Stuxnet découvert</h3>
+<h3>Fuite revendiquée contre DarkForums : données exposées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware Fast16, capable de sabotage industriel, aurait été utilisé avant Stuxnet (dès 2005) pour cibler des infrastructures critiques. Les chercheurs suspectent une origine étatique.</p>
-<a href="https://www.darkreading.com/cyber-risk/20-year-old-malware-rewrites-history-of-cyber-sabotage" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Le forum pirate DarkForums a été victime d'une fuite de données majeure, revendiquée par des acteurs inconnus. Cette fuite intervient dans un contexte de répression accrue contre les forums cybercriminels, avec des arrestations récentes (comme celle de HexDex, risquant 10 ans de prison). Les données exposées pourraient inclure des identifiants, emails et historiques de transactions.</p>
+<a href="https://www.zataz.com/avril-noir-pour-les-forums-pirates-arrestations-disparitions-et-fuite-revendiquee-contre-darkforums/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h2>Mardi 28 Avril 2026</h2>
-<h3>Firefox : Vulnérabilité de fingerprinting des utilisateurs Tor (CVE-2026-6770)</h3>
+<h3>VECT 2.0 : Ransomware agissant comme un wiper pour les fichiers &gt;131KB</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Firefox permet de fingerprinter les utilisateurs Tor via des fuites de timing, compromettant leur anonymat. Un correctif est disponible dans Firefox 150 et Tor 15.0.10.</p>
-<a href="https://www.securityweek.com/firefox-vulnerability-allows-tor-user-fingerprinting/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Le ransomware VECT 2.0 présente un défaut critique dans son algorithme de chiffrement, rendant les fichiers de plus de 131KB irrécupérables, même après paiement. Cette faille transforme le ransomware en wiper, avec des variantes ciblant Windows, Linux et ESXi. Les attaquants ne peuvent pas restaurer les données, ce qui en fait une menace majeure pour les entreprises.</p>
+<a href="https://thehackernews.com/2026/04/vect-20-ransomware-irreversibly.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Itron : Cyberattaque confirmée sur un fournisseur d'utilités critiques</h3>
+<hr />
+<h2>Lundi 28 Avril 2026</h2>
+<h3>Faille critique CVE-2026-3854 dans GitHub : RCE via un simple "git push"</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Itron, fournisseur de solutions pour les réseaux d'eau et d'énergie, a subi une intrusion en avril 2026. Aucune perturbation opérationnelle n'est signalée, mais l'enquête est en cours.</p>
-<a href="https://www.securityweek.com/energy-and-water-management-firm-itron-hacked/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3854, CVSS 8.7) dans GitHub.com et GitHub Enterprise Server permet une exécution de code à distance (RCE) via une seule commande "git push". Cette faille, exploitable par un utilisateur authentifié, pourrait permettre la prise de contrôle de dépôts ou l'injection de code malveillant. Un correctif est attendu sous 24h.</p>
+<a href="https://thehackernews.com/2026/04/researchers-discover-critical-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>BlackFile : Nouveau groupe de ransomware ciblant retail et hôtellerie</h3>
+<h3>Faille SQLi pré-authentification critique dans LiteLLM (CVE-2026-42208)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe BlackFile combine vol de données et extorsion via des attaques par vishing et swatting contre des cadres. Les secteurs retail et hôtellerie sont particulièrement visés.</p>
-<a href="https://cyberscoop.com/blackfile-data-theft-extortion-retail-unit-42-rh-isac/" class="btn-source" target="_blank">🔗 Lire sur CyberScoop</a>
+<p><strong>Résumé</strong> : Une faille critique de type injection SQL pré-authentification (CVE-2026-42208) dans LiteLLM, un gateway open-source pour modèles de langage, est activement exploitée. Les attaquants ciblent les informations sensibles stockées dans LiteLLM pour des attaques ultérieures. LiteLLM a publié un correctif urgent.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-are-exploiting-a-critical-litellm-pre-auth-sqli-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>PhantomCore exploite des vulnérabilités TrueConf pour cibler la Russie</h3>
+<h3>Faille non corrigée CVE-2026-25874 dans Hugging Face LeRobot : RCE non authentifié</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe pro-ukrainien PhantomCore attaque des serveurs TrueConf (logiciel de visioconférence russe) depuis septembre 2025 via des vulnérabilités non divulguées, permettant un accès persistant.</p>
-<a href="https://thehackernews.com/2026/04/phantomcore-exploits-trueconf-vulnerabilities-to-breach-russian-networks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La plateforme robotique open-source Hugging Face LeRobot (24k étoiles GitHub) est vulnérable à une faille critique (CVE-2026-25874, CVSS 9.3) permettant une exécution de code à distance non authentifiée. Cette vulnérabilité, liée à une mauvaise gestion des entrées, expose les systèmes utilisant LeRobot à des attaques immédiates. Aucun correctif n'est disponible.</p>
+<a href="https://thehackernews.com/2026/04/critical-cve-2026-25874-leaves-hugging.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Pack2TheRoot : Vulnérabilité Linux permettant un accès root facile</h3>
+<h3>Microsoft corrige une faille Entra ID permettant un takeover de principal de service</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une condition de course dans PackageKit (CVE-2026-4567) permet à un utilisateur non privilégié d'obtenir un accès root lors de l'installation de paquets. Un correctif est en cours de déploiement.</p>
-<a href="https://www.securityweek.com/easily-exploitable-pack2theroot-linux-vulnerability-leads-to-root-access/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Microsoft a corrigé une faille dans le rôle "Agent ID Administrator" d'Entra ID, permettant une élévation de privilèges et un takeover de principal de service. Cette vulnérabilité, spécifique aux environnements IA, pourrait permettre à un attaquant de prendre le contrôle d'identités cloud. Le correctif est inclus dans les mises à jour d'avril 2026.</p>
+<a href="https://thehackernews.com/2026/04/microsoft-patches-entra-id-role-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>BlueNoroff utilise des faux appels Zoom et avatars IA pour cibler les cadres crypto</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe nord-coréen BlueNoroff a développé une campagne sophistiquée utilisant des vidéos volées de victimes, des avatars générés par IA et de faux appels Zoom pour escroquer les cadres de cryptomonnaies. Cette technique, nommée "lure", permet de distribuer des malwares ou de voler des identifiants via des liens de phishing personnalisés.</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/bluenoroff-turns-victims-into-new-attack-lures" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Vidar domine le marché chaotique des infostealers après les takedowns de 2025</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware Vidar a émergé comme le principal infostealer après les saisies de Lumma et Rhadamanthys par les forces de l'ordre en 2025. Vidar, vendu sur des forums underground, cible les données bancaires, les portefeuilles crypto et les identifiants, avec une infrastructure en constante évolution pour éviter la détection.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/vidar-top-chaotic-infostealer-market" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Robinhood : Faille dans la création de comptes exploitée pour des phishing</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans le processus de création de comptes Robinhood a été exploitée pour injecter des messages de phishing dans des emails légitimes, incitant les utilisateurs à cliquer sur des liens malveillants. Cette attaque, ciblant les traders, a permis la distribution de malwares ou le vol d'identifiants financiers.</p>
+<a href="https://www.bleepingcomputer.com/news/security/robinhood-account-creation-flaw-abused-to-send-phishing-emails/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft bloque le TLS hérité dans Exchange Online à partir de juillet 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft annonce le blocage des connexions TLS héritées (POP/IMAP) pour Exchange Online à partir de juillet 2026, forçant les utilisateurs à migrer vers des protocoles modernes (TLS 1.2+). Cette décision, visant à renforcer la sécurité, pourrait impacter les clients utilisant des applications obsolètes.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-legacy-tls-in-exchange-online-starting-july/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>LAPSUS$ publie des données volées à Checkmarx sur le dark web</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe LAPSUS$ a publié des données volées à Checkmarx (spécialiste de la sécurité applicative) sur le dark web, confirmant une attaque sur son dépôt GitHub privé. Bien que l'étendue des données exposées ne soit pas précisée, cette fuite met en lumière les risques liés aux chaînes d'approvisionnement logicielles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/checkmarx-confirms-lapsus-hackers-leaked-its-stolen-github-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
