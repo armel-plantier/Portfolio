@@ -466,12 +466,37 @@ async function publish(type) {
         var currentContent = new TextDecoder('utf-8').decode(bytesPub);
         var iconSvg = escapeForJS(ICON_LIBRARY[iconIdx].svg);
         var entry = '{\n    title: "' + escapeForJS(title) + '",\n    longDescription: "' + escapeForJS(desc) + '",\n    path: "' + escapeForJS(file.name) + '",\n    icon: `' + iconSvg + '`,\n    tags: [' + tags.map(function(t) { return '"' + escapeForJS(t) + '"'; }).join(', ') + ']\n}';
-        var sectionRegex = new RegExp('(' + section + ':\\s*\\[)([\\s\\S]*?)(\\])');
-        var match = currentContent.match(sectionRegex);
-        if (!match) throw new Error('Section "' + section + '" non trouvée dans config.js');
-        var existingEntries = match[2].trim();
+        // Bracket-counting insert: finds the real closing ] of the section array
+        var sectionHeader = new RegExp(section + ':\\s*\\[');
+        var headerMatch = currentContent.match(sectionHeader);
+        if (!headerMatch) throw new Error('Section "' + section + '" non trouvée dans config.js');
+        var startIdx = headerMatch.index + headerMatch[0].length; // juste après le [
+        var depth = 1, i = startIdx, inStr = false, strChar = '';
+        while (i < currentContent.length && depth > 0) {
+            var ch = currentContent[i];
+            if (inStr) {
+                if (ch === '\\') { i++; } // skip escaped char
+                else if (ch === strChar) { inStr = false; }
+            } else if (ch === '"' || ch === "'") { inStr = true; strChar = ch; }
+            else if (ch === '`') {
+                // template literal: skip until closing backtick (handles nested ${ })
+                i++;
+                var tlDepth = 0;
+                while (i < currentContent.length) {
+                    if (currentContent[i] === '\\') { i++; }
+                    else if (currentContent[i] === '$' && currentContent[i+1] === '{') { tlDepth++; i++; }
+                    else if (currentContent[i] === '}' && tlDepth > 0) { tlDepth--; }
+                    else if (currentContent[i] === '`' && tlDepth === 0) { break; }
+                    i++;
+                }
+            } else if (ch === '[') { depth++; }
+            else if (ch === ']') { depth--; }
+            i++;
+        }
+        var closeIdx = i - 1; // position du ] de fermeture
+        var existingEntries = currentContent.slice(startIdx, closeIdx).trim();
         var separator = existingEntries.endsWith(',') || existingEntries === '' ? '\n' : ',\n';
-        var newContent = currentContent.replace(sectionRegex, match[1] + match[2] + (existingEntries ? separator : '\n') + entry + '\n' + match[3]);
+        var newContent = currentContent.slice(0, closeIdx) + (existingEntries ? separator : '\n') + entry + '\n' + currentContent.slice(closeIdx);
         showProgress('Publication en cours...', 'Commit de config.js...', 85);
         await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
             method: 'PUT',
