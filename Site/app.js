@@ -21,6 +21,16 @@ const renderIcon = (iconString) => {
     }
 };
 
+// --- GESTION DES URLs DIRECTES (bypass Cloudflare 404) ---
+(function() {
+    var segments = window.location.pathname.split('/').filter(Boolean);
+    if (segments[0] === 'procedures' && segments[1]) {
+        window.history.replaceState({}, '', '/?proc=' + encodeURIComponent(segments[1]));
+    } else if (segments[0] === 'projet-technova' && segments[1]) {
+        window.history.replaceState({}, '', '/?proj=' + encodeURIComponent(segments[1]));
+    }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- SCROLL REVEAL (Animation d'apparition) ---
