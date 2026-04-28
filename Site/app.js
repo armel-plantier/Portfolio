@@ -1080,6 +1080,7 @@ function ensurePDFModal() {
             <div class="pdf-modal-body">
                 <div class="pdf-modal-loader">Chargement du document...</div>
                 <iframe class="pdf-modal-iframe" title="Visionneuse PDF"></iframe>
+                <div class="pdf-hint">⚠️ Le chargement a échoué, il est conseillé de cliquer sur <strong>"Nouvel onglet"</strong> ci-dessus.</div>
             </div>
         </div>
     `;
@@ -1115,18 +1116,25 @@ function openPDFModal(url, title) {
     // Nettoyer tout timeout précédent
     if (modal._timeoutId) clearTimeout(modal._timeoutId);
 
+    const showHint = () => {
+        const hint = modal.querySelector('.pdf-hint');
+        if (hint) hint.style.display = 'block';
+    };
+
     let loaded = false;
     iframe.onload = () => {
         loaded = true;
         loader.style.display = 'none';
         iframe.style.opacity = '1';
+        setTimeout(showHint, 500);
     };
 
-    // Fallback : si l'iframe n'a pas chargé en 8s, message simple
+    // Fallback : si l'iframe n'a pas chargé en 8s, afficher le hint aussi
     modal._timeoutId = setTimeout(() => {
         if (!loaded) {
-            loader.innerHTML = '⚠️ Le visualiseur ne répond pas — utilisez le bouton <strong>Nouvel onglet</strong> ci-dessus.';
+            loader.innerHTML = '⚠️ Le chargement a échoué, il est conseillé de cliquer sur <strong>"Nouvel onglet"</strong> ci-dessus.';
         }
+        showHint();
     }, 8000);
 
     modal.classList.add('open');
