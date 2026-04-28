@@ -314,7 +314,7 @@ experiences: [
 {
     title: "Mise en place d'un serveur Zabbix afin de superviser un réseau + Grafana",
     longDescription: "Déploiement de Zabbix pour la supervision d'infrastructure : hôtes, métriques, alertes et dashboards.",
-    path: "Mise en place d'un serveur Zabbix afin de superviser un réseau.pdf",
+    path: "zabbix.pdf",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
     tags: ["Administration Système", "Réseau"]
 },
