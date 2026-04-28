@@ -1609,6 +1609,12 @@ body.light-mode .pdf-modal-body { background: #e5e7eb; }
     display: none;
     pointer-events: none;
 }
+.pdf-modal-loader.has-fallback {
+    pointer-events: auto;
+}
+.pdf-modal-loader.has-fallback::before {
+    display: none;
+}
 .pdf-modal-loader::before {
     content: '';
     display: block;
