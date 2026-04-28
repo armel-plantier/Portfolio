@@ -1615,6 +1615,22 @@ body.light-mode .pdf-modal-body { background: #e5e7eb; }
 .pdf-modal-loader.has-fallback::before {
     display: none;
 }
+.pdf-hint {
+    display: none;
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20,20,30,0.92);
+    color: var(--muted, #9ca3af);
+    font-size: 0.82rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+}
 .pdf-modal-loader::before {
     content: '';
     display: block;
