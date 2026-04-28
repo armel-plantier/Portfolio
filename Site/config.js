@@ -126,7 +126,15 @@ experiences: [
     longDescription: "",
     path: "Synthèse Bloc2.pdf",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/><rect x="14" y="16" width="7" height="5" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>`,
-    tags: ["Réseau"]
+    tags: ["Réseau",
+{
+    title: "Mise en place d’un serveur Zabbix afin de superviser un réseau + Grafana",
+    longDescription: "",
+    path: "Mise en place d’un serveur Zabbix afin de superviser un réseau.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    tags: ["Administration Système", "Cybersécurité"]
+}
+]
 }
 ]
 },
