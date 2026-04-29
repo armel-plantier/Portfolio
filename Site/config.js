@@ -332,6 +332,27 @@ experiences: [
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
     tags: ["Administration Système", "Cybersécurité"]
 },
+{
+    title: "Authentification réseau 802.1X",
+    longDescription: "Mise en place du protocole 802.1X pour le contrôle d'accès réseau par port (NAC), avec serveur RADIUS.",
+    path: "8021x.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
+    tags: ["Réseau", "Cybersécurité"]
+},
+{
+    title: "Déploiement d'images avec FOG",
+    longDescription: "Installation et configuration de FOG Project pour le clonage et le déploiement d'images système sur le réseau.",
+    path: "fog.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    tags: ["Réseau", "Administration Système"]
+},
+{
+    title: "Gestion des mises à jour avec WSUS",
+    longDescription: "Configuration de Windows Server Update Services (WSUS) pour centraliser et gérer les mises à jour Windows en entreprise.",
+    path: "wsus.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+    tags: ["Administration Système"]
+},
     ],
 // --- 7. CERTIFICATIONS ---
     certifications: [
