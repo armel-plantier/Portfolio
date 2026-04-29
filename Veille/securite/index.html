@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 29/04/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 30/04/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 29/04/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 30/04/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,121 +75,231 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 27 Avril 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Zabbix Agent2</h3>
+            <h2>Lundi 27 Avril 2026</h2>
+<h3>Multiples vulnérabilités dans Zabbix Agent2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées ont été découvertes dans Zabbix Agent2, permettant potentiellement à un attaquant de compromettre la sécurité du système. Ces failles, bien que non spécifiées par l'éditeur, nécessitent une mise à jour urgente pour éviter des exploitations futures. Zabbix Agent2 est largement déployé pour la surveillance des infrastructures, ce qui en fait une cible privilégiée.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées ont été découvertes dans Zabbix Agent2, permettant potentiellement à un attaquant de compromettre la sécurité du système. Ces failles pourraient mener à des accès non autorisés ou des perturbations de service. Un correctif est attendu par l'éditeur.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0498/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exécution de code arbitraire dans les produits FoxIT</h3>
+<h3>Multiples vulnérabilités dans les produits Moxa</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits FoxIT (lecteurs PDF et suites bureautiques) permettent une exécution de code arbitraire à distance, un déni de service et une fuite de données. Ces failles, exploitées via des fichiers PDF ou des documents malveillants, ciblent principalement les environnements Windows et Linux. Un correctif est attendu sous 48h selon les analystes.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans les produits Moxa, incluant des risques de déni de service (DoS), d'atteinte à la confidentialité et de contournement de politique de sécurité. Ces failles pourraient être exploitées à distance pour perturber les infrastructures industrielles. Des patches sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0499/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans VMware Tanzu</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non spécifiées affectent VMware Tanzu, exposant potentiellement les systèmes à des attaques non documentées. Ces failles pourraient permettre des escalades de privilèges ou des accès non autorisés. Un correctif est nécessaire.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0500/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits FoxIT</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits FoxIT permettent une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une fuite de données. Ces failles sont exploitables via des fichiers PDF ou des documents malveillants. Des correctifs sont disponibles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0501/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Campagne GlassWorm : 73 extensions VS Code malveillantes sur Open VSX</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle vague de l'attaque GlassWorm cible l'écosystème Open VSX avec 73 extensions VS Code clonées et infectées par un malware. Ces extensions, initialement inoffensives, deviennent malveillantes après une mise à jour, permettant le vol de données et l'infiltration des environnements de développement. Aucune solution de désinfection n'est disponible pour les versions déjà installées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/glassworm-malware-attacks-return-via-73-openvsx-sleeper-extensions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées dans Microsoft Edge exposent les utilisateurs à des risques de sécurité non spécifiés, potentiellement liés à des attaques par navigation ou des fuites de données. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0502/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données confirmée chez Vimeo via la compromission d'Anodot</h3>
+<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Vimeo a confirmé une fuite de données affectant certains utilisateurs et clients, suite à la compromission du service d'anomalie de données Anodot. Les attaquants ont accédé à des informations sensibles sans autorisation, bien que l'étendue exacte des données exposées reste inconnue. Une enquête est en cours pour évaluer l'impact.</p>
-<a href="https://www.bleepingcomputer.com/news/security/video-service-vimeo-confirms-anodot-breach-exposed-user-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>PyPI : Package Python elementary-data compromis pour distribuer un infostealer</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le package Python elementary-data (1,1M téléchargements/mois) a été compromis pour distribuer un malware infostealer. L'attaquant a injecté une version malveillante visant à voler des données de développeurs et des portefeuilles cryptographiques. PyPI a retiré le package, mais les utilisateurs doivent vérifier leurs environnements.</p>
-<a href="https://www.bleepingcomputer.com/news/security/pypi-package-with-11m-monthly-downloads-hacked-to-push-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Failles critiques dans les produits Microsoft (avril 2026)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié des correctifs pour plusieurs vulnérabilités critiques dans ses produits (Edge, Windows, Office), incluant des risques d'exécution de code à distance et de contournement de sécurité. Ces failles, non détaillées par Microsoft, nécessitent une application immédiate des patches pour éviter des exploitations massives. Une vulnérabilité spécifique (CVE-2026-32202) est déjà exploitée en attaque.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités non documentées dans plusieurs produits Microsoft pourraient permettre des attaques non spécifiées, incluant des escalades de privilèges ou des accès non autorisés. Un correctif est nécessaire.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0503/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de la faille PhantomRPC dans Windows</h3>
+<h3>Checkmarx confirme une fuite de données après une attaque sur GitHub</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans le mécanisme RPC de Windows (nommée PhantomRPC) permet une élévation de privilèges via cinq vecteurs d'attaque distincts. Les attaquants peuvent exploiter cette vulnérabilité architecturale pour impersonner des services système et obtenir des droits SYSTEM. Aucune solution n'est disponible à ce jour.</p>
-<a href="https://www.darkreading.com/vulnerabilities-threats/unpatched-phantomrpc-flaw-windows-privilege-escalation" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Checkmarx a confirmé qu'une attaque survenue le 23 mars 2026 a conduit à la publication de données issues de son dépôt GitHub sur le dark web. Les données pourraient inclure des informations sensibles liées à ses projets internes. Une enquête est en cours.</p>
+<a href="https://thehackernews.com/2026/04/checkmarx-confirms-github-repository.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Arrestations liées à l'exploitation d'un "SMS blaster" à Toronto</h3>
+<h3>73 extensions VS Code malveillantes distribuant GlassWorm v2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois hommes ont été arrêtés à Toronto pour avoir exploité un dispositif "SMS blaster" imitant une tour cellulaire, permettant l'envoi de SMS de phishing à grande échelle. Ce type d'attaque cible les utilisateurs mobiles pour voler des identifiants ou installer des malwares. L'enquête révèle des liens avec des réseaux criminels internationaux.</p>
-<a href="https://www.bleepingcomputer.com/news/security/canada-arrests-three-for-operating-sms-blaster-device-in-toronto/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des chercheurs ont identifié 73 extensions falsifiées pour Visual Studio Code sur le dépôt Open VSX, distribuant le malware GlassWorm v2. Ces extensions clonées volent des informations sensibles et établissent des connexions persistantes avec des serveurs de commande et contrôle (C2).</p>
+<a href="https://thehackernews.com/2026/04/researchers-uncover-73-fake-vs-code.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Fuite revendiquée contre DarkForums : données exposées</h3>
+<h3>PhantomCore exploite des vulnérabilités TrueConf pour cibler la Russie</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le forum pirate DarkForums a été victime d'une fuite de données majeure, revendiquée par des acteurs inconnus. Cette fuite intervient dans un contexte de répression accrue contre les forums cybercriminels, avec des arrestations récentes (comme celle de HexDex, risquant 10 ans de prison). Les données exposées pourraient inclure des identifiants, emails et historiques de transactions.</p>
-<a href="https://www.zataz.com/avril-noir-pour-les-forums-pirates-arrestations-disparitions-et-fuite-revendiquee-contre-darkforums/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Le groupe pro-ukrainien PhantomCore exploite des failles dans TrueConf (logiciel de visioconférence) pour infiltrer des réseaux russes depuis septembre 2025. Les attaques visent à perturber les communications et exfiltrer des données sensibles.</p>
+<a href="https://thehackernews.com/2026/04/phantomcore-exploits-trueconf.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>VECT 2.0 : Ransomware agissant comme un wiper pour les fichiers &gt;131KB</h3>
+<h3>Campagne de faux CAPTCHA IRSF et 120 campagnes Keitaro pour fraude SMS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware VECT 2.0 présente un défaut critique dans son algorithme de chiffrement, rendant les fichiers de plus de 131KB irrécupérables, même après paiement. Cette faille transforme le ransomware en wiper, avec des variantes ciblant Windows, Linux et ESXi. Les attaquants ne peuvent pas restaurer les données, ce qui en fait une menace majeure pour les entreprises.</p>
-<a href="https://thehackernews.com/2026/04/vect-20-ransomware-irreversibly.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une campagne mondiale de fraude SMS utilise des faux CAPTCHA pour inciter les victimes à envoyer des messages internationaux coûteux (IRSF). Parallèlement, 120 campagnes Keitaro exploitent des serveurs compromis pour générer des revenus frauduleux via des cryptomonnaies.</p>
+<a href="https://thehackernews.com/2026/04/fake-captcha-irsf-scam-and-120-keitaro.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Lundi 28 Avril 2026</h2>
-<h3>Faille critique CVE-2026-3854 dans GitHub : RCE via un simple "git push"</h3>
+<h2>Mardi 28 Avril 2026</h2>
+<h3>Multiples vulnérabilités dans Spring</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3854, CVSS 8.7) dans GitHub.com et GitHub Enterprise Server permet une exécution de code à distance (RCE) via une seule commande "git push". Cette faille, exploitable par un utilisateur authentifié, pourrait permettre la prise de contrôle de dépôts ou l'injection de code malveillant. Un correctif est attendu sous 24h.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Spring permettent des élévations de privilèges, des dénis de service (DoS) et des fuites de données. Ces failles pourraient être exploitées via des requêtes HTTP malveillantes. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0504/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Python</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Python permet de contourner les politiques de sécurité, potentiellement en exploitant des modules tiers ou des configurations incorrectes. Cette vulnérabilité pourrait mener à des exécutions de code non autorisées. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0505/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>VECT 2.0 : Ransomware agissant comme un wiper</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le ransomware VECT 2.0, lié aux attaques de la supply chain TeamPCP, détruit irréversiblement les fichiers de plus de 131 Ko sur Windows, Linux et ESXi en raison d'une erreur de conception dans son algorithme de chiffrement. Même les attaquants ne peuvent pas récupérer les données.</p>
+<a href="https://thehackernews.com/2026/04/vect-20-ransomware-irreversibly.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploitation active de CVE-2026-42208 dans LiteLLM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique d'injection SQL pré-authentification (CVE-2026-42208) dans LiteLLM est exploitée en moins de 36 heures après sa divulgation. Les attaquants ciblent des informations sensibles stockées dans ce gateway open-source pour modèles de langage (LLM). Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/04/litellm-cve-2026-42208-sql-injection.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fuite de données chez Vimeo via la compromission d'Anodot</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Vimeo a confirmé qu'une fuite de données a exposé des informations clients et utilisateurs après la compromission du service d'anomalie de données Anodot. Les données concernées incluent des emails et potentiellement d'autres informations sensibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/video-service-vimeo-confirms-anodot-breach-exposed-user-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaques par supply chain contre des packages npm officiels SAP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs packages npm officiels liés à SAP ont été compromis dans une attaque de supply chain attribuée au groupe TeamPCP. Les attaquants volent des identifiants et des tokens d'authentification des développeurs. Les packages concernés incluent @sap/cds et @sap/xsjs.</p>
+<a href="https://www.bleepingcomputer.com/news/security/official-sap-npm-packages-compromised-to-steal-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>GitHub corrige CVE-2026-3854 : RCE via un simple "git push"</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GitHub a corrigé une faille critique (CVE-2026-3854, CVSS 8.7) permettant une exécution de code à distance (RCE) via une simple commande "git push". Cette vulnérabilité aurait pu donner accès à des millions de dépôts privés. Le correctif est disponible.</p>
 <a href="https://thehackernews.com/2026/04/researchers-discover-critical-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille SQLi pré-authentification critique dans LiteLLM (CVE-2026-42208)</h3>
+<h3>Vulnérabilité critique non corrigée dans Hugging Face LeRobot (CVE-2026-25874)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique de type injection SQL pré-authentification (CVE-2026-42208) dans LiteLLM, un gateway open-source pour modèles de langage, est activement exploitée. Les attaquants ciblent les informations sensibles stockées dans LiteLLM pour des attaques ultérieures. LiteLLM a publié un correctif urgent.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-are-exploiting-a-critical-litellm-pre-auth-sqli-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Faille non corrigée CVE-2026-25874 dans Hugging Face LeRobot : RCE non authentifié</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La plateforme robotique open-source Hugging Face LeRobot (24k étoiles GitHub) est vulnérable à une faille critique (CVE-2026-25874, CVSS 9.3) permettant une exécution de code à distance non authentifiée. Cette vulnérabilité, liée à une mauvaise gestion des entrées, expose les systèmes utilisant LeRobot à des attaques immédiates. Aucun correctif n'est disponible.</p>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-25874, CVSS 9.3) dans LeRobot, plateforme open-source de robotique de Hugging Face, permet une exécution de code à distance (RCE) non authentifiée. Cette vulnérabilité affecte les versions antérieures à la 0.1.0. Aucun correctif n'est encore disponible.</p>
 <a href="https://thehackernews.com/2026/04/critical-cve-2026-25874-leaves-hugging.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Microsoft corrige une faille Entra ID permettant un takeover de principal de service</h3>
+<h3>CISA ordonne aux agences fédérales de corriger une faille Windows exploitée en zero-day</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé une faille dans le rôle "Agent ID Administrator" d'Entra ID, permettant une élévation de privilèges et un takeover de principal de service. Cette vulnérabilité, spécifique aux environnements IA, pourrait permettre à un attaquant de prendre le contrôle d'identités cloud. Le correctif est inclus dans les mises à jour d'avril 2026.</p>
+<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger une vulnérabilité Windows exploitée activement en tant que zero-day. La faille, non détaillée, permet des escalades de privilèges et des accès non autorisés. Un correctif est disponible via les mises à jour Microsoft.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-windows-flaw-exploited-in-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne de cryptomining exploitant des vulnérabilités dans Qinglong</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants exploitent deux vulnérabilités d'authentification dans Qinglong, un outil open-source de planification de tâches, pour déployer des cryptomineurs sur les serveurs de développeurs. Les failles permettent un contournement d'authentification et une exécution de code.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-rce-flaws-in-qinglong-task-scheduler-for-cryptomining/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Mercredi 29 Avril 2026</h2>
+<h3>Multiples vulnérabilités dans Google Chrome</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non détaillées dans Google Chrome exposent les utilisateurs à des risques de sécurité non spécifiés, potentiellement liés à des attaques par navigation ou des fuites de données. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0506/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Mozilla</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Mozilla (Firefox, Thunderbird) permettent des fuites de données, des contournements de politique de sécurité et des attaques non documentées. Ces failles pourraient être exploitées via des pages web malveillantes. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0507/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Moodle</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Moodle permettent une exécution de code à distance (RCE), des injections SQL (SQLi) et des attaques CSRF. Ces failles pourraient être exploitées pour compromettre des plateformes éducatives. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0508/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Xen et Citrix XenServer</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Xen et Citrix XenServer permettent des élévations de privilèges, des dénis de service (DoS) et des fuites de données. Ces failles pourraient être exploitées pour compromettre des environnements virtualisés. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0509/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Elastic Package Registry</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Elastic Package Registry permet des atteintes à la confidentialité et à l'intégrité des données, ainsi qu'un contournement de politique de sécurité. Cette vulnérabilité pourrait être exploitée pour accéder à des informations sensibles. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0511/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Microsoft Edge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille non documentée dans Microsoft Edge expose les utilisateurs à des risques de sécurité non spécifiés, potentiellement liés à des attaques par navigation ou des fuites de données. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0512/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités non documentées dans plusieurs produits Microsoft pourraient permettre des attaques non spécifiées, incluant des escalades de privilèges ou des accès non autorisés. Un correctif est nécessaire.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0513/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Curl</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Curl permettent des atteintes à la confidentialité des données et des contournements de politique de sécurité. Ces failles pourraient être exploitées via des requêtes HTTP malveillantes. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0514/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Correctif critique pour cPanel et WHM (authentification contournée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un correctif urgent a été publié pour une vulnérabilité critique dans cPanel et WHM permettant un contournement d'authentification. Cette faille affecte toutes les versions sauf les plus récentes et pourrait donner un accès non autorisé au panneau de contrôle. Mise à jour obligatoire.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cpanel-whm-emergency-update-fixes-critical-auth-bypass-bug/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA ajoute des vulnérabilités ConnectWise et Windows au catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté deux vulnérabilités actives au catalogue KEV : CVE-2024-1709 (ConnectWise ScreenConnect, exploitée en zero-day) et une faille Windows non détaillée. Ces failles sont activement exploitées et nécessitent une correction immédiate.</p>
+<a href="https://thehackernews.com/2026/04/cisa-adds-actively-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fuite de données SAP confirmée via des packages npm compromis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs packages npm officiels liés à SAP ont été compromis pour voler des identifiants et tokens d'authentification. Les attaquants ont utilisé une attaque de supply chain attribuée au groupe mini Shai-Hulud. Les packages concernés incluent @sap/cf-tools et @sap/xsjs.</p>
+<a href="https://thehackernews.com/2026/04/sap-npm-packages-compromised-by-mini.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Nouvelle vague d'attaques nord-coréennes utilisant l'IA et des faux SDK</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants nord-coréens ont inséré du code malveillant dans un package npm (@validate-sdk/v2) via l'outil d'IA Anthropic Claude Opus. Cette campagne utilise des faux SDK, des entreprises fictives et des RAT pour cibler les développeurs et les entreprises.</p>
+<a href="https://thehackernews.com/2026/04/new-wave-of-dprk-attacks-uses-ai.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Arrestations liées à la vente de 610 000 comptes Roblox</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La police ukrainienne a arrêté trois individus accusés d'avoir piraté et vendu plus de 610 000 comptes Roblox, générant un profit de 225 000 $. Les attaquants utilisaient des techniques de phishing et de credential stuffing pour compromettre les comptes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-arrested-for-hijacking-and-selling-610-000-roblox-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Démantèlement d'un réseau de fraude crypto de 50 millions d'euros</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les autorités autrichiennes et albanaises ont démantelé un réseau criminel accusé d'avoir escroqué des victimes à hauteur de 50 millions d'euros via une fraude d'investissement en cryptomonnaies. Plus de 1 000 victimes dans le monde sont concernées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/european-police-dismantles-50-million-crypto-investment-fraud-ring/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>38 vulnérabilités critiques découvertes dans OpenEMR via l'IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des chercheurs ont utilisé l'IA pour découvrir 38 vulnérabilités critiques dans OpenEMR, une plateforme de dossiers médicaux électroniques utilisée par plus de 100 000 prestataires de santé. Les failles permettent des compromissions de bases de données, des RCE et des vols de données.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/ai-finds-38-security-flaws-openemr" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Microsoft corrige CVE-2026-32202 exploitée en zero-day</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé une faille de spoofing (CVE-2026-32202) dans Windows Shell, désormais exploitée activement en zero-day. Cette vulnérabilité permet à un attaquant de se faire passer pour un utilisateur légitime et d'exécuter du code malveillant. Le correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-confirms-active-exploitation-of-windows-shell-cve-2026-32202/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft corrige une faille de rôle Entra ID permettant un takeover de principal de service</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé une faille dans le rôle "Agent ID Administrator" d'Entra ID, permettant une élévation de privilèges et un takeover de principal de service. Cette vulnérabilité pourrait être exploitée pour accéder à des ressources cloud critiques.</p>
 <a href="https://thehackernews.com/2026/04/microsoft-patches-entra-id-role-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>BlueNoroff utilise des faux appels Zoom et avatars IA pour cibler les cadres crypto</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen BlueNoroff a développé une campagne sophistiquée utilisant des vidéos volées de victimes, des avatars générés par IA et de faux appels Zoom pour escroquer les cadres de cryptomonnaies. Cette technique, nommée "lure", permet de distribuer des malwares ou de voler des identifiants via des liens de phishing personnalisés.</p>
-<a href="https://www.darkreading.com/cyberattacks-data-breaches/bluenoroff-turns-victims-into-new-attack-lures" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
-</div>
-
-<h3>Vidar domine le marché chaotique des infostealers après les takedowns de 2025</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware Vidar a émergé comme le principal infostealer après les saisies de Lumma et Rhadamanthys par les forces de l'ordre en 2025. Vidar, vendu sur des forums underground, cible les données bancaires, les portefeuilles crypto et les identifiants, avec une infrastructure en constante évolution pour éviter la détection.</p>
-<a href="https://www.darkreading.com/vulnerabilities-threats/vidar-top-chaotic-infostealer-market" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
-</div>
-
-<h3>Robinhood : Faille dans la création de comptes exploitée pour des phishing</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le processus de création de comptes Robinhood a été exploitée pour injecter des messages de phishing dans des emails légitimes, incitant les utilisateurs à cliquer sur des liens malveillants. Cette attaque, ciblant les traders, a permis la distribution de malwares ou le vol d'identifiants financiers.</p>
-<a href="https://www.bleepingcomputer.com/news/security/robinhood-account-creation-flaw-abused-to-send-phishing-emails/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Microsoft bloque le TLS hérité dans Exchange Online à partir de juillet 2026</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft annonce le blocage des connexions TLS héritées (POP/IMAP) pour Exchange Online à partir de juillet 2026, forçant les utilisateurs à migrer vers des protocoles modernes (TLS 1.2+). Cette décision, visant à renforcer la sécurité, pourrait impacter les clients utilisant des applications obsolètes.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-to-deprecate-legacy-tls-in-exchange-online-starting-july/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>LAPSUS$ publie des données volées à Checkmarx sur le dark web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe LAPSUS$ a publié des données volées à Checkmarx (spécialiste de la sécurité applicative) sur le dark web, confirmant une attaque sur son dépôt GitHub privé. Bien que l'étendue des données exposées ne soit pas précisée, cette fuite met en lumière les risques liés aux chaînes d'approvisionnement logicielles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/checkmarx-confirms-lapsus-hackers-leaked-its-stolen-github-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
