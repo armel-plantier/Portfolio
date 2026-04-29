@@ -340,7 +340,15 @@ experiences: [
             issuer: "root-me.org", 
             url: "https://www.root-me.org/", 
             pdf: "",
-            rootmeStats: {"total":26,"themes":[{"name":"Réseau","count":18,"total":1},{"name":"Web-Client","count":8,"total":1}],"position":49112,"score":345,"rang":"curious","top_percent":null,"updated_at":"2026-04-27T10:03:11Z"},
+            rootmeStats: {"total":26,"themes":[{"name":"Réseau","count":18,"total":1},{"name":"Web-Client","count":8,"total":1},
+        { 
+            name: "Pix", 
+            issuer: "pix.fr", 
+            url: "https://pix.fr", 
+            pdf: "certification-pix-20260303.pdf",
+            icon: `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z\"/></svg>`
+        }
+    ],"position":49112,"score":345,"rang":"curious","top_percent":null,"updated_at":"2026-04-27T10:03:11Z"},
             // Icône Terminal / Hacker
             icon: `<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" x="0px" y="0px" style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve" id="svg72" sodipodi:docname="logo_rm_noir.svg" inkscape:version="0.92.2 2405546, 2018-03-11" viewBox="111.2 58.76 371.76 476.44" fill="#6366f2" width="100%" height="100%"><metadata id="metadata78"/><defs id="defs76">
 	
