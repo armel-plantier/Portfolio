@@ -845,32 +845,27 @@ document.addEventListener("DOMContentLoaded", () => {
         config.documentsE5.forEach(doc => {
             const card = document.createElement('a');
             card.className = 'e5-card';
+            const rawBase = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
+            card.href = rawBase + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
             card.target = '_blank';
             card.rel = 'noopener noreferrer';
-            if (doc.type === 'link') {
-                // Lien externe direct (ex: Canva)
-                card.href = doc.path;
-            } else {
-                const rawBase = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
-                card.href = rawBase + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
-                // Force download for non-PDF files
-                const fileName = doc.path.split('/').pop();
-                if (doc.type !== 'pdf') {
-                    card.setAttribute('download', fileName);
-                    card.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        fetch(card.href)
-                            .then(r => r.blob())
-                            .then(blob => {
-                                const url = URL.createObjectURL(blob);
-                                const a = document.createElement('a');
-                                a.href = url; a.download = fileName;
-                                document.body.appendChild(a); a.click();
-                                document.body.removeChild(a); URL.revokeObjectURL(url);
-                            })
-                            .catch(() => window.open(card.href, '_blank'));
-                    });
-                }
+            // Force download for non-PDF files
+            const fileName = doc.path.split('/').pop();
+            if (doc.type !== 'pdf') {
+                card.setAttribute('download', fileName);
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    fetch(card.href)
+                        .then(r => r.blob())
+                        .then(blob => {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url; a.download = fileName;
+                            document.body.appendChild(a); a.click();
+                            document.body.removeChild(a); URL.revokeObjectURL(url);
+                        })
+                        .catch(() => window.open(card.href, '_blank'));
+                });
             }
             card.innerHTML = `
                 <div class="e5-card-icon">${doc.icon}</div>
@@ -1890,17 +1885,14 @@ function toggleGlobalPDF(url) {
                     const items = document.querySelectorAll('#exp-list .timeline-item');
                     config.experiences.forEach((exp, i) => {
                         if (!exp.photo || !items[i]) return;
-                        const header = items[i].querySelector('.timeline-header, [class*="header"]') || items[i].firstElementChild;
-                        if (!header) return;
+                        const badge = items[i].querySelector('.tl-badge');
+                        if (!badge) return;
                         const img = document.createElement('img');
                         img.src = 'assets/' + exp.photo;
                         img.alt = exp.company || '';
-                        img.style.cssText = 'width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
+                        img.style.cssText = 'width:42px;height:42px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
                         img.onerror = function() { this.remove(); };
-                        header.style.display = 'flex';
-                        header.style.alignItems = 'center';
-                        header.style.gap = '10px';
-                        header.insertBefore(img, header.firstChild);
+                        badge.replaceWith(img);
                     });
                 }
             } catch(e) { console.warn('photo inject:', e); }
