@@ -1088,7 +1088,6 @@ function ensurePDFModal() {
             <div class="pdf-modal-body">
                 <div class="pdf-modal-loader">Chargement du document...</div>
                 <iframe class="pdf-modal-iframe" title="Visionneuse PDF"></iframe>
-                <div class="pdf-hint">⚠️ Le chargement a échoué, il est conseillé de cliquer sur <strong>"Nouvel onglet"</strong> ci-dessus.</div>
             </div>
         </div>
     `;
