@@ -88,7 +88,7 @@ experiences: [
             date: "Mai 2025 - Juin 2025",
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
-            // Idem ici :
+            photo: "images.jpg",
             longDescription: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS) \n Serveur Graylog (Centralisation des logs) \n Active Directory (GPO, Audits, UO) \n Routeur Netgate (pfSense) \n Serveur DHCP (Windows & Debian)"
         }
     ],
