@@ -690,9 +690,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="comp-header">
                     <div class="cert-icon-box">${renderedIcon}</div>
                     <span class="cert-name">${escapeHTML(comp.name)}</span>
-                    <button class="cert-btn comp-toggle">▼</button>
+                    <span class="comp-count">${comp.details.length} item${comp.details.length > 1 ? 's' : ''}</span>
+                    <button class="comp-toggle" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                 </div>
-                <ul id="${dropId}" class="comp-dropdown-menu" style="display:none; list-style: none;">${details}</ul>
+                <ul id="${dropId}" class="comp-dropdown-menu" style="list-style: none;">${details}</ul>
             `;
             const h = li.querySelector('.comp-header');
             h.addEventListener("click", () => { toggleComp(dropId, h); });
@@ -1171,11 +1174,17 @@ function togglePDF(id, url) {
 function toggleComp(id, headerEl) {
     const menu = document.getElementById(id);
     const btn = headerEl.querySelector('.comp-toggle');
-    document.querySelectorAll('.comp-dropdown-menu').forEach(el => { if (el.id !== id) el.style.display = 'none'; });
-    document.querySelectorAll('.comp-toggle').forEach(el => { if (el !== btn) el.classList.remove('active'); });
-    const isOpened = menu.style.display === 'block';
-    menu.style.display = isOpened ? 'none' : 'block';
-    if(btn) isOpened ? btn.classList.remove('active') : btn.classList.add('active');
+    const card = headerEl.closest('.comp-card-container');
+    const isOpened = card.classList.contains('open');
+    // Fermer tous les autres
+    document.querySelectorAll('.comp-card-container.open').forEach(el => {
+        if (el !== card) {
+            el.classList.remove('open');
+            el.querySelector('.comp-toggle')?.setAttribute('aria-expanded', 'false');
+        }
+    });
+    card.classList.toggle('open', !isOpened);
+    if (btn) btn.setAttribute('aria-expanded', String(!isOpened));
 }
 
 function toggleCertPDF(id, url) {
@@ -1885,14 +1894,17 @@ function toggleGlobalPDF(url) {
                     const items = document.querySelectorAll('#exp-list .timeline-item');
                     config.experiences.forEach((exp, i) => {
                         if (!exp.photo || !items[i]) return;
-                        const badge = items[i].querySelector('.tl-badge');
-                        if (!badge) return;
+                        const header = items[i].querySelector('.timeline-header, [class*="header"]') || items[i].firstElementChild;
+                        if (!header) return;
                         const img = document.createElement('img');
                         img.src = 'assets/' + exp.photo;
                         img.alt = exp.company || '';
-                        img.style.cssText = 'align-self: stretch; height: 100%; width: 56px; min-height: 52px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;';
+                        img.style.cssText = 'width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
                         img.onerror = function() { this.remove(); };
-                        badge.replaceWith(img);
+                        header.style.display = 'flex';
+                        header.style.alignItems = 'center';
+                        header.style.gap = '10px';
+                        header.insertBefore(img, header.firstChild);
                     });
                 }
             } catch(e) { console.warn('photo inject:', e); }
