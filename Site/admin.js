@@ -340,17 +340,24 @@ setupTags('proj-tags', 'proj-custom-tag', selectedProjTags, function() { validat
 // ============================================================================
 // FILE UPLOAD
 // ============================================================================
-function setupUpload(zoneId, inputId, onFile) {
+function setupUpload(zoneId, inputId, onFile, acceptTypes) {
     var zone = $(zoneId);
     var input = $(inputId);
+    // acceptTypes : tableau de mime types acceptés pour le drop (défaut : PDF uniquement)
+    var allowed = acceptTypes || ['application/pdf'];
     zone.addEventListener('click', function() { input.click(); });
     zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.classList.add('dragover'); });
     zone.addEventListener('dragleave', function() { zone.classList.remove('dragover'); });
     zone.addEventListener('drop', function(e) {
         e.preventDefault(); zone.classList.remove('dragover');
         var file = e.dataTransfer.files[0];
-        if (file && file.type === 'application/pdf') onFile(file);
-        else toast('Fichier PDF requis', 'error');
+        if (file && allowed.some(function(t) {
+            return t.endsWith('/*') ? file.type.startsWith(t.slice(0, -1)) : file.type === t;
+        })) {
+            onFile(file);
+        } else {
+            toast('Format de fichier non accepté', 'error');
+        }
     });
     input.addEventListener('change', function() { if (input.files[0]) onFile(input.files[0]); });
 }
@@ -1289,7 +1296,7 @@ async function loadParcoursEntries() {
             experiences.forEach(function(exp, i) {
                 html += '<div class="entry-row" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;">';
                 if (exp.photo) {
-                    html += '<img src="../assets/' + escapeHTML(exp.photo) + '" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--border);" onerror="this.style.display=\'none\'">';
+                    html += '<img src="assets/' + escapeHTML(exp.photo) + '" style="width:40px;height:40px;border-radius:6px;object-fit:cover;border:1px solid var(--border);" onerror="this.style.display=\'none\'">';
                 } else {
                     html += '<div style="width:40px;height:40px;border-radius:6px;background:rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>';
                 }
@@ -1489,7 +1496,7 @@ setupUpload('parcours-photo-upload', 'parcours-photo-file', function(f) {
         $('parcours-photo-preview').style.display = 'block';
     };
     reader.readAsDataURL(f);
-});
+}, ['image/png', 'image/jpeg', 'image/webp', 'image/gif']);
 
 $('parcours-photo-remove').addEventListener('click', function() {
     parcoursPhotoFile = null;
@@ -1513,15 +1520,16 @@ $('parcours-submit').addEventListener('click', async function() {
             showProgress('Publication...', 'Upload de la photo...', 20);
             var b64 = await fileToBase64(parcoursPhotoFile);
             var photoPath = ASSETS_DIR + '/' + parcoursPhotoFile.name;
+            var photoUrlPath = photoPath.split('/').map(encodeURIComponent).join('/');
             // Récupérer le sha si le fichier existe déjà
             var photoSha = null;
             try {
-                var existingPhoto = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(photoPath));
+                var existingPhoto = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + photoUrlPath);
                 photoSha = existingPhoto.sha;
             } catch(e) { /* fichier n'existe pas encore, pas de sha nécessaire */ }
             var photoBody = { message: '[admin] Photo parcours : ' + parcoursPhotoFile.name, content: b64 };
             if (photoSha) photoBody.sha = photoSha;
-            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(photoPath), {
+            await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + photoUrlPath, {
                 method: 'PUT',
                 body: JSON.stringify(photoBody)
             });
@@ -1549,7 +1557,7 @@ $('parcours-submit').addEventListener('click', async function() {
                 photoLine = '\n            photo: "' + escapeForJS(exp.photo) + '",';
                 newEntry = '{\n            date: "' + escapeForJS(date) + '",\n            role: "' + escapeForJS(role) + '",\n            company: "' + escapeForJS(company) + '",' + photoLine + '\n            longDescription: "' + escapeForJS(desc) + '"\n        }';
             }
-            newContent = content.replace(exp._raw, newEntry);
+            newContent = content.replace(exp._raw, function() { return newEntry; });
         } else {
             // Ajout : insérer au début du tableau experiences
             var match = content.match(/experiences\s*:\s*\[/);
