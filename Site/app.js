@@ -845,27 +845,32 @@ document.addEventListener("DOMContentLoaded", () => {
         config.documentsE5.forEach(doc => {
             const card = document.createElement('a');
             card.className = 'e5-card';
-            const rawBase = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
-            card.href = rawBase + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
             card.target = '_blank';
             card.rel = 'noopener noreferrer';
-            // Force download for non-PDF files
-            const fileName = doc.path.split('/').pop();
-            if (doc.type !== 'pdf') {
-                card.setAttribute('download', fileName);
-                card.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    fetch(card.href)
-                        .then(r => r.blob())
-                        .then(blob => {
-                            const url = URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.href = url; a.download = fileName;
-                            document.body.appendChild(a); a.click();
-                            document.body.removeChild(a); URL.revokeObjectURL(url);
-                        })
-                        .catch(() => window.open(card.href, '_blank'));
-                });
+            if (doc.type === 'link') {
+                // Lien externe direct (ex: Canva)
+                card.href = doc.path;
+            } else {
+                const rawBase = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
+                card.href = rawBase + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+                // Force download for non-PDF files
+                const fileName = doc.path.split('/').pop();
+                if (doc.type !== 'pdf') {
+                    card.setAttribute('download', fileName);
+                    card.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        fetch(card.href)
+                            .then(r => r.blob())
+                            .then(blob => {
+                                const url = URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url; a.download = fileName;
+                                document.body.appendChild(a); a.click();
+                                document.body.removeChild(a); URL.revokeObjectURL(url);
+                            })
+                            .catch(() => window.open(card.href, '_blank'));
+                    });
+                }
             }
             card.innerHTML = `
                 <div class="e5-card-icon">${doc.icon}</div>
