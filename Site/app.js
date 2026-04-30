@@ -1894,17 +1894,14 @@ function toggleGlobalPDF(url) {
                     const items = document.querySelectorAll('#exp-list .timeline-item');
                     config.experiences.forEach((exp, i) => {
                         if (!exp.photo || !items[i]) return;
-                        const header = items[i].querySelector('.timeline-header, [class*="header"]') || items[i].firstElementChild;
-                        if (!header) return;
+                        const badge = items[i].querySelector('.tl-badge');
+                        if (!badge) return;
                         const img = document.createElement('img');
                         img.src = 'assets/' + exp.photo;
                         img.alt = exp.company || '';
-                        img.style.cssText = 'width:36px;height:36px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
+                        img.style.cssText = 'align-self: stretch; height: 100%; width: 56px; min-height: 52px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;';
                         img.onerror = function() { this.remove(); };
-                        header.style.display = 'flex';
-                        header.style.alignItems = 'center';
-                        header.style.gap = '10px';
-                        header.insertBefore(img, header.firstChild);
+                        badge.replaceWith(img);
                     });
                 }
             } catch(e) { console.warn('photo inject:', e); }
