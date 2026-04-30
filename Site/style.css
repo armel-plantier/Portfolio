@@ -634,33 +634,48 @@ body.light-mode .timeline-company { background: #f9fafb; }
 /* --- COMPETENCES --- */
 .comp-card-container { 
     background: var(--card); 
-    border-radius: 12px; 
+    border-radius: 14px; 
     border: 1px solid var(--border); 
     overflow: hidden; 
-    transition: all 0.3s ease; 
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     height: fit-content; 
     cursor: pointer;
 }
 .comp-card-container:hover {
     border-color: var(--primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.08);
+}
+.comp-card-container.open {
+    border-color: var(--primary);
 }
 
 .comp-header { 
     padding: 16px 20px; 
     display: flex; 
     align-items: center; 
-    gap: 15px; 
+    gap: 14px; 
     font-weight: 600; 
     transition: background 0.2s;
 }
 .comp-header:hover { background: rgba(255,255,255,0.02); }
 body.light-mode .comp-header:hover { background: #f9fafb; }
 
+/* BADGE COUNT */
+.comp-count {
+    margin-left: auto;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
 /* BOUTON FLÈCHE (COMPETENCES) */
 .comp-toggle {
-    margin-left: auto; 
     background: transparent;
     border: 1px solid var(--border);
     color: var(--muted);
@@ -670,45 +685,65 @@ body.light-mode .comp-header:hover { background: #f9fafb; }
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    padding: 0;
 }
-.comp-toggle.active {
-    transform: rotate(180deg);
-    background-color: var(--primary);
+.comp-toggle svg {
+    width: 14px; height: 14px;
+    transition: transform 0.25s ease;
+}
+.comp-card-container.open .comp-toggle {
+    background: var(--primary);
     border-color: var(--primary);
     color: white;
+}
+.comp-card-container.open .comp-toggle svg {
+    transform: rotate(180deg);
 }
 .comp-toggle:hover {
     border-color: var(--primary);
     color: var(--primary);
 }
 
-/* ITEMS DROPDOWN (Avec Accordéon Smooth) */
+/* DROPDOWN (max-height smooth transition) */
 .comp-dropdown-menu { 
-    padding: 15px 20px; background: rgba(0,0,0,0.1); border-top: 1px solid var(--border); list-style: none;
-    /* L'animation de glissement : */
-    animation: accordionSlide 0.25s ease-out forwards;
-    transform-origin: top;
+    padding: 0 20px;
+    background: rgba(0,0,0,0.1);
+    border-top: 0px solid var(--border);
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, border-top-width 0.3s ease;
 }
-@keyframes accordionSlide {
-    from { opacity: 0; transform: scaleY(0.95) translateY(-5px); }
-    to { opacity: 1; transform: scaleY(1) translateY(0); }
+.comp-card-container.open .comp-dropdown-menu {
+    max-height: 400px;
+    padding: 14px 20px;
+    border-top: 1px solid var(--border);
 }
-body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; border-top: 1px solid #f3f4f6; color: #333333; }
+body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; color: #333333; }
+body.light-mode .comp-card-container.open .comp-dropdown-menu { border-top: 1px solid #f3f4f6; }
 body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
 
 .comp-dropdown-menu li { 
-    margin-bottom: 8px; 
-    font-size: 0.9rem; 
+    margin-bottom: 9px; 
+    font-size: 0.88rem; 
     color: var(--muted); 
     display: flex; 
     align-items: flex-start; 
-    gap: 8px; 
+    gap: 10px;
+    line-height: 1.5;
 }
+.comp-dropdown-menu li:last-child { margin-bottom: 0; }
 .comp-dropdown-menu li::before { 
-    content: ''; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; opacity: 0.7; flex-shrink: 0; margin-top: 7px; 
+    content: ''; 
+    width: 6px; height: 6px; 
+    background: var(--primary); 
+    border-radius: 50%; 
+    opacity: 0.65; 
+    flex-shrink: 0; 
+    margin-top: 7px; 
 }
 
 /* CURSOR HINT */
