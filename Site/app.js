@@ -1890,7 +1890,7 @@ function toggleGlobalPDF(url) {
                         const img = document.createElement('img');
                         img.src = 'assets/' + exp.photo;
                         img.alt = exp.company || '';
-                        img.style.cssText = 'width:42px;height:42px;border-radius:8px;object-fit:cover;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;';
+                        img.style.cssText = 'align-self: stretch; height: 100%; width: 56px; min-height: 52px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;';
                         img.onerror = function() { this.remove(); };
                         badge.replaceWith(img);
                     });
