@@ -352,6 +352,30 @@ def generer_page_html(cat, contenu_html):
             {contenu_html}
         </div>
     </div>
+    <button id="theme-toggle" class="theme-icon" style="position:fixed;bottom:24px;right:24px;z-index:9999;" title="Changer le thème"></button>
+    <script>
+      (function(){{
+        var btn = document.getElementById("theme-toggle");
+        var theme = localStorage.getItem("theme");
+        var prefersLight = !theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (theme === "light" || prefersLight) {{
+          document.body.classList.add("light-mode");
+          btn.innerText = "🌙";
+        }} else {{
+          btn.innerText = "🌙";
+        }}
+        btn.addEventListener("click", function() {{
+          document.body.classList.toggle("light-mode");
+          if (document.body.classList.contains("light-mode")) {{
+            btn.innerText = "🌙";
+            localStorage.setItem("theme", "light");
+          }} else {{
+            btn.innerText = "☀️";
+            localStorage.setItem("theme", "dark");
+          }}
+        }});
+      }})();
+    </script>
 </body>
 </html>
 """
