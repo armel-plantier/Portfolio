@@ -353,7 +353,7 @@ def generer_page_html(cat, contenu_html):
         </div>
     </div>
     <button id="theme-toggle" class="theme-icon" style="position:fixed;bottom:24px;right:24px;z-index:9999;" title="Changer le thème"></button>
-    <script src="/veille-theme.js"></script>
+    <script src="/Veille/veille-theme.js"></script>
 </body>
 </html>
 """
