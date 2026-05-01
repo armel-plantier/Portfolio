@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 01/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/04/2026 au 02/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 01/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 02/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,254 +75,170 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Vendredi 27 Avril 2026</h2>
+            <h2>Lundi 27 Avril 2026</h2>
 <h3>Multiples vulnérabilités dans Zabbix Agent2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Zabbix Agent2, un outil de surveillance système. Ces failles permettent à un attaquant distant de provoquer des problèmes de sécurité non spécifiés, incluant potentiellement une exécution de code arbitraire ou un déni de service. Les systèmes exposés incluent les serveurs utilisant Zabbix pour la surveillance des infrastructures.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans Zabbix Agent2, un outil de surveillance open-source. Ces failles pourraient permettre à un attaquant distant d'exécuter du code arbitraire ou de provoquer un déni de service (DoS). L'éditeur n'a pas encore précisé la nature exacte des risques. Un correctif est attendu sous peu.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0498/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Moxa</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectent les produits Moxa, notamment des routeurs industriels et des passerelles IoT. Ces failles permettent un déni de service à distance, une fuite de données sensibles et un contournement des politiques de sécurité. Les systèmes industriels et OT (Operational Technology) sont particulièrement exposés.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques affectent les produits industriels Moxa, notamment des routeurs et commutateurs. Ces failles permettent des attaques par déni de service (DoS), une fuite de données sensibles et un contournement des politiques de sécurité. Un patch est disponible pour certaines versions.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0499/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans VMware Tanzu</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités non détaillées ont été identifiées dans VMware Tanzu, une plateforme de développement et de gestion d'applications cloud-native. Ces failles pourraient permettre à un attaquant de compromettre des environnements Kubernetes et des applications conteneurisées. Les correctifs sont urgents pour les environnements de production.</p>
+<p><strong>Résumé</strong> : VMware Tanzu, plateforme de gestion d'applications cloud-native, est vulnérable à plusieurs failles critiques. Ces vulnérabilités pourraient permettre à un attaquant distant d'exécuter du code arbitraire ou de compromettre l'intégrité des systèmes. Un correctif est en cours de déploiement.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0500/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits FoxIT</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : FoxIT, éditeur de solutions PDF, est touché par des vulnérabilités critiques permettant une exécution de code arbitraire à distance, un déni de service et une fuite de données. Les produits concernés incluent FoxIT Reader et PhantomPDF. Les correctifs doivent être appliqués immédiatement pour éviter des attaques ciblant les utilisateurs finaux.</p>
+<p><strong>Résumé</strong> : FoxIT, éditeur de solutions PDF, est touché par des vulnérabilités critiques permettant l'exécution de code à distance (RCE), des attaques par déni de service (DoS) et des fuites de données. Ces failles affectent plusieurs versions des produits. Un patch est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0501/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités non spécifiées ont été découvertes dans Microsoft Edge, le navigateur web basé sur Chromium. Ces failles pourraient permettre à un attaquant d'exécuter du code arbitraire, de contourner les protections de sécurité ou de voler des données sensibles. Les correctifs sont disponibles via Windows Update.</p>
+<p><strong>Résumé</strong> : Microsoft Edge est vulnérable à plusieurs failles critiques, bien que leur nature exacte ne soit pas détaillée par l'éditeur. Ces vulnérabilités pourraient permettre à un attaquant d'exécuter du code arbitraire ou de contourner les mécanismes de sécurité. Un correctif est attendu pour le 14 mai 2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0502/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques non détaillées affectent plusieurs produits Microsoft, incluant Windows, Office et Azure. Ces failles pourraient permettre une élévation de privilèges, une exécution de code à distance ou une fuite de données. Les correctifs sont disponibles via les mises à jour mensuelles de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0503/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
 <hr />
-<h2>Samedi 28 Avril 2026</h2>
+<h2>Mardi 28 Avril 2026</h2>
 <h3>Multiples vulnérabilités dans Spring</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le framework Spring, largement utilisé pour le développement Java, est affecté par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service à distance et une fuite de données. Ces failles pourraient être exploitées pour compromettre des applications d'entreprise. Les correctifs sont disponibles via les mises à jour Spring Framework.</p>
+<p><strong>Résumé</strong> : Le framework Spring est touché par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service (DoS) et une fuite de données. Ces failles affectent plusieurs composants de la suite Spring. Un correctif est disponible pour les versions vulnérables.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0504/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans Python</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Python permet à un attaquant de contourner les politiques de sécurité, notamment via des attaques par injection de code ou des manipulations de chemins. Les systèmes utilisant des versions vulnérables de Python (3.x) sont exposés. Un correctif est disponible dans les dernières versions de Python.</p>
+<p><strong>Résumé</strong> : Une faille critique dans Python permet à un attaquant de contourner les politiques de sécurité, notamment via des manipulations de chemins ou des attaques par injection. Cette vulnérabilité affecte les versions 3.11 et antérieures. Un correctif est disponible dans Python 3.12.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0505/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Dimanche 29 Avril 2026</h2>
+<h2>Mercredi 29 Avril 2026</h2>
 <h3>Multiples vulnérabilités dans Google Chrome</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Google Chrome, permettant à un attaquant d'exécuter du code arbitraire à distance, de contourner les protections de sécurité ou de voler des données. Ces failles sont exploitées activement dans des campagnes de spear-phishing. Les correctifs sont disponibles via les mises à jour automatiques de Chrome.</p>
+<p><strong>Résumé</strong> : Google Chrome est vulnérable à plusieurs failles critiques, bien que leur nature exacte ne soit pas précisée. Ces vulnérabilités pourraient permettre à un attaquant distant d'exécuter du code arbitraire ou de compromettre la sécurité du navigateur. Un correctif est attendu pour le 7 mai 2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0506/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Mozilla</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les produits Mozilla (Firefox, Thunderbird) sont touchés par des vulnérabilités critiques permettant une fuite de données, un contournement des politiques de sécurité et une exécution de code arbitraire. Ces failles pourraient être exploitées pour cibler des utilisateurs finaux. Les correctifs sont disponibles via les mises à jour de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0507/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Moodle</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Moodle, plateforme d'apprentissage en ligne, est affecté par des vulnérabilités critiques permettant une exécution de code arbitraire à distance, une injection SQL (SQLi) et une attaque par requêtes illégitimes (CSRF). Ces failles pourraient permettre à un attaquant de prendre le contrôle d'un serveur Moodle. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Moodle, plateforme d'apprentissage en ligne, est vulnérable à des attaques par exécution de code à distance (RCE), des injections SQL (SQLi) et des attaques par rebond (CSRF). Ces failles affectent plusieurs versions. Un correctif est disponible pour les versions vulnérables.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0508/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Xen</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le logiciel de virtualisation Xen est touché par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service à distance et une fuite de données. Ces failles pourraient être exploitées pour compromettre des environnements virtualisés. Les correctifs sont disponibles via les mises à jour Xen.</p>
+<p><strong>Résumé</strong> : Le logiciel de virtualisation Xen est touché par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service (DoS) et une fuite de données. Ces failles affectent les versions 4.16 et antérieures. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0509/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Citrix XenServer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Citrix XenServer, solution de virtualisation, est affecté par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service à distance et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour prendre le contrôle de serveurs XenServer. Les correctifs sont disponibles via Citrix.</p>
+<p><strong>Résumé</strong> : Citrix XenServer est vulnérable à des failles critiques permettant une élévation de privilèges, un déni de service (DoS) et un contournement des politiques de sécurité. Ces vulnérabilités affectent plusieurs versions. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0510/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans Elastic Package Registry</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Elastic Package Registry permet à un attaquant de voler des données sensibles, de modifier des informations ou de contourner les politiques de sécurité. Cette faille affecte les environnements utilisant Elastic Stack pour la gestion des packages. Un correctif est disponible via Elastic.</p>
+<p><strong>Résumé</strong> : Elastic Package Registry, outil de gestion de paquets Elastic, est vulnérable à une faille critique permettant une fuite de données, une altération des données et un contournement des politiques de sécurité. Cette vulnérabilité affecte les versions antérieures à 1.1.0. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0511/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Curl</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Curl, outil en ligne de commande pour les transferts de données, est touché par des vulnérabilités critiques permettant une fuite de données et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour intercepter des communications ou voler des informations sensibles. Les correctifs sont disponibles via les mises à jour de Curl.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0514/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Official SAP npm packages compromised to steal credentials</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs packages npm officiels liés à SAP ont été compromis dans une attaque de supply chain, permettant aux attaquants de voler des identifiants et des tokens d'authentification. Cette campagne, attribuée à TeamPCP, cible les développeurs utilisant des dépendances SAP. Les packages compromis ont été retirés de npm.</p>
-<a href="https://www.bleepingcomputer.com/news/security/official-sap-npm-packages-compromised-to-steal-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Popular WordPress redirect plugin hid dormant backdoor for years</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le plugin WordPress "Quick Page/Post Redirect", installé sur plus de 70 000 sites, contenait une porte dérobée dormante depuis cinq ans. Cette faille permet d'injecter du code arbitraire sur les sites des utilisateurs. Les correctifs sont disponibles via les mises à jour du plugin.</p>
-<a href="https://www.bleepingcomputer.com/news/security/popular-wordpress-redirect-plugin-hid-dormant-backdoor-for-years/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Hackers exploit RCE flaws in Qinglong task scheduler for cryptomining</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent deux vulnérabilités d'authentification dans Qinglong, un outil open-source de planification de tâches, pour déployer des cryptomineurs sur des serveurs de développeurs. Ces failles permettent une exécution de code à distance (RCE). Les correctifs sont disponibles via les mises à jour de Qinglong.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-rce-flaws-in-qinglong-task-scheduler-for-cryptomining/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
 <hr />
-<h2>Lundi 30 Avril 2026</h2>
-<h3>Multiples vulnérabilités dans MISP</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : MISP, plateforme open-source de partage d'informations sur les menaces, est affecté par des vulnérabilités critiques permettant une élévation de privilèges, une injection SQL (SQLi) et un contournement des politiques de sécurité. Ces failles pourraient permettre à un attaquant de compromettre des plateformes de threat intelligence. Les correctifs sont disponibles via les mises à jour de MISP.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0515/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
+<h2>Jeudi 30 Avril 2026</h2>
 <h3>Vulnérabilité dans les produits Netgate</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans les produits Netgate (pare-feu pfSense) permet une injection de code indirecte à distance (XSS). Cette faille pourrait être exploitée pour voler des sessions ou exécuter du code malveillant dans le contexte du navigateur de l'utilisateur. Les correctifs sont disponibles via Netgate.</p>
+<p><strong>Résumé</strong> : Les produits Netgate, notamment pfSense, sont vulnérables à une faille critique permettant des attaques par injection de code indirecte à distance (XSS). Cette vulnérabilité affecte les versions antérieures à 2.7.2. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0516/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits SonicWall</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les produits SonicWall (pare-feu et solutions de sécurité réseau) sont touchés par des vulnérabilités critiques permettant un déni de service à distance et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour perturber des infrastructures réseau critiques. Les correctifs sont disponibles via SonicWall.</p>
+<p><strong>Résumé</strong> : SonicWall est touché par des vulnérabilités critiques permettant un déni de service (DoS) et un contournement des politiques de sécurité. Ces failles affectent plusieurs produits, notamment les pare-feux et les solutions VPN. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0517/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Wireshark</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Wireshark, outil d'analyse de paquets réseau, est affecté par des vulnérabilités critiques permettant une exécution de code arbitraire à distance, un déni de service et une fuite de données. Ces failles pourraient être exploitées pour compromettre des analyseurs réseau. Les correctifs sont disponibles via les mises à jour de Wireshark.</p>
+<p><strong>Résumé</strong> : Wireshark, outil d'analyse réseau, est vulnérable à des failles critiques permettant l'exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une fuite de données. Ces vulnérabilités affectent les versions antérieures à 4.2.0. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0518/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux utilisé par Microsoft Azure est touché par des vulnérabilités critiques non détaillées, permettant potentiellement une élévation de privilèges ou une exécution de code à distance. Ces failles affectent les environnements cloud Azure. Les correctifs sont disponibles via les mises à jour Azure.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0519/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux de SUSE</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux de SUSE est affecté par des vulnérabilités critiques permettant une élévation de privilèges, un déni de service et des problèmes de sécurité non spécifiés. Ces failles pourraient être exploitées pour compromettre des systèmes Linux. Les correctifs sont disponibles via les mises à jour SUSE.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0520/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux de Red Hat est touché par des vulnérabilités critiques permettant une exécution de code arbitraire, une élévation de privilèges et un déni de service à distance. Ces failles affectent les environnements RHEL et CentOS. Les correctifs sont disponibles via les mises à jour Red Hat.</p>
+<p><strong>Résumé</strong> : Le noyau Linux de Red Hat est touché par des vulnérabilités critiques permettant l'exécution de code arbitraire, une élévation de privilèges et un déni de service (DoS). Ces failles affectent les versions RHEL 8 et 9. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0521/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux d'Ubuntu est affecté par des vulnérabilités critiques permettant une élévation de privilèges, une fuite de données et une atteinte à l'intégrité des données. Ces failles pourraient être exploitées pour compromettre des systèmes Ubuntu. Les correctifs sont disponibles via les mises à jour Ubuntu.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0522/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits IBM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les produits IBM (notamment IBM Cloud et IBM AIX) sont touchés par des vulnérabilités critiques permettant une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Ces failles affectent les environnements d'entreprise. Les correctifs sont disponibles via IBM.</p>
+<p><strong>Résumé</strong> : IBM est touché par des vulnérabilités critiques dans plusieurs de ses produits, permettant l'exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service (DoS). Ces failles affectent des solutions comme IBM Cloud Pak et IBM Security Verify. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0523/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Exim</h3>
+<h3>Fuite massive de données attribuée à France Titres (ANTS)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le serveur de messagerie Exim est affecté par des vulnérabilités critiques permettant un déni de service à distance, une fuite de données et des problèmes de sécurité non spécifiés. Ces failles pourraient être exploitées pour perturber des services de messagerie ou voler des données. Les correctifs sont disponibles via les mises à jour Exim.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0524/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un mineur de 15 ans a été arrêté en France pour son implication présumée dans une fuite massive de données attribuée à l'Agence Nationale des Titres Sécurisés (ANTS). La fuite concernerait des millions de données personnelles liées aux titres administratifs français.</p>
+<a href="https://www.zataz.com/ants-un-mineur-soupconne-apres-une-fuite-massive/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>New Linux ‘Copy Fail’ flaw gives hackers root on major distros</h3>
+<h3>Exploit zero-day dans cPanel et WHM (CVE-2026-41940)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique nommée "Copy Fail" (CVE-2026-31431, CVSS 7.8) affecte les noyaux Linux depuis 2017, permettant à un attaquant local non privilégié d'obtenir des droits root. Cette faille impacte les principales distributions Linux (Ubuntu, Debian, Fedora, etc.). Un correctif est disponible via les mises à jour des noyaux.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-linux-copy-fail-flaw-gives-hackers-root-on-major-distros/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Critical cPanel and WHM bug exploited as a zero-day, PoC now available</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-41940, une faille d'authentification dans cPanel et WHM, est exploitée activement en tant que zero-day. Cette faille permet à un attaquant de contourner l'authentification et d'obtenir un accès non autorisé. Un proof-of-concept (PoC) est désormais disponible. Les correctifs sont disponibles via cPanel.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique d'authentification par contournement (CVE-2026-41940) dans cPanel, WHM et WP Squared est activement exploitée en tant que zero-day. Un Proof-of-Concept (PoC) est désormais disponible, exposant des milliers de serveurs à des attaques à distance.</p>
 <a href="https://www.bleepingcomputer.com/news/security/critical-cpanel-and-whm-bug-exploited-as-a-zero-day-poc-now-available/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>New Bluekit phishing service includes an AI assistant, 40 templates</h3>
+<h3>Nouvelle vulnérabilité Linux "Copy Fail" (CVE-2026-31431)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau kit de phishing nommé Bluekit propose plus de 40 templates ciblant des services populaires (banques, réseaux sociaux) et intègre des fonctionnalités basiques d'IA pour générer des campagnes. Ce service est disponible sur le dark web et facilite les attaques par spear-phishing. Aucune solution de contournement n'est disponible.</p>
+<p><strong>Résumé</strong> : Une faille locale d'escalade de privilèges (CVE-2026-31431, CVSS 7.8) nommée "Copy Fail" affecte les noyaux Linux depuis 2017. Elle permet à un utilisateur local non privilégié d'obtenir des droits root sur les principales distributions (Ubuntu, Debian, Fedora, etc.). Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-linux-copy-fail-flaw-gives-hackers-root-on-major-distros/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaque par phishing Bluekit avec IA intégrée</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un nouveau kit de phishing nommé Bluekit propose plus de 40 modèles ciblant des services populaires et intègre des fonctionnalités basiques d'IA pour générer des campagnes. Ce service, accessible via le dark web, facilite les attaques par hameçonnage automatisées.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-bluekit-phishing-service-includes-an-ai-assistant-40-templates/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Google Fixes CVSS 10 Gemini CLI CI RCE and Cursor Flaws Enable Code Execution</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google a corrigé une faille de sécurité critique (CVSS 10) dans Gemini CLI (package npm "@google/gemini-cli") permettant une exécution de code arbitraire à distance (RCE). Une autre faille dans Cursor, un éditeur de code basé sur IA, permet également l'exécution de code. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/google-fixes-cvss-10-gemini-cli-ci-rce-and-cursor-flaws-enable-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>New Python Backdoor Uses Tunneling Service to Steal Browser and Cloud Credentials</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau backdoor Python nommé DEEP#DOOR a été découvert. Il utilise un service de tunneling pour voler des identifiants de navigateur et de cloud, établir un accès persistant et exfiltrer des données sensibles. Cette campagne cible les environnements Windows et Linux. Aucune solution de contournement n'est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-python-backdoor-uses-tunneling-service-to-steal-browser-and-cloud-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>New Linux 'Copy Fail' Vulnerability Enables Root Access on Major Distributions</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique nommée "Copy Fail" (CVE-2026-31431) affecte les noyaux Linux depuis 2017, permettant à un attaquant local non privilégié d'obtenir des droits root. Cette faille impacte les principales distributions (Ubuntu, Debian, Fedora, etc.). Les correctifs sont disponibles via les mises à jour des noyaux.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-linux-copy-fail-vulnerability-enables-root-access-on-major-distributions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>FBI links cybercriminals to sharp surge in cargo theft attacks</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le FBI a lié des cybercriminels à une augmentation significative des attaques de vol de fret, avec des pertes estimées à 725 millions de dollars aux États-Unis et au Canada en 2025. Ces attaques combinent des techniques de hacking et des manipulations logistiques pour cibler les chaînes d'approvisionnement.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-links-cybercriminals-to-sharp-surge-in-cargo-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>April KB5083769 Windows 11 update causes backup software failures</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La mise à jour de sécurité KB5083769 d'avril 2026 pour Windows 11 provoque des dysfonctionnements dans plusieurs logiciels de sauvegarde tiers (Veeam, Acronis, etc.). Les utilisateurs sont invités à vérifier la compatibilité de leurs solutions de sauvegarde avant d'appliquer la mise à jour.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/april-kb5083769-windows-11-update-causes-backup-software-failures/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
 <hr />
-<h2>Mercredi 01 Mai 2026</h2>
-<h3>Microsoft now lets admins choose pre-installed Store apps to uninstall</h3>
+<h2>Vendredi 01 Mai 2026</h2>
+<h3>30 000 comptes Facebook compromis via Google AppSheet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a mis à jour sa politique de suppression des applications préinstallées dans Windows 11, permettant aux administrateurs système de choisir quelles applications du Microsoft Store peuvent être désinstallées. Cette fonctionnalité vise à améliorer la sécurité et la gestion des endpoints.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-now-lets-admins-choose-pre-installed-store-apps-to-uninstall/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une campagne de phishing ciblant les comptes Facebook a compromis 30 000 comptes via l'exploitation de Google AppSheet, utilisé comme relais pour distribuer des emails malveillants. L'opération, liée à des acteurs vietnamiens, vendait les comptes compromis sur des forums cybercriminels.</p>
+<a href="https://thehackernews.com/2026/05/30000-facebook-accounts-hacked-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Windows 11 KB5083631 update released with 34 changes and fixes</h3>
+<h3>Groupes cybercriminels utilisant le vishing et l'abus de SSO</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié la mise à jour cumulative KB5083631 pour Windows 11, incluant 34 correctifs et améliorations. Parmi les changements notables : un nouveau mode Xbox pour les PC Windows, des améliorations de sécurité et de performance pour les fichiers batch, et des optimisations pour le lancement des applications au démarrage.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5083631-update-released-with-34-changes-and-fixes/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div
+<p><strong>Résumé</strong> : Deux groupes cybercriminels, Cordial Spider et UNC6671, mènent des attaques rapides et ciblées contre des environnements SaaS en exploitant des techniques de vishing (hameçonnage vocal) et d'abus de Single Sign-On (SSO). Ces attaques minimisent les traces et visent l'extorsion rapide.</p>
+<a href="https://thehackernews.com/2026/05/cybercrime-groups-using-vishing-and-sso.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
 
-### Two Cybersecurity Professionals Get 4-Year Sentences in BlackCat Ransomware Attacks
+<h3>Campagne d'espionnage chinoise ciblant gouvernements et journalistes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un groupe de hackers chinois lié à l'État a mené une campagne d'espionnage ciblant des gouvernements asiatiques, un État membre de l'OTAN, des journalistes et des militants. L'opération, attribuée à Earth Lusca, a exploité des vulnérabilités zero-day et des techniques d'ingénierie sociale.</p>
+<a href="https://thehackernews.com/2026/05/china-linked-hackers-target-asian.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
 
+<h3>Empoisonnement de paquets Ruby Gems et Go Modules</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux professionnels de la cybersécurité, Ryan Goldberg (40 ans) et Kevin Martin (36 ans), ont été condamnés à quatre ans de prison chacun pour leur rôle dans des attaques par ransomware BlackCat (ALPHV) en 2023. Ils étaient accusés d'avoir facilité des attaques contre des entreprises américaines.</p>
-<p><a href="https://thehackernews.com/2026/05/two-cybersecurity-professionals-get-4.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-&lt;/div</p>
-<h3>Poisoned Ruby Gems and Go Modules Exploit CI Pipelines for Credential Theft</h3>
+<p><strong>Résumé</strong> : Une campagne d'attaque par empoisonnement de la chaîne d'approvisionnement a utilisé des paquets Ruby Gems et Go Modules pour voler des identifiants, altérer des pipelines CI et établir une persistance via SSH. L'opération a exploité des comptes GitHub compromis comme "BufferZoneCorp".</p>
+<a href="https://thehackernews.com/2026/05/poisoned-ruby-gems-and-go-modules.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Deux professionnels de la cybersécurité condamnés pour BlackCat</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'attaque par supply chain a été observée, utilisant des packages Ruby Gems et Go Modules compromis pour voler des identifiants, manipuler des pipelines CI (GitHub Actions) et établir une persistance via SSH. L'activité est attribuée au compte GitHub "BufferZoneCorp".</p>
-<p><a href="https://thehackernews.com/2026/05/poisoned-ruby-gems-and-go-modules.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</p>
+<p><strong>Résumé</strong> : Deux professionnels de la cybersécurité, Ryan Goldberg et Kevin Martin, ont été condamnés à 4 ans de prison chacun pour leur rôle dans des attaques par ransomware BlackCat (ALPHV) en 2023. Ils ont facilité des attaques contre des entreprises américaines en tant que négociateurs de rançon.</p>
+<a href="https://thehackernews.com/2026/05/two-cybersecurity-professionals-get-4.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
         </div>
     </div>
     <button id="theme-toggle" class="theme-icon" style="position:fixed;bottom:24px;right:24px;z-index:9999;" title="Changer le thème"></button>
