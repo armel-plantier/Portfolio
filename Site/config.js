@@ -176,6 +176,13 @@ experiences: [
     tags: ["Réseau", "Cybersécurité"]
 },
 {
+    title: "Déployer Pi-Hole sur une machine Debian",
+    longDescription: "Installation et configuration complète de Pi-Hole sur Debian 12 : blocage de sites précis via le query log et filtrage par listes prédéfinies (DNSSEC, interface web HTTPS).",
+    path: "Déployer Pi-Hole sur une machine Debian.pdf",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>`,
+    tags: ["Réseau", "Cybersécurité", "Administration Système"]
+},
+{
     title: "Procédure Architecture 3-tiers",
     longDescription: "Mise en place d'une architecture applicative en 3 couches : présentation, logique métier et données.",
     path: "Procédure Architecture 3-tiers.pdf",
