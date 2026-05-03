@@ -459,6 +459,125 @@ experiences: [
 			path: "https://canva.link/8m44igr0848g68m",
             icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>`,
             type: "link"
+        },
+        {
+            title: "Gestion des mises à jour avec WSUS",
+            description: "Déploiement et configuration de Windows Server Update Services pour centraliser les mises à jour des postes Windows.",
+            path: "Procédures/wsus.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Déploiement d'images avec FOG",
+            description: "Installation et configuration de FOG Project pour le clonage et le déploiement d'images système sur le réseau.",
+            path: "Procédures/fog.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Authentification réseau 802.1X",
+            description: "Mise en place du protocole 802.1X pour le contrôle d'accès réseau par port (NAC), avec serveur RADIUS.",
+            path: "Procédures/8021x.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Mettre en place un DHCP sur un Windows Server",
+            description: "Installation et configuration du rôle DHCP sur Windows Server, création des étendues et options.",
+            path: "Procédures/Mettre en place un DHCP sur un Windows Server.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Mettre en place un système de Log via Graylog",
+            description: "Déploiement de Graylog pour la centralisation et l'analyse des journaux systèmes.",
+            path: "Procédures/Mettre en place un système de Log via Graylog.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Créer une VM Windows 11 client sur HyperV",
+            description: "Création et configuration d'une machine virtuelle Windows 11 sous Hyper-V.",
+            path: "Procédures/Créer une VM Windows 11 client sur HyperV.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "S'isoler dans un réseau local avec un routeur Pfsense",
+            description: "Configuration de pfSense pour créer un environnement réseau isolé et sécurisé.",
+            path: "Procédures/S'isoler dans un réseau local avec un routeur Pfsense.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Déployer Pi-Hole sur une machine Debian",
+            description: "Installation et configuration complète de Pi-Hole sur Debian 12 : blocage de sites précis via le query log et filtrage par listes prédéfinies.",
+            path: "Procédures/Déployer Pi-Hole sur une machine Debian.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Synthèse Bloc2",
+            description: "Document de synthèse du Bloc 2 — compétences réseau et sécurité.",
+            path: "Procédures/Synthèse Bloc2.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Procédure DNS dynamique",
+            description: "Configuration d'un serveur DNS dynamique (DDNS) pour la mise à jour automatique des enregistrements.",
+            path: "Procédures/Procédure DNS dynamique.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Procédure DHCP + DNS",
+            description: "Déploiement conjoint d'un serveur DHCP et DNS sur Linux pour la gestion automatique du réseau.",
+            path: "Procédures/Procédure Dhcp+Dns.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><path d="M4 11a9 9 0 0 1 9 9"/><circle cx="5" cy="19" r="1"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "HAProxy – Répartition des tâches serveur web",
+            description: "Mise en place de HAProxy comme load balancer pour distribuer la charge entre plusieurs serveurs web.",
+            path: "Procédures/Procédure HAProxy - Répartition des taches serveur web.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Active Directory – GPO",
+            description: "Création et application de stratégies de groupe (GPO) pour la gestion centralisée des postes.",
+            path: "Procédures/Active Directory _ GPO.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Mise en place d'un LogAnalyser via Syslog",
+            description: "Visualisation centralisée des journaux systèmes via LogAnalyzer et Syslog.",
+            path: "Procédures/loganalyzer.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Exploitation de vulnérabilités Windows (SMBv1)",
+            description: "Exploitation de la faille EternalBlue sur SMBv1 en environnement contrôlé — analyse et documentation.",
+            path: "Procédures/Exploitation de vulnérabilités Windows.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Supervision réseau avec Zabbix + Grafana",
+            description: "Déploiement de Zabbix pour la supervision d'infrastructure : hôtes, métriques, alertes et dashboards Grafana.",
+            path: "Procédures/zabbix.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+            type: "pdf"
+        },
+        {
+            title: "Certificat TLS autosigné avec Apache",
+            description: "Configuration d'Apache avec HTTPS via un certificat TLS autosigné.",
+            path: "Procédures/certificat-tls.pdf",
+            icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
+            type: "pdf"
         }
     ]
     
