@@ -836,7 +836,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- DOCUMENTS E5 ---
     const e5Grid = document.getElementById('e5-grid');
+    const E5_LIMIT = 6;
+    const E5_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
+
     if (e5Grid && config.documentsE5 && config.documentsE5.length > 0) {
+        // Badge compteur
         const e5Title = document.querySelector('#documents-e5 h3');
         if (e5Title) {
             const badge = document.createElement('span');
@@ -844,50 +848,46 @@ document.addEventListener("DOMContentLoaded", () => {
             badge.textContent = config.documentsE5.length;
             e5Title.appendChild(badge);
         }
+
         e5Grid.innerHTML = '';
-        config.documentsE5.forEach(doc => {
-            const card = document.createElement('a');
+
+        config.documentsE5.forEach((doc, index) => {
+            const fullUrl = doc.type === 'link'
+                ? doc.path
+                : E5_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+
+            const card = document.createElement('div');
             card.className = 'e5-card';
-            card.target = '_blank';
-            card.rel = 'noopener noreferrer';
-            if (doc.type === 'link') {
-                // Lien externe direct
-                card.href = doc.path;
-            } else {
-                const rawBase = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
-                card.href = rawBase + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
-                // Force download for non-PDF files
-                const fileName = doc.path.split('/').pop();
-                if (doc.type !== 'pdf') {
-                    card.setAttribute('download', fileName);
-                    card.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        fetch(card.href)
-                            .then(r => r.blob())
-                            .then(blob => {
-                                const url = URL.createObjectURL(blob);
-                                const a = document.createElement('a');
-                                a.href = url; a.download = fileName;
-                                document.body.appendChild(a); a.click();
-                                document.body.removeChild(a); URL.revokeObjectURL(url);
-                            })
-                            .catch(() => window.open(card.href, '_blank'));
-                    });
-                }
-            }
+            card.style.cursor = 'pointer';
+            card.dataset.index = index;
+            if (index >= E5_LIMIT) card.classList.add('hidden-item');
+
+            const badgeLabel = doc.type === 'link' ? 'LIEN' : 'PDF';
+
             card.innerHTML = `
                 <div class="e5-card-icon">${doc.icon}</div>
                 <div class="e5-card-body">
-                    <h4>${doc.title}</h4>
-                    <p>${doc.description}</p>
+                    <h4>${escapeHTML(doc.title)}</h4>
+                    <p>${escapeHTML(doc.description)}</p>
                 </div>
-                <span class="e5-card-badge">${doc.type.toUpperCase()}</span>
+                <span class="e5-card-badge">${badgeLabel}</span>
                 <div class="e5-card-dl">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </div>
             `;
+
+            card.addEventListener('click', () => {
+                if (doc.type === 'link') {
+                    window.open(fullUrl, '_blank', 'noopener,noreferrer');
+                } else {
+                    openPDFModal(fullUrl, doc.title);
+                }
+            });
+
             e5Grid.appendChild(card);
         });
+
+        if (config.documentsE5.length > E5_LIMIT) createToggleBtn(e5Grid, E5_LIMIT, 'Voir la suite');
 
         // --- RECHERCHE E5 ---
         const e5Search = document.getElementById('e5-search');
@@ -899,18 +899,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     e5CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
                 }
             };
+            const loadMoreContainer = e5Grid.parentNode.querySelector('.load-more-container');
             e5Search.addEventListener('input', () => {
                 const q = e5Search.value.trim().toLowerCase();
+                const isFiltering = q.length > 0;
                 let visible = 0;
-                allCards.forEach(card => {
+                allCards.forEach((card, i) => {
                     const text = card.textContent.toLowerCase();
-                    const match = !q || text.includes(q);
-                    card.style.display = match ? '' : 'none';
-                    if (match) visible++;
+                    const match = !isFiltering || text.includes(q);
+                    if (isFiltering) {
+                        card.classList.remove('hidden-item');
+                        card.style.display = match ? '' : 'none';
+                    } else {
+                        card.style.display = '';
+                        if (i >= E5_LIMIT) card.classList.add('hidden-item');
+                        else card.classList.remove('hidden-item');
+                    }
+                    if (match && (!card.classList.contains('hidden-item') || isFiltering)) visible++;
                 });
+                if (loadMoreContainer) loadMoreContainer.style.display = isFiltering ? 'none' : '';
                 updateCount(visible);
             });
         }
+
     } else if (e5Grid) {
         e5Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
     }
