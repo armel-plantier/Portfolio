@@ -888,6 +888,29 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             e5Grid.appendChild(card);
         });
+
+        // --- RECHERCHE E5 ---
+        const e5Search = document.getElementById('e5-search');
+        const e5CountEl = document.getElementById('e5-search-count');
+        if (e5Search) {
+            const allCards = Array.from(e5Grid.querySelectorAll('.e5-card'));
+            const updateCount = (visible) => {
+                if (e5CountEl) {
+                    e5CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
+                }
+            };
+            e5Search.addEventListener('input', () => {
+                const q = e5Search.value.trim().toLowerCase();
+                let visible = 0;
+                allCards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    const match = !q || text.includes(q);
+                    card.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+                updateCount(visible);
+            });
+        }
     } else if (e5Grid) {
         e5Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
     }
