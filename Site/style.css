@@ -1050,6 +1050,47 @@ body.light-mode .e5-card:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
 .e5-card-dl svg { width: 18px; height: 18px; stroke: var(--primary); }
 .e5-card:hover .e5-card-dl { background: var(--primary); }
 .e5-card:hover .e5-card-dl svg { stroke: #fff; }
+/* --- RECHERCHE E5 --- */
+.e5-search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+.e5-search-icon {
+    position: absolute;
+    left: 14px;
+    width: 16px;
+    height: 16px;
+    stroke: var(--muted);
+    pointer-events: none;
+    flex-shrink: 0;
+}
+#e5-search {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+#e5-search::placeholder { color: var(--muted); }
+#e5-search:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+.e5-search-count {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+    min-width: 56px;
+    text-align: right;
+}
 
 /* --- GRILLE 4 CARTES VEILLE --- */
 .veille-cards-grid {
