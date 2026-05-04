@@ -28,6 +28,12 @@ maintenant = datetime.now(ZoneInfo("Europe/Paris")).replace(tzinfo=None)
 jours_depuis_lundi = maintenant.weekday()
 date_lundi = maintenant - timedelta(days=jours_depuis_lundi)
 date_lundi_debut = date_lundi.replace(hour=0, minute=0, second=0, microsecond=0)
+
+# Le lundi matin la semaine courante est vide → on recule d'une semaine
+if jours_depuis_lundi == 0:
+    date_lundi -= timedelta(days=7)
+    date_lundi_debut -= timedelta(days=7)
+
 str_aujourdhui = maintenant.strftime("%d/%m/%Y")
 str_lundi = date_lundi.strftime("%d/%m/%Y")
 
