@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 04/05/2026 au 04/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 27/04/2026 au 04/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 04/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/04/2026 au 04/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,11 +75,147 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 04 Mai 2026</h2>
-<h3>Faille critique CVE-2026-41940 dans cPanel exploité par le ransomware Sorry</h3>
+            <h2>Dimanche 27 Avril 2026</h2>
+<h3>Vulnérabilité critique dans Hugging Face LeRobot (CVE-2026-25874)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de sécurité critique (CVE-2026-41940) dans cPanel et WHM est massivement exploitée, permettant l'injection de code arbitraire et le chiffrement des données par le ransomware Sorry. Les serveurs Linux exposés via des interfaces web vulnérables sont particulièrement ciblés, nécessitant une mise à jour immédiate des versions concernées.</p>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-25874, score CVSS 9.3) dans LeRobot, la plateforme open source de robotique d'Hugging Face, permet une exécution de code à distance non authentifiée. Cette vulnérabilité affecte les systèmes utilisant cette bibliothèque pour des applications robotiques ou d'IA embarquée.</p>
+<a href="https://thehackernews.com/2026/04/critical-cve-2026-25874-leaves-hugging.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploitation active de la faille Windows Shell (CVE-2026-32202)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft confirme l'exploitation active de la CVE-2026-32202, une vulnérabilité de spoofing dans Windows Shell. Bien que le score CVSS soit modéré (4.3), son exploitation en conditions réelles nécessite une attention immédiate pour les administrateurs systèmes.</p>
+<a href="https://thehackernews.com/2026/04/microsoft-confirms-active-exploitation.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Nouvel outil d'orchestration agentique par Mistral AI avec Temporal</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mistral AI intègre son moteur d'orchestration Temporal avec un SDK Python pour créer des workflows déterministes, offrant une brique agentique pour les systèmes d'IA. Intéressant pour les équipes DevOps cherchant à automatiser des tâches complexes avec des agents IA.</p>
+<a href="https://www.silicon.fr/data-ia-1372/mistral-ai-workflows-226978" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<hr />
+<h2>Lundi 28 Avril 2026</h2>
+<h3>Faille GitHub exploitable via un simple <code>git push</code> (CVE-2026-3854)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3854, score 8.7) dans GitHub.com et GitHub Enterprise Server permet une exécution de code à distance avec une seule commande `git push`. Priorité absolue pour les équipes CI/CD et DevOps utilisant GitHub.</p>
+<a href="https://thehackernews.com/2026/04/researchers-discover-critical-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA ajoute la faille Linux Copy Fail (CVE-2026-31431) à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CVE-2026-31431, permettant une élévation de privilèges root sur les distributions Linux depuis 2017, est désormais classée comme "activement exploitée". Les administrateurs doivent appliquer les correctifs disponibles sans délai.</p>
+<a href="https://thehackernews.com/2026/04/cisa-adds-actively-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Microsoft corrige une faille critique dans Entra ID (prise de contrôle de principal de service)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans le rôle "Agent ID Administrator" d'Entra ID permet une prise de contrôle de principal de service. Bien que corrigée, cette faille illustre les risques liés aux rôles par défaut dans les environnements cloud Microsoft.</p>
+<a href="https://thehackernews.com/2026/04/microsoft-patches-entra-id-role-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Arx One Backup introduit la sauvegarde locale OnBox et le Near CDP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La solution de sauvegarde Arx One Backup ajoute une fonctionnalité de sauvegarde locale (OnBox) et un mécanisme de "Near Continuous Data Protection" pour réduire les fenêtres de perte de données. Idéal pour les environnements hybrides ou les PME.</p>
+<a href="https://www.it-connect.fr/arx-one-backup-evolue-avec-la-sauvegarde-locale-onbox-et-le-near-cdp/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h2>Mardi 29 Avril 2026</h2>
+<h3>Vulnérabilités critiques dans les packages npm liés à SAP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque par chaîne d'approvisionnement cible des packages npm liés à SAP, avec un vol de credentials intégré. Les équipes DevOps doivent auditer leurs dépendances et appliquer les correctifs urgents.</p>
+<a href="https://thehackernews.com/2026/04/sap-npm-packages-compromised-by-mini.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille critique dans cPanel (CVE-2026-41940) exploitée par des ransomwares</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique dans cPanel et WHM (CVE-2026-41940) est massivement exploitée, y compris par le ransomware Sorry. Les administrateurs doivent appliquer les correctifs immédiatement pour éviter le chiffrement des données.</p>
+<a href="https://www.it-connect.fr/patchez-votre-serveur-une-faille-critique-a-ete-decouverte-dans-cpanel/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>CISA ajoute les failles ConnectWise ScreenConnect et Windows à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CVE-2025-24267 (ConnectWise ScreenConnect) et une faille Windows non spécifiée sont désormais classées comme "activement exploitées". Les administrateurs doivent prioriser ces correctifs.</p>
+<a href="https://thehackernews.com/2026/04/cisa-adds-actively-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaques DPRK utilisant des malwares npm insérés par IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaques nord-coréennes intègrent des malwares dans des packages npm via l'outil Claude Opus d'Anthropic. Les équipes DevOps doivent surveiller les dépendances générées par IA.</p>
+<a href="https://thehackernews.com/2026/04/new-wave-of-dprk-attacks-uses-ai.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mercredi 30 Avril 2026</h2>
+<h3>Faille Linux Copy Fail (CVE-2026-31431) : accès root sur les distributions majeures</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille Copy Fail (CVE-2026-31431) permet à un utilisateur local non privilégié d'obtenir un accès root sur la plupart des distributions Linux. Les correctifs doivent être appliqués en urgence.</p>
+<a href="https://thehackernews.com/2026/04/new-linux-copy-fail-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Proxmox Backup Server 4.2 disponible avec de nouvelles fonctionnalités</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La version 4.2 de Proxmox Backup Server introduit des améliorations significatives, notamment pour la gestion des sauvegardes incrémentielles et la compatibilité avec les environnements virtualisés. Solution open source idéale pour les PME et les hébergeurs.</p>
+<a href="https://www.it-connect.fr/proxmox-backup-server-4-2-est-disponible-voici-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Vulnérabilités critiques dans LiteLLM (CVE-2026-42208) exploitées en 36h</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une injection SQL dans LiteLLM (CVE-2026-42208) a été exploitée en moins de 36h après sa divulgation. Les équipes utilisant cette bibliothèque pour des interfaces LLM doivent appliquer les correctifs immédiatement.</p>
+<a href="https://thehackernews.com/2026/04/litellm-cve-2026-42208-sql-injection.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>PyTorch Lightning et Intercom-client compromis dans des attaques par chaîne d'approvisionnement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les packages PyTorch Lightning et Intercom-client ont été compromis pour voler des credentials. Les administrateurs doivent auditer leurs dépendances Python et vérifier les versions installées.</p>
+<a href="https://thehackernews.com/2026/04/pytorch-lightning-compromised-in-pypi.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GLPI 11.0.7 et 10.0.25 corrigent une dizaine de vulnérabilités</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les versions 11.0.7 et 10.0.25 de GLPI patchent une dizaine de vulnérabilités, dont certaines critiques. Les administrateurs de helpdesk doivent mettre à jour rapidement pour éviter les risques d'exploitation.</p>
+<a href="https://www.it-connect.fr/glpi-11-0-7-glpi-10-0-25-une-dizaine-de-vulnerabilites-patchees/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h2>Jeudi 01 Mai 2026</h2>
+<h3>30 000 comptes Facebook compromis via une campagne de phishing utilisant Google AppSheet</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing ciblant les comptes Facebook utilise Google AppSheet comme relais pour distribuer des emails malveillants. Les administrateurs doivent sensibiliser les utilisateurs et surveiller les activités suspectes.</p>
+<a href="https://thehackernews.com/2026/05/30000-facebook-accounts-hacked-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Groupes cybercriminels utilisant le vishing et l'abus de SSO pour des attaques rapides sur SaaS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Deux groupes cybercriminels (Cordial Spider et UNC6671) mènent des attaques rapides sur les environnements SaaS en combinant vishing et abus de Single Sign-On. Les équipes sécurité doivent renforcer la surveillance des accès et des sessions.</p>
+<a href="https://thehackernews.com/2026/05/cybercrime-groups-using-vishing-and-sso.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Hackers chinois ciblant des gouvernements asiatiques, l'OTAN et des journalistes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un groupe de hackers chinois mène une campagne d'espionnage ciblant des gouvernements asiatiques, un État membre de l'OTAN et des journalistes. Les administrateurs doivent renforcer la sécurité des systèmes critiques.</p>
+<a href="https://thehackernews.com/2026/05/china-linked-hackers-target-asian.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Forensic Windows : analyse des traces avec Amcache.hve</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Ce tutoriel explique comment exploiter le fichier Amcache.hve pour retrouver des traces d'activités suspectes sous Windows, outil essentiel pour les investigations numériques et la réponse aux incidents.</p>
+<a href="https://www.it-connect.fr/forensic-windows-partie-2-comment-trouver-des-traces-avec-amcache/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h2>Dimanche 04 Mai 2026</h2>
+<h3>Ransomware Sorry chiffre les données des serveurs cPanel (CVE-2026-41940)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-41940 dans cPanel est massivement exploitée par le ransomware Sorry, chiffrant les données des serveurs. Les administrateurs doivent appliquer les correctifs et vérifier l'intégrité des sauvegardes.</p>
 <a href="https://www.it-connect.fr/linux-les-donnees-des-serveurs-cpanel-chiffrees-par-le-ransomware-sorry/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Opération internationale contre les centres de fraude crypto : 276 arrestations et 701M$ saisis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une opération coordonnée entre les États-Unis et la Chine a permis l'arrestation de 276 suspects et la fermeture de 9 centres de fraude crypto, avec des pertes estimées à des millions de dollars. Les administrateurs doivent surveiller les activités suspectes liées aux cryptomonnaies.</p>
+<a href="https://thehackernews.com/2026/05/global-crackdown-arrests-276-shuts-9.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
