@@ -852,7 +852,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e5Grid.innerHTML = '';
 
         config.documentsE5.forEach((doc, index) => {
-            const fullUrl = doc.type === 'link'
+            const fullUrl = (doc.type === 'link' || doc.path.startsWith('http'))
                 ? doc.path
                 : E5_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
 
