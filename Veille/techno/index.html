@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 04/05/2026 au 05/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 04/05/2026 au 06/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 05/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 06/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,46 +76,114 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 05 Mai 2026</h2>
-<h3>Microsoft lance un module PowerShell pour gérer les snapshots ReFS</h3>
+<h3>Microsoft Edge : fuites de mots de passe en mémoire</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié le module PowerShell ReFSSnapshots, conçu pour remplacer l'outil refsutil dans la gestion des snapshots ReFS. Ce module simplifie les opérations de sauvegarde et de restauration sur les systèmes Windows et Windows Server, offrant une interface plus moderne et intégrée pour les administrateurs système.</p>
-<a href="https://www.it-connect.fr/microsoft-lance-un-module-powershell-pour-gerer-les-snapshots-refs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Un chercheur a révélé que Microsoft Edge stocke les mots de passe en clair dans la mémoire de Windows, exposant les utilisateurs à des risques de vol via des outils d'analyse mémoire. Cette faille impacte directement la sécurité des environnements professionnels où Edge est déployé.</p>
+<a href="https://www.it-connect.fr/un-chercheur-prouve-que-microsoft-edge-laisse-fuiter-vos-mots-de-passe-en-memoire/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>La mise à jour Windows d’avril perturbe vos sauvegardes</h3>
+<h3>iOS 26.5 : chiffrement de bout en bout pour les messages RCS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Certaines applications de sauvegarde sous Windows et Windows Server ne fonctionnent plus correctement après l'installation des correctifs d'avril 2026. Les administrateurs doivent vérifier la compatibilité de leurs outils et appliquer les correctifs ou alternatives proposés par les éditeurs concernés.</p>
-<a href="https://www.it-connect.fr/la-mise-a-jour-windows-davril-perturbe-vos-sauvegardes-voici-les-logiciels-concernes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : iOS 26.5 introduit un chiffrement de bout en bout pour les messages RCS entre iPhone et Android, renforçant la confidentialité des échanges inter-plateformes. Cette évolution est cruciale pour les administrateurs gérant des parcs mobiles hybrides.</p>
+<a href="https://www.it-connect.fr/ios-26-5-vos-messages-rcs-entre-iphone-et-android-seront-enfin-securises/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Progress corrige une faille critique dans MOVEit Automation permettant un contournement d'authentification</h3>
+<h3>DarkSword : malware sophistiqué ciblant iOS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Progress Software a publié des correctifs pour deux vulnérabilités dans MOVEit Automation, dont une critique (CVE non spécifiée) permettant un contournement d'authentification. Ce logiciel de transfert de fichiers automatisé est largement utilisé en entreprise : une mise à jour immédiate est recommandée pour éviter les intrusions.</p>
+<p><strong>Résumé</strong> : Le groupe Google Threat Intelligence a identifié DarkSword, un malware probablement gouvernemental exploitant une chaîne d'exploits iOS complète. Les administrateurs doivent surveiller les appareils iOS dans leur infrastructure pour détecter toute activité suspecte.</p>
+<a href="https://www.schneier.com/blog/archives/2026/05/darksword-malware.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+</div>
+
+<h3>Apache HTTP/2 : faille critique (CVE-2026-23918)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Apache HTTP Server (CVE-2026-23918, score CVSS 8.8) permet potentiellement une exécution de code à distance (RCE) et des attaques par déni de service (DoS). Les administrateurs doivent appliquer les correctifs immédiatement.</p>
+<a href="https://thehackernews.com/2026/05/critical-apache-http2-flaw-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>DAEMON Tools : attaque par chaîne d'approvisionnement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des installateurs légitimes de DAEMON Tools ont été compromis pour distribuer un payload malveillant, signés avec des certificats volés. Les administrateurs doivent vérifier l'intégrité des logiciels installés via des canaux officiels.</p>
+<a href="https://thehackernews.com/2026/05/daemon-tools-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Homebridge 2.0 : compatibilité Matter et HomeKit</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Homebridge 2.0, sorti le 4 mai 2026, ajoute la compatibilité avec Matter, permettant aux administrateurs de gérer des appareils IoT multi-écosystèmes (HomeKit, Alexa, Google Home) depuis une seule interface.</p>
+<a href="https://www.it-connect.fr/homebridge-2-0-est-disponible-la-compatibilite-matter-change-tout/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>OpenCL 3.1 : améliorations pour l'IA et le HPC</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenCL 3.1, annoncé par The Khronos Group, intègre des fonctionnalités pour optimiser les charges de travail IA et HPC. Les administrateurs de clusters GPU doivent évaluer la migration pour améliorer les performances.</p>
+<a href="https://www.phoronix.com/news/OpenCL-3.1-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Linux 7.1 : nouveau pilote NTFS et optimisations</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux 7.1 introduit un nouveau pilote NTFS, des optimisations matérielles pour Intel/AMD, et des améliorations de performance. Les administrateurs doivent tester cette version pour les environnements critiques.</p>
+<a href="https://www.phoronix.com/review/linux-71-features-changes" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Rusticl : support OpenCL 3.1 pour Radeon et Intel</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le pilote Rusticl de Mesa supporte désormais OpenCL 3.1 en natif pour les GPU Radeon, Intel Iris et Zink/Vulkan. Les administrateurs de systèmes Linux doivent mettre à jour leurs pilotes pour bénéficier de ces améliorations.</p>
+<a href="https://www.phoronix.com/news/OpenCL-3.1-Same-Day-Rusticl" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>CISPE : référentiel européen de souveraineté cloud</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'association CISPE propose un référentiel alternatif au Cloud Sovereignty Framework de l'UE, répondant aux besoins des fournisseurs cloud européens. Les administrateurs doivent évaluer ces critères pour les déploiements souverains.</p>
+<a href="https://www.silicon.fr/cloud-1370/cispe-referentiel-cloud-souverain-227039" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<hr />
+<h2>Dimanche 04 Mai 2026</h2>
+<h3>Windows 11 KB5083631 : Xbox Mode et nouveautés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La mise à jour KB5083631 pour Windows 11 25H2/24H2 ajoute le Xbox Mode pour le gaming et d'autres améliorations. Les administrateurs doivent tester ces correctifs pour éviter les perturbations dans les environnements professionnels.</p>
+<a href="https://www.it-connect.fr/windows-11-kb5083631-xbox-mode-et-dautres-nouveautes-interessantes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>MOVEit Automation : correctif critique pour l'authentification</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Progress Software a corrigé une faille critique dans MOVEit Automation (CVE non spécifiée) permettant un contournement d'authentification. Les administrateurs doivent appliquer le correctif pour sécuriser les transferts de fichiers automatisés.</p>
 <a href="https://thehackernews.com/2026/05/progress-patches-critical-moveit.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Critical cPanel Vulnerability Weaponized to Target Government and MSP Networks</h3>
+<h3>Microsoft : module PowerShell pour les snapshots ReFS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans cPanel (CVE-2026-41940) est activement exploitée par des acteurs malveillants pour cibler des entités gouvernementales, militaires et des MSP. Les administrateurs doivent appliquer les correctifs disponibles et surveiller les indicateurs de compromission (IOC) pour limiter les risques.</p>
+<p><strong>Résumé</strong> : Microsoft a publié un module PowerShell (ReFSSnapshots) pour gérer les snapshots ReFS, remplaçant l'outil refsutil. Les administrateurs Windows doivent adopter ce module pour une gestion plus moderne des sauvegardes incrémentielles.</p>
+<a href="https://www.it-connect.fr/microsoft-lance-un-module-powershell-pour-gerer-les-snapshots-refs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>cPanel : faille critique exploitée par le ransomware Sorry</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-41940 dans cPanel est massivement exploitée pour déployer le ransomware Sorry. Les administrateurs doivent appliquer les correctifs urgemment et surveiller les serveurs cPanel.</p>
 <a href="https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>SAP acquiert Dremio pour renforcer sa stratégie data et IA</h3>
+<h3>Scaleway : hausse des prix sur plusieurs services</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SAP a annoncé l'acquisition de Dremio, spécialiste des architectures data lakehouse et analytiques ouvertes. Cette opération vise à accélérer l'intégration de l'IA et des données dans les solutions SAP, positionnant l'éditeur face à des concurrents comme Snowflake ou Databricks.</p>
+<p><strong>Résumé</strong> : Scaleway annonce des hausses de prix (2% à 600%) sur des services comme Dedibox, VM GPU et noms de domaine à partir de juin 2026. Les administrateurs doivent anticiper ces coûts pour leurs budgets cloud.</p>
+<a href="https://www.silicon.fr/cloud-1370/scaleway-hausse-prix-227020" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>SAP rachète Dremio pour renforcer sa stratégie data/IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : SAP acquiert Dremio, spécialiste du data lakehouse, pour accélérer sa stratégie data et IA face à des concurrents comme Snowflake. Les administrateurs doivent suivre cette évolution pour les architectures analytiques.</p>
 <a href="https://www.silicon.fr/business-1367/sap-soffre-dremio-pour-accelerer-sa-strategie-data-et-ia-227019" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>GCC 16 apporte des gains de performance significatifs par rapport à GCC 15</h3>
+<h3>ROCm 7.2.3 : mises à jour mineures pour le stack AMD GPU</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La sortie de GCC 16 marque une amélioration notable des performances par rapport à GCC 15, avec des optimisations pour les architectures AMD Zen 6 et Arm AGI. Les administrateurs système et développeurs peuvent bénéficier de compilations plus rapides et de binaires optimisés pour leurs environnements.</p>
-<a href="https://www.phoronix.com/review/gcc-16-benchmarks" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : ROCm 7.2.3 apporte des améliorations mineures et une meilleure documentation pour le stack AMD GPU. Les administrateurs de clusters HPC doivent évaluer cette version pour les charges de travail IA.</p>
+<a href="https://www.phoronix.com/news/AMD-ROCm-7.2.3" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Nouvelle version du Bureau Agnostep pour les 35 ans de GNUstep</h3>
+<h3>GCC 16 : gains de performance significatifs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle version du bureau Agnostep a été publiée pour célébrer les 35 ans de GNUstep, un framework Objective-C portable. Cette mise à jour améliore la compatibilité et l'expérience utilisateur sur Linux, Windows et macOS, offrant une alternative open source pour le développement d'applications multiplateformes.</p>
-<a href="https://linuxfr.org/news/nouvelle-version-du-bureau-agnostep-pour-les-35-ans-de-gnustep" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
+<p><strong>Résumé</strong> : GCC 16 introduit des optimisations majeures, notamment pour les CPU AMD Zen 6 et Arm AGI, avec des gains de performance notables. Les administrateurs doivent tester cette version pour les compilations critiques.</p>
+<a href="https://www.phoronix.com/review/gcc-16-benchmarks" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
