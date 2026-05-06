@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 04/05/2026 au 06/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 04/05/2026 au 07/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 06/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 07/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,127 +75,145 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 04 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans Microsoft Edge, permettant à un attaquant d'exécuter du code arbitraire à distance ou de provoquer un déni de service. Ces failles affectent les versions stables et bêta du navigateur. Un correctif est disponible via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0525/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR signale des vulnérabilités multiples dans les produits Microsoft (Windows, Office, etc.), incluant des risques d'élévation de privilèges et d'exécution de code. Ces failles sont classées critiques, avec des correctifs disponibles via les mises à jour mensuelles de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0526/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans VMware Tanzu Kubernetes Runtime</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans VMware Tanzu Kubernetes Runtime permettent une élévation de privilèges via l'exploitation de failles dans les composants Kubernetes. Les versions affectées incluent 2.1.x à 2.5.x. VMware a publié des correctifs urgents.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0527/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité dans Qnap QTS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'élévation de privilèges (CVE-2026-XXXX) a été découverte dans Qnap QTS, permettant à un attaquant non authentifié d'obtenir des droits administrateur. Qnap a publié un correctif via une mise à jour automatique. Les systèmes QTS 5.x sont concernés.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0528/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
+            <h2>Lundi 05 Mai 2026</h2>
 <h3>Multiples vulnérabilités dans Mozilla Thunderbird</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Thunderbird est touché par des vulnérabilités critiques (CVE-2026-XXXX) permettant l'exécution de code arbitraire, la fuite de données et le contournement de la politique de sécurité. Les versions antérieures à 115.10 sont vulnérables. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Mozilla Thunderbird, permettant à un attaquant d'exécuter du code arbitraire à distance, d'accéder à des données sensibles ou de contourner les politiques de sécurité. Ces failles affectent la confidentialité et l'intégrité des communications.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0529/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Weaver E-cology RCE (CVE-2026-22679) exploité depuis mars</h3>
+<hr />
+<h3>Vulnérabilité critique dans Apache HTTP Server (CVE-2026-23918)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille critique CVE-2026-22679 dans Weaver E-cology (OA) permet une exécution de code à distance via l'API de débogage. Exploitée depuis mars 2026, elle cible les entreprises en Asie. Un correctif est disponible depuis avril 2026.</p>
-<a href="https://www.bleepingcomputer.com/news/security/weaver-e-cology-critical-bug-exploited-in-attacks-since-march/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fausse console de jeu pour pirater les voitures</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une fausse console de jeu, présentée comme un outil de capture de signaux keyless, est en réalité un dispositif malveillant pour pirater des véhicules. Les attaques ciblent les systèmes d'accès sans clé (keyless entry) via des attaques par relais.</p>
-<a href="https://www.zataz.com/fausse-console-de-jeu-vrai-outil-de-vol-automobile/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Cyberattaque contre Warner Bros France</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Warner Bros France a subi un defacement et une compromission de sous-domaines et fichiers publics. L'attaque pourrait impliquer des vulnérabilités dans Magento ou des configurations exposées. Une investigation est en cours pour évaluer l'impact.</p>
-<a href="https://www.zataz.com/cyberattaque-contre-warner-bros-france/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Backdoored PyTorch Lightning package sur PyPI</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un package malveillant de PyTorch Lightning a été publié sur PyPI, distribuant un voleur de credentials ciblant les navigateurs, fichiers d'environnement et services cloud. Les développeurs doivent vérifier les dépendances et utiliser des sources officielles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/backdoored-pytorch-lightning-package-drops-credential-stealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Silver Fox déploie ABCDoor via phishing fiscal</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe APT chinois Silver Fox cible des organisations en Inde et en Russie avec des emails de phishing fiscal, distribuant le malware ABCDoor et ValleyRAT. Plus de 1 600 messages ont été envoyés depuis avril 2026.</p>
-<a href="https://www.darkreading.com/endpoint-security/silver-fox-tax-themed-attacks-india-russia" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-23918, CVSS 8.8) dans Apache HTTP Server permet une exécution de code à distance (RCE) via une vulnérabilité dans le protocole HTTP/2, ainsi qu'un déni de service (DoS). Les systèmes exposés à Internet sont particulièrement exposés.</p>
+<a href="https://thehackernews.com/2026/05/critical-apache-http2-flaw-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Mardi 05 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Apache HTTP Server</h3>
+<h3>Attaque par supply chain sur DAEMON Tools</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apache HTTP Server est affecté par des vulnérabilités critiques (CVE-2026-23918, CVSS 8.8) permettant l'exécution de code à distance, l'élévation de privilèges et un déni de service. Les versions 2.4.57 et antérieures sont vulnérables. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0530/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Les installateurs officiels de DAEMON Tools ont été compromis via une attaque par supply chain, distribuant un backdoor signé avec des certificats légitimes. Des milliers de systèmes ont été infectés depuis le 8 avril 2026. Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/05/daemon-tools-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans Traefik</h3>
+<hr />
+<h3>Fuite de données Vimeo (ShinyHunters)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de confidentialité dans Traefik permet à un attaquant d'accéder à des données sensibles via une mauvaise configuration ou une vulnérabilité non corrigée. Les versions 2.x et 3.x sont concernées. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0531/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters revendique le vol de données personnelles de 119 000 utilisateurs de Vimeo, incluant noms, adresses e-mail et autres informations sensibles. L'incident s'est produit en avril 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/vimeo-data-breach-exposes-personal-information-of-119-000-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Progress MOVEit Automation</h3>
+<hr />
+<h3>Campagne de phishing massive via Microsoft Teams (MuddyWater)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Progress MOVEit Automation est vulnérable à des failles critiques (CVE-2026-XXXX) permettant un contournement d'authentification et une élévation de privilèges. Les versions antérieures à 2025.1 sont affectées. Un correctif urgent est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0532/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe iranien MuddyWater utilise des messages Microsoft Teams pour usurper des identités et voler des identifiants, dans le cadre d'une opération de "fausse bannière" (false flag) combinant ransomware Chaos et exfiltration de données.</p>
+<a href="https://thehackernews.com/2026/05/muddywater-uses-microsoft-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Papercut</h3>
+<hr />
+<h3>Exploitation active d'une faille zero-day dans Palo Alto PAN-OS (CVE-2026-0300)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Papercut est touché par des vulnérabilités critiques permettant la fuite de données et le contournement de la politique de sécurité. Les versions 2023.x et 2024.x sont vulnérables. Un correctif est disponible depuis avril 2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0533/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique non corrigée (CVE-2026-0300, CVSS 9.3) dans le portail d'authentification User-ID de Palo Alto PAN-OS est activement exploitée pour une exécution de code à distance (RCE). Aucun correctif n'est encore disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-actively-exploited-firewall-zero-day/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité dans Google Android (CVE-2026-0073)</h3>
+<hr />
+<h3>Botnet xlabs_v1 exploitant ADB pour des attaques DDoS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-0073, CVSS 9.8) dans le composant System d'Android permet une exécution de code à distance sans interaction utilisateur. Google a publié un correctif dans le cadre des mises à jour de sécurité de mai 2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0534/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un nouveau botnet Mirai (xlabs_v1) cible les appareils IoT exposés via ADB (Android Debug Bridge) pour intégrer un réseau DDoS. Les attaques sont en cours et ciblent les appareils non sécurisés.</p>
+<a href="https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Quasar Linux malware cible les développeurs</h3>
+<hr />
+<h3>Faille RCE dans Weaver E-cology (CVE-2026-22679)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau malware Linux, Quasar Linux (QLNX), combine rootkit, backdoor et vol de credentials pour cibler les systèmes de développeurs. Les attaques exploitent des dépendances compromises ou des paquets malveillants.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-stealthy-quasar-linux-malware-targets-software-developers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-22679, CVSS 9.8) dans Weaver E-cology, une plateforme OA chinoise, permet une exécution de code à distance non authentifiée via l'API de débogage. Exploitée activement.</p>
+<a href="https://thehackernews.com/2026/05/weaver-e-cology-rce-flaw-cve-2026-22679.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Instructure hack : vol de données de 8 800 écoles</h3>
+<hr />
+<h3>Campagne de phishing ciblant 35 000 utilisateurs (Microsoft)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique le vol de 280 millions de données (étudiants, personnel) issues de 8 809 établissements scolaires et universités via une compromission d'Instructure. L'attaque exploite des vulnérabilités non divulguées dans la plateforme.</p>
-<a href="https://www.bleepingcomputer.com/news/security/instructure-hacker-claims-data-theft-from-8-800-schools-universities/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Microsoft détaille une campagne de phishing à grande échelle (35 000 utilisateurs dans 26 pays) utilisant des leurres thématiques et des services e-mail légitimes pour voler des tokens d'authentification.</p>
+<a href="https://thehackernews.com/2026/05/microsoft-details-phishing-campaign.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>DAEMON Tools trojanisé dans une attaque par supply chain</h3>
+<hr />
+<h3>Faille critique dans MetInfo CMS (CVE-2026-29014)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les installateurs officiels de DAEMON Tools (depuis le 8 avril 2026) sont trojanisés pour déployer un backdoor. Les systèmes compromis sont signés avec des certificats légitimes, rendant la détection difficile.</p>
-<a href="https://www.bleepingcomputer.com/news/security/daemon-tools-trojanized-in-supply-chain-attack-to-deploy-backdoor/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille d'injection de code (CVE-2026-29014, CVSS 9.8) dans le CMS MetInfo permet une exécution de code à distance. Des attaques actives sont en cours.</p>
+<a href="https://thehackernews.com/2026/05/metinfo-cms-cve-2026-29014-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Karakurt extortion gang : négociateur condamné à 8,5 ans</h3>
+<hr />
+<h2>Mardi 06 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans Google Chrome</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un ressortissant letton, impliqué dans le groupe ransomware Karakurt comme "négociateur", a été condamné à 8,5 ans de prison aux États-Unis pour son rôle dans des attaques par extorsion ciblant des entreprises.</p>
-<a href="https://www.bleepingcomputer.com/news/security/karakurt-extortion-gang-negotiator-sentenced-to-85-years-in-prison/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non spécifiées dans Google Chrome permettent à un attaquant de provoquer des problèmes de sécurité variés (exécution de code, fuite de données, etc.). Un correctif est attendu dans les prochains jours.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0535/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CloudZ malware abuse Microsoft Phone Link</h3>
+<hr />
+<h3>Vulnérabilités critiques dans Redis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware CloudZ (RAT) déploie un plugin Pheno pour voler des SMS et OTP via Microsoft Phone Link, compromettant les authentifications à deux facteurs. Les attaques ciblent les appareils mobiles connectés aux PC Windows.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cloudz-malware-abuses-microsoft-phone-link-to-steal-sms-and-otps/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles dans Redis permettent une exécution de code à distance (RCE). Les systèmes exposés à Internet sont prioritairement ciblés. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0536/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Fuite de données médicales via clé USB</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une fuite de données médicales a été causée par un patient repartant avec une clé USB contenant les dossiers d'autres patients. Incident révélant des lacunes dans la gestion des supports amovibles.</p>
+<a href="https://www.zataz.com/fuite-de-donnees-medicales-sur-une-cle-usb/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<hr />
+<h3>Piratage d'un hôtel de luxe (Cheval Blanc Randheli)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un hôtel de luxe du groupe français Cheval Blanc a subi une cyberattaque exposant passeports, profils clients et accès techniques. Incident illustrant les risques pour les infrastructures critiques du secteur hôtelier.</p>
+<a href="https://www.zataz.com/cheval-blanc-randheli-le-luxe-face-a-la-fuite/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<hr />
+<h3>Faille critique dans vm2 (CVE non assignée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans la bibliothèque Node.js vm2 permet l'échappement du sandbox et l'exécution de code arbitraire sur l'hôte. Aucun correctif n'est encore disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-vm2-sandbox-bug-lets-attackers-execute-code-on-hosts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Campagne de phishing via Google Ads ciblant ManageWP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing utilise des annonces Google sponsorisées pour voler les identifiants de ManageWP (GoDaddy), une plateforme de gestion WordPress. Les utilisateurs doivent vérifier les URLs avant de se connecter.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-for-godaddy-managewp-login-phishing/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Faille DoS dans Cisco Crosswork (CVE non assignée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité DoS dans Cisco Crosswork Network Controller et Network Services Orchestrator nécessite un redémarrage manuel des appareils compromis. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-cisco-dos-flaw-requires-manual-reboot-to-revive-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Rançongiciel Qilin frappe Quiberon</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La ville de Quiberon a été victime d'une attaque par le rançongiciel Qilin, un groupe actif en France. Les services municipaux ont été perturbés, illustrant la menace croissante des ransomwares sur les infrastructures locales.</p>
+<a href="https://www.zataz.com/quiberon-touchee-par-le-rancongiciel-qilin/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<hr />
+<h3>Attaque par ransomware avec destruction des sauvegardes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une analyse d'Acronis révèle que les attaques par ransomware réussissent même en présence de sauvegardes, car les attaquants ciblent et détruisent les systèmes de backup avant le chiffrement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/why-ransomware-attacks-succeed-even-when-backups-exist/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Faille XSS dans Zabbix</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Zabbix, dont une injection de code indirecte (XSS), permettent une atteinte à la confidentialité des données. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0541/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
         </div>
     </div>
