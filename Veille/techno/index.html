@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 04/05/2026 au 07/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 04/05/2026 au 08/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 07/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 08/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,154 +76,98 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Mercredi 07 Mai 2026</h2>
-<h3>Homebridge 2.0 : compatibilité Matter et gestion unifiée des écosystèmes domotiques</h3>
+<h3>vm2 : vulnérabilités critiques dans la sandbox Node.js (CVE-2026-26956)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Homebridge 2.0, sorti le 4 mai 2026, marque une évolution majeure en ajoutant la compatibilité avec Matter, un standard ouvert pour l'interopérabilité des appareils connectés. Cette version permet désormais de centraliser la gestion des périphériques HomeKit et Matter, simplifiant l'administration des environnements domotiques hybrides.</p>
-<a href="https://www.it-connect.fr/homebridge-2-0-est-disponible-la-compatibilite-matter-change-tout/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-26956) dans la bibliothèque vm2 permet l'échappement de la sandbox et l'exécution de code arbitraire. Les administrateurs doivent mettre à jour immédiatement vers la dernière version pour éviter des compromissions de serveurs Node.js.</p>
+<a href="https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Oracle adopte un "Patch Tuesday" mensuel pour ses correctifs critiques</h3>
+<h3>Ivanti EPMM : RCE sous exploitation active (CVE-2026-6973)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle annonce un changement de stratégie avec un cycle de correctifs mensuel, en complément de ses mises à jour trimestrielles. Cette initiative, potentiellement influencée par les enjeux de souveraineté numérique (ex: projet Mythos), vise à accélérer la correction des vulnérabilités critiques dans ses produits.</p>
-<a href="https://www.silicon.fr/cybersecurite-1371/oracle-patch-tuesday-227067" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-6973) dans Ivanti Endpoint Manager Mobile (EPMM) permet une exécution de code à distance (RCE) avec des droits admin. Les correctifs doivent être appliqués sans délai pour les versions antérieures à 12.6.1.1, 12.7.0.1 et 12.8.0.</p>
+<a href="https://thehackernews.com/2026/05/ivanti-epmm-cve-2026-6973-rce-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>IBM intègre l'IA agentique dans Db2 avec une console repensée</h3>
+<h3>Palo Alto PAN-OS : zero-day exploité en production (CVE-2026-0300)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : IBM annonce l'intégration native de l'IA agentique dans Db2, accompagnée d'un nouveau modèle de licence et d'une console de gestion modernisée. Cette évolution cible la modernisation des bases de données et l'automatisation des tâches administratives, avec un accent sur la sécurité et la performance.</p>
-<a href="https://www.silicon.fr/data-ia-1372/ibm-db2-ia-agentique-227052" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : La faille CVE-2026-0300 (buffer overflow) dans PAN-OS est activement exploitée pour obtenir un accès root et des droits d'espionnage. Les administrateurs doivent appliquer les correctifs urgents pour éviter des intrusions via les pare-feux Palo Alto.</p>
+<a href="https://thehackernews.com/2026/05/palo-alto-pan-os-flaw-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>PCPJack : malware multi-CVE ciblant les infrastructures cloud</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le framework PCPJack exploite 5 vulnérabilités (CVEs) pour voler des identifiants et se propager comme un ver dans les environnements cloud. Les équipes DevOps doivent auditer leurs instances exposées et appliquer les correctifs des éditeurs concernés.</p>
+<a href="https://thehackernews.com/2026/05/pcpjack-credential-stealer-exploits-5.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>PyPI : packages malveillants distribuant ZiChatBot via Zulip</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois packages PyPI ont été identifiés comme vecteurs de livraison du malware ZiChatBot sur Windows et Linux. Les administrateurs doivent scanner leurs environnements Python et bloquer les paquets suspects via des politiques de sécurité strictes.</p>
+<a href="https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mardi 06 Mai 2026</h2>
-<h3>Proxmox VE : configuration du pare-feu natif pour sécuriser serveurs et VM</h3>
+<h3>Proxmox VE : configuration du pare-feu natif pour sécuriser les VM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un tutoriel détaillé explique comment exploiter le pare-feu intégré de Proxmox VE pour filtrer le trafic réseau au niveau du serveur hôte, des machines virtuelles et des conteneurs. Cette approche permet de renforcer la sécurité sans dépendre d'outils externes, idéal pour les environnements virtualisés.</p>
+<p><strong>Résumé</strong> : Un tutoriel détaillé explique comment configurer le pare-feu intégré de Proxmox VE pour filtrer le trafic vers les machines virtuelles et conteneurs. Essentiel pour isoler les environnements virtualisés et réduire la surface d'attaque.</p>
 <a href="https://www.it-connect.fr/tuto-proxmox-ve-configurer-firewall/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Faille critique Apache HTTP/2 (CVE-2026-23918) : DoS et risque d'exécution de code</h3>
+<h3>Oracle : lancement d'un "Patch Tuesday" mensuel</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-23918 dans Apache HTTP Server permet une attaque par déni de service (DoS) avec seulement deux trames malveillantes, et pourrait mener à une exécution de code à distance (RCE). Les administrateurs sont invités à appliquer les correctifs immédiatement.</p>
-<a href="https://www.it-connect.fr/faille-apache-deux-simples-trames-suffisent-a-faire-un-deni-de-service-cve-2026-23918/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Oracle adopte un rythme mensuel de correctifs critiques pour ses produits, en complément des mises à jour trimestrielles. Les administrateurs doivent planifier des fenêtres de maintenance régulières pour appliquer ces patches sans délai.</p>
+<a href="https://www.silicon.fr/cybersecurite-1371/oracle-patch-tuesday-227067" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>CloudZ RAT exploite l'application Mobile Connecté de Windows pour voler des données</h3>
+<h3>Google : Binary Transparency pour Android contre les attaques de supply chain</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne malveillante utilise le malware CloudZ RAT et son plugin Pheno pour exfiltrer des SMS et des données mobiles via l'application Mobile Connecté de Microsoft. Cette attaque cible les utilisateurs de Windows, soulignant les risques liés aux applications système intégrées.</p>
-<a href="https://www.it-connect.fr/cloudz-rat-ce-malware-espionne-vos-sms-via-lapplication-mobile-connecte-de-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Palo Alto PAN-OS : vulnérabilité critique en exploitation active (CVE-2026-0300)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille de type buffer overflow dans PAN-OS (CVE-2026-0300, CVSS 9.3) permet une exécution de code à distance non authentifiée. Palo Alto Networks recommande une mise à jour urgente pour les appliances concernées, notamment les pare-feux Next-Generation.</p>
-<a href="https://thehackernews.com/2026/05/palo-alto-pan-os-flaw-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Google renforce la transparence binaire pour les applications Android</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google étend son initiative de transparence binaire (Binary Transparency) pour Android, créant un registre public vérifiable des applications officielles. Cette mesure vise à prévenir les attaques par chaîne d'approvisionnement en garantissant l'intégrité des APK distribués.</p>
+<p><strong>Résumé</strong> : Google étend la Binary Transparency à Android pour garantir l'intégrité des applications officielles. Les administrateurs peuvent vérifier l'authenticité des APK via un registre public, réduisant les risques de malwares signés avec des certificats volés.</p>
 <a href="https://thehackernews.com/2026/05/android-apps-get-public-verification.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Rowhammer contre les puces NVIDIA : contrôle total via exploitation mémoire</h3>
+<h3>IBM Db2 : intégration de l'IA agentique et refonte de la console</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle attaque Rowhammer ciblant les GPU NVIDIA permet d'obtenir un contrôle complet des machines, y compris des accès root. Cette vulnérabilité exploite des failles matérielles dans la gestion de la mémoire DRAM, nécessitant des correctifs au niveau du firmware ou du système d'exploitation.</p>
-<a href="https://www.schneier.com/blog/archives/2026/05/rowhammer-attack-against-nvidia-chips.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+<p><strong>Résumé</strong> : IBM intègre des agents IA dans Db2, nécessitant une nouvelle console de gestion et des licences spécifiques. Les équipes data doivent évaluer l'impact sur leurs workflows et former les administrateurs aux nouvelles fonctionnalités.</p>
+<a href="https://www.silicon.fr/data-ia-1372/ibm-db2-ia-agentique-227052" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>Conférence OW2con'26 : souveraineté européenne et modèles ouverts</h3>
+<h3>MuddyWater : attaque en faux drapeau via Microsoft Teams</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La conférence OW2con'26 (2-3 juin 2026) mettra en avant le rôle de l'open source et des modèles ouverts dans la construction de la souveraineté numérique européenne. Un événement clé pour les acteurs publics et privés engagés dans des alternatives aux solutions propriétaires.</p>
-<a href="https://linuxfr.org/news/conference-ow2con-26-l-open-source-et-les-modeles-ouverts-moteurs-de-la-souverainete-europeenne" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
+<p><strong>Résumé</strong> : Le groupe iranien MuddyWater utilise des campagnes de phishing via Teams pour déployer des ransomwares en "faux drapeau". Les administrateurs doivent renforcer la formation des utilisateurs et configurer des politiques de sécurité strictes pour Teams.</p>
+<a href="https://thehackernews.com/2026/05/muddywater-uses-microsoft-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Lundi 05 Mai 2026</h2>
-<h3>iOS 26.5 : chiffrement de bout en bout pour les messages RCS entre iPhone et Android</h3>
+<h3>Apache HTTP/2 : faille critique DoS et RCE (CVE-2026-23918)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La mise à jour iOS 26.5 introduit le chiffrement de bout en bout pour les messages RCS, comblant une faille de sécurité historique entre écosystèmes iOS et Android. Cette fonctionnalité renforce la confidentialité des échanges inter-plateformes.</p>
-<a href="https://www.it-connect.fr/ios-26-5-vos-messages-rcs-entre-iphone-et-android-seront-enfin-securises/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Apache HTTP/2 (CVE-2026-23918) permet un déni de service ou une exécution de code à distance avec seulement deux trames malveillantes. Les serveurs Apache doivent être mis à jour immédiatement.</p>
+<a href="https://thehackernews.com/2026/05/critical-apache-http2-flaw-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>DAEMON Tools : attaque par chaîne d'approvisionnement via installateurs officiels</h3>
+<h3>DAEMON Tools : attaque par supply chain via installateurs officiels</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Depuis avril 2026, les installateurs officiels de DAEMON Tools sont compromis et distribuent un malware. Cette attaque illustre les risques liés aux logiciels populaires et l'importance de vérifier l'intégrité des binaires téléchargés.</p>
-<a href="https://www.it-connect.fr/daemon-tools-des-milliers-de-pc-infectes-via-les-versions-officielles/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Les installateurs officiels de DAEMON Tools sont compromis et distribuent des malwares depuis début avril 2026. Les administrateurs doivent désinstaller ces outils et vérifier les systèmes infectés.</p>
+<a href="https://thehackernews.com/2026/05/daemon-tools-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CopyFail (CVE-2026-31431) : patchs de sécurité disponibles pour Linux</h3>
+<h3>Proton Mail : chiffrement post-quantique activable par les utilisateurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les correctifs pour la vulnérabilité CopyFail (CVE-2026-31431) sont désormais disponibles pour les principales distributions Linux (Debian, Ubuntu, RHEL, etc.). Cette faille permettait une élévation de privilèges via des opérations de copie de fichiers.</p>
-<a href="https://www.it-connect.fr/copyfail-sur-linux-les-patchs-de-securite-sont-ils-disponibles/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Proton Mail : déploiement du chiffrement post-quantique pour tous les utilisateurs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Proton Mail active par défaut le chiffrement post-quantique pour ses utilisateurs, protégeant les e-mails contre les futures menaces des ordinateurs quantiques. Une fonctionnalité configurable dans les paramètres du compte.</p>
+<p><strong>Résumé</strong> : Proton Mail déploie un chiffrement post-quantique pour tous ses utilisateurs. Les administrateurs doivent activer cette option pour protéger les emails contre les futures attaques quantiques et sensibiliser les équipes.</p>
 <a href="https://www.it-connect.fr/proton-mail-deploie-le-chiffrement-post-quantique-voici-comment-lactiver/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft Edge : fuites de mots de passe en mémoire vive</h3>
+<h3>CPanel : vulnérabilité critique exploitable contre les gouvernements</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un chercheur a démontré que Microsoft Edge stocke les mots de passe en clair dans la mémoire de Windows, exposant les utilisateurs à des risques de vol de credentials. Une faille critique nécessitant une correction urgente de la part de Microsoft.</p>
-<a href="https://www.it-connect.fr/un-chercheur-prouve-que-microsoft-edge-laisse-fuiter-vos-mots-de-passe-en-memoire/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>MuddyWater utilise Microsoft Teams pour des attaques de type "false flag"</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe iranien MuddyWater exploite Microsoft Teams dans des campagnes de ransomware "false flag" pour voler des identifiants et déployer des malwares. Une attaque combinant ingénierie sociale et exploitation de services légitimes.</p>
-<a href="https://thehackernews.com/2026/05/muddywater-uses-microsoft-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>MetInfo CMS : exploitation active de CVE-2026-29014 (RCE)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique d'injection de code (CVE-2026-29014, CVSS 9.8) dans le CMS MetInfo est activement exploitée pour des attaques par exécution de code à distance. Les administrateurs sont invités à appliquer les mises à jour sans délai.</p>
-<a href="https://thehackernews.com/2026/05/metinfo-cms-cve-2026-29014-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CPanel : vulnérabilité critique weaponisée contre des cibles gouvernementales</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille inconnue dans CPanel est exploitée pour cibler des entités gouvernementales et militaires en Asie du Sud-Est. Cette attaque souligne l'importance de maintenir à jour les solutions de gestion de serveurs web.</p>
+<p><strong>Résumé</strong> : Une faille non corrigée dans CPanel (CVE-2026-XXXX) est exploitée pour cibler des entités gouvernementales et des MSP. Les administrateurs doivent appliquer les correctifs urgents et auditer les accès suspects.</p>
 <a href="https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Les cloud providers européens proposent leur propre référentiel de souveraineté</h3>
+<h3>CISPE : référentiel européen alternatif pour la souveraineté cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'association CISPE avance un référentiel alternatif au Cloud Sovereignty Framework de l'UE, reflétant les divergences entre acteurs européens sur les standards de souveraineté cloud. Une initiative à suivre pour les organisations cherchant des alternatives aux hyperscalers américains.</p>
+<p><strong>Résumé</strong> : L'association CISPE propose un référentiel de souveraineté cloud alternatif au cadre de l'UE, jugé insuffisant par les fournisseurs européens. Les administrateurs doivent évaluer ces critères pour leurs déploiements cloud critiques.</p>
 <a href="https://www.silicon.fr/cloud-1370/cispe-referentiel-cloud-souverain-227039" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<hr />
-<h2>Dimanche 04 Mai 2026</h2>
-<h3>Windows d'avril : perturbations des sauvegardes avec certains logiciels</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les mises à jour d'avril 2026 de Windows et Windows Server perturbent le fonctionnement de certaines applications de sauvegarde. Les administrateurs doivent vérifier la compatibilité de leurs outils avant d'appliquer les correctifs.</p>
-<a href="https://www.it-connect.fr/la-mise-a-jour-windows-davril-perturbe-vos-sauvegardes-voici-les-logiciels-concernes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Progress MOVEit Automation : correctifs pour une faille d'authentification</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Progress Software corrige une vulnérabilité critique d'authentification dans MOVEit Automation (anciennement Central), un outil de transfert de fichiers sécurisé. Les mises à jour sont disponibles pour éviter les accès non autorisés.</p>
-<a href="https://thehackernews.com/2026/05/progress-patches-critical-moveit.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>PyTorch Lightning 2.6.3 : version compromise distribuant un malware voleur d'identifiants</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une version de PyTorch Lightning (2.6.3) infectée par un infostealer a été distribuée via des canaux officiels. Les développeurs doivent vérifier l'intégrité de leurs dépendances et utiliser des outils comme `pip-audit` pour détecter les paquets compromis.</p>
-<a href="https://www.it-connect.fr/cette-version-de-pytorch-lightning-telecharge-un-malware-voleur-didentifiants/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Silver Fox déploie ABCDoor via des campagnes de phishing fiscales</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe chinois Silver Fox cible des organisations en Russie et en Inde avec un nouveau malware (ABCDoor) via des e-mails de phishing thématisés sur les impôts. Une campagne à surveiller pour les services de cybersécurité.</p>
-<a href="https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>La Caisse des Dépôts choisit Mistral AI pour structurer ses usages IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La Caisse des Dépôts s'associe à Mistral AI pour déployer des solutions d'IA générative et de calcul haute performance. Un partenariat stratégique pour moderniser les infrastructures publiques françaises.</p>
-<a href="https://www.silicon.fr/business-1367/la-caisse-des-depots-choisit-mistral-ai-pour-structurer-ses-usages-de-lia-227012" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hardware | Serveurs & Composants — 04/05/2026 au 07/05/2026</title>
+    <title>Veille Hardware | Serveurs & Composants — 04/05/2026 au 08/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%2310b981%22>HW</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🖥️ Hardware</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Serveurs & Composants</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles architectures, vulnérabilités firmware et tendances datacenter</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 07/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 08/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,107 +75,84 @@
             <a href="/Veille/hardware" class='active'>🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 07 Mai 2026</h2>
-<h3>PCIe 8.0 : Première version draft (0.5) et bond technologique vers 1 TB/s</h3>
+            <h2>Vendredi 08 Mai 2026</h2>
+<h3>AMD Instinct MI350P : un accélérateur IA PCIe pour serveurs air-cooled</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : PCI-SIG publie la première version draft (0.5) de la spécification PCIe 8.0, confirmant un débit maximal de 1 TB/s en x16 et une tension réduite à 0.5V. La rétrocompatibilité avec les générations précédentes est maintenue, tandis qu'une nouvelle technologie de connecteurs est évaluée pour optimiser les performances. La finalisation est attendue pour 2028, avec un impact majeur sur les serveurs haute performance et les infrastructures AI nécessitant des transferts de données ultra-rapides.</p>
+<p><strong>Résumé</strong> : AMD lance le MI350P, une carte d'accélération IA PCIe basée sur l'architecture CDNA 4, offrant 144 Go de HBM3E et des performances théoriques 40% supérieures au Nvidia H200 NVL en FP16/FP8. Conçue comme une solution de mise à niveau pour serveurs existants, elle cible les environnements où le refroidissement air reste privilégié. Impact : réduction des coûts d'intégration pour les datacenters cherchant à déployer des GPU AI sans migration vers des systèmes liquid-cooled.</p>
+<a href="https://www.tomshardware.com/pc-components/gpus/amd-announces-mi350p-pcie-ai-accelerator-card-with-144gb-of-hbm3e-roughly-40-percent-faster-in-fp16-and-fp8-theoretical-compute-compared-to-nvidias-h200-nvl-competitor" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
+<h3>PCIe 8.0 : 1 To/s de bande passante et connecteurs innovants</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le PCI-SIG publie la première ébauche (draft 0.5) du standard PCIe 8.0, promettant 1 To/s en x16 et une tension réduite à 0,5V. Les nouveaux connecteurs et la rétrocompatibilité avec les générations précédentes simplifient les migrations. Impact : préparation des infrastructures serveurs à l'augmentation des débits pour les GPU AI et accélérateurs réseau, avec une finalisation attendue en 2028.</p>
 <a href="https://www.tomshardware.com/tech-industry/pci-sig-reveals-pcie-8-0-0-5v-spec-first-draft-includes-1-tb-s-bandwidth-and-new-connector-technology" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>NVIDIA investit $300M dans Corning pour booster la production de fibres optiques</h3>
+<hr />
+<h3>Nvidia Spectrum-X MRC : protocole RDMA custom pour l'IA à l'échelle</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NVIDIA annonce un investissement de $300 millions dans Corning pour construire trois usines de fibres optiques aux États-Unis, augmentant la capacité de production de plus de 50%. Cette initiative vise à sécuriser l'approvisionnement en fibres pour les infrastructures AI déployées localement, réduisant la dépendance aux chaînes d'approvisionnement asiatiques. Un enjeu critique pour les datacenters déployant des solutions NVIDIA.</p>
-<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-invests-usd300-million-in-corning-to-build-three-new-us-based-optical-fiber-plants-ai-infrastructure-deal-would-boost-fiber-production-capacity-by-over-50-percent" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Nvidia dévoile Spectrum-X MRC, un protocole RDMA propriétaire optimisé pour les déploiements IA "gigascale". Déjà utilisé dans des environnements frontaliers, il améliore la latence et le débit des réseaux Ethernet dédiés à l'IA. Impact : réduction des goulots d'étranglement dans les clusters AI distribués, avec une adoption croissante par les hyperscalers.</p>
+<a href="https://www.servethehome.com/nvidia-spectrum-x-ethernet-mrc-is-the-custom-rdma-transport-protocol-for-gigascale-ai/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>AMD élargit sa gamme EPYC avec des CPU spécialisés pour l'IA et le cloud</h3>
+<hr />
+<h3>Micron 6600 ION : SSD NVMe 245 To pour datacenters</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD annonce une diversification de sa gamme EPYC pour cibler des charges de travail spécifiques (IA, cloud, HPC). Le développement de l'architecture Zen 7 est déjà en cours, avec une personnalisation accrue pour répondre aux besoins évolutifs des infrastructures modernes. Cette stratégie vise à renforcer la position d'AMD face à Intel et NVIDIA dans le segment des serveurs haute performance.</p>
-<a href="https://www.tomshardware.com/pc-components/cpus/amd-to-broaden-and-specialize-epyc-cpus-already-working-on-zen-7-architecture-increased-customization-to-better-address-evolving-ai-and-cloud-needs" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Micron lance un SSD NVMe 6600 ION de 245TB pour datacenters</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Micron introduit une version 245.76TB de son SSD NVMe 6600 ION, destinée aux plateformes de datacenters nécessitant des capacités de stockage massives. Ce composant permet de déployer près d'un quart de pétaoctet de stockage flash sur une seule unité, réduisant la complexité des architectures de stockage distribué pour les workloads AI et Big Data.</p>
+<p><strong>Résumé</strong> : Micron annonce une version 245,76 To du SSD 6600 ION, ciblant les plateformes de stockage haute densité. Cette capacité record permet de réduire le nombre de disques physiques dans les baies de serveurs. Impact : optimisation de l'espace rack et de la consommation énergétique pour les workloads Big Data et IA, avec une disponibilité prévue fin 2026.</p>
 <a href="https://www.servethehome.com/micron-6600-ion-245tb-ssd-announced/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>Astera Labs Scorpio : Switch PCIe 320 lanes pour les systèmes scale-up</h3>
+<hr />
+<h3>AMD élargit sa gamme EPYC avec des CPU spécialisés pour l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Astera Labs annonce une mise à jour de son switch PCIe Scorpio, offrant 320 lanes pour les systèmes scale-up. Ce composant cible les architectures serveurs nécessitant une bande passante extrême, comme les clusters AI ou les datacenters hyperscale. Une solution clé pour les infrastructures confrontées à la saturation des bus PCIe traditionnels.</p>
+<p><strong>Résumé</strong> : AMD annonce une diversification de sa gamme EPYC, incluant des CPU optimisés pour l'IA et le cloud, avec une architecture Zen 7 en développement. L'objectif est de répondre aux besoins spécifiques des workloads agentiques et des environnements hybrides. Impact : renforcement de la position d'AMD face à Intel dans les datacenters, avec des solutions plus ciblées pour les entreprises.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/amd-to-broaden-and-specialize-epyc-cpus-already-working-on-zen-7-architecture-increased-customization-to-better-address-evolving-ai-and-cloud-needs" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
+<h3>Astera Labs Scorpio : switch PCIe 320 lanes pour systèmes scale-up</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Astera Labs met à jour son switch PCIe Scorpio, offrant jusqu'à 320 lanes pour les systèmes scale-up. Conçu pour les architectures multi-CPU et accélérateurs, il supporte les configurations à haute densité. Impact : facilitation des déploiements de supercalculateurs et clusters AI, avec une latence réduite et une bande passante accrue.</p>
 <a href="https://www.servethehome.com/astera-labs-scorpio-320-lane-pcie-switch-update/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
 <hr />
-<h2>Mardi 06 Mai 2026</h2>
-<h3>SPEC CPU 2026 : Nouvelle suite de benchmarks pour l'ère post-2026</h3>
+<h3>SPEC CPU 2026 : nouvelle suite de benchmarks pour l'ère IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le consortium SPEC publie SPEC CPU 2026, une refonte majeure de son benchmark historique, incluant des tests adaptés aux architectures modernes (CPU, APU, XPU). La suite supporte désormais des systèmes allant des serveurs aux Raspberry Pi, avec un accent sur la portabilité et la pertinence pour les workloads AI et cloud. Une référence incontournable pour les ingénieurs infrastructure.</p>
+<p><strong>Résumé</strong> : Le consortium SPEC publie SPEC CPU 2026, remplaçant la version 2017, avec des tests adaptés aux CPU modernes (AI, HPC, virtualisation). Les benchmarks intègrent des workloads multi-threadés et des scénarios de charge mixte. Impact : standardisation des évaluations de performance pour les infrastructures d'entreprise, avec une meilleure représentativité des charges réelles.</p>
 <a href="https://www.servethehome.com/spec-consortium-releases-spec-cpu-2026-benchmark-suite-the-next-decade-of-cpu-benchmarking/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>NVIDIA Spectrum-X Ethernet MRC : Protocole RDMA custom pour l'AI à l'échelle du gigascale</h3>
+<hr />
+<h3>Huawei vise 12 Md$ de revenus en puces IA en 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NVIDIA dévoile Spectrum-X Ethernet MRC, un protocole RDMA personnalisé optimisé pour les déploiements AI à très grande échelle. Déjà déployé dans des infrastructures frontalières (gigascale), ce protocole réduit la latence et améliore l'efficacité des réseaux Ethernet dans les datacenters AI, un avantage concurrentiel face aux solutions traditionnelles.</p>
-<a href="https://www.servethehome.com/nvidia-spectrum-x-ethernet-mrc-is-the-custom-rdma-transport-protocol-for-gigascale-ai/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
-</div>
-
-<h3>Huawei vise $12 milliards de revenus en puces AI grâce à la demande locale</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Huawei anticipe $12 milliards de revenus en 2026 pour ses puces AI, portés par la demande des géants chinois (Alibaba, ByteDance, Tencent). Cette croissance de 60% YoY s'explique par l'effondrement de la part de marché de NVIDIA en Chine et la montée en puissance des solutions locales, malgré les restrictions à l'export. Un tournant stratégique pour l'autonomie technologique chinoise.</p>
+<p><strong>Résumé</strong> : Huawei anticipe 12 milliards de dollars de revenus liés aux puces IA en 2026, portés par la demande des géants chinois (Alibaba, ByteDance, Tencent). La part de marché de Nvidia en Chine s'effondre, passant à zéro en raison des restrictions américaines. Impact : accélération de l'autonomie technologique de la Chine dans l'IA, avec des implications géopolitiques pour les fournisseurs occidentaux.</p>
 <a href="https://www.tomshardware.com/tech-industry/huawei-expects-12-billion-in-ai-chip-revenue-this-year-as-nvidias-china-market-share-hits-zero" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Danemark gèle les connexions électriques pour les nouveaux datacenters (60 GW demandés)</h3>
+<hr />
+<h2>Jeudi 07 Mai 2026</h2>
+<h3>Arista mise sur les réseaux "scale-out" pour l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le gestionnaire de réseau danois Energinet suspend temporairement les nouvelles connexions électriques pour datacenters, face à une demande cumulée de 60 GW. Cette décision reflète les tensions croissantes sur les infrastructures énergétiques en Europe, où les projets AI et hyperscale menacent la stabilité des réseaux. Un signal d'alerte pour les opérateurs de datacenters en quête de sites européens.</p>
-<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/denmark-presses-pause-on-new-data-center-grid-connections-as-total-requests-hit-60-gw-nordic-nation-is-the-latest-to-put-the-brakes-on-ai-buildouts" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>CISA alerte sur la faille Linux "Copy Fail" (CVE-2026-31431) exploitée activement</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA identifie une faille critique dans le noyau Linux (CVE-2026-31431, "Copy Fail") permettant une élévation de privilèges root. Exploitée activement, cette vulnérabilité affecte les principales distributions Linux. Les systèmes non patchés sont exposés à des attaques, nécessitant une mise à jour urgente des infrastructures serveurs et des environnements cloud.</p>
-<a href="https://www.tomshardware.com/software/linux/cisa-flags-actively-exploited-copy-fail-linux-kernel-flaw-enabling-root-takeover-across-major-distros-unpatched-systems-may-remain-vulnerable-to-attack" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Arista étend ses solutions réseau avec des architectures "scale-out" pour répondre aux besoins des déploiements IA distribués. La société prépare également des solutions "scale-up" pour les clusters centralisés. Impact : optimisation des coûts et de la flexibilité des infrastructures réseau, avec une intégration native des protocoles RDMA et AI-specific.</p>
+<a href="https://www.nextplatform.com/connect/2026/05/07/arista-rides-ai-scale-out-networks-moves-into-scale-across-and-awaits-scale-up/5235293" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
 </div>
 
 <hr />
-<h2>Lundi 05 Mai 2026</h2>
-<h3>Intel recrute un vétéran de Qualcomm pour piloter les CPU clients et l'AI physique</h3>
+<h2>Mercredi 06 Mai 2026</h2>
+<h3>Nvidia investit 300 M$ dans Corning pour des usines de fibres optiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel nomme Alex Katouzian (ex-Qualcomm, 25 ans d'expérience) à la tête de sa division Client Computing, incluant les CPU et l'AI physique. Cette nomination s'inscrit dans une stratégie de recentrage sur l'AI embarquée et l'informatique de bord, avec Pushkar Ranade nommé CTO. Un signal fort pour les infrastructures edge et les solutions hybrides cloud/on-premise.</p>
-<a href="https://www.tomshardware.com/tech-industry/big-tech/intel-swipes-qualcomm-veteran-of-25-years-to-lead-client-computing-alex-katouzian-jumps-ship-to-oversee-consumer-cpus-and-physical-ai" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Nvidia annonce un investissement de 300 millions de dollars dans Corning pour construire trois usines de fibres optiques aux États-Unis, augmentant la capacité de production de plus de 50%. Objectif : sécuriser l'approvisionnement en infrastructure réseau pour ses solutions AI. Impact : réduction de la dépendance aux fournisseurs asiatiques et accélération des déploiements de datacenters aux États-Unis.</p>
+<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-invests-usd300-million-in-corning-to-build-three-new-us-based-optical-fiber-plants-ai-infrastructure-deal-would-boost-fiber-production-capacity-by-over-50-percent" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Broadcom accélère l'intégration verticale des CPU et XPU avec des solutions custom</h3>
+<hr />
+<h2>Mardi 05 Mai 2026</h2>
+<h3>Broadcom accélère l'intégration verticale des CPU et XPU</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Broadcom lance des outils pour aider les fabricants de CPU et XPU à optimiser leurs architectures avec des solutions verticales (réseaux, accélérateurs). Cette approche vise à réduire la complexité des déploiements AI et à améliorer l'efficacité énergétique des infrastructures, un enjeu majeur pour les datacenters hyperscale.</p>
+<p><strong>Résumé</strong> : Broadcom aide les fabricants de CPU et XPU à intégrer des solutions verticales (computing, réseau, stockage) pour optimiser les performances des datacenters. Impact : réduction des latences et amélioration de l'efficacité énergétique des infrastructures, avec des solutions clés en main pour les hyperscalers.</p>
 <a href="https://www.nextplatform.com/compute/2026/05/05/broadcom-helps-cpu-and-xpu-makers-go-vertical-with-compute/5219419" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
-</div>
-
-<h3>Microsoft double ses infrastructures AI en deux ans, selon un engagement officiel</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft annonce un plan d'investissement massif pour doubler sa capacité AI d'ici 2028, incluant des datacenters dédiés et des solutions de refroidissement innovantes. Cet engagement reflète la course à l'échelle pour les modèles d'IA générative et agentique, avec des implications majeures pour les fournisseurs de cloud et les entreprises dépendantes de ces services.</p>
-<a href="https://www.nextplatform.com/cloud/2026/05/04/microsoft-committed-to-doubling-ai-infrastructure-in-two-years/5219208" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
-</div>
-
-<h3>AMD anticipe un déclin de 20% de ses revenus gaming en H2 2026 à cause de la pénurie mémoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : AMD révise à la baisse ses prévisions de revenus gaming pour le second semestre 2026 (-20%), en raison de la hausse des coûts des composants et de la mémoire. Cette baisse contraste avec la forte demande en CPU pour datacenters, illustrant les tensions persistantes dans la chaîne d'approvisionnement des infrastructures IT.</p>
-<a href="https://www.tomshardware.com/tech-industry/amd-expects-20-percent-decline-in-gaming-revenue-from-higher-memory-and-component-costs-in-the-second-half-of-the-year-ceo-lisa-su-warns-of-further-memory-crunch" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Apple envisage Intel et Samsung pour produire des puces aux États-Unis</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Apple explore des partenariats avec Intel et Samsung pour diversifier sa production de puces avancées aux États-Unis, face aux contraintes d'approvisionnement sur les nœuds avancés. Cette stratégie vise à sécuriser la chaîne d'approvisionnement pour ses SoC et ses solutions AI locales, dans un contexte de tensions géopolitiques.</p>
-<a href="https://www.tomshardware.com/tech-industry/semiconductors/apple-considering-intel-and-samsung-for-us-chip-production-report-claims-consumer-electronics-giant-looks-to-diversify-supply-chain-amid-chip-shortages" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<hr />
-<h2>Vendredi 04 Mai 2026</h2>
-<h3>HP ZGX Nano G1n : Premier aperçu des systèmes GB10 en format compact</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : HP présente le ZGX Nano G1n, une solution compacte basée sur le GPU NVIDIA GB10, conçue pour les environnements où l'espace est critique (edge computing, postes de travail AI). Ces systèmes, déjà très demandés, illustrent l'essor des architectures GPU intégrées pour les workloads AI légers et les applications embarquées.</p>
-<a href="https://www.servethehome.com/hp-zgx-nano-g1n-review-the-hp-take-on-the-nvidia-gb10/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
         </div>
     </div>
