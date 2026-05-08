@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 04/05/2026 au 08/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 04/05/2026 au 09/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 08/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 09/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,99 +75,115 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 07 Mai 2026</h2>
+            <h2>Vendredi 09 Mai 2026</h2>
+<h3>Dirty Frag : la faille zero-day Linux permettant l'escalade de privilèges root</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle vulnérabilité critique nommée Dirty Frag a été découverte dans le noyau Linux, permettant une escalade de privilèges root locale. Cette faille, successor de Copy Fail (CVE-2026-31431), affecte plusieurs distributions majeures et nécessite une application urgente des correctifs disponibles.</p>
+<a href="https://www.it-connect.fr/dirty-frag-cette-faille-zero-day-donne-les-droits-root-sur-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Linux Kernel Dirty Frag LPE Exploit : accès root sur les distributions majeures</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les détails techniques de Dirty Frag révèlent un exploit d'escalade de privilèges locales (LPE) non corrigé dans le noyau Linux. Cette faille permet aux attaquants d'obtenir un accès root complet sur les systèmes affectés, nécessitant une mise à jour immédiate des noyaux.</p>
+<a href="https://thehackernews.com/2026/05/linux-kernel-dirty-frag-lpe-exploit.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Jeudi 08 Mai 2026</h2>
 <h3>vm2 : vulnérabilités critiques dans la sandbox Node.js (CVE-2026-26956)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-26956) dans la bibliothèque vm2 permet l'échappement de la sandbox et l'exécution de code arbitraire. Les administrateurs doivent mettre à jour immédiatement vers la dernière version pour éviter des compromissions de serveurs Node.js.</p>
+<p><strong>Résumé</strong> : Une douzaine de vulnérabilités critiques ont été découvertes dans la bibliothèque vm2, utilisée pour exécuter du code JavaScript non fiable en sandbox. Ces failles permettent une évasion de sandbox et l'exécution de code arbitraire, nécessitant une mise à jour urgente.</p>
 <a href="https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Ivanti EPMM : RCE sous exploitation active (CVE-2026-6973)</h3>
+<h3>Quasar Linux RAT : malware ciblant les développeurs pour compromettre la chaîne logistique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-6973) dans Ivanti Endpoint Manager Mobile (EPMM) permet une exécution de code à distance (RCE) avec des droits admin. Les correctifs doivent être appliqués sans délai pour les versions antérieures à 12.6.1.1, 12.7.0.1 et 12.8.0.</p>
-<a href="https://thehackernews.com/2026/05/ivanti-epmm-cve-2026-6973-rce-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un nouveau malware Linux non documenté, Quasar Linux RAT (QLNX), cible les systèmes des développeurs pour établir un accès silencieux. Il permet le vol de credentials, l'enregistrement des frappes, la manipulation de fichiers et le monitoring réseau, posant un risque majeur pour les pipelines CI/CD.</p>
+<a href="https://thehackernews.com/2026/05/quasar-linux-rat-steals-developer.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Palo Alto PAN-OS : zero-day exploité en production (CVE-2026-0300)</h3>
+<h3>TCLBANKER : nouveau cheval de Troie bancaire brésilien ciblant 59 plateformes financières</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille CVE-2026-0300 (buffer overflow) dans PAN-OS est activement exploitée pour obtenir un accès root et des droits d'espionnage. Les administrateurs doivent appliquer les correctifs urgents pour éviter des intrusions via les pare-feux Palo Alto.</p>
+<p><strong>Résumé</strong> : Un nouveau cheval de Troie bancaire brésilien, TCLBANKER, a été identifié par Elastic Security Labs. Il cible 59 plateformes bancaires, fintech et cryptomonnaies via des vers WhatsApp et Outlook, nécessitant une vigilance accrue sur les terminaux exposés.</p>
+<a href="https://thehackernews.com/2026/05/tclbanker-banking-trojan-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fake Call History Apps : 28 applications frauduleuses sur le Play Store volent 7,3 millions de téléchargements</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : 28 applications frauduleuses sur le Google Play Store ont escroqué 7,3 millions d'utilisateurs en proposant un accès aux historiques d'appels, tout en souscrivant des abonnements frauduleux. Une vérification stricte des applications tierces est désormais indispensable.</p>
+<a href="https://thehackernews.com/2026/05/fake-call-history-apps-stole-payments.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mercredi 07 Mai 2026</h2>
+<h3>Palo Alto PAN-OS : faille zero-day (CVE-2026-0300) exploitée en attaque active</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique de type buffer overflow (CVE-2026-0300, CVSS 9.3) dans PAN-OS permet une exécution de code à distance non authentifiée. Palo Alto Networks alerte sur son exploitation active, nécessitant une mise à jour immédiate des versions 12.6.1.1, 12.7.0.1 et 12.8.0.</p>
 <a href="https://thehackernews.com/2026/05/palo-alto-pan-os-flaw-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>PCPJack : malware multi-CVE ciblant les infrastructures cloud</h3>
+<h3>Ivanti EPMM : faille RCE (CVE-2026-6973) exploitée en attaque limitée</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le framework PCPJack exploite 5 vulnérabilités (CVEs) pour voler des identifiants et se propager comme un ver dans les environnements cloud. Les équipes DevOps doivent auditer leurs instances exposées et appliquer les correctifs des éditeurs concernés.</p>
+<p><strong>Résumé</strong> : Une faille d'entrée de validation incorrecte (CVE-2026-6973, CVSS 7.2) dans Ivanti Endpoint Manager Mobile (EPMM) permet une exécution de code à distance. Bien que limitée, cette attaque nécessite une application rapide des correctifs pour les versions avant 12.6.1.1, 12.7.0.1 et 12.8.0.</p>
+<a href="https://thehackernews.com/2026/05/ivanti-epmm-cve-2026-6973-rce-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>PCPJack : framework de vol de credentials exploitant 5 CVE pour une propagation worm-like</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le framework PCPJack cible les infrastructures cloud exposées en exploitant 5 vulnérabilités (CVE non spécifiées). Il vole des credentials depuis les environnements cloud, conteneurs et outils de productivité, nécessitant une revue immédiate des accès exposés et une mise à jour des systèmes.</p>
 <a href="https://thehackernews.com/2026/05/pcpjack-credential-stealer-exploits-5.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>PyPI : packages malveillants distribuant ZiChatBot via Zulip</h3>
+<h3>Google Chrome déploie Gemini Nano (4 Go) sans consentement utilisateur</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois packages PyPI ont été identifiés comme vecteurs de livraison du malware ZiChatBot sur Windows et Linux. Les administrateurs doivent scanner leurs environnements Python et bloquer les paquets suspects via des politiques de sécurité strictes.</p>
-<a href="https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Google Chrome déploie automatiquement un modèle d'IA de 4 Go (Gemini Nano) sur macOS, Windows et Linux, sans demande de consentement. Cette pratique soulève des questions sur la confidentialité et la consommation de ressources, nécessitant une configuration manuelle pour désactiver cette fonctionnalité.</p>
+<a href="https://www.it-connect.fr/gemini-nano-google-chrome-deploie-une-ia-de-4-go-sans-rien-vous-demander/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <hr />
 <h2>Mardi 06 Mai 2026</h2>
-<h3>Proxmox VE : configuration du pare-feu natif pour sécuriser les VM</h3>
+<h3>Apache HTTP/2 : faille critique (CVE-2026-23918) permettant DoS et potentiellement RCE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un tutoriel détaillé explique comment configurer le pare-feu intégré de Proxmox VE pour filtrer le trafic vers les machines virtuelles et conteneurs. Essentiel pour isoler les environnements virtualisés et réduire la surface d'attaque.</p>
-<a href="https://www.it-connect.fr/tuto-proxmox-ve-configurer-firewall/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-23918, CVSS 8.8) dans Apache HTTP/2 permet un déni de service (DoS) et potentiellement une exécution de code à distance (RCE). Deux trames simples suffisent à exploiter cette faille, nécessitant une mise à jour immédiate des serveurs Apache.</p>
+<a href="https://thehackernews.com/2026/05/critical-apache-http2-flaw-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Oracle : lancement d'un "Patch Tuesday" mensuel</h3>
+<h3>DAEMON Tools : attaque par chaîne logistique via des installateurs officiels infectés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle adopte un rythme mensuel de correctifs critiques pour ses produits, en complément des mises à jour trimestrielles. Les administrateurs doivent planifier des fenêtres de maintenance régulières pour appliquer ces patches sans délai.</p>
-<a href="https://www.silicon.fr/cybersecurite-1371/oracle-patch-tuesday-227067" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Depuis avril 2026, les installateurs officiels de DAEMON Tools sont infectés par un malware via une attaque par chaîne logistique. Kaspersky recommande de désinstaller immédiatement cette solution et de vérifier les systèmes compromis, car les binaires sont signés avec des certificats légitimes.</p>
+<a href="https://thehackernews.com/2026/05/daemon-tools-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Google : Binary Transparency pour Android contre les attaques de supply chain</h3>
+<h3>Proton Mail : déploiement du chiffrement post-quantique activable par les utilisateurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google étend la Binary Transparency à Android pour garantir l'intégrité des applications officielles. Les administrateurs peuvent vérifier l'authenticité des APK via un registre public, réduisant les risques de malwares signés avec des certificats volés.</p>
+<p><strong>Résumé</strong> : Proton Mail active désormais le chiffrement post-quantique pour tous ses utilisateurs. Cette fonctionnalité, activable manuellement, protège les emails contre les futures menaces quantiques. Une configuration immédiate est recommandée pour les environnements sensibles.</p>
+<a href="https://www.it-connect.fr/proton-mail-deploie-le-chiffrement-post-quantique-voici-comment-lactiver/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Google étend Binary Transparency pour Android afin de prévenir les attaques par chaîne logistique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google annonce une extension de Binary Transparency pour Android, créant un registre public vérifiable des applications. Cette initiative empêche les attaques par chaîne logistique en garantissant l'intégrité des binaires distribués via le Play Store.</p>
 <a href="https://thehackernews.com/2026/05/android-apps-get-public-verification.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>IBM Db2 : intégration de l'IA agentique et refonte de la console</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : IBM intègre des agents IA dans Db2, nécessitant une nouvelle console de gestion et des licences spécifiques. Les équipes data doivent évaluer l'impact sur leurs workflows et former les administrateurs aux nouvelles fonctionnalités.</p>
-<a href="https://www.silicon.fr/data-ia-1372/ibm-db2-ia-agentique-227052" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
-</div>
-
-<h3>MuddyWater : attaque en faux drapeau via Microsoft Teams</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe iranien MuddyWater utilise des campagnes de phishing via Teams pour déployer des ransomwares en "faux drapeau". Les administrateurs doivent renforcer la formation des utilisateurs et configurer des politiques de sécurité strictes pour Teams.</p>
-<a href="https://thehackernews.com/2026/05/muddywater-uses-microsoft-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Lundi 05 Mai 2026</h2>
-<h3>Apache HTTP/2 : faille critique DoS et RCE (CVE-2026-23918)</h3>
+<h3>Microsoft Edge : fuite de mots de passe en mémoire vive</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Apache HTTP/2 (CVE-2026-23918) permet un déni de service ou une exécution de code à distance avec seulement deux trames malveillantes. Les serveurs Apache doivent être mis à jour immédiatement.</p>
-<a href="https://thehackernews.com/2026/05/critical-apache-http2-flaw-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un chercheur a démontré que Microsoft Edge stocke les mots de passe en clair dans la mémoire vive de Windows, exposant les utilisateurs à des risques de vol de credentials. Une mise à jour immédiate du navigateur et une revue des politiques de gestion des mots de passe sont nécessaires.</p>
+<a href="https://www.it-connect.fr/un-chercheur-prouve-que-microsoft-edge-laisse-fuiter-vos-mots-de-passe-en-memoire/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>DAEMON Tools : attaque par supply chain via installateurs officiels</h3>
+<h3>Rowhammer : nouvelle attaque contre les puces NVIDIA permettant un contrôle total</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les installateurs officiels de DAEMON Tools sont compromis et distribuent des malwares depuis début avril 2026. Les administrateurs doivent désinstaller ces outils et vérifier les systèmes infectés.</p>
-<a href="https://thehackernews.com/2026/05/daemon-tools-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une nouvelle attaque Rowhammer ciblant les puces NVIDIA permet d'obtenir un contrôle total des machines via les GPU. Cette faille exploite des vulnérabilités matérielles, nécessitant une mise à jour des firmwares et une configuration stricte des permissions d'accès.</p>
+<a href="https://www.schneier.com/blog/archives/2026/05/rowhammer-attack-against-nvidia-chips.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<h3>Proton Mail : chiffrement post-quantique activable par les utilisateurs</h3>
+<h3>DarkSword : malware sophistiqué ciblant iOS (probablement gouvernemental)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Proton Mail déploie un chiffrement post-quantique pour tous ses utilisateurs. Les administrateurs doivent activer cette option pour protéger les emails contre les futures attaques quantiques et sensibiliser les équipes.</p>
-<a href="https://www.it-connect.fr/proton-mail-deploie-le-chiffrement-post-quantique-voici-comment-lactiver/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>CPanel : vulnérabilité critique exploitable contre les gouvernements</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans CPanel (CVE-2026-XXXX) est exploitée pour cibler des entités gouvernementales et des MSP. Les administrateurs doivent appliquer les correctifs urgents et auditer les accès suspects.</p>
-<a href="https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CISPE : référentiel européen alternatif pour la souveraineté cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'association CISPE propose un référentiel de souveraineté cloud alternatif au cadre de l'UE, jugé insuffisant par les fournisseurs européens. Les administrateurs doivent évaluer ces critères pour leurs déploiements cloud critiques.</p>
-<a href="https://www.silicon.fr/cloud-1370/cispe-referentiel-cloud-souverain-227039" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : DarkSword est un malware sophistiqué, probablement conçu par un État, ciblant iOS via une chaîne d'exploitation complète. Google Threat Intelligence Group (GTIG) recommande une mise à jour immédiate des appareils Apple et une revue des permissions des applications installées.</p>
+<a href="https://www.schneier.com/blog/archives/2026/05/darksword-malware.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
         </div>
     </div>
