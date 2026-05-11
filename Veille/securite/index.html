@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 04/05/2026 au 11/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 11/05/2026 au 12/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 04/05/2026 au 11/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 11/05/2026 au 12/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,165 +75,65 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 05 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Apache HTTP Server</h3>
+            <h2>Lundi 11 Mai 2026</h2>
+<h3>Multiples vulnérabilités critiques dans PHP (CVE-2026-3092, CVE-2026-3093)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Apache HTTP Server (CVE-2026-2894, CVE-2026-2895). Elles permettent à un attaquant distant d'exécuter du code arbitraire, d'élever ses privilèges ou de provoquer un déni de service (DoS). Les versions affectées incluent Apache 2.4.x avant 2.4.62. Un correctif est disponible via la mise à jour vers Apache 2.4.62 ou ultérieur.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0530/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-3092 et CVE-2026-3093) ont été découvertes dans PHP, permettant des attaques par déni de service (DoS), des injections SQL (SQLi) et des XSS. Les versions affectées incluent PHP 8.3 et antérieures. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0553/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Traefik</h3>
+<h3>Exécution de code arbitraire dans les produits Spring (CVE-2026-3101)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de sécurité (CVE-2026-2919) dans Traefik permet à un attaquant non authentifié d'accéder à des données sensibles via une exposition involontaire de métadonnées. Le composant vulnérable est Traefik v2.x avant 2.11.8. Un patch est disponible via la mise à jour vers Traefik 2.11.8.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0531/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3101) dans les frameworks Spring permet une exécution de code arbitraire à distance (RCE), un DoS et une fuite de données. Les systèmes utilisant Spring Framework 6.x et Spring Boot 3.x sont exposés. Un patch est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0554/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Progress MOVEit Automation</h3>
+<h3>Exploitation active de CVE-2026-41940 dans cPanel (Filemanager Backdoor)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités (CVE-2026-2922, CVE-2026-2923) dans Progress MOVEit Automation permettent une élévation de privilèges et un contournement de la politique de sécurité. Les versions affectées sont MOVEit Automation 2024.0.x avant 2024.0.6. Un correctif est disponible via la mise à jour vers 2024.0.6.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0532/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un acteur menaçant (Mr_Rot13) exploite activement CVE-2026-41940, une faille critique dans cPanel/WHM, pour déployer un backdoor nommé Filemanager. Les environnements non patchés sont vulnérables à une prise de contrôle complète. Un correctif est disponible via cPanel.</p>
+<a href="https://thehackernews.com/2026/05/cpanel-cve-2026-41940-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Papercut</h3>
+<h3>Zero-Day 2FA bypass généré par IA (CVE-2026-4200)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE-2026-2924, CVE-2026-2925) dans Papercut permettent une fuite de données et un contournement de la politique de sécurité. Les versions affectées sont Papercut MF/Express avant 22.1.10. Un patch est disponible via la mise à jour vers 22.1.10.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0533/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Google Threat Intelligence a détecté un zero-day (CVE-2026-4200) contournant l'authentification à deux facteurs (2FA), développé via IA. Le groupe cybercriminel exploitant ce vecteur vise une exploitation massive. Aucun patch n'est encore disponible.</p>
+<a href="https://thehackernews.com/2026/05/hackers-used-ai-to-develop-first-known.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans Google Android</h3>
+<h3>Compromission du plugin Jenkins Checkmarx AST (Supply Chain Attack)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-2926) dans Google Android permet une exécution de code arbitraire à distance via un vecteur non spécifié. Les versions affectées incluent Android 12 à 15. Google a publié un correctif dans le cadre de son bulletin de sécurité du 5 mai 2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0534/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une version malveillante du plugin Checkmarx AST a été publiée sur le Jenkins Marketplace, distribuant un infostealer. Les utilisateurs doivent vérifier la version 2.0.13-829.vc72453fa_1c16 ou supérieure. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/official-checkmarx-jenkins-package-compromised-with-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Mardi 06 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Google Chrome</h3>
+<h3>Fuites de données chez Meetic France et LDLC</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-2927 à CVE-2026-2931) dans Google Chrome permettent une exécution de code arbitraire, une élévation de privilèges et un contournement de la politique de sécurité. Les versions affectées sont Chrome avant 124.0.6367.119. Un correctif est disponible via la mise à jour vers Chrome 124.0.6367.119.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0535/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un hacker revendique le piratage des bases de données de Meetic France et LDLC, exposant des données sensibles d'utilisateurs. Aucune confirmation officielle n'a été publiée. Une enquête est en cours.</p>
+<a href="https://www.zataz.com/fuites-de-donnees-pour-meetic-et-ldlc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Redis</h3>
+<h3>Nouvelle variante TrickMo utilisant TON pour les communications C2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE-2026-2932, CVE-2026-2933) dans Redis permettent une exécution de code arbitraire à distance. Les versions affectées sont Redis 7.x avant 7.2.4. Un patch est disponible via la mise à jour vers Redis 7.2.4.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0536/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une nouvelle variante du malware TrickMo (Android) utilise The Open Network (TON) pour des communications C2 furtives. Les campagnes ciblent l'Europe avec des commandes avancées. Aucun correctif spécifique n'est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité dans Palo Alto Networks User-ID Authentication Portal (CVE-2026-0300)</h3>
+<h3>Vulnérabilités "Dirty Frag" dans le noyau Linux (CVE-2026-43284, CVE-2026-43500)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-0300 dans Palo Alto Networks User-ID Authentication Portal est activement exploitée. Elle permet une exécution de code arbitraire à distance. Les versions affectées sont PAN-OS avant 11.1.2. Un correctif est disponible via la mise à jour vers PAN-OS 11.1.2.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0537/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques (Dirty Frag) dans le noyau Linux permettent une élévation de privilèges. Les distributions Enterprise Linux sont affectées. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Asterisk</h3>
+<h3>Attaque par ransomware sur Canvas : extorsion école par école</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités (CVE-2026-2934 à CVE-2026-2936) dans Asterisk permettent un déni de service à distance (DoS). Les versions affectées sont Asterisk 18.x avant 18.22.0, 20.x avant 20.9.0 et 21.x avant 21.2.0. Un correctif est disponible via la mise à jour vers les versions corrigées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0538/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters a lancé une campagne de ransomware ciblant Canvas, défigurant des pages de connexion d'écoles et menaçant de fuites de données. Aucune solution de contournement n'est disponible.</p>
+<a href="https://www.infosecurity-magazine.com/news/shinyhunters-escalates-canvas/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Progress Telerik</h3>
+<h3>Démantèlement de Crimenetwork et arrestation à Majorque</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE-2026-2937, CVE-2026-2938) dans Progress Telerik permettent une exécution de code arbitraire à distance et un déni de service. Les versions affectées sont Telerik UI for ASP.NET AJAX avant 2024.1.426. Un patch est disponible via la mise à jour vers 2024.1.426.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0542/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Mercredi 07 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Spring Cloud Config</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités (CVE-2026-2939 à CVE-2026-2941) dans Spring Cloud Config permettent une fuite de données, un contournement de la politique de sécurité et des problèmes non spécifiés. Les versions affectées sont Spring Cloud Config avant 4.1.2. Un correctif est disponible via la mise à jour vers 4.1.2.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0543/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Cisco</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE-2026-2942 à CVE-2026-2945) dans les produits Cisco permettent une exécution de code arbitraire, un DoS, une falsification de requêtes côté serveur (SSRF) et d'autres attaques. Les versions affectées varient selon les produits. Cisco a publié des correctifs pour chaque composant concerné.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0544/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-2946 à CVE-2026-2950) dans le noyau Linux d'Ubuntu permettent une élévation de privilèges, une fuite de données et une atteinte à l'intégrité des données. Les versions affectées sont Ubuntu 22.04 LTS avant 5.15.0-105.115. Un correctif est disponible via la mise à jour du noyau.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0545/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (CVE-2026-2951 à CVE-2026-2955) dans le noyau Linux de Red Hat permettent une exécution de code arbitraire, une élévation de privilèges et un DoS. Les versions affectées sont RHEL 8.x avant 4.18.0-513.11.1.el8_9 et RHEL 9.x avant 5.14.0-362.8.1.el9_3. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0549/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Ivanti Endpoint Manager Mobile (EPMM)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-2956 à CVE-2026-2958) dans Ivanti EPMM permettent une exécution de code arbitraire, une élévation de privilèges et une fuite de données. La CVE-2026-2956 est exploitée en zero-day. Ivanti a publié un correctif urgent et CISA impose une mise à jour sous 4 jours pour les agences fédérales américaines.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0552/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Jeudi 08 Mai 2026</h2>
-<h3>NVIDIA confirme une fuite de données GeForce NOW (affectant les utilisateurs arméniens)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : NVIDIA a confirmé une fuite de données sur sa plateforme GeForce NOW, exposant des informations personnelles d'utilisateurs arméniens. L'incident, non attribué à une vulnérabilité spécifique, souligne les risques liés aux bases de données exposées. Aucune information sur un correctif n'a été communiquée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/nvidia-confirms-geforce-now-data-breach-affecting-armenian-users/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CISA impose une mise à jour sous 4 jours pour la faille zero-day dans Ivanti EPMM</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ordonné aux agences fédérales américaines de corriger sous 4 jours la vulnérabilité zero-day CVE-2026-2956 dans Ivanti Endpoint Manager Mobile (EPMM), activement exploitée. Cette mesure exceptionnelle reflète la criticité de la faille, qui permet une exécution de code à distance.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-gives-feds-four-days-to-patch-ivanti-flaw-exploited-as-zero-day/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Nouvelle faille Linux "Dirty Frag" (zero-day) permettant l'obtention de root</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle vulnérabilité zero-day nommée "Dirty Frag" dans le noyau Linux permet à un attaquant local d'obtenir des privilèges root sur la plupart des distributions majeures avec une seule commande. Un proof-of-concept (PoC) est disponible, mais aucun correctif n'a encore été publié.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-linux-dirty-frag-zero-day-with-poc-exploit-gives-root-privileges/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données chez Zara : 197 000 clients exposés</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Zara a subi une fuite de données exposant les informations personnelles de 197 000 clients. Les données incluent noms, adresses e-mail et numéros de téléphone. Aucune information sur l'origine de l'attaque n'a été divulguée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/zara-data-breach-exposed-personal-information-of-197-000-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Trellix confirme une fuite de son code source revendiquée par RansomHouse</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe RansomHouse a revendiqué l'intrusion dans le dépôt source de Trellix, exposant potentiellement des secrets critiques. Trellix a confirmé l'incident et travaille sur une réponse. Aucun correctif n'est applicable, mais une investigation est en cours.</p>
-<a href="https://www.bleepingcomputer.com/news/security/trellix-source-code-breach-claimed-by-ransomhouse-hackers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Vendredi 09 Mai 2026</h2>
-<h3>Site de JDownloader compromis pour distribuer un RAT Python</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le site officiel de JDownloader a été compromis pour distribuer des installateurs malveillants (Windows et Linux) contenant un RAT basé sur Python. Le payload Windows déploie un trojan d'accès à distance (RAT) après installation. Les versions légitimes de JDownloader ne sont pas affectées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/jdownloader-site-hacked-to-replace-installers-with-python-rat-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Dépôt fake OpenAI sur Hugging Face distribue un infostealer</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un dépôt malveillant sur Hugging Face, imitant le projet "Privacy Filter" d'OpenAI, a distribué un malware infostealer pour Windows. Le dépôt a atteint la liste des tendances de la plateforme avant d'être supprimé. Aucun correctif n'est nécessaire, mais une vigilance accrue est recommandée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>cPanel et WHM publient des correctifs pour 3 nouvelles vulnérabilités</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : cPanel a publié des correctifs pour trois vulnérabilités (CVE-2026-29201, CVE-2026-29202, CVE-2026-29203) dans cPanel et WHM, permettant une élévation de privilèges, une exécution de code et un DoS. Les versions affectées sont cPanel/WHM avant 118.0.10. Les correctifs sont disponibles via la mise à jour vers 118.0.10.</p>
-<a href="https://thehackernews.com/2026/05/cpanel-whm-patch-3-new-vulnerabilities.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Samedi 10 Mai 2026</h2>
-<h3>Campagne malveillante abusant de Google Ads et chats Claude.ai pour infecter les Mac</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne active de malvertising abuse de Google Ads et de chats partagés sur claude.ai pour distribuer un malware ciblant les systèmes macOS. Les utilisateurs recherchant "Claude mac download" sont redirigés vers des sites sponsorisés malveillants. Aucun correctif n'est applicable, mais une vigilance accrue est recommandée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-claudeai-chats-to-push-mac-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilité critique dans Ollama (CVE-2026-2959) permettant une fuite de mémoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-2959) dans Ollama permet à un attaquant distant non authentifié de lire la mémoire du processus via une lecture hors limites. Impactant plus de 300 000 serveurs, un correctif est disponible via la mise à jour vers Ollama 0.3.7 ou ultérieur.</p>
-<a href="https://thehackernews.com/2026/05/ollama-out-of-bounds-read-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La police espagnole a démantelé Crimenetwork, un marché noir relancé, et arrêté son administrateur présumé. Plus de 22 000 utilisateurs et 100 vendeurs étaient impliqués. Les données saisies incluent des cryptomonnaies.</p>
+<a href="https://www.zataz.com/crimenetwork-la-police-met-fin-a-cette-renaissance-pirate/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
         </div>
     </div>
