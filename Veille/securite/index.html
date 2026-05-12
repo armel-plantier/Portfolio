@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 11/05/2026 au 12/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 11/05/2026 au 13/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 11/05/2026 au 12/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 11/05/2026 au 13/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,64 +76,138 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 11 Mai 2026</h2>
-<h3>Multiples vulnérabilités critiques dans PHP (CVE-2026-3092, CVE-2026-3093)</h3>
+<h3>Multiples vulnérabilités dans PHP</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-3092 et CVE-2026-3093) ont été découvertes dans PHP, permettant des attaques par déni de service (DoS), des injections SQL (SQLi) et des XSS. Les versions affectées incluent PHP 8.3 et antérieures. Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques dans PHP permettent à un attaquant de provoquer un déni de service (DoS) à distance, une injection SQL (SQLi) et une injection de code indirecte à distance (XSS). Ces failles affectent les versions récentes et nécessitent une mise à jour urgente pour éviter des exploitations massives.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0553/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exécution de code arbitraire dans les produits Spring (CVE-2026-3101)</h3>
+<h3>Multiples vulnérabilités dans les produits Spring</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3101) dans les frameworks Spring permet une exécution de code arbitraire à distance (RCE), un DoS et une fuite de données. Les systèmes utilisant Spring Framework 6.x et Spring Boot 3.x sont exposés. Un patch est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Spring (framework Java) permettent une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une fuite de données. Ces failles sont exploitées activement et des correctifs sont disponibles via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0554/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de CVE-2026-41940 dans cPanel (Filemanager Backdoor)</h3>
+<h3>Multiples vulnérabilités dans les produits Mozilla</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un acteur menaçant (Mr_Rot13) exploite activement CVE-2026-41940, une faille critique dans cPanel/WHM, pour déployer un backdoor nommé Filemanager. Les environnements non patchés sont vulnérables à une prise de contrôle complète. Un correctif est disponible via cPanel.</p>
-<a href="https://thehackernews.com/2026/05/cpanel-cve-2026-41940-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Firefox, Thunderbird et autres produits Mozilla permettent une exécution de code arbitraire et des problèmes de sécurité non spécifiés. Un correctif est disponible dans les dernières versions des logiciels concernés.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0555/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Zero-Day 2FA bypass généré par IA (CVE-2026-4200)</h3>
+<h3>Multiples vulnérabilités dans les produits VMware</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google Threat Intelligence a détecté un zero-day (CVE-2026-4200) contournant l'authentification à deux facteurs (2FA), développé via IA. Le groupe cybercriminel exploitant ce vecteur vise une exploitation massive. Aucun patch n'est encore disponible.</p>
-<a href="https://thehackernews.com/2026/05/hackers-used-ai-to-develop-first-known.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des vulnérabilités non spécifiées dans les produits VMware (ESXi, vCenter, etc.) exposent les environnements virtualisés à des risques d'élévation de privilèges ou de fuite de données. VMware a publié des correctifs pour les versions affectées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0556/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Compromission du plugin Jenkins Checkmarx AST (Supply Chain Attack)</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une version malveillante du plugin Checkmarx AST a été publiée sur le Jenkins Marketplace, distribuant un infostealer. Les utilisateurs doivent vérifier la version 2.0.13-829.vc72453fa_1c16 ou supérieure. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Microsoft Edge permettent des attaques par déni de service, élévation de privilèges ou contournement de sécurité. Un correctif est disponible via le Patch Tuesday de mai 2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0557/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Azure Linux (distribution basée sur Linux) permettent des attaques par déni de service ou fuite de données. Microsoft a publié des correctifs pour les instances Azure concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0558/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuites de données pour Meetic et LDLC</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un hacker revendique le piratage des bases de données de Meetic France et LDLC, exposant potentiellement les données personnelles de millions d'utilisateurs. Aucune confirmation officielle n'a été publiée par les entreprises concernées.</p>
+<a href="https://www.zataz.com/fuites-de-donnees-pour-meetic-et-ldlc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>GM agrees to $12.75M California settlement over sale of drivers’ data</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : General Motors a accepté un règlement de 12,75 millions de dollars avec l'État de Californie pour avoir vendu des données de conducteurs en violation du CCPA. L'accord souligne les risques juridiques liés à la gestion des données personnelles.</p>
+<a href="https://www.bleepingcomputer.com/news/legal/gm-agrees-to-1275m-california-settlement-over-sale-of-drivers-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Official CheckMarx Jenkins package compromised with infostealer</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une version malveillante du plugin Jenkins Application Security Testing (AST) de Checkmarx a été publiée sur le Jenkins Marketplace, distribuant un infostealer. Checkmarx recommande d'utiliser uniquement la version 2.0.13-829.vc72453fa_1c16 ou supérieure.</p>
 <a href="https://www.bleepingcomputer.com/news/security/official-checkmarx-jenkins-package-compromised-with-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuites de données chez Meetic France et LDLC</h3>
+<h3>cPanel CVE-2026-41940 Under Active Exploitation to Deploy Filemanager Backdoor</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un hacker revendique le piratage des bases de données de Meetic France et LDLC, exposant des données sensibles d'utilisateurs. Aucune confirmation officielle n'a été publiée. Une enquête est en cours.</p>
-<a href="https://www.zataz.com/fuites-de-donnees-pour-meetic-et-ldlc/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-41940 dans cPanel est activement exploitée pour déployer un backdoor nommé Filemanager. Une mise à jour urgente est nécessaire pour éviter une compromission des serveurs web.</p>
+<a href="https://thehackernews.com/2026/05/cpanel-cve-2026-41940-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Nouvelle variante TrickMo utilisant TON pour les communications C2</h3>
+<hr />
+<h2>Mardi 12 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans PostgreSQL PgBouncer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle variante du malware TrickMo (Android) utilise The Open Network (TON) pour des communications C2 furtives. Les campagnes ciblent l'Europe avec des commandes avancées. Aucun correctif spécifique n'est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans PostgreSQL PgBouncer permettent un déni de service (DoS) à distance et un contournement de la politique de sécurité. Une mise à jour est disponible pour corriger ces failles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0559/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités "Dirty Frag" dans le noyau Linux (CVE-2026-43284, CVE-2026-43500)</h3>
+<h3>Vulnérabilité dans CPython</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques (Dirty Frag) dans le noyau Linux permettent une élévation de privilèges. Les distributions Enterprise Linux sont affectées. Un correctif est disponible via les mises à jour du noyau.</p>
-<a href="https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans CPython (implémentation de référence de Python) permet un contournement de la politique de sécurité. Une correction est disponible via les mises à jour officielles de Python.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0560/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Attaque par ransomware sur Canvas : extorsion école par école</h3>
+<h3>Vulnérabilité dans Traefik</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters a lancé une campagne de ransomware ciblant Canvas, défigurant des pages de connexion d'écoles et menaçant de fuites de données. Aucune solution de contournement n'est disponible.</p>
-<a href="https://www.infosecurity-magazine.com/news/shinyhunters-escalates-canvas/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+<p><strong>Résumé</strong> : Une faille dans Traefik (reverse proxy et load balancer) permet un contournement de la politique de sécurité. Un correctif est disponible dans les dernières versions du logiciel.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0561/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Démantèlement de Crimenetwork et arrestation à Majorque</h3>
+<h3>Multiples vulnérabilités dans les produits Apple</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La police espagnole a démantelé Crimenetwork, un marché noir relancé, et arrêté son administrateur présumé. Plus de 22 000 utilisateurs et 100 vendeurs étaient impliqués. Les données saisies incluent des cryptomonnaies.</p>
-<a href="https://www.zataz.com/crimenetwork-la-police-met-fin-a-cette-renaissance-pirate/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans iOS, macOS et autres produits Apple permettent une exécution de code arbitraire, une élévation de privilèges et une fuite de données. Des correctifs sont disponibles via iOS 26.5 et macOS Sequoia 15.5.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0563/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Siemens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Siemens (automatisation industrielle, IoT) permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service (DoS). Siemens a publié des correctifs pour les versions affectées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0565/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Schneider Electric</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des failles critiques dans les produits Schneider Electric (automatisation industrielle) permettent une élévation de privilèges, une fuite de données et une atteinte à l'intégrité des données. Des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0566/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits SAP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : SAP a corrigé 15 vulnérabilités dans ses produits (Commerce Cloud, S/4HANA), dont deux critiques permettant une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). Les correctifs sont disponibles via le Patch Tuesday de mai 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sap-fixes-critical-vulnerabilities-in-commerce-cloud-and-s-4hana/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>UK fines water supplier $1.3M for exposing data of 664k customers</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'ICO (Royaume-Uni) a infligé une amende de 1,3 million de dollars à South Staffordshire Water Plc pour une cyberattaque ayant exposé les données personnelles de 664 000 clients et employés. L'incident souligne les risques de non-conformité au RGPD.</p>
+<a href="https://www.bleepingcomputer.com/news/security/uk-fines-water-supplier-13m-for-exposing-data-of-664k-customers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft May 2026 Patch Tuesday fixes 120 flaws, no zero-days</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé 120 vulnérabilités dans son Patch Tuesday de mai 2026, dont 9 critiques. Aucune zero-day n'a été signalée ce mois-ci, mais une mise à jour urgente est recommandée pour tous les systèmes Windows.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-may-2026-patch-tuesday-fixes-120-flaws-no-zero-days/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fortinet warns of critical RCE flaws in FortiSandbox and FortiAuthenticator</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Fortinet a publié des correctifs pour deux vulnérabilités critiques (CVE non spécifiées) dans FortiSandbox et FortiAuthenticator, permettant une exécution de code arbitraire à distance (RCE). Les mises à jour doivent être appliquées immédiatement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fortinet-warns-of-critical-rce-flaws-in-fortisandbox-and-fortiauthenticator/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>RubyGems Suspends New Signups After Hundreds of Malicious Packages Are Uploaded</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : RubyGems a temporairement suspendu les inscriptions après la découverte de centaines de paquets malveillants uploadés, faisant partie d'une campagne de supply-chain attack. Une enquête est en cours pour identifier la source de l'attaque.</p>
+<a href="https://thehackernews.com/2026/05/rubygems-suspends-new-signups-after.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Mini Shai-Hulud Worm Compromises TanStack, Mistral AI, Guardrails AI &amp; More Packages</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle campagne Mini Shai-Hulud a compromis des centaines de paquets npm et PyPI (TanStack, Mistral AI, Guardrails AI, etc.) pour distribuer un malware vol de credentials. Les paquets infectés ont été modifiés pour inclure une charge utile malveillante.</p>
+<a href="https://thehackernews.com/2026/05/mini-shai-hulud-worm-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
