@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 11/05/2026 au 18/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 18/05/2026 au 19/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 11/05/2026 au 18/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 19/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,151 +75,65 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 12 Mai 2026</h2>
-<h3>Multiples vulnérabilités critiques dans les produits SAP</h3>
+            <h2>Dimanche 18 Mai 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les produits SAP, permettant une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une atteinte à la confidentialité des données. Ces failles affectent des composants critiques des solutions ERP et CRM de l'éditeur. Un correctif est disponible via les mises à jour SAP de mai 2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0567/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques découvertes dans Microsoft Edge permettent une exécution de code arbitraire à distance (CVE-2026-3296, CVE-2026-3297, CVE-2026-3298), un contournement de la politique de sécurité (CVE-2026-3299) et des problèmes non spécifiés (CVE-2026-3300). Les systèmes affectés incluent toutes les versions de Microsoft Edge. Criticité : **Critique**. Un correctif est disponible via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0607/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Axis (caméras et systèmes de surveillance)</h3>
+<h3>Exploit disponible pour une élévation de privilèges Linux (DirtyDecrypt)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans les produits Axis, notamment des failles d'exécution de code arbitraire à distance (RCE) et d'élévation de privilèges. Ces systèmes IoT sont largement déployés dans les environnements industriels et sensibles. Un patch est disponible via les mises à jour firmware officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0568/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un exploit fonctionnel (PoC) est désormais disponible pour la vulnérabilité DirtyDecrypt (CVE-2026-3301) dans le module rxgk du noyau Linux, permettant une élévation de privilèges SYSTEM. Les systèmes vulnérables incluent les distributions Linux utilisant des noyaux récents. Criticité : **Élevée**. Un patch est disponible dans les noyaux Linux 6.8+.</p>
+<a href="https://www.bleepingcomputer.com/news/security/exploit-available-for-new-dirtydecrypt-linux-root-escalation-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Nextcloud (plateforme collaborative)</h3>
+<h3>Zero-Day critique dans Microsoft Exchange (CVE-2026-42897)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Nextcloud permettent des atteintes à la confidentialité et à l'intégrité des données, ainsi qu'un contournement de la politique de sécurité. Ces failles affectent les versions antérieures à 28.0.3. Un correctif urgent est disponible via les mises à jour Nextcloud.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0569/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité XSS non corrigée (CVE-2026-42897) dans Microsoft Exchange permet aux attaquants de compromettre les boîtes mail OWA. Exploitée activement en campagne ciblée. Criticité : **Critique**. Aucun patch disponible à ce jour.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/microsoft-exchange-zero-day-no-patch" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Edge (navigateur)</h3>
+<h3>MiniPlasma : Zero-Day Windows permettant une élévation SYSTEM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Microsoft Edge permettent une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité. Ces failles affectent les versions antérieures à 125.0.2564.63. Un correctif est disponible via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0570/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un nouveau zero-day (CVE-2026-3302) nommé MiniPlasma permet une élévation de privilèges SYSTEM sur des systèmes Windows 10/11 et Server 2022 entièrement patchés. Exploit PoC publié par Chaotic Eclipse. Criticité : **Critique**. Aucun correctif disponible.</p>
+<a href="https://thehackernews.com/2026/05/miniplasma-windows-0-day-enables-system.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Azure (cloud)</h3>
+<h3>Campagne de malwares npm utilisant le code Shai-Hulud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Azure permettent à un attaquant de provoquer des problèmes de sécurité non spécifiés. Ces failles affectent plusieurs services cloud, dont Azure Backup et AKS. Microsoft a déployé des correctifs, mais aucune CVE n'a été attribuée.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0571/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Quatre packages npm malveillants (chalk-tempalte, @deadcode09284814/axios-util, etc.) diffusent des infostealers et un bot DDoS Phantom, inspirés du malware Shai-Hulud. Plus de 1 000 téléchargements impactés. Criticité : **Élevée**. Suppression recommandée des packages suspects.</p>
+<a href="https://thehackernews.com/2026/05/four-malicious-npm-packages-deliver.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Centreon (supervision IT)</h3>
+<h3>Fuite de données critique chez Grafana via token GitHub volé</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Centreon permettent une exécution de code arbitraire à distance (RCE), une injection SQL (SQLi) et une injection de code indirecte à distance (XSS). Ces failles affectent les versions antérieures à 22.10.18. Un correctif urgent est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0572/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Grafana confirme une intrusion via un token GitHub volé, permettant aux attaquants de voler son code source. Le groupe Coinbase Cartel (lié à ShinyHunters) revendique l'attaque. Criticité : **Élevée**. Rotation immédiate des tokens recommandée.</p>
+<a href="https://www.securityweek.com/grafana-confirms-breach-after-hackers-claim-they-stole-data/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Mardi 13 Mai 2026</h2>
-<h3>Multiples vulnérabilités critiques dans HPE Aruba Networking (réseaux)</h3>
+<h3>Vulnérabilités "Claw Chain" dans OpenClaw (IA)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits HPE Aruba Networking permettent une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une atteinte à la confidentialité des données. Ces failles affectent les contrôleurs de réseau et les points d'accès. Un correctif est disponible via les mises à jour ArubaOS.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0573/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Quatre vulnérabilités (CVE-2026-3303 à CVE-2026-3306) dans le framework OpenClaw permettent le vol de credentials, l'échappement du sandbox et l'installation de backdoors. Criticité : **Élevée**. Un correctif est disponible via la dernière version.</p>
+<a href="https://www.securityweek.com/claw-chain-openclaw-flaws-allow-sandbox-escape-backdoor-delivery/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Google Chrome</h3>
+<h3>Exploitation active d'une faille critique NGINX</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Google Chrome permettent à un attaquant de provoquer des problèmes de sécurité non spécifiés. Ces failles affectent les versions antérieures à 125.0.6422.60. Un correctif est disponible via les mises à jour automatiques de Chrome.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0574/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3307) dans NGINX permet un DoS par défaut et une exécution de code à distance si ASLR est désactivé. Exploitation en cours. Criticité : **Critique**. Un patch est disponible dans NGINX 1.25.5+.</p>
+<a href="https://www.securityweek.com/exploitation-of-critical-nginx-vulnerability-begins/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités critiques dans Fortinet (pare-feu et sécurité réseau)</h3>
+<h3>Opération Ramz : 201 arrestations pour cybercriminalité en MENA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Fortinet permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service (DoS). Ces failles affectent FortiOS, FortiProxy et FortiManager. Un correctif est disponible via les mises à jour Fortinet.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0575/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : INTERPOL coordonne une opération transnationale (13 pays) ciblant les réseaux de phishing et malwares, avec 201 arrestations et 382 suspects identifiés. Criticité : **Informationnelle**. Impact opérationnel majeur.</p>
+<a href="https://thehackernews.com/2026/05/interpol-operation-ramz-disrupts-mena.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités critiques dans Ivanti (solutions de gestion IT)</h3>
+<h3>Fuite de clés AWS GovCloud par un administrateur CISA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Ivanti permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et une atteinte à la confidentialité des données. Ces failles affectent Ivanti Connect Secure et Policy Secure. Un correctif est disponible via les mises à jour Ivanti.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0576/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité critique dans Xen (hyperviseur)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Xen permet à un attaquant d'obtenir une élévation de privilèges via l'exploitation d'une faille dans le gestionnaire de mémoire. Cette faille affecte les versions antérieures à 4.18.1. Un correctif est disponible via les mises à jour Xen.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0579/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités critiques dans Adobe (suite logicielle)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Adobe permettent une exécution de code arbitraire à distance (RCE), un déni de service (DoS) et une atteinte à l'intégrité des données. Ces failles affectent Adobe Acrobat, Reader et Creative Cloud. Un correctif est disponible via les mises à jour Adobe.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0580/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exploitation active de CVE-2026-42897 dans Microsoft Exchange Server</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-42897 dans Microsoft Exchange Server permet une injection de code indirecte à distance (XSS) et un contournement de la politique de sécurité. Cette faille est activement exploitée en attaque zero-day. Un correctif est disponible via les mises à jour Microsoft Exchange d'urgence.</p>
-<a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-005/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Jeudi 15 Mai 2026</h2>
-<h3>Zero-day "MiniPlasma" dans Windows (élévation de privilèges SYSTEM)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un exploit zero-day nommé "MiniPlasma" permet à un attaquant d'obtenir des privilèges SYSTEM sur des systèmes Windows 11 et Windows Server 2022 entièrement patchés. Un proof-of-concept (PoC) a été publié, mais aucun correctif n'est encore disponible. Une mitigation consiste à limiter les privilèges des utilisateurs.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/new-windows-miniplasma-zero-day-exploit-gives-system-access-poc-released/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Faille critique dans Cisco SD-WAN (score CVSS 10/10)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA impose un correctif urgent pour une faille critique dans Cisco SD-WAN (CVE-2026-20182, score CVSS 10/10) permettant une exécution de code arbitraire à distance. Les systèmes non patchés doivent être mis à jour avant dimanche 18 mai 2026 pour éviter une exploitation massive.</p>
-<a href="https://www.zataz.com/cisco-sd-wan-alerte-et-faille-a-corriger-avant-dimanche/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>Attaque supply chain via le package npm node-ipc</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des versions compromises du package npm node-ipc (versions 10.1.1 à 11.1.0) contiennent un malware permettant le vol de credentials. Cette attaque supply chain cible les développeurs utilisant ce package pour l'inter-process communication. Un correctif est disponible via la version 11.1.1.</p>
-<a href="https://www.bleepingcomputer.com/news/security/popular-node-ipc-npm-package-compromised-to-steal-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Exploitation active de vulnérabilités dans Funnel Builder (WordPress)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans le plugin WordPress Funnel Builder est activement exploitée pour injecter du JavaScript malveillant dans les pages de paiement WooCommerce, permettant le vol de données de cartes bancaires. Un correctif est disponible via la mise à jour vers la version 3.4.1.</p>
-<a href="https://www.bleepingcomputer.com/news/security/funnel-builder-wordpress-plugin-bug-exploited-to-steal-credit-cards/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilités zero-day exploitées lors de Pwn2Own Berlin 2026</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Lors du Pwn2Own Berlin 2026, des chercheurs ont exploité 15 zero-days dans Windows 11, Microsoft Exchange et Red Hat Enterprise Linux, permettant des attaques RCE et l'élévation de privilèges. Ces vulnérabilités ont été signalées aux éditeurs pour correction.</p>
-<a href="https://www.bleepingcomputer.com/news/security/pwn2own-day-two-hackers-demo-microsoft-exchange-windows-11-red-had-enterprise-linux-zero-days/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Vendredi 16 Mai 2026</h2>
-<h3>Attaque par phishing "Tycoon2FA" ciblant Microsoft 365</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le kit de phishing Tycoon2FA a été mis à jour pour inclure des attaques par code de périphérique (device-code phishing), permettant le vol de comptes Microsoft 365. Les attaquants abusent des URLs de suivi Trustifi pour contourner les protections. Une sensibilisation des utilisateurs est recommandée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/tycoon2fa-hijacks-microsoft-365-accounts-via-device-code-phishing/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Compromission du plugin Avada Builder (WordPress)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans le plugin Avada Builder (1 million d'installations) permettent aux attaquants de lire des fichiers arbitraires et d'extraire des données sensibles depuis la base de données. Un correctif est disponible via la mise à jour vers la version 3.8.1.</p>
-<a href="https://www.bleepingcomputer.com/news/security/avada-builder-wordpress-plugin-flaws-allow-site-credential-theft/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite du gang ransomware "The Gentlemen"</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La fuite des données du gang ransomware "The Gentlemen" révèle leurs méthodes d'attaque, y compris l'utilisation de ransomwares double extorsion et des risques en chaîne pour les entreprises et leurs clients. Cette fuite pourrait entraîner une augmentation des attaques ciblées.</p>
-<a href="https://www.zataz.com/un-gang-de-ransomware-piege-par-sa-propre-fuite/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>Transformation du backdoor Kazuar en botnet P2P par des hackers russes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe russe Secret Blizzard a transformé le backdoor Kazuar en un botnet P2P modulaire, améliorant sa persistance, sa furtivité et ses capacités de collecte de données. Cette évolution rend l'infrastructure plus résiliente aux takedowns.</p>
-<a href="https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 17 Mai 2026</h2>
-<h3>Microsoft Edge cesse de charger les mots de passe en clair en mémoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft met à jour Edge pour empêcher le chargement des mots de passe sauvegardés en clair dans la mémoire du processus au démarrage, une pratique jugée "par conception" mais désormais corrigée. Cette mesure réduit les risques de vol de credentials via des attaques mémoire.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-edge-to-stop-loading-cleartext-passwords-in-memory-on-startup/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un contrat de CISA a exposé publiquement des clés AWS GovCloud et des accès internes via un dépôt GitHub. Criticité : **Élevée**. Rotation immédiate des credentials et audit des accès recommandés.</p>
+<a href="https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/" class="btn-source" target="_blank">🔗 Lire sur Krebs on Security</a>
 </div>
         </div>
     </div>

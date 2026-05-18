@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 11/05/2026 au 18/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 18/05/2026 au 19/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 11/05/2026 au 18/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 19/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,122 +75,53 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Vendredi 11 Mai 2026</h2>
-<h3>Mini Shai-Hulud Worm compromet TanStack, Mistral AI et d'autres packages</h3>
+            <h2>Dimanche 18 Mai 2026</h2>
+<h3>Microsoft Cloud-Initiated Driver Recovery pour Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe TeamPCP a compromis plusieurs packages npm et PyPI (TanStack, Mistral AI, Guardrails AI) via une campagne Mini Shai-Hulud, intégrant un malware dans des bibliothèques populaires. Une menace majeure pour les pipelines CI/CD et les environnements de développement.</p>
-<a href="https://thehackernews.com/2026/05/mini-shai-hulud-worm-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft introduit "Cloud-Initiated Driver Recovery" dans Windows Update pour automatiser la réparation des pilotes défectueux, réduisant ainsi les interventions manuelles des administrateurs système. Cette solution cloud-based permet de détecter et corriger les incompatibilités sans redémarrage forcé.</p>
+<a href="https://www.it-connect.fr/microsoft-veut-mettre-fin-aux-pilotes-foireux-sur-windows-grace-au-cloud/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>cPanel CVE-2026-41940 exploitée pour déployer un backdoor Filemanager</h3>
+<h3>MiniPlasma : Zero-Day Windows avec privilèges SYSTEM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille critique CVE-2026-41940 dans cPanel est activement exploitée par le groupe Mr_Rot13 pour installer un backdoor nommé Filemanager. Une urgence pour les hébergeurs et administrateurs de serveurs web.</p>
-<a href="https://thehackernews.com/2026/05/cpanel-cve-2026-41940-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La faille zero-day "MiniPlasma" permet une élévation de privilèges SYSTEM sur des systèmes Windows 11 à jour, exploitable via des outils comme Chaotic Eclipse. Les administrateurs doivent appliquer les correctifs urgents ou désactiver les services vulnérables en attendant.</p>
+<a href="https://www.it-connect.fr/windows-11-la-faille-zero-day-miniplasma-donne-les-privileges-system/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Hackers utilisent l'IA pour développer une faille 2FA zero-day</h3>
+<h3>YellowKey : Exploit BitLocker via accès physique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a identifié un acteur menaçant utilisant une faille zero-day 2FA développée via IA, marquant la première exploitation en conditions réelles. Une évolution critique pour les politiques de sécurité des entreprises.</p>
-<a href="https://thehackernews.com/2026/05/hackers-used-ai-to-develop-first-known.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La faille "YellowKey" contourne les protections BitLocker par accès physique au système, nécessitant une intervention manuelle pour être exploitée. Les administrateurs doivent renforcer la sécurité physique des postes et surveiller les tentatives d’accès non autorisées.</p>
+<a href="https://www.schneier.com/blog/archives/2026/05/zero-day-exploit-against-windows-bitlocker.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<hr />
-<h2>Samedi 12 Mai 2026</h2>
-<h3>RubyGems suspend les inscriptions après une attaque massive</h3>
+<h3>Pwn2Own Berlin 2026 : 47 failles zero-day découvertes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : RubyGems a temporairement bloqué les nouveaux comptes après l'injection de centaines de packages malveillants. Une menace directe pour les environnements Ruby et les pipelines DevOps.</p>
-<a href="https://thehackernews.com/2026/05/rubygems-suspends-new-signups-after.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : L’édition 2026 du Pwn2Own a révélé 47 vulnérabilités zero-day dans VMware, Windows, des outils IA et d’autres technologies critiques. Les administrateurs doivent prioriser les mises à jour des solutions concernées pour éviter les exploits en production.</p>
+<a href="https://www.it-connect.fr/pwn2own-berlin-2026-47-failles-zero-day-decouvertes-dans-vmware-windows-des-outils-ia-etc/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Exim corrige une vulnérabilité BDAT critique</h3>
+<h3>Firefox 151 : API Document Picture-in-Picture</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Exim a publié des correctifs pour une faille BDAT (CVE-2026-XXXX) permettant une corruption mémoire et une exécution de code potentiel. Une priorité pour les serveurs de messagerie.</p>
-<a href="https://thehackernews.com/2026/05/new-exim-bdat-vulnerability-exposes.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Firefox 151 introduit une API Document Picture-in-Picture pour afficher des éléments HTML en fenêtre flottante, améliorant l’expérience utilisateur et la productivité. Les développeurs web peuvent l’intégrer pour des interfaces plus dynamiques.</p>
+<a href="https://www.phoronix.com/news/Firefox-151" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h2>Dimanche 13 Mai 2026</h2>
-<h3>Microsoft corrige 138 vulnérabilités, dont des RCE DNS et Netlogon</h3>
+<h3>Linux 7.2 : OPENAT2_REGULAR pour éviter les attaques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le Patch Tuesday de mai 2026 inclut 30 correctifs critiques (CVSS 9-10) pour Windows, Exchange et Active Directory. Une mise à jour obligatoire pour tous les administrateurs Windows.</p>
-<a href="https://thehackernews.com/2026/05/microsoft-patches-138-vulnerabilities.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Linux 7.2 introduit le flag OPENAT2_REGULAR pour sécuriser l’appel système openat2 contre les attaques par tromperie de programmes sécurisés. Les administrateurs doivent tester cette mise à jour pour éviter les régressions dans les environnements critiques.</p>
+<a href="https://www.phoronix.com/news/Linux-7.2-OPENAT2_REGULAR" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h3>Google ajoute des logs d'intrusion pour l'analyse de spyware Android</h3>
+<h3>AMD Lemonade SDK 10.5 : IA locale sur macOS et ROCm 7.13</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Android introduit un mode "Intrusion Logging" pour stocker des logs forensiques, utile pour analyser les attaques de spyware avancées. Une fonctionnalité clé pour les équipes SOC.</p>
-<a href="https://thehackernews.com/2026/05/android-adds-intrusion-logging-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : AMD annonce la version GA de son SDK Lemonade pour l’IA locale sur macOS, intégrant ROCm 7.13. Les administrateurs peuvent déployer des modèles d’IA optimisés sur GPU/NPU pour des workloads locaux, réduisant la dépendance au cloud.</p>
+<a href="https://www.phoronix.com/news/Lemonade-SDK-10.5-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h2>Lundi 14 Mai 2026</h2>
-<h3>Cisco SD-WAN Controller vulnérable à un bypass d'authentification (CVE-2026-20182)</h3>
+<h3>Intel Xe : Support multi-SKU pour Crescent Island</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVSS 10.0) dans Cisco Catalyst SD-WAN permet un accès admin non autorisé. CISA l'a ajoutée à son catalogue KEV, imposant une correction sous 14 jours.</p>
-<a href="https://thehackernews.com/2026/05/cisco-catalyst-sd-wan-controller-auth.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>TanStack victime d'une attaque supply chain (Mini Shai-Hulud)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux appareils d'employés OpenAI ont été compromis via une attaque sur TanStack. Une menace pour les environnements Node.js et les pipelines CI/CD.</p>
-<a href="https://thehackernews.com/2026/05/tanstack-supply-chain-attack-hits-two.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Fragnesia : nouvelle faille Linux offrant un accès root</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Fragnesia (CVE-2026-46300) exploite une corruption de cache de pages pour escalader les privilèges. La troisième faille critique du noyau Linux en deux semaines.</p>
-<a href="https://thehackernews.com/2026/05/new-fragnesia-linux-kernel-lpe-grants.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 15 Mai 2026</h2>
-<h3>Exchange Server CVE-2026-42897 exploitée via emails malveillants</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft confirme l'exploitation active de CVE-2026-42897, une faille de spoofing XSS dans Exchange Server. Une urgence pour les environnements on-premise.</p>
-<a href="https://thehackernews.com/2026/05/on-prem-microsoft-exchange-server-cve.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>OpenAI lance Daybreak pour la détection de vulnérabilités</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Daybreak combine GPT-5.5 et Codex Security pour identifier et corriger les vulnérabilités avant exploitation. Une solution DevSecOps révolutionnaire.</p>
-<a href="https://thehackernews.com/2026/05/openai-launches-daybreak-for-ai-powered.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Turla transforme Kazuar en botnet P2P modulaire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe russe Turla a modernisé son backdoor Kazuar en un botnet P2P pour une persistance accrue. Une menace avancée pour les infrastructures critiques.</p>
-<a href="https://thehackernews.com/2026/05/turla-turns-kazuar-backdoor-into.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mercredi 16 Mai 2026</h2>
-<h3>NGINX CVE-2026-42945 exploitée en conditions réelles</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVSS 9.2) dans NGINX Plus/Open permet une overflow de heap et un RCE non authentifié. Exploitée dès sa publication.</p>
-<a href="https://thehackernews.com/2026/05/nginx-cve-2026-42945-exploited-in-wild.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Funnel Builder exploité pour injecter du JavaScript malveillant</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans le plugin WordPress Funnel Builder permet d'injecter du code sur les pages de paiement WooCommerce pour voler des données bancaires.</p>
-<a href="https://thehackernews.com/2026/05/funnel-builder-flaw-under-active.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Jeudi 17 Mai 2026</h2>
-<h3>Grafana révèle une fuite de token GitHub et une tentative d'extorsion</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un acteur non autorisé a accédé au dépôt GitHub de Grafana et tenté d'extorquer l'entreprise. Aucune donnée client n'a été compromise.</p>
-<a href="https://thehackernews.com/2026/05/grafana-github-token-breach-led-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le pilote Intel Xe Linux supporte désormais plusieurs SKU de Crescent Island (CRI), améliorant la compatibilité avec les accélérateurs graphiques récents. Les administrateurs doivent mettre à jour les noyaux Linux pour bénéficier de ces optimisations matérielles.</p>
+<a href="https://www.phoronix.com/news/Intel-Xe-Multi-Crescent-Island" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
