@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 18/05/2026 au 19/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 18/05/2026 au 20/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 19/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 20/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,65 +75,145 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 18 Mai 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Microsoft Edge</h3>
+            <h2>Lundi 18 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques découvertes dans Microsoft Edge permettent une exécution de code arbitraire à distance (CVE-2026-3296, CVE-2026-3297, CVE-2026-3298), un contournement de la politique de sécurité (CVE-2026-3299) et des problèmes non spécifiés (CVE-2026-3300). Les systèmes affectés incluent toutes les versions de Microsoft Edge. Criticité : **Critique**. Un correctif est disponible via Windows Update.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant une exécution de code arbitraire à distance (RCE), un contournement de la politique de sécurité et des problèmes non spécifiés par l'éditeur. Ces failles pourraient être exploitées pour compromettre des systèmes utilisateurs via des attaques ciblées ou des campagnes massives.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0607/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploit disponible pour une élévation de privilèges Linux (DirtyDecrypt)</h3>
+<hr />
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un exploit fonctionnel (PoC) est désormais disponible pour la vulnérabilité DirtyDecrypt (CVE-2026-3301) dans le module rxgk du noyau Linux, permettant une élévation de privilèges SYSTEM. Les systèmes vulnérables incluent les distributions Linux utilisant des noyaux récents. Criticité : **Élevée**. Un patch est disponible dans les noyaux Linux 6.8+.</p>
-<a href="https://www.bleepingcomputer.com/news/security/exploit-available-for-new-dirtydecrypt-linux-root-escalation-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles de sécurité non documentées ont été identifiées dans Microsoft Azure Linux, exposant potentiellement les infrastructures cloud à des risques d'élévation de privilèges ou de fuites de données. L'éditeur n'a pas précisé la nature exacte des vulnérabilités, mais leur criticité justifie une attention immédiate.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0608/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Zero-Day critique dans Microsoft Exchange (CVE-2026-42897)</h3>
+<hr />
+<h3>Microsoft Exchange Zero-Day sous attaque active (CVE-2026-42897)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité XSS non corrigée (CVE-2026-42897) dans Microsoft Exchange permet aux attaquants de compromettre les boîtes mail OWA. Exploitée activement en campagne ciblée. Criticité : **Critique**. Aucun patch disponible à ce jour.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité zero-day non patchée (CVE-2026-42897) dans Microsoft Exchange, de type XSS, est activement exploitée pour compromettre les boîtes mail via Outlook Web Access (OWA). Les attaquants peuvent ainsi accéder à des informations sensibles sans authentification préalable.</p>
 <a href="https://www.darkreading.com/vulnerabilities-threats/microsoft-exchange-zero-day-no-patch" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>MiniPlasma : Zero-Day Windows permettant une élévation SYSTEM</h3>
+<hr />
+<h3>MiniPlasma : Zero-Day Windows permettant une élévation de privilèges SYSTEM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau zero-day (CVE-2026-3302) nommé MiniPlasma permet une élévation de privilèges SYSTEM sur des systèmes Windows 10/11 et Server 2022 entièrement patchés. Exploit PoC publié par Chaotic Eclipse. Criticité : **Critique**. Aucun correctif disponible.</p>
+<p><strong>Résumé</strong> : Un chercheur en sécurité a publié un PoC pour MiniPlasma (CVE non attribué), une faille zero-day dans Windows permettant aux attaquants d'obtenir des privilèges SYSTEM sur des systèmes entièrement patchés. Cette vulnérabilité s'ajoute à une série de failles critiques révélées récemment.</p>
 <a href="https://thehackernews.com/2026/05/miniplasma-windows-0-day-enables-system.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Campagne de malwares npm utilisant le code Shai-Hulud</h3>
+<hr />
+<h3>Nouvelle vague de malwares npm "Shai-Hulud" : 600+ paquets compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Quatre packages npm malveillants (chalk-tempalte, @deadcode09284814/axios-util, etc.) diffusent des infostealers et un bot DDoS Phantom, inspirés du malware Shai-Hulud. Plus de 1 000 téléchargements impactés. Criticité : **Élevée**. Suppression recommandée des packages suspects.</p>
-<a href="https://thehackernews.com/2026/05/four-malicious-npm-packages-deliver.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une campagne d'attaque supply-chain majeure a compromis plus de 600 paquets npm dans le cadre de l'onde "Shai-Hulud", incluant des infostealers et des variantes de ransomwares. Les attaquants exploitent des comptes de mainteneurs légitimes pour diffuser des charges malveillantes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-shai-hulud-malware-wave-compromises-600-npm-packages/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données critique chez Grafana via token GitHub volé</h3>
+<hr />
+<h3>SHub Reaper : Infostealer macOS se faisant passer pour des mises à jour Apple</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Grafana confirme une intrusion via un token GitHub volé, permettant aux attaquants de voler son code source. Le groupe Coinbase Cartel (lié à ShinyHunters) revendique l'attaque. Criticité : **Élevée**. Rotation immédiate des tokens recommandée.</p>
-<a href="https://www.securityweek.com/grafana-confirms-breach-after-hackers-claim-they-stole-data/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une nouvelle variante du malware SHub (SHub Reaper) utilise des messages de fausses mises à jour de sécurité pour macOS, exploitant AppleScript pour installer un backdoor. Les victimes sont incitées à exécuter des installateurs frauduleux via des liens ou des pièces jointes.</p>
+<a href="https://www.darkreading.com/threat-intelligence/stealer-spoofs-google-microsoft-apple-backdoors-macos" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Vulnérabilités "Claw Chain" dans OpenClaw (IA)</h3>
+<hr />
+<h3>Opération Ramz : INTERPOL démantèle des réseaux cybercriminels au Moyen-Orient</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Quatre vulnérabilités (CVE-2026-3303 à CVE-2026-3306) dans le framework OpenClaw permettent le vol de credentials, l'échappement du sandbox et l'installation de backdoors. Criticité : **Élevée**. Un correctif est disponible via la dernière version.</p>
-<a href="https://www.securityweek.com/claw-chain-openclaw-flaws-allow-sandbox-escape-backdoor-delivery/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une opération internationale menée par INTERPOL a conduit à l'arrestation de 201 individus et à l'identification de 382 suspects dans 13 pays du Moyen-Orient et d'Afrique du Nord. Les cibles incluaient des serveurs de malware et des infrastructures de phishing.</p>
+<a href="https://www.bleepingcomputer.com/news/security/interpol-operation-ramz-seizes-53-malware-phishing-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation active d'une faille critique NGINX</h3>
+<hr />
+<h3>Fraude aux billets BTS : ZATAZ alerte sur des faux sites avant les concerts de juillet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-3307) dans NGINX permet un DoS par défaut et une exécution de code à distance si ASLR est désactivé. Exploitation en cours. Criticité : **Critique**. Un patch est disponible dans NGINX 1.25.5+.</p>
-<a href="https://www.securityweek.com/exploitation-of-critical-nginx-vulnerability-begins/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une campagne de phishing ciblant les fans de BTS a été identifiée, avec des faux sites de vente de billets pour les concerts en France. Les attaquants exploitent l'engouement pour la K-Pop afin de voler des informations bancaires ou des identités.</p>
+<a href="https://www.zataz.com/fraude-aux-billets-bts-lalerte-cyber-monte-avant-le-concert-de-juillet/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>Opération Ramz : 201 arrestations pour cybercriminalité en MENA</h3>
+<hr />
+<h3>ChimeraZ revendique des fuites massives dans le secteur du tourisme français</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : INTERPOL coordonne une opération transnationale (13 pays) ciblant les réseaux de phishing et malwares, avec 201 arrestations et 382 suspects identifiés. Criticité : **Informationnelle**. Impact opérationnel majeur.</p>
-<a href="https://thehackernews.com/2026/05/interpol-operation-ramz-disrupts-mena.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe de ransomware ChimeraZ affirme avoir compromis des bases de données sensibles du secteur touristique français, revendiquant la vente d'informations et annonçant de nouvelles fuites. Ces attaques pourraient impacter des millions de clients et employés du secteur.</p>
+<a href="https://www.zataz.com/chimeraz-le-pirate-qui-cible-le-tourisme-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>Fuite de clés AWS GovCloud par un administrateur CISA</h3>
+<hr />
+<h3>Vulnérabilité critique dans ChromaDB (CVE non attribué) : RCE et prise de contrôle de serveurs</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un contrat de CISA a exposé publiquement des clés AWS GovCloud et des accès internes via un dépôt GitHub. Criticité : **Élevée**. Rotation immédiate des credentials et audit des accès recommandés.</p>
-<a href="https://krebsonsecurity.com/2026/05/cisa-admin-leaked-aws-govcloud-keys-on-github/" class="btn-source" target="_blank">🔗 Lire sur Krebs on Security</a>
+<p><strong>Résumé</strong> : Une faille de gravité maximale dans ChromaDB (Python FastAPI) permet une exécution de code arbitraire à distance sans authententification, exposant les serveurs d'applications IA à des prises de contrôle complètes. Aucun correctif n'est encore disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/max-severity-flaw-in-chromadb-for-ai-apps-allows-server-hijacking/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Mardi 19 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans GLPI</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans GLPI (CVE non attribuées) permettent une atteinte à la confidentialité des données et un contournement des politiques de sécurité. Ces vulnérabilités pourraient être exploitées pour accéder à des informations sensibles ou élever des privilèges.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0609/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilité dans Microsoft Azure permettant une élévation de privilèges</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille non documentée dans Microsoft Azure permet aux attaquants d'élever leurs privilèges au sein des environnements cloud. Bien que les détails restent limités, cette vulnérabilité est considérée comme critique pour les infrastructures Azure.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0611/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Drupal publie des correctifs urgents pour une faille critique (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Drupal annonce une mise à jour critique pour son cœur (CVE non attribuée) le 20/05/2026, avec un risque élevé d'exploitation rapide. Les administrateurs sont invités à appliquer les correctifs dès leur disponibilité pour éviter des compromissions massives.</p>
+<a href="https://thehackernews.com/2026/05/drupal-to-release-urgent-core-security.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>SEPPMail Secure E-Mail Gateway : RCE et accès aux emails via vulnérabilités critiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans SEPPMail Secure E-Mail Gateway (CVE non attribuées) permettent une exécution de code à distance (RCE) et l'accès à des emails arbitraires. Ces failles exposent les entreprises utilisant cette solution à des risques de fuite de données massives.</p>
+<a href="https://thehackernews.com/2026/05/seppmail-secure-e-mail-gateway.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Nx Console 18.95.0 compromis : Extension VS Code distribuant un voleur de credentials</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La version 18.95.0 de l'extension Nx Console pour VS Code a été compromise et distribuée via le marketplace officiel. Le malware cible les développeurs pour voler des identifiants et exfiltrer des données sensibles via des commandes CI/CD.</p>
+<a href="https://thehackernews.com/2026/05/compromised-nx-console-18950-targeted.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>GitHub Actions supply-chain attack : Workflow compromis pour voler des credentials CI/CD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le workflow GitHub Actions "actions-cool/issues-helper" a été compromis pour exécuter du code malveillant et voler des credentials CI/CD. Toutes les versions taguées du workflow ont été affectées, exposant les pipelines de développement à des risques de compromission.</p>
+<a href="https://thehackernews.com/2026/05/github-actions-supply-chain-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Ivanti, Fortinet, SAP, VMware et n8n corrigent des failles RCE critiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs éditeurs (Ivanti, Fortinet, SAP, VMware, n8n) ont publié des correctifs pour des vulnérabilités critiques (ex: CVE-2026-8043 dans Ivanti Xtraction, CVSS 9.6) permettant une exécution de code arbitraire et un contournement d'authentification. Les correctifs sont disponibles.</p>
+<a href="https://thehackernews.com/2026/05/ivanti-fortinet-sap-vmware-n8n-patch.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Microsoft perturbe un service de signature de malware (Fox Tempest)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a démantelé un service de "malware-signing-as-a-service" (MSaaS) exploité par le groupe Fox Tempest, utilisé par des gangs de ransomware pour générer des certificats de signature frauduleux. Cette opération réduit significativement les capacités des attaquants à signer des malwares.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cybercrime-service-disrupted-for-abusing-microsoft-platform-to-sign-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Microsoft confirme des problèmes de patching dans les réseaux Windows restreints</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft admet des échecs de mise à jour dans les environnements Windows restreints après l'installation des mises à jour non critiques de janvier 2026. Les administrateurs sont invités à vérifier la compatibilité des correctifs avant déploiement.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-patching-issues-in-restricted-windows-networks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>7-Eleven confirme une fuite de données revendiquée par ShinyHunters</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La chaîne de magasins 7-Eleven a confirmé une fuite de données après une cyberattaque revendiquée par le groupe ShinyHunters. Les attaquants affirment avoir exfiltré des informations sensibles, bien que l'étendue exacte des données compromises reste à préciser.</p>
+<a href="https://www.bleepingcomputer.com/news/security/7-eleven-confirms-data-breach-claimed-by-the-shinyhunters-gang/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>

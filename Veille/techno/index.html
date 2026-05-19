@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 18/05/2026 au 19/05/2026</title>
+    <title>Veille Techno | Updates & Outils — 18/05/2026 au 20/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 19/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 20/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,53 +75,127 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 18 Mai 2026</h2>
+            <h2>Lundi 18 Mai 2026</h2>
 <h3>Microsoft Cloud-Initiated Driver Recovery pour Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft introduit "Cloud-Initiated Driver Recovery" dans Windows Update pour automatiser la réparation des pilotes défectueux, réduisant ainsi les interventions manuelles des administrateurs système. Cette solution cloud-based permet de détecter et corriger les incompatibilités sans redémarrage forcé.</p>
+<p><strong>Résumé</strong> : Microsoft introduit "Cloud-Initiated Driver Recovery" dans Windows Update pour résoudre automatiquement les problèmes de pilotes défectueux, réduisant ainsi les interventions manuelles et les temps d'arrêt. Cette solution cloud-based permet une récupération proactive des pilotes via une intégration directe avec Windows Update.</p>
 <a href="https://www.it-connect.fr/microsoft-veut-mettre-fin-aux-pilotes-foireux-sur-windows-grace-au-cloud/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>MiniPlasma : Zero-Day Windows avec privilèges SYSTEM</h3>
+<h3>Vulnérabilité MiniPlasma dans Windows 11</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille zero-day "MiniPlasma" permet une élévation de privilèges SYSTEM sur des systèmes Windows 11 à jour, exploitable via des outils comme Chaotic Eclipse. Les administrateurs doivent appliquer les correctifs urgents ou désactiver les services vulnérables en attendant.</p>
+<p><strong>Résumé</strong> : Une faille zero-day nommée MiniPlasma permet une élévation de privilèges SYSTEM sur des systèmes Windows 11 à jour. Cette vulnérabilité, révélée par Chaotic Eclipse, nécessite une attention immédiate pour les administrateurs système afin d'appliquer des correctifs ou des contournements.</p>
 <a href="https://www.it-connect.fr/windows-11-la-faille-zero-day-miniplasma-donne-les-privileges-system/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>YellowKey : Exploit BitLocker via accès physique</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La faille "YellowKey" contourne les protections BitLocker par accès physique au système, nécessitant une intervention manuelle pour être exploitée. Les administrateurs doivent renforcer la sécurité physique des postes et surveiller les tentatives d’accès non autorisées.</p>
-<a href="https://www.schneier.com/blog/archives/2026/05/zero-day-exploit-against-windows-bitlocker.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
 <h3>Pwn2Own Berlin 2026 : 47 failles zero-day découvertes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L’édition 2026 du Pwn2Own a révélé 47 vulnérabilités zero-day dans VMware, Windows, des outils IA et d’autres technologies critiques. Les administrateurs doivent prioriser les mises à jour des solutions concernées pour éviter les exploits en production.</p>
+<p><strong>Résumé</strong> : Lors du Pwn2Own Berlin 2026, 47 vulnérabilités zero-day ont été découvertes dans VMware, Windows, des outils d'IA et d'autres logiciels. Ces résultats soulignent l'importance de maintenir une veille active sur les correctifs de sécurité et les bonnes pratiques de sécurisation des infrastructures critiques.</p>
 <a href="https://www.it-connect.fr/pwn2own-berlin-2026-47-failles-zero-day-decouvertes-dans-vmware-windows-des-outils-ia-etc/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Firefox 151 : API Document Picture-in-Picture</h3>
+<h3>Attaque supply chain sur TanStack : OpenAI confirme un vol de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 151 introduit une API Document Picture-in-Picture pour afficher des éléments HTML en fenêtre flottante, améliorant l’expérience utilisateur et la productivité. Les développeurs web peuvent l’intégrer pour des interfaces plus dynamiques.</p>
+<p><strong>Résumé</strong> : OpenAI a subi une fuite de données suite à une attaque supply chain ciblant TanStack. Une mise à jour des applications Mac est requise avant le 12 juin 2026 pour corriger cette faille. Les administrateurs doivent vérifier l'intégrité des dépendances logicielles et appliquer les correctifs rapidement.</p>
+<a href="https://www.it-connect.fr/openai-confirme-un-vol-de-donnees-lie-a-une-attaque-supply-chain-sur-tanstack/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Patchs critiques pour Ivanti, Fortinet, SAP, VMware et n8n</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs éditeurs majeurs (Ivanti, Fortinet, SAP, VMware, n8n) ont publié des correctifs pour des vulnérabilités critiques permettant l'exécution de code arbitraire et l'escalade de privilèges. Les administrateurs doivent prioriser ces mises à jour pour protéger les infrastructures critiques.</p>
+<a href="https://thehackernews.com/2026/05/ivanti-fortinet-sap-vmware-n8n-patch.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilité DirtyDecrypt dans le noyau Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un PoC (Proof-of-Concept) pour la vulnérabilité DirtyDecrypt (CVE-2026-31635) a été publié, permettant une élévation locale de privilèges (LPE) dans le noyau Linux. Les administrateurs doivent appliquer le correctif disponible dans les noyaux récents pour éviter les exploitations.</p>
+<a href="https://thehackernews.com/2026/05/dirtydecrypt-poc-released-for-linux.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Ubuntu Core 26 : Live Kernel Patching et OTA Updates</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Ubuntu Core 26 introduit des fonctionnalités avancées de Live Kernel Patching et des améliorations des mises à jour OTA (Over-The-Air). Ces innovations simplifient la gestion des correctifs de sécurité et réduisent les temps d'arrêt pour les environnements embarqués et IoT.</p>
+<a href="https://www.phoronix.com/news/Ubuntu-Core-26" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Fedora retire les paquets Deepin Desktop</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Fedora retire les paquets Deepin Desktop en raison de préoccupations de sécurité persistantes et du manque d'activité de maintenance. Les administrateurs utilisant Fedora doivent migrer vers des alternatives de bureau plus maintenues et sécurisées.</p>
+<a href="https://www.phoronix.com/news/Fedora-Removing-Deepin" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Intel annonce les SKU EPYC 8005 Series (8 à 84 cœurs)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Intel a annoncé la série EPYC 8005 "Sorano", offrant des processeurs allant de 8 à 84 cœurs. Ces nouvelles SKU sont conçues pour les charges de travail intensives en calcul, offrant une meilleure performance et efficacité énergétique pour les centres de données et les environnements cloud.</p>
+<a href="https://www.phoronix.com/news/AMD-EPYC-8005-SKU-Table" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Firefox 151 : Document Picture-in-Picture API</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Firefox 151 introduit une nouvelle API Document Picture-in-Picture, permettant aux utilisateurs de détacher des parties d'une page web pour les afficher dans une fenêtre flottante. Cette fonctionnalité améliore l'expérience utilisateur et peut être utile pour les administrateurs système gérant des interfaces web complexes.</p>
 <a href="https://www.phoronix.com/news/Firefox-151" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h2>Mercredi 19 Mai 2026</h2>
+<h3>Grafana Labs refuse de payer une rançon après un vol de codebase sur GitHub</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Grafana Labs a subi une compromission de son compte GitHub, entraînant le vol de sa codebase par le groupe Coinbase Cartel. L'entreprise a choisi de ne pas payer la rançon, soulignant l'importance de la résilience et de la récupération après un incident de sécurité.</p>
+<a href="https://www.it-connect.fr/grafana-se-fait-voler-sa-codebase-sur-github-mais-refuse-de-payer-la-rancon-des-pirates/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>L'IA accélère la découverte de failles : +563% pour Chrome, +180% pour VMware</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'utilisation de l'IA dans la recherche de vulnérabilités a conduit à une explosion des CVE en 2026, avec une augmentation de 563% pour Chrome et 180% pour VMware. Les administrateurs doivent intégrer des outils de détection automatisée et des analyses de sécurité basées sur l'IA pour anticiper ces risques.</p>
+<a href="https://www.it-connect.fr/comment-ia-provoque-un-tsunami-historique-de-failles/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>KPMG déploie Claude pour 276 000 collaborateurs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : KPMG déploie l'IA générative Claude pour l'ensemble de ses collaborateurs mondiaux, intégrée à sa plateforme Digital Gateway. Cette initiative vise à améliorer la productivité et la collaboration dans les domaines fiscal, juridique et cybersécurité, offrant une solution scalable pour les grandes entreprises.</p>
+<a href="https://www.silicon.fr/business-1367/kpmg-deploie-claude-chez-ses-276-000-collaborateurs-227233" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Mistral AI renforce son portefeuille avec l'acquisition d'Emmi AI</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mistral AI acquiert Emmi AI, une startup autrichienne spécialisée dans la Physics AI, pour renforcer ses capacités dans l'IA industrielle. Cette acquisition positionne Mistral AI comme un acteur clé dans les applications industrielles de l'IA, offrant des solutions innovantes pour les secteurs exigeants.</p>
+<a href="https://www.silicon.fr/business-1367/mistral-ai-se-renforce-dans-lia-industrielle-avec-lacquisition-demmi-ai-227218" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Drupal publie des correctifs urgents de sécurité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Drupal annonce une mise à jour urgente de sécurité pour toutes ses branches supportées, avec un correctif prévu le 20 mai 2026. Les administrateurs sont invités à réserver du temps pour appliquer ces mises à jour rapidement, car des exploits pourraient être développés en quelques heures.</p>
+<a href="https://thehackernews.com/2026/05/drupal-to-release-urgent-core-security.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Akamai rachète LayerX pour sécuriser l'IA dans le navigateur</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Akamai acquiert LayerX, une startup israélienne spécialisée dans la sécurisation des interactions entre les utilisateurs et les outils d'IA générative dans les navigateurs. Ce rachat vise à renforcer la protection contre les menaces liées à l'IA dans les environnements web critiques.</p>
+<a href="https://www.silicon.fr/business-1367/akamai-rachete-layerx-pour-securiser-lia-dans-le-navigateur-227210" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>OpenBSD 7.9 : Support jusqu'à 255 cœurs x86_64 et WiFi 6</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenBSD 7.9 est disponible avec des améliorations significatives, notamment le support de jusqu'à 255 cœurs x86_64 et l'intégration du WiFi 6. Cette version est idéale pour les environnements nécessitant une sécurité robuste et des performances élevées, comme les serveurs et les appliances réseau.</p>
+<a href="https://www.phoronix.com/news/OpenBSD-7.9-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Vulnérabilités critiques dans SEPPMail Secure E-Mail Gateway</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans SEPPMail Secure E-Mail Gateway permettent l'exécution de code à distance (RCE) et l'accès arbitraire au trafic mail. Les administrateurs doivent appliquer les correctifs disponibles pour éviter les exploitations et protéger les communications sensibles.</p>
+<a href="https://thehackernews.com/2026/05/seppmail-secure-e-mail-gateway.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <h3>Linux 7.2 : OPENAT2_REGULAR pour éviter les attaques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Linux 7.2 introduit le flag OPENAT2_REGULAR pour sécuriser l’appel système openat2 contre les attaques par tromperie de programmes sécurisés. Les administrateurs doivent tester cette mise à jour pour éviter les régressions dans les environnements critiques.</p>
+<p><strong>Résumé</strong> : Linux 7.2 introduit l'OPENAT2_REGULAR, une nouvelle flag pour l'appel système openat2, conçue pour éviter de tromper les programmes sécurisés. Cette amélioration renforce la sécurité des systèmes Linux en limitant les risques d'exploitation liés aux appels système.</p>
 <a href="https://www.phoronix.com/news/Linux-7.2-OPENAT2_REGULAR" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>AMD Lemonade SDK 10.5 : IA locale sur macOS et ROCm 7.13</h3>
+<h3>Linux Kernel : API Rust pour les données non fiables</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD annonce la version GA de son SDK Lemonade pour l’IA locale sur macOS, intégrant ROCm 7.13. Les administrateurs peuvent déployer des modèles d’IA optimisés sur GPU/NPU pour des workloads locaux, réduisant la dépendance au cloud.</p>
-<a href="https://www.phoronix.com/news/Lemonade-SDK-10.5-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Intel Xe : Support multi-SKU pour Crescent Island</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le pilote Intel Xe Linux supporte désormais plusieurs SKU de Crescent Island (CRI), améliorant la compatibilité avec les accélérateurs graphiques récents. Les administrateurs doivent mettre à jour les noyaux Linux pour bénéficier de ces optimisations matérielles.</p>
-<a href="https://www.phoronix.com/news/Intel-Xe-Multi-Crescent-Island" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le noyau Linux travaille sur une API Rust pour gérer les données non fiables reçues depuis l'espace utilisateur. Cette initiative vise à améliorer la sécurité et la robustesse des systèmes Linux en utilisant les avantages du langage Rust pour la gestion des données sensibles.</p>
+<a href="https://www.phoronix.com/news/Linux-Kernel-Untrusted-Data-API" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
