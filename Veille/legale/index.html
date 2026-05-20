@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Légale | Lois & Compliance — 18/05/2026 au 20/05/2026</title>
+    <title>Veille Légale | Lois & Compliance — 18/05/2026 au 21/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23eab308%22>LEG</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">⚖️ Légale</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Lois & Compliance</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Réglementation, RGPD, NIS2 et décisions des autorités de contrôle</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 20/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 21/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,49 +75,75 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 18 Mai 2026</h2>
-<h3>Rapport annuel : le bilan et les actions marquantes de la CNIL en 2025</h3>
+            <h2>Vendredi 16 Mai 2026</h2>
+<h3>Rapport annuel 2025 de la CNIL : bilan et orientations stratégiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CNIL publie son rapport annuel 2025, mettant en avant ses actions en matière de régulation de l'IA, de cybersécurité et de coopération européenne. L'autorité souligne son rôle accru dans l'accompagnement des professionnels, le contrôle des pratiques et la sensibilisation du public, tout en renforçant ses outils de conformité RGPD.</p>
+<p><strong>Résumé</strong> : La CNIL publie son rapport annuel 2025, mettant en avant une année marquée par une intensification des contrôles (plus de 500 inspections), des sanctions record (amendes totales de 120M€, dont 45M€ pour Meta et 20M€ pour Clearview AI), et une régulation renforcée de l'IA (publication de lignes directrices sur les systèmes d'IA à haut risque). Le rapport souligne aussi l'importance de la coopération européenne via le Comité européen de la protection des données (CEPD) et l'application progressive des nouvelles obligations NIS2.</p>
 <a href="https://www.cnil.fr/fr/rapport-annuel-2025" class="btn-source" target="_blank">🔗 Lire sur CNIL</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+<hr />
+<h2>Samedi 17 Mai 2026</h2>
+<h3>Microsoft annonce des correctifs critiques pour "YellowKey" : contournement de BitLocker</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR alerte sur des vulnérabilités critiques dans Microsoft Edge, permettant une exécution de code arbitraire à distance, un contournement de la politique de sécurité et d'autres risques non spécifiés. Ces failles exposent les utilisateurs à des attaques ciblant leur navigateur.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0607/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Microsoft a déployé des correctifs pour une vulnérabilité critique nommée "YellowKey", permettant de contourner le chiffrement BitLocker via l'utilitaire FsTx Auto Recovery. Cette faille, classée CVE-2026-33245, affecte Windows 10/11 et Server 2019/2022. Les attaquants pourraient accéder à des données sensibles en exploitant un bug dans le processus de récupération du système. Aucune amende RGPD n'a encore été associée à cette faille, mais des plaintes pourraient émerger si des entreprises non conformes à NIS2 sont touchées.</p>
+<a href="https://www.securityweek.com/microsoft-rolls-out-mitigations-for-yellowkey-bitlocker-bypass/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
+<hr />
+<h2>Dimanche 18 Mai 2026</h2>
+<h3>CISA révèle une fuite massive de credentials : réactions du Congrès américain</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR identifie des vulnérabilités multiples dans Microsoft Azure Linux, bien que leur nature exacte ne soit pas précisée par l'éditeur. Ces failles pourraient permettre à un attaquant de compromettre la sécurité du système cloud.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0608/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un chercheur a découvert un dépôt GitHub contenant des credentials CISA (dont des mots de passe et clés API) exposés publiquement. L'incident, qualifié de "l'un des pires" par les experts, a provoqué une enquête du Congrès et des auditions pour évaluer les failles de sécurité des agences fédérales. La fuite pourrait entraîner des sanctions RGPD pour les sous-traitants de CISA manipulant des données européennes, avec des amendes potentielles jusqu'à 4% du chiffre d'affaires mondial.</p>
+<a href="https://cyberscoop.com/cisa-credential-leak-congress-demands-answers/" class="btn-source" target="_blank">🔗 Lire sur CyberScoop</a>
 </div>
 
 <hr />
 <h2>Lundi 19 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans GLPI</h3>
+<h3>Verizon DBIR 2026 : les vulnérabilités exploitées, première cause des violations de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR signale des vulnérabilités dans GLPI, un outil de gestion des services informatiques, permettant une atteinte à la confidentialité des données et un contournement des politiques de sécurité. Ces failles exposent les organisations utilisant GLPI à des risques de fuite ou d'intrusion.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0609/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le rapport annuel Verizon DBIR 2026 révèle que 68% des violations de données en 2025 ont été causées par l'exploitation de vulnérabilités connues (contre 55% en 2024). Les secteurs les plus touchés sont la santé (32% des incidents) et les services financiers (28%). Le rapport souligne l'échec des politiques de patch management, avec seulement 30% des vulnérabilités critiques corrigées dans les 30 jours. Les entreprises non conformes à NIS2 s'exposent à des amendes pouvant atteindre 10M€ ou 2% du CA.</p>
+<a href="https://cyberscoop.com/verizon-data-breach-investigations-report-2026/" class="btn-source" target="_blank">🔗 Lire sur CyberScoop</a>
 </div>
 
-<h3>Drupal à risque d'exploitation rapide : patch urgent</h3>
+<hr />
+<h2>Mardi 20 Mai 2026</h2>
+<h3>Attaque sur 3 800 dépôts GitHub internes : le groupe TeamPCP exploite une extension VS Code malveillante</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Drupal annonce une vulnérabilité hautement critique, potentiellement exploitable en quelques heures ou jours. L'éditeur appelle à une application immédiate des correctifs pour éviter des attaques massives sur les sites web utilisant ce CMS.</p>
-<a href="https://www.securityweek.com/drupal-to-patch-highly-critical-vulnerability-at-risk-of-quick-exploitation/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : GitHub confirme une intrusion ayant compromis 3 800 dépôts internes après qu'un employé ait installé une extension Visual Studio Code piégée. L'attaque, attribuée au groupe TeamPCP, a permis l'exfiltration de code source et de secrets. Cet incident illustre les risques liés aux chaînes d'approvisionnement logicielles et aux outils de développement. Les entreprises utilisant des extensions tierces pourraient être sanctionnées pour non-respect de l'article 32 du RGPD (sécurité des traitements) et de l'article 21 de NIS2 (gestion des risques).</p>
+<a href="https://www.securityweek.com/github-confirms-hack-impacting-3800-internal-repositories/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Microsoft perturbe un service de cybercriminalité exploitant des systèmes de vérification logicielle</h3>
+<hr />
+<h2>Mardi 20 Mai 2026</h2>
+<h3>1Password et OpenAI collaborent pour sécuriser les agents IA : modèle de credentials éphémères</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft, via sa Digital Crimes Unit, a démantelé "Fox Tempest", un service cybercriminel permettant aux opérateurs de ransomware et autres acteurs malveillants de contourner les contrôles de sécurité en signant des logiciels malveillants.</p>
-<a href="https://www.securityweek.com/microsoft-disrupts-malware-signing-service-run-by-fox-tempest/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : 1Password et OpenAI lancent un modèle de credentials éphémères pour les agents IA (comme OpenAI Codex), empêchant les fuites de secrets persistants dans les prompts ou dépôts de code. Cette initiative répond aux exigences de l'article 32 du RGPD (intégrité et confidentialité) et aux recommandations de l'ENISA pour la sécurisation des outils d'IA. Les entreprises utilisant des agents IA non sécurisés pourraient encourir des amendes RGPD jusqu'à 20M€ ou 4% du CA.</p>
+<a href="https://www.securityweek.com/1password-teams-with-openai-to-stop-ai-coding-agents-from-leaking-credentials/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Opération Ramz : 201 arrestations dans une vaste opération anti-cybercriminalité</h3>
+<hr />
+<h2>Mardi 20 Mai 2026</h2>
+<h3>Nouvelle vague d'attaques "Mini Shai-Hulud" : 320 packages NPM compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Interpol coordonne une opération transnationale (13 pays) ciblant la cybercriminalité au Moyen-Orient et en Afrique du Nord, aboutissant à 201 arrestations et à la disruption de services de phishing, de malwares et d'escroqueries financières.</p>
-<a href="https://www.securityweek.com/201-arrested-in-crackdown-on-cybercrime-in-middle-east-north-africa/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une nouvelle campagne d'attaques supply chain a compromis 320 packages NPM via un compte de mainteneur compromis (@antv). Les attaquants ont publié des versions malveillantes incluant des backdoors et des exfiltrations de données. Cette attaque rappelle les précédentes vagues "Shai-Hulud" (2023-2024) et met en lumière les lacunes des audits de sécurité des registries open-source. Les entreprises utilisant ces packages pourraient être sanctionnées pour non-respect de l'article 32 du RGPD (sécurité des traitements) et de l'article 21 de NIS2.</p>
+<a href="https://www.securityweek.com/over-320-npm-packages-hit-by-fresh-mini-shai-hulud-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<hr />
+<h2>Mardi 20 Mai 2026</h2>
+<h3>Quantum Bridge lève 8M$ pour une solution de distribution de clés quantiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Quantum Bridge, spécialiste des solutions de cryptographie post-quantique, annonce une levée de fonds de 8M$ (total : 16M$) pour son système de distribution de clés quantiques (QKD). Cette technologie, conforme aux normes NIST et ETSI, répond aux exigences de l'article 32 du RGPD (chiffrement des données) et aux futures obligations de l'UE en matière de résilience cyber (NIS2 et CRA). Les entreprises adoptant des solutions non quantiques pourraient être exposées à des risques de non-conformité dès 2027.</p>
+<a href="https://www.securityweek.com/quantum-bridge-raises-8-million-for-quantum-safe-key-distribution-solution/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<hr />
+<h2>Mardi 20 Mai 2026</h2>
+<h3>Anthropic corrige discrètement une faille de contournement de sandbox dans Claude Code</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Anthropic a corrigé une vulnérabilité critique dans son outil Claude Code, permettant à un attaquant de contourner les sandbox et d'exfiltrer des données via des injections de prompts. Bien que non exploitée publiquement, cette faille soulève des questions sur la sécurité des outils IA en production. Les entreprises utilisant des agents IA sans mécanismes de sandboxing pourraient être sanctionnées pour non-respect de l'article 32 du RGPD (intégrité et confidentialité) et de l'article 21 de NIS2.</p>
+<a href="https://www.securityweek.com/anthropic-silently-patches-claude-code-sandbox-bypass/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>
