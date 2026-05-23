@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 18/05/2026 au 23/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 18/05/2026 au 24/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 23/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 18/05/2026 au 24/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -78,86 +78,102 @@
             <h2>Lundi 19 Mai 2026</h2>
 <h3>Multiples vulnérabilités critiques dans Microsoft Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Windows, permettant une élévation de privilèges et un contournement de la politique de sécurité. Une preuve de concept (PoC) est déjà disponible publiquement, augmentant le risque d'exploitation active. Microsoft recommande une application immédiate des correctifs.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Microsoft Windows, permettant une élévation de privilèges et un contournement de la politique de sécurité. Une preuve de concept (PoC) est déjà disponible publiquement, augmentant le risque d'exploitation active. Microsoft n'a pas encore détaillé les CVE spécifiques, mais recommande une application immédiate des correctifs.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0622/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité critique dans Drupal (CVE-2026-9082)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique d'injection SQL (SQLi) affecte Drupal, spécifiquement lorsque PostgreSQL est utilisé comme SGBD. Les attaquants peuvent exploiter cette faille pour accéder à des données sensibles ou exécuter du code arbitraire. Un correctif est disponible, mais une exploitation active est déjà signalée.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique d'injection SQL (SQLi) affecte Drupal, identifiée sous le CVE-2026-9082. Elle cible uniquement les applications utilisant PostgreSQL comme SGBD. Les attaquants peuvent exploiter cette faille pour accéder à des données sensibles ou exécuter du code arbitraire. Drupal recommande une mise à jour urgente.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0629/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Max severity flaw in Cisco Secure Workload</h3>
+<h3>Exploitation active d'une faille zero-day dans Trend Micro Apex One</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco a corrigé une vulnérabilité de niveau maximal (CVSS 10.0) dans Secure Workload, permettant aux attaquants d'obtenir des privilèges d'administrateur de site. Cette faille, déjà exploitée en conditions réelles, nécessite une mise à jour urgente pour éviter des compromissions critiques.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-max-severity-secure-workload-flaw-gives-hackers-site-admin-privileges/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Trend Micro a corrigé une faille zero-day dans Apex One (CVE non attribué), actuellement exploitée dans des attaques ciblant les systèmes Windows. La vulnérabilité permet une exécution de code arbitraire à distance. Un correctif est disponible, mais les organisations doivent appliquer la mise à jour sans délai.</p>
+<a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-apex-one-zero-day-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mardi 20 Mai 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Microsoft Edge</h3>
+<h3>Multiples vulnérabilités critiques dans les produits Microsoft</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Microsoft Edge permettent une exécution de code arbitraire à distance et un contournement des politiques de sécurité. Ces failles, non détaillées par Microsoft, exposent les utilisateurs à des risques élevés d'attaques ciblées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0607/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Microsoft, dont certaines permettent une exécution de code arbitraire à distance (CVE-2026-41091 et autres). Ces failles combinent élévation de privilèges, déni de service et contournement de sécurité. Microsoft a publié des correctifs, mais une PoC est déjà publique.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0623/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploit en conditions réelles d'un zero-day dans Trend Micro Apex One</h3>
+<h3>Faille critique dans F5 NGINX (exécution de code et DoS)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trend Micro a corrigé un zero-day dans Apex One, exploité activement par des attaquants pour compromettre des systèmes Windows. Cette faille permet une exécution de code à distance sans authentification préalable, nécessitant une application immédiate des correctifs.</p>
-<a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-apex-one-zero-day-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans F5 NGINX permet une exécution de code arbitraire à distance et un déni de service (DoS). Aucune CVE spécifique n'est attribuée, mais l'impact est majeur pour les serveurs exposés. F5 a publié un correctif urgent, recommandé pour une application immédiate.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0619/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans les noyaux Linux (Debian, Ubuntu, Red Hat, SUSE)</h3>
+<h3>Multiples vulnérabilités dans Docker (exécution de code à distance)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs noyaux Linux (Debian, Ubuntu, Red Hat, SUSE) sont affectés par des vulnérabilités critiques permettant une élévation de privilèges, une atteinte à la confidentialité des données et des dénis de service. Ces failles, déjà exploitées, nécessitent une mise à jour urgente des systèmes concernés.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0636/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Docker a corrigé plusieurs vulnérabilités critiques permettant une exécution de code arbitraire à distance dans ses conteneurs. Aucune CVE spécifique n'est mentionnée, mais l'éditeur classe ces failles comme prioritaires. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0620/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mercredi 21 Mai 2026</h2>
-<h3>Zero-days exploités dans Microsoft Defender</h3>
+<h3>Attaques ciblant les télécoms avec des malwares Linux et Windows (Showboat et JFMBackdoor)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié des correctifs pour deux vulnérabilités zero-day dans Defender, déjà exploitées en attaques ciblées. Ces failles permettent une exécution de code arbitraire à distance, exposant les systèmes à des risques de compromission massive.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-warns-of-new-defender-zero-days-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne de cyberespionnage ciblant les opérateurs télécoms avec de nouveaux malwares</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de cyberespionnage attribuée à des acteurs chinois cible les opérateurs télécoms avec deux nouveaux malwares : Showboat (Linux) et JFMBackdoor (Windows). Ces outils permettent une persistance avancée et l'exfiltration de données sensibles.</p>
+<p><strong>Résumé</strong> : Une campagne d'espionnage chinoise cible les opérateurs télécoms avec deux nouveaux malwares : Showboat (Linux) et JFMBackdoor (Windows). Ces outils permettent une persistance avancée et l'exfiltration de données. Les organisations concernées doivent inspecter leurs systèmes pour détecter ces infections.</p>
 <a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-target-telcos-with-new-linux-windows-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de détails sur une faille non corrigée dans Chromium</h3>
+<h3>Vulnérabilité critique dans Cisco Secure Workload (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a accidentellement exposé des détails sur une faille non corrigée dans Chromium, permettant l'exécution de code JavaScript à distance même après la fermeture du navigateur. Cette faille, non patchée, expose les utilisateurs à des risques d'attaques persistantes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/google-accidentally-exposed-details-of-unfixed-chromium-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Cisco a corrigé une faille critique (CVE non attribuée) dans Secure Workload, permettant à un attaquant d'obtenir des privilèges d'administrateur de site (Site Admin). Cette vulnérabilité est classée comme maximale (CVSS 10.0). Un correctif est disponible, mais une exploitation active est suspectée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-max-severity-secure-workload-flaw-gives-hackers-site-admin-privileges/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données massive via LookUp : 79 millions d'entrées exposées</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un suspect a été arrêté pour trafic de données via LookUp, un outil lié au darkweb, exposant 79 millions d'entrées sensibles (identifiants, emails, etc.). Les données étaient monétisées via Telegram et des crypto-actifs. Cette affaire souligne l'ampleur des fuites de données non sécurisées.</p>
+<a href="https://www.zataz.com/lookup-un-suspect-arrete-pour-trafic-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
 <hr />
 <h2>Jeudi 22 Mai 2026</h2>
-<h3>Démantèlement de "First VPN", service utilisé dans des attaques par ransomware</h3>
+<h3>Démantèlement de First VPN, service utilisé dans des attaques de ransomware</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une opération internationale a permis le démantèlement de "First VPN", un service VPN utilisé pour masquer des activités cybercriminelles, notamment des attaques par ransomware et des vols de données. Plus de 5 000 comptes liés à des enquêtes ont été saisis.</p>
+<p><strong>Résumé</strong> : Une opération internationale a permis de saisir 33 serveurs et 5 000 comptes de First VPN, un service VPN utilisé pour masquer des activités cybercriminelles, dont des attaques de ransomware et des vols de données. L'administrateur conservait les données des clients, aggravant l'impact.</p>
 <a href="https://www.bleepingcomputer.com/news/security/police-seize-first-vpn-service-used-in-ransomware-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Arrestation de l'administrateur présumé du botnet Kimwolf</h3>
+<h3>Vulnérabilités critiques dans le noyau Linux (Red Hat, Debian, Ubuntu, SUSE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les autorités américaines et canadiennes ont arrêté et inculpé un Canadien pour avoir administré le botnet Kimwolf, infectant près de 2 millions d'appareils dans le monde. Ce botnet était utilisé pour des attaques DDoS massives.</p>
+<p><strong>Résumé</strong> : Plusieurs noyaux Linux (Red Hat, Debian, Ubuntu, SUSE) sont affectés par des vulnérabilités critiques permettant une élévation de privilèges, une exécution de code arbitraire et un DoS. Les CVE spécifiques varient selon les distributions, mais les correctifs sont disponibles. Une exploitation active est probable.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0640/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0637/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Debian)</a>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0638/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
+</div>
+
+<h3>Attaques par botnet Kimwolf : 2 millions de devices infectés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les autorités américaines et canadiennes ont arrêté un administrateur présumé du botnet Kimwolf, infectant près de 2 millions de devices pour des attaques DDoS. Ce réseau était utilisé pour des campagnes de déni de service et d'autres activités malveillantes. Une mise à jour des systèmes est cruciale.</p>
 <a href="https://www.bleepingcomputer.com/news/security/us-and-canada-arrest-and-charge-suspected-kimwolf-botnet-admin/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Ubiquiti UniFi OS</h3>
+<hr />
+<h2>Vendredi 23 Mai 2026</h2>
+<h3>Attaque par supply chain sur les packages Laravel Lang (malware voleur d'identifiants)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ubiquiti a corrigé trois vulnérabilités de niveau maximal dans UniFi OS, permettant une exécution de code à distance sans authentification. Ces failles affectent les appareils réseau et nécessitent une mise à jour immédiate pour éviter des compromissions.</p>
+<p><strong>Résumé</strong> : Une attaque par supply chain a compromis les packages Laravel Lang sur GitHub, distribuant un malware voleur d'identifiants via Composer. Les développeurs utilisant ces packages ont été exposés à des vols de credentials. Les versions malveillantes ont été retirées, mais une vérification est nécessaire.</p>
+<a href="https://www.bleepingcomputer.com/news/security/laravel-lang-packages-hijacked-to-deploy-credential-stealing-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Ubiquiti corrige trois vulnérabilités critiques dans UniFi OS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Ubiquiti a publié des correctifs pour trois vulnérabilités critiques (CVSS 10.0) dans UniFi OS, permettant une exécution de code à distance sans authentification. Ces failles affectent les appliances réseau de l'éditeur. Les organisations doivent appliquer les mises à jour immédiatement.</p>
 <a href="https://www.bleepingcomputer.com/news/security/ubiquiti-patches-three-max-severity-unifi-os-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Saisie de 800 serveurs liés à des cyberattaques aux Pays-Bas</h3>
+<h3>Fuite de données chez McDonald's France : fraudes sur les cartes fidélité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les autorités néerlandaises ont saisi 800 serveurs appartenant à une société d'hébergement web, utilisée pour faciliter des cyberattaques, des campagnes de désinformation et des opérations d'ingérence. Deux hommes ont été arrêtés dans le cadre de cette opération.</p>
-<a href="https://www.bleepingcomputer.com/news/security/netherlands-seizes-800-servers-of-hosting-firm-enabling-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : McDonald's France a subi une fuite de données affectant son programme de fidélité McDo+, exposant les clients à des fraudes. Les attaquants exploitent les données volées pour usurper des identités et effectuer des achats frauduleux. Une enquête est en cours pour identifier l'origine de la fuite.</p>
+<a href="https://www.zataz.com/mcdonalds-france-face-au-risque-fidelite-a-la-suite-dune-fuite-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
         </div>
     </div>
