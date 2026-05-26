@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 25/05/2026 au 26/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 25/05/2026 au 27/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 25/05/2026 au 26/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 25/05/2026 au 27/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,41 +76,84 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 25 Mai 2026</h2>
-<h3>Ghost CMS CVE-2026-26980 exploité pour pirater plus de 700 sites</h3>
+<h3>TrapDoor : Attaque par chaîne d'approvisionnement logiciel touchant npm, PyPI et Crates.io</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique d'injection SQL (CVE-2026-26980, CVSS 9.4) dans Ghost CMS est activement exploitée pour injecter du JavaScript malveillant et lancer des attaques ClickFix. Des sites majeurs comme ceux d'Harvard, Oxford et DuckDuckGo ont été compromis. Aucun correctif officiel n'est encore disponible à ce stade.</p>
-<a href="https://thehackernews.com/2026/05/ghost-cms-cve-2026-26980-exploited-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Kali365 : Une plateforme de phishing-as-a-service cible Microsoft 365</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le FBI alerte sur Kali365, une plateforme Phishing-as-a-Service (PhaaS) exploitant l'authentification OAuth via code appareil pour voler des tokens de session et contourner la MFA sur Microsoft 365. Cette méthode réduit les barrières pour les cybercriminels. Aucun patch n'est mentionné pour cette technique spécifique.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-warns-of-kali365-phishing-service-targeting-microsoft-365-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Lazarus déploie RemotePE, un RAT résident en mémoire contre les entreprises financières</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen Lazarus utilise RemotePE, un malware multiplateforme résident en mémoire, pour cibler les organisations financières et crypto. Ce RAT fait partie d'une chaîne d'attaque en plusieurs étapes. Aucun correctif spécifique n'est disponible, mais une détection via EDR/NDR est recommandée.</p>
-<a href="https://thehackernews.com/2026/05/lazarus-deploys-remotepe-memory-only.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>TrapDoor : Une attaque par chaîne d'approvisionnement touche npm, PyPI et Crates.io</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne coordonnée (TrapDoor) a distribué des packages malveillants sur npm, PyPI et Crates.io pour voler des identifiants. Plus de 34 packages infectés couvrant 384 versions ont été identifiés. Les victimes doivent vérifier leurs dépendances et appliquer les correctifs disponibles.</p>
+<p><strong>Résumé</strong> : Une campagne coordonnée nommée TrapDoor a ciblé les écosystèmes npm, PyPI et Crates.io pour distribuer des malwares volant des identifiants. Plus de 34 paquets malveillants répartis sur 384 versions ont été identifiés, avec une activité initiale enregistrée dès le 22 mai 2026. Les attaquants exploitent des packages apparemment légitimes pour infiltrer les environnements de développement.</p>
 <a href="https://thehackernews.com/2026/05/trapdoor-supply-chain-attack-spreads.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Mégaodon : Plus de 5 500 dépôts GitHub infectés par une attaque par chaîne d'approvisionnement</h3>
+<h3>CVE-2026-26980 : Exploitation massive de Ghost CMS pour des attaques ClickFix</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque par chaîne d'approvisionnement (Megalodon) a infecté plus de 5 500 dépôts GitHub via des commits automatisés malveillants. Ces commits injectaient des workflows GitHub Actions pour voler des identifiants, clés et tokens CI. Aucune solution globale n'est disponible, mais une revue des workflows est urgente.</p>
-<a href="https://www.securityweek.com/over-5500-github-repositories-infected-in-megalodon-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique d'injection SQL (CVE-2026-26980, CVSS 9.4) dans Ghost CMS est exploitée pour injecter du code JavaScript malveillant, compromettant plus de 700 sites web, dont ceux de Harvard, Oxford et DuckDuckGo. Les attaquants utilisent cette faille pour rediriger les visiteurs vers des campagnes ClickFix et voler des données sensibles.</p>
+<a href="https://www.securityweek.com/ghost-cms-vulnerability-exploited-to-hack-over-700-websites/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h2>Mardi 26 Mai 2026</h2>
-<h3>Pays-Bas saisis 800 serveurs et arrêtent 2 personnes pour soutien à des cyberattaques</h3>
+<h3>FBI : Plateforme Kali365 exploitant OAuth pour pirater Microsoft 365</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les autorités néerlandaises ont saisi 800 serveurs et arrêté deux individus pour avoir fourni une infrastructure IT utilisée par la Russie pour des cyberattaques, opérations d'influence et campagnes de désinformation au sein de l'UE. Aucune faille technique n'est associée à cette action.</p>
-<a href="https://krebsonsecurity.com/2026/05/netherlands-seizes-800-servers-arrests-2-for-aiding-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur Krebs on Security</a>
+<p><strong>Résumé</strong> : Le FBI alerte sur Kali365, une plateforme Phishing-as-a-Service (PhaaS) abusant de l'authentification OAuth via des codes de périphérique pour voler des tokens de session et contourner la MFA sur Microsoft 365. Cette méthode réduit la complexité des attaques et cible spécifiquement les comptes professionnels.</p>
+<a href="https://www.infosecurity-magazine.com/news/fbi-kali365-phishing-kit-m365/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+</div>
+
+<h3>Lazarus déploie RemotePE, un RAT multiplateforme contre les secteurs financier et crypto</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe nord-coréen Lazarus utilise RemotePE, un malware multiplateforme (Windows/Linux/macOS) pour infiltrer les entreprises financières et les plateformes cryptographiques. Ce RAT résident en mémoire (memory-only) évite les détections traditionnelles et fait partie d'une chaîne d'attaque en plusieurs étapes.</p>
+<a href="https://thehackernews.com/2026/05/lazarus-deploys-remotepe-memory-only.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CERT-In impose un délai de 12 heures pour corriger les failles exposées aux attaques IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'autorité indienne CERT-In recommande aux organisations de corriger les vulnérabilités critiques des systèmes exposés à Internet dans un délai de 12 heures après leur signalement, en raison de l'automatisation croissante des attaques par des outils d'IA. Cette mesure vise à limiter l'exploitation massive des failles non patchées.</p>
+<a href="https://thehackernews.com/2026/05/cert-in-mandates-12-hour-patching-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 26 Mai 2026</h2>
+<h3>CVE-2026-45659 : Microsoft corrige une RCE critique dans SharePoint (CVSS 8.8)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a publié un correctif pour une vulnérabilité de type RCE (CVE-2026-45659) affectant toutes les versions de SharePoint. Exploitable sans conditions préalables, cette faille permet aux attaquants d'exécuter du code arbitraire à distance, compromettant potentiellement l'ensemble des données d'entreprise.</p>
+<a href="https://thehackernews.com/2026/05/microsoft-patches-sharepoint-rce-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>MuddyWater : Campagne d'espionnage utilisant le side-loading de DLLs (9 pays ciblés)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe iranien MuddyWater mène une campagne d'espionnage ciblant des organisations industrielles, éducatives et financières dans 9 pays. L'attaque repose sur le side-loading de DLLs pour déployer des outils malveillants et exfiltrer des données sensibles. Les secteurs visés incluent la fabrication, la finance et les entités publiques.</p>
+<a href="https://thehackernews.com/2026/05/muddywater-uses-dll-side-loading-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>KnowledgeDeliver : Zero-day exploité pour déployer Godzilla et Cobalt Strike</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille zero-day (ViewState deserialization) dans KnowledgeDeliver, un LMS populaire au Japon, a été exploitée pour déployer le web shell Godzilla et Cobalt Strike. La vulnérabilité, liée à des valeurs machineKey codées en dur, permet une exécution de code à distance et une prise de contrôle complète des serveurs compromis.</p>
+<a href="https://thehackernews.com/2026/05/knowledgedeliver-lms-flaw-exploited-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>7-Eleven : Fuite de données de 185 000 personnes attribuée à ShinyHunters</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le gang ShinyHunters revendique le vol des données personnelles de 185 000 clients de 7-Eleven, incluant noms, adresses, emails et dates de naissance. L'incident, survenu en avril 2026, a été confirmé par Have I Been Pwned. ShinyHunters menace de publier les données si une rançon n'est pas payée.</p>
+<a href="https://www.securityweek.com/185000-likely-impacted-by-7-eleven-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>CISA ajoute une vulnérabilité exploitée activement au catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA a ajouté une nouvelle vulnérabilité à son catalogue KEV (Known Exploited Vulnerabilities), basée sur des preuves d'exploitation active. La faille, référencée CVE-2026-XXXX (non précisée dans l'alerte), concerne un composant tiers utilisé dans des produits industriels et nécessite une correction urgente pour les agences fédérales américaines.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/05/26/cisa-adds-one-known-exploited-vulnerability-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
+</div>
+
+<h3>Megalodon : Malware infectant 5 500 dépôts GitHub en 6 heures</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne massive a compromis plus de 5 500 dépôts GitHub en injectant des commits malveillants via le malware Megalodon. Ce dernier vole des identifiants, secrets de développeurs et données sensibles. L'attaque, silencieuse et rapide, souligne les risques des chaînes d'approvisionnement logicielles open source.</p>
+<a href="https://www.darkreading.com/application-security/megalodon-malware-infects-thousands-github-repos" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>CVE-2026-XXXX : Vulnérabilité critique dans Nginx (exécution de code à distance)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Nginx permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). Bien que le CVE exact ne soit pas précisé, le CERT-FR classe cette faille comme prioritaire et recommande une mise à jour immédiate pour les serveurs exposés.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0643/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>CVE-2026-XXXX : Multiples vulnérabilités dans Roundcube (RCE, fuite de données)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Roundcube, solution de webmail open source, est affecté par plusieurs vulnérabilités critiques permettant une exécution de code à distance, une fuite de données et une altération des données. Le CERT-FR recommande une mise à jour urgente pour les instances exposées sur Internet.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0644/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
         </div>
     </div>
