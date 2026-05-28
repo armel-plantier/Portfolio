@@ -1043,25 +1043,27 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/^-|-$/g, '');
 
         const paramSlugE6 = makeSlugE6(decodeURIComponent(e6Param));
-        const E6_BASE = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
 
         const tryOpenE6 = () => {
-            const docs = config.documentsE6 || [];
-            for (const doc of docs) {
-                if (makeSlugE6(doc.title) === paramSlugE6) {
-                    const fullUrl = doc.path.startsWith('http')
-                        ? doc.path
-                        : E6_BASE + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+            const cards = document.querySelectorAll('#e6-grid .e6-card');
+            let found = false;
+            cards.forEach(card => {
+                const titleEl = card.querySelector('h4');
+                if (!titleEl) return;
+                const cardSlug = makeSlugE6(titleEl.innerText);
+                if (cardSlug === paramSlugE6) {
+                    found = true;
+                    card.classList.remove('hidden-item');
+                    card.style.display = '';
                     const section = document.getElementById('documents-e6');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     setTimeout(() => {
-                        openPDFModal(fullUrl, doc.title);
+                        card.click();
                         window.history.replaceState({}, '', '/');
                     }, 600);
-                    return true;
                 }
-            }
-            return false;
+            });
+            return found;
         };
 
         setTimeout(() => {
