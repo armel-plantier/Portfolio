@@ -1043,37 +1043,35 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/^-|-$/g, '');
 
         const paramSlugE6 = makeSlugE6(decodeURIComponent(e6Param));
+        const E6_BASE_URL_AUTO = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
 
         const tryOpenE6 = () => {
-            const cards = document.querySelectorAll('#e6-grid .e6-card');
-            let found = false;
-            cards.forEach(card => {
-                const titleEl = card.querySelector('h4');
-                if (!titleEl) return;
-                const cardSlug = makeSlugE6(titleEl.innerText);
-                if (cardSlug === paramSlugE6) {
-                    found = true;
-                    card.classList.remove('hidden-item');
-                    card.style.display = '';
+            const docs = config.documentsE6 || [];
+            for (const doc of docs) {
+                const docSlug = makeSlugE6(doc.title);
+                if (docSlug === paramSlugE6) {
+                    const fullUrl = doc.path.startsWith('http')
+                        ? doc.path
+                        : E6_BASE_URL_AUTO + doc.path.split('/').map(function(p) { return encodeURIComponent(p); }).join('/');
                     const section = document.getElementById('documents-e6');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(() => {
-                        card.click();
-                        window.history.replaceState({}, '', '/');
-                    }, 600);
+                    openPDFModal(fullUrl, doc.title);
+                    window.history.replaceState({}, '', '/');
+                    return true;
                 }
-            });
-            return found;
+            }
+            return false;
         };
 
-        setTimeout(() => {
+        // Attendre que openPDFModal soit prête (définie plus bas dans le fichier mais hoistée)
+        setTimeout(function() {
             if (!tryOpenE6()) {
-                const wait = setInterval(() => {
+                var wait = setInterval(function() {
                     if (tryOpenE6()) clearInterval(wait);
-                }, 300);
-                setTimeout(() => clearInterval(wait), 5000);
+                }, 400);
+                setTimeout(function() { clearInterval(wait); }, 6000);
             }
-        }, 800);
+        }, 1200);
     }
 
     initCursorHint();
