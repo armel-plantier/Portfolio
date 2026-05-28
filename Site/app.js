@@ -834,44 +834,44 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- DOCUMENTS E5 ---
-    const e5Grid = document.getElementById('e5-grid');
-    const E5_LIMIT = 6;
-    const E5_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
+    // --- DOCUMENTS E6 ---
+    const e6Grid = document.getElementById('e6-grid');
+    const E6_LIMIT = 6;
+    const E6_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
 
-    if (e5Grid && config.documentsE5 && config.documentsE5.length > 0) {
+    if (e6Grid && config.documentsE6 && config.documentsE6.length > 0) {
         // Badge compteur
-        const e5Title = document.querySelector('#documents-e5 h3');
-        if (e5Title) {
+        const e6Title = document.querySelector('#documents-e6 h3');
+        if (e6Title) {
             const badge = document.createElement('span');
             badge.className = 'section-count-badge';
-            badge.textContent = config.documentsE5.length;
-            e5Title.appendChild(badge);
+            badge.textContent = config.documentsE6.length;
+            e6Title.appendChild(badge);
         }
 
-        e5Grid.innerHTML = '';
+        e6Grid.innerHTML = '';
 
-        config.documentsE5.forEach((doc, index) => {
+        config.documentsE6.forEach((doc, index) => {
             const fullUrl = (doc.type === 'link' || doc.path.startsWith('http'))
                 ? doc.path
-                : E5_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+                : E6_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
 
             const card = document.createElement('div');
-            card.className = 'e5-card';
+            card.className = 'e6-card';
             card.style.cursor = 'pointer';
             card.dataset.index = index;
-            if (index >= E5_LIMIT) card.classList.add('hidden-item');
+            if (index >= E6_LIMIT) card.classList.add('hidden-item');
 
             const badgeLabel = doc.type === 'link' ? 'LIEN' : 'PDF';
 
             card.innerHTML = `
-                <div class="e5-card-icon">${doc.icon}</div>
-                <div class="e5-card-body">
+                <div class="e6-card-icon">${doc.icon}</div>
+                <div class="e6-card-body">
                     <h4>${escapeHTML(doc.title)}</h4>
                     <p>${escapeHTML(doc.description)}</p>
                 </div>
-                <span class="e5-card-badge">${badgeLabel}</span>
-                <div class="e5-card-dl">
+                <span class="e6-card-badge">${badgeLabel}</span>
+                <div class="e6-card-dl">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </div>
             `;
@@ -884,24 +884,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            e5Grid.appendChild(card);
+            e6Grid.appendChild(card);
         });
 
-        if (config.documentsE5.length > E5_LIMIT) createToggleBtn(e5Grid, E5_LIMIT, 'Voir la suite');
+        if (config.documentsE6.length > E6_LIMIT) createToggleBtn(e6Grid, E6_LIMIT, 'Voir la suite');
 
-        // --- RECHERCHE E5 ---
-        const e5Search = document.getElementById('e5-search');
-        const e5CountEl = document.getElementById('e5-search-count');
-        if (e5Search) {
-            const allCards = Array.from(e5Grid.querySelectorAll('.e5-card'));
+        // --- RECHERCHE E6 ---
+        const e6Search = document.getElementById('e6-search');
+        const e6CountEl = document.getElementById('e6-search-count');
+        if (e6Search) {
+            const allCards = Array.from(e6Grid.querySelectorAll('.e6-card'));
             const updateCount = (visible) => {
-                if (e5CountEl) {
-                    e5CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
+                if (e6CountEl) {
+                    e6CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
                 }
             };
-            const loadMoreContainer = e5Grid.parentNode.querySelector('.load-more-container');
-            e5Search.addEventListener('input', () => {
-                const q = e5Search.value.trim().toLowerCase();
+            const loadMoreContainer = e6Grid.parentNode.querySelector('.load-more-container');
+            e6Search.addEventListener('input', () => {
+                const q = e6Search.value.trim().toLowerCase();
                 const isFiltering = q.length > 0;
                 let visible = 0;
                 allCards.forEach((card, i) => {
@@ -912,7 +912,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.style.display = match ? '' : 'none';
                     } else {
                         card.style.display = '';
-                        if (i >= E5_LIMIT) card.classList.add('hidden-item');
+                        if (i >= E6_LIMIT) card.classList.add('hidden-item');
                         else card.classList.remove('hidden-item');
                     }
                     if (match && (!card.classList.contains('hidden-item') || isFiltering)) visible++;
@@ -922,8 +922,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-    } else if (e5Grid) {
-        e5Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
+    } else if (e6Grid) {
+        e6Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
     }
 
     // --- 11. MACHINE A ECRIRE ---
@@ -1414,7 +1414,7 @@ function toggleGlobalPDF(url) {
                 });
             });
             // Sections (nav interne)
-            ['projets','parcours','competences','certifications','procedures','veille','documents-e5'].forEach(sec => {
+            ['projets','parcours','competences','certifications','procedures','veille','documents-e6'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
                 const h = el.querySelector('h3');
