@@ -1726,7 +1726,10 @@ function toggleGlobalPDF(url) {
                 const isProc = (config.procedures || []).some(p => p.title && p.title.toLowerCase() === title.toLowerCase());
                 const isE6doc = (config.documentsE6 || []).some(d => d.title && d.title.toLowerCase() === title.toLowerCase());
                 const path = isProc ? '/procedures/' : isE6doc ? '/documents-e6/' : '/projet-technova/';
-                const url = window.location.origin + path + slug;
+                // E6 et procédures → query param direct (pas de pretty URL = pas de 404)
+                const url = (isE6doc || isProc)
+                    ? window.location.origin + '/?' + (isE6doc ? 'e6' : 'proc') + '=' + encodeURIComponent(slug)
+                    : window.location.origin + path + slug;
 
                 navigator.clipboard.writeText(url).then(() => {
                     const original = shareBtn.innerHTML;
