@@ -6,7 +6,7 @@ const GITHUB_REPO  = 'Portfolio';
 const ALLOWED_USER = 'armel-plantier';
 const PROC_DIR     = 'Documents/Procédures';
 const PROJ_DIR     = 'Documents/Projet';
-const E5_DIR       = 'Documents/E5';
+const E6_DIR = 'Documents/E6';
 const CONFIG_PATH  = 'Site/config.js';
 
 // ============================================================================
@@ -84,10 +84,10 @@ let selectedProcTags = new Set();
 let selectedProjTags = new Set();
 let selectedProcIcon = 0;
 let selectedProjIcon = 0;
-let selectedE5Icon = 0;
+let selectedE6Icon = 0;
 let procFile = null;
 let projFile = null;
-let e5File = null;
+let e6File = null;
 
 // ============================================================================
 // UTILS
@@ -566,8 +566,8 @@ async function loadDashboard() {
         var certSection = extractSection(configContent, 'certifications');
         $('dash-cert-count').textContent = countEntries(certSection, 'name');
 
-        var e5Section = extractSection(configContent, 'documentsE5');
-        if ($('dash-e5-count')) $('dash-e5-count').textContent = countEntries(e5Section, 'title');
+        var e6Section = extractSection(configContent, 'documentsE6');
+        if ($('dash-e6-count')) $('dash-e6-count').textContent = countEntries(e6Section, 'title');
 
         // 2. Fetch recent commits
         var commits = await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/commits?per_page=8');
@@ -727,56 +727,56 @@ $('cert-submit').addEventListener('click', async function() {
 });
 
 // ============================================================================
-// E5 DOCUMENTS
+// E6 DOCUMENTS
 // ============================================================================
-var e5IconGrid = renderIconGrid('e5-icons', 'e5-icon-search', function(i) { selectedE5Icon = i; validateE5(); updateE5Preview(); });
+var e6IconGrid = renderIconGrid('e6-icons', 'e6-icon-search', function(i) { selectedE6Icon = i; validateE6(); updateE6Preview(); });
 
-setupUpload('e5-upload', 'e5-file', function(f) { e5File = f; setUploadState('e5-upload', f); validateE5(); updateE5Preview(); });
+setupUpload('e6-upload', 'e6-file', function(f) { e6File = f; setUploadState('e6-upload', f); validateE6(); updateE6Preview(); });
 
-['e5-title', 'e5-desc'].forEach(function(id) { $(id).addEventListener('input', function() { validateE5(); updateE5Preview(); }); });
+['e6-title', 'e6-desc'].forEach(function(id) { $(id).addEventListener('input', function() { validateE6(); updateE6Preview(); }); });
 
-function validateE5() {
-    var title = $('e5-title').value.trim();
-    var desc = $('e5-desc').value.trim();
-    $('e5-submit').disabled = !(title && desc && e5File);
+function validateE6() {
+    var title = $('e6-title').value.trim();
+    var desc = $('e6-desc').value.trim();
+    $('e6-submit').disabled = !(title && desc && e6File);
 }
 
-function updateE5Preview() {
-    var title = $('e5-title').value.trim();
-    var desc = $('e5-desc').value.trim();
-    var container = $('e5-preview');
-    var content = $('e5-preview-content');
+function updateE6Preview() {
+    var title = $('e6-title').value.trim();
+    var desc = $('e6-desc').value.trim();
+    var container = $('e6-preview');
+    var content = $('e6-preview-content');
     if (!title) { container.style.display = 'none'; return; }
     container.style.display = '';
-    var ext = e5File ? e5File.name.split('.').pop().toUpperCase() : '—';
-    var iconSvg = ICON_LIBRARY[selectedE5Icon].svg;
+    var ext = e6File ? e6File.name.split('.').pop().toUpperCase() : '—';
+    var iconSvg = ICON_LIBRARY[selectedE6Icon].svg;
     content.innerHTML = '<div style="display:flex;align-items:center;gap:14px;"><div style="width:42px;height:42px;border-radius:10px;background:rgba(99,102,241,0.1);display:flex;align-items:center;justify-content:center;">' + iconSvg + '</div><div style="flex:1;"><strong style="font-size:0.95rem;">' + title + '</strong><br><span style="color:var(--muted);font-size:0.82rem;">' + (desc || '—') + '</span></div><span style="font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;border-radius:6px;background:rgba(99,102,241,0.1);color:var(--primary);">' + ext + '</span></div>';
 }
 
-function resetE5() {
-    $('e5-title').value = '';
-    $('e5-desc').value = '';
-    e5File = null;
-    selectedE5Icon = 0;
-    setUploadState('e5-upload', null);
-    e5IconGrid.reset();
-    $('e5-preview').style.display = 'none';
-    validateE5();
+function resetE6() {
+    $('e6-title').value = '';
+    $('e6-desc').value = '';
+    e6File = null;
+    selectedE6Icon = 0;
+    setUploadState('e6-upload', null);
+    e6IconGrid.reset();
+    $('e6-preview').style.display = 'none';
+    validateE6();
 }
-$('e5-reset').addEventListener('click', resetE5);
+$('e6-reset').addEventListener('click', resetE6);
 
-$('e5-submit').addEventListener('click', async function() {
-    var title = $('e5-title').value.trim();
-    var desc = $('e5-desc').value.trim();
-    var ext = e5File.name.split('.').pop().toLowerCase();
+$('e6-submit').addEventListener('click', async function() {
+    var title = $('e6-title').value.trim();
+    var desc = $('e6-desc').value.trim();
+    var ext = e6File.name.split('.').pop().toLowerCase();
 
     try {
-        showProgress('Publication en cours...', 'Upload du document E5...', 20);
-        var b64 = await fileToBase64(e5File);
-        var filePath = E5_DIR + '/' + e5File.name;
+        showProgress('Publication en cours...', 'Upload du document E6...', 20);
+        var b64 = await fileToBase64(e6File);
+        var filePath = E6_DIR + '/' + e6File.name;
         await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(filePath), {
             method: 'PUT',
-            body: JSON.stringify({ message: '[admin] Ajout document E5 : ' + title, content: b64 })
+            body: JSON.stringify({ message: '[admin] Ajout document E6 : ' + title, content: b64 })
         });
 
         showProgress('Publication en cours...', 'Mise \u00e0 jour de config.js...', 60);
@@ -785,12 +785,12 @@ $('e5-submit').addEventListener('click', async function() {
         var bytes = Uint8Array.from(atob(raw), function(c) { return c.charCodeAt(0); });
         var currentContent = new TextDecoder('utf-8').decode(bytes);
 
-        var iconSvg = escapeForJS(ICON_LIBRARY[selectedE5Icon].svg);
-        var entry = '{\n            title: "' + escapeForJS(title) + '",\n            description: "' + escapeForJS(desc) + '",\n            path: "E5/' + escapeForJS(e5File.name) + '",\n            icon: `' + iconSvg + '`,\n            type: "' + ext + '"\n        }';
+        var iconSvg = escapeForJS(ICON_LIBRARY[selectedE6Icon].svg);
+        var entry = '{\n            title: "' + escapeForJS(title) + '",\n            description: "' + escapeForJS(desc) + '",\n            path: "E6/' + escapeForJS(e6File.name) + '",\n            icon: `' + iconSvg + '`,\n            type: "' + ext + '"\n        }';
 
-        var sectionRegex = /(documentsE5:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
+        var sectionRegex = /(documentsE6:\s*\[)([\s\S]*?)(\][\s\S]*Object\.freeze)/;
         var match = currentContent.match(sectionRegex);
-        if (!match) throw new Error('Section "documentsE5" non trouv\u00e9e dans config.js');
+        if (!match) throw new Error('Section "documentsE6" non trouv\u00e9e dans config.js');
 
         var existingEntries = match[2].trim();
         var separator = existingEntries.endsWith(',') || existingEntries === '' ? '\n        ' : ',\n        ';
@@ -800,11 +800,11 @@ $('e5-submit').addEventListener('click', async function() {
         var encoded = btoa(Array.from(new TextEncoder().encode(newContent), function(b) { return String.fromCharCode(b); }).join(''));
         await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + CONFIG_PATH, {
             method: 'PUT',
-            body: JSON.stringify({ message: '[admin] config.js : ajout doc E5 ' + title, content: encoded, sha: configData.sha })
+            body: JSON.stringify({ message: '[admin] config.js : ajout doc E6 ' + title, content: encoded, sha: configData.sha })
         });
 
         progressSuccess('"' + title + '" sera en ligne dans ~1 min.');
-        resetE5();
+        resetE6();
 
     } catch (err) {
         console.error(err);
@@ -892,12 +892,12 @@ async function loadManageEntries() {
         var procedures = parseEntries(manageConfigContent, 'procedures', 'title');
         var projects = parseEntries(manageConfigContent, 'projects', 'title');
         var certifications = parseEntries(manageConfigContent, 'certifications', 'name');
-        var docsE5 = parseEntries(manageConfigContent, 'documentsE5', 'title');
+        var docsE6 = parseEntries(manageConfigContent, 'documentsE6', 'title');
 
         var procIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
         var projIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M3 12h18M12 8v4M6.5 12v4M17.5 12v4"/><rect x="8.5" y="3" width="7" height="5" rx="1"/></svg>';
         var certIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>';
-        var e5Icon = '<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
+        var e6Icon = '<svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>';
 
         var html = '';
 
@@ -916,9 +916,9 @@ async function loadManageEntries() {
         certifications.forEach(function(name, i) { html += buildEntryRow(name, i, 'Certification', 'certifications', 'name', certIcon); });
         html += '</div>';
 
-        html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Documents E5 <span class="count-badge">' + docsE5.length + '</span></div>';
+        html += '<div class="manage-section-title" style="margin-top:32px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Documents E6 <span class="count-badge">' + docsE6.length + '</span></div>';
         html += '<div class="entry-list">';
-        docsE5.forEach(function(title, i) { html += buildEntryRow(title, i, 'Document E5', 'documentsE5', 'title', e5Icon); });
+        docsE6.forEach(function(title, i) { html += buildEntryRow(title, i, 'Document E6', 'documentsE6', 'title', e6Icon); });
         html += '</div>';
 
         $('manage-content').innerHTML = html;
@@ -1117,13 +1117,13 @@ function openEdit(section, key, value) {
 
     var block = found.block;
     var isCert = section === 'certifications';
-    var isE5 = section === 'documentsE5';
+    var isE6 = section === 'documentsE6';
 
     // Show/hide fields based on section type
     $('edit-desc-field').style.display = isCert ? 'none' : '';
     $('edit-issuer-field').style.display = isCert ? '' : 'none';
     $('edit-url-field').style.display = isCert ? '' : 'none';
-    $('edit-tags-field').style.display = (isCert || isE5) ? 'none' : '';
+    $('edit-tags-field').style.display = (isCert || isE6) ? 'none' : '';
     $('edit-label-name').textContent = isCert ? 'Nom' : 'Titre';
 
     // PDF field: show for all types
@@ -1131,7 +1131,7 @@ function openEdit(section, key, value) {
     $('edit-pdf-current').textContent = currentPdf ? 'Actuel : ' + currentPdf : 'Aucun fichier';
     $('edit-pdf-current').style.color = 'var(--muted)';
     $('edit-pdf-file').value = '';
-    if (isE5) {
+    if (isE6) {
         $('edit-pdf-file').accept = '.pdf,.xlsx,.xls,.pptx,.docx';
         $('edit-pdf-label').querySelector('span') && ($('edit-pdf-label').childNodes[$('edit-pdf-label').childNodes.length - 1].textContent = 'Nouveau fichier');
     } else {
@@ -1144,7 +1144,7 @@ function openEdit(section, key, value) {
     if (isCert) {
         $('edit-issuer').value = extractField(block, 'issuer');
         $('edit-url').value = extractField(block, 'url');
-    } else if (isE5) {
+    } else if (isE6) {
         $('edit-desc').value = extractField(block, 'description');
     } else {
         $('edit-desc').value = extractField(block, 'longDescription');
@@ -1168,7 +1168,7 @@ $('edit-save').addEventListener('click', async function() {
     var key = pendingEdit.key;
     var originalValue = pendingEdit.originalValue;
     var isCert = section === 'certifications';
-    var isE5 = section === 'documentsE5';
+    var isE6 = section === 'documentsE6';
     pendingEdit = null;
 
     try {
@@ -1180,7 +1180,7 @@ $('edit-save').addEventListener('click', async function() {
             var dir;
             if (section === 'procedures') dir = PROC_DIR;
             else if (section === 'projects') dir = PROJ_DIR;
-            else if (isE5) dir = E5_DIR;
+            else if (isE6) dir = E6_DIR;
             else dir = 'Documents/Certifs';
             var pdfPath = dir + '/' + editNewPdfFile.name;
             await ghAPI('/repos/' + GITHUB_OWNER + '/' + GITHUB_REPO + '/contents/' + encodeURIComponent(pdfPath), {
@@ -1217,14 +1217,14 @@ $('edit-save').addEventListener('click', async function() {
             if (newPdfName) {
                 newBlock = newBlock.replace(new RegExp('(pdf\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newPdfName) + '"');
             }
-        } else if (isE5) {
+        } else if (isE6) {
             var newDesc = $('edit-desc').value.trim();
 
             newBlock = newBlock.replace(new RegExp('(title\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newName) + '"');
             newBlock = newBlock.replace(new RegExp('(description\\s*:\\s*)"[^"]*"'), '$1"' + escapeForJS(newDesc) + '"');
             if (newPdfName) {
                 var newExt = newPdfName.split('.').pop().toLowerCase();
-                newBlock = newBlock.replace(new RegExp('(path\\s*:\\s*)"[^"]*"'), '$1"E5/' + escapeForJS(newPdfName) + '"');
+                newBlock = newBlock.replace(new RegExp('(path\\s*:\\s*)"[^"]*"'), '$1"E6/' + escapeForJS(newPdfName) + '"');
                 newBlock = newBlock.replace(new RegExp('(type\\s*:\\s*)"[^"]*"'), '$1"' + newExt + '"');
             }
         } else {
