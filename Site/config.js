@@ -579,6 +579,14 @@ experiences: [
             icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>`,
             type: "pdf"
         }
+    ,
+        {
+            title: "SItuation Pro 1 - Zabbix",
+            description: "ddd",
+            path: "E5/SP1 _ Mise en place d'une solution de supervision.pdf",
+            icon: `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>`,
+            type: "pdf"
+        }
     ]
     
 };
