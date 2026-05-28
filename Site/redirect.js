@@ -8,4 +8,8 @@
     if (segments[0] === 'projet-technova' && segments[1]) {
         window.location.href = 'https://armel-plantier.com/?proj=' + encodeURIComponent(segments[1]);
     }
+
+    if (segments[0] === 'documents-e6' && segments[1]) {
+        window.location.href = 'https://armel-plantier.com/?e6=' + encodeURIComponent(segments[1]);
+    }
 })();
