@@ -28,6 +28,8 @@ const renderIcon = (iconString) => {
         window.history.replaceState({}, '', '/?proc=' + encodeURIComponent(segments[1]));
     } else if (segments[0] === 'projet-technova' && segments[1]) {
         window.history.replaceState({}, '', '/?proj=' + encodeURIComponent(segments[1]));
+    } else if (segments[0] === 'documents-e6' && segments[1]) {
+        window.history.replaceState({}, '', '/?e6=' + encodeURIComponent(segments[1]));
     }
 })();
 
@@ -1027,6 +1029,51 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
+
+    // --- OUVERTURE AUTO VIA URL (?e6=) ---
+    const e6Param = urlParams.get('e6');
+    if (e6Param) {
+        const makeSlugE6 = (str) => str
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[\u2019\u2018'`\(\)\u2014\u2013]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-]/g, '')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+
+        const paramSlugE6 = makeSlugE6(decodeURIComponent(e6Param));
+        const E6_BASE = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
+
+        const tryOpenE6 = () => {
+            const docs = config.documentsE6 || [];
+            for (const doc of docs) {
+                if (makeSlugE6(doc.title) === paramSlugE6) {
+                    const fullUrl = doc.path.startsWith('http')
+                        ? doc.path
+                        : E6_BASE + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+                    const section = document.getElementById('documents-e6');
+                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        openPDFModal(fullUrl, doc.title);
+                        window.history.replaceState({}, '', '/');
+                    }, 600);
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        setTimeout(() => {
+            if (!tryOpenE6()) {
+                const wait = setInterval(() => {
+                    if (tryOpenE6()) clearInterval(wait);
+                }, 300);
+                setTimeout(() => clearInterval(wait), 5000);
+            }
+        }, 800);
+    }
+
     initCursorHint();
 
     // --- BOUTON RETOUR EN HAUT ---
@@ -1675,9 +1722,10 @@ function toggleGlobalPDF(url) {
                     .replace(/[^a-z0-9\-]/g, '')
                     .replace(/-+/g, '-')
                     .replace(/^-|-$/g, '');
-                // Détecter si c'est une procédure ou un projet en regardant l'index config
+                // Détecter si c'est une procédure, un doc E6, ou un projet
                 const isProc = (config.procedures || []).some(p => p.title && p.title.toLowerCase() === title.toLowerCase());
-                const path = isProc ? '/procedures/' : '/projet-technova/';
+                const isE6doc = (config.documentsE6 || []).some(d => d.title && d.title.toLowerCase() === title.toLowerCase());
+                const path = isProc ? '/procedures/' : isE6doc ? '/documents-e6/' : '/projet-technova/';
                 const url = window.location.origin + path + slug;
 
                 navigator.clipboard.writeText(url).then(() => {
