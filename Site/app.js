@@ -1049,6 +1049,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const docs = config.documentsE6 || [];
             for (const doc of docs) {
                 const docSlug = makeSlugE6(doc.title);
+                console.log('[E6] compare:', docSlug, '===', paramSlugE6, '->', docSlug === paramSlugE6);
                 if (docSlug === paramSlugE6) {
                     const fullUrl = doc.path.startsWith('http')
                         ? doc.path
@@ -1064,12 +1065,21 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Attendre que openPDFModal soit prête (définie plus bas dans le fichier mais hoistée)
+        console.log('[E6] param détecté:', e6Param, '| slug:', paramSlugE6);
         setTimeout(function() {
+            console.log('[E6] setTimeout fired, docs:', (config.documentsE6||[]).length);
             if (!tryOpenE6()) {
+                console.warn('[E6] tryOpenE6 failed on first try, starting interval');
                 var wait = setInterval(function() {
-                    if (tryOpenE6()) clearInterval(wait);
+                    if (tryOpenE6()) {
+                        console.log('[E6] tryOpenE6 success via interval');
+                        clearInterval(wait);
+                    }
                 }, 400);
-                setTimeout(function() { clearInterval(wait); }, 6000);
+                setTimeout(function() {
+                    console.warn('[E6] gave up after 6s');
+                    clearInterval(wait);
+                }, 6000);
             }
         }, 1200);
     }
