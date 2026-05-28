@@ -9,6 +9,20 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
 
+    <!-- Inline redirect — pas de dépendance au cache de redirect.js -->
+    <script>
+    (function() {
+        var segments = window.location.pathname.split('/').filter(Boolean);
+        if (segments[0] === 'procedures' && segments[1]) {
+            window.location.href = 'https://armel-plantier.com/?proc=' + encodeURIComponent(segments[1]);
+        } else if (segments[0] === 'projet-technova' && segments[1]) {
+            window.location.href = 'https://armel-plantier.com/?proj=' + encodeURIComponent(segments[1]);
+        } else if (segments[0] === 'documents-e6' && segments[1]) {
+            window.location.href = 'https://armel-plantier.com/?e6=' + encodeURIComponent(segments[1]);
+        }
+    })();
+    </script>
+
     <script src="/redirect.js"></script>
 </head>
 <body class="error-body"> 
