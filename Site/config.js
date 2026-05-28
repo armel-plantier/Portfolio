@@ -587,6 +587,14 @@ experiences: [
             icon: `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>`,
             type: "pdf"
         }
+    ,
+        {
+            title: "SItuation Pro 1 - Graylog",
+            description: "ddd",
+            path: "E5/Situation Pro 2 _ Mise en place d’un serveur de journalisation Graylog.pdf",
+            icon: `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><polyline points=\"14 2 14 8 20 8\"/><line x1=\"8\" y1=\"13\" x2=\"16\" y2=\"13\"/><line x1=\"8\" y1=\"17\" x2=\"12\" y2=\"17\"/></svg>`,
+            type: "pdf"
+        }
     ]
     
 };
