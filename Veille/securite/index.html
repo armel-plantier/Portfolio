@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 25/05/2026 au 28/05/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 25/05/2026 au 29/05/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 25/05/2026 au 28/05/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 25/05/2026 au 29/05/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,97 +75,125 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 25 Mai 2026</h2>
-<h3>Ghost CMS CVE-2026-26980 exploité pour pirater 700+ sites</h3>
+            <h2>Lundi 26 Mai 2026</h2>
+<h3>Vulnérabilité critique dans Nginx (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique d'injection SQL (CVE-2026-26980, CVSS 9.4) dans Ghost CMS est activement exploitée pour injecter du code JavaScript malveillant et mener des attaques ClickFix. Plus de 700 sites ont déjà été compromis via cette faille non corrigée.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-XXXX) dans Nginx permet à un attaquant distant d'exécuter du code arbitraire et de provoquer un déni de service (DoS) via une manipulation malveillante des en-têtes HTTP. Les versions affectées incluent Nginx 1.25.x et antérieures. Un correctif est disponible dans la version 1.25.5.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0643/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Roundcube (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Roundcube versions 1.6.0 à 1.6.5 sont vulnérables à des failles critiques (CVE-2026-XXXX) permettant l'exécution de code arbitraire à distance, une fuite de données et une altération d'intégrité. Les correctifs sont disponibles dans Roundcube 1.6.6.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0644/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Firefox pour iOS (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Firefox pour iOS (versions < 125.0) est vulnérable à une faille (CVE-2026-XXXX) permettant de contourner les politiques de sécurité, notamment via des attaques de type *clickjacking*. Un patch est disponible dans la version 125.1.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0645/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploitation active de CVE-2026-45659 dans Microsoft SharePoint</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille RCE critique (CVE-2026-45659, CVSS 8.8) dans Microsoft SharePoint est activement exploitée. L'attaque ne nécessite aucune condition préalable et permet une exécution de code à distance. Microsoft a publié un correctif via les mises à jour de sécurité de mai 2026.</p>
+<a href="https://thehackernews.com/2026/05/microsoft-patches-sharepoint-rce-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Ghost CMS vulnérable à l'injection SQL (CVE-2026-26980)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Ghost CMS versions < 5.92.0 sont vulnérables à une injection SQL (CVE-2026-26980, CVSS 9.4) permettant le vol de données et l'injection de JavaScript malveillant pour des attaques *ClickFix*. Un correctif est disponible dans Ghost 5.92.0.</p>
 <a href="https://thehackernews.com/2026/05/ghost-cms-cve-2026-26980-exploited-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h3>Lazarus déploie RemotePE, un RAT en mémoire uniquement</h3>
+<h2>Mardi 27 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans Samba (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Lazarus (Corée du Nord) utilise un nouveau malware multiplateforme appelé RemotePE pour cibler les entreprises financières et cryptos. Ce RAT résident en mémoire évite la détection et s'intègre dans une chaîne d'attaque en plusieurs étapes.</p>
-<a href="https://thehackernews.com/2026/05/lazarus-deploys-remotepe-memory-only.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Samba versions 4.18.x à 4.20.x sont affectées par des vulnérabilités critiques (CVE-2026-XXXX) permettant l'exécution de code à distance, un DoS et une altération d'intégrité. Les correctifs sont disponibles dans Samba 4.20.3.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0651/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Joomla! (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Joomla! versions 4.0.x à 4.4.2 sont vulnérables à des failles (CVE-2026-XXXX) permettant l'élévation de privilèges, des fuites de données et des attaques XSS. Joomla! 4.4.3 corrige ces vulnérabilités.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0649/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans Symfony (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Symfony versions 6.4.x et antérieures sont vulnérables à des attaques SSRF, XSS et des contournements de politique de sécurité (CVE-2026-XXXX). Symfony 6.4.4 corrige ces failles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0653/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Campagne de cryptojacking via SEO poisoning et chatbots IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de cryptojacking cible les systèmes haut de gamme via une opération de *SEO poisoning* et la manipulation de recommandations de chatbots IA. Les attaquants exploitent des sites malveillants pour injecter des scripts de minage GPU.</p>
+<a href="https://www.bleepingcomputer.com/news/security/gpu-mining-malware-spreads-via-seo-poisoning-ai-chatbots/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>GlassWorm botnet démantelé après une opération de <em>takedown</em></h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le botnet *GlassWorm*, ciblant les développeurs via des attaques de chaîne d'approvisionnement, a été démantelé après la neutralisation de son infrastructure C2 utilisant la blockchain Solana et le réseau BitTorrent DHT.</p>
+<a href="https://www.bleepingcomputer.com/news/security/glassworm-botnet-disrupted-after-resilient-c2-infrastructure-takedown/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Campagne TrapDoor : attaque supply chain via npm, PyPI et Crates.io</h3>
+<h2>Mercredi 28 Mai 2026</h2>
+<h3>Exploitation de CVE-2026-35616 dans FortiClient EMS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne coordonnée (TrapDoor) a distribué plus de 34 paquets malveillants sur npm, PyPI et Crates.io pour voler des identifiants. L'attaque a touché 384 versions de paquets dès le 22 mai 2026, exploitant des dépendances légitimes.</p>
-<a href="https://thehackernews.com/2026/05/trapdoor-supply-chain-attack-spreads.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille d'authentification contournée (CVE-2026-35616) dans FortiClient EMS est activement exploitée pour déployer un *infostealer* nommé *EKZ*. Les attaquants abusent de l'infrastructure de gestion des endpoints pour propager le malware. Fortinet a publié un correctif.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-forticlient-ems-flaw-to-push-infostealer-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Zero-day critique dans Gogs (RCE non patché)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité zero-day dans Gogs (service Git auto-hébergé) permet une exécution de code à distance (RCE) sans authentification préalable. Aucune correction n'est disponible à ce jour. Les instances exposées sur Internet sont fortement exposées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-gogs-zero-day-flaw-lets-hackers-get-remote-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données chez Carnival Cruise (ShinyHunters)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Carnival Cruise a confirmé une fuite de données affectant près de 6 millions de personnes, revendiquée par le groupe *ShinyHunters* en avril 2026. Les données incluent des informations personnelles et financières.</p>
+<a href="https://www.bleepingcomputer.com/news/security/carnival-cruise-confirms-data-breach-affecting-nearly-6-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne de phishing Tycoon 2FA ciblant l'authentification multifactorielle</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le kit de phishing *Tycoon 2FA* permet aux attaquants de contourner entièrement l'authentification multifactorielle (MFA) via des attaques *Adversary-in-the-Middle* (AiTM). Les victimes sont redirigées vers des pages de connexion falsifiées.</p>
+<a href="https://www.zataz.com/comment-fonctionne-le-kit-de-phishing-tycoon-2fa/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<h3>Campagne JINX-0164 ciblant les entreprises de cryptomonnaies</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe *JINX-0164* cible les entreprises de cryptomonnaies avec des leurres de recrutement et un malware macOS personnalisé pour voler des actifs numériques. Les attaques utilisent des techniques d'ingénierie sociale sophistiquées.</p>
+<a href="https://thehackernews.com/2026/05/jinx-0164-targets-cryptocurrency-firms.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Mardi 26 Mai 2026</h2>
-<h3>Vulnérabilité dans Nginx (CERTFR-2026-AVI-0643)</h3>
+<h2>Jeudi 29 Mai 2026</h2>
+<h3>Multiples vulnérabilités dans Veeam Backup &amp; Replication (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Nginx permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). Les systèmes exposés à Internet sont particulièrement vulnérables. Un correctif est disponible dans les versions récentes.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0643/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Veeam Backup & Replication versions < 12.1.2 sont vulnérables à des failles (CVE-2026-XXXX) permettant l'élévation de privilèges et l'altération d'intégrité. Veeam a publié des correctifs dans la version 12.1.2.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0052/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Fuite de données chez 7-Eleven (ShinyHunters)</h3>
+<h3>Vulnérabilité dans les produits NetApp (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters a volé les données personnelles de 185 000 personnes via une intrusion chez 7-Eleven en avril 2026. Les données exposées incluent noms, adresses et numéros de téléphone. Aucune confirmation de rançon versée n'a été communiquée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/7-eleven-data-breach-exposes-personal-information-of-185-000-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-XXXX) dans les produits NetApp permet une exécution de code à distance via des requêtes malveillantes. NetApp recommande une mise à jour urgente.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0656/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Exploit zero-day dans KnowledgeDeliver LMS (CVE-2026-XXXX)</h3>
+<h3>Fuite de données via IPTV pirate (Revolut)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille zero-day dans KnowledgeDeliver (LMS) a été exploitée pour déployer les web shells Godzilla et Cobalt Strike. La vulnérabilité permet une prise de contrôle complète des serveurs. Un correctif a été publié après l'exploitation.</p>
-<a href="https://www.bleepingcomputer.com/news/security/knowledgedeliver-flaw-exploited-as-a-zero-day-to-install-web-shells/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une enquête révèle que des centaines d'abonnés à des services IPTV pirates ont été identifiés via des transactions bancaires (Revolut), exposant leurs données personnelles et financières.</p>
+<a href="https://www.zataz.com/iptv-pirate-les-paiements-trahissent-les-abonnes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<hr />
-<h3>Patch urgent pour SharePoint (CVE-2026-45659)</h3>
+<h3>Campagne de phishing FIFA 2026 ciblant les fans de la Coupe du Monde</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé une vulnérabilité RCE (CVE-2026-45659, CVSS 8.8) dans SharePoint exploitable sans condition préalable. Le correctif est disponible pour toutes les versions serveur. Une exploitation active a été signalée.</p>
-<a href="https://thehackernews.com/2026/05/microsoft-patches-sharepoint-rce-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans Roundcube (CERTFR-2026-AVI-0644)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Roundcube est affecté par plusieurs failles critiques permettant une RCE, une atteinte à la confidentialité et une XSS. Les versions non patchées sont exposées à des attaques ciblant les serveurs de messagerie. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0644/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Malware Megalodon infecte 5 500 dépôts GitHub</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : En 6 heures, une campagne a compromis plus de 5 500 dépôts GitHub via des commits malveillants. Le malware Megalodon vole des identifiants, secrets de développeurs et données sensibles. L'origine de l'attaque reste inconnue.</p>
-<a href="https://www.darkreading.com/application-security/megalodon-malware-infects-thousands-github-repos" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
-</div>
-
-<hr />
-<h2>Mercredi 27 Mai 2026</h2>
-<h3>CISA impose un correctif sous 4 jours pour une faille cPanel</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA exige des agences fédérales américaines de patcher une vulnérabilité critique dans le plugin LiteSpeed de cPanel sous 4 jours. La faille est activement exploitée en attaque. Aucune CVE n'a encore été attribuée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-gives-feds-4-days-to-patch-actively-exploited-cpanel-plugin-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Silent Ransom Group : attaques physiques contre des cabinets d'avocats</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le FBI alerte sur des attaques physiques menées par le groupe Silent Ransom Group (SRG) contre des cabinets d'avocats américains pour voler des données. Les attaquants utilisent des techniques de social engineering pour accéder aux serveurs.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-warns-of-silent-ransom-group-in-person-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Grandoreiro et BTMOB : campagnes de malwares bancaires ciblant l'Europe</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des campagnes de trojans bancaires (Grandoreiro pour Windows, BTMOB pour Android) ciblent l'Europe et l'Amérique latine. Les malwares volent des identifiants et interceptent les transactions financières. ESET et WatchGuard ont identifié des vecteurs d'infection récents.</p>
-<a href="https://thehackernews.com/2026/05/grandoreiro-malware-and-btmob-rat.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Vulnérabilité dans Gitea expose des images conteneurs privées sans authentification</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Gitea (plateforme de contrôle de version) permet à des attaquants non authentifiés de récupérer des images conteneurs privées. La vulnérabilité (non encore référencée) affecte les déploiements auto-hébergés. Un correctif est attendu.</p>
-<a href="https://thehackernews.com/2026/05/gitea-vulnerability-exposes-private.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le FBI alerte sur des sites web frauduleux imitant FIFA pour vendre de faux billets, des packages d'hospitalité et voler des informations personnelles et financières avant la Coupe du Monde 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fbi-warns-of-fake-fifa-websites-running-world-cup-fraud-schemes/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
