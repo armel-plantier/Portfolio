@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 25/05/2026 au 01/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 02/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 25/05/2026 au 01/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 02/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,105 +75,78 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 26 Mai 2026</h2>
-<h3>Vulnérabilité critique dans Nginx (CVE non attribué)</h3>
+            <h2>Lundi 01 Juin 2026</h2>
+<h3>Vulnérabilité critique dans Microsoft Windows Netlogon (CVE-2026-41089)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Nginx permet à un attaquant distant d'exécuter du code arbitraire et de provoquer un déni de service (DoS). Les versions affectées ne sont pas précisées, mais une mise à jour urgente est recommandée. Le niveau de criticité est élevé en raison du risque d'exécution de code à distance.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0643/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-41089) dans le composant Netlogon de Microsoft Windows permet une exécution de code à distance (RCE). Les attaquants exploitent déjà cette faille en conditions réelles, selon le Centre pour la Cybersécurité de Belgique (CCB). Les systèmes non patchés sont exposés à des attaques massives. Un correctif est disponible via les mises à jour de sécurité de mai 2026.</p>
+<a href="https://www.securityweek.com/critical-windows-netlogon-vulnerability-in-attackers-crosshairs/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités critiques dans Roundcube (CVE non attribuées)</h3>
+<h3>Exploitation active d'une faille d'authentification dans Palo Alto PAN-OS (CVE-2026-0257)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Roundcube est touché par plusieurs vulnérabilités critiques, dont des failles d'exécution de code à distance (RCE), d'atteinte à la confidentialité et d'intégrité des données. Aucune CVE n'est encore attribuée, mais des correctifs sont disponibles dans les dernières versions. La criticité est maximale pour les serveurs exposés en ligne.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0644/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Les attaquants exploitent activement depuis mi-mai une vulnérabilité d'authentification (CVE-2026-0257) dans Palo Alto PAN-OS, permettant un contournement des mécanismes de sécurité. Cette faille, initialement sous-estimée, est désormais classée comme critique. Un correctif est disponible depuis la mise à jour d'avril 2026.</p>
+<a href="https://www.darkreading.com/threat-intelligence/patch-palo-alto-auth-bypass-bug-exploit" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Contournement de sécurité dans Firefox pour iOS (CVE non attribuée)</h3>
+<h3>Campagne de malware Miasma : attaque par chaîne d'approvisionnement sur les packages npm Red Hat</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Firefox pour iOS permet à un attaquant de contourner les politiques de sécurité, exposant potentiellement les utilisateurs à des attaques par phishing ou exfiltration de données. Un correctif est attendu dans les prochaines mises à jour. La criticité est modérée mais critique pour les utilisateurs mobiles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0645/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plus de 30 packages npm sous le namespace '@redhat-cloud-services' ont été compromis dans une attaque par chaîne d'approvisionnement. Le malware "Miasma", une variante de Shai-Hulud, vole les identifiants des développeurs et se propage de manière autonome. Les systèmes infectés sont exposés à des exfiltrations de données.</p>
+<a href="https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mardi 27 Mai 2026</h2>
-<h3>Multiples vulnérabilités dans Samba (CVE-2026-XXXX)</h3>
+<h3>Campagne de ransomware et malwares exploitant des sites WordPress compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Samba est vulnérable à plusieurs failles critiques, dont une RCE à distance, un DoS et une atteinte à l'intégrité des données. Les CVE spécifiques ne sont pas encore publiées, mais des correctifs sont disponibles. La criticité est élevée pour les serveurs exposés en réseau local ou internet.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0651/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Près de 2 000 sites WordPress ont été infectés par un malware utilisant les profils Steam pour cacher des données de commande et contrôle (C2). Les attaquants distribuent des charges utiles via des commentaires de profils Steam, permettant des attaques persistantes. Les sites non mis à jour sont vulnérables.</p>
+<a href="https://www.bleepingcomputer.com/news/security/wordpress-malware-campaign-hides-payloads-in-steam-profiles/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation active de CVE-2026-0257 dans Palo Alto GlobalProtect (CVE-2026-0257)</h3>
+<h3>Campagne de phishing utilisant ChatGPT pour distribuer des malwares</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'authentification par contournement (CVE-2026-0257, score CVSS 7.8) dans Palo Alto GlobalProtect est activement exploitée pour infiltrer les réseaux d'entreprise. Un correctif est disponible depuis fin mai. La criticité est critique en raison de l'exploitation en cours.</p>
-<a href="https://thehackernews.com/2026/05/pan-os-globalprotect-authentication.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des attaquants abusent des fonctionnalités de partage de contenu de ChatGPT pour héberger des malwares sur des domaines légitimes (chatgpt.com/s/). Les victimes sont redirigées vers des sites infectés via des liens partagés dans des conversations. Cette technique contourne les filtres de sécurité traditionnels.</p>
+<a href="https://www.infosecurity-magazine.com/news/attackers-shared-content-chatgpt/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Veeam Backup &amp; Replication (CVE non attribuées)</h3>
+<h3>Exploitation active d'une faille critique dans WP Maps Pro (CVE-2026-8732)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Veeam Backup & Replication est affecté par des vulnérabilités permettant une élévation de privilèges et une atteinte à l'intégrité des données. Aucune CVE n'est encore attribuée, mais des correctifs sont disponibles. La criticité est élevée pour les environnements de sauvegarde critiques.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0652/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-8732) dans le plugin WordPress WP Maps Pro permet la création de comptes administrateurs non autorisés. Plus de 15 000 installations sont exposées. Les attaquants exploitent déjà cette faille pour prendre le contrôle des sites. Un correctif est disponible.</p>
+<a href="https://www.securityweek.com/wp-maps-pro-vulnerability-exploited-to-take-over-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Mercredi 28 Mai 2026</h2>
-<h3>Vulnérabilité critique dans FortiClient EMS (CVE-2026-XXXX)</h3>
+<h3>Faille critique dans Flowise AI (RCE non authentifié)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans FortiClient EMS est exploitée pour déployer un malware voleur de credentials (EKZ Infostealer). Le correctif est disponible, mais des attaques sont en cours. La criticité est maximale pour les infrastructures de gestion d'endpoints.</p>
-<a href="https://thehackernews.com/2026/05/threat-actors-exploit-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Flowise AI permet une exécution de code à distance (RCE) avec un seul clic, compromettant entièrement les serveurs auto-hébergés. Un preuve de concept (PoC) a été publiée, exposant les environnements non patchés à des attaques immédiates.</p>
+<a href="https://www.infosecurity-magazine.com/news/flowise-mcp-rce-poc/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
 
-<h3>Exécution de code arbitraire dans Gogs (CVE non attribuée)</h3>
+<h3>Campagne d'espionnage Dragon Weave ciblant la République tchèque et Taïwan</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Gogs, un service Git auto-hébergé, est vulnérable à une RCE critique (score CVSS 9.4) permettant à un utilisateur authentifié d'exécuter du code arbitraire. Aucune CVE n'est encore publiée, mais une mise à jour urgente est nécessaire. La criticité est maximale pour les instances exposées.</p>
-<a href="https://thehackernews.com/2026/05/critical-gogs-rce-vulnerability-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une campagne d'espionnage chinoise (Operation Dragon Weave) cible des responsables gouvernementaux et des citoyens en République tchèque et à Taïwan. Le malware AdaptixC2 est déployé via des attaques ciblées. Les secteurs visés incluent la recherche, l'académie et la finance.</p>
+<a href="https://thehackernews.com/2026/06/china-aligned-groups-ramp-up-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille Linux "CIFSwitch" permettant une élévation de privilèges (CVE non attribuée)</h3>
+<h3>Faille critique dans les produits NetApp (DoS, atteinte à la confidentialité et intégrité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité "CIFSwitch" dans le noyau Linux permet à un attaquant local d'obtenir des privilèges root via l'abus du mécanisme d'authentification CIFS. Plusieurs distributions sont affectées. Un correctif est en cours de déploiement. La criticité est élevée pour les systèmes multi-utilisateurs.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-cifswitch-linux-flaw-gives-root-on-multiple-distributions/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits NetApp permettent des attaques par déni de service (DoS), des fuites de données et des modifications non autorisées. Les systèmes non patchés sont exposés à des compromissions massives. Des correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0671/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Jeudi 29 Mai 2026</h2>
-<h3>Botnet de 17 millions d'appareils démantelé aux Pays-Bas (CVE non applicable)</h3>
+<h3>Arrestation d'un doxeur en Espagne pour fuite de données sensibles de fonctionnaires</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les autorités néerlandaises ont démantelé un botnet de 17 millions d'appareils infectés, utilisés pour des attaques DDoS et autres cybercrimes. Aucune CVE n'est associée, mais cette opération illustre l'ampleur des menaces botnet actuelles. La criticité est élevée pour les infrastructures critiques.</p>
-<a href="https://www.bleepingcomputer.com/news/security/dutch-govt-disrupts-malware-botnet-with-17-million-infected-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La police espagnole a arrêté un individu pour avoir divulgué des informations sensibles concernant des employés gouvernementaux, dont des membres de l'Institut National de Cybersécurité (INCIBE). Les données exposées incluent des informations personnelles et professionnelles sensibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/spain-arrests-doxer-leaking-sensitive-data-of-govt-employees/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaques ciblant l'Ukraine avec des outils IA par le groupe GREYVIBE (CVE non attribuées)</h3>
+<h2>Mardi 02 Juin 2026</h2>
+<h3>Faille critique dans Keycloak (atteinte à la confidentialité et contournement de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe russe GREYVIBE utilise des outils basés sur l'IA (ChatGPT, Gemini) pour mener des cyberattaques ciblées contre l'Ukraine, incluant des malwares personnalisés et des leurres sophistiqués. Aucune CVE n'est liée, mais la menace est en évolution rapide. La criticité est critique pour les cibles géopolitiques.</p>
-<a href="https://thehackernews.com/2026/05/new-russian-linked-greyvibe-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Keycloak permet une atteinte à la confidentialité des données et un contournement des politiques de sécurité. Les attaquants peuvent exploiter cette faille pour accéder à des informations sensibles. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0669/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données de 4,9 millions de comptes chez Charter Communications</h3>
+<h3>Faille critique dans Laravel (contournement de politique de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le gang ShinyHunters a volé les données personnelles de 4,9 millions de comptes chez Charter Communications, un géant des télécoms américains. Aucune CVE n'est impliquée, mais l'incident souligne les risques liés aux prestataires externes. La criticité est élevée pour les utilisateurs concernés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/charter-communications-data-breach-affects-49-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Vendredi 30 Mai 2026</h2>
-<h3>Fuite de données de santé dans des hôpitaux allemands via Unimed</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des hôpitaux allemands ont subi une fuite de données de santé via Unimed, un prestataire externe de facturation. Aucune CVE n'est associée, mais l'incident met en lumière les risques liés aux tiers. La criticité est maximale pour les données sensibles (RGPD).</p>
-<a href="https://www.zataz.com/donnees-de-sante-volees-dans-des-hopitaux-allemands/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>Fuite de 600 000 registres en Lituanie (CVE non applicable)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La Lituanie enquête sur le vol de 600 000 registres civils, avec des soupçons d'implication étrangère. Aucune CVE n'est liée, mais l'incident soulève des questions sur la cybersécurité des données gouvernementales. La criticité est élevée pour les infrastructures nationales.</p>
-<a href="https://www.zataz.com/lituanie-600-000-registres-voles/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h2>Samedi 31 Mai 2026</h2>
-<h3>Exploitation de WP Maps Pro pour créer des comptes admin sur WordPress (CVE non attribuée)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le plugin WP Maps Pro permet à des attaquants de créer des comptes administrateur non autorisés sur les sites WordPress. Aucune CVE n'est encore publiée, mais des correctifs sont disponibles. La criticité est critique pour les sites exposés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/wp-maps-pro-bug-exploited-to-create-admin-accounts-on-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Laravel permet à un attaquant de contourner les politiques de sécurité, exposant les applications à des attaques non autorisées. Les développeurs sont invités à appliquer les correctifs disponibles dans les dernières versions du framework.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0670/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
         </div>
     </div>
