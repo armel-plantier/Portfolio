@@ -386,15 +386,7 @@ experiences: [
             issuer: "root-me.org", 
             url: "https://www.root-me.org/", 
             pdf: "",
-            rootmeStats: {"total":26,"themes":[{"name":"Réseau","count":18,"total":1},{"name":"Web-Client","count":8,"total":1},
-        { 
-            name: "https://claude.ai/share/2b400570-d3be-4a20-b397-c139641d0641", 
-            issuer: "ddd", 
-            url: "ddd", 
-            pdf: "",
-            icon: `<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#6366f1\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"8\" rx=\"2\"/><rect x=\"2\" y=\"14\" width=\"20\" height=\"8\" rx=\"2\"/><line x1=\"6\" y1=\"6\" x2=\"6.01\" y2=\"6\"/><line x1=\"6\" y1=\"18\" x2=\"6.01\" y2=\"18\"/></svg>`
-        }
-    ],"position":49112,"score":345,"rang":"curious","top_percent":null,"updated_at":"2026-05-25T11:40:35Z"},
+            rootmeStats: {"total":26,"themes":[{"name":"Réseau","count":18,"total":1},{"name":"Web-Client","count":8,"total":1}],"position":49112,"score":345,"rang":"curious","top_percent":null,"updated_at":"2026-06-01T13:25:07Z"},
             // Icône Terminal / Hacker
             icon: `<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" x="0px" y="0px" style="enable-background:new 0 0 595.3 595.3;" xml:space="preserve" id="svg72" sodipodi:docname="logo_rm_noir.svg" inkscape:version="0.92.2 2405546, 2018-03-11" viewBox="111.2 58.76 371.76 476.44" fill="#6366f2" width="100%" height="100%"><metadata id="metadata78"/><defs id="defs76">
 	
