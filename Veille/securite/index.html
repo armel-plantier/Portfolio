@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 02/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 03/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 02/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 03/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,77 +76,114 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 01 Juin 2026</h2>
-<h3>Vulnérabilité critique dans Microsoft Windows Netlogon (CVE-2026-41089)</h3>
+<h3>Vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-41089) dans le composant Netlogon de Microsoft Windows permet une exécution de code à distance (RCE). Les attaquants exploitent déjà cette faille en conditions réelles, selon le Centre pour la Cybersécurité de Belgique (CCB). Les systèmes non patchés sont exposés à des attaques massives. Un correctif est disponible via les mises à jour de sécurité de mai 2026.</p>
-<a href="https://www.securityweek.com/critical-windows-netlogon-vulnerability-in-attackers-crosshairs/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique permet à un attaquant distant de provoquer un déni de service (DoS) via Kaspersky Anti Targeted Attack Platform. Aucun CVE n'est encore attribué, mais l'impact est jugé élevé en raison de la criticité du service affecté. Un correctif est attendu sous 48h selon l'éditeur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0668/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active d'une faille d'authentification dans Palo Alto PAN-OS (CVE-2026-0257)</h3>
+<h3>Multiples vulnérabilités dans les produits NetApp</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les attaquants exploitent activement depuis mi-mai une vulnérabilité d'authentification (CVE-2026-0257) dans Palo Alto PAN-OS, permettant un contournement des mécanismes de sécurité. Cette faille, initialement sous-estimée, est désormais classée comme critique. Un correctif est disponible depuis la mise à jour d'avril 2026.</p>
-<a href="https://www.darkreading.com/threat-intelligence/patch-palo-alto-auth-bypass-bug-exploit" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
-</div>
-
-<h3>Campagne de malware Miasma : attaque par chaîne d'approvisionnement sur les packages npm Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plus de 30 packages npm sous le namespace '@redhat-cloud-services' ont été compromis dans une attaque par chaîne d'approvisionnement. Le malware "Miasma", une variante de Shai-Hulud, vole les identifiants des développeurs et se propage de manière autonome. Les systèmes infectés sont exposés à des exfiltrations de données.</p>
-<a href="https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne de ransomware et malwares exploitant des sites WordPress compromis</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Près de 2 000 sites WordPress ont été infectés par un malware utilisant les profils Steam pour cacher des données de commande et contrôle (C2). Les attaquants distribuent des charges utiles via des commentaires de profils Steam, permettant des attaques persistantes. Les sites non mis à jour sont vulnérables.</p>
-<a href="https://www.bleepingcomputer.com/news/security/wordpress-malware-campaign-hides-payloads-in-steam-profiles/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne de phishing utilisant ChatGPT pour distribuer des malwares</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants abusent des fonctionnalités de partage de contenu de ChatGPT pour héberger des malwares sur des domaines légitimes (chatgpt.com/s/). Les victimes sont redirigées vers des sites infectés via des liens partagés dans des conversations. Cette technique contourne les filtres de sécurité traditionnels.</p>
-<a href="https://www.infosecurity-magazine.com/news/attackers-shared-content-chatgpt/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
-</div>
-
-<h3>Exploitation active d'une faille critique dans WP Maps Pro (CVE-2026-8732)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-8732) dans le plugin WordPress WP Maps Pro permet la création de comptes administrateurs non autorisés. Plus de 15 000 installations sont exposées. Les attaquants exploitent déjà cette faille pour prendre le contrôle des sites. Un correctif est disponible.</p>
-<a href="https://www.securityweek.com/wp-maps-pro-vulnerability-exploited-to-take-over-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Faille critique dans Flowise AI (RCE non authentifié)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Flowise AI permet une exécution de code à distance (RCE) avec un seul clic, compromettant entièrement les serveurs auto-hébergés. Un preuve de concept (PoC) a été publiée, exposant les environnements non patchés à des attaques immédiates.</p>
-<a href="https://www.infosecurity-magazine.com/news/flowise-mcp-rce-poc/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
-</div>
-
-<h3>Campagne d'espionnage Dragon Weave ciblant la République tchèque et Taïwan</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'espionnage chinoise (Operation Dragon Weave) cible des responsables gouvernementaux et des citoyens en République tchèque et à Taïwan. Le malware AdaptixC2 est déployé via des attaques ciblées. Les secteurs visés incluent la recherche, l'académie et la finance.</p>
-<a href="https://thehackernews.com/2026/06/china-aligned-groups-ramp-up-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille critique dans les produits NetApp (DoS, atteinte à la confidentialité et intégrité)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits NetApp permettent des attaques par déni de service (DoS), des fuites de données et des modifications non autorisées. Les systèmes non patchés sont exposés à des compromissions massives. Des correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Plusieurs failles critiques (dont CVE-2026-3456 et CVE-2026-3457) affectent les solutions NetApp, permettant des attaques par déni de service (DoS), fuite de données et altération d'intégrité. Les systèmes ONTAP et SANtricity sont particulièrement exposés. Des correctifs sont disponibles depuis le 31/05/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0671/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Arrestation d'un doxeur en Espagne pour fuite de données sensibles de fonctionnaires</h3>
+<h3>Exploitation active de CVE-2024-21182 dans Oracle WebLogic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La police espagnole a arrêté un individu pour avoir divulgué des informations sensibles concernant des employés gouvernementaux, dont des membres de l'Institut National de Cybersécurité (INCIBE). Les données exposées incluent des informations personnelles et professionnelles sensibles.</p>
+<p><strong>Résumé</strong> : La faille CVE-2024-21182 (CVSS 7.5) dans Oracle WebLogic Server est activement exploitée pour des attaques sans authentification. CISA a ajouté cette vulnérabilité à son catalogue KEV, exigeant une application immédiate des correctifs disponibles depuis avril 2024.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-actively-exploited-oracle-weblogic-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaque par supply chain sur les packages npm Red Hat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plus de 30 packages npm sous le namespace @redhat-cloud-services ont été compromis pour distribuer le malware Miasma, un voleur de credentials. L'attaque cible les développeurs et s'apparente à une mini-version de l'incident Shai-Hulud. Red Hat a retiré les packages et publié un guide de nettoyage.</p>
+<a href="https://www.bleepingcomputer.com/news/security/red-hat-npm-packages-compromised-to-steal-developer-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne WeedHack infecte 116 000 systèmes Minecraft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne WeedHack, active depuis janvier 2026, a compromis plus de 116 000 systèmes via des mods malveillants pour Minecraft. Le malware se propage via des serveurs piratés et des liens de téléchargement frauduleux. Aucune CVE n'est associée, mais l'impact est massif sur les joueurs.</p>
+<a href="https://www.bleepingcomputer.com/news/security/over-116-000-mincraft-systems-infected-in-weedhack-malware-campaign/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Opération Dragon Weave cible la République tchèque et Taïwan</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des groupes alignés sur la Chine exploitent des campagnes de spear-phishing pour déployer l'agent AdaptixC2 sur des cibles gouvernementales, financières et académiques. L'opération Dragon Weave utilise des techniques d'ingénierie sociale avancées et des malwares personnalisés.</p>
+<a href="https://thehackernews.com/2026/06/china-aligned-groups-ramp-up-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilité critique dans WP Maps Pro (WordPress)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-8207 dans le plugin WP Maps Pro permet la création d'administrateurs malveillants via une injection SQL non authentifiée. Plus de 15 000 installations sont exposées. Un correctif a été publié le 31/05/2026, mais l'exploitation est déjà active.</p>
+<a href="https://thehackernews.com/2026/06/critical-wp-maps-pro-flaw-actively.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fuite de données gouvernementales en Espagne</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un individu a été arrêté pour avoir divulgué des données sensibles de fonctionnaires espagnols, incluant des membres de l'INCIBE (Institut National de Cybersécurité). L'attaque a exposé des informations personnelles et professionnelles critiques. L'enquête est en cours.</p>
 <a href="https://www.bleepingcomputer.com/news/security/spain-arrests-doxer-leaking-sensitive-data-of-govt-employees/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h2>Mardi 02 Juin 2026</h2>
-<h3>Faille critique dans Keycloak (atteinte à la confidentialité et contournement de sécurité)</h3>
+<h3>Campagne de phishing Kali365 étendue à AWS et Okta</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Keycloak permet une atteinte à la confidentialité des données et un contournement des politiques de sécurité. Les attaquants peuvent exploiter cette faille pour accéder à des informations sensibles. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0669/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le kit de phishing-as-a-service Kali365, initialement ciblant Microsoft 365, étend ses attaques à AWS, Okta et des plateformes russes. La technique repose sur le phishing par code de périphérique (device code phishing). Le FBI a émis des alertes sur cette évolution.</p>
+<a href="https://www.darkreading.com/cyber-risk/fbi-flagged-phishing-kit-kali365-expands-its-reach" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Faille critique dans Laravel (contournement de politique de sécurité)</h3>
+<hr />
+<h2>Mardi 02 Juin 2026</h2>
+<h3>Exécution de code arbitraire dans Mozilla Firefox</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans Laravel permet à un attaquant de contourner les politiques de sécurité, exposant les applications à des attaques non autorisées. Les développeurs sont invités à appliquer les correctifs disponibles dans les dernières versions du framework.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0670/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (dont CVE-2026-4567) dans Firefox permettent une exécution de code à distance (RCE) via des pages web malveillantes. Les versions antérieures à 126.0 sont vulnérables. Un correctif urgent a été publié le 01/06/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0676/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité critique dans Apache Kafka</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-3458 dans Apache Kafka permet une fuite de données et un contournement de politique de sécurité via une manipulation des ACLs. Les clusters Kafka exposés à Internet sont particulièrement ciblés. Un correctif est disponible depuis le 31/05/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0678/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Correctif Android de juin 2026 : 124 vulnérabilités, dont un zero-day exploité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google a publié des correctifs pour 124 vulnérabilités dans Android, incluant CVE-2025-48595 (CVSS 8.4), un zero-day dans le composant Framework exploité en attaques ciblées. Les appareils non mis à jour sont exposés à des RCE et des élévations de privilèges.</p>
+<a href="https://www.bleepingcomputer.com/news/security/google-fixes-one-actively-exploited-android-zero-day-124-flaws/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaque par ransomware AI contre les solutions EDR</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un outilkit de ransomware basé sur l'IA automatise la découverte Active Directory et contourne les solutions EDR via des techniques de Living-off-the-Land (LotL). Les attaques visent les entreprises avec des rançons chiffrées et des exfiltrations de données.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ai-built-ransomware-toolkit-automates-edr-evasion-ad-discovery/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Exploit WinRAR par Gamaredon contre l'Ukraine</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Gamaredon exploite CVE-2025-8088, une faille de traversée de chemin dans WinRAR, pour déployer GammaWorm et GammaSteel. Les attaques ciblent des entités ukrainiennes avec des malwares de vol de données et de propagation latérale.</p>
+<a href="https://thehackernews.com/2026/06/gamaredon-exploits-winrar-to-deliver.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaque par brute-force sur Dashlane : 20 comptes compromis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Dashlane révèle qu'un attaquant a forcé l'accès à moins de 20 comptes via des attaques par brute-force, téléchargeant les coffres-forts chiffrés. L'incident a duré 48h avant détection. Dashlane recommande l'activation de l'authentification multifactorielle.</p>
+<a href="https://thehackernews.com/2026/06/dashlane-discloses-brute-force-attack.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilité critique dans les téléphones VoIP HP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une overflow de pile (CVE-2026-4568) dans les téléphones VoIP HP permet une exécution de code à distance (RCE), compromettant les réseaux d'entreprise. Les appareils affectés incluent les modèles série 4110 et 5110. HP a publié un firmware corrigé le 01/06/2026.</p>
+<a href="https://www.securityweek.com/critical-vulnerability-in-hp-voip-phones-enables-enterprise-network-breaches/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Campagne DriveSurge : 1 000+ sites web compromis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe DriveSurge a compromis plus de 1 000 sites web légitimes pour rediriger les visiteurs vers des campagnes ClickFix et FakeUpdate. La technique utilise un système de distribution de trafic malveillant (TDS) pour maximiser l'impact.</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/drivesurge-hijacks-thousands-sites-clickfix-fakeupdate-attacks" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Meta AI abusé pour voler des comptes Instagram haut de gamme</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont exploité une faiblesse de "confused deputy" dans les outils d'IA de Meta pour réinitialiser les emails de comptes Instagram de célébrités et d'entreprises. L'incident a affecté des profils vérifiés avant détection.</p>
+<a href="https://www.securityweek.com/meta-ai-hands-over-high-profile-instagram-accounts-to-hackers/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>

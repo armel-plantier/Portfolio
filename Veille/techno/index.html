@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 01/06/2026 au 02/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 01/06/2026 au 03/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 02/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 03/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,46 +76,72 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 02 Juin 2026</h2>
-<h3>CVE-2026-0257 dans Palo Alto GlobalProtect : faille VPN activement exploitée</h3>
+<h3>Coreutils pour Windows : exécution native des commandes Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-0257) dans le service VPN GlobalProtect de Palo Alto Networks est activement exploitée par des cybercriminels. Cette faille permet une exécution de code à distance et compromet la sécurité des accès distants. Les administrateurs doivent appliquer les correctifs urgents et vérifier les logs VPN pour détecter des activités suspectes.</p>
-<a href="https://www.it-connect.fr/palo-alto-cve-2026-0257-cette-faille-dans-le-vpn-est-activement-exploitee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft annonce Coreutils pour Windows, un projet open source permettant d'exécuter nativement des commandes Linux (grep, sed, awk, etc.) sur Windows. Cette intégration facilite la migration des scripts et workflows DevOps entre systèmes, réduisant la dépendance aux environnements WSL ou Cygwin.</p>
+<a href="https://www.it-connect.fr/coreutils-vos-commandes-habituelles-linux-sinvitent-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CIFSwitch : faille Linux de 19 ans permettant un accès root</h3>
+<h3>Fin de NTLM : IAKerb et LocalKDC en préversion sur Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CIFSwitch) dans le noyau Linux, présente depuis 19 ans, permet une élévation de privilèges locale (LPE) via un accès root. Les systèmes Linux non patchés sont exposés à des attaques locales. Les administrateurs doivent appliquer les correctifs du noyau et auditer les accès locaux.</p>
-<a href="https://www.it-connect.fr/cifswitch-cette-faille-linux-presente-depuis-19-ans-offre-un-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft introduit IAKerb et LocalKDC en préversion pour remplacer NTLM par Kerberos, améliorant la sécurité des authentifications. Ces outils permettent une intégration transparente avec les environnements hybrides (on-prem/cloud) et simplifient la gestion des identités dans les infrastructures Windows.</p>
+<a href="https://www.it-connect.fr/fin-de-ntlm-iakerb-et-localkdc-arrivent-en-preversion-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Miasma : attaque par chaîne d'approvisionnement sur les packages npm Red Hat</h3>
+<h3>Intelligent Terminal : nouvelle console Windows boostée à l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'attaque par chaîne d'approvisionnement (Miasma) a compromis des packages npm liés à Red Hat Cloud Services, volant des identifiants et déployant un ver auto-propagateur. Les équipes DevOps doivent scanner les dépendances npm, revérifier les packages internes et appliquer des politiques de signature strictes.</p>
-<a href="https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft lance Intelligent Terminal (v0.1), un fork de Windows Terminal enrichi d'agents IA pour automatiser les tâches répétitives (logs, scripts, monitoring). Idéal pour les administrateurs système, il réduit le temps de résolution des incidents via des suggestions contextuelles.</p>
+<a href="https://www.it-connect.fr/intelligent-terminal-microsoft-devoile-une-nouvelle-console-boostee-a-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>OpenAI Codex : tokens d'authentification volés via une attaque npm</h3>
+<h3>Android June 2026 : patch critique CVE-2025-48595 exploité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque par chaîne d'approvisionnement (codexui-android) a compromis des tokens d'authentification OpenAI Codex via npm, exposant les comptes développeurs. Les équipes utilisant Codex doivent révoquer les tokens compromis, auditer les accès et migrer vers des solutions sécurisées de gestion des identités.</p>
-<a href="https://thehackernews.com/2026/06/openai-codex-authentication-tokens.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Google corrige 124 vulnérabilités dans Android, dont CVE-2025-48595 (score 8.4) déjà exploitée. Les administrateurs doivent prioriser le déploiement des mises à jour pour les appareils critiques (terminaux mobiles, IoT) afin d'éviter les attaques par exécution de code à distance.</p>
+<a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Linux 7.2 : dépréciation d'AF_ALG en raison d'une surface d'attaque massive</h3>
+<h3>Ubuntu Core 26 LTS : renforcement du système immuable</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.2 déprécie rapidement AF_ALG, une interface cryptographique vulnérable, en raison d'une surface d'attaque jugée "massive" par les mainteneurs. Les administrateurs doivent migrer vers des alternatives sécurisées (ex : OpenSSL, libsodium) et désactiver AF_ALG dans les configurations critiques.</p>
+<p><strong>Résumé</strong> : Canonical publie Ubuntu Core 26 LTS, optimisé pour les environnements immuables (conteneurs, IoT, edge). Les améliorations incluent une gestion simplifiée des mises à jour atomiques et une intégration renforcée avec les outils de sécurité (AppArmor, Secure Boot), réduisant les surfaces d'attaque.</p>
+<a href="https://www.it-connect.fr/ubuntu-core-26-lts-ce-systeme-immuable-continue-de-sameliorer/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Wine 11.10 : support de VKD3D 2.0 et optimisations</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Wine 11.10 ajoute le support de VKD3D 2.0 (Direct3D 12) et des corrections pour les applications Windows critiques. Les administrateurs Linux peuvent désormais déployer des logiciels Windows (comme des outils DevOps) sans machine virtuelle, améliorant la compatibilité des environnements hybrides.</p>
+<a href="https://www.it-connect.fr/linux-wine-11-10-ajoute-vkd3d-2-0-et-dautres-nouveautes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Proxmox Datacenter Manager 1.1 : gestion multi-cluster</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Proxmox Datacenter Manager 1.1 introduit le déploiement automatisé et la gestion centralisée de clusters Proxmox. Les fonctionnalités incluent la surveillance unifiée, la réplication multi-site et l'intégration avec les outils de CI/CD, simplifiant l'administration des infrastructures virtualisées.</p>
+<a href="https://www.it-connect.fr/proxmox-datacenter-manager-1-1-decouvrez-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>CVE-2026-41089 : faille critique Netlogon exploitée sur Windows Server</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CVE-2026-41089 (Netlogon) est activement exploitée, permettant une élévation de privilèges. Les administrateurs doivent appliquer le correctif Microsoft KB5005010 immédiatement et vérifier les logs pour détecter les tentatives d'exploitation via des attaques par force brute.</p>
+<a href="https://www.it-connect.fr/windows-server-cve-2026-41089-cette-faille-critique-dans-netlogon-est-exploitee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Linux Kernel 7.2 : dépréciation d'AF_ALG et impact sur la cryptographie</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux 7.2 déprécie AF_ALG, l'interface utilisateur pour le chiffrement matériel, en raison de sa surface d'attaque massive. Les administrateurs doivent migrer vers des alternatives comme libsodium ou OpenSSL pour éviter les vulnérabilités liées aux LLM/IA exploitant ces failles.</p>
 <a href="https://www.phoronix.com/news/Linux-AF-ALG-Deprecation" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Intel Xeon 6+ et Ethernet E835 : lancement officiel</h3>
+<h3>Mir 2.27 : avancées pour les shells Wayland</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel lance officiellement les processeurs Xeon 6+ (Clearwater Forest) et le contrôleur Ethernet E835, optimisés pour les charges de travail intensives. Les administrateurs doivent évaluer la compatibilité des serveurs existants et planifier les migrations pour exploiter les gains de performance et d'efficacité énergétique.</p>
-<a href="https://www.phoronix.com/review/intel-xeon-6-plus-cri-e835" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Canonical publie Mir 2.27, avec un code Rust renforcé pour les shells Wayland. Cette version améliore la stabilité et la sécurité des interfaces graphiques sous Linux, particulièrement utile pour les environnements embarqués ou les kiosques, où la fiabilité est critique.</p>
+<a href="https://www.phoronix.com/news/Mir-2.27-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>NVIDIA RTX Spark : nouveau superchip pour PC et laptops</h3>
+<hr />
+<h2>Mardi 03 Juin 2026</h2>
+<h3>NVK (NVIDIA Vulkan) : support des Mesh Shaders</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NVIDIA annonce le RTX Spark, un superchip dédié aux PC compacts et laptops, combinant performances IA et graphiques. Les administrateurs système doivent évaluer l'intégration de ces puces pour les postes de travail techniques (ML, rendu 3D) et anticiper les besoins en refroidissement et alimentation.</p>
-<a href="https://www.phoronix.com/news/NVIDIA-RTX-Spark" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le pilote open source NVK pour NVIDIA ajoute le support des Mesh Shaders, essentiel pour les charges de travail graphiques modernes (jeux, rendu 3D). Les administrateurs Linux peuvent désormais utiliser des GPU NVIDIA avec des environnements conteneurisés (Kubernetes) sans dépendre du pilote propriétaire.</p>
+<a href="https://www.phoronix.com/news/NVK-Mesh-Shaders-Merged" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
