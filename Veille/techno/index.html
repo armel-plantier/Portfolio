@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 01/06/2026 au 03/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 01/06/2026 au 04/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 03/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 04/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,73 +75,141 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 02 Juin 2026</h2>
-<h3>Coreutils pour Windows : exécution native des commandes Linux</h3>
+            <h2>Mardi 1 Juin 2026</h2>
+<h3>Miasma : une attaque par supply chain cible les packages npm de Red Hat</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft annonce Coreutils pour Windows, un projet open source permettant d'exécuter nativement des commandes Linux (grep, sed, awk, etc.) sur Windows. Cette intégration facilite la migration des scripts et workflows DevOps entre systèmes, réduisant la dépendance aux environnements WSL ou Cygwin.</p>
+<p><strong>Résumé</strong> : Une campagne d'attaque par supply chain nommée Miasma a compromis des packages npm liés à @redhat-cloud-services, permettant le vol de credentials et la propagation d'un ver auto-réplicatif. Les développeurs sont exposés via des paquets légitimes mais infectés, nécessitant une vérification immédiate des dépendances.</p>
+<a href="https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA ajoute CVE-2024-21182 (Oracle WebLogic) au catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CVE-2024-21182, une vulnérabilité critique d'Oracle WebLogic Server, a été ajoutée au catalogue KEV de CISA après une exploitation active. Les administrateurs doivent appliquer les correctifs disponibles pour éviter des attaques par exécution de code à distance.</p>
+<a href="https://thehackernews.com/2026/06/oracle-weblogic-cve-2024-21182-added-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>85% des cyberattaques exploitent le protocole RDP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une tribune souligne que le protocole RDP est devenu un vecteur privilégié pour les attaques, car il est omniprésent dans les environnements Windows. Les administrateurs doivent renforcer la sécurité (MFA, segmentation réseau) et surveiller les connexions suspectes.</p>
+<a href="https://www.silicon.fr/cybersecurite-1371/85-des-cyberattaques-utilisent-le-protocole-rdp-pour-infiltrer-les-reseaux-en-toute-discretion-227451" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>NVIDIA rejoint l'écosystème Windows sur Arm</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : NVIDIA étend son architecture DGX Spark aux PC Windows sur Arm, avec des puces optimisées pour les environnements professionnels. Cette évolution impacte les stratégies d'infrastructure pour les charges de travail gourmandes en GPU.</p>
+<a href="https://www.silicon.fr/workspace-1376/nvidia-spark-rtx-windows-227439" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<hr />
+<h2>Mercredi 2 Juin 2026</h2>
+<h3>Coreutils pour Windows : exécuter des commandes Linux nativement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a annoncé Coreutils pour Windows, un projet open source permettant d'exécuter des commandes Linux (ls, grep, etc.) directement sur Windows. Idéal pour les administrateurs habitués aux outils Unix, sans recourir à WSL ou Cygwin.</p>
 <a href="https://www.it-connect.fr/coreutils-vos-commandes-habituelles-linux-sinvitent-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <h3>Fin de NTLM : IAKerb et LocalKDC en préversion sur Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft introduit IAKerb et LocalKDC en préversion pour remplacer NTLM par Kerberos, améliorant la sécurité des authentifications. Ces outils permettent une intégration transparente avec les environnements hybrides (on-prem/cloud) et simplifient la gestion des identités dans les infrastructures Windows.</p>
+<p><strong>Résumé</strong> : Microsoft introduit IAKerb et LocalKDC pour remplacer NTLM, avec une préversion disponible. Ces composants visent à renforcer l'authentification Kerberos et éliminer les vulnérabilités liées à NTLM. Les administrateurs doivent tester ces préversions dans des environnements dédiés.</p>
 <a href="https://www.it-connect.fr/fin-de-ntlm-iakerb-et-localkdc-arrivent-en-preversion-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Intelligent Terminal : nouvelle console Windows boostée à l'IA</h3>
+<h3>Intelligent Terminal : une console Windows Terminal boostée à l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft lance Intelligent Terminal (v0.1), un fork de Windows Terminal enrichi d'agents IA pour automatiser les tâches répétitives (logs, scripts, monitoring). Idéal pour les administrateurs système, il réduit le temps de résolution des incidents via des suggestions contextuelles.</p>
+<p><strong>Résumé</strong> : Microsoft dévoile Intelligent Terminal (v0.1), un fork de Windows Terminal intégré avec des agents IA. Cette console permet d'automatiser des tâches complexes via des commandes naturelles, utile pour les administrateurs gérant des infrastructures hybrides.</p>
 <a href="https://www.it-connect.fr/intelligent-terminal-microsoft-devoile-une-nouvelle-console-boostee-a-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Android June 2026 : patch critique CVE-2025-48595 exploité</h3>
+<h3>Microsoft Entra ID : suppression réversible des appareils</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google corrige 124 vulnérabilités dans Android, dont CVE-2025-48595 (score 8.4) déjà exploitée. Les administrateurs doivent prioriser le déploiement des mises à jour pour les appareils critiques (terminaux mobiles, IoT) afin d'éviter les attaques par exécution de code à distance.</p>
-<a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La fonctionnalité "Device Soft Delete" est désormais disponible dans Entra ID, permettant de restaurer les appareils supprimés accidentellement dans un délai de 30 jours. Une amélioration majeure pour la gestion des identités et des terminaux.</p>
+<a href="https://www.it-connect.fr/microsoft-entra-id-la-suppression-reversible-arrive-enfin-pour-les-appareils/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Ubuntu Core 26 LTS : renforcement du système immuable</h3>
+<h3>Wine 11.10 : support de VKD3D 2.0 et améliorations Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Canonical publie Ubuntu Core 26 LTS, optimisé pour les environnements immuables (conteneurs, IoT, edge). Les améliorations incluent une gestion simplifiée des mises à jour atomiques et une intégration renforcée avec les outils de sécurité (AppArmor, Secure Boot), réduisant les surfaces d'attaque.</p>
-<a href="https://www.it-connect.fr/ubuntu-core-26-lts-ce-systeme-immuable-continue-de-sameliorer/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Wine 11.10 : support de VKD3D 2.0 et optimisations</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Wine 11.10 ajoute le support de VKD3D 2.0 (Direct3D 12) et des corrections pour les applications Windows critiques. Les administrateurs Linux peuvent désormais déployer des logiciels Windows (comme des outils DevOps) sans machine virtuelle, améliorant la compatibilité des environnements hybrides.</p>
+<p><strong>Résumé</strong> : La version 11.10 de Wine ajoute le support de VKD3D 2.0 (Direct3D 12) et d'autres optimisations pour la compatibilité Windows sous Linux. Les administrateurs Linux peuvent désormais exécuter des applications Windows plus efficacement.</p>
 <a href="https://www.it-connect.fr/linux-wine-11-10-ajoute-vkd3d-2-0-et-dautres-nouveautes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Proxmox Datacenter Manager 1.1 : gestion multi-cluster</h3>
+<h3>Surface Laptop Ultra : partenariat NVIDIA pour concurrencer le MacBook Pro</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Proxmox Datacenter Manager 1.1 introduit le déploiement automatisé et la gestion centralisée de clusters Proxmox. Les fonctionnalités incluent la surveillance unifiée, la réplication multi-site et l'intégration avec les outils de CI/CD, simplifiant l'administration des infrastructures virtualisées.</p>
-<a href="https://www.it-connect.fr/proxmox-datacenter-manager-1-1-decouvrez-les-nouveautes-principales/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft lance le Surface Laptop Ultra avec un GPU NVIDIA Blackwell et de la mémoire unifiée, ciblant les utilisateurs professionnels exigeants. Une évolution stratégique pour les environnements DevOps et IA.</p>
+<a href="https://www.it-connect.fr/surface-laptop-ultra-microsoft-sallie-a-nvidia-pour-concurrencer-le-macbook-pro/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CVE-2026-41089 : faille critique Netlogon exploitée sur Windows Server</h3>
+<h3>Campus AI : la France passe à 3 gigawatts pour l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CVE-2026-41089 (Netlogon) est activement exploitée, permettant une élévation de privilèges. Les administrateurs doivent appliquer le correctif Microsoft KB5005010 immédiatement et vérifier les logs pour détecter les tentatives d'exploitation via des attaques par force brute.</p>
-<a href="https://www.it-connect.fr/windows-server-cve-2026-41089-cette-faille-critique-dans-netlogon-est-exploitee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Linux Kernel 7.2 : dépréciation d'AF_ALG et impact sur la cryptographie</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.2 déprécie AF_ALG, l'interface utilisateur pour le chiffrement matériel, en raison de sa surface d'attaque massive. Les administrateurs doivent migrer vers des alternatives comme libsodium ou OpenSSL pour éviter les vulnérabilités liées aux LLM/IA exploitant ces failles.</p>
-<a href="https://www.phoronix.com/news/Linux-AF-ALG-Deprecation" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Mir 2.27 : avancées pour les shells Wayland</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Canonical publie Mir 2.27, avec un code Rust renforcé pour les shells Wayland. Cette version améliore la stabilité et la sécurité des interfaces graphiques sous Linux, particulièrement utile pour les environnements embarqués ou les kiosques, où la fiabilité est critique.</p>
-<a href="https://www.phoronix.com/news/Mir-2.27-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Mistral AI, Bpifrance et MGX investissent 5 milliards € pour étendre le Campus AI à 3 GW de capacité, équivalent à 3 réacteurs nucléaires. Une infrastructure stratégique pour les acteurs européens de l'IA et du DevOps.</p>
+<a href="https://www.silicon.fr/data-ia-1372/campus-ai-la-france-se-branche-sur-3-gigawatts-227468" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
 <hr />
-<h2>Mardi 03 Juin 2026</h2>
-<h3>NVK (NVIDIA Vulkan) : support des Mesh Shaders</h3>
+<h2>Jeudi 3 Juin 2026</h2>
+<h3>VS Code : faille zero-day via github.dev</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le pilote open source NVK pour NVIDIA ajoute le support des Mesh Shaders, essentiel pour les charges de travail graphiques modernes (jeux, rendu 3D). Les administrateurs Linux peuvent désormais utiliser des GPU NVIDIA avec des environnements conteneurisés (Kubernetes) sans dépendre du pilote propriétaire.</p>
-<a href="https://www.phoronix.com/news/NVK-Mesh-Shaders-Merged" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Un chercheur a publié une faille zero-day affectant Visual Studio Code (version web github.dev), permettant des attaques par exécution de code arbitraire. Les administrateurs doivent désactiver github.dev ou appliquer les correctifs urgents.</p>
+<a href="https://www.it-connect.fr/vs-code-un-chercheur-publie-une-faille-zero-day-pour-punir-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>FROST : le tracking web via les SSD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FROST exploite les variations de performance des SSD pour déduire les sites et logiciels utilisés par un utilisateur. Une menace pour la confidentialité, nécessitant des contre-mesures comme le chiffrement du stockage ou l'utilisation de SSD chiffrés.</p>
+<a href="https://www.it-connect.fr/votre-ssd-vous-trahit-frost-la-nouvelle-methode-de-tracking-web/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Microsoft Scout : agent IA "Autopilot" basé sur OpenClaw</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Scout, présenté lors du Build 2026, est un agent IA autonome capable d'exécuter des tâches complexes sans intervention humaine. Utile pour l'automatisation DevOps, mais nécessite une supervision pour éviter les dérives.</p>
+<a href="https://www.it-connect.fr/microsoft-scout-un-nouvel-agent-ia-autopilot-propulse-par-openclaw/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Weedhack : malware ciblant les joueurs Minecraft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne Weedhack a infecté 116 000 machines via YouTube et le SEO poisoning. Les administrateurs doivent sensibiliser les utilisateurs et surveiller les téléchargements suspects de mods ou de clients Minecraft.</p>
+<a href="https://www.it-connect.fr/weedhack-ce-malware-cible-les-joueurs-de-minecraft-et-fait-deja-plus-de-116-000-victimes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Windows Developer Configurations : environnement de dev optimisé</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft propose Windows Developer Configurations, utilisant WinGet pour déployer rapidement un environnement de développement complet. Idéal pour les équipes DevOps et les administrateurs système gérant des machines de dev.</p>
+<a href="https://www.it-connect.fr/windows-developer-configurations-lidee-de-microsoft-pour-preparer-rapidement-un-environnement-de-code/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>MAI-Thinking-1 : premier modèle IA de raisonnement de Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a dévoilé MAI-Thinking-1, un LLM dédié au raisonnement logique, lors du Build 2026. Une avancée pour les systèmes autonomes et l'automatisation des tâches complexes en DevOps.</p>
+<a href="https://www.it-connect.fr/microsoft-lance-mai-thinking-1-son-premier-modele-ia-pour-le-raisonnement/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>eBPF : révolution du monitoring agentless pour Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : eBPF permet une observabilité haute performance des infrastructures Linux sans agents, améliorant la sécurité et le monitoring. Les administrateurs peuvent détecter des anomalies en temps réel avec un impact minimal sur les performances.</p>
+<a href="https://www.it-connect.fr/ebpf-et-la-revolution-du-monitoring-agentless-pour-securiser-vos-infrastructures-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Android June 2026 : patch pour une faille zero-day exploitée</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google a corrigé 124 vulnérabilités dans Android, dont une zero-day (CVE-2025-48595) déjà exploitée. Les administrateurs doivent appliquer les mises à jour rapidement pour protéger les terminaux mobiles.</p>
+<a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>HTTP/2 Bomb : vulnérabilité DoS affectant NGINX, Apache et Cloudflare</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle vulnérabilité (HTTP/2 Bomb) permet des attaques par déni de service sur les serveurs web majeurs. Les administrateurs doivent appliquer les correctifs ou configurer des limites de requêtes pour atténuer le risque.</p>
+<a href="https://thehackernews.com/2026/06/new-http2-bomb-vulnerability-allows.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>COSMIC Epoch 1.0.15 : support des contraintes de pointeur Wayland</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La version 1.0.15 de COSMIC Epoch améliore l'expérience gaming sous Wayland avec des contraintes de pointeur. Une avancée pour les environnements Linux modernes et les administrateurs gérant des postes de travail hybrides.</p>
+<a href="https://www.phoronix.com/news/COSMIC-Epoch-1.0.15" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>DNS-AID : projet d'annuaire agentique à la Fondation Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La Fondation Linux accueille DNS-AID, un projet visant à créer un annuaire agentique pour la gestion des DNS. Une solution prometteuse pour automatiser et sécuriser la gestion des noms de domaine dans les infrastructures cloud.</p>
+<a href="https://www.silicon.fr/data-ia-1372/dns-aid-227492" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>
