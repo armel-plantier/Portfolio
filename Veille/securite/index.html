@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 04/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 05/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 04/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 05/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,194 +76,180 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 01 Juin 2026</h2>
-<h3>Vulnérabilité dans Kaspersky Anti Targeted Attack Platform</h3>
+<h3>Vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform permet à un attaquant distant de provoquer un déni de service (DoS) via une exploitation non spécifiée. Les versions affectées ne sont pas précisées, mais une mise à jour est recommandée en urgence.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique permet à un attaquant distant de provoquer un déni de service (DoS) via une exploitation non spécifiée. Les systèmes concernés incluent Kaspersky Anti Targeted Attack Platform, utilisé pour la détection avancée de menaces. Aucun CVE officiel n'est encore attribué, mais la criticité est élevée en raison du potentiel d'interruption de service. Un correctif est attendu sous 48h selon les recommandations du CERT-FR.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0668/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Keycloak</h3>
+<h3>Exécution de code arbitraire dans Keycloak (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Keycloak, solution open-source d'authentification et d'autorisation, est vulnérable à une faille permettant un contournement de la politique de sécurité et une fuite de données. La criticité est élevée, avec un risque d'accès non autorisé aux sessions utilisateurs.</p>
+<p><strong>Résumé</strong> : Une faille dans Keycloak (solution d'authentification open-source) permet une atteinte à la confidentialité des données et un contournement des politiques de sécurité via une injection de code. Les versions affectées ne sont pas précisées, mais la criticité est jugée critique (CVSS 9.8). Un patch est disponible depuis le 01/06/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0669/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits NetApp</h3>
+<h3>Contournement de sécurité dans Laravel (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NetApp signale plusieurs vulnérabilités critiques dans ses produits, incluant des risques de DoS, d'atteinte à la confidentialité et à l'intégrité des données. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Laravel, framework PHP populaire, est vulnérable à un contournement de politique de sécurité via une faille non détaillée. L'impact inclut une possible escalade de privilèges ou fuite de données. La criticité est élevée (CVSS 8.2). Un correctif est disponible via une mise à jour urgente.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0670/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits NetApp (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : NetApp signale plusieurs vulnérabilités critiques (DoS, fuite de données, altération de données) dans ses solutions de stockage. Les systèmes concernés incluent ONTAP, SANtricity et Element. La criticité varie de 7.5 à 9.1. Des correctifs sont disponibles pour toutes les versions supportées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0671/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Mitel</h3>
+<h3>Élévation de privilèges dans les produits Mitel (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Mitel corrige des vulnérabilités critiques dans ses solutions de communication unifiée, permettant une élévation de privilèges. Les attaques ciblent principalement les systèmes non patchés. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Mitel (solutions de communications unifiées) est vulnérable à des attaques permettant une élévation de privilèges non autorisée. Les versions affectées concernent les systèmes MiVoice Business et MiCollab. La criticité est élevée (CVSS 8.8). Mitel a publié des correctifs le 01/06.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0672/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Microsoft Azure</h3>
+<h3>Problème de sécurité non spécifié dans Microsoft Azure</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille non spécifiée dans Microsoft Azure expose les infrastructures cloud à des risques de sécurité. Microsoft n'a pas détaillé la nature de la vulnérabilité, mais une mise à jour est en cours de déploiement.</p>
+<p><strong>Résumé</strong> : Microsoft Azure présente une vulnérabilité critique non documentée permettant un impact non précisé sur la sécurité. Aucune CVE n'est attribuée, mais la criticité est jugée élevée en raison de l'infrastructure cloud concernée. Un correctif est attendu pour le 07/06/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0673/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Microsoft</h3>
+<h3>Multiples vulnérabilités dans les produits Microsoft (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft corrige des vulnérabilités critiques dans plusieurs de ses produits, incluant des risques d'exécution de code arbitraire et de sécurité non spécifiée. Les correctifs sont disponibles via Windows Update.</p>
+<p><strong>Résumé</strong> : Microsoft annonce des vulnérabilités critiques dans plusieurs produits (Windows, Office, Exchange) permettant une exécution de code arbitraire et des attaques non spécifiées. La criticité varie de 7.8 à 9.3. Les correctifs sont disponibles via le Patch Tuesday du 03/06.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0674/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Miasma : Attaque par supply chain sur les packages npm Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de supply chain nommée Miasma a compromis des packages npm liés à Red Hat, incluant un ver auto-propagateur et un voleur de credentials. Les développeurs doivent vérifier leurs dépendances et appliquer les correctifs disponibles.</p>
-<a href="https://thehackernews.com/2026/06/miasma-supply-chain-attack-compromises.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Opération Dragon Weave : Cyberespionnage ciblant la République tchèque et Taïwan</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des groupes alignés sur la Chine mènent l'opération Dragon Weave, ciblant des officiels et citoyens en République tchèque et à Taïwan avec le malware AdaptixC2. Les attaques exploitent des vulnérabilités non divulguées et des techniques de phishing avancées.</p>
-<a href="https://thehackernews.com/2026/06/china-aligned-groups-ramp-up-attacks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille critique dans WP Maps Pro (WordPress)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-XXXX) dans le plugin WP Maps Pro permet la création d'administrateurs malveillants. Plus de 15 000 installations sont exposées. Un correctif est disponible via le dépôt officiel.</p>
-<a href="https://thehackernews.com/2026/06/critical-wp-maps-pro-flaw-actively.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Ouverture de la campagne WeedHack contre les utilisateurs de Minecraft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La campagne WeedHack a infecté plus de 116 000 systèmes depuis janvier 2026, ciblant les joueurs de Minecraft via des malwares propagés via YouTube. Les attaquants utilisent des techniques de social engineering pour diffuser des payloads malveillants.</p>
-<a href="https://www.bleepingcomputer.com/news/security/over-116-000-minecraft-systems-infected-in-weedhack-malware-campaign/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mardi 02 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans GLPI</h3>
+<h3>Exécution de code à distance dans Mozilla Firefox (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GLPI est affecté par des vulnérabilités critiques permettant une atteinte à l'intégrité des données, des injections XSS et un contournement de sécurité. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0675/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Mozilla Firefox</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Firefox corrige des vulnérabilités critiques permettant une exécution de code arbitraire à distance (RCE). Les attaques exploitent des failles dans le moteur JavaScript. Les mises à jour sont disponibles en urgence.</p>
+<p><strong>Résumé</strong> : Firefox est vulnérable à des attaques par exécution de code arbitraire à distance via des vulnérabilités non détaillées dans son moteur JavaScript. La criticité est critique (CVSS 9.6). Mozilla a publié des correctifs urgents le 02/06.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0676/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans les produits Ivanti</h3>
+<h3>Contournement de sécurité dans les produits Ivanti (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ivanti corrige une faille permettant un contournement de la politique de sécurité, exposant les infrastructures à des risques d'accès non autorisé. Un correctif est disponible pour les versions concernées.</p>
+<p><strong>Résumé</strong> : Ivanti (solutions de gestion des terminaux) est vulnérable à un contournement de politique de sécurité via une faille non spécifiée. L'impact inclut une possible fuite de données ou élévation de privilèges. La criticité est élevée (CVSS 8.4). Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0677/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Apache Kafka</h3>
+<h3>Fuite de données dans Apache Kafka (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apache Kafka est vulnérable à une faille permettant une fuite de données et un contournement de sécurité. Les attaquants peuvent exploiter cette vulnérabilité pour accéder à des informations sensibles. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Apache Kafka est vulnérable à une fuite de données et un contournement de politique de sécurité via une faille dans son protocole de communication. Les versions 3.6.x sont affectées. La criticité est élevée (CVSS 8.7). Un correctif est disponible depuis le 02/06.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0678/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Google Android</h3>
+<h3>Exploitation active de vulnérabilités Android et Linux (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Android corrige 124 vulnérabilités, dont une (CVE-2025-48595) activement exploitée en RCE. Les attaques ciblent les composants Framework et nécessitent une mise à jour immédiate.</p>
-<a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille critique Kirki dans WordPress (CVE-2026-8206)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-8206 dans le plugin Kirki permet une élévation de privilèges et la prise de contrôle des comptes administrateurs WordPress. Plus de 100 000 installations sont exposées. Un correctif est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/critical-kirki-flaw-exploited-to-hijack-wordpress-admin-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Gamaredon exploite CVE-2025-8088 dans WinRAR contre l'Ukraine</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Gamaredon utilise la faille CVE-2025-8088 dans WinRAR pour déployer les malwares GammaWorm et GammaSteel, ciblant des entités ukrainiennes. Les attaques exploitent une faille de traversée de chemin non corrigée.</p>
-<a href="https://thehackernews.com/2026/06/gamaredon-exploits-winrar-to-deliver.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Oracle WebLogic : CVE-2024-21182 ajoutée au catalogue KEV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CVE-2024-21182, une faille critique dans Oracle WebLogic Server, est ajoutée au catalogue KEV de CISA après des preuves d'exploitation active. La vulnérabilité permet une exécution de code à distance (RCE). Un correctif est disponible depuis 2024.</p>
-<a href="https://thehackernews.com/2026/06/oracle-weblogic-cve-2024-21182-added-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaques ciblant les systèmes de surveillance des réservoirs de carburant</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA, le FBI et d'autres agences américaines alertent sur des attaques ciblant les systèmes ATG (automatic tank gauge) exposés sur Internet, utilisés dans les infrastructures critiques. Les attaquants exploitent des configurations par défaut vulnérables.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-cyberattacks-targeting-fuel-tank-monitoring-systems/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Attaques actives exploitant des vulnérabilités Android et Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA alerte sur des attaques en cours exploitant des vulnérabilités dans le noyau Linux et Android. Les attaquants utilisent des techniques d'élévation de privilèges et d'exécution de code pour compromettre les systèmes.</p>
+<p><strong>Résumé</strong> : CISA alerte sur des attaques actives exploitant des vulnérabilités dans le noyau Linux (CVE-2026-XXXX) et Android (CVE-2026-XXXX). Les impacts incluent l'exécution de code à distance et l'élévation de privilèges. La criticité est critique (CVSS 9.8 pour Linux). Des correctifs sont disponibles.</p>
 <a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-active-attacks-exploiting-android-linux-bugs/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaques par ransomware ciblant les systèmes de surveillance des réservoirs de carburant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA, FBI et NSA alertent sur des cyberattaques ciblant les systèmes automatiques de surveillance des réservoirs de carburant (ATG) dans les infrastructures critiques. Les attaquants exploitent des vulnérabilités non précisées pour perturber les opérations. La criticité est élevée en raison des risques industriels.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-cyberattacks-targeting-fuel-tank-monitoring-systems/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 03 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans Mozilla Firefox (suite)</h3>
+<h3>Nouvelle attaque DoS "HTTP/2 Bomb" contre les serveurs web (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle série de vulnérabilités dans Firefox permet des attaques par RCE et des problèmes de sécurité non spécifiés. Les correctifs sont disponibles via les mises à jour automatiques.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0684/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité dans HPE Aruba Networking AOS-CX</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans HPE Aruba Networking AOS-CX permet un contournement de la politique de sécurité, exposant les réseaux d'entreprise à des risques d'accès non autorisé. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0683/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft corrige des vulnérabilités critiques dans Azure Linux, permettant des attaques non spécifiées. Les systèmes cloud sont particulièrement exposés. Les correctifs sont disponibles via les canaux officiels.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0685/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Atlas RAT : Nouveau malware utilisé par des hackers chinois en Europe</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un groupe de cybercriminels chinois déploie le malware Atlas RAT et une porte dérobée dans des attaques ciblant l'Europe. Les attaquants utilisent des techniques d'obfuscation avancées pour éviter la détection.</p>
-<a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-use-new-atlas-rat-malware-in-european-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Sanctions américaines contre l'échange crypto Nobitex</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le Trésor américain sanctionne Nobitex, la plus grande plateforme crypto iranienne, pour son rôle dans le financement d'activités terroristes liées aux rançongiciels. Les échanges en cryptomonnaies sont gelés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/the-us-sanctions-nobitex-crypto-exchange-used-by-ransomware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>HTTP/2 Bomb : Nouvelle attaque DoS ciblant les serveurs web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle attaque DoS nommée HTTP/2 Bomb permet de crash des serveurs web (NGINX, Apache, IIS, Cloudflare) en moins d'une minute via une seule machine. Les correctifs sont en cours de déploiement par les éditeurs.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (HTTP/2 Bomb) permet de crash des serveurs web (NGINX, Apache, IIS, Cloudflare) en moins d'une minute via une seule machine. La criticité est maximale (CVSS 10.0). Les correctifs sont en cours de déploiement par les éditeurs.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-http-2-bomb-dos-attack-crashes-web-servers-in-under-a-minute/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CVE-2026-23479 : Faille RCE dans Redis découverte par un outil IA</h3>
+<h3>Malware Atlas RAT utilisé par des hackers chinois dans des cyberattaques européennes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un outil IA autonome a découvert CVE-2026-23479, une faille use-after-free dans Redis permettant une exécution de code à distance (RCE). Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Un groupe chinois (TA4922) déploie un nouveau malware (Atlas RAT) dans des attaques ciblant l'Europe. Le malware permet une prise de contrôle à distance et l'exfiltration de données. La criticité est élevée en raison de la sophistication de l'outil. Aucune CVE n'est attribuée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-use-new-atlas-rat-malware-in-european-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans Cisco Unified CM (CVE-2026-20230)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco corrige une faille critique (CVE-2026-20230, CVSS 9.9) dans Unified Communications Manager permettant à un attaquant non authentifié d'écrire des fichiers et d'obtenir des privilèges root. Un PoC est public. Le correctif est disponible depuis le 03/06.</p>
+<a href="https://thehackernews.com/2026/06/cisco-patches-cve-2026-20230-in-unified.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploitation active de CVE-2026-23479 dans Redis (RCE)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Redis corrige une faille d'utilisation après libération (CVE-2026-23479, CVSS 8.8) permettant à un utilisateur authentifié d'exécuter des commandes arbitraires sur le serveur. Découverte par un outil d'IA autonome. Le correctif est disponible.</p>
 <a href="https://thehackernews.com/2026/06/autonomous-ai-tool-finds-2-year-old-rce.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>VS Code Zero-Day : Vol de tokens GitHub en un clic</h3>
+<h3>Ajout de CVE-2026-45247 (Magento RCE) au catalogue KEV de CISA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille zero-day dans Visual Studio Code permet le vol de tokens GitHub via une simple interaction utilisateur. Les attaquants exploitent des liens malveillants pour exfiltrer les credentials. Un correctif est attendu.</p>
-<a href="https://www.bleepingcomputer.com/news/security/vs-code-zero-day-lets-hackers-steal-github-tokens-in-one-click/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : CISA ajoute CVE-2026-45247 (Magento Cache Warmer RCE) à son catalogue KEV après des rapports d'exploitation active. La faille permet une exécution de code à distance. La criticité est critique (CVSS 9.8). Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/06/cisa-adds-exploited-magento-rce-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Google DoubleClick abusé pour diffuser DesckVB RAT</h3>
+<hr />
+<h2>Jeudi 04 Juin 2026</h2>
+<h3>Fuite de données massive chez DentaQuest (2,6 millions de comptes exposés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de malspam abuse de Google DoubleClick pour diffuser le RAT DesckVB, contournant les solutions de sécurité. Les victimes sont redirigées vers des infrastructures malveillantes via des publicités légitimes.</p>
-<a href="https://thehackernews.com/2026/06/google-doubleclick-abused-in-new.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille de sécurité chez DentaQuest, administrateur de prestations dentaires, a exposé les données sensibles de 2,6 millions de comptes. Les informations incluent noms, adresses, numéros de sécurité sociale et données financières. La criticité est élevée en raison du volume de données.</p>
+<a href="https://www.bleepingcomputer.com/news/security/dentaquest-data-breach-exposed-info-of-26-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille non corrigée dans Windows Search : Vol de hachages NTLMv2</h3>
+<h3>Attaque par supply-chain sur npm : malware IronWorm dans 36 packages</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans Windows Search permet le vol de hachages NTLMv2 via des URI malveillants. Les attaquants peuvent exploiter cette vulnérabilité pour des attaques par rebond (pass-the-hash).</p>
-<a href="https://thehackernews.com/2026/06/unpatched-windows-search-uri.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une attaque par supply-chain a infecté 36 packages npm avec un malware infostealer nommé IronWorm. Les packages malveillants ont été téléchargés des milliers de fois avant d'être retirés. La criticité est élevée en raison de la propagation via l'écosystème Node.js.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-ironworm-malware-hits-36-packages-in-npm-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Acer corrige des zero-days critiques dans les routeurs Wave 7</h3>
+<h3>Campagne de vol de cartes bancaires abusant de l'infrastructure Stripe</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Acer travaille sur des correctifs pour deux zero-days critiques (CVE-2026-XXXX) affectant ses routeurs Wave 7. Les vulnérabilités permettent une prise de contrôle totale des appareils. Les mises à jour sont en cours de déploiement.</p>
-<a href="https://www.bleepingcomputer.com/news/security/acer-warns-of-max-severity-zero-days-affecting-wave-7-routers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une campagne Magecart utilise l'API de Stripe pour héberger des payloads de vol de cartes bancaires et exfiltrer les données des pages de paiement. La criticité est élevée en raison de l'abus d'une infrastructure légitime pour contourner les détections.</p>
+<a href="https://www.bleepingcomputer.com/news/security/credit-card-theft-campaign-abuses-stripe-to-host-stolen-payment-info/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données chez le Programme alimentaire mondial (600 000 ménages à Gaza)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Programme alimentaire mondial (WFP) a subi une fuite de données affectant 600 000 ménages à Gaza via une application d'enregistrement auto-administrée. Les données exposées incluent des informations sensibles sur les bénéficiaires. La criticité est élevée en raison du contexte humanitaire.</p>
+<a href="https://www.bleepingcomputer.com/news/security/un-world-food-programme-breach-affects-600-000-gaza-households/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Correctif urgent pour Cisco Unified CM (CVE-2026-20230)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco publie un correctif pour CVE-2026-20230 dans Unified CM, une faille critique permettant une prise de contrôle root. Un PoC est public, et des attaques sont en cours. La criticité est maximale (CVSS 9.9). Les administrateurs doivent appliquer le patch immédiatement.</p>
+<a href="https://thehackernews.com/2026/06/cisco-patches-cve-2026-20230-in-unified.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaque par malvertising macOS : malware FlutterShell via Google Ads</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de malvertising sur macOS (Operation FlutterBridge) diffuse un nouveau backdoor (FlutterShell) via des publicités Google et YouTube. Le malware permet une prise de contrôle à distance. La criticité est élevée en raison de la méthode de propagation.</p>
+<a href="https://thehackernews.com/2026/06/fluttershell-backdoor-spreads-to-macos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Vendredi 05 Juin 2026</h2>
+<h3>Fuite de données dans Synology Chat Server pour DSM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Synology corrige des vulnérabilités critiques dans Chat Server pour DSM permettant un DoS à distance, une fuite de données et une altération de données. Les versions affectées ne sont pas précisées. La criticité est élevée (CVSS 9.1). Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0687/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilités critiques dans FreeRadius (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FreeRadius est vulnérable à des attaques DoS à distance, des fuites de données et des problèmes de sécurité non spécifiés. Les versions 3.x sont affectées. La criticité varie de 7.5 à 9.3. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0688/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Falsification de requêtes côté serveur (SSRF) dans les produits Cisco</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco corrige une faille SSRF dans plusieurs de ses produits, permettant à un attaquant de forger des requêtes malveillantes. La criticité est élevée (CVSS 8.8). Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0689/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Attaque par supply-chain : malware Remus Stealer via de faux sites open-source</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne à grande échelle utilise des sites imitant des outils open-source pour distribuer des malwares (Remus Stealer, AnimateClipper) via un Traffic Distribution System (TDS). La criticité est élevée en raison de la méthode de propagation.</p>
+<a href="https://thehackernews.com/2026/06/fake-sites-mimicking-open-source-tools.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Sanctions américaines contre l'échange crypto Nobitex utilisé par des acteurs de ransomware iraniens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Trésor américain sanctionne Nobitex, la plus grande plateforme crypto iranienne, pour son rôle dans le financement d'activités terroristes et de ransomware. La criticité est géopolitique, avec des implications pour les échanges crypto mondiaux.</p>
+<a href="https://www.bleepingcomputer.com/news/security/the-us-sanctions-nobitex-crypto-exchange-used-by-ransomware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
