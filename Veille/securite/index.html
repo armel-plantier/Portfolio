@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 06/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 07/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 06/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 07/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,105 +76,344 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Dimanche 01 Juin 2026</h2>
-<h3>Vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform (CVE non attribué)</h3>
+<h3>Vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform permet à un attaquant distant de provoquer un déni de service (DoS) via une exploitation non spécifiée. Aucune preuve d'exploitation active n'est rapportée, mais l'absence de détails techniques augmente le risque potentiel. Un correctif est attendu dans les prochaines mises à jour.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité non spécifiée dans Kaspersky Anti Targeted Attack Platform permet à un attaquant distant de provoquer un déni de service (DoS). Aucune information sur un correctif n'est encore disponible. Les systèmes exposés incluent les versions actuelles de la plateforme de détection d'attaques ciblées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0668/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Multiples vulnérabilités dans les produits NetApp (CVE non attribuées)</h3>
+<h3>Exploitation potentielle dans Keycloak (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectant les produits NetApp (stockage, sauvegarde) permettent des attaques par DoS, fuite de données et altération d'intégrité. Certaines failles pourraient être exploitées sans authentification. NetApp a publié des correctifs urgents pour les versions concernées.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Keycloak permet à un attaquant de contourner les politiques de sécurité et d'accéder à des données sensibles. Le niveau de criticité est élevé en raison des risques de fuite de données. Un correctif est attendu dans les prochains jours selon les éditeurs.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0669/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Contournement de sécurité dans Laravel (CVE non attribué)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans le framework Laravel permet à un attaquant de contourner les mécanismes de sécurité intégrés. Aucune preuve d'exploitation active n'a été rapportée, mais la criticité est jugée moyenne. Les développeurs sont invités à appliquer les mises à jour dès leur disponibilité.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0670/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans les produits NetApp</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques (DoS, atteinte à la confidentialité et intégrité des données) affectent les produits NetApp. Les systèmes de stockage et solutions de gestion de données sont particulièrement exposés. Des correctifs sont disponibles via les mises à jour logicielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0671/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Exploitation active de CVE-2026-20245 dans Cisco Catalyst SD-WAN (Zero-Day)</h3>
+<h3>Élévation de privilèges dans les produits Mitel</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco a confirmé l'exploitation active de CVE-2026-20245, une faille critique de type élévation de privilèges (root) dans Cisco Catalyst SD-WAN Manager. L'attaquant peut obtenir un accès complet aux systèmes vulnérables. Aucun correctif n'est encore disponible, mais des contournements temporaires sont recommandés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-unpatched-sd-wan-zero-day-exploited-in-attacks-to-gain-root/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des vulnérabilités dans les solutions Mitel (téléphonie IP, UCaaS) permettent à un attaquant d'élever ses privilèges. La criticité est élevée en raison des risques d'accès non autorisé aux infrastructures de communication. Un patch est disponible pour les versions concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0672/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Problème de sécurité non spécifié dans Microsoft Azure</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité non documentée dans Microsoft Azure expose les utilisateurs à des risques non précisés par Microsoft. La criticité est inconnue, mais les administrateurs sont encouragés à surveiller les alertes Azure et appliquer les correctifs dès leur publication.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0673/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans les produits Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques (exécution de code à distance, problèmes de sécurité non spécifiés) affectent divers produits Microsoft. Les systèmes Windows, Office et Azure sont particulièrement concernés. Des correctifs sont disponibles via Windows Update et les bulletins de sécurité.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0674/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Lundi 02 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans Mozilla Firefox (CVE-2026-XXXX)</h3>
+<h3>Multiples vulnérabilités dans GLPI (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans Firefox permettent une exécution de code arbitraire à distance (RCE) via des vecteurs non divulgués. L'une d'elles (CVE-2026-XXXX) est déjà exploitée en campagne ciblée. Mozilla a publié des correctifs urgents dans la version 127.0.1.</p>
+<p><strong>Résumé</strong> : GLPI est affecté par plusieurs failles permettant une atteinte à l'intégrité des données, des XSS et un contournement de sécurité. La criticité est élevée en raison des risques d'injection de code et de manipulation de données. Un correctif est disponible pour les versions 10.x.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0675/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Exécution de code à distance dans Mozilla Firefox</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Firefox permettent une exécution de code arbitraire à distance. La criticité est maximale (CVSS 9.8 pour certaines). Un correctif urgent est disponible via la mise à jour automatique du navigateur.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0676/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Vulnérabilité critique dans Apache Kafka (CVE-2026-3412)</h3>
+<h3>Contournement de politique de sécurité dans Ivanti</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-3412) dans Apache Kafka permet une fuite de données et un contournement de politique de sécurité via une manipulation des requêtes SASL. Les versions 3.6.x et antérieures sont vulnérables. Un correctif est disponible dans Kafka 3.7.0.</p>
+<p><strong>Résumé</strong> : Une faille dans les produits Ivanti permet à un attaquant de contourner les politiques de sécurité. Aucune preuve d'exploitation active n'est rapportée, mais la criticité est jugée moyenne. Un correctif est attendu sous 48h selon l'éditeur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0677/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Atteinte à la confidentialité dans Apache Kafka</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité dans Apache Kafka permet à un attaquant d'accéder à des données sensibles et de contourner les politiques de sécurité. La criticité est élevée. Un correctif est disponible pour les versions 3.6.x et ultérieures.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0678/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Fuite de données massive chez DentaQuest (2,6 millions de comptes exposés)</h3>
+<h3>Exploitation active dans Google Android (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le géant américain DentaQuest a subi une fuite de données affectant 2,6 millions de comptes clients, incluant noms, adresses, numéros de sécurité sociale et données de paiement. L'incident serait lié à une compromission de ses systèmes internes. Une enquête est en cours.</p>
-<a href="https://www.bleepingcomputer.com/news/security/dentaquest-data-breach-exposed-info-of-26-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans Android permettent une exécution de code à distance, une élévation de privilèges et une fuite de données. Google confirme l'exploitation active de certaines vulnérabilités. Un correctif est disponible via les mises à jour OTA.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0679/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Problèmes de sécurité non spécifiés dans Microsoft Edge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non documentées dans Microsoft Edge exposent les utilisateurs à des risques non précisés. La criticité est inconnue, mais Microsoft recommande une mise à jour immédiate. Un correctif est disponible via Edge Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0680/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans les produits Microsoft (suite)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : De nouvelles failles critiques (exécution de code à distance, problèmes non spécifiés) affectent les produits Microsoft. Les systèmes Windows, Exchange et Azure sont particulièrement concernés. Des correctifs sont disponibles via les bulletins de sécurité Microsoft.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0681/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 03 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans le noyau Linux (CVE-2026-XXXX)</h3>
+<h3>Contournement de sécurité dans les produits Laravel</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques dans le noyau Linux (CVE-2026-XXXX) permettent des élévations de privilèges, fuites de données et contournements de sécurité. Les distributions majeures (Red Hat, Ubuntu, Debian, SUSE) sont impactées. Des correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0694/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Laravel permet à un attaquant de contourner les politiques de sécurité. Aucune preuve d'exploitation active n'est rapportée, mais la criticité est jugée moyenne. Les développeurs sont invités à appliquer les mises à jour dès leur disponibilité.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0682/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Exploitation de CVE-2026-20230 dans Cisco Unified CM (Correctif publié)</h3>
+<h3>Faille critique dans HPE Aruba Networking AOS-CX</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco a corrigé CVE-2026-20230, une vulnérabilité critique dans Unified Communications Manager permettant l'écriture arbitraire de fichiers et escalade vers root. Le code d'exploitation est désormais public. Cisco recommande une application immédiate du correctif (versions 14.0(1) et ultérieures).</p>
-<a href="https://thehackernews.com/2026/06/cisco-patches-cve-2026-20230-in-unified.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité dans HPE Aruba Networking AOS-CX permet à un attaquant de contourner les politiques de sécurité. La criticité est élevée en raison des risques d'accès non autorisé aux infrastructures réseau. Un correctif est disponible pour les versions 10.4.x et ultérieures.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0683/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Problèmes de sécurité non spécifiés dans Mozilla Firefox</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non documentées dans Firefox exposent les utilisateurs à des risques non précisés. La criticité est inconnue, mais Mozilla recommande une mise à jour immédiate. Un correctif est disponible via la mise à jour automatique du navigateur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0684/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans Microsoft Azure Linux exposent les systèmes à des risques non précisés. La criticité est élevée. Microsoft recommande une mise à jour immédiate des instances Azure Linux concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0685/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mercredi 04 Juin 2026</h2>
-<h3>Fuite de données à l'agence alimentaire de l'ONU (600 000 ménages à Gaza)</h3>
+<h3>Contournement de sécurité dans les produits NetApp</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le Programme alimentaire mondial (PAM) a révélé une fuite de données via son application d'auto-enregistrement pour la Palestine, exposant les informations de 600 000 ménages à Gaza. Les données incluent noms, adresses et détails de bénéficiaires. Une enquête interne est en cours.</p>
-<a href="https://www.bleepingcomputer.com/news/security/un-world-food-programme-breach-affects-600-000-gaza-households/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une nouvelle vulnérabilité dans les produits NetApp permet à un attaquant de contourner les politiques de sécurité. La criticité est moyenne. Un correctif est disponible via les mises à jour logicielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0686/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Attaque par supply chain via IronWorm (36 paquets npm compromis)</h3>
+<h3>Atteintes à l'intégrité et à la confidentialité dans Synology Chat Server</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de supply chain a compromis 36 paquets npm avec le malware IronWorm, un voleur d'informations basé sur Rust. Les paquets infectés (ex: `iron-validator`, `node-rsa`) étaient utilisés pour voler des données sensibles. Les correctifs sont disponibles via npm.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Synology Chat Server permettent un déni de service à distance, une fuite de données et une atteinte à l'intégrité des données. La criticité est élevée. Un correctif est disponible pour DSM 7.2 et ultérieur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0687/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>DoS et fuite de données dans FreeRadius</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles dans FreeRadius permettent un déni de service à distance, une fuite de données et des problèmes de sécurité non spécifiés. La criticité est élevée. Un correctif est disponible pour les versions 3.2.x et ultérieures.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0688/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Falsification de requêtes côté serveur (SSRF) dans Cisco</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité SSRF dans les produits Cisco permet à un attaquant de falsifier des requêtes et d'accéder à des services internes. La criticité est élevée. Cisco a publié un correctif pour les versions affectées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0689/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Fuite de données de 2,6 millions de comptes chez DentaQuest</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille de sécurité chez DentaQuest a exposé les données sensibles de 2,6 millions de comptes clients. Les informations incluent des données personnelles et médicales. Aucune information sur un correctif n'est applicable dans ce cas.</p>
+<a href="https://www.bleepingcomputer.com/news/security/dentaquest-data-breach-exposed-info-of-26-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Attaque par supply chain sur npm : malware IronWorm</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque par supply chain a infecté 36 packages npm avec le malware IronWorm, un voleur d'informations. La criticité est élevée en raison de la propagation via des bibliothèques légitimes. Les développeurs sont invités à vérifier leurs dépendances.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-ironworm-malware-hits-36-packages-in-npm-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Exploitation active de CVE-2026-3300 dans Everest Forms Pro (WordPress)</h3>
+<h3>Exploitation active de SolarWinds Serv-U (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-3300, score CVSS 9.8) dans le plugin WordPress Everest Forms Pro permet une exécution de code arbitraire à distance (RCE). Des attaquants exploitent activement cette faille pour prendre le contrôle complet des sites. Un correctif est disponible dans la version 5.0.5.</p>
-<a href="https://thehackernews.com/2026/06/hackers-exploit-critical-everest-forms.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : CISA confirme l'exploitation active d'une faille critique (CVE non attribué) dans SolarWinds Serv-U, permettant un déni de service. Aucune preuve de correctif n'est encore disponible, mais SolarWinds travaille sur une solution.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-hackers-now-exploit-solarwinds-serv-u-flaw-to-crash-servers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>CISA ajoute SolarWinds Serv-U à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA a ajouté une faille critique dans SolarWinds Serv-U (CVE-2026-XXXX) à son catalogue KEV, confirmant une exploitation active. La criticité est élevée. Aucune information sur un correctif n'est disponible pour l'instant.</p>
+<a href="https://thehackernews.com/2026/06/cisa-adds-actively-exploited-solarwinds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Attaque par supply chain Miasma touche 73 dépôts Microsoft GitHub</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'attaque par supply chain Miasma a compromis 73 dépôts Microsoft sur GitHub, incluant Azure et MicrosoftDocs. Le ver auto-réplicatif a été détecté par OpenSSF. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://thehackernews.com/2026/06/miasma-worm-hits-73-microsoft-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Jeudi 05 Juin 2026</h2>
-<h3>Campagne de malvertising macOS : Operation FlutterBridge et FlutterShell</h3>
+<h3>Contournement de sécurité dans Traefik</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de malvertising ciblant macOS (Operation FlutterBridge) diffuse un nouveau backdoor nommé FlutterShell via des publicités Google et YouTube. Le malware permet un accès persistant aux systèmes infectés. Aucune preuve d'exploitation à grande échelle n'est encore rapportée.</p>
-<a href="https://thehackernews.com/2026/06/fluttershell-backdoor-spreads-to-macos.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Traefik permettent à un attaquant de contourner les politiques de sécurité. La criticité est moyenne. Un correctif est disponible pour les versions 2.10.x et ultérieures.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0690/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Attaque par botnet SMTP : PCPJack hijack 230 serveurs cloud</h3>
+<h3>Multiples vulnérabilités dans CPython</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe PCPJack a compromis 230 serveurs cloud (AWS, Google Cloud, Azure) pour créer un réseau SMTP clandestin utilisé pour relayer des spams et des attaques par phishing. Les serveurs infectés sont principalement situés aux États-Unis, en Europe et en Asie.</p>
-<a href="https://thehackernews.com/2026/06/pcpjack-hijacks-230-aws-google-cloud.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs failles dans CPython permettent une atteinte à l'intégrité des données, un contournement de sécurité et un déni de service. La criticité est élevée. Un correctif est disponible pour Python 3.11 et ultérieur.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0691/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Problèmes de sécurité non spécifiés dans Google Chrome</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non documentées dans Google Chrome exposent les utilisateurs à des risques non précisés. La criticité est inconnue, mais Google recommande une mise à jour immédiate. Un correctif est disponible via Chrome Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0692/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux (suite)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : De nouvelles failles critiques dans Microsoft Azure Linux exposent les systèmes à des risques non précisés. La criticité est élevée. Microsoft recommande une mise à jour immédiate des instances concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0693/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilités critiques dans le noyau Linux de Red Hat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans le noyau Linux de Red Hat permettent une élévation de privilèges, une fuite de données et un contournement de sécurité. La criticité est maximale. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0694/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Exécution de code arbitraire dans le noyau Linux d'Ubuntu</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux d'Ubuntu permettent une exécution de code arbitraire, une élévation de privilèges et une fuite de données. La criticité est maximale. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0695/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Élévation de privilèges dans le noyau Linux de Debian LTS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans le noyau Linux de Debian LTS permettent une élévation de privilèges, une fuite de données et un déni de service. La criticité est élevée. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0696/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Atteintes à la confidentialité dans le noyau Linux de SUSE</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux de SUSE permettent une fuite de données, une atteinte à l'intégrité des données et un contournement de sécurité. La criticité est élevée. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0697/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Exécution de code à distance dans les produits IBM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans les produits IBM permettent une exécution de code à distance, une élévation de privilèges et un déni de service à distance. La criticité est maximale. IBM a publié des correctifs pour les versions concernées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0698/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Élévation de privilèges critique dans Cisco Catalyst SD-WAN (CVE-2026-20245)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco confirme l'exploitation active de CVE-2026-20245 (CVSS 7.8) dans Cisco Catalyst SD-WAN Manager, permettant une élévation de privilèges. Aucune preuve de correctif n'est disponible pour l'instant.</p>
+<a href="https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-manager-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Attaque par supply chain : malware IronWorm et ver Miasma</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque par supply chain a distribué le malware IronWorm (voleur d'informations) et un ver auto-réplicatif Miasma via plus de 50 packages npm légitimes. La criticité est maximale. Les développeurs sont invités à vérifier leurs dépendances.</p>
+<a href="https://thehackernews.com/2026/06/ironworm-and-new-miasma-worm-variant.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h3>Spyware Android Asin ciblant les utilisateurs arabophones</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau spyware Android nommé Asin cible les utilisateurs arabophones via des applications factices (fausses actualités, cartes de guerre, PDF). Le malware collecte des données sensibles (SMS, contacts, géolocalisation) et les exfiltre vers des serveurs contrôlés par les attaquants.</p>
+<p><strong>Résumé</strong> : Le spyware Android Asin cible les utilisateurs arabophones via des applications factices (fausses actualités, PDF, cartes de guerre). La criticité est élevée en raison de la collecte de données sensibles. Aucune information sur un correctif n'est applicable.</p>
 <a href="https://thehackernews.com/2026/06/android-spyware-asin-targets-arabic.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Framework de web shell personnalisé OP-512 ciblant Microsoft IIS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le cluster OP-512 cible les serveurs Microsoft IIS pour déployer un framework de web shell personnalisé. La criticité est élevée en raison des risques de persistance et d'accès non autorisé. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://thehackernews.com/2026/06/new-threat-cluster-op-512-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Prise de contrôle de sites WordPress via Everest Forms Pro (CVE-2026-3300)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-3300, CVSS 9.8) dans Everest Forms Pro permet une exécution de code arbitraire et une prise de contrôle complète de sites WordPress. L'exploitation active est confirmée. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-everest-forms-pro-flaw-exploited-to-take-over-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Arnaques FIFA 2026 : faux sites, malware bancaire et vol de logins</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des campagnes d'arnaques liées à la Coupe du Monde FIFA 2026 ciblent les fans via des faux sites, des applications de streaming piratées et des malwares bancaires. La criticité est élevée en raison des risques financiers et de vol de données.</p>
+<a href="https://thehackernews.com/2026/06/fifa-world-cup-2026-scams-are-already.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>PCPJack : 230 serveurs cloud compromis pour un réseau SMTP malveillant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe PCPJack a compromis 230 serveurs cloud (AWS, Google Cloud, Azure) pour créer un réseau SMTP malveillant. La criticité est élevée en raison des risques d'envoi de spam et de phishing. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://thehackernews.com/2026/06/pcpjack-hijacks-230-aws-google-cloud.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>21 zero-days découverts dans FFmpeg par un agent IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un agent IA autonome a découvert 21 zero-days non documentés dans FFmpeg, une bibliothèque utilisée par presque tous les logiciels multimédias. La criticité est maximale. Un correctif est attendu dans les prochains jours.</p>
+<a href="https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Chrome 149 corrige 429 vulnérabilités</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Google a publié Chrome 149 avec des correctifs pour 429 vulnérabilités, dont plusieurs critiques. La criticité est maximale. Une mise à jour immédiate est fortement recommandée.</p>
+<a href="https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Vendredi 06 Juin 2026</h2>
+<h3>Mode Lockdown de ChatGPT pour limiter les risques d'exfiltration de données</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenAI a introduit un mode Lockdown pour ChatGPT afin de réduire les risques d'exfiltration de données via des attaques par injection de prompts. Cette fonctionnalité est particulièrement utile pour les utilisateurs manipulant des données sensibles.</p>
+<a href="https://thehackernews.com/2026/06/new-chatgpt-lockdown-mode-limits-tools.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Applications gratuites transformant les Smart TV en proxies de scraping pour l'IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des applications gratuites utilisent des SDK comme celui de Bright Data pour transformer des Smart TV en nœuds de scraping web, relayant du trafic pour des entreprises d'IA. La criticité est élevée en raison des risques de violation de vie privée et de sécurité.</p>
+<a href="https://thehackernews.com/2026/06/free-apps-are-quietly-turning-smart-tvs.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Fuite de données de 600 000 foyers à Gaza par le PAM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le Programme Alimentaire Mondial (PAM) a révélé une fuite de données affectant 600 000 foyers à Gaza via son application d'auto-enregistrement. La criticité est élevée en raison de la sensibilité des données humanitaires.</p>
+<a href="https://www.bleepingcomputer.com/news/security/un-world-food-programme-breach-affects-600-000-gaza-households/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
