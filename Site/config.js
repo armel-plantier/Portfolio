@@ -9,7 +9,7 @@ const config = {
         { title: "Certifs", link: "#certifications" },
         { title: "Procédures", link: "#procedures" },
         { title: "Veille", link: "#veille" },
-        { title: "Documents E6", link: "#documents-e6" } 
+        { title: "Documents EF3", link: "#documents-ef3" } 
     ],
 
     // --- 2. PROFIL & RÉSEAUX ---
@@ -431,20 +431,20 @@ experiences: [
     ],
 
     // --- DOCUMENTS E5 ---
-        documentsE6: [
+        documentsEF3: [
         {
             title: "Situation Pro 1 — Supervision Zabbix",
             description: "Mise en place d'une solution de supervision réseau avec Zabbix.",
-            path: "E5/SP1 _ Mise en place d'une solution de supervision.pdf",
+            path: "https://www.canva.com/design/DAHLB4_zXYk/v7h4TzruNjMVTyRZwS-8Sw/view?utm_content=DAHLB4_zXYk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd3189692c3",
             icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-            type: "pdf"
+            type: "link"
         },
         {
             title: "Situation Pro 2 — Journalisation Graylog",
             description: "Mise en place d'un serveur de journalisation centralisée avec Graylog.",
             path: "E5/Situation Pro 2 _ Mise en place d’un serveur de journalisation Graylog.pdf",
             icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>`,
-            type: "pdf"
+            type: "link"
         }
     ]
 };
