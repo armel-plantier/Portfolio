@@ -28,7 +28,7 @@ const renderIcon = (iconString) => {
         window.history.replaceState({}, '', '/?proc=' + encodeURIComponent(segments[1]));
     } else if (segments[0] === 'projet-technova' && segments[1]) {
         window.history.replaceState({}, '', '/?proj=' + encodeURIComponent(segments[1]));
-    } else if (segments[0] === 'documents-e6' && segments[1]) {
+    } else if (segments[0] === 'documents-ef3' && segments[1]) {
         window.history.replaceState({}, '', '/?e6=' + encodeURIComponent(segments[1]));
     }
 })();
@@ -836,33 +836,33 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- DOCUMENTS E6 ---
-    const e6Grid = document.getElementById('e6-grid');
-    const E6_LIMIT = 6;
-    const E6_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
+    // --- DOCUMENTS EF3 ---
+    const ef3Grid = document.getElementById('ef3-grid');
+    const EF3_LIMIT = 6;
+    const EF3_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
 
-    if (e6Grid && config.documentsE6 && config.documentsE6.length > 0) {
+    if (ef3Grid && config.documentsEF3 && config.documentsEF3.length > 0) {
         // Badge compteur
-        const e6Title = document.querySelector('#documents-e6 h3');
-        if (e6Title) {
+        const ef3Title = document.querySelector('#documents-ef3 h3');
+        if (ef3Title) {
             const badge = document.createElement('span');
             badge.className = 'section-count-badge';
-            badge.textContent = config.documentsE6.length;
-            e6Title.appendChild(badge);
+            badge.textContent = config.documentsEF3.length;
+            ef3Title.appendChild(badge);
         }
 
-        e6Grid.innerHTML = '';
+        ef3Grid.innerHTML = '';
 
-        config.documentsE6.forEach((doc, index) => {
+        config.documentsEF3.forEach((doc, index) => {
             const fullUrl = (doc.type === 'link' || doc.path.startsWith('http'))
                 ? doc.path
-                : E6_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
+                : EF3_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
 
             const card = document.createElement('div');
             card.className = 'e6-card';
             card.style.cursor = 'pointer';
             card.dataset.index = index;
-            if (index >= E6_LIMIT) card.classList.add('hidden-item');
+            if (index >= EF3_LIMIT) card.classList.add('hidden-item');
 
             const badgeLabel = doc.type === 'link' ? 'LIEN' : 'PDF';
 
@@ -886,22 +886,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            e6Grid.appendChild(card);
+            ef3Grid.appendChild(card);
         });
 
-        if (config.documentsE6.length > E6_LIMIT) createToggleBtn(e6Grid, E6_LIMIT, 'Voir la suite');
+        if (config.documentsEF3.length > EF3_LIMIT) createToggleBtn(ef3Grid, EF3_LIMIT, 'Voir la suite');
 
-        // --- RECHERCHE E6 ---
-        const e6Search = document.getElementById('e6-search');
-        const e6CountEl = document.getElementById('e6-search-count');
+        // --- RECHERCHE EF3 ---
+        const e6Search = document.getElementById('ef3-search');
+        const e6CountEl = document.getElementById('ef3-search-count');
         if (e6Search) {
-            const allCards = Array.from(e6Grid.querySelectorAll('.e6-card'));
+            const allCards = Array.from(ef3Grid.querySelectorAll('.e6-card'));
             const updateCount = (visible) => {
                 if (e6CountEl) {
                     e6CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
                 }
             };
-            const loadMoreContainer = e6Grid.parentNode.querySelector('.load-more-container');
+            const loadMoreContainer = ef3Grid.parentNode.querySelector('.load-more-container');
             e6Search.addEventListener('input', () => {
                 const q = e6Search.value.trim().toLowerCase();
                 const isFiltering = q.length > 0;
@@ -914,7 +914,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.style.display = match ? '' : 'none';
                     } else {
                         card.style.display = '';
-                        if (i >= E6_LIMIT) card.classList.add('hidden-item');
+                        if (i >= EF3_LIMIT) card.classList.add('hidden-item');
                         else card.classList.remove('hidden-item');
                     }
                     if (match && (!card.classList.contains('hidden-item') || isFiltering)) visible++;
@@ -924,8 +924,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-    } else if (e6Grid) {
-        e6Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
+    } else if (ef3Grid) {
+        ef3Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
     }
 
     // --- 11. MACHINE A ECRIRE ---
@@ -1031,9 +1031,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // --- OUVERTURE AUTO VIA URL (?e6=) ---
-    const e6Param = urlParams.get('e6');
-    if (e6Param) {
-        const makeSlugE6 = (str) => str
+    const ef3Param = urlParams.get('e6');
+    if (ef3Param) {
+        const makeSlugEF3 = (str) => str
             .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
             .toLowerCase()
             .replace(/[\u2019\u2018'`\(\)\u2014\u2013]/g, '')
@@ -1042,19 +1042,19 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/-+/g, '-')
             .replace(/^-|-$/g, '');
 
-        const paramSlugE6 = makeSlugE6(decodeURIComponent(e6Param));
-        const E6_BASE_URL_AUTO = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
+        const paramSlugEF3 = makeSlugEF3(decodeURIComponent(ef3Param));
+        const EF3_BASE_URL_AUTO = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
 
-        const tryOpenE6 = () => {
-            const docs = config.documentsE6 || [];
+        const tryOpenEF3 = () => {
+            const docs = config.documentsEF3 || [];
             for (const doc of docs) {
-                const docSlug = makeSlugE6(doc.title);
-                console.log('[E6] compare:', docSlug, '===', paramSlugE6, '->', docSlug === paramSlugE6);
-                if (docSlug === paramSlugE6) {
+                const docSlug = makeSlugEF3(doc.title);
+                console.log('[EF3] compare:', docSlug, '===', paramSlugEF3, '->', docSlug === paramSlugEF3);
+                if (docSlug === paramSlugEF3) {
                     const fullUrl = doc.path.startsWith('http')
                         ? doc.path
-                        : E6_BASE_URL_AUTO + doc.path.split('/').map(function(p) { return encodeURIComponent(p); }).join('/');
-                    const section = document.getElementById('documents-e6');
+                        : EF3_BASE_URL_AUTO + doc.path.split('/').map(function(p) { return encodeURIComponent(p); }).join('/');
+                    const section = document.getElementById('documents-ef3');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     openPDFModal(fullUrl, doc.title);
                     window.history.replaceState({}, '', '/');
@@ -1065,19 +1065,19 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Attendre que openPDFModal soit prête (définie plus bas dans le fichier mais hoistée)
-        console.log('[E6] param détecté:', e6Param, '| slug:', paramSlugE6);
+        console.log('[EF3] param détecté:', ef3Param, '| slug:', paramSlugEF3);
         setTimeout(function() {
-            console.log('[E6] setTimeout fired, docs:', (config.documentsE6||[]).length);
-            if (!tryOpenE6()) {
-                console.warn('[E6] tryOpenE6 failed on first try, starting interval');
+            console.log('[EF3] setTimeout fired, docs:', (config.documentsEF3||[]).length);
+            if (!tryOpenEF3()) {
+                console.warn('[EF3] tryOpenEF3 failed on first try, starting interval');
                 var wait = setInterval(function() {
-                    if (tryOpenE6()) {
-                        console.log('[E6] tryOpenE6 success via interval');
+                    if (tryOpenEF3()) {
+                        console.log('[EF3] tryOpenEF3 success via interval');
                         clearInterval(wait);
                     }
                 }, 400);
                 setTimeout(function() {
-                    console.warn('[E6] gave up after 6s');
+                    console.warn('[EF3] gave up after 6s');
                     clearInterval(wait);
                 }, 6000);
             }
@@ -1471,7 +1471,7 @@ function toggleGlobalPDF(url) {
                 });
             });
             // Sections (nav interne)
-            ['projets','parcours','competences','certifications','procedures','veille','documents-e6'].forEach(sec => {
+            ['projets','parcours','competences','certifications','procedures','veille','documents-ef3'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
                 const h = el.querySelector('h3');
@@ -1734,8 +1734,8 @@ function toggleGlobalPDF(url) {
                     .replace(/^-|-$/g, '');
                 // Détecter si c'est une procédure, un doc E6, ou un projet
                 const isProc = (config.procedures || []).some(p => p.title && p.title.toLowerCase() === title.toLowerCase());
-                const isE6doc = (config.documentsE6 || []).some(d => d.title && d.title.toLowerCase() === title.toLowerCase());
-                const path = isProc ? '/procedures/' : isE6doc ? '/documents-e6/' : '/projet-technova/';
+                const isE6doc = (config.documentsEF3 || []).some(d => d.title && d.title.toLowerCase() === title.toLowerCase());
+                const path = isProc ? '/procedures/' : isE6doc ? '/documents-ef3/' : '/projet-technova/';
                 // E6 et procédures → query param direct (pas de pretty URL = pas de 404)
                 const url = (isE6doc || isProc)
                     ? window.location.origin + '/?' + (isE6doc ? 'e6' : 'proc') + '=' + encodeURIComponent(slug)
