@@ -988,7 +988,7 @@ body.light-mode .veille-section {
 .veille-intro-text strong { color: var(--primary); }
 
 /* --- DOCUMENTS E5 --- */
-.e6-intro-text {
+.ef3-intro-text {
     color: var(--muted);
     font-size: 0.95rem;
     line-height: 1.6;
@@ -1051,14 +1051,14 @@ body.light-mode .e6-card:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
 .e6-card:hover .e6-card-dl { background: var(--primary); }
 .e6-card:hover .e6-card-dl svg { stroke: #fff; }
 /* --- RECHERCHE E5 --- */
-.e6-search-wrapper {
+.ef3-search-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     margin-bottom: 24px;
     gap: 12px;
 }
-.e6-search-icon {
+.ef3-search-icon {
     position: absolute;
     left: 14px;
     width: 16px;
@@ -1067,7 +1067,7 @@ body.light-mode .e6-card:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
     pointer-events: none;
     flex-shrink: 0;
 }
-#e6-search {
+#ef3-search {
     width: 100%;
     padding: 11px 16px 11px 40px;
     background: var(--glass);
@@ -1078,8 +1078,8 @@ body.light-mode .e6-card:hover { box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
-#e6-search::placeholder { color: var(--muted); }
-#e6-search:focus {
+#ef3-search::placeholder { color: var(--muted); }
+#ef3-search:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
