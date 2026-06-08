@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 01/06/2026 au 08/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 09/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 08/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 09/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,167 +75,72 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 1er Juin 2026</h2>
-<h3>Vulnérabilité critique dans Kaspersky Anti Targeted Attack Platform</h3>
+            <h2>Dimanche 08 Juin 2026</h2>
+<h3>CVE-2026-23111 : Faille critique dans le noyau Linux permettant une élévation de privilèges locale</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité non spécifiée dans Kaspersky Anti Targeted Attack Platform permet à un attaquant distant de provoquer un déni de service (DoS) via une exploitation réseau. Le CERT-FR classe cette faille comme critique en raison de son potentiel disruptif sur les infrastructures de sécurité. Aucun patch n'est mentionné dans l'avis.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0668/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-23111, CVSS non attribué) dans le noyau Linux permet à un utilisateur local non privilégié d'obtenir un accès root via un problème de type *use-after-free* dans le code de filtrage de paquets nf_tables. Un exploit fonctionnel a été publié, exposant les systèmes Linux non patchés à des attaques locales. Le correctif a été intégré en amont le 5 février 2026.</p>
+<a href="https://thehackernews.com/2026/06/one-character-linux-kernel-flaw-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille critique dans Keycloak (CVE-2026-XXXX)</h3>
+<h3>CVE-2026-50751 : Exploitation active d'une faille critique dans Check Point VPN</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Keycloak, solution d'authentification open-source, est vulnérable à une faille permettant le contournement des politiques de sécurité et l'accès non autorisé à des données sensibles. Le CERT-FR souligne l'urgence de mise à jour, bien que le CVE exact ne soit pas précisé. Un correctif est attendu sous 48h selon les sources communautaires.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0669/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-50751, CVSS 9.3) dans les déploiements VPN et Mobile Access de Check Point, configurés avec le protocole obsolète IKEv1, est activement exploitée depuis mai 2026. L'attaque permet de contourner les mécanismes d'authentification et d'exécuter du code à distance. Un correctif est disponible via les mises à jour de sécurité Check Point.</p>
+<a href="https://thehackernews.com/2026/06/critical-check-point-vpn-flaw-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Exploit actif contre Microsoft Azure (CVE-2026-XXXX)</h3>
+<h3>Silent Ransom Group : Campagne d'extorsion ciblant les cabinets d'avocats américains</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité non documentée dans Microsoft Azure permet des attaques par déni de service ou exfiltration de données via des requêtes malveillantes. Le CERT-FR classe cette faille comme "haute criticité" en raison de son exploitation avérée. Microsoft n'a pas encore publié de correctif.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0673/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe ransomware Silent Ransom Group combine *vishing*, usurpation d'identité IT et intrusions physiques pour voler des données et extorquer des cabinets d'avocats aux États-Unis. Les attaques exploitent des techniques de *fast flux DNS* pour masquer leur infrastructure de commande et contrôle. Aucune information sur une éventuelle fuite de données n'a été confirmée.</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/silent-ransom-us-law-firms-extortion-attacks" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits NetApp (CVE-2026-XXXX)</h3>
+<h3>Shai-Hulud : Attaque en chaîne sur 19 packages PyPI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NetApp annonce 12 vulnérabilités critiques dans ses solutions de stockage (ONTAP, SANtricity), dont des failles d'exécution de code à distance (RCE) et de déni de service. Le CERT-FR recommande une mise à jour immédiate. Des correctifs sont disponibles pour les versions supportées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0671/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une campagne d'attaque *supply chain* (nom de code *Shai-Hulud*) a compromis 19 packages Python hébergés sur PyPI, cumulant des centaines de milliers de téléchargements. Les paquets malveillants exfiltraient des secrets de développeurs. Les packages infectés incluaient des noms liés à la science (ex: *scipy-utils*). Aucun correctif n'est disponible pour les systèmes déjà compromis.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-shai-hulud-attack-trojanizes-19-science-focused-pypi-packages/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaques ciblant Cisco Catalyst SD-WAN (CVE-2026-20245)</h3>
+<h3>NFCShare : Malware Android distribué via de fausses mises à jour bancaires sur GitHub</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco confirme l'exploitation active de CVE-2026-20245 (CVSS 7.8) dans Cisco Catalyst SD-WAN Manager, permettant une élévation de privilèges via une injection de commandes. Aucune solution officielle n'est disponible, mais des contournements temporaires sont documentés. Les attaques sont en augmentation.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-unpatched-sd-wan-zero-day-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des variantes du malware Android *NFCShare* sont distribuées via de fausses mises à jour de applications bancaires légitimes hébergées sur GitHub. Le malware exploite des permissions abusives pour voler des données financières et exécuter des commandes à distance. Aucune application bancaire officielle n'est concernée, mais les utilisateurs doivent éviter les liens tiers.</p>
+<a href="https://www.bleepingcomputer.com/news/security/nfcshare-android-malware-spreads-via-fake-banking-app-updates-on-github/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Lundi 2 Juin 2026</h2>
-<h3>Faille critique dans Apache Kafka (CVE-2026-XXXX)</h3>
+<h3>Meta AI : Fuite de 20 000 comptes Instagram via un outil de support compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apache Kafka est vulnérable à une faille permettant l'accès non autorisé aux données et le contournement des politiques de sécurité via des requêtes malformées. Le CERT-FR classe cette vulnérabilité comme "haute" et recommande une mise à jour immédiate des clusters Kafka. Un correctif est disponible depuis le 02/06.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0678/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille dans l'outil d'IA de support de Meta a permis à des attaquants de réinitialiser les mots de passe de 20 225 comptes Instagram. L'attaque exploitait une défaillance dans la vérification par email lors des procédures de récupération de compte. Meta a depuis renforcé les contrôles d'authentification.</p>
+<a href="https://www.bleepingcomputer.com/news/security/meta-ai-support-data-breach-affects-20-000-instagram-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Mozilla Firefox (CVE-2026-XXXX)</h3>
+<h3>CISA : Deux nouvelles vulnérabilités ajoutées au catalogue KEV</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Mozilla corrige 15 vulnérabilités dans Firefox, dont 4 critiques permettant l'exécution de code arbitraire à distance (RCE). Le CERT-FR recommande une mise à jour urgente. Les correctifs sont disponibles via les canaux standard de Firefox.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0676/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : La CISA a ajouté deux vulnérabilités à son catalogue KEV (Known Exploited Vulnerabilities), confirmant leur exploitation active. Les CVE concernées sont <a href="https://www.cve.org/CVERecord?id=CVE-2026-42271" target="_blank">CVE-2026-42271</a> (non détaillée) et <a href="https://www.cve.org/CVERecord?id=CVE-2026-45432" target="_blank">CVE-2026-45432</a> (affectant des produits non spécifiés). Les organisations doivent appliquer les correctifs disponibles sans délai.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/06/08/cisa-adds-two-known-exploited-vulnerabilities-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
 </div>
 
-<h3>Exploit massif du plugin WordPress Everest Forms Pro (CVE-2026-3300)</h3>
+<h3>Gogs : Correctif d'une faille critique de type RCE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-3300, CVSS 9.8) dans Everest Forms Pro permet une prise de contrôle complète des sites WordPress. Les attaquants exploitent déjà cette vulnérabilité pour déployer des web shells et voler des données. Un correctif est disponible depuis le 06/06.</p>
-<a href="https://www.bleepingcomputer.com/news/security/critical-everest-forms-pro-flaw-exploited-to-take-over-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Gogs a corrigé une faille critique de type *zero-day* (non référencée CVE) permettant l'exécution de code à distance sur les instances exposées. La vulnérabilité permettait d'accéder à tous les dépôts, y compris privés. Un correctif est disponible dans les versions 0.13.0 et ultérieures.</p>
+<a href="https://www.bleepingcomputer.com/news/security/gogs-patches-critical-zero-day-enabling-remote-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaques par ransomware Silent Ransom Group contre les cabinets d'avocats</h3>
+<h3>UniFi OS : Chaînage de vulnérabilités pour un accès root sans authentification</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Silent Ransom Group cible les cabinets d'avocats américains via des appels d'assistance IT frauduleux, menant à des vols de données en quelques heures. Mandiant rapporte une augmentation de 300% des attaques depuis mai 2026. Aucune solution technique ne bloque ces attaques sociales.</p>
-<a href="https://www.bleepingcomputer.com/news/security/silent-ransom-group-targets-law-firms-with-fake-it-support-calls/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une chaîne de trois vulnérabilités déjà corrigées dans UniFi OS (Ubiquiti) permet à un attaquant d'obtenir un accès root sans authentification sur les serveurs exposés. Les failles combinées (non référencées CVE) étaient initialement patchées séparément, mais leur exploitation conjointe restaure une surface d'attaque critique. Les correctifs doivent être appliqués immédiatement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-unifi-os-bug-lets-hackers-gain-root-without-authentication/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Botnet C0XMO exploitant les routeurs DD-WRT</h3>
+<h3>SoFi : Fuite de données chez une filiale hongkongaise via un tiers compromis</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le botnet C0XMO (variant de Gafgyt) cible les routeurs DD-WRT via une faille non corrigée, puis se propage à d'autres architectures. Les chercheurs notent une capacité à tuer les malwares concurrents. Aucun correctif n'est disponible pour les versions vulnérables de DD-WRT.</p>
-<a href="https://www.bleepingcomputer.com/news/security/c0xmo-botnet-spreads-via-dd-wrt-router-flaw-kills-rival-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : SoFi Hong Kong a subi une fuite de données après qu'un attaquant ait accédé à une base de données hébergée par un fournisseur tiers. Les informations exposées incluent des données clients, mais l'étendue exacte n'a pas été divulguée. SoFi recommande aux utilisateurs concernés de surveiller leurs comptes et de réinitialiser leurs mots de passe.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sofi-confirms-third-party-data-breach-at-hong-kong-subsidiary/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Mardi 3 Juin 2026</h2>
-<h3>Faille dans HPE Aruba Networking AOS-CX (CVE-2026-XXXX)</h3>
+<h2>Lundi 09 Juin 2026</h2>
+<h3>Everest Forms : Vulnérabilité WordPress exploitée en masse</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : HPE Aruba corrige une vulnérabilité critique dans AOS-CX permettant le contournement des politiques de sécurité via une manipulation des paquets réseau. Le CERT-FR classe cette faille comme "critique" pour les environnements d'entreprise. Un correctif est disponible depuis le 03/06.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0683/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilités dans le noyau Linux de Red Hat (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Red Hat annonce 8 vulnérabilités critiques dans son noyau Linux (RHEL 8/9), dont des failles d'élévation de privilèges (CVE-2026-XXXX) et d'exécution de code. Le CERT-FR recommande une mise à jour immédiate. Les correctifs sont disponibles via yum/apt.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0694/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Attaques par malware OP-512 contre les serveurs Microsoft IIS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le cluster OP-512 déploie un framework de web shell personnalisé sur les serveurs Microsoft IIS via des vulnérabilités non spécifiées. ReliaQuest attribue ces attaques à un acteur APT. Aucune solution de détection n'est encore disponible pour les signatures spécifiques.</p>
-<a href="https://thehackernews.com/2026/06/new-threat-cluster-op-512-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mercredi 4 Juin 2026</h2>
-<h3>Fuite de données chez DentaQuest (2,6 millions de comptes)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le géant des soins dentaires DentaQuest révèle une fuite de données affectant 2,6 millions de comptes, incluant des informations sensibles (noms, adresses, numéros de sécurité sociale). L'incident serait lié à une compromission de ses systèmes internes. Aucune solution technique ne peut inverser cette fuite.</p>
-<a href="https://www.bleepingcomputer.com/news/security/dentaquest-data-breach-exposed-info-of-26-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Faille critique dans SolarWinds Serv-U (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : SolarWinds Serv-U est vulnérable à une faille de déni de service (DoS) exploitée activement par des attaquants pour planter les serveurs. CISA ajoute cette vulnérabilité à son catalogue KEV. Un correctif est disponible depuis le 04/06.</p>
-<a href="https://thehackernews.com/2026/06/cisa-adds-actively-exploited-solarwinds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaques par malware Miasma contre 73 dépôts GitHub Microsoft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le ver Miasma a compromis 73 dépôts GitHub Microsoft (Azure, MicrosoftDocs) via une attaque de chaîne d'approvisionnement. Le malware se réplique automatiquement et injecte des payloads malveillants. Microsoft recommande une réinitialisation des clés API et une analyse des dépôts.</p>
-<a href="https://thehackernews.com/2026/06/miasma-worm-hits-73-microsoft-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Jeudi 5 Juin 2026</h2>
-<h3>Faille critique dans Cisco Catalyst SD-WAN Manager (CVE-2026-20245)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco confirme l'exploitation active de CVE-2026-20245 (CVSS 7.8) dans Cisco Catalyst SD-WAN Manager, permettant une élévation de privilèges via une injection de commandes. Aucune solution officielle n'est disponible, mais des contournements temporaires sont documentés. Les attaques sont en augmentation.</p>
-<a href="https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-manager-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Vulnérabilités critiques dans Google Chrome (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google corrige 23 vulnérabilités dans Chrome, dont 7 critiques permettant l'exécution de code arbitraire (RCE) et des attaques par déni de service. Le CERT-FR recommande une mise à jour urgente. Les correctifs sont disponibles via les canaux standard de Chrome.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0692/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Attaques par spyware Asin ciblant les utilisateurs arabes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le spyware Asin, distribué via des apps Android frauduleuses (fausses cartes de guerre, PDF), cible les utilisateurs arabophones. ESET rapporte des campagnes actives depuis début 2025 avec des capacités d'espionnage avancées (keylogging, capture d'écran). Aucun correctif n'est disponible pour les victimes.</p>
-<a href="https://thehackernews.com/2026/06/android-spyware-asin-targets-arabic.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fuite de données à l'agence alimentaire de l'ONU (600 000 ménages à Gaza)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le Programme alimentaire mondial (PAM) révèle une fuite de données affectant 600 000 ménages à Gaza via son application d'auto-enregistrement. Les données exposées incluent des informations personnelles sensibles. Aucune solution technique ne peut inverser cette fuite.</p>
-<a href="https://www.bleepingcomputer.com/news/security/un-world-food-programme-breach-affects-600-000-gaza-households/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Vendredi 6 Juin 2026</h2>
-<h3>Mode Lockdown de ChatGPT pour limiter les fuites de données</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : OpenAI lance un mode "Lockdown" pour ChatGPT, restreignant l'accès aux outils pouvant exfiltrer des données via des attaques par injection de prompts. Cette fonctionnalité est conçue pour les organisations manipulant des données sensibles. Disponible pour les comptes éligibles.</p>
-<a href="https://thehackernews.com/2026/06/new-chatgpt-lockdown-mode-limits-tools.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaques par malware IronWorm et Miasma dans l'écosystème npm</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux malwares (IronWorm et une nouvelle variante de Miasma) ciblent l'écosystème npm via 50+ packages légitimes empoisonnés. IronWorm est un voleur d'informations Rust, tandis que Miasma est un ver auto-propagateur. JFrog recommande une analyse immédiate des dépendances.</p>
-<a href="https://thehackernews.com/2026/06/ironworm-and-new-miasma-worm-variant.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fuite de données chez Toshiba et Muji via des prompts suspects</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Toshiba et Muji alertent leurs visiteurs de l'apparition de pop-ups suspects sur leurs sites web, collectant potentiellement des identifiants. Les chercheurs suspectent une attaque par typosquatting ou injection de scripts malveillants. Aucune solution technique n'est encore disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/suspicious-polyfill-login-prompts-pop-up-on-toshiba-muji-websites/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 7 Juin 2026</h2>
-<h3>Campagnes de phishing liées à la Coupe du Monde 2026</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des milliers de domaines frauduleux, malwares bancaires (via des apps de streaming illégal) et vols de credentials ciblent les fans de la Coupe du Monde 2026. Le FBI et des chercheurs en sécurité alertent sur l'augmentation des attaques par ingénierie sociale.</p>
-<a href="https://thehackernews.com/2026/06/fifa-world-cup-2026-scams-are-already.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaques par malware PCPJack sur 230 serveurs cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe PCPJack a compromis 230 serveurs cloud (AWS, Azure, Google Cloud) pour créer un réseau de relais SMTP covert. Les serveurs, principalement aux États-Unis et en Europe, sont utilisés pour envoyer des emails malveillants sans détection. Aucune solution de blocage n'est encore disponible.</p>
-<a href="https://thehackernews.com/2026/06/pcpjack-hijacks-230-aws-google-cloud.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique dans le plugin *Everest Forms* pour WordPress (non référencée CVE) permet l'exécution de code à distance. Exploitée depuis deux mois, elle a déjà compromis des milliers de sites. Un correctif est disponible dans la version 3.2.0. Les administrateurs doivent mettre à jour sans délai.</p>
+<a href="https://www.securityweek.com/everest-forms-vulnerability-exploited-to-hack-wordpress-sites/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>

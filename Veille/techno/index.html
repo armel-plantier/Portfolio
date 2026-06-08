@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 01/06/2026 au 08/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 08/06/2026 au 09/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 01/06/2026 au 08/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 09/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,163 +75,66 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Vendredi 06 Juin 2026</h2>
-<h3>### OpenAI déploie un mode "Lockdown" pour ChatGPT afin de limiter les risques d'exfiltration de données</h3>
+            <h2>Lundi 08 Juin 2026</h2>
+<h3>Trois failles critiques dans UniFi OS Server permettent une élévation de privilèges root</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OpenAI introduit un mode Lockdown pour ChatGPT, ciblant les comptes personnels et professionnels manipulant des données sensibles. Ce mode restreint l'accès aux outils pouvant faciliter l'exfiltration via des attaques par injection de prompts, renforçant ainsi la protection contre les fuites de données.</p>
-<a href="https://thehackernews.com/2026/06/new-chatgpt-lockdown-mode-limits-tools.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Trois vulnérabilités (CVE-2026-34908, CVE-2026-34909, CVE-2026-34910) permettent d'exécuter du code arbitraire en tant que root sur UniFi OS Server. Une exploitation combinée de ces failles offre un accès complet aux systèmes concernés. Une mise à jour urgente est recommandée pour les administrateurs exploitant cette solution.</p>
+<a href="https://www.it-connect.fr/ces-trois-failles-offrent-un-acces-root-sur-unifi-os-server-patchez/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>### CISA ajoute une faille critique de SolarWinds Serv-U à son catalogue KEV</h3>
+<h3>VS Code introduit un délai de 2h pour les mises à jour d'extensions afin de limiter les attaques par chaîne d'approvisionnement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-20245, une faille critique dans SolarWinds Serv-U, à son catalogue KEV après avoir observé des exploitations actives. Cette vulnérabilité permet une attaque par déni de service (DoS) et nécessite une mise à jour urgente pour les administrateurs utilisant ce logiciel.</p>
-<a href="https://thehackernews.com/2026/06/cisa-adds-actively-exploited-solarwinds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : VS Code retarde automatiquement les mises à jour d'extensions de 2 heures pour réduire les risques liés aux attaques par chaîne d'approvisionnement. Cette mesure vise à bloquer les attaques exploitant des extensions malveillantes avant leur déploiement massif. Une configuration utile pour les équipes DevOps gérant des environnements critiques.</p>
+<a href="https://www.it-connect.fr/vs-code-un-delai-de-2-heures-sur-les-mises-a-jour-pour-vous-proteger-des-attaques/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>### Des applications gratuites transforment les téléviseurs intelligents en proxys de scraping pour l'IA</h3>
+<h3>Une faille critique dans le noyau Linux (CVE-2026-23111) permet une élévation locale vers root</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des applications iOS intégrant le SDK de Bright Data transforment des téléviseurs intelligents en nœuds de scraping web, relayant du trafic pour des entreprises d'IA. Cette pratique soulève des questions sur la confidentialité et la sécurité des données des utilisateurs.</p>
-<a href="https://thehackernews.com/2026/06/free-apps-are-quietly-turning-smart-tvs.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un bug de type "use-after-free" dans le code nf_tables du noyau Linux (CVE-2026-23111) permet à un utilisateur local non privilégié d'obtenir des privilèges root et de s'échapper de conteneurs. Un exploit fonctionnel est désormais public, nécessitant une mise à jour immédiate des systèmes concernés.</p>
+<a href="https://thehackernews.com/2026/06/one-character-linux-kernel-flaw-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>### Une faille zero-day dans FFmpeg découverte par un agent IA, 21 vulnérabilités révélées</h3>
+<h3>Flatpak 1.18 supporte désormais ROCm d'AMD pour le calcul accéléré</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un agent IA autonome a identifié 21 vulnérabilités zero-day dans FFmpeg, une bibliothèque omniprésente dans les logiciels multimédias. Ces failles, critiques pour la sécurité des infrastructures vidéo, nécessitent une mise à jour immédiate.</p>
-<a href="https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Flatpak 1.18 intègre une meilleure intégration avec AMD ROCm, permettant aux applications sandboxées d'exploiter les GPU AMD pour le calcul haute performance. Une évolution majeure pour les environnements DevOps nécessitant des accélérations GPU dans des conteneurs sécurisés.</p>
+<a href="https://www.phoronix.com/news/Flatpak-1.18" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>### Le ver Miasma infecte 73 dépôts GitHub de Microsoft dans une attaque de chaîne d'approvisionnement</h3>
+<h3>Linux 7.2 ajoute le support ACPI CPPC v4, avec une contribution de NVIDIA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ver Miasma a compromis 73 dépôts GitHub de Microsoft, dont ceux d'Azure et de MicrosoftDocs, en exploitant des failles de chaîne d'approvisionnement. Cette attaque met en lumière les risques liés aux dépendances logicielles non sécurisées.</p>
-<a href="https://thehackernews.com/2026/06/miasma-worm-hits-73-microsoft-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le noyau Linux 7.2 intégrera le support ACPI CPPC v4, une fonctionnalité essentielle pour la gestion avancée de l'énergie et des performances sur les systèmes modernes. Cette implémentation, signée par un ingénieur NVIDIA, améliorera la gestion des CPU dans les environnements cloud et serveurs.</p>
+<a href="https://www.phoronix.com/news/ACPI-CPPC-v4-Linux-7.2" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h2>Jeudi 05 Juin 2026</h2>
-<h3>### HTTP/2 Bomb : une nouvelle attaque DoS cible NGINX, Apache, IIS et Cloudflare</h3>
+<h3>Canonical teste les paquets x86-64-v3 pour Ubuntu 26.10</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : HTTP/2 Bomb est une vulnérabilité critique permettant de saturer la mémoire RAM des serveurs web (NGINX, Apache, IIS, Envoy) en moins d'une minute. Les administrateurs doivent appliquer les correctifs disponibles pour éviter des interruptions de service.</p>
-<a href="https://www.it-connect.fr/http-2-bomb-moins-dune-minute-suffit-pour-mettre-ko-les-serveurs-nginx-apache-et-iis/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Canonical évalue la compilation de paquets pour x86-64-v3 dans Ubuntu 26.10, offrant des gains de performance significatifs sur les CPU modernes (Intel et AMD). Une migration progressive pourrait améliorer les performances des environnements serveurs et cloud dès la sortie de la distribution.</p>
+<a href="https://www.phoronix.com/news/Ubuntu-26.10-amd64v3-Packages" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>### Trafic Internet : les bots dépassent désormais les humains selon Cloudflare</h3>
+<h3>Xfce porté sur Redox OS, une alternative Rust-based à Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Pour la première fois, le trafic généré par les bots a dépassé celui des humains, selon les données de Cloudflare. Cette tendance impacte la gestion des infrastructures web et nécessite des stratégies de mitigation adaptées.</p>
-<a href="https://www.it-connect.fr/trafic-internet-les-robots-ont-officiellement-depasse-les-humains-selon-cloudflare/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le bureau Xfce a été porté sur Redox OS, un système d'exploitation open source écrit en Rust. Cette migration offre une expérience X11 plus stable et sécurisée, tout en explorant des alternatives au noyau Linux pour les environnements embarqués ou critiques.</p>
+<a href="https://www.phoronix.com/news/Xfce-Ported-To-Redox-OS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>### IronWorm et une nouvelle variante de Miasma ciblent l'écosystème npm</h3>
+<h3>Le projet CADA de l'UE propose une fédération EuroCloud et des zones d'accélération pour l'IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaques de chaîne d'approvisionnement via npm ont distribué IronWorm (un voleur d'informations) et une variante de Miasma (un ver auto-propagateur). Les administrateurs doivent surveiller les dépendances et appliquer les correctifs de sécurité.</p>
-<a href="https://thehackernews.com/2026/06/ironworm-and-new-miasma-worm-variant.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La Commission européenne dévoile les axes du règlement CADA (Cloud and AI Development Act), incluant une fédération EuroCloud et des "zones d'accélération" pour stimuler l'innovation en IA et cloud. Une initiative clé pour les administrateurs système européens gérant des infrastructures souveraines.</p>
+<a href="https://www.silicon.fr/cloud-1370/cada-cloud-ai-development-act-227552" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>### PCPJack pirate 230 serveurs cloud pour créer un réseau SMTP covert</h3>
+<h3>MokN lève 15M$ pour industrialiser sa technologie "phish-back" contre les attaques par hameçonnage</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe PCPJack a compromis des serveurs AWS, Google Cloud et Azure pour en faire des relais SMTP cachés, utilisés pour des campagnes de spam ou de phishing. Une surveillance renforcée des logs cloud est recommandée.</p>
-<a href="https://thehackernews.com/2026/06/pcpjack-hijacks-230-aws-google-cloud.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : MokN a sécurisé 15 millions de dollars pour déployer sa solution "phish-back", qui piège les attaquants en leur fournissant de faux portails d'authentification. Cette approche permet de récupérer les identifiants volés avant leur exploitation, réduisant ainsi les risques pour les entreprises.</p>
+<a href="https://www.silicon.fr/business-1367/mokn-leve-15-millions-pour-industrialiser-son-phish-back-227539" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>### Cisco Catalyst SD-WAN Manager vulnérable à une faille non corrigée (CVE-2026-20245)</h3>
+<h2>Mardi 09 Juin 2026</h2>
+<h3>La réinitialisation de mot de passe dans Entra ID évolue en septembre 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco alerte sur une faille critique (CVSS 7.8) dans Catalyst SD-WAN Manager, déjà exploitée en attaque. Aucune correction n'est disponible, ce qui expose les infrastructures SD-WAN à des risques élevés.</p>
-<a href="https://thehackernews.com/2026/06/cisco-catalyst-sd-wan-manager-cve-2026.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mercredi 04 Juin 2026</h2>
-<h3>### Microsoft annonce WSL 3 et les conteneurs WSL pour Windows</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : WSL 3 introduit une refonte architecturale pour un accès quasi-natif aux GPU/NPU et l'intégration des conteneurs WSL. Cette évolution simplifie le développement hybride et améliore les performances des workloads Linux sous Windows.</p>
-<a href="https://www.it-connect.fr/microsoft-devoile-wsl-3-et-les-conteneurs-wsl-pour-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Chrome 149 corrige 429 vulnérabilités, dont des failles critiques</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google a publié Chrome 149 avec des correctifs pour 429 bugs, dont plusieurs critiques. Les administrateurs doivent déployer cette mise à jour rapidement pour protéger les postes de travail contre les exploitations potentielles.</p>
-<a href="https://thehackernews.com/2026/06/ai-agent-uncovers-21-zero-days-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>### Cisco corrige CVE-2026-20230 dans Unified CM après la publication d'un exploit</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco a patché une faille (CVE-2026-20230) dans Unified Communications Manager, permettant à un attaquant non authentifié d'écrire des fichiers et d'obtenir des privilèges root. Un exploit PoC est déjà public, accélérant la nécessité de mise à jour.</p>
-<a href="https://thehackernews.com/2026/06/cisco-patches-cve-2026-20230-in-unified.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>### Une faille dans l'action GitHub de Claude Code permet le vol de tokens OAuth</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans l'action GitHub de Claude Code permet à un attaquant de voler des tokens OAuth via une simple issue GitHub. Anthropic a corrigé le problème, mais les administrateurs doivent vérifier les workflows utilisés.</p>
-<a href="https://thehackernews.com/2026/06/claude-code-github-action-flaw-let-one.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>### L'IA agentique transforme la cybersécurité, mais nécessite une infrastructure sécurisée</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les agents IA autonomes (comme Claude Mythos) redéfinissent la défense, mais leur déploiement nécessite une infrastructure IT sécurisée. Les administrateurs doivent évaluer les risques liés à l'intégration de ces outils dans leurs environnements.</p>
-<a href="https://thehackernews.com/2026/06/agentic-ai-is-transforming-defense-but.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 03 Juin 2026</h2>
-<h3>### Microsoft dévoile Scout, un agent IA "Autopilot" basé sur OpenClaw</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Scout est un agent IA autonome présenté lors de la Build 2026, capable de raisonnement avancé et d'automatisation. Son intégration dans les workflows DevOps pourrait optimiser les processus de déploiement et de monitoring.</p>
-<a href="https://www.it-connect.fr/microsoft-scout-un-nouvel-agent-ia-autopilot-propulse-par-openclaw/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### eBPF révolutionne le monitoring "agentless" pour sécuriser les infrastructures Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : eBPF permet une observabilité haute performance sans agent, essentielle pour le monitoring des infrastructures Linux modernes. Cette technologie améliore la détection des anomalies et la sécurité proactive.</p>
-<a href="https://www.it-connect.fr/ebpf-et-la-revolution-du-monitoring-agentless-pour-securiser-vos-infrastructures-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Coreutils pour Windows : les commandes Linux arrivent nativement sur Windows</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a annoncé Coreutils pour Windows, permettant d'exécuter des commandes Linux (comme `ls`, `grep`) directement sous Windows. Cette fonctionnalité facilite la migration et l'interopérabilité des scripts.</p>
-<a href="https://www.it-connect.fr/coreutils-vos-commandes-habituelles-linux-sinvitent-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Fin de NTLM : IAKerb et LocalKDC arrivent en préversion sur Windows</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft prépare la fin de NTLM avec IAKerb et LocalKDC, deux composants en préversion pour remplacer l'authentification obsolète. Les administrateurs doivent anticiper cette migration pour renforcer la sécurité.</p>
-<a href="https://www.it-connect.fr/fin-de-ntlm-iakerb-et-localkdc-arrivent-en-preversion-sur-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Une faille zero-day dans Visual Studio Code exploitée pour voler des tokens GitHub</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un chercheur a divulgué une faille zero-day dans VS Code (via github.dev) permettant de voler des tokens GitHub. Microsoft n'a pas encore corrigé cette vulnérabilité, exposant les développeurs à des risques de compromission.</p>
-<a href="https://www.it-connect.fr/vs-code-un-chercheur-publie-une-faille-zero-day-pour-punir-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h2>Lundi 02 Juin 2026</h2>
-<h3>### Microsoft annonce Intelligent Terminal, une console boostée à l'IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Intelligent Terminal (fork de Windows Terminal) intègre des agents IA pour assister les administrateurs dans la gestion des logs et des commandes. Cette innovation pourrait transformer les workflows DevOps.</p>
-<a href="https://www.it-connect.fr/intelligent-terminal-microsoft-devoile-une-nouvelle-console-boostee-a-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Google corrige 124 vulnérabilités dans Android, dont une exploitée activement</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google a publié des correctifs pour 124 failles dans Android, dont CVE-2025-48595 (exploitée en attaque). Les administrateurs doivent déployer la mise à jour pour protéger les appareils mobiles.</p>
-<a href="https://thehackernews.com/2026/06/google-june-2026-android-update-patches.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>### Windows Developer Configurations : un outil pour préparer des environnements de dev optimisés</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Présenté lors de la Build 2026, Windows Developer Configurations utilise WinGet pour configurer rapidement des machines de développement. Cette solution réduit les temps de setup et améliore la productivité.</p>
-<a href="https://www.it-connect.fr/windows-developer-configurations-lidee-de-microsoft-pour-preparer-rapidement-un-environnement-de-code/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Microsoft lance MAI-Thinking-1, son premier modèle IA pour le raisonnement</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : MAI-Thinking-1 est le premier LLM de Microsoft dédié au raisonnement logique. Son intégration dans les outils DevOps pourrait automatiser des tâches complexes comme la résolution d'incidents.</p>
-<a href="https://www.it-connect.fr/microsoft-lance-mai-thinking-1-son-premier-modele-ia-pour-le-raisonnement/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>### Une faille non corrigée dans Windows Search permet le vol de hachages NTLMv2</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans l'URI handler de Windows Search expose les hachages NTLMv2 des utilisateurs. Les administrateurs doivent appliquer des contournements temporaires en attendant un correctif.</p>
-<a href="https://thehackernews.com/2026/06/unpatched-windows-search-uri.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : À partir du 7 septembre 2026, la réinitialisation de mot de passe en libre-service (SSPR) dans Microsoft Entra ID nécessitera des méthodes d'authentification préalablement enregistrées. Une mesure de sécurité renforçant la protection des comptes, mais nécessitant une configuration proactive des administrateurs.</p>
+<a href="https://www.it-connect.fr/la-reinitialisation-de-mot-de-passe-dans-entra-id-evolue-en-2026-ce-quil-faut-savoir/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
