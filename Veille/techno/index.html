@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 08/06/2026 au 09/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 08/06/2026 au 10/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 09/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 10/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,65 +76,114 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 08 Juin 2026</h2>
-<h3>Trois failles critiques dans UniFi OS Server permettent une élévation de privilèges root</h3>
+<h3>VS Code : un délai de 2 heures sur les mises à jour pour se protéger des attaques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois vulnérabilités (CVE-2026-34908, CVE-2026-34909, CVE-2026-34910) permettent d'exécuter du code arbitraire en tant que root sur UniFi OS Server. Une exploitation combinée de ces failles offre un accès complet aux systèmes concernés. Une mise à jour urgente est recommandée pour les administrateurs exploitant cette solution.</p>
-<a href="https://www.it-connect.fr/ces-trois-failles-offrent-un-acces-root-sur-unifi-os-server-patchez/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>VS Code introduit un délai de 2h pour les mises à jour d'extensions afin de limiter les attaques par chaîne d'approvisionnement</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : VS Code retarde automatiquement les mises à jour d'extensions de 2 heures pour réduire les risques liés aux attaques par chaîne d'approvisionnement. Cette mesure vise à bloquer les attaques exploitant des extensions malveillantes avant leur déploiement massif. Une configuration utile pour les équipes DevOps gérant des environnements critiques.</p>
+<p><strong>Résumé</strong> : VS Code retarde les mises à jour d’extensions de 2 heures pour limiter les risques d’attaques sur la chaîne d’approvisionnement. Cette mesure vise à donner le temps aux équipes de sécurité de valider les nouvelles versions avant leur déploiement.</p>
 <a href="https://www.it-connect.fr/vs-code-un-delai-de-2-heures-sur-les-mises-a-jour-pour-vous-proteger-des-attaques/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Une faille critique dans le noyau Linux (CVE-2026-23111) permet une élévation locale vers root</h3>
+<h3>La réinitialisation de mot de passe dans Entra ID évolue en 2026 : ce qu’il faut savoir</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un bug de type "use-after-free" dans le code nf_tables du noyau Linux (CVE-2026-23111) permet à un utilisateur local non privilégié d'obtenir des privilèges root et de s'échapper de conteneurs. Un exploit fonctionnel est désormais public, nécessitant une mise à jour immédiate des systèmes concernés.</p>
+<p><strong>Résumé</strong> : À partir du 7 septembre 2026, la réinitialisation de mot de passe en libre-service (SSPR) d’Entra ID exigera des méthodes d’authentification enregistrées. Une évolution majeure pour renforcer la sécurité des comptes utilisateurs dans les environnements Microsoft.</p>
+<a href="https://www.it-connect.fr/la-reinitialisation-de-mot-de-passe-dans-entra-id-evolue-en-2026-ce-quil-faut-savoir/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Coup de sang sur GitHub autour de Rsync et de l’utilisation de l’IA Claude</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une mise à jour de Rsync perturbe les sauvegardes incrémentales, révélant des commits co-écrits avec l’IA Claude. Cette situation interroge sur l’impact de l’IA dans les processus de développement collaboratif.</p>
+<a href="https://www.it-connect.fr/coup-de-sang-sur-github-autour-de-rsync-et-de-lutilisation-de-ia-claude/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Une faille critique dans Linux permet un accès root local via un caractère malveillant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CVE-2026-23111, une faille de type *use-after-free* dans le noyau Linux, permet à un utilisateur local non privilégié d’escalader ses droits en root. Un exploit fonctionnel est désormais public, nécessitant une mise à jour urgente.</p>
 <a href="https://thehackernews.com/2026/06/one-character-linux-kernel-flaw-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Flatpak 1.18 supporte désormais ROCm d'AMD pour le calcul accéléré</h3>
+<h3>Veeam Backup &amp; Replication vulnérable à une faille RCE critique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Flatpak 1.18 intègre une meilleure intégration avec AMD ROCm, permettant aux applications sandboxées d'exploiter les GPU AMD pour le calcul haute performance. Une évolution majeure pour les environnements DevOps nécessitant des accélérations GPU dans des conteneurs sécurisés.</p>
-<a href="https://www.phoronix.com/news/Flatpak-1.18" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : CVE-2026-44963, une faille critique (CVSS 9.4) dans Veeam Backup & Replication permet l’exécution de code à distance. Des correctifs sont disponibles pour éviter les compromissions des sauvegardes.</p>
+<a href="https://thehackernews.com/2026/06/veeam-backup-replication-rce-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Linux 7.2 ajoute le support ACPI CPPC v4, avec une contribution de NVIDIA</h3>
+<h3>Check Point VPN exploité pour contourner les mots de passe en IKEv1</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.2 intégrera le support ACPI CPPC v4, une fonctionnalité essentielle pour la gestion avancée de l'énergie et des performances sur les systèmes modernes. Cette implémentation, signée par un ingénieur NVIDIA, améliorera la gestion des CPU dans les environnements cloud et serveurs.</p>
-<a href="https://www.phoronix.com/news/ACPI-CPPC-v4-Linux-7.2" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : CVE-2026-50751, une faille critique dans les VPN Check Point configurés en IKEv1, permet de contourner l’authentification. Une mise à jour immédiate est recommandée pour les environnements utilisant ce protocole obsolète.</p>
+<a href="https://thehackernews.com/2026/06/critical-check-point-vpn-flaw-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Canonical teste les paquets x86-64-v3 pour Ubuntu 26.10</h3>
+<h3>Alpine Linux 3.24 améliore l’expérience d’installation et ajoute le bureau COSMIC</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Canonical évalue la compilation de paquets pour x86-64-v3 dans Ubuntu 26.10, offrant des gains de performance significatifs sur les CPU modernes (Intel et AMD). Une migration progressive pourrait améliorer les performances des environnements serveurs et cloud dès la sortie de la distribution.</p>
-<a href="https://www.phoronix.com/news/Ubuntu-26.10-amd64v3-Packages" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Alpine Linux 3.24 introduit un installateur repensé et une option pour le bureau COSMIC, tout en restant optimisé pour les conteneurs et les systèmes embarqués. Une version à tester pour les environnements légers.</p>
+<a href="https://www.phoronix.com/news/Alpine-Linux-3.24" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Xfce porté sur Redox OS, une alternative Rust-based à Linux</h3>
+<h3>Fedora 44 supporte désormais RISC-V avec un nouveau noyau "Omni"</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le bureau Xfce a été porté sur Redox OS, un système d'exploitation open source écrit en Rust. Cette migration offre une expérience X11 plus stable et sécurisée, tout en explorant des alternatives au noyau Linux pour les environnements embarqués ou critiques.</p>
-<a href="https://www.phoronix.com/news/Xfce-Ported-To-Redox-OS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Fedora 44 propose des images RISC-V incluant un noyau "Omni" pour une compatibilité élargie avec le matériel RISC-V. Une avancée majeure pour les architectures alternatives.</p>
+<a href="https://www.phoronix.com/news/Fedora-44-RISC-V-Images" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Le projet CADA de l'UE propose une fédération EuroCloud et des zones d'accélération pour l'IA</h3>
+<h3>LLVM/Clang ajoute un support initial pour les CPU Hygon x86</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La Commission européenne dévoile les axes du règlement CADA (Cloud and AI Development Act), incluant une fédération EuroCloud et des "zones d'accélération" pour stimuler l'innovation en IA et cloud. Une initiative clé pour les administrateurs système européens gérant des infrastructures souveraines.</p>
-<a href="https://www.silicon.fr/cloud-1370/cada-cloud-ai-development-act-227552" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : LLVM/Clang intègre désormais le support des CPU Hygon c86-4G, une architecture x86 alternative. Une évolution importante pour la compatibilité et les performances sur ces processeurs.</p>
+<a href="https://www.phoronix.com/news/Hygon-LLVM-Clang-Targeting" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>MokN lève 15M$ pour industrialiser sa technologie "phish-back" contre les attaques par hameçonnage</h3>
+<hr />
+<h2>Mercredi 09 Juin 2026</h2>
+<h3>Chrome V8 Zero-Day CVE-2026-11645 exploité dans la nature : patchez immédiatement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : MokN a sécurisé 15 millions de dollars pour déployer sa solution "phish-back", qui piège les attaquants en leur fournissant de faux portails d'authentification. Cette approche permet de récupérer les identifiants volés avant leur exploitation, réduisant ainsi les risques pour les entreprises.</p>
-<a href="https://www.silicon.fr/business-1367/mokn-leve-15-millions-pour-industrialiser-son-phish-back-227539" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Google a corrigé 74 vulnérabilités dans Chrome, dont CVE-2026-11645 (CVSS 8.8), une faille *out-of-bounds* dans V8 exploitée activement. Une mise à jour urgente est nécessaire pour éviter les attaques.</p>
+<a href="https://thehackernews.com/2026/06/chrome-v8-zero-day-cve-2026-11645.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h2>Mardi 09 Juin 2026</h2>
-<h3>La réinitialisation de mot de passe dans Entra ID évolue en septembre 2026</h3>
+<h3>Meta utilise des données externes pour personnaliser les flux et l’IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : À partir du 7 septembre 2026, la réinitialisation de mot de passe en libre-service (SSPR) dans Microsoft Entra ID nécessitera des méthodes d'authentification préalablement enregistrées. Une mesure de sécurité renforçant la protection des comptes, mais nécessitant une configuration proactive des administrateurs.</p>
-<a href="https://www.it-connect.fr/la-reinitialisation-de-mot-de-passe-dans-entra-id-evolue-en-2026-ce-quil-faut-savoir/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Meta annonce l’utilisation de données partagées par des entreprises tierces pour personnaliser les flux utilisateurs et les réponses de son chatbot IA. Une évolution qui soulève des questions sur la vie privée et la collecte de données.</p>
+<a href="https://thehackernews.com/2026/06/meta-to-use-off-site-business-data-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Loupe : une appli open source révèle le fingerprinting sur iPhone</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Loupe, une application open source pour iOS/iPadOS, expose comment les apps tierces créent des empreintes numériques uniques via les API publiques. Un outil utile pour auditer la vie privée des utilisateurs.</p>
+<a href="https://www.it-connect.fr/vie-privee-lappli-open-source-loupe-revele-le-fingerprinting-sur-iphone/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Cyberattaque sur Tchap : intrusion sur la messagerie chiffrée de l’État français</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La messagerie instantanée Tchap, réservée aux agents publics, a subi une intrusion après la compromission d’un compte d’agent. Un rappel sur l’importance de la sécurité des outils étatiques.</p>
+<a href="https://www.it-connect.fr/cyberattaque-tchap-un-pirate-sest-introduit-sur-la-messagerie-chiffree-de-letat/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Trois failles critiques dans UniFi OS Server permettent un accès root</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CVE-2026-34908, CVE-2026-34909 et CVE-2026-34910, exploitées ensemble, offrent un accès root sur UniFi OS Server. Un correctif est disponible pour éviter les compromissions des infrastructures réseau.</p>
+<a href="https://www.it-connect.fr/ces-trois-failles-offrent-un-acces-root-sur-unifi-os-server-patchez/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>LiteLLM vulnérable à une faille exploitable en RCE non authentifié</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CVE-2026-42271, une faille critique dans LiteLLM (CVSS 8.7), permet une exécution de code à distance non authentifiée. CISA a ajouté cette vulnérabilité à son catalogue KEV en raison d’exploitations actives.</p>
+<a href="https://thehackernews.com/2026/06/litellm-flaw-cve-2026-42271-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Nouvel outil open source : PowerBgInfo pour personnaliser les fonds d’écran des serveurs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : PowerBgInfo permet d’afficher l’état du système (CPU, RAM, etc.) directement sur le fond d’écran des serveurs Windows via PowerShell. Un outil pratique pour la supervision visuelle.</p>
+<a href="https://www.it-connect.fr/powerbginfo-personnalisez-le-fond-decran-des-serveurs-avec-powershell/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Asterinas 0.18 : un OS Rust alternatif compatible avec Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Asterinas 0.18, un système d’exploitation écrit en Rust, progresse vers la compatibilité avec Linux. Une alternative prometteuse pour les environnements nécessitant une sécurité renforcée.</p>
+<a href="https://www.phoronix.com/news/Asterinas-0.18" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Vortex 3.0 : un GPU open source RISC-V avec pipeline 3D</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Vortex 3.0, une implémentation open source de GPU RISC-V compatible OpenCL, ajoute désormais un pipeline 3D. Une avancée majeure pour les architectures RISC-V.</p>
+<a href="https://www.phoronix.com/news/Vortex-3.0-RISC-V-GPGPU" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
