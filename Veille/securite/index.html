@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 10/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 11/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 10/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 11/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,89 +76,84 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 09 Juin 2026</h2>
-<h3>Microsoft June 2026 Patch Tuesday corrige 3 zero-day et 200 failles</h3>
+<h3>Vulnérabilité critique CVE-2026-50751 dans les VPN Check Point (exploitée activement)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a publié ses correctifs mensuels (Patch Tuesday) pour juin 2026, corrigeant 200 vulnérabilités dont 3 zero-days activement exploitées (CVE-2026-0001, CVE-2026-0002, CVE-2026-0003). Les failles concernent Windows, Office, Exchange et Azure, avec des risques d'élévation de privilèges, exécution de code arbitraire et déni de service. Un patch est disponible via Windows Update.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-june-2026-patch-tuesday-fixes-3-zero-day-200-flaws/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-50751) dans les solutions VPN de Check Point est activement exploitée par des attaquants pour contourner les politiques de sécurité. Les systèmes concernés incluent les appliances VPN Check Point, avec un risque élevé d'accès non autorisé aux réseaux internes. Un correctif est disponible via les mises à jour officielles de Check Point.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0711/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Google corrige un nouveau zero-day dans Chrome (CVE-2026-11645)</h3>
+<h3>Exploitation active de CVE-2026-11645 dans Google Chrome</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a publié une mise à jour d'urgence pour Chrome corrigeant un zero-day (CVE-2026-11645, CVSS 8.8) dans le moteur V8, exploité en attaque ciblée. Cette faille permet une exécution de code arbitraire à distance via un accès mémoire hors limites. Un correctif est disponible pour Windows, macOS et Linux.</p>
-<a href="https://www.bleepingcomputer.com/news/security/google-patches-fifth-chrome-zero-day-bug-exploited-in-attacks-this-year/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Google Chrome est vulnérable à une faille (CVE-2026-11645) activement exploitée en attaque zero-day, permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Les versions affectées incluent Chrome avant 125.0.6422.112. Google a publié un correctif urgent via une mise à jour de sécurité.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0708/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité critique dans Veeam Backup &amp; Replication (CVE-2026-44963)</h3>
+<h3>Fuite de code source du malware Miasma sur GitHub</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-44963, CVSS 9.4) dans Veeam Backup & Replication permet une exécution de code à distance (RCE) sur les serveurs de sauvegarde connectés à un domaine. Les attaquants peuvent exploiter cette vulnérabilité pour prendre le contrôle des systèmes. Un patch est disponible dans la dernière version.</p>
-<a href="https://thehackernews.com/2026/06/veeam-backup-replication-rce-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le code source du framework d'attaque Miasma, spécialisé dans le vol d'identifiants et les attaques par chaîne d'approvisionnement, a été brièvement exposé sur GitHub. Ce malware cible les écosystèmes open-source et a déjà été utilisé dans des campagnes ciblées. Aucune correction spécifique n'est requise, mais une vigilance accrue est recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/the-miasma-worm-source-code-briefly-leaked-on-github/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille critique dans les VPN Check Point (CVE-2026-50751) exploitée par Qilin</h3>
+<h3>Attaques en cours contre Oracle PeopleSoft via ShinyHunters</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-50751, CVSS 9.3) dans les solutions VPN Remote Access et Mobile Access de Check Point permet de contourner l'authentification et d'exécuter du code arbitraire. Exploitée depuis mai 2026 par des affiliés du ransomware Qilin, cette faille nécessite un correctif urgent. CISA impose aux agences fédérales américaines de patcher sous 3 jours.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-check-point-flaw-exploited-by-ransomware-gangs/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters revendique avoir compromis des serveurs Oracle PeopleSoft pour voler des données sensibles de plus de 100 organisations. Les attaquants exploitent des vulnérabilités non divulguées pour accéder aux instances PeopleSoft. Oracle n'a pas encore publié de correctif spécifique pour cette campagne.</p>
+<a href="https://www.bleepingcomputer.com/news/security/oracle-peoplesoft-servers-hacked-in-shinyhunters-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>ServiceNow victime d'une fuite de données via une API vulnérable</h3>
+<h3>Vulnérabilité critique CVE-2026-5027 dans la plateforme AI Langflow</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : ServiceNow a subi un incident de sécurité exploitant une faille d'accès non authentifié via une API vulnérable, permettant aux attaquants de récupérer des données clients. L'incident a été détecté et les accès compromis ont été bloqués. Aucune information sur l'étendue des données exposées n'a été communiquée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/servicenow-discloses-security-incident-exposing-customer-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille de type path traversal (CVE-2026-5027, score CVSS 8.8) dans Langflow, une plateforme open-source pour le développement d'applications IA, est activement exploitée pour écrire des fichiers arbitraires sur des serveurs exposés. Les systèmes non patchés sont vulnérables à des attaques RCE. Un correctif est attendu prochainement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/path-traversal-flaw-in-ai-dev-platform-langflow-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Qilin revendique le vol de données à l'Opéra-Comique</h3>
+<hr />
+<h2>Mardi 10 Juin 2026</h2>
+<h3>Patch Tuesday Microsoft : 206 vulnérabilités corrigées, dont 3 zero-days</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Qilin a menacé l'Opéra-Comique après avoir volé des documents internes, dont des pièces d'identité et des fichiers confidentiels. L'attaque semble cibler des données sensibles pour exercer une pression lors de futures négociations. Aucune confirmation officielle n'a été publiée.</p>
-<a href="https://www.zataz.com/qilin-menace-lopera-comique-apres-un-vol-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Microsoft a publié des correctifs pour 206 vulnérabilités, dont 3 zero-days (CVE-2026-XXXX, CVE-2026-XXXX, CVE-2026-XXXX) activement exploitées. Les failles critiques incluent des RCE, des élévations de privilèges et des atteintes à la confidentialité. Les systèmes concernés incluent Windows, Exchange Server, .Net et Azure. Les mises à jour sont disponibles via Windows Update.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-patches-record-206-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille critique dans strongSwan (exécution de code arbitraire)</h3>
+<h3>Correctif urgent pour CVE-2026-20245 dans Cisco, Chrome et Arista (KEV Catalog)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité dans strongSwan (solution VPN IPsec) permet une exécution de code à distance (RCE) via une faille non spécifiée. Les attaquants peuvent exploiter cette faille pour prendre le contrôle des systèmes. Un correctif est disponible dans les dernières versions.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0709/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : La CISA a ajouté CVE-2026-20245 (score CVSS 7.8) à son catalogue KEV, signalant une exploitation active. Cette vulnérabilité affecte des produits Cisco, Google Chrome et Arista, permettant une exécution de code arbitraire. Les correctifs sont disponibles pour tous les systèmes concernés.</p>
+<a href="https://thehackernews.com/2026/06/cisa-adds-cisco-chrome-and-arista-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille zero-day dans Microsoft Defender (CVE-2026-XXXX)</h3>
+<h3>Vulnérabilité zero-day RoguePlanet dans Microsoft Defender (exploitée)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille zero-day dans Microsoft Defender (nommée "RoguePlanet") permet d'obtenir des privilèges SYSTEM via une élévation de privilèges non corrigée. Cette vulnérabilité est activement exploitée en attaque ciblée. Microsoft n'a pas encore attribué de CVE officiel.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-defender-rogueplanet-zero-day-grants-system-privileges/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un nouveau zero-day nommé RoguePlanet, affectant Microsoft Defender, permet à un attaquant d'obtenir des privilèges SYSTEM via une condition de course. Un PoC a été publié par un chercheur, et Microsoft n'a pas encore inclus de correctif dans ses mises à jour mensuelles. Une solution temporaire consiste à désactiver Defender ou à appliquer des règles de sécurité renforcées.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-defender-rogueplanet-zero-day.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attaque par supply chain via 19 paquets PyPI infectés (Hades)</h3>
+<h3>Faille critique CVE-2026-XXXX dans Ivanti Sentry (exécution de code root)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'attaque par supply chain nommée "Hades" a infecté 19 paquets PyPI avec un voleur de credentials Bun, permettant une exécution automatique de code malveillant. Les paquets, distribués via le registre Python, ciblent des environnements de développement. Un nettoyage des paquets compromis est en cours.</p>
-<a href="https://thehackernews.com/2026/06/hades-pypi-attack-19-packages-poisoned.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Ivanti a corrigé une vulnérabilité de gravité maximale (CVE-2026-XXXX) dans son produit Sentry, permettant une exécution de code à distance avec des privilèges root. Les systèmes non patchés sont exposés à des attaques critiques. Un correctif est disponible via les mises à jour officielles d'Ivanti.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-max-severity-ivanti-sentry-flaw-allows-code-exploitation-as-root/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille dans LiteLLM (CVE-2026-42271) exploitée en attaque ciblée</h3>
+<h3>Vulnérabilités critiques dans SAP NetWeaver et Commerce Cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille CVE-2026-42271 (CVSS 8.7) dans LiteLLM (outil d'intégration LLM) permet une exécution de code à distance non authentifiée via une chaîne de vulnérabilités. CISA a ajouté cette faille à son catalogue KEV, confirmant son exploitation active. Un correctif est disponible.</p>
-<a href="https://thehackernews.com/2026/06/litellm-flaw-cve-2026-42271-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : SAP a publié des correctifs pour 15 vulnérabilités, dont 4 critiques (CVE-2026-XXXX à CVE-2026-XXXX), affectant SAP NetWeaver et SAP Commerce Cloud. Les failles permettent des injections SQL, des XSS et des contournements de politique de sécurité. Les entreprises utilisant ces solutions doivent appliquer les mises à jour immédiatement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sap-fixes-critical-flaws-in-netweaver-and-commerce-cloud/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h2>Dimanche 08 Juin 2026</h2>
-<h3>Faille critique dans les produits Microsoft (Patch Tuesday juin 2026)</h3>
+<h3>Attaque contre ServiceNow via une faille non authentifiée</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR alerte sur des vulnérabilités critiques dans les produits Microsoft, permettant des problèmes de sécurité non spécifiés (élévation de privilèges, exécution de code, déni de service). Ces failles s'ajoutent aux 200 correctifs du Patch Tuesday de juin 2026. Un patch est disponible via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0701/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : ServiceNow a subi une intrusion via une faille d'accès non authentifié dans une API vulnérable, permettant aux attaquants d'accéder à des données clients. L'incident a été résolu, mais les instances exposées doivent être auditées. ServiceNow recommande de vérifier les logs et d'appliquer les correctifs de sécurité.</p>
+<a href="https://thehackernews.com/2026/06/servicenow-flaw-exploited-to-gain.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille critique dans les VPN Check Point (CVE-2026-50751) exploitée depuis mai</h3>
+<h3>Expansion du botnet JDY lié à la Chine (1 500+ appareils ciblant les réseaux militaires US)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-50751, CVSS 9.3) dans les VPN Check Point permet de contourner l'authentification et d'exécuter du code arbitraire. Exploitée depuis mai 2026 par des groupes de ransomware, cette vulnérabilité nécessite une mise à jour urgente des déploiements IKEv1.</p>
-<a href="https://www.darkreading.com/vulnerabilities-threats/check-point-vpn-flaw-exploited-early-may" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Le botnet JDY, associé à des acteurs chinois, a étendu son réseau à plus de 1 500 appareils IoT et SOHO pour des opérations de reconnaissance ciblant les réseaux militaires américains. Les systèmes compromis incluent des routeurs et des appareils connectés. Aucune correction spécifique n'est disponible, mais une segmentation réseau et une surveillance renforcée sont recommandées.</p>
+<a href="https://thehackernews.com/2026/06/china-linked-jdy-botnet-expands-to-1500.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille critique dans le noyau Linux (CVE-2026-23111) permettant un accès root</h3>
+<h3>Vulnérabilités Proto6 dans protobuf.js (RCE et DoS dans les apps Node.js)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'utilisation après libération (use-after-free) dans le noyau Linux (CVE-2026-23111) permet à un utilisateur local non privilégié d'obtenir un accès root et de s'échapper d'un conteneur. Un exploit fonctionnel a été publié. Un correctif est disponible depuis février 2026.</p>
-<a href="https://thehackernews.com/2026/06/one-character-linux-kernel-flaw-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne d'extorsion par Silent Ransom Group contre des cabinets d'avocats US</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Silent Ransom combine vishing, usurpation d'identité IT et intrusions physiques pour voler des données et extorquer des cabinets d'avocats américains. Les attaques combinent techniques sociales et techniques pour maximiser l'impact.</p>
-<a href="https://www.darkreading.com/cyberattacks-data-breaches/silent-ransom-us-law-firms-extortion-attacks" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Six vulnérabilités (CVE-2026-XXXX à CVE-2026-XXXX) dans protobuf.js, une bibliothèque JavaScript pour Protocol Buffers, exposent les applications Node.js à des attaques RCE et DoS. Les systèmes utilisant des versions non patchées de protobuf.js sont vulnérables. Un correctif est disponible via npm.</p>
+<a href="https://thehackernews.com/2026/06/six-proto6-vulnerabilities-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
