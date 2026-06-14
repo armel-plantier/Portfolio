@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 14/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 15/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 14/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 15/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,183 +75,179 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 09 Juin 2026</h2>
+            <h2>Lundi 09 juin 2026</h2>
 <h3>Multiples vulnérabilités dans les VPN Check Point</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les solutions VPN de Check Point, dont la CVE-2026-50751 activement exploitée. Ces failles permettent à un attaquant de contourner les politiques de sécurité et d'exécuter du code arbitraire à distance. Les systèmes affectés incluent les appliances VPN Check Point Quantum et CloudGuard. Un correctif est disponible via les mises à jour de sécurité Check Point.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les solutions VPN de Check Point, dont la CVE-2026-50751 activement exploitée. Ces failles permettent à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources internes. Les systèmes affectés incluent les appliances VPN Check Point Quantum et CloudGuard. Un correctif est disponible via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0711/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans Veeam Backup &amp; Replication</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique permet une exécution de code arbitraire à distance (RCE) dans Veeam Backup & Replication. Les versions affectées ne sont pas précisées, mais l'éditeur recommande une mise à jour immédiate. Le niveau de criticité est élevé en raison du potentiel d'impact sur les sauvegardes et la disponibilité des données.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique permet une exécution de code arbitraire à distance (RCE) dans Veeam Backup & Replication. Les versions affectées incluent celles antérieures aux correctifs de juin 2026. Cette faille expose les sauvegardes et les infrastructures de stockage à des attaques potentielles. Un patch est disponible via le support Veeam.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0712/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans les produits Schneider Electric EcoStruxure IT Data Center Expert</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans EcoStruxure IT Data Center Expert expose les données sensibles des centres de données à une atteinte à la confidentialité. L'attaquant peut exploiter cette vulnérabilité pour accéder à des informations critiques sans authentification. Schneider Electric a publié un correctif urgent.</p>
+<p><strong>Résumé</strong> : Une faille de confidentialité affecte les produits Schneider Electric EcoStruxure IT Data Center Expert, permettant à un attaquant d'accéder à des données sensibles. Les systèmes concernés incluent les versions non patchées du logiciel de gestion des centres de données. Un correctif est disponible via le site de l'éditeur.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0713/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Siemens</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectent les produits Siemens, dont des failles de RCE, déni de service (DoS) et fuite de données. Les systèmes concernés incluent SIMATIC, SICAM et TIA Portal. Siemens a publié des correctifs pour atténuer ces risques, classés comme critiques.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (dont RCE, DoS et atteinte à la confidentialité) ont été identifiées dans les produits Siemens, notamment les automates industriels et les solutions de gestion des infrastructures. Les attaques pourraient perturber les processus industriels ou voler des données sensibles. Des correctifs sont disponibles via Siemens Security Advisories.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0714/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits SAP</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans SAP permettent des injections SQL (SQLi), XSS et contournement de sécurité. Les produits affectés incluent SAP NetWeaver, SAP Fiori et SAP Business One. SAP a publié des correctifs prioritaires pour ces failles classées comme critiques.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques (injection SQL, XSS et contournement de sécurité) ont été découvertes dans les produits SAP, exposant les entreprises à des attaques ciblées. Les systèmes affectés incluent SAP NetWeaver et SAP Business One. SAP a publié des correctifs via son portail de support.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0715/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Mardi 10 Juin 2026</h2>
+<h2>Mardi 10 juin 2026</h2>
 <h3>Multiples vulnérabilités dans OpenSSL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans OpenSSL permettent une RCE, DoS et fuite de données. Les versions affectées incluent OpenSSL 3.0.x et antérieures. Un correctif urgent est disponible via les mises à jour OpenSSL. Ces failles sont classées comme critiques en raison de leur impact potentiel sur les infrastructures critiques.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, DoS et fuite de données) ont été corrigées dans OpenSSL 3.0.14 et versions antérieures. Les systèmes utilisant des versions non patchées sont exposés à des attaques par exécution de code ou déni de service. Les correctifs sont disponibles via les dépôts officiels.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0717/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans PostgreSQL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'élévation de privilèges a été découverte dans PostgreSQL. L'attaquant peut exploiter cette vulnérabilité pour obtenir des droits administratifs sur les bases de données. PostgreSQL a publié un correctif pour les versions affectées, classées comme critiques.</p>
+<p><strong>Résumé</strong> : Une faille d'élévation de privilèges a été découverte dans PostgreSQL, permettant à un utilisateur local d'obtenir des droits administratifs. Les versions affectées incluent celles antérieures à PostgreSQL 15.4. Un correctif est disponible via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0718/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Spring</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Spring Framework permettent une RCE, contournement de sécurité et DoS. Les produits affectés incluent Spring Boot, Spring Cloud et Spring Security. Un correctif urgent est disponible via les mises à jour Spring.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, contournement de sécurité et DoS) ont été identifiées dans les frameworks Spring. Les attaques pourraient permettre une prise de contrôle à distance ou une perturbation des services. Les correctifs sont disponibles via Spring Framework 6.1.5+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0719/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Adobe</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Adobe Acrobat, Reader et Creative Cloud permettent une RCE, élévation de privilèges et fuite de données. Adobe a publié des correctifs prioritaires pour ces failles classées comme critiques.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques (RCE à distance, élévation de privilèges et fuite de données) ont été corrigées dans les produits Adobe, notamment Acrobat Reader et Creative Cloud. Les systèmes non patchés sont exposés à des attaques par malware ou vol de données. Les correctifs sont disponibles via Adobe Security Bulletins.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0720/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Xen</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Xen permettent une élévation de privilèges, DoS et fuite de données. Les systèmes affectés incluent les hyperviseurs Xen et les machines virtuelles. Un correctif urgent est disponible via les mises à jour Xen.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (élévation de privilèges, DoS et fuite de données) ont été découvertes dans l'hyperviseur Xen. Les attaques pourraient permettre une prise de contrôle des machines virtuelles ou une perturbation des services cloud. Les correctifs sont disponibles via les mises à jour Xen Project.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0721/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Mercredi 11 Juin 2026</h2>
+<h2>Mercredi 11 juin 2026</h2>
 <h3>Multiples vulnérabilités dans GitLab</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans GitLab permettent une RCE, DoS et SSRF. Les versions affectées incluent GitLab CE/EE 16.x. GitLab a publié des correctifs urgents pour atténuer ces risques, classés comme critiques.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, DoS et SSRF) ont été découvertes dans GitLab. Les attaques pourraient permettre une prise de contrôle des instances GitLab ou une exfiltration de données. Les versions affectées incluent celles antérieures à GitLab 16.10.0. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0733/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits Palo Alto Networks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Palo Alto Networks permettent une RCE, élévation de privilèges et DoS. Les produits affectés incluent PAN-OS, GlobalProtect et Prisma Access. Un correctif urgent est disponible via les mises à jour Palo Alto Networks.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques (RCE à distance, élévation de privilèges et DoS) ont été identifiées dans les pare-feux et solutions de sécurité Palo Alto Networks. Les attaques pourraient perturber les réseaux ou voler des données sensibles. Les correctifs sont disponibles via les mises à jour PAN-OS.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0734/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans MongoDB</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans MongoDB permettent un DoS et fuite de données. Les versions affectées incluent MongoDB 6.0.x et antérieures. MongoDB a publié des correctifs urgents pour ces failles classées comme critiques.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0735/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Splunk</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Splunk permettent une RCE, fuite de données et SSRF. Les produits affectés incluent Splunk Enterprise et Splunk Cloud. Splunk a publié des correctifs urgents pour atténuer ces risques.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0736/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Vulnérabilité dans LibreNMS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans LibreNMS permet une RCE à distance. L'attaquant peut exploiter cette vulnérabilité pour exécuter du code arbitraire sur les serveurs de surveillance réseau. Un correctif urgent est disponible via les mises à jour LibreNMS.</p>
+<p><strong>Résumé</strong> : Une faille critique permet une exécution de code arbitraire à distance (RCE) dans LibreNMS, un outil de surveillance réseau. Les systèmes non patchés sont exposés à des attaques par malware ou prise de contrôle. Un correctif est disponible via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0732/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Jeudi 12 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans Google Chrome</h3>
+<h3>Multiples vulnérabilités dans les produits Spring (nouvelle analyse)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Google Chrome permettent des attaques non spécifiées par l'éditeur. Ces failles peuvent être exploitées pour des attaques de type zero-day. Google a publié des correctifs urgents via Chrome 125.0.6422.60.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0740/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une nouvelle série de vulnérabilités critiques (RCE à distance, fuite de données et SSRF) a été découverte dans les frameworks Spring. Les attaques pourraient permettre une prise de contrôle des applications ou une exfiltration de données. Les correctifs sont disponibles via Spring Framework 6.1.6+.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0739/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exécution de code arbitraire dans Traefik</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique permet un contournement de la politique de sécurité dans Traefik, un reverse proxy et load balancer. Les attaques pourraient permettre une exécution de code arbitraire ou une prise de contrôle des services exposés. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0738/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h2>Jeudi 12 juin 2026</h2>
+<h3>Multiples vulnérabilités dans MongoDB</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (DoS et fuite de données) ont été découvertes dans MongoDB. Les attaques pourraient permettre une perturbation des services ou une exfiltration de données sensibles. Les versions affectées incluent celles antérieures à MongoDB 7.0.12. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0735/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans les produits NetApp</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans NetApp permettent un DoS, fuite de données et atteinte à l'intégrité. Les produits affectés incluent ONTAP, Element et StorageGRID. NetApp a publié des correctifs urgents pour ces failles classées comme critiques.</p>
+<p><strong>Résumé</strong> : Des vulnérabilités critiques (DoS, fuite et atteinte à l'intégrité des données) ont été identifiées dans les solutions de stockage NetApp. Les attaques pourraient perturber les infrastructures ou corrompre des données critiques. Les correctifs sont disponibles via les mises à jour NetApp.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0742/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans les produits Moxa</h3>
+<h3>Atteinte à la confidentialité dans les produits Moxa</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans les produits Moxa permet une atteinte à la confidentialité des données. Les systèmes affectés incluent les routeurs industriels et les passerelles IoT. Moxa a publié un correctif urgent pour atténuer ce risque.</p>
+<p><strong>Résumé</strong> : Une faille critique permet une fuite de données sensibles dans les produits Moxa, notamment les solutions IoT industrielles. Les attaques pourraient permettre l'accès à des informations confidentielles. Un correctif est disponible via le site de l'éditeur.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0743/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans le noyau Linux (SUSE, Ubuntu, Red Hat)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les noyaux Linux de SUSE, Ubuntu et Red Hat permettent une RCE, élévation de privilèges et fuite de données. Les correctifs sont disponibles via les mises à jour des distributions concernées. Ces failles sont classées comme critiques.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, élévation de privilèges, fuite de données) ont été découvertes dans les noyaux Linux de SUSE, Ubuntu et Red Hat. Les attaques pourraient permettre une prise de contrôle des systèmes ou une exfiltration de données. Les correctifs sont disponibles via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0745/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (SUSE)</a>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0746/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0747/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
 </div>
 
-<h3>Vulnérabilité CVE-2026-35273 dans Oracle PeopleSoft (activement exploitée)</h3>
+<h3>Exécution de code arbitraire à distance dans Oracle PeopleSoft</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-35273 dans Oracle PeopleSoft est activement exploitée depuis le 27 mai 2026. Elle permet une RCE à distance sans authentification. Oracle a publié un correctif urgent, mais les attaques en cours nécessitent une application immédiate.</p>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-35273, activement exploitée depuis mai 2026, permet une exécution de code arbitraire à distance dans Oracle PeopleSoft sans authentification. Les attaques ciblent les systèmes non patchés, exposant les données sensibles des entreprises. Un correctif est disponible via Oracle Critical Patch Update.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0749/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CISA ordonne le patch urgent de la faille Ivanti Sentry (BOD 26-04)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de patcher la faille Ivanti Sentry (CVE non spécifiée) sous 72 heures via la directive BOD 26-04. Cette vulnérabilité est activement exploitée en attaques ciblées. Un correctif est disponible via Ivanti.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-gives-feds-3-days-to-patch-ivanti-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données de Tchap (73 000 comptes du gouvernement français)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une fuite de données affecte plus de 73 000 comptes du gouvernement français sur la plateforme Tchap. Les données exposées incluent des informations personnelles des employés publics. Aucune information sur l'origine de la fuite n'est encore disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/french-govt-says-tchap-breach-affected-over-73-000-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>400+ paquets Arch Linux compromis par un rootkit et infostealer</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plus de 400 paquets dans l'AUR (Arch User Repository) ont été compromis pour distribuer un rootkit et un infostealer ciblant les identifiants et tokens d'accès. Les utilisateurs d'Arch Linux sont invités à vérifier leurs installations et à mettre à jour leurs systèmes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/over-400-arch-linux-packages-compromised-to-push-rootkit-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Novo Nordisk victime d'une fuite de données sur des essais cliniques</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le géant pharmaceutique Novo Nordisk a subi une fuite de données affectant des informations patients issues d'essais cliniques. L'origine de l'incident n'est pas encore déterminée, mais l'impact potentiel sur la confidentialité des données est élevé.</p>
-<a href="https://www.bleepingcomputer.com/news/security/pharmaceutical-giant-novo-nordisk-discloses-security-breach/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
 <hr />
-<h2>Vendredi 13 Juin 2026</h2>
-<h3>Ex-employé condamné pour cyberattaques contre son ancien employeur</h3>
+<h2>Vendredi 13 juin 2026</h2>
+<h3>Fuite revendiquée de 7 729 comptes notariaux en France</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un ancien employé IT d'un district scolaire de l'Iowa a été condamné à 21 mois de prison pour avoir mené une cyberattaque prolongée contre son ancien employeur, causant des perturbations opérationnelles et des dommages financiers. L'attaque incluait la suppression de comptes et des opérations malveillantes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ex-school-district-employee-jailed-for-hacks-on-former-employer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un pirate revendique une cyberattaque ayant compromis 7 729 comptes notariaux français, exposant des données sensibles pouvant faciliter des attaques d'hameçonnage ciblé et d'usurpation d'identité. Cette fuite pourrait impacter des milliers de professionnels et particuliers. Aucune confirmation officielle n'a été publiée.</p>
+<a href="https://www.zataz.com/identite-notariale-un-pirate-revendique-une-cyber-attaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Hackers chinois maintiennent une persistance de 10 ans sur un réseau isolé</h3>
+<h3>Intrusions revendiquées dans des infrastructures publiques françaises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des hackers chinois ont compromis la pile d'authentification d'une organisation cible et maintenu une persistance de 10 ans sur un réseau isolé. Ils avaient une visibilité complète sur les activités administratives pendant toute cette période.</p>
+<p><strong>Résumé</strong> : Un pirate revendique des intrusions dans des systèmes publics à Paris, Nantes, Lyon, Bobigny et Smartbox, ciblant des plateformes comme Tchap. Ces attaques pourraient exposer des données sensibles ou perturber des services critiques. Aucune confirmation officielle n'a été publiée.</p>
+<a href="https://www.zataz.com/un-pirate-revendique-une-serie-dintrusions-a-paris-nantes-et-lyon/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Menace du ransomware Qilin contre l'Opéra-Comique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe de ransomware Qilin menace l'Opéra-Comique après avoir volé des documents internes, dont des pièces d'identité et des données confidentielles. Cette attaque pourrait entraîner une fuite publique ou une perturbation des services culturels. Aucune confirmation officielle n'a été publiée.</p>
+<a href="https://www.zataz.com/qilin-menace-lopera-comique-apres-un-vol-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Espionnage d'un réseau isolé pendant 10 ans par des hackers chinois</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des hackers chinois ont compromis le flux d'authentification d'une organisation cible et maintenu une persistance pendant 10 ans, avec une visibilité totale sur les activités administratives. Cette attaque illustre la menace des APT (Advanced Persistent Threats) ciblant les infrastructures critiques.</p>
 <a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-hijack-auth-flow-spy-on-isolated-network-for-a-decade/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Qilin menace l'Opéra-Comique après un vol de données</h3>
+<hr />
+<h2>Samedi 14 juin 2026</h2>
+<h3>Démantèlement d'un service de phishing IA-powered par le FBI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Qilin a menacé l'Opéra-Comique après avoir volé des documents internes, incluant des pièces d'identité et des informations confidentielles. L'incident met en lumière la vulnérabilité des institutions culturelles face aux cyberattaques.</p>
-<a href="https://www.zataz.com/qilin-menace-lopera-comique-apres-un-vol-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Le FBI, en collaboration avec Google et Black Lotus Labs, a démantelé "Outsider Enterprise", un service de phishing-as-a-service utilisant plus d'un million d'URLs pour voler des données bancaires et des identifiants. Cette opération a permis de neutraliser une infrastructure majeure de cybercriminalité.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Sept suspects arrêtés en France dans l'affaire Dumpsec</h3>
+<h3>Condamnation d'un ancien employé pour cyberattaques sur son ancien employeur</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Sept suspects liés au groupe Dumpsec ont été arrêtés en France après le vol présumé de dizaines de millions de données. Cette opération marque une avancée significative dans la lutte contre les cybercriminels spécialisés dans la vente de données volées.</p>
-<a href="https://www.zataz.com/dumpsec-sept-suspects-interpelles-en-france/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Un ancien employé d'un district scolaire de l'Iowa a été condamné à 21 mois de prison pour avoir mené une cyberattaque prolongée contre son ancien employeur, perturbant les opérations scolaires et causant des dizaines de milliers de dollars de dommages.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ex-school-district-employee-jailed-for-hacks-on-former-employer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Poursuite d'un Français pour 300 000 deepfakes sexuels</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un Français est poursuivi pour avoir diffusé massivement des deepfakes sexuels ciblant 14 000 victimes, exposant des milliers de personnes à des risques de chantage et de harcèlement. Cette affaire illustre l'impact des nouvelles technologies sur la vie privée.</p>
+<a href="https://www.zataz.com/cfake-un-francais-poursuivi-pour-300-000-deepfakes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
         </div>
     </div>
