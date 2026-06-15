@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 08/06/2026 au 15/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 15/06/2026 au 16/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 08/06/2026 au 15/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 16/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,179 +75,79 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 09 juin 2026</h2>
-<h3>Multiples vulnérabilités dans les VPN Check Point</h3>
+            <h2>Dimanche 15 Juin 2026</h2>
+<h3>Vulnérabilité critique dans Cisco SD-WAN vManage (CVE-2026-20262)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les solutions VPN de Check Point, dont la CVE-2026-50751 activement exploitée. Ces failles permettent à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources internes. Les systèmes affectés incluent les appliances VPN Check Point Quantum et CloudGuard. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0711/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Cisco a corrigé une vulnérabilité critique (CVE-2026-20262, CVSS 9.1) dans Cisco SD-WAN vManage, exploitée en zero-day pour escalader des privilèges root. Les attaques ciblent les portails exposés, permettant une exécution de code arbitraire. Un correctif est disponible via les mises à jour logicielles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-fixes-sd-wan-vmanage-flaw-exploited-in-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité dans Veeam Backup &amp; Replication</h3>
+<h3>Exploit critique dans Microsoft 365 Copilot (SearchLeak)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique permet une exécution de code arbitraire à distance (RCE) dans Veeam Backup & Replication. Les versions affectées incluent celles antérieures aux correctifs de juin 2026. Cette faille expose les sauvegardes et les infrastructures de stockage à des attaques potentielles. Un patch est disponible via le support Veeam.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0712/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une chaîne d'exploits (SearchLeak) permet une fuite de données en un clic via Microsoft 365 Copilot Enterprise. Les attaquants peuvent voler emails, fichiers OneDrive/SharePoint et codes MFA via des URLs malveillantes. Microsoft a corrigé la faille, mais les attaques passées restent un risque.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-attack-turned-microsoft-365-copilot-into-1-click-data-theft-tool/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité dans les produits Schneider Electric EcoStruxure IT Data Center Expert</h3>
+<h3>Fuite de données massive à la RATP (62 208 employés exposés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de confidentialité affecte les produits Schneider Electric EcoStruxure IT Data Center Expert, permettant à un attaquant d'accéder à des données sensibles. Les systèmes concernés incluent les versions non patchées du logiciel de gestion des centres de données. Un correctif est disponible via le site de l'éditeur.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0713/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un pirate revendique le vol de 62 208 données d'employés de la RATP, incluant identifiants, fonctions et informations internes. L'incident souligne les risques liés aux fuites de données RH non chiffrées. Aucune confirmation officielle de l'origine de la fuite n'a été publiée.</p>
+<a href="https://www.zataz.com/ratp-un-pirate-revendique-62-208-donnees-demployes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Siemens</h3>
+<h3>Campagne d'espionnage chinoise via REDCap (malware InfiniteRed)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (dont RCE, DoS et atteinte à la confidentialité) ont été identifiées dans les produits Siemens, notamment les automates industriels et les solutions de gestion des infrastructures. Les attaques pourraient perturber les processus industriels ou voler des données sensibles. Des correctifs sont disponibles via Siemens Security Advisories.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0714/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Des attaquants liés à la Chine ont compromis des serveurs REDCap exposés pour déployer le malware InfiniteRed et voler des données de recherche médicale en Amérique du Nord. L'attaque a persisté pendant plus d'un an avant d'être détectée. Aucun correctif spécifique n'est mentionné pour REDCap.</p>
+<a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-breach-redcap-servers-steal-medical-research/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits SAP</h3>
+<h3>Attaque par ransomware sur Mackay Sugar (Australie)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (injection SQL, XSS et contournement de sécurité) ont été découvertes dans les produits SAP, exposant les entreprises à des attaques ciblées. Les systèmes affectés incluent SAP NetWeaver et SAP Business One. SAP a publié des correctifs via son portail de support.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0715/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe The Gentlemen a ciblé Mackay Sugar, deuxième plus grand producteur de sucre d'Australie, paralysant ses moulins. L'attaque a entraîné des perturbations opérationnelles majeures. Aucune information sur le montant de la rançon ou les données chiffrées n'a été divulguée.</p>
+<a href="https://www.securityweek.com/ransomware-attack-shuts-down-mills-of-australias-second-largest-sugar-producer/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Mardi 10 juin 2026</h2>
-<h3>Multiples vulnérabilités dans OpenSSL</h3>
+<h3>Vulnérabilités critiques dans LiteLLM (prise de contrôle de serveurs AI)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, DoS et fuite de données) ont été corrigées dans OpenSSL 3.0.14 et versions antérieures. Les systèmes utilisant des versions non patchées sont exposés à des attaques par exécution de code ou déni de service. Les correctifs sont disponibles via les dépôts officiels.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0717/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une chaîne de 3 vulnérabilités par défaut dans LiteLLM (proxy AI open-source) permet à un utilisateur à faible privilège d'escalader en admin et d'exécuter du code. LiteLLM a publié des correctifs urgents pour les versions affectées (1.0+).</p>
+<a href="https://thehackernews.com/2026/06/litellm-vulnerability-chain-lets-low.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans PostgreSQL</h3>
+<h3>Exploitation active de PAN-OS GlobalProtect (CVE-2026-0257)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'élévation de privilèges a été découverte dans PostgreSQL, permettant à un utilisateur local d'obtenir des droits administratifs. Les versions affectées incluent celles antérieures à PostgreSQL 15.4. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0718/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Palo Alto Networks signale une exploitation active de CVE-2026-0257 (CVSS 7.8), une faille d'authentification contournée dans PAN-OS GlobalProtect. Les attaquants obtiennent un accès non autorisé aux portails VPN. Un correctif est disponible via les mises à jour logicielles.</p>
+<a href="https://thehackernews.com/2026/06/palo-alto-warns-of-active-exploitation.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Spring</h3>
+<h3>Fuite de données du Conseil de l'Europe (297 Go revendiqués par ShinyHunters)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, contournement de sécurité et DoS) ont été identifiées dans les frameworks Spring. Les attaques pourraient permettre une prise de contrôle à distance ou une perturbation des services. Les correctifs sont disponibles via Spring Framework 6.1.5+.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0719/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters revendique le vol de 297 Go de données du Conseil de l'Europe, incluant des informations personnelles d'employés. L'organisation enquête sur l'incident. Aucune confirmation officielle de la véracité des données n'a été publiée.</p>
+<a href="https://www.securityweek.com/shinyhunters-claims-council-of-europe-hack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Adobe</h3>
+<h3>Attaque par supply-chain sur les plugins WordPress (OptinMonster, TrustPulse)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (RCE à distance, élévation de privilèges et fuite de données) ont été corrigées dans les produits Adobe, notamment Acrobat Reader et Creative Cloud. Les systèmes non patchés sont exposés à des attaques par malware ou vol de données. Les correctifs sont disponibles via Adobe Security Bulletins.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0720/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une attaque supply-chain a compromis les plugins WordPress OptinMonster, TrustPulse et PushEngage via un CDN tiers (Awesome Motive). Les scripts malveillants créent des comptes admin cachés sur les sites infectés. Les correctifs sont disponibles via les mises à jour des plugins.</p>
+<a href="https://www.bleepingcomputer.com/news/security/optinmonster-wordpress-plugin-hacked-in-cdn-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Xen</h3>
+<h3>Ajout de 2 vulnérabilités au catalogue KEV de CISA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (élévation de privilèges, DoS et fuite de données) ont été découvertes dans l'hyperviseur Xen. Les attaques pourraient permettre une prise de contrôle des machines virtuelles ou une perturbation des services cloud. Les correctifs sont disponibles via les mises à jour Xen Project.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0721/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Mercredi 11 juin 2026</h2>
-<h3>Multiples vulnérabilités dans GitLab</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, DoS et SSRF) ont été découvertes dans GitLab. Les attaques pourraient permettre une prise de contrôle des instances GitLab ou une exfiltration de données. Les versions affectées incluent celles antérieures à GitLab 16.10.0. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0733/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Palo Alto Networks</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (RCE à distance, élévation de privilèges et DoS) ont été identifiées dans les pare-feux et solutions de sécurité Palo Alto Networks. Les attaques pourraient perturber les réseaux ou voler des données sensibles. Les correctifs sont disponibles via les mises à jour PAN-OS.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0734/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité dans LibreNMS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique permet une exécution de code arbitraire à distance (RCE) dans LibreNMS, un outil de surveillance réseau. Les systèmes non patchés sont exposés à des attaques par malware ou prise de contrôle. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0732/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Spring (nouvelle analyse)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle série de vulnérabilités critiques (RCE à distance, fuite de données et SSRF) a été découverte dans les frameworks Spring. Les attaques pourraient permettre une prise de contrôle des applications ou une exfiltration de données. Les correctifs sont disponibles via Spring Framework 6.1.6+.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0739/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exécution de code arbitraire dans Traefik</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique permet un contournement de la politique de sécurité dans Traefik, un reverse proxy et load balancer. Les attaques pourraient permettre une exécution de code arbitraire ou une prise de contrôle des services exposés. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0738/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-20262 (Cisco SD-WAN vManage) et CVE-2026-0257 (PAN-OS GlobalProtect) à son catalogue des vulnérabilités exploitées activement. Les organisations sont invitées à appliquer les correctifs urgemment pour éviter les compromissions.</p>
+<a href="https://www.cisa.gov/news-events/alerts/2026/06/15/cisa-adds-two-known-exploited-vulnerabilities-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
 </div>
 
 <hr />
-<h2>Jeudi 12 juin 2026</h2>
-<h3>Multiples vulnérabilités dans MongoDB</h3>
+<h2>Lundi 16 Juin 2026</h2>
+<h3>Breach de Novo Nordisk (Ozempic) par des attaquants non identifiés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (DoS et fuite de données) ont été découvertes dans MongoDB. Les attaques pourraient permettre une perturbation des services ou une exfiltration de données sensibles. Les versions affectées incluent celles antérieures à MongoDB 7.0.12. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0735/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le fabricant d'Ozempic, Novo Nordisk, confirme une intrusion dans ses systèmes IT ayant exposé des données personnelles. L'origine de l'attaque et les données volées n'ont pas été précisées. Une enquête interne est en cours pour évaluer l'impact.</p>
+<a href="https://www.securityweek.com/ozempic-maker-novo-nordisk-says-hackers-breached-it-systems/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits NetApp</h3>
+<h3>Fuite de données sur la plateforme Tchap (73 000 comptes gouvernementaux français)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques (DoS, fuite et atteinte à l'intégrité des données) ont été identifiées dans les solutions de stockage NetApp. Les attaques pourraient perturber les infrastructures ou corrompre des données critiques. Les correctifs sont disponibles via les mises à jour NetApp.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0742/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Atteinte à la confidentialité dans les produits Moxa</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique permet une fuite de données sensibles dans les produits Moxa, notamment les solutions IoT industrielles. Les attaques pourraient permettre l'accès à des informations confidentielles. Un correctif est disponible via le site de l'éditeur.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0743/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux (SUSE, Ubuntu, Red Hat)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (RCE, élévation de privilèges, fuite de données) ont été découvertes dans les noyaux Linux de SUSE, Ubuntu et Red Hat. Les attaques pourraient permettre une prise de contrôle des systèmes ou une exfiltration de données. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0745/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (SUSE)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0746/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0747/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
-</div>
-
-<h3>Exécution de code arbitraire à distance dans Oracle PeopleSoft</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-35273, activement exploitée depuis mai 2026, permet une exécution de code arbitraire à distance dans Oracle PeopleSoft sans authentification. Les attaques ciblent les systèmes non patchés, exposant les données sensibles des entreprises. Un correctif est disponible via Oracle Critical Patch Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0749/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Vendredi 13 juin 2026</h2>
-<h3>Fuite revendiquée de 7 729 comptes notariaux en France</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique une cyberattaque ayant compromis 7 729 comptes notariaux français, exposant des données sensibles pouvant faciliter des attaques d'hameçonnage ciblé et d'usurpation d'identité. Cette fuite pourrait impacter des milliers de professionnels et particuliers. Aucune confirmation officielle n'a été publiée.</p>
-<a href="https://www.zataz.com/identite-notariale-un-pirate-revendique-une-cyber-attaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Intrusions revendiquées dans des infrastructures publiques françaises</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique des intrusions dans des systèmes publics à Paris, Nantes, Lyon, Bobigny et Smartbox, ciblant des plateformes comme Tchap. Ces attaques pourraient exposer des données sensibles ou perturber des services critiques. Aucune confirmation officielle n'a été publiée.</p>
-<a href="https://www.zataz.com/un-pirate-revendique-une-serie-dintrusions-a-paris-nantes-et-lyon/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Menace du ransomware Qilin contre l'Opéra-Comique</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Qilin menace l'Opéra-Comique après avoir volé des documents internes, dont des pièces d'identité et des données confidentielles. Cette attaque pourrait entraîner une fuite publique ou une perturbation des services culturels. Aucune confirmation officielle n'a été publiée.</p>
-<a href="https://www.zataz.com/qilin-menace-lopera-comique-apres-un-vol-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Espionnage d'un réseau isolé pendant 10 ans par des hackers chinois</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des hackers chinois ont compromis le flux d'authentification d'une organisation cible et maintenu une persistance pendant 10 ans, avec une visibilité totale sur les activités administratives. Cette attaque illustre la menace des APT (Advanced Persistent Threats) ciblant les infrastructures critiques.</p>
-<a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-hijack-auth-flow-spy-on-isolated-network-for-a-decade/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 14 juin 2026</h2>
-<h3>Démantèlement d'un service de phishing IA-powered par le FBI</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le FBI, en collaboration avec Google et Black Lotus Labs, a démantelé "Outsider Enterprise", un service de phishing-as-a-service utilisant plus d'un million d'URLs pour voler des données bancaires et des identifiants. Cette opération a permis de neutraliser une infrastructure majeure de cybercriminalité.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fbi-disrupts-massive-ai-powered-phishing-service-using-a-million-urls/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Condamnation d'un ancien employé pour cyberattaques sur son ancien employeur</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un ancien employé d'un district scolaire de l'Iowa a été condamné à 21 mois de prison pour avoir mené une cyberattaque prolongée contre son ancien employeur, perturbant les opérations scolaires et causant des dizaines de milliers de dollars de dommages.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ex-school-district-employee-jailed-for-hacks-on-former-employer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Poursuite d'un Français pour 300 000 deepfakes sexuels</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un Français est poursuivi pour avoir diffusé massivement des deepfakes sexuels ciblant 14 000 victimes, exposant des milliers de personnes à des risques de chantage et de harcèlement. Cette affaire illustre l'impact des nouvelles technologies sur la vie privée.</p>
-<a href="https://www.zataz.com/cfake-un-francais-poursuivi-pour-300-000-deepfakes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Un hacker nommé 'Misere' revendique le vol de messages et données utilisateurs sur Tchap, la messagerie sécurisée du gouvernement français. Environ 73 000 comptes seraient affectés. Les autorités françaises n'ont pas confirmé l'étendue des données exposées.</p>
+<a href="https://www.securityweek.com/french-government-messaging-platform-breached-by-mysterious-misere-hacker/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>
