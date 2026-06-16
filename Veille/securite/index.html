@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 15/06/2026 au 16/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 15/06/2026 au 17/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 16/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 17/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,78 +76,126 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Dimanche 15 Juin 2026</h2>
-<h3>Vulnérabilité critique dans Cisco SD-WAN vManage (CVE-2026-20262)</h3>
+<h3>Vulnérabilité critique dans Cisco Catalyst SD-WAN Manager (CVE-2026-20262)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco a corrigé une vulnérabilité critique (CVE-2026-20262, CVSS 9.1) dans Cisco SD-WAN vManage, exploitée en zero-day pour escalader des privilèges root. Les attaques ciblent les portails exposés, permettant une exécution de code arbitraire. Un correctif est disponible via les mises à jour logicielles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-fixes-sd-wan-vmanage-flaw-exploited-in-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-20262, CVSS 6.5) dans le Cisco Catalyst SD-WAN Manager permet une escalade de privilèges jusqu'à root via une exploitation du web UI. Cisco confirme une exploitation active en cours. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0756/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploit critique dans Microsoft 365 Copilot (SearchLeak)</h3>
+<h3>Exécution de code arbitraire dans HPE Aruba Networking</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une chaîne d'exploits (SearchLeak) permet une fuite de données en un clic via Microsoft 365 Copilot Enterprise. Les attaquants peuvent voler emails, fichiers OneDrive/SharePoint et codes MFA via des URLs malveillantes. Microsoft a corrigé la faille, mais les attaques passées restent un risque.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-attack-turned-microsoft-365-copilot-into-1-click-data-theft-tool/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille non attribuée dans les produits HPE Aruba Networking permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). La criticité est élevée, mais aucun CVE n'est encore assigné. Un correctif est attendu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0750/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données massive à la RATP (62 208 employés exposés)</h3>
+<h3>Injection SQL et contournement de sécurité dans Spring AI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique le vol de 62 208 données d'employés de la RATP, incluant identifiants, fonctions et informations internes. L'incident souligne les risques liés aux fuites de données RH non chiffrées. Aucune confirmation officielle de l'origine de la fuite n'a été publiée.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité dans Spring AI (CVE non assigné) permet une injection SQL (SQLi) et un contournement des politiques de sécurité. La criticité est moyenne. Un correctif est disponible via les mises à jour Spring.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0751/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuite de données massives chez la RATP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un pirate revendique avoir exfiltré 62 208 données d'employés de la RATP, incluant identifiants, fonctions et informations internes. La fuite est en cours d'investigation. Aucun correctif applicable, mais une revue des accès internes est recommandée.</p>
 <a href="https://www.zataz.com/ratp-un-pirate-revendique-62-208-donnees-demployes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>Campagne d'espionnage chinoise via REDCap (malware InfiniteRed)</h3>
+<h3>Exfiltration de clés API via des plugins malveillants JetBrains</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants liés à la Chine ont compromis des serveurs REDCap exposés pour déployer le malware InfiniteRed et voler des données de recherche médicale en Amérique du Nord. L'attaque a persisté pendant plus d'un an avant d'être détectée. Aucun correctif spécifique n'est mentionné pour REDCap.</p>
-<a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-breach-redcap-servers-steal-medical-research/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Au moins 15 plugins malveillants sur le JetBrains Marketplace volent les clés API des développeurs pour des services d'IA. La menace est active. Suppression immédiate des plugins suspects et rotation des clés recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/malicious-jetbrains-marketplace-plugins-steal-ai-api-keys-from-developers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaque par ransomware sur Mackay Sugar (Australie)</h3>
+<h3>Exploitation active de failles Fortinet FortiSandbox (CVE-2026-39813, CVE-2026-39808, CVE-2026-25089)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe The Gentlemen a ciblé Mackay Sugar, deuxième plus grand producteur de sucre d'Australie, paralysant ses moulins. L'attaque a entraîné des perturbations opérationnelles majeures. Aucune information sur le montant de la rançon ou les données chiffrées n'a été divulguée.</p>
-<a href="https://www.securityweek.com/ransomware-attack-shuts-down-mills-of-australias-second-largest-sugar-producer/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Trois vulnérabilités critiques dans Fortinet FortiSandbox sont activement exploitées par des attaquants. Les CVE concernés sont CVE-2026-39813 (CVSS 9.8), CVE-2026-39808 (CVSS 9.1) et CVE-2026-25089 (CVSS 8.8). Un correctif est disponible pour l'une d'elles.</p>
+<a href="https://thehackernews.com/2026/06/attackers-exploit-three-fortinet.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilités critiques dans LiteLLM (prise de contrôle de serveurs AI)</h3>
+<h3>Fuite de données chez iRhythm Holdings</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une chaîne de 3 vulnérabilités par défaut dans LiteLLM (proxy AI open-source) permet à un utilisateur à faible privilège d'escalader en admin et d'exécuter du code. LiteLLM a publié des correctifs urgents pour les versions affectées (1.0+).</p>
-<a href="https://thehackernews.com/2026/06/litellm-vulnerability-chain-lets-low.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : iRhythm Holdings confirme une fuite de données après un piratage ayant ciblé des applications métiers hébergées par des tiers. Les données volées incluent des informations personnelles et médicales de patients. Un correctif n'est pas applicable, mais une revue des accès tiers est urgente.</p>
+<a href="https://www.bleepingcomputer.com/news/security/irhythm-discloses-data-breach-says-hackers-stole-patient-info/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation active de PAN-OS GlobalProtect (CVE-2026-0257)</h3>
+<h3>Abus de Google Workspace par un groupe d'espionnage chinois</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Palo Alto Networks signale une exploitation active de CVE-2026-0257 (CVSS 7.8), une faille d'authentification contournée dans PAN-OS GlobalProtect. Les attaquants obtiennent un accès non autorisé aux portails VPN. Un correctif est disponible via les mises à jour logicielles.</p>
-<a href="https://thehackernews.com/2026/06/palo-alto-warns-of-active-exploitation.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un groupe d'espionnage chinois (UNC6508) a exploité des règles Google Workspace pour voler des emails de recherche et de défense pendant plus d'un an. La compromission a été découverte par Google. Renforcement des règles Workspace et audit des accès recommandés.</p>
+<a href="https://cyberscoop.com/google-unc6508-china-espionage-threat/" class="btn-source" target="_blank">🔗 Lire sur CyberScoop</a>
 </div>
 
-<h3>Fuite de données du Conseil de l'Europe (297 Go revendiqués par ShinyHunters)</h3>
+<h3>Faille critique dans Google Cloud Vertex AI SDK</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters revendique le vol de 297 Go de données du Conseil de l'Europe, incluant des informations personnelles d'employés. L'organisation enquête sur l'incident. Aucune confirmation officielle de la véracité des données n'a été publiée.</p>
-<a href="https://www.securityweek.com/shinyhunters-claims-council-of-europe-hack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une faille dans le SDK Google Cloud Vertex AI permet à un attaquant de détourner des téléchargements de modèles ML et d'exécuter du code dans l'infrastructure de Google. La criticité est élevée. Un correctif est disponible via une mise à jour du SDK.</p>
+<a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attaque par supply-chain sur les plugins WordPress (OptinMonster, TrustPulse)</h3>
+<h3>Campagnes ClickFix étendues avec de nouveaux loaders malveillants</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque supply-chain a compromis les plugins WordPress OptinMonster, TrustPulse et PushEngage via un CDN tiers (Awesome Motive). Les scripts malveillants créent des comptes admin cachés sur les sites infectés. Les correctifs sont disponibles via les mises à jour des plugins.</p>
-<a href="https://www.bleepingcomputer.com/news/security/optinmonster-wordpress-plugin-hacked-in-cdn-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Ajout de 2 vulnérabilités au catalogue KEV de CISA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-20262 (Cisco SD-WAN vManage) et CVE-2026-0257 (PAN-OS GlobalProtect) à son catalogue des vulnérabilités exploitées activement. Les organisations sont invitées à appliquer les correctifs urgemment pour éviter les compromissions.</p>
-<a href="https://www.cisa.gov/news-events/alerts/2026/06/15/cisa-adds-two-known-exploited-vulnerabilities-catalog" class="btn-source" target="_blank">🔗 Lire sur CISA</a>
+<p><strong>Résumé</strong> : Les campagnes ClickFix utilisent désormais trois nouveaux loaders (BabaDeda, Lorem Ipsum, Potemkin) pour déployer des malwares. Les attaques combinent des leurres de mises à jour et des techniques d'évasion. Détection et blocage des domaines malveillants recommandés.</p>
+<a href="https://thehackernews.com/2026/06/clickfix-campaigns-expand-malware.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Lundi 16 Juin 2026</h2>
-<h3>Breach de Novo Nordisk (Ozempic) par des attaquants non identifiés</h3>
+<h3>Multiples vulnérabilités dans Redmine (RCE, atteinte à la confidentialité et intégrité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le fabricant d'Ozempic, Novo Nordisk, confirme une intrusion dans ses systèmes IT ayant exposé des données personnelles. L'origine de l'attaque et les données volées n'ont pas été précisées. Une enquête interne est en cours pour évaluer l'impact.</p>
-<a href="https://www.securityweek.com/ozempic-maker-novo-nordisk-says-hackers-breached-it-systems/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Redmine permettent une exécution de code arbitraire à distance (RCE), une atteinte à la confidentialité et à l'intégrité des données. La criticité est élevée. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0754/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données sur la plateforme Tchap (73 000 comptes gouvernementaux français)</h3>
+<h3>Vulnérabilité XSS dans LibreNMS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un hacker nommé 'Misere' revendique le vol de messages et données utilisateurs sur Tchap, la messagerie sécurisée du gouvernement français. Environ 73 000 comptes seraient affectés. Les autorités françaises n'ont pas confirmé l'étendue des données exposées.</p>
-<a href="https://www.securityweek.com/french-government-messaging-platform-breached-by-mysterious-misere-hacker/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une faille de type injection de code indirecte à distance (XSS) a été découverte dans LibreNMS. La criticité est moyenne. Un correctif est disponible via une mise à jour du logiciel.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0755/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Faille critique dans le plugin LiteSpeed cPanel (CVE-2026-54420)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le plugin LiteSpeed cPanel est vulnérable à une faille permettant une escalade de privilèges jusqu'à root (CVE-2026-54420, CVSS non précisé). CISA impose un correctif sous 72h pour les agences fédérales américaines. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-another-actively-exploited-cpanel-plugin-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Rokarolla : nouveau malware Android ciblant 217 apps bancaires et crypto</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware Android Rokarolla cible 217 applications bancaires et crypto avec 137 commandes distantes, incluant le vol de PIN, SMS et fonds de portefeuilles. La menace est active. Installation d'un antivirus mobile et vérification des permissions recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-rokarolla-android-malware-targets-217-banking-crypto-apps/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Abus de Microsoft Teams par le ransomware DragonForce</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe DragonForce utilise un malware personnalisé (Backdoor.Turn) pour masquer son trafic C2 via l'infrastructure de relais Microsoft Teams. La technique permet d'éviter la détection. Audit des flux réseau Teams et blocage des domaines suspects recommandés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ransomware-gang-abuses-microsoft-teams-relays-to-hide-malicious-traffic/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Variantes Windows du malware SprySOCKS (attaques gouvernementales)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des variantes Windows du malware Linux SprySOCKS sont utilisées contre des organisations gouvernementales dans au moins 4 pays. Le malware utilise des pilotes pour se cacher. Détection via EDR et analyse comportementale recommandée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/windows-version-of-sprysocks-linux-malware-used-to-attack-govt-orgs/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans PAN-OS GlobalProtect VPN (CVE-2026-0257)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Palo Alto Networks confirme une exploitation active de CVE-2026-0257 (CVSS 7.8), une faille d'authentification dans PAN-OS GlobalProtect VPN. Un correctif est disponible via les mises à jour Palo Alto.</p>
+<a href="https://thehackernews.com/2026/06/palo-alto-warns-of-active-exploitation.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaques via des extensions Chrome de fonds d'écran (152 extensions, 105K installations)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un réseau de 152 extensions Chrome pour fonds d'écran distribue des adwares et du trafic frauduleux. Les extensions sont liées à 38 comptes éditeurs distincts. Suppression immédiate et scan des navigateurs recommandés.</p>
+<a href="https://thehackernews.com/2026/06/152-chrome-wallpaper-extensions-with.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaques de supply chain via des plugins WordPress compromis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les plugins WordPress OptinMonster, TrustPulse et PushEngage ont été compromis via une attaque sur leur CDN. Les fichiers JavaScript modifiés créent des backdoors administratives. Rotation des clés API et audit des plugins recommandés.</p>
+<a href="https://thehackernews.com/2026/06/popular-wordpress-plugin-scripts.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille critique dans LiteLLM (prise de contrôle de serveurs AI Gateway)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une chaîne de trois vulnérabilités dans LiteLLM permet à un utilisateur à faible privilège de devenir administrateur et d'exécuter du code sur le serveur. La criticité est élevée. Un correctif est disponible via une mise à jour.</p>
+<a href="https://thehackernews.com/2026/06/litellm-vulnerability-chain-lets-low.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>

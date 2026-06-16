@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 15/06/2026 au 16/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 15/06/2026 au 17/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 16/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 17/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,66 +75,67 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 15 Juin 2026</h2>
-<h3>Noyau Linux 7.2 : optimisations majeures pour les CPU modernes et amélioration des performances</h3>
+            <h2>Dimanche 15 Juin 2026</h2>
+<h3>Mises à jour critiques de Windows Server en juin 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Linux 7.2 introduit le support du Cache Aware Scheduling pour les CPU Intel/AMD modernes, réduisant les latences et boostant les performances. La lecture de /proc/filesystems est accélérée jusqu'à 444%, et le support de WebAssembly est validé par le GCC Steering Committee. Une mise à jour critique pour les administrateurs gérant des infrastructures haute performance.</p>
-<a href="https://www.phoronix.com/news/Linux-7.2-Scheduler" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Microsoft a publié les mises à jour mensuelles pour Windows Server (KB5094125, KB5094128, etc.), incluant des correctifs de sécurité et des améliorations de stabilité. Les administrateurs doivent prioriser l'application de ces correctifs pour éviter les vulnérabilités critiques.</p>
+<a href="https://www.it-connect.fr/le-point-sur-les-mises-a-jour-de-juin-2026-pour-windows-server/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Firefox 152 : support natif de JPEG-XL et interface modernisée</h3>
+<h3>Noyau Linux 7.1 : nouveau pilote NTFS et optimisations majeures</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 152 intègre désormais le support JPEG-XL (activable via préférence) et modernise son interface utilisateur. Le VPN intégré de Firefox passe en données illimitées jusqu'au 31/08/2026, offrant 28 localisations. Idéal pour les administrateurs cherchant des outils sécurisés et performants.</p>
-<a href="https://www.phoronix.com/news/Firefox-152-Download" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Linux 7.1 introduit un pilote NTFS entièrement réécrit et un nettoyage approfondi du code noyau. Ces changements améliorent la compatibilité et la performance, notamment pour les systèmes multi-OS. Les administrateurs Linux doivent planifier une migration rapide.</p>
+<a href="https://www.it-connect.fr/noyau-linux-7-1-recapitulatif-nouveautes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>FreeBSD : projet IA pour la détection de vulnérabilités</h3>
+<h3>Vulnérabilité critique dans LiteLLM : risque d'escalade de privilèges</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : FreeBSD lance un projet de détection de vulnérabilités assisté par IA, financé par le projet Alpha-Omega (Linux Foundation). Cette initiative vise à automatiser l'identification des failles critiques, renforçant la sécurité des systèmes critiques. Un outil précieux pour les équipes DevOps gérant des infrastructures BSD.</p>
-<a href="https://www.phoronix.com/news/FreeBSD-AI-Bug-Discovery" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>LiteLLM : vulnérabilités critiques permettant une prise de contrôle de serveurs IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une chaîne de 3 vulnérabilités dans LiteLLM (proxy IA open-source) permet à un utilisateur à faible privilège de devenir administrateur et d'exécuter du code. LiteLLM gère plus de 100 fournisseurs de modèles IA, rendant cette faille critique pour les environnements DevOps utilisant des passerelles IA.</p>
+<p><strong>Résumé</strong> : Une chaîne de vulnérabilités dans LiteLLM (proxy IA open-source) permet à un utilisateur basique d'obtenir un accès admin complet. Une mise à jour urgente est nécessaire pour les environnements utilisant LiteLLM en production.</p>
 <a href="https://thehackernews.com/2026/06/litellm-vulnerability-chain-lets-low.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Palo Alto PAN-OS : exploitation active d'une faille VPN GlobalProtect</h3>
+<h3>Exploitation active d'une faille FortiSandbox non corrigée</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Palo Alto Networks alerte sur l'exploitation active de CVE-2026-0257 (score CVSS 7.8), une faille d'authentification dans les portails GlobalProtect. Les attaquants obtiennent un accès non autorisé. Une mise à jour urgente est recommandée pour les administrateurs utilisant ce VPN.</p>
-<a href="https://thehackernews.com/2026/06/palo-alto-warns-of-active-exploitation.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Trois vulnérabilités (CVE-2026-39813, CVE-2026-39808, CVE-2026-25089) dans FortiSandbox sont activement exploitées. CISA recommande une application immédiate des correctifs pour les agences fédérales américaines.</p>
+<a href="https://thehackernews.com/2026/06/attackers-exploit-three-fortinet.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Arch Linux AUR : 400+ paquets compromis par un rootkit et infostealer</h3>
+<h3>Arch Linux : 400+ paquets AUR compromis par un rootkit</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus de 400 paquets de l'AUR Arch Linux ont été infectés par un rootkit et un infostealer ciblant les identifiants des développeurs. Une alerte majeure pour les administrateurs utilisant Arch Linux en production. Une vérification immédiate des dépôts est nécessaire.</p>
-<a href="https://www.phoronix.com/news/Arch-Linux-AUR-Russian-Spam" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Plus de 400 paquets de l'AUR contenaient un rootkit et un infostealer ciblant les identifiants des développeurs. Les administrateurs doivent vérifier leurs dépendances et réinstaller les paquets suspects.</p>
+<a href="https://www.it-connect.fr/arch-linux-plus-de-400-paquets-de-laur-pieges-par-un-rootkit-et-un-infostealer/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Intel Performance Skills : optimisation des performances Linux via IA</h3>
+<hr />
+<h2>Lundi 16 Juin 2026</h2>
+<h3>Faille SearchLeak dans Microsoft 365 Copilot : exfiltration de données en 1 clic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel lance un projet open-source utilisant l'IA pour analyser et optimiser les performances CPU sous Linux. Les "skills" proposés aident à diagnostiquer les goulots d'étranglement et à appliquer des optimisations automatiques. Un outil utile pour les administrateurs DevOps gérant des clusters Linux.</p>
-<a href="https://www.phoronix.com/news/Intel-Performance-Skills" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La faille CVE-2026-42824 permet d'exfiltrer emails, fichiers OneDrive et SharePoint via une URL piégée. Les entreprises utilisant Copilot Enterprise doivent appliquer les correctifs immédiatement.</p>
+<a href="https://www.it-connect.fr/searchleak-la-faille-qui-transformait-copilot-en-outil-de-vol-de-donnees-en-un-clic/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft 365 Copilot : faille "SearchLeak" permettant l'exfiltration de données</h3>
+<h3>SprySOCKS : backdoor Windows lié au groupe Earth Lusca</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille combinant 3 vulnérabilités dans Microsoft 365 Copilot permet à un attaquant d'exfiltrer emails, fichiers et codes MFA via un simple clic sur un lien. Les chercheurs de Varonis appellent cette attaque "SearchLeak". Une mise à jour urgente est nécessaire pour les entreprises utilisant Copilot.</p>
-<a href="https://thehackernews.com/2026/06/one-click-microsoft-365-copilot-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : ESET découvre des variantes Windows du malware SprySOCKS, utilisées pour espionner des gouvernements. Les administrateurs doivent renforcer la détection des anomalies réseau et analyser les logs.</p>
+<a href="https://www.it-connect.fr/des-versions-windows-du-malware-sprysocks-visent-des-gouvernements/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>GCC : support officiel de WebAssembly pour compiler C/C++ en WASM</h3>
+<h3>Google Vertex AI SDK : faille permettant le détournement de modèles ML</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le GCC Steering Committee valide l'ajout d'un backend WebAssembly, permettant de compiler du code C/C++ directement en WASM. Cette fonctionnalité simplifie le développement d'applications multiplateformes et le déploiement de services légers. Un atout pour les équipes DevOps travaillant avec des conteneurs WASM.</p>
-<a href="https://www.phoronix.com/news/GCC-Steering-WebAssembly" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Une faille dans le SDK Python de Vertex AI permet à un attaquant de hijacker des uploads de modèles ML et d'exécuter du code dans l'infrastructure de Google. Une mise à jour urgente est requise.</p>
+<a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h2>Mardi 16 Juin 2026</h2>
-<h3>ClamUI : interface graphique pour ClamAV sur Linux</h3>
+<h3>NAS UGREEN DXP4800 GT : test complet avec processeur AMD et 10 GbE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : ClamUI fournit une interface graphique pour ClamAV, facilitant l'installation, les scans antivirus et la gestion des quarantaines sur les postes Linux. Un outil pratique pour les administrateurs cherchant à renforcer la sécurité des postes de travail sans ligne de commande complexe.</p>
-<a href="https://www.it-connect.fr/tuto-clamui-linux-interface-graphique-clamav/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le NAS UGREEN DXP4800 GT intègre un Ryzen Embedded, 2x 10 GbE et une compatibilité RAM ECC. Idéal pour les PME nécessitant des performances élevées en stockage et virtualisation.</p>
+<a href="https://www.it-connect.fr/test-ugreen-dxp4800-gt-nas/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>KDE Plasma 6.7 : améliorations Wayland et bureaux virtuels par écran</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : KDE Plasma 6.7 introduit la gestion des bureaux virtuels par écran et des optimisations Wayland. Les administrateurs doivent tester cette version pour les déploiements Linux modernes.</p>
+<a href="https://www.phoronix.com/news/KDE-Plasma-6.7-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
