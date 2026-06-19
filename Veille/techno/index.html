@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 15/06/2026 au 19/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 15/06/2026 au 20/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 19/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 20/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,99 +75,101 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 16 Juin 2026</h2>
-<h3>F5 corrige deux vulnérabilités critiques dans NGINX Open Source</h3>
+            <h2>Jeudi 16 Juin 2026</h2>
+<h3>LiteLLM : Chaîne de vulnérabilités permettant une prise de contrôle de serveurs de passerelle IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : F5 a publié des correctifs pour deux vulnérabilités critiques (CVE-2026-42530 et CVE-2026-42531) dans NGINX Open Source, permettant une exécution de code à distance. La première est une faille de type *use-after-free* dans le module HTTP/3, tandis que la seconde concerne une corruption de mémoire dans le traitement des requêtes. Les administrateurs doivent appliquer les mises à jour immédiatement pour éviter des attaques par déni de service ou exécution de code arbitraire.</p>
-<a href="https://thehackernews.com/2026/06/f5-patches-two-critical-nginx-open.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CISA alerte sur l'exploitation active d'une faille Joomla (CVE-2025-4255)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté la vulnérabilité CVE-2025-4255 (Joomla JCE) à son catalogue KEV, signalant une exploitation active. Cette faille permet une exécution de code PHP via le composant Widget Factory. Les administrateurs doivent appliquer le correctif disponible ou désactiver le composant vulnérable en urgence pour prévenir des compromissions.</p>
-<a href="https://thehackernews.com/2026/06/cisa-warns-of-actively-exploited-joomla.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Google Vertex AI SDK vulnérable à des attaques par <em>bucket squatting</em></h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans le SDK Python de Google Vertex AI permet à un attaquant de détourner des téléchargements de modèles ML via des attaques par *bucket squatting*. En exploitant cette vulnérabilité, un acteur malveillant peut exécuter du code dans l'infrastructure de Google. Les équipes DevOps doivent mettre à jour le SDK et auditer les permissions des buckets S3 associés.</p>
-<a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Cisco corrige une faille exploitée dans Catalyst SD-WAN Manager</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco a publié un correctif pour CVE-2026-20262, une vulnérabilité de gravité moyenne dans le web UI de Catalyst SD-WAN Manager, déjà exploitée en conditions réelles. La faille permet une escalade de privilèges via des requêtes malformées. Les administrateurs doivent appliquer le patch sans délai pour sécuriser les environnements SD-WAN.</p>
-<a href="https://thehackernews.com/2026/06/cisco-releases-security-updates-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>LiteLLM vulnérable à une prise de contrôle via une chaîne de failles</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une chaîne de trois vulnérabilités dans LiteLLM (proxy open-source pour modèles IA) permet à un utilisateur à faible privilège de devenir administrateur et d'exécuter du code sur le serveur. Cette faille affecte les déploiements par défaut et nécessite une mise à jour immédiate pour les équipes utilisant LiteLLM en production.</p>
+<p><strong>Résumé</strong> : Une chaîne de 3 vulnérabilités dans LiteLLM (proxy open source pour l'IA) permet à un utilisateur à faible privilège de devenir administrateur et d'exécuter du code sur le serveur. LiteLLM est largement déployé pour agréger des appels à plus de 100 fournisseurs de modèles. La faille impacte la sécurité des environnements IA internes.</p>
 <a href="https://thehackernews.com/2026/06/litellm-vulnerability-chain-lets-low.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mardi 17 Juin 2026</h2>
-<h3>Microsoft confirme un zero-day dans Defender (RoguePlanet)</h3>
+<h3>Faille critique dans Google Vertex AI SDK : Piratage des uploads de modèles via squatting de buckets</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft travaille sur un correctif pour CVE-2026-50656, une faille d'escalade de privilèges dans Microsoft Defender (nom de code *RoguePlanet*). Bien que non exploitée massivement, cette vulnérabilité pourrait permettre à un attaquant de contourner les protections. Les administrateurs doivent surveiller les mises à jour de sécurité et appliquer les correctifs dès leur disponibilité.</p>
-<a href="https://thehackernews.com/2026/06/microsoft-confirms-rogueplanet-defender_02022423645.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille dans le SDK Python de Google Cloud Vertex AI permet à un attaquant sans accès au projet de détourner les uploads de modèles ML et d'exécuter du code dans l'infrastructure de Google. Le bug (CVE non attribué) exploite un mécanisme de validation insuffisant des noms de buckets. Impact majeur pour les équipes DevOps gérant des pipelines IA.</p>
+<a href="https://thehackernews.com/2026/06/google-vertex-ai-sdk-flaw-let-attackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CISA ajoute LiteSpeed cPanel Plugin à son catalogue KEV</h3>
+<h3>145 paquets npm compromis via compte contributeur hijacké dans le framework Mastra</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA exige que les agences fédérales corrigent une faille dans le plugin LiteSpeed pour cPanel (CVE-2026-XXXX) d'ici le 18/06/2026. Cette vulnérabilité permet une escalade de privilèges root. Les hébergeurs et administrateurs système doivent appliquer le correctif pour éviter des compromissions critiques.</p>
-<a href="https://thehackernews.com/2026/06/cisa-flags-litespeed-cpanel-plugin-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>145 paquets npm compromis via un compte contributeur volé (Mastra)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une attaque par *supply chain* a compromis 145 paquets npm du namespace `@mastra/*`, utilisés pour construire des applications IA. L'attaquant a exploité un compte contributeur volé pour injecter du code malveillant. Les équipes DevOps doivent auditer leurs dépendances et bloquer les paquets suspects via des outils comme Snyk ou Dependabot.</p>
+<p><strong>Résumé</strong> : L'attaque "easy-day-js" a compromis 145 paquets npm du namespace @mastra/* (framework JS/TS pour applications IA). Le compte d'un contributeur a été détourné pour injecter du code malveillant. Impact sur les chaînes de build DevOps utilisant Mastra pour des applications critiques.</p>
 <a href="https://thehackernews.com/2026/06/144-mastra-npm-packages-compromised-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Alibaba Cloud ouvre une région France sans services IA</h3>
+<hr />
+<h2>Vendredi 17 Juin 2026</h2>
+<h3>CISA alerte sur l'exploitation active d'une faille Joomla JCE permettant l'exécution de code PHP</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Alibaba Cloud a lancé sa région France avec une vingtaine de services cloud (stockage, calcul, réseau), mais sans intégration de services IA. Cette initiative vise à répondre aux exigences de souveraineté numérique des entreprises européennes. Les administrateurs peuvent évaluer cette offre pour des déploiements hybrides ou multi-cloud.</p>
-<a href="https://www.silicon.fr/cloud-1370/alibaba-cloud-france-227780" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-39813 (Joomla Content Editor) à son catalogue KEV, avec preuve d'exploitation active. La faille permet l'exécution de code PHP via une vulnérabilité dans le plugin Widget Factory. Recommandation : appliquer les correctifs immédiatement pour les infrastructures critiques.</p>
+<a href="https://thehackernews.com/2026/06/cisa-warns-of-actively-exploited-joomla.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Moderniser COBOL avec l'IA générative</h3>
+<h3>Microsoft confirme un zero-day Defender (RoguePlanet) et travaille sur un correctif</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une tribune propose d'utiliser l'IA générative pour automatiser la modernisation des applications COBOL, réduisant les coûts et les risques liés aux migrations manuelles. Les équipes legacy peuvent exploiter des outils comme IBM Watsonx Code Assistant pour générer du code Java ou Python compatible. Une approche pertinente pour les systèmes bancaires ou administratifs critiques.</p>
-<a href="https://www.silicon.fr/data-ia-1372/moderniser-cobol-avec-lia-generative-227761" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Microsoft a disclosed CVE-2026-50656, une faille d'escalade de privilèges dans Microsoft Defender (score CVSS 7.8). Le bug, nommé RoguePlanet, permet à un attaquant d'élever ses privilèges sur un système infecté. Un correctif est en développement pour les versions Windows concernées.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-confirms-rogueplanet-defender_02022423645.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Maintenant : Outil open source de supervision unifié pour conteneurs et endpoints</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : "Maintenant" est un outil de monitoring open source tout-en-un pour superviser les conteneurs, services web, certificats TLS et tâches cron. Solution alternative aux stacks Prometheus/Grafana pour les équipes DevOps cherchant à simplifier leur observabilité sans empiler des outils.</p>
+<a href="https://www.it-connect.fr/maintenant-supervision-open-source/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Malwares JetBrains : 15 plugins malveillants volent les clés API IA et capturent les chats</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne coordonnée sur le JetBrains Marketplace a publié 15 plugins malveillants se faisant passer pour des assistants IA (DeepSeek, etc.). Ils exfiltrent les clés API des fournisseurs IA et capturent les conversations des chatbots. Impact sur les environnements de développement IDE.</p>
+<a href="https://thehackernews.com/2026/06/malicious-jetbrains-plugins-steal-ai.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Mercredi 18 Juin 2026</h2>
-<h3>INC Ransomware : 830 victimes depuis 2023</h3>
+<h2>Samedi 18 Juin 2026</h2>
+<h3>F5 corrige deux vulnérabilités critiques dans NGINX Open Source (RCE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe INC Ransomware, profitant de la disruption de LockBit et BlackCat, est devenu l'un des acteurs RaaS les plus prolifiques en 2026 avec 830 victimes depuis 2023. Les administrateurs doivent renforcer la segmentation réseau, les sauvegardes hors ligne et surveiller les indicateurs de compromission (IOC) liés à ce groupe.</p>
+<p><strong>Résumé</strong> : F5 a patché CVE-2026-42530 (use-after-free, score CVSS 9.2) et CVE-2026-42531 dans NGINX Open Source, permettant une exécution de code à distance. Les correctifs sont disponibles pour les versions 1.25.x. Recommandation : mettre à jour immédiatement les serveurs exposés.</p>
+<a href="https://thehackernews.com/2026/06/f5-patches-two-critical-nginx-open.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>INC Ransomware : 830+ victimes depuis 2023, nouvelle menace majeure en 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe INC Ransomware, profitant du déclin de LockBit et BlackCat, a ciblé 830+ victimes depuis août 2023. Leur modèle RaaS évolue avec des outils de chiffrement avancés et des techniques d'évasion. Priorité pour les équipes SOC et les administrateurs systèmes.</p>
 <a href="https://thehackernews.com/2026/06/inc-ransomware-claims-830-victims-since.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>DragonForce abuse de Microsoft Teams pour masquer un RAT</h3>
+<h3>Microsoft détaille une campagne de malware Windows Clipper utilisant LNK et Tor</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe DragonForce utilise un RAT personnalisé (*Backdoor.Turn*) pour camoufler son trafic C2 via l'infrastructure de relais Microsoft Teams. Cette technique permet de contourner les détections basées sur le réseau. Les équipes SOC doivent surveiller les connexions Teams anormales et bloquer les domaines suspects via des règles proxy.</p>
-<a href="https://thehackernews.com/2026/06/dragonforce-hackers-abuse-microsoft.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft a documenté une campagne de malware "Windows Clipper" depuis février 2026, utilisant des fichiers LNK auto-propagés et un C2 basé sur Tor. Le malware intercepte les copier-coller de cryptomonnaies. Impact sur les postes clients et les politiques de sécurité des terminaux.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-details-windows-clipper.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Les scripts de paiement deviennent un problème PCI DSS</h3>
+<h3>Les scripts de pages de paiement deviennent un problème PCI DSS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une évaluation PCI DSS révèle que les scripts tiers (analytics, widgets de support) sur les pages de paiement exposent les données de cartes bancaires. Les équipes DevOps doivent auditer les scripts tiers, implémenter des politiques de *Content Security Policy* (CSP) strictes et utiliser des solutions comme Reflectiz pour valider la conformité.</p>
+<p><strong>Résumé</strong> : Les scripts tiers (analytics, widgets) sur les pages de paiement sont désormais considérés comme des risques PCI DSS. Une évaluation QSA révèle que 90% des sites e-commerce exposent des données de cartes bancaires via ces scripts. Recommandation : auditer et restreindre les scripts tiers.</p>
 <a href="https://thehackernews.com/2026/06/the-scripts-on-your-checkout-page-are.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Microsoft corrige une faille Copilot Enterprise (SearchLeak)</h3>
+<hr />
+<h2>Dimanche 19 Juin 2026</h2>
+<h3>usbliter8 : Exploit unpatchable brisant la chaîne de boot SecureROM d'Apple A12/A13</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Microsoft 365 Copilot Enterprise (CVE-2026-42824) permettait à un attaquant d'exfiltrer des e-mails, fichiers OneDrive et codes MFA via une URL piégée. Les administrateurs doivent appliquer les correctifs et désactiver les fonctionnalités d'indexation sensibles si nécessaire.</p>
-<a href="https://www.it-connect.fr/searchleak-la-faille-qui-transformait-copilot-en-outil-de-vol-de-donnees-en-un-clic/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Des chercheurs ont publié usbliter8, un exploit unpatchable ciblant le SecureROM des puces Apple A12/A13 (code gravé en silicium). Permet une exécution de code arbitraire au démarrage. Impact sur la sécurité physique des appareils Apple et les politiques BYOD.</p>
+<a href="https://thehackernews.com/2026/06/unpatchable-usbliter8-exploit-breaks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Alerte sur les <em>orphaned AI agents</em> et les risques d'accès non autorisés</h3>
+<h3>Gentlemen RaaS : Kit d'outils EDR Killer pour désactiver 400 processus de sécurité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une étude révèle que 94 % des incidents impliquent une infrastructure anonymisée, et que les *AI agents* orphelins (sans propriétaire identifié) représentent un risque majeur pour la sécurité des données. Les équipes DevOps doivent auditer les accès des agents IA, implémenter des politiques de rotation des clés et utiliser des outils comme *Axiom* pour détecter les comportements anormaux.</p>
-<a href="https://thehackernews.com/2026/06/orphaned-ai-agents-how-to-find-hidden.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe Gentlemen RaaS fournit à ses affiliés un portfolio mature d'outils pour tuer les processus EDR (400 cibles) avant le chiffrement. Ces outils matures incluent des modules d'évasion avancés. Priorité pour les équipes SOC et les administrateurs systèmes.</p>
+<a href="https://thehackernews.com/2026/06/the-gentlemen-raas-uses-gentlekiller.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>AutoJack : Attaque permettant à une page web de détourner un agent IA pour du RCE</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a détaillé AutoJack, une chaîne d'exploitation transformant un agent IA navigateur en vecteur de RCE. Une page web malveillante peut exploiter un service local privilégié via JavaScript. Impact majeur pour les environnements utilisant des agents IA automatisés.</p>
+<a href="https://thehackernews.com/2026/06/autojack-attack-lets-one-web-page.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA alerte sur FortiBleed : 86 644 appareils FortiGate exposés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA recommande aux clients Fortinet de sécuriser leurs appliances FortiGate après une campagne malveillante ciblant des milliers d'appareils exposés. La fuite FortiBleed expose les identifiants VPN de 73 000+ pare-feux. Action immédiate requise pour les infrastructures critiques.</p>
+<a href="https://thehackernews.com/2026/06/cisa-warns-fortinet-customers-as.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
