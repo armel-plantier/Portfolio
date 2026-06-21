@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 15/06/2026 au 21/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 15/06/2026 au 22/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 21/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 15/06/2026 au 22/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,99 +76,80 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 16 Juin 2026</h2>
-<h3>Vulnérabilité critique dans Cisco Catalyst (CVE-2026-20262 activement exploitée)</h3>
+<h3>Vulnérabilité critique dans HPE Aruba Networking</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-20262) dans Cisco Catalyst permet à un attaquant d'altérer l'intégrité des données. Cisco confirme son exploitation active en production. Les correctifs sont disponibles via les mises à jour logicielles officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0756/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (non attribuée à un CVE spécifique) dans les produits HPE Aruba Networking permet une exécution de code arbitraire à distance (RCE) et un déni de service (DoS). Les systèmes affectés incluent les contrôleurs de réseau et les points d'accès Aruba. Un correctif est disponible via les mises à jour officielles HPE.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0750/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Spring (exécution de code à distance)</h3>
+<h3>Exploitation active de CVE-2026-20262 dans Cisco Catalyst</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Spring permettent une exécution de code arbitraire à distance et d'autres attaques. Les correctifs sont disponibles via les mises à jour Spring Framework et Spring Boot.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0759/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Cisco a confirmé l'exploitation active de la vulnérabilité CVE-2026-20262 dans ses équipements Cisco Catalyst, permettant une atteinte à l'intégrité des données. Les versions vulnérables concernent les modèles Catalyst 9000. Un patch est disponible via les mises à jour IOS XE.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0756/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 17 Juin 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Oracle (14 CVE critiques)</h3>
+<h3>Multiples vulnérabilités critiques dans Oracle (juin 2026)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle publie des correctifs urgents pour 14 vulnérabilités critiques affectant MySQL, WebLogic, Virtualization et PeopleSoft. Les risques incluent exécution de code à distance, déni de service et fuites de données. Patch obligatoire avant exploitation massive.</p>
+<p><strong>Résumé</strong> : Oracle a publié des correctifs pour 287 vulnérabilités critiques dans ses produits (MySQL, PeopleSoft, WebLogic, etc.), incluant des RCE, des fuites de données et des DoS. Les systèmes concernés incluent les bases de données, middleware et outils de virtualisation. Les correctifs doivent être appliqués d'urgence.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0765/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite massive de données chez Texas Parks and Wildlife (3M licences exposées)</h3>
+<h3>Fuite massive chez Autosur (17 juin 2026)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans un système tiers a exposé les données personnelles de plus de 3 millions de détenteurs de licences au Texas, incluant numéros de permis de conduire et informations sensibles. Une notification officielle a été envoyée aux victimes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/texas-govt-data-breach-exposes-over-3-million-drivers-licenses/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CISA alerte sur l'exploitation active de Splunk Enterprise (correctif urgent)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA impose un correctif sous 48h pour une vulnérabilité critique dans Splunk Enterprise (CVE non spécifiée) activement exploitée. Les agences fédérales américaines doivent appliquer le patch avant dimanche 22/06.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-splunk-enterprise-flaw-actively-exploited-patch-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une fuite de données expose les informations clients d'Autosur (France), incluant données personnelles, véhicules et contrôleurs. Le risque de phishing ciblé est élevé. Aucune confirmation sur la disponibilité d'un correctif n'est fournie.</p>
+<a href="https://www.zataz.com/autosur-expose-par-une-nouvelle-fuite/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
 <hr />
 <h2>Mercredi 18 Juin 2026</h2>
-<h3>Ransomware Gentlemen : kit d'EDR killers pour contourner les défenses</h3>
+<h3>CVE-2026-XXXX : Faille critique dans Splunk Enterprise (exploitée)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware Gentlemen RaaS intègre désormais plusieurs outils pour désactiver les solutions EDR (Endpoint Detection and Response) et éviter la détection. Les attaquants ciblent les entreprises avec des configurations de sécurité insuffisantes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/gentlemen-ransomware-uses-multiple-edr-killers-to-disable-defenses/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : CISA alerte sur une vulnérabilité critique non attribuée (CVE-2026-XXXX) dans Splunk Enterprise, activement exploitée. Elle permet une exécution de code arbitraire à distance. Les correctifs doivent être appliqués sous 48h pour les agences fédérales américaines. Patch disponible via Splunk.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-splunk-enterprise-flaw-actively-exploited-patch-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite FortiBleed : 74 000 identifiants Fortinet exposés</h3>
+<h3>Prinz Eugen : nouveau ransomware ciblant les fichiers récents</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une fuite de données ("FortiBleed") expose près de 74 000 identifiants de pare-feu et VPN Fortinet. La CISA recommande une réinitialisation immédiate des mots de passe et une vérification des configurations pour éviter les intrusions.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-fortinet-users-to-secure-devices-after-fortibleed-leak/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilité critique dans Splunk AI Toolkit (exécution de code)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans le Splunk AI Toolkit permet une exécution de code arbitraire à distance et un contournement des politiques de sécurité. Un correctif est disponible via la mise à jour officielle.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0774/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le ransomware Prinz Eugen chiffre en priorité les fichiers modifiés récemment, sans laisser de note de rançon. Les attaques ciblent les entreprises via des campagnes de phishing. Aucune information sur un décryptage possible n'est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-prinz-eugen-ransomware-prioritizes-recent-files-for-encryption/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Jeudi 19 Juin 2026</h2>
-<h3>Attaque supply chain Mastra AI attribuée à des hackers nord-coréens</h3>
+<h3>Fuite de 3 millions de permis de conduire au Texas</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft attribue une attaque supply chain sur Mastra AI (140+ paquets npm compromis) au groupe nord-coréen Sapphire Sleet (BlueNoroff). Les attaquants ont infiltré des dépendances logicielles critiques pour exfiltrer des données.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-links-mastra-ai-supply-chain-attack-to-north-korean-hackers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le Texas Parks and Wildlife Department (TPWD) révèle une fuite de données via un fournisseur tiers, exposant les informations personnelles de 3 millions de détenteurs de permis. Les données incluent noms, adresses et numéros de permis. Un audit de sécurité est en cours.</p>
+<a href="https://www.bleepingcomputer.com/news/security/texas-govt-data-breach-exposes-over-3-million-drivers-licenses/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez Klue : tokens OAuth volés (groupe Icarus revendique)</h3>
+<h3>AryStinger : botnet infectant 4 000 routeurs D-Link</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La plateforme Klue confirme une fuite de tokens OAuth permettant l'accès aux environnements Salesforce de ses clients. Le groupe d'extorsion Icarus revendique l'attaque et menace de publier les données volées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/klue-oauth-breach-victim-list-grows-as-icarus-hackers-claim-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilité critique dans Gravity SMTP WordPress (100k sites exposés)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille de divulgation d'informations non authentifiée dans le plugin Gravity SMTP (100 000 sites) est activement exploitée. Les attaquants récupèrent des données sensibles sans interaction utilisateur.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-info-disclosure-bug-in-gravity-smtp-wordpress-plugin/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les noyaux Linux (Red Hat, SUSE, Debian, Ubuntu)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des correctifs urgents sont nécessaires pour des vulnérabilités critiques dans les noyaux Linux de Red Hat, SUSE, Debian LTS et Ubuntu. Les risques incluent exécution de code, élévation de privilèges et fuites de données.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0781/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Red Hat)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0782/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (SUSE)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0784/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Debian)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0787/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Ubuntu)</a>
+<p><strong>Résumé</strong> : Le botnet AryStinger, non documenté auparavant, a compromis plus de 4 000 routeurs D-Link obsolètes pour en faire des proxys malveillants. Les attaques exploitent des firmwares non mis à jour. Les correctifs pour les modèles concernés sont disponibles sur le site de D-Link.</p>
+<a href="https://www.bleepingcomputer.com/news/security/arystinger-botnet-infected-thousands-of-d-link-routers-worldwide/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Vendredi 20 Juin 2026</h2>
-<h3>Nouveau ransomware Prinz Eugen : priorité aux fichiers récents</h3>
+<h3>Attaque par chaîne d'approvisionnement Mastra AI (Sapphire Sleet)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware Prinz Eugen cible spécifiquement les fichiers récemment modifiés pour maximiser l'impact. Aucune note de rançon n'est laissée, compliquant la récupération des données. Les correctifs et IOC sont en cours d'analyse.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-prinz-eugen-ransomware-prioritizes-recent-files-for-encryption/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Microsoft attribue une attaque par chaîne d'approvisionnement contre Mastra AI à un groupe nord-coréen (Sapphire Sleet, alias BlueNoroff). Plus de 140 packages npm ont été compromis, permettant une infiltration des environnements CI/CD. Un correctif est disponible via les mises à jour Mastra AI.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-links-mastra-ai-supply-chain-attack-to-north-korean-hackers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Bug critique dans Windows : Recycle Bin affiche des noms de fichiers erronés</h3>
+<h3>Fuite FortiBleed : 74 000 identifiants Fortinet exposés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft confirme un bug dans toutes les versions supportées de Windows où le dialogue de suppression de la Corbeille affiche des noms de fichiers incorrects, pouvant induire en erreur les utilisateurs. Un correctif est attendu dans les prochaines mises à jour.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-recycle-bin-bug-on-all-supported-windows-releases/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une fuite de données ("FortiBleed") expose près de 74 000 identifiants de pare-feu et VPN Fortinet. CISA recommande une rotation immédiate des mots de passe et une vérification des configurations. Les correctifs pour les vulnérabilités associées sont disponibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-fortinet-users-to-secure-devices-after-fortibleed-leak/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Samedi 21 Juin 2026</h2>
+<h3>Klue OAuth breach : vol de tokens Salesforce par Icarus</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La plateforme Klue confirme une violation OAuth permettant à des attaquants de voler des tokens d'accès à Salesforce. Le groupe "Icarus" revendique l'attaque. Les entreprises utilisant Klue sont invitées à révoquer les tokens compromis et à auditer leurs accès.</p>
+<a href="https://www.bleepingcomputer.com/news/security/klue-oauth-breach-victim-list-grows-as-icarus-hackers-claim-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
