@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 22/06/2026 au 23/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 22/06/2026 au 24/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 22/06/2026 au 23/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 22/06/2026 au 24/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,65 +75,121 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 22 Juin 2026</h2>
-<h3>Vulnérabilité critique dans PaperCut Print Deploy Client (CVE-2026-XXXX)</h3>
+            <h2>Lundi 22 Juin 2026</h2>
+<h3>Vulnérabilité critique dans PaperCut Print Deploy Client (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (exécution de code arbitraire) a été découverte dans PaperCut Print Deploy Client. Les systèmes exposés à Internet sont particulièrement vulnérables. Un correctif est disponible via la mise à jour officielle de PaperCut.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique non encore attribuée à un CVE permet à un attaquant distant d'exécuter du code arbitraire via PaperCut Print Deploy Client, un outil de déploiement d'imprimantes largement utilisé en entreprise. L'exploitation ne nécessite pas d'authentification et pourrait mener à une compromission totale du système hôte.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0789/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploit critique dans CPython pour Windows (CVE-2026-XXXX)</h3>
+<h3>Faille SSRF critique dans Cisco Unified CM (CVE-2026-20230)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans CPython pour Windows permet un contournement de politique de sécurité et une fuite de données. Les développeurs Python sont invités à mettre à jour leur environnement. Un patch est disponible via les dépôts officiels.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0790/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-20230, classée critique, affecte Cisco Unified Communications Manager (UCM) et permet une attaque SSRF (Server-Side Request Forgery) exploitable à distance. Des attaques en cours ont été confirmées par BleepingComputer, exposant potentiellement les réseaux internes des entreprises utilisant ce système de communication unifiée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-unified-cm-sme-flaw-cve-2026-20230-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Campagne FortiBleed : vol de credentials via sniffers personnalisés sur FortiGate</h3>
+<h3>Fuite de données chez Tata Electronics (1,4M+ victimes)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La campagne FortiBleed cible les appliances Fortinet FortiGate avec des sniffers personnalisés pour voler des identifiants de session. Plus de 86 000 credentials confirmés ont été collectés. Fortinet recommande une mise à jour immédiate des firmwares concernés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fortibleed-campaign-used-custom-fortigate-sniffer-to-steal-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Tata Electronics a confirmé une cyberattaque ayant compromis des parties de son infrastructure IT, entraînant la fuite de données sensibles. Bien que le nombre exact de victimes ne soit pas précisé, des sources évoquent des centaines de milliers de dossiers exposés, incluant potentiellement des informations personnelles et professionnelles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/tata-electronics-confirms-cyberattack-as-hackers-leak-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille PixelSmash dans FFmpeg : RCE et DoS sur Jellyfin, Kodi et autres</h3>
+<h3>Campagne FortiBleed : 110M de credentials volés via FortiGate</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité PixelSmash (CVE-2026-XXXX) permet une exécution de code à distance sur Jellyfin et un déni de service sur Kodi, Emby, Nextcloud et OBS Studio. Un correctif est disponible dans FFmpeg 6.1.1.</p>
+<p><strong>Résumé</strong> : Une campagne massive ciblant les pare-feux FortiGate (CVE non attribué) a permis à un acteur russophone de voler 110 millions d'identifiants via un sniffer personnalisé. Plus de 430 000 appareils ont été compromis depuis février 2026, selon The Hacker News et Dark Reading.</p>
+<a href="https://thehackernews.com/2026/06/fortibleed-targeted-fortigate-firewalls.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille PixelSmash dans FFmpeg (CVE non attribué)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La vulnérabilité PixelSmash dans FFmpeg (libavcodec) permet une exécution de code à distance (RCE) via des fichiers multimédias malveillants. Les applications vulnérables incluent Jellyfin, Kodi, Emby, Nextcloud, PhotoPrism et OBS Studio. Un correctif est disponible dans les dernières versions.</p>
 <a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaque par backdoor dans les plugins WordPress Pro de ShapedPlugin</h3>
+<h3>Attaque macOS ClickFix : infostealer via DMG malveillants</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une compromission de la chaîne d'approvisionnement a injecté du code malveillant dans plusieurs plugins WordPress Pro de ShapedPlugin. Les sites utilisant ces plugins sont exposés à des attaques. ShapedPlugin a publié des correctifs urgents.</p>
-<a href="https://thehackernews.com/2026/06/shapedplugin-wordpress-pro-plugins.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une nouvelle campagne macOS utilise des commandes Terminal pour monter silencieusement des images disque (DMG) malveillantes et déployer un infostealer. L'attaque contourne les mécanismes de sécurité natifs et cible les utilisateurs via des liens trompeurs, selon BleepingComputer.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-macos-clickfix-attack-silently-mounts-dmgs-to-push-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille Squidbleed : fuite de données dans Squid Proxy (CVE-2026-XXXX)</h3>
+<h3>Vulnérabilités critiques dans Dify (DifyTap)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de type heap over-read (CVE-2026-XXXX) dans Squid Proxy expose des requêtes HTTP en clair, incluant credentials et tokens. La faille persiste depuis 1997. Un correctif est disponible dans les versions récentes de Squid.</p>
-<a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Quatre vulnérabilités (DifyTap) dans la plateforme Dify permettent à des attaquants d'accéder aux conversations privées d'autres locataires, d'exfiltrer des documents sensibles et d'interagir avec les APIs internes. Plus d'1 million d'applications sont potentiellement exposées.</p>
+<a href="https://www.securityweek.com/data-exposure-flaws-threaten-dify-ai-platform-powering-over-1-million-apps/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Attaque de phishing WhatsApp via VBScript pour déployer un RMM</h3>
+<h3>Fuite de données chez Xolis (1,4M de personnes impactées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne mondiale distribue des fichiers VBS via WhatsApp, infectant les victimes avec un agent RMM (UEMS) pour un accès distant. Les utilisateurs sont incités à ouvrir des pièces jointes frauduleuses.</p>
-<a href="https://securelist.com/whatsapp-vbs-rmm-campaign/120290/" class="btn-source" target="_blank">🔗 Lire sur Securelist</a>
+<p><strong>Résumé</strong> : Le spécialiste de la santé Xolis a subi une violation de données via une attaque par phishing, exposant les données sensibles de 1,4 million d'individus. Les attaquants ont obtenu un accès réseau avant de voler des informations personnelles et médicales.</p>
+<a href="https://www.bleepingcomputer.com/news/security/healthtech-firm-xolis-suffers-data-breach-impacting-14-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille AutoJack dans Microsoft AutoGen Studio (CVE-2026-XXXX)</h3>
+<h3>Faille Squidbleed : fuite de requêtes HTTP en clair (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La chaîne de vulnérabilités AutoJack permet l'exécution de commandes arbitraires via une page web malveillante. Microsoft a corrigé la faille dans AutoGen Studio. Une mise à jour est nécessaire pour les utilisateurs.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité de type heap over-read dans Squid (Squidbleed) permet à un attaquant d'intercepter et de lire en clair les requêtes HTTP d'autres utilisateurs, incluant potentiellement des identifiants et tokens de session. La faille, présente depuis 1997, est toujours active dans les configurations par défaut.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Attaque par packages npm malveillants (Windows RAT)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des packages npm malveillants (aes-decode-runner-pro, postcss-minify-selector) se font passer pour des outils PostCSS pour distribuer un RAT Windows. Plus de 400 téléchargements ont été recensés avant la détection, selon The Hacker News.</p>
+<a href="https://thehackernews.com/2026/06/malicious-npm-packages-pose-as-postcss.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 23 Juin 2026</h2>
+<h3>Faille critique dans Moodle (CVE non attribué)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Moodle permettent des attaques par déni de service (DoS), SSRF et XSS. Ces failles exposent les plateformes éducatives et les données des utilisateurs, avec un correctif disponible dans les dernières versions.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0794/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Exploit zero-day dans Microsoft AutoGen Studio (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une chaîne de vulnérabilités (AutoJack) dans Microsoft AutoGen Studio permet l'exécution de code arbitraire via une page web malveillante. L'attaque exploite des failles de manipulation d'agents IA pour exécuter des commandes système avec les privilèges de l'application.</p>
 <a href="https://www.bleepingcomputer.com/news/security/microsoft-fixes-autogen-studio-flaw-that-enabled-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploit unpatchable dans Apple A12/A13 BootROM (CVE-2026-XXXX)</h3>
+<h3>Fuite de données chez LastPass (via attaque supply chain Klue)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille BootROM non corrigable (CVE-2026-XXXX) affecte les puces Apple A12 et A13, permettant un jailbreak via USB. Apple n'a pas publié de correctif pour cette vulnérabilité matérielle.</p>
-<a href="https://www.infosecurity-magazine.com/news/apple-bootrom-exploit-a12-a13/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+<p><strong>Résumé</strong> : LastPass a confirmé une fuite de données dans son environnement Salesforce, résultant du vol de tokens OAuth lors de l'attaque supply chain contre Klue. Les attaquants ont accédé à des données clients sensibles, selon BleepingComputer.</p>
+<a href="https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaque de la chaîne d'approvisionnement Mastra via NPM (CVE-2026-XXXX)</h3>
+<h3>Faille critique dans Samsung KNOX (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des acteurs nord-coréens (Sapphire Sleet) ont compromis plus de 140 paquets NPM dans le cadre de l'attaque Mastra, ciblant des extensions de cryptomonnaie. Microsoft et les développeurs sont invités à vérifier leurs dépendances.</p>
-<a href="https://www.securityweek.com/north-korean-hackers-blamed-for-mastra-npm-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une vulnérabilité use-after-free de 8 ans dans Samsung KNOX expose des millions d'appareils Galaxy (S9 à S25) à des attaques du noyau. La faille permet une élévation de privilèges locale et une compromission complète du système.</p>
+<a href="https://www.securityweek.com/eight-year-old-samsung-knox-flaw-exposed-millions-of-galaxy-devices-to-kernel-attacks/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Attaque WhatsApp : VBScript et RMM malveillant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne active sur WhatsApp distribue des fichiers VBScript malveillants pour installer des outils RMM légitimes (ManageEngine). Les attaquants utilisent des documents falsifiés pour tromper les utilisateurs et obtenir un accès distant.</p>
+<a href="https://thehackernews.com/2026/06/whatsapp-vbscript-campaign-uses-fake.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploit OXLOADER : CastleStealer via Google Ads</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un nouveau loader malveillant, OXLOADER, utilise des publicités Google pour distribuer le malware CastleStealer. La campagne cible les utilisateurs via des annonces trompeuses et contourne les mécanismes de détection traditionnels.</p>
+<a href="https://thehackernews.com/2026/06/new-oxloader-loader-uses-malicious.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Fuite de données chez London Hydro (fournisseur d'électricité canadien)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : London Hydro a disclosed une violation de données ayant exposé les noms, adresses, numéros de téléphone et informations de compte de ses clients. L'incident souligne les risques pour les infrastructures critiques.</p>
+<a href="https://www.securityweek.com/canadian-electricity-provider-london-hydro-discloses-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Exploit Cordyceps : pull requests malveillantes dans CI/CD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne Cordyceps cible les workflows CI/CD (Azure Sentinel, Google AI ADK, Apache Doris) avec des pull requests malveillantes. Les attaquants exploitent des failles de validation pour injecter du code malveillant dans les pipelines de développement.</p>
+<a href="https://www.darkreading.com/application-security/cordyceps-malicious-pull-requests-developer-workflows" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Exploit DifyTap : "wiretapping" des historiques de chat IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Quatre vulnérabilités dans Dify permettent aux attaquants d'accéder aux conversations privées d'autres locataires, de prévisualiser des documents et d'interagir avec les APIs internes. Plus de 1 million d'applications sont potentiellement exposées.</p>
+<a href="https://www.darkreading.com/application-security/difytap-bugs-wiretap-ai-chat-histories" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
         </div>
     </div>
