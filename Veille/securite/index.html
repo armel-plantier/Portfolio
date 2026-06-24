@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 22/06/2026 au 24/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 22/06/2026 au 25/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 22/06/2026 au 24/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 22/06/2026 au 25/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,120 +76,98 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 22 Juin 2026</h2>
-<h3>Vulnérabilité critique dans PaperCut Print Deploy Client (CVE non attribué)</h3>
+<h3>Vulnérabilité critique dans PaperCut Print Deploy Client</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique non encore attribuée à un CVE permet à un attaquant distant d'exécuter du code arbitraire via PaperCut Print Deploy Client, un outil de déploiement d'imprimantes largement utilisé en entreprise. L'exploitation ne nécessite pas d'authentification et pourrait mener à une compromission totale du système hôte.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans PaperCut Print Deploy Client permet une exécution de code arbitraire à distance (RCE). Les systèmes exposés incluent les serveurs Windows et Linux exécutant des versions non patchées. La criticité est maximale (CVSS 9.8), et un correctif est disponible depuis la publication de l'avis.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0789/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Faille SSRF critique dans Cisco Unified CM (CVE-2026-20230)</h3>
+<h3>Exploit actif dans CPython pour Windows (atteinte à la confidentialité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-20230, classée critique, affecte Cisco Unified Communications Manager (UCM) et permet une attaque SSRF (Server-Side Request Forgery) exploitable à distance. Des attaques en cours ont été confirmées par BleepingComputer, exposant potentiellement les réseaux internes des entreprises utilisant ce système de communication unifiée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-unified-cm-sme-flaw-cve-2026-20230-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille dans CPython (Python pour Windows) permet un contournement de la politique de sécurité et une fuite de données. Le CVE associé n'est pas encore attribué, mais la criticité est élevée. Un patch est disponible via les mises à jour officielles de Python.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0790/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données chez Tata Electronics (1,4M+ victimes)</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge (exploitation possible)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Tata Electronics a confirmé une cyberattaque ayant compromis des parties de son infrastructure IT, entraînant la fuite de données sensibles. Bien que le nombre exact de victimes ne soit pas précisé, des sources évoquent des centaines de milliers de dossiers exposés, incluant potentiellement des informations personnelles et professionnelles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/tata-electronics-confirms-cyberattack-as-hackers-leak-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des vulnérabilités non spécifiées dans Microsoft Edge permettent des attaques par problème de sécurité indéterminé. La criticité est modérée à élevée selon l'impact potentiel. Microsoft a publié des correctifs via les mises à jour automatiques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0791/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Campagne FortiBleed : 110M de credentials volés via FortiGate</h3>
+<h3>Faille critique dans Squid Proxy (Squidbleed) depuis 1997</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne massive ciblant les pare-feux FortiGate (CVE non attribué) a permis à un acteur russophone de voler 110 millions d'identifiants via un sniffer personnalisé. Plus de 430 000 appareils ont été compromis depuis février 2026, selon The Hacker News et Dark Reading.</p>
-<a href="https://thehackernews.com/2026/06/fortibleed-targeted-fortigate-firewalls.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité historique (CVE-2026-XXXX) dans Squid Proxy, surnommée "Squidbleed", permet une fuite de requêtes HTTP en clair, incluant des identifiants. La criticité est critique (CVSS 9.1). Un correctif est disponible dans les dernières versions de Squid.</p>
+<a href="https://thehackernews.com/2026/06/29-year-old-squid-proxy-bug-squidbleed.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille PixelSmash dans FFmpeg (CVE non attribué)</h3>
+<h3>Backdoor dans les plugins WordPress Pro de ShapedPlugin</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité PixelSmash dans FFmpeg (libavcodec) permet une exécution de code à distance (RCE) via des fichiers multimédias malveillants. Les applications vulnérables incluent Jellyfin, Kodi, Emby, Nextcloud, PhotoPrism et OBS Studio. Un correctif est disponible dans les dernières versions.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Attaque macOS ClickFix : infostealer via DMG malveillants</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle campagne macOS utilise des commandes Terminal pour monter silencieusement des images disque (DMG) malveillantes et déployer un infostealer. L'attaque contourne les mécanismes de sécurité natifs et cible les utilisateurs via des liens trompeurs, selon BleepingComputer.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-macos-clickfix-attack-silently-mounts-dmgs-to-push-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilités critiques dans Dify (DifyTap)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Quatre vulnérabilités (DifyTap) dans la plateforme Dify permettent à des attaquants d'accéder aux conversations privées d'autres locataires, d'exfiltrer des documents sensibles et d'interagir avec les APIs internes. Plus d'1 million d'applications sont potentiellement exposées.</p>
-<a href="https://www.securityweek.com/data-exposure-flaws-threaten-dify-ai-platform-powering-over-1-million-apps/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Fuite de données chez Xolis (1,4M de personnes impactées)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le spécialiste de la santé Xolis a subi une violation de données via une attaque par phishing, exposant les données sensibles de 1,4 million d'individus. Les attaquants ont obtenu un accès réseau avant de voler des informations personnelles et médicales.</p>
-<a href="https://www.bleepingcomputer.com/news/security/healthtech-firm-xolis-suffers-data-breach-impacting-14-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Faille Squidbleed : fuite de requêtes HTTP en clair (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de type heap over-read dans Squid (Squidbleed) permet à un attaquant d'intercepter et de lire en clair les requêtes HTTP d'autres utilisateurs, incluant potentiellement des identifiants et tokens de session. La faille, présente depuis 1997, est toujours active dans les configurations par défaut.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ffmpeg-fixes-pixelsmash-flaw-in-widely-used-video-decoder/" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaque par packages npm malveillants (Windows RAT)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des packages npm malveillants (aes-decode-runner-pro, postcss-minify-selector) se font passer pour des outils PostCSS pour distribuer un RAT Windows. Plus de 400 téléchargements ont été recensés avant la détection, selon The Hacker News.</p>
-<a href="https://thehackernews.com/2026/06/malicious-npm-packages-pose-as-postcss.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une attaque par chaîne d'approvisionnement a compromis plusieurs plugins WordPress Pro de ShapedPlugin, injectant un code backdoor. La criticité est élevée. Les utilisateurs doivent mettre à jour immédiatement ou désactiver les plugins concernés.</p>
+<a href="https://thehackernews.com/2026/06/shapedplugin-wordpress-pro-plugins.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mardi 23 Juin 2026</h2>
-<h3>Faille critique dans Moodle (CVE non attribué)</h3>
+<h3>Exploitation active de CVE-2026-20230 dans Cisco Unified CM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Moodle permettent des attaques par déni de service (DoS), SSRF et XSS. Ces failles exposent les plateformes éducatives et les données des utilisateurs, avec un correctif disponible dans les dernières versions.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0794/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : La faille SSRF CVE-2026-20230 (CVSS 8.6) dans Cisco Unified Communications Manager est désormais exploitée en attaque zero-day. Les attaquants créent des comptes root malveillants. Cisco a publié un correctif urgent.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-unified-cm-sme-flaw-cve-2026-20230-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploit zero-day dans Microsoft AutoGen Studio (CVE-2026-XXXX)</h3>
+<h3>Fuite de données chez Xolis (1,4 million de personnes impactées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une chaîne de vulnérabilités (AutoJack) dans Microsoft AutoGen Studio permet l'exécution de code arbitraire via une page web malveillante. L'attaque exploite des failles de manipulation d'agents IA pour exécuter des commandes système avec les privilèges de l'application.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-fixes-autogen-studio-flaw-that-enabled-code-execution/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : L'entreprise de santé Xolis a subi une fuite de données affectant 1,4 million de personnes via une attaque par phishing. Les données sensibles (dossiers médicaux) ont été exposées. Aucun CVE n'est associé, mais la criticité est élevée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/healthtech-firm-xolis-suffers-data-breach-impacting-14-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez LastPass (via attaque supply chain Klue)</h3>
+<h3>Campagne macOS ClickFix utilisant des DMG malveillants</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : LastPass a confirmé une fuite de données dans son environnement Salesforce, résultant du vol de tokens OAuth lors de l'attaque supply chain contre Klue. Les attaquants ont accédé à des données clients sensibles, selon BleepingComputer.</p>
-<a href="https://www.bleepingcomputer.com/news/security/lastpass-confirms-data-breach-in-klue-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une nouvelle campagne macOS exploite des fichiers DMG pour installer un infostealer via des commandes Terminal silencieuses. La criticité est élevée. Apple n'a pas encore publié de correctif spécifique.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-macos-clickfix-attack-silently-mounts-dmgs-to-push-infostealer/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Faille critique dans Samsung KNOX (CVE-2026-XXXX)</h3>
+<h3>Faille FortiBleed dans les pare-feux FortiGate (110M de credentials volés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité use-after-free de 8 ans dans Samsung KNOX expose des millions d'appareils Galaxy (S9 à S25) à des attaques du noyau. La faille permet une élévation de privilèges locale et une compromission complète du système.</p>
-<a href="https://www.securityweek.com/eight-year-old-samsung-knox-flaw-exposed-millions-of-galaxy-devices-to-kernel-attacks/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Un acteur russe a exploité une faille dans les pare-feux FortiGate pour voler plus de 110 millions de credentials. La campagne, active depuis février 2026, cible 430 000 appareils. Fortinet a publié des correctifs.</p>
+<a href="https://thehackernews.com/2026/06/fortibleed-targeted-fortigate-firewalls.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attaque WhatsApp : VBScript et RMM malveillant</h3>
+<h3>Vulnérabilités Cordyceps dans les workflows CI/CD (300+ repos GitHub exposés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne active sur WhatsApp distribue des fichiers VBScript malveillants pour installer des outils RMM légitimes (ManageEngine). Les attaquants utilisent des documents falsifiés pour tromper les utilisateurs et obtenir un accès distant.</p>
-<a href="https://thehackernews.com/2026/06/whatsapp-vbscript-campaign-uses-fake.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des failles dans les workflows CI/CD (nommées "Cordyceps") permettent des attaques par chaîne d'approvisionnement sur 300+ dépôts GitHub. La criticité est critique. Les correctifs sont en cours de déploiement par les plateformes concernées.</p>
+<a href="https://thehackernews.com/2026/06/cordyceps-cicd-flaws-expose-300-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Exploit OXLOADER : CastleStealer via Google Ads</h3>
+<hr />
+<h2>Mercredi 24 Juin 2026</h2>
+<h3>Exploitation active de CVE-2026-20245 dans Cisco SD-WAN</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau loader malveillant, OXLOADER, utilise des publicités Google pour distribuer le malware CastleStealer. La campagne cible les utilisateurs via des annonces trompeuses et contourne les mécanismes de détection traditionnels.</p>
-<a href="https://thehackernews.com/2026/06/new-oxloader-loader-uses-malicious.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La vulnérabilité zero-day CVE-2026-20245 dans Cisco Catalyst SD-WAN permet une prise de contrôle root. Les attaques ont débuté 2 mois avant la divulgation. Cisco a publié un correctif urgent (date limite de patch : 26/06/2026).</p>
+<a href="https://www.bleepingcomputer.com/news/security/mandiant-reveals-how-cisco-sd-wan-zero-day-attacks-gained-root-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez London Hydro (fournisseur d'électricité canadien)</h3>
+<h3>CISA alerte sur des failles Ubiquiti exploitées à criticité maximale</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : London Hydro a disclosed une violation de données ayant exposé les noms, adresses, numéros de téléphone et informations de compte de ses clients. L'incident souligne les risques pour les infrastructures critiques.</p>
-<a href="https://www.securityweek.com/canadian-electricity-provider-london-hydro-discloses-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : La CISA signale l'exploitation active de failles critiques (CVSS 10) dans Ubiquiti UniFi OS et Lantronix. Les attaquants créent des backdoors persistantes. Des correctifs sont disponibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-of-max-severity-ubiquiti-flaws-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploit Cordyceps : pull requests malveillantes dans CI/CD</h3>
+<h3>Opération Endgame : démantèlement des malwares Amadey et StealC</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La campagne Cordyceps cible les workflows CI/CD (Azure Sentinel, Google AI ADK, Apache Doris) avec des pull requests malveillantes. Les attaquants exploitent des failles de validation pour injecter du code malveillant dans les pipelines de développement.</p>
-<a href="https://www.darkreading.com/application-security/cordyceps-malicious-pull-requests-developer-workflows" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Une opération internationale a démantelé les infrastructures des malwares Amadey et StealC, récupérant 27 millions de credentials volés. La criticité de ces malwares était élevée (vol de données et ransomware).</p>
+<a href="https://www.bleepingcomputer.com/news/security/amadey-stealc-malware-operations-disrupted-in-operation-endgame-action/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploit DifyTap : "wiretapping" des historiques de chat IA</h3>
+<h3>Fuite présumée de données chez bet365 (120M de profils exposés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Quatre vulnérabilités dans Dify permettent aux attaquants d'accéder aux conversations privées d'autres locataires, de prévisualiser des documents et d'interagir avec les APIs internes. Plus de 1 million d'applications sont potentiellement exposées.</p>
-<a href="https://www.darkreading.com/application-security/difytap-bugs-wiretap-ai-chat-histories" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Un pirate revendique la vente de 120 millions de profils bet365, incluant des données sensibles. L'authenticité et la nature exacte des données restent à confirmer. La criticité potentielle est majeure.</p>
+<a href="https://www.zataz.com/fuite-presumee-chez-bet365-lombre-dun-fichier-tres-sensible/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<h3>Faille critique Lantronix EDS5000 (exploitation active par la CISA)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA alerte sur l'exploitation active d'une faille critique (CVSS 9.8) dans Lantronix EDS5000, avec une date limite de patch fixée au 26/06/2026 pour les agences fédérales américaines.</p>
+<a href="https://thehackernews.com/2026/06/cisa-warns-critical-lantronix-eds5000.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
