@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 22/06/2026 au 29/06/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 29/06/2026 au 30/06/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 22/06/2026 au 29/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 30/06/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,123 +75,127 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 23 Juin 2026</h2>
-<h3>Vulnérabilité critique dans PaperCut Print Deploy Client (CVE-2026-XXXX)</h3>
+            <h2>Lundi 29 Juin 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-XXXX) a été découverte dans PaperCut Print Deploy Client, permettant à un attaquant distant d'exécuter du code arbitraire à distance (RCE) sans authentification. Les systèmes exposés à Internet sont particulièrement exposés. Un correctif est disponible depuis la version 2026.1.0.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0789/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant à un attaquant d'exécuter du code arbitraire à distance via des mécanismes non spécifiés. Ces failles affectent les versions récentes du navigateur et nécessitent une mise à jour urgente.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0811/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans CPython pour Windows (CVE-2026-XXXX)</h3>
+<h3>Exploitation active de CVE-2026-48558 dans SimpleHelp pour déployer Djinn Stealer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques (CVE-2026-XXXX) affectent CPython pour Windows, permettant un contournement de la politique de sécurité et une atteinte à la confidentialité des données. Les versions antérieures à 3.12.4 sont vulnérables. Un patch est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0790/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille critique d'authentification (CVE-2026-48558) dans SimpleHelp est activement exploitée pour déployer Djinn Stealer, un nouveau malware multiplateforme ciblant les identifiants cloud, IA et développement. Les systèmes non patchés sont exposés à des attaques immédiates.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-simplehelp-flaw-deploy-new-djinn-infostealer-taskweaver-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploit actif dans Cisco Unified Communications Manager (CVE-2026-3088)</h3>
+<h3>Fuite de données chez Nissan via une vulnérabilité Oracle PeopleSoft exploitée par ShinyHunters</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA impose un délai urgent (jusqu'au 29/06/2026) pour corriger une faille RCE (CVE-2026-3088) dans Cisco Unified Communications Manager, déjà exploitée en attaques. Les systèmes non patchés sont exposés à une prise de contrôle complète. Un correctif est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-sets-urgent-deadline-to-fix-cisco-flaw-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Nissan a subi une fuite de données affectant ses employés après l'exploitation d'une vulnérabilité zero-day dans Oracle PeopleSoft, liée au groupe ShinyHunters. Les attaquants ont volé des données sensibles, exploitant une faille non corrigée dans l'écosystème Oracle.</p>
+<a href="https://www.bleepingcomputer.com/news/security/nissan-discloses-employee-data-breach-linked-to-oracle-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Mardi 24 Juin 2026</h2>
-<h3>Faille critique dans PTC Windchill (CVE-2026-XXXX) ajoutée au KEV</h3>
+<h3>Vulnérabilité critique CVE-2026-46817 dans Oracle E-Business Suite en cours d'exploitation</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté une faille RCE critique (CVE-2026-XXXX) dans PTC Windchill PDMlink/FlexPLM à sa liste KEV, confirmant son exploitation active via des attaques par web shell. Les versions antérieures à 12.0.0.6 sont vulnérables. Un patch est disponible.</p>
-<a href="https://thehackernews.com/2026/06/cisa-adds-exploited-ptc-windchill-rce.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-46817) dans Oracle E-Business Suite est désormais exploitée par des attaquants pour des attaques ciblées. Les systèmes non patchés sont vulnérables à des compromissions potentielles et à l'exfiltration de données financières.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-oracle-e-business-suite-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Tenable Identity Exposure (CVE-2026-XXXX)</h3>
+<h3>Malicious Perplexity Chrome Extension interceptant recherches et saisies</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-XXXX) affectent Tenable Identity Exposure, permettant une RCE à distance, un déni de service et une fuite de données. Les systèmes non mis à jour sont exposés. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0796/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une extension Chrome malveillante se faisant passer pour Perplexity a été découverte, interceptant les recherches et les saisies dans la barre d'adresse pour les rediriger vers un serveur contrôlé par l'attaquant. Cette menace affecte la confidentialité des utilisateurs.</p>
+<a href="https://thehackernews.com/2026/06/malicious-perplexity-chrome-extension.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Fuite de données chez KDDI Corporation (14,2 millions de logins exposés)</h3>
+<h3>Mustang Panda abuse de Zoho WorkDrive comme canal de commande dans des attaques contre l'Inde</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'opérateur japonais KDDI a subi une fuite de données affectant jusqu'à 14,2 millions de logins email via un système compromis utilisé par six FAI. Les données incluent des identifiants potentiellement réutilisés dans des attaques par credential stuffing. Aucune confirmation de patch n'est fournie.</p>
-<a href="https://www.bleepingcomputer.com/news/security/data-breach-exposes-up-to-142-million-email-logins-at-six-isps/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le groupe Mustang Panda (aligné sur la Chine) utilise Zoho WorkDrive, un service cloud légitime, comme canal de commande pour des attaques ciblant le gouvernement indien et des infrastructures hydroélectriques. Cette tactique permet d'éviter la détection.</p>
+<a href="https://thehackernews.com/2026/06/mustang-panda-uses-zoho-workdrive-as.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mercredi 25 Juin 2026</h2>
-<h3>Nouvelle backdoor TinyRCT déployée par un APT sino-parlant (CVE-2026-XXXX)</h3>
+<h3>Public PoC disponible pour CVE-2026-55200, faille critique côté client dans libssh2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un acteur APT sino-parlant a déployé une nouvelle backdoor personnalisée appelée TinyRCT (CVE-2026-XXXX) dans des attaques ciblant des entités gouvernementales et des infrastructures critiques en Asie du Sud-Est. La campagne vise spécifiquement les entreprises d'État dans les secteurs de l'énergie et de la gouvernance.</p>
-<a href="https://thehackernews.com/2026/06/chinese-speaking-apt-deploys-new.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un proof-of-concept public est désormais disponible pour CVE-2026-55200, une faille critique dans libssh2 permettant à un serveur SSH malveillant de corrompre la mémoire d'un client connecté, avec un risque d'exécution de code. Aucune authentification requise.</p>
+<a href="https://thehackernews.com/2026/06/public-poc-released-for-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille Linux "DirtyClone" permettant une élévation de privilèges (CVE-2026-43503)</h3>
+<h3>Djinn Stealer cible les identifiants cloud et IA après exploitation de SimpleHelp</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle faille critique (CVE-2026-43503, CVSS 8.8) dans le noyau Linux, surnommée "DirtyClone", permet à un utilisateur local d'obtenir des privilèges root via l'exploitation de paquets réseau clonés. Un exploit de preuve de concept est disponible. Les noyaux Linux antérieurs à 6.8.1 sont vulnérables.</p>
-<a href="https://thehackernews.com/2026/06/new-dirtyclone-linux-kernel-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le malware Djinn Stealer, déployé via CVE-2026-48558, cible spécifiquement les identifiants liés aux environnements cloud et IA, compromettant ainsi des infrastructures critiques. Les entreprises utilisant SimpleHelp doivent appliquer les correctifs immédiatement.</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/djinn-stealer-targets-cloud-ai-credentials" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Fuite de données présumée chez Bet365 (120 millions de profils exposés)</h3>
+<h3>Vulnérabilité critique dans le noyau Linux (DirtyClone) permettant un accès root</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique la vente de 120 millions de profils attribués à Bet365, incluant des données sensibles bien au-delà d'une simple liste d'emails. La nature exacte des données n'a pas été confirmée, mais l'incident soulève des risques majeurs de phishing et d'usurpation d'identité.</p>
-<a href="https://www.zataz.com/fuite-presumee-chez-bet365-lombre-dun-fichier-tres-sensible/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une variante de la vulnérabilité DirtyFrag, nommée DirtyClone, permet à des utilisateurs locaux non privilégiés d'obtenir un accès root via la manipulation du cache de pages Linux. Les systèmes non mis à jour sont exposés à des attaques locales.</p>
+<a href="https://www.securityweek.com/dirtyclone-linux-kernel-vulnerability-leads-to-root-access/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Jeudi 26 Juin 2026</h2>
-<h3>Exploit Linux "pedit COW" pour une élévation de privilèges root (CVE-2026-46331)</h3>
+<h3>NAIC confirme une fuite de données via une faille Oracle PeopleSoft exploitée par ShinyHunters</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-46331, CVSS 9.8) dans le sous-système de contrôle de trafic du noyau Linux permet à un utilisateur local non privilégié d'obtenir des droits root via une corruption de mémoire. Un exploit public est disponible. Les noyaux antérieurs à 6.6.31 sont vulnérables.</p>
-<a href="https://thehackernews.com/2026/06/new-linux-pedit-cow-exploit-enables.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Faille critique dans Amazon Q Developer (CVE-2026-12957)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille haute gravité (CVE-2026-12957, CVSS 8.5) dans Amazon Q Developer permet à un dépôt malveillant de exécuter du code arbitraire et de voler les identifiants cloud d'un développeur. Le correctif est disponible via une mise à jour. Les versions antérieures à 1.0.4 sont vulnérables.</p>
-<a href="https://thehackernews.com/2026/06/amazon-q-developer-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Attaque par supply chain via le malware Miasma (npm et GitHub Actions)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware Miasma, lié à la famille Mini Shai-Hulud, cible désormais les paquets npm et les workflows GitHub Actions dans une nouvelle campagne de supply chain. Les attaquants compromettent des dépôts légitimes pour propager le malware dans les environnements CI/CD. Aucun correctif spécifique n'est mentionné.</p>
-<a href="https://thehackernews.com/2026/06/miasma-malware-targets-npm-packages-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne de phishing "Photo ZIP" ciblant les hôtels avec un implant Node.js</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft alerte sur une campagne de phishing active depuis avril 2026, utilisant des fichiers ZIP thématiques "photos" pour déployer un implant Node.js sur les machines des réceptionnistes d'hôtels en Europe et en Asie. L'objectif est l'espionnage et la collecte de données sensibles.</p>
-<a href="https://thehackernews.com/2026/06/microsoft-warns-of-photo-zip-phishing.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le National Association of Insurance Commissioners (NAIC) confirme une fuite de données après l'exploitation d'une vulnérabilité zero-day dans Oracle PeopleSoft par le groupe ShinyHunters. Les attaquants revendiquent le vol de 3,1 To de données.</p>
+<a href="https://www.securityweek.com/insurance-regulators-group-naic-hit-in-oracle-peoplesoft-hack/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
 <hr />
-<h2>Vendredi 27 Juin 2026</h2>
-<h3>Campagne russe de phishing ciblant les clés de récupération Signal (CVE-2026-XXXX)</h3>
+<h2>Mardi 30 Juin 2026</h2>
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le FBI et CISA alertent sur une campagne de phishing évolutive ciblant les utilisateurs Signal, où les attaquants russes volent désormais les clés de récupération des sauvegardes Signal, permettant un accès complet aux messages historiques. Les utilisateurs sont incités à activer l'authentification à deux facteurs.</p>
-<a href="https://thehackernews.com/2026/06/fbi-warns-russian-intelligence-hackers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Azure Linux, permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Ces failles affectent les environnements cloud Azure et nécessitent une mise à jour urgente.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0812/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Campagne ukrainienne contre les services de messagerie russes (SSU + FBI)</h3>
+<h3>Multiples vulnérabilités dans Mattermost Server</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le Service de Sécurité Ukrainien (SSU) et le FBI ont démantelé une campagne d'espionnage russe utilisant de faux textos de support pour voler les identifiants de messagerie de responsables gouvernementaux, militaires et activistes. L'opération a permis de neutraliser des infrastructures russes.</p>
-<a href="https://thehackernews.com/2026/06/ukraine-says-russian-intelligence-used.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans Mattermost Server, permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Les instances auto-hébergées doivent être mises à jour rapidement pour éviter des compromissions.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0813/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données présumée sur la Carte Jeune Occitanie (318 751 données)</h3>
+<h3>Vulnérabilité dans HAProxy permettant un déni de service à distance</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une fuite présumée de 318 751 données liées à la Carte Jeune Occitanie expose des informations sensibles sur des élèves et leurs parents. Les risques incluent le phishing et l'usurpation d'identité. Aucune confirmation officielle n'a été publiée.</p>
-<a href="https://www.zataz.com/fuite-presumee-sur-la-carte-jeune-occitanie/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans HAProxy permet à un attaquant de provoquer un déni de service à distance via des requêtes malveillantes. Les administrateurs doivent appliquer les correctifs disponibles pour éviter des interruptions de service.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0814/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Samedi 28 Juin 2026</h2>
-<h3>Fuite de données chez Tripadvisor, Bet365 et Zalando Australia revendiquée</h3>
+<h3>Multiples vulnérabilités dans KeyCloak avec risques d'exécution de code et fuite de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois fuites de données majeures ont été revendiquées par des acteurs malveillants : Tripadvisor, Bet365 et Zalando Australia. Les données exposées incluent des profils utilisateurs, mais l'attribution et la gravité exacte restent floues. Les entreprises n'ont pas encore confirmé les incidents.</p>
-<a href="https://www.zataz.com/tripadvisor-bet365-et-zalando-trois-fuites-revendiquees-et-beaucoup-dombre/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans KeyCloak permettent une exécution de code arbitraire à distance, une élévation de privilèges et une fuite de données. Les instances exposées doivent être mises à jour immédiatement pour éviter des compromissions.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0815/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Attaque par supply chain chez Polymarket (3 millions de dollars perdus)</h3>
+<h3>Multiples vulnérabilités dans Stormshield Management Center avec risques d'exécution de code</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Polymarket a subi une attaque par supply chain où des attaquants ont injecté un script malveillant via un fournisseur tiers, entraînant la perte estimée de 3 millions de dollars pour ses clients. La plateforme s'engage à rembourser intégralement les victimes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/polymarket-customers-lose-3-million-in-supply-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Stormshield Management Center permettent une exécution de code arbitraire, une fuite de données et une atteinte à l'intégrité des données. Les appliances concernées doivent être patchées sans délai.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0816/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Extension Amazon Q VS vulnérable permettant le vol d'identifiants cloud</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans l'extension Amazon Q VS permet à des attaquants de déployer des dépôts malveillants pour exécuter du code arbitraire et voler des identifiants cloud. Les développeurs utilisant cette extension doivent appliquer les correctifs disponibles.</p>
+<a href="https://www.darkreading.com/cloud-security/amazon-q-vs-extension-flaw-leads-cloud-credential-theft" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Telegram-Based Millenium RAT infecte 60 000 appareils</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware Millenium RAT, réécrit en C++, a infecté 62 289 appareils dans 160+ pays via des campagnes Telegram. Ce RAT polyvalent permet un contrôle à distance et l'exfiltration de données sensibles.</p>
+<a href="https://www.infosecurity-magazine.com/news/millenium-rat-telegram-60000/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+</div>
+
+<h3>Groupes russes accusés d'attaques destructrices contre Jaguar Land Rover</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des experts attribuent à des hackers russes une attaque destructrice contre Jaguar Land Rover, utilisant un nouveau ransomware et des tactiques de dissimulation d'attribution. Les systèmes industriels et les données clients pourraient avoir été compromis.</p>
+<a href="https://www.infosecurity-magazine.com/news/russian-hackers-destructive-jaguar/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+</div>
+
+<h3>FBI alerte sur des attaques de phishing ciblant les clés de sauvegarde Signal par des services de renseignement russes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le FBI met en garde contre des campagnes de phishing visant les clés de sauvegarde Signal, attribuées à des services de renseignement russes. Ces attaques visent à compromettre les communications sécurisées des cibles.</p>
+<a href="https://www.infosecurity-magazine.com/news/fbi-alarm-russian-intelligence/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+</div>
+
+<h3>The Gentlemen RaaS : nouveaux outils et variantes de ransomware</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Kaspersky révèle de nouvelles tactiques, techniques et procédures (TTP) du groupe The Gentlemen RaaS, incluant une nouvelle variante de ransomware. Les entreprises doivent surveiller les indicateurs de compromission associés à ce groupe.</p>
+<a href="https://securelist.com/the-gentlemen-raas/120447/" class="btn-source" target="_blank">🔗 Lire sur Securelist</a>
 </div>
         </div>
     </div>
