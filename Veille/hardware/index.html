@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hardware | Serveurs & Composants — 29/06/2026 au 30/06/2026</title>
+    <title>Veille Hardware | Serveurs & Composants — 29/06/2026 au 01/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%2310b981%22>HW</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🖥️ Hardware</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Serveurs & Composants</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles architectures, vulnérabilités firmware et tendances datacenter</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 30/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 01/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,64 +76,102 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 30 Juin 2026</h2>
-<h3>AMD EPYC 8005 "Sorano" : une révolution pour l'écosystème SP6</h3>
+<h3>AMD confirme l'intégration de cœurs basse consommation dans ses futurs CPU (Zen 6)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le processeur AMD EPYC 8005 "Sorano" marque un tournant majeur dans l'architecture SP6, avec des améliorations significatives en termes de densité, d'efficacité énergétique et de compatibilité mémoire. Ce CPU cible les environnements serveurs modernes, offrant jusqu'à 128 cœurs et une bande passante mémoire accrue grâce à l'intégration de la technologie 3D V-Cache. Les entreprises devront évaluer la compatibilité avec leurs infrastructures existantes, notamment les baies de serveurs et les systèmes de refroidissement.</p>
+<p><strong>Résumé</strong> : AMD confirme via un correctif du noyau Linux l'ajout de cœurs basse consommation dédiés aux tâches en arrière-plan dans ses futurs CPU Zen 6. Cette approche, similaire à celle d'Intel, vise à réduire la consommation énergétique des serveurs et datacenters tout en optimisant les performances par watt. Les cœurs "Low Power" pourraient être particulièrement utiles pour les charges de travail légères et les environnements virtualisés.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/amd-confirms-low-power-cpu-cores-in-linux-kernel-patch-zen-6-chips-could-follow-in-intels-footsteps-with-new-core-type-for-background-tasks" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Nvidia abandonne le design quad-die pour ses GPU Rubin Ultra</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Nvidia aurait annulé le développement de sa puce Rubin Ultra en configuration quad-die (4 dies) au profit d'une version dual-die, en raison de contraintes de fabrication. Cette décision impacte directement les roadmaps des datacenters AI, avec des retards potentiels sur les performances et l'efficacité énergétique des futures générations de GPU pour l'IA.</p>
+<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidia-reportedly-cancels-quad-die-rubin-ultra-gpu-in-favor-of-dual-gpu-design-report-claims-complex-design-purportedly-scrapped-over-manufacturing-execution-concerns" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Meta réutilise de la mémoire DDR4 dans ses nouveaux serveurs DDR5 via un chip CXL 2.0</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Meta a développé un chip CXL 2.0 (Vistara) permettant d'utiliser de la mémoire DDR4-2400 dans des serveurs équipés de DDR5-6400. Cette solution réduit les coûts d'infrastructure tout en maintenant des performances élevées, particulièrement adaptée aux serveurs AMD EPYC 'Turin'. Une approche innovante pour optimiser les budgets hardware dans les datacenters AI.</p>
+<a href="https://www.tomshardware.com/pc-components/dram/meta-fights-soaring-hardware-costs-by-reusing-old-ddr4-server-memory-in-new-ddr5-only-servers-custom-cxl-2-0-chip-marries-legacy-ddr4-2400-with-cutting-edge-ddr5-6400" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Vulnérabilité BlueHammer dans Windows Defender exploitée malgré un correctif</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La vulnérabilité "BlueHammer" dans Windows Defender, corrigée en avril 2026, est désormais exploitée activement dans des campagnes de malware. CISA a émis une alerte urgente, soulignant l'importance de déployer les correctifs et de renforcer les politiques de sécurité pour éviter des compromissions massives dans les infrastructures critiques.</p>
+<a href="https://www.tomshardware.com/tech-industry/cyber-security/windows-defender-bluehammer-vulnerability-now-exploited-as-part-of-malware-campaigns-cisa-issues-warning-despite-patch-release-on-april-14" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>AMD EPYC 8005 "Sorano" révolutionne l'architecture SP6 pour serveurs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le processeur AMD EPYC 8005 "Sorano" introduit des changements majeurs dans l'architecture SP6, avec une refonte complète des sockets et des performances par watt améliorées. Cette évolution pourrait redéfinir les standards des serveurs d'entreprise, avec des gains significatifs en termes de densité et d'efficacité énergétique pour les datacenters.</p>
 <a href="https://www.servethehome.com/amd-epyc-8005-sorano-completely-changes-amd-sp6/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>Samsung, SK Hynix et Micron visés par une class action pour entente sur les prix de la DRAM</h3>
+<h3>AMD pivote vers LPDDR5X pour ses SoC Versal Premium Gen 2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les trois géants de la mémoire (Samsung, SK Hynix et Micron) sont poursuivis pour collusion présumée sur les prix de la DRAM, une affaire rappelant leur condamnation en 2006. Cette nouvelle plainte, déposée aux États-Unis, pourrait entraîner des amendes colossales et une révision des contrats d'approvisionnement pour les datacenters. Les entreprises devront surveiller les répercussions sur les coûts des serveurs et des solutions de stockage.</p>
-<a href="https://www.clubic.com/actualite-618964-entente-presumee-sur-les-prix-de-la-ram-samsung-sk-hynix-et-micron-vises-par-une-class-action-aux-etats-unis.html" class="btn-source" target="_blank">🔗 Lire sur Clubic</a>
+<p><strong>Résumé</strong> : Face à la pénurie de HBM, AMD remplace la mémoire HBM par de la LPDDR5X dans ses nouveaux SoC Versal Premium Gen 2. Cette transition permet de maintenir des performances élevées tout en garantissant une durée de vie de 15+ ans, idéale pour les applications embarquées et les infrastructures critiques.</p>
+<a href="https://www.servethehome.com/amd-pivots-from-hbm-to-lpddr5x-for-new-versal-premium-gen-2-memory-on-package-chips/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>Micron alerte sur une pénurie de DRAM jusqu'en 2028</h3>
+<h3>AMD étire la DRAM serveur avec la mémoire Flash étendue</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Micron a confirmé que la pénurie de mémoire DRAM, exacerbée par la demande croissante en IA et en calcul haute performance, devrait persister au moins jusqu'en 2028. Cette situation pourrait entraîner une hausse des prix des serveurs et des solutions de stockage, forçant les entreprises à optimiser leurs budgets ou à explorer des alternatives comme la mémoire HBM.</p>
-<a href="https://www.clubic.com/actualite-618985-micron-toujours-plus-pessimiste-la-penurie-de-dram-durerait-au-moins-jusqu-en-2028.html" class="btn-source" target="_blank">🔗 Lire sur Clubic</a>
+<p><strong>Résumé</strong> : AMD introduit une technologie de mémoire étendue (Flash Extended Memory) pour les serveurs, permettant de combiner DRAM et stockage flash afin d'augmenter la capacité mémoire sans sacrifier les performances. Cette innovation cible les charges de travail gourmandes en mémoire, comme l'IA et les bases de données.</p>
+<a href="https://www.nextplatform.com/store/2026/06/29/amd-stretches-server-dram-with-flash-extended-memory/5263848" class="btn-source" target="_blank">🔗 Lire sur The Next Platform</a>
 </div>
 
-<h3>Imec dévoile sa feuille de route 2026 : vers des nœuds 0.3 nm d'ici 2038</h3>
+<h3>Bouygues Telecom finalise le déploiement du XGS-PON sur tout son réseau</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Imec présente une roadmap ambitieuse avec des nœuds technologiques descendant jusqu'à 0.3 nm d'ici 2038, reposant sur l'intégration de transistors CFET (Complementary FET) dès 0.7 nm. Cette évolution redéfinit la loi de Moore en mettant l'accent sur la densité des cellules plutôt que sur la réduction des dimensions physiques. Les datacenters devront anticiper les besoins en équipements compatibles avec ces nouvelles architectures.</p>
+<p><strong>Résumé</strong> : Bouygues Telecom annonce la généralisation du XGS-PON sur son réseau fibre optique en France, offrant des débits symétriques jusqu'à 8 Gbit/s. Cette avancée majeure pour les infrastructures télécoms professionnelles et grand public améliore la connectivité des datacenters et des entreprises, avec une latence réduite et une bande passante accrue.</p>
+<a href="https://www.clubic.com/actualite-619321-bouygues-telecom-boucle-le-deploiement-du-xgs-pon-la-super-fibre-optique-sur-toute-la-france.html" class="btn-source" target="_blank">🔗 Lire sur Clubic</a>
+</div>
+
+<h3>Raids en Taïwan dans l'enquête sur la contrebande de GPU Nvidia</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les autorités taïwanaises ont perquisitionné les bureaux de Supermicro et deux partenaires de la chaîne d'approvisionnement dans le cadre d'une enquête élargie sur la contrebande de GPU Nvidia. Six personnes ont été convoquées pour interrogatoire, soulignant les risques de perturbations dans les chaînes logistiques des datacenters et des fournisseurs de matériel.</p>
+<a href="https://www.tomshardware.com/tech-industry/taiwan-raids-super-micro-and-two-supply-chain-partners-in-widening-nvidia-smuggling-probe" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Imec dévoile sa feuille de route 2026 : vers des nœuds à 0,3 nm d'ici 2038</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Imec présente sa feuille de route 2026, incluant des nœuds à 0,3 nm d'ici 2038 et l'adoption de transistors CFET à 0,7 nm. Cette avancée redéfinit la loi de Moore en se concentrant sur la densité cellulaire plutôt que sur la miniaturisation pure, avec des implications majeures pour les fabricants de puces et les architectures des futurs datacenters.</p>
 <a href="https://www.tomshardware.com/tech-industry/semiconductors/imecs-2026-roadmap-details-0-3nm-nodes-by-2038-cfet-transistors-become-viable-at-0-7nm-company-redefines-moores-law-as-cell-sizes-gain-importance-for-density" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Chine : essai réussi de fibre creuse à 51.3 Tb/s sur 206 km sans régénération</h3>
+<hr />
+<h2>Dimanche 29 Juin 2026</h2>
+<h3>Samsung, SK Hynix et Micron visés par une plainte pour entente illicite sur les prix DRAM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un consortium chinois (YOFC, China Telecom, Dekoli) a démontré une transmission de 51.3 Tb/s sur 206 km de fibre creuse, sans amplification ni régénération du signal. Cette technologie, prometteuse pour les réseaux IA et les datacenters, pourrait réduire les coûts d'infrastructure et améliorer la latence. Les entreprises devront évaluer l'impact sur leurs architectures réseau et leurs besoins en bande passante.</p>
-<a href="https://www.tomshardware.com/networking/chinas-hollow-core-fiber-trial-pushes-51-3-tb-s-over-128-miles-without-signal-regeneration-milestone-targets-ai-era-networking-bottlenecks" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>AMD introduit un nouveau type de cœur "Low Power" dans le noyau Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : AMD a soumis des correctifs au noyau Linux pour introduire un nouveau type de cœur CPU "Low Power", complémentaire aux cœurs Performance et Efficiency existants. Cette innovation cible les processeurs hétérogènes et pourrait optimiser la consommation énergétique des serveurs, particulièrement dans les environnements virtualisés ou conteneurisés. Les administrateurs devront adapter leurs politiques de gestion de l'énergie.</p>
-<a href="https://www.phoronix.com/news/AMD-Low-Power-CPU-Core-Linux" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>ZLUDA v6 : PhysX sur GPU AMD, mais sans financement commercial</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La version 6 de ZLUDA, un émulateur CUDA open-source pour GPU AMD, ajoute un support amélioré de PhysX en 32 bits, mais perd son financement commercial. Ce projet, initialement soutenu par AMD, reste un outil niche pour les environnements nécessitant une compatibilité CUDA sur matériel AMD. Les entreprises devront évaluer son utilité dans leurs workflows HPC ou graphiques.</p>
-<a href="https://www.phoronix.com/news/ZLUDA-6-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Corée du Sud investit 520 milliards de dollars pour renforcer sa domination dans les puces mémoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le gouvernement sud-coréen a annoncé un plan d'investissement de 520 milliards de dollars avec Samsung et SK Hynix, incluant quatre nouvelles usines et des installations dédiées à la mémoire HBM. Ce projet, dix fois supérieur au CHIPS Act américain, vise à consolider la position de la Corée dans le marché des semi-conducteurs. Les entreprises devront surveiller les répercussions sur les coûts et la disponibilité des composants.</p>
-<a href="https://www.tomshardware.com/tech-industry/semiconductors/south-korea-unveils-usd520-billion-investment-plan-with-samsung-and-sk-hynix-to-expand-memory-chip-dominance-plan-includes-four-new-fabs-and-hbm-facilities-amid-strong-government-support" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Vulnérabilités firmware critiques : Samsung, SK Hynix et Micron sous pression</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans les firmwares des mémoires DRAM de Samsung, SK Hynix et Micron a été identifiée, permettant potentiellement des attaques par canal latéral ou des corruptions de données. Les constructeurs recommandent des mises à jour urgentes, mais leur déploiement dans les datacenters pourrait être complexe. Les entreprises doivent prioriser les audits de sécurité et les correctifs pour éviter des incidents majeurs.</p>
+<p><strong>Résumé</strong> : Les trois géants de la mémoire (Samsung, SK Hynix, Micron) sont poursuivis pour avoir prétendument coordonné une réduction de la production de DDR3/DDR4 afin de faire monter les prix de l'HBM. Cette plainte, déposée le 25 juin, pourrait entraîner des sanctions réglementaires et des perturbations dans les approvisionnements des datacenters, déjà sous tension.</p>
 <a href="https://www.tomshardware.com/tech-industry/samsung-sk-hynix-and-micron-sued-over-alleged-dram-price-fixing-amid-record-memory-costs" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Linux 7.2 : améliorations I/O et régressions sur Threadripper</h3>
+<h3>Corée du Sud investit 520 milliards de dollars avec Samsung et SK Hynix pour dominer le marché des puces mémoire</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 7.2 du noyau Linux apporte des améliorations notables en I/O et en gestion des processus sur les processeurs AMD Threadripper, mais introduit également des régressions. Les administrateurs de datacenters utilisant ces plateformes devront tester les performances et ajuster leurs configurations pour éviter des baisses de débit ou des instabilités.</p>
-<a href="https://www.phoronix.com/review/linux-72-threadripper" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le gouvernement sud-coréen a annoncé un plan d'investissement public-privé de 520 milliards de dollars pour construire quatre nouvelles usines (dont des installations HBM) avec Samsung et SK Hynix. Ce projet, dix fois supérieur au CHIPS Act américain, vise à renforcer la souveraineté technologique et à répondre à la demande croissante en mémoire pour l'IA et les datacenters.</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/south-korea-unveils-usd520-billion-investment-plan-with-samsung-and-sk-hynix-to-expand-memory-chip-dominance-plan-includes-four-new-fabs-and-hbm-facilities-amid-strong-government-support" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Huawei et Z.ai dominent les classements IA avec le modèle GLM-5.2 malgré l'interdiction de Fable 5</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le modèle GLM-5.2 de Z.ai, basé sur des puces Huawei, a rapidement grimpé en tête des classements IA open-weight après l'interdiction de Fable 5 d'Anthropic. Cette avancée souligne l'importance croissante des acteurs chinois dans l'écosystème IA, avec des implications pour les infrastructures d'entreprise dépendantes de solutions cloud ou on-premise.</p>
+<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/z-ai-free-glm-5-2-tops-the-open-weight-ai-rankings-on-all-huawei-silicon" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Linux 7.2 introduit un nouveau type de cœur CPU "Low Power" pour AMD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un correctif du noyau Linux introduit un nouveau type de cœur CPU "Low Power" pour les processeurs AMD, complétant les cœurs Performance et Efficiency existants. Cette innovation permet une meilleure gestion de l'énergie dans les serveurs, avec des applications potentielles pour les charges de travail légères et les environnements virtualisés.</p>
+<a href="https://www.phoronix.com/news/AMD-Low-Power-CPU-Core-Linux" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>ZLUDA v6 perd son financement commercial mais ajoute le support PhysX 32-bit sur GPU AMD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le projet ZLUDA, qui visait à émuler CUDA sur GPU AMD, perd son financement commercial avec la version 6 mais intègre désormais un support PhysX 32-bit. Cette évolution marque un retour à un statut de projet communautaire, avec des implications limitées pour les infrastructures d'entreprise dépendantes de CUDA.</p>
+<a href="https://www.phoronix.com/news/ZLUDA-6-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Intel supprime le support AMX-TF32 avant même son déploiement sur Diamond Rapids</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Intel a retiré le support AMX-TF32 de ses processeurs Xeon Diamond Rapids avant même leur commercialisation, en raison de problèmes techniques. Cette décision pourrait impacter les performances des serveurs AI et des charges de travail utilisant des opérations en virgule flottante, nécessitant des ajustements logiciels.</p>
+<a href="https://www.phoronix.com/news/Intel-Kills-AMX-TF32" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>

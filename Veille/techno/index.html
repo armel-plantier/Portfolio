@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 29/06/2026 au 30/06/2026</title>
+    <title>Veille Techno | Updates & Outils — 29/06/2026 au 01/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 30/06/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 01/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -76,52 +76,102 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 29 Juin 2026</h2>
-<h3>Plugins GLPI : 15 failles patchées, dont une RCE critique</h3>
+<h3>Plugins GLPI : 15 failles patchées, dont une RCE critique !</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GLPI corrige 15 vulnérabilités dans ses plugins communautaires, dont une RCE critique (CVSS 8,9) dans GenericObject. Les correctifs sont disponibles en urgence pour éviter des compromissions de serveurs. Une mise à jour immédiate est recommandée pour les administrateurs utilisant ces plugins.</p>
+<p><strong>Résumé</strong> : GLPI alerte sur 15 vulnérabilités dans ses plugins communautaires, dont une RCE critique (CVSS 8,9) dans GenericObject. Les correctifs sont disponibles en urgence pour éviter des compromissions de serveurs de gestion d'actifs.</p>
 <a href="https://www.it-connect.fr/plugins-glpi-15-failles-patchees-dont-une-rce-critique/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <h3>DirtyClone : la faille Linux qui donne un accès root en silence</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : DirtyClone (CVE-2026-43503) exploite une vulnérabilité du noyau Linux pour élever les privilèges à root sur Debian, Ubuntu et Fedora. Les systèmes non patchés sont exposés à des attaques silencieuses. Une mise à jour urgente du noyau est nécessaire pour les administrateurs Linux.</p>
+<p><strong>Résumé</strong> : DirtyClone (CVE-2026-43503) est une nouvelle faille du noyau Linux permettant à un utilisateur local d'obtenir des privilèges root sur Debian, Ubuntu et Fedora. Une mise à jour immédiate du noyau est recommandée pour les administrateurs système.</p>
 <a href="https://www.it-connect.fr/dirtyclone-la-faille-linux-qui-donne-un-acces-root-en-silence/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <h3>Public PoC Released for Critical libssh2 CVE-2026-55200 Client-Side SSH Flaw</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un PoC public est désormais disponible pour CVE-2026-55200, une faille critique dans libssh2 permettant une corruption mémoire côté client via un serveur SSH malveillant. Aucune authentification n'est requise. Les administrateurs doivent mettre à jour libssh2 immédiatement.</p>
+<p><strong>Résumé</strong> : Un proof-of-concept public est désormais disponible pour CVE-2026-55200, une faille critique dans libssh2 permettant à un serveur SSH malveillant de corrompre la mémoire d'un client connecté, avec risque d'exécution de code. Tous les systèmes utilisant libssh2 doivent être mis à jour.</p>
 <a href="https://thehackernews.com/2026/06/public-poc-released-for-critical.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <h3>Hijacked npm and Go Packages Use VS Code Tasks to Deploy Python Infostealer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des paquets npm et Go compromis déploient un voleur d'informations Python via des tâches VS Code, contournant les chemins d'exécution classiques. Les développeurs doivent vérifier l'intégrité des dépendances et utiliser des outils de scan comme Snyk ou OWASP Dependency-Check.</p>
+<p><strong>Résumé</strong> : Des packages npm et Go compromis déploient un voleur d'informations Python via des tâches VS Code, contournant les chemins d'exécution classiques. Les administrateurs doivent vérifier l'intégrité des dépendances et bloquer les paquets suspects.</p>
 <a href="https://thehackernews.com/2026/06/hijacked-npm-and-go-packages-use-vs.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Git 2.55 Released With Rust Support Enabled By Default</h3>
+<h3>Fedora 45 Looks To Finally Offer Install Support For Stratis Storage</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Git 2.55 introduit un support Rust activé par défaut, améliorant la sécurité et les performances. La nouvelle commande `git history fixup` simplifie la gestion des historiques. Les administrateurs de repos doivent planifier une migration pour bénéficier de ces optimisations.</p>
-<a href="https://www.phoronix.com/news/Git-2.55-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Fedora 45 intégrera enfin le support natif de Stratis Storage, une solution de gestion de stockage basée sur XFS et Rust, alternative à Btrfs. Cette évolution simplifie la gestion des volumes chiffrés et des snapshots pour les administrateurs Linux.</p>
+<a href="https://www.phoronix.com/news/Fedora-45-Stratis-Storage" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Microsoft Announces Public Preview For Linux Containers On WSL</h3>
+<h3>Wine 11.12 Released With Wayland Fractional Scaling &amp; Other Wayland Enhancements</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft lance une préversion publique de WSL Containers (WSLC), permettant d'exécuter des conteneurs Linux directement sous Windows 11. Cette fonctionnalité simplifie le développement hybride et les pipelines CI/CD multi-OS. Les administrateurs peuvent tester WSLC pour des déploiements hybrides.</p>
-<a href="https://www.phoronix.com/news/Microsoft-Preview-WSL-WSLC" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Wine 11.12 introduit le support du scaling fractionnaire sous Wayland et améliore la compatibilité des applications Windows sous Linux. Une mise à jour utile pour les environnements de bureau hybrides et les postes de travail DevOps.</p>
+<a href="https://www.phoronix.com/news/Wine-11.12-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>AMD Linux Patches Introduce New "Low Power" CPU Core Type</h3>
+<hr />
+<h2>Mardi 30 Juin 2026</h2>
+<h3>Apple Container : bien débuter avec les conteneurs macOS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD introduit un nouveau type de cœur CPU "Low Power" dans le noyau Linux, optimisé pour les charges légères. Cette fonctionnalité améliore l'efficacité énergétique des serveurs et postes de travail. Les administrateurs doivent mettre à jour leur noyau pour exploiter ce gain.</p>
-<a href="https://www.phoronix.com/news/AMD-Low-Power-CPU-Core-Linux" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Apple Container, outil open source, permet d'exécuter des conteneurs Linux sur macOS avec une intégration native. Idéal pour les développeurs DevOps travaillant sur des environnements hybrides ou des pipelines CI/CD macOS.</p>
+<a href="https://www.it-connect.fr/conteneurs-macos-apple-container/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>TLAC Aims To Be An Open-Source Alternative To Kernel-Level Anti-Cheat Systems</h3>
+<h3>container machine : un environnement Linux sur Mac, façon WSL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : TLAC propose une alternative open source aux systèmes anti-triche au niveau noyau (Denuvo, BattlEye). Ce projet cible les administrateurs système cherchant à éviter les conflits de compatibilité ou les problèmes de sécurité liés aux solutions propriétaires.</p>
-<a href="https://www.phoronix.com/news/TLAC-Open-Source-Anti-Cheat" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : container machine, mode de Apple Container, offre un environnement Linux persistant sur macOS, similaire à WSL. Solution pratique pour les administrateurs système devant gérer des outils Linux sans virtualisation lourde.</p>
+<a href="https://www.it-connect.fr/container-machine-linux-sur-mac/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Exploitarium : un chercheur dévoile des failles zero-day dans 15 logiciels open source</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un chercheur anonyme a publié des exploits pour 15 failles zero-day dans des logiciels open source, dont deux déjà exploitées. Les administrateurs doivent prioriser les mises à jour des outils critiques (bibliothèques, serveurs web, etc.).</p>
+<a href="https://www.it-connect.fr/exploitarium-un-chercheur-devoile-des-failles-zero-day-dans-15-logiciels-open-source/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>StegoAd : un malware caché dans 119 extensions Microsoft Edge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a supprimé 119 extensions Edge infectées par StegoAd, un malware cachant son payload dans des images et polices pour voler des identifiants. Les utilisateurs doivent désinstaller ces extensions et auditer leur navigateur.</p>
+<a href="https://www.it-connect.fr/stegoad-un-malware-cache-dans-119-extensions-microsoft-edge/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Microsoft Warns Poisoned MCP Tool Descriptions Can Make AI Agents Leak Data</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft révèle que des descriptions d'outils MCP (Model Context Protocol) empoisonnées permettent à des agents IA de fuiter des données d'entreprise. Les équipes DevOps doivent valider les sources des outils utilisés dans leurs pipelines.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-warns-poisoned-mcp-tool.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>RustDuck Botnet Rebuilds in Rust to Hijack Routers and Servers for DDoS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le botnet RustDuck, écrit en Rust, cible les routeurs, caméras IP et serveurs mal sécurisés pour monter des attaques DDoS. Les administrateurs réseau doivent renforcer l'authentification et isoler les appareils vulnérables.</p>
+<a href="https://thehackernews.com/2026/06/rustduck-botnet-rebuilds-in-rust-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Langflow RCE Exploited to Deploy Monero Miner on Exposed AI App Endpoints</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille RCE non authentifiée (CVE-2026-33017) dans Langflow est exploitée pour déployer des mineurs Monero sur des endpoints AI exposés. Les équipes DevOps doivent appliquer les correctifs et restreindre l'accès aux interfaces d'administration.</p>
+<a href="https://thehackernews.com/2026/06/langflow-rce-exploited-to-deploy-monero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GuardFall Exposes Open-Source AI Coding Agents to Decades-Old Shell Injection Risks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille GuardFall contourne les protections des agents IA de codage en exploitant des injections shell classiques. Les administrateurs doivent auditer les permissions des outils d'IA et limiter les commandes exécutables.</p>
+<a href="https://thehackernews.com/2026/06/guardfall-exposes-open-source-ai-coding.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GraalVM CE 25.1.3 Gets Native Image "Hello World" Program Down To Just 6.5MB</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GraalVM 25.1.3 réduit la taille des images natives à 6,5 Mo, améliorant l'efficacité des déploiements cloud et des conteneurs. Idéal pour les architectures serverless et les microservices légers.</p>
+<a href="https://www.phoronix.com/news/GraalVM-Community-25.1.3" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Canonical First Gold Sponsor Of Trifecta Tech For Building More Infrastructure In Rust</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Canonical devient le premier sponsor gold de Trifecta Tech, un projet visant à construire des infrastructures open source en Rust (ex: sudo-rs). Une avancée pour la sécurité et la performance des outils système.</p>
+<a href="https://www.phoronix.com/news/Canonical-Gold-Trifecta-Tech" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
