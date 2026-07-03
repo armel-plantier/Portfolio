@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 29/06/2026 au 03/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 29/06/2026 au 04/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 03/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 04/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,111 +75,115 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 30 Juin 2026</h2>
-<h3>RustDuck Botnet</h3>
+            <h2>Vendredi 27 Juin 2026</h2>
+<h3>Microsoft accélère le passage à la cryptographie post-quantique pour 2029</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le botnet RustDuck, réécrit en Rust, cible routeurs, caméras et serveurs pour des attaques DDoS massives. Son arsenal anti-analyse et sa capacité à contourner les protections en font une menace majeure pour les infrastructures critiques. Les administrateurs doivent vérifier l'intégrité de leurs équipements et appliquer des mises à jour urgentes.</p>
-<a href="https://thehackernews.com/2026/06/rustduck-botnet-rebuilds-in-rust-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Langflow RCE Exploité pour Miner de la Crypto</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-33017) dans Langflow permet une exécution de code à distance non authentifiée. Des attaquants l'exploitent pour déployer des mineurs Monero sur des endpoints AI exposés. Les équipes DevOps doivent prioriser le patching et auditer les instances Langflow.</p>
-<a href="https://thehackernews.com/2026/06/langflow-rce-exploited-to-deploy-monero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>GuardFall : Risques d'Injection Shell dans les Agents IA Open Source</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La faille GuardFall permet à des agents IA open source d'exécuter des commandes dangereuses via des techniques d'injection shell obsolètes. 10 des 11 outils testés sont vulnérables, menaçant les pipelines CI/CD et les environnements de développement. Une mise à jour immédiate des dépendances est recommandée.</p>
-<a href="https://thehackernews.com/2026/06/guardfall-exposes-open-source-ai-coding.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Apple Container : Exécuter des Conteneurs Linux sur macOS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Apple Container, outil open source, permet d'exécuter des conteneurs Linux sur macOS via un environnement persistant. Équivalent partiel de WSL, il facilite le développement multiplateforme. Les administrateurs système peuvent l'utiliser pour standardiser les environnements de build.</p>
-<a href="https://www.it-connect.fr/conteneurs-macos-apple-container/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Exploitarium : 15 Failles Zero-Day dans des Logiciels Open Source</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un chercheur a publié des exploits pour 15 failles zero-day dans des logiciels open source, dont 2 déjà exploitées en attaque. Les administrateurs doivent surveiller les mises à jour des projets concernés (ex: GLPI, Nextcloud) et appliquer les correctifs sans délai.</p>
-<a href="https://www.it-connect.fr/exploitarium-un-chercheur-devoile-des-failles-zero-day-dans-15-logiciels-open-source/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Progress Kemp LoadMaster : Faille Pre-Auth RCE</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CVE-2026-8037 dans Kemp LoadMaster permet une exécution de code root pré-authentification. Des tentatives d'exploitation active sont déjà observées. Les administrateurs doivent appliquer le patch (disponible) et vérifier les logs pour détecter d'éventuelles compromissions.</p>
-<a href="https://thehackernews.com/2026/06/progress-kemp-loadmaster-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 1 Juillet 2026</h2>
-<h3>Argo CD : Faille Non Patchée dans le Repo-Server</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans le composant repo-server d'Argo CD permet une prise de contrôle complète de clusters Kubernetes via exécution de code non authentifiée. Les équipes DevOps doivent isoler ce composant ou appliquer des contournements en attendant un correctif.</p>
-<a href="https://thehackernews.com/2026/07/unpatched-argo-cd-repo-server-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Intune : Nouveautés Juin 2026 pour la Gestion des Vulnérabilités</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft introduit un agent IA dans Intune pour prioriser les CVE et automatiser les mises à jour d'applications. Les administrateurs peuvent désormais réduire le temps de réponse aux vulnérabilités critiques via une hiérarchisation automatisée.</p>
-<a href="https://www.it-connect.fr/intune-nouveautes-de-juin-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Cursor : Faille de Prompt Injection Permettant l'Exécution de Commandes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités (DuneSlide) dans l'éditeur IA Cursor permettent à un prompt malveillant de s'échapper du sandbox et d'exécuter des commandes système. Les développeurs doivent éviter d'utiliser des versions vulnérables et surveiller les activités suspectes.</p>
-<a href="https://thehackernews.com/2026/07/critical-cursor-flaws-could-let-prompt.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Microsoft Accélère le Passage à la Cryptographie Post-Quantique</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft avance son calendrier de migration vers des algorithmes post-quantiques à 2029, anticipant l'évolution des capacités des ordinateurs quantiques. Les administrateurs doivent planifier la mise à jour des infrastructures cryptographiques (TLS, VPN, etc.) dès 2027.</p>
+<p><strong>Résumé</strong> : Microsoft annonce un avancement de son calendrier pour la migration vers la cryptographie post-quantique, passant de 2033 à 2029. Cette accélération répond aux progrès rapides des ordinateurs quantiques, rendant urgente la mise à jour des standards de chiffrement pour éviter des risques de compromission future.</p>
 <a href="https://thehackernews.com/2026/07/microsoft-accelerates-post-quantum.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Phantom Squatting : Domaines Hallucinés par IA pour le Phishing</h3>
+<hr />
+<h2>Samedi 28 Juin 2026</h2>
+<h3>GuardFall expose les agents IA open source à des risques d'injection shell</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants achètent des domaines générés par IA (ex: noms de projets fictifs) pour héberger des pages de phishing. Les utilisateurs et outils IA peuvent être redirigés vers ces sites. Les administrateurs doivent bloquer ces domaines via des listes noires et sensibiliser les équipes.</p>
-<a href="https://thehackernews.com/2026/07/phantom-squatting-uses-ai-hallucinated.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique dans les outils d'agents IA open source (GuardFall) permet de contourner les vérifications de sécurité et d'exécuter des commandes malveillantes via des techniques d'injection shell. Cette vulnérabilité affecte 10 des 11 plateformes testées, posant un risque majeur pour les environnements DevOps automatisés.</p>
+<a href="https://thehackernews.com/2026/06/guardfall-exposes-open-source-ai-coding.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Dimanche 29 Juin 2026</h2>
+<h3>Factoring RSA : nouvelle classe de clés faibles avec des zéros</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une recherche révèle une nouvelle classe de clés RSA vulnérables, caractérisées par un grand nombre de zéros. Ces clés, déjà présentes dans la nature, peuvent être factorisées plus facilement, compromettant la sécurité des systèmes utilisant RSA. Le projet open source BadKeys permet de les identifier.</p>
+<a href="https://www.schneier.com/blog/archives/2026/06/factoring-rsa-keys-with-many-zeros.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+</div>
+
+<hr />
+<h2>Lundi 30 Juin 2026</h2>
+<h3>Microsoft met en garde contre les descriptions d'outils MCP empoisonnées</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft alerte sur une technique d'attaque exploitant des descriptions d'outils MCP (Model Context Protocol) empoisonnées pour manipuler les agents IA et leur faire fuiter des données sensibles. Les agents, sans enfreindre de règles apparentes, peuvent être détournés pour exfiltrer des informations critiques.</p>
+<a href="https://thehackernews.com/2026/06/microsoft-warns-poisoned-mcp-tool.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Langflow RCE exploité pour déployer des mineurs Monero</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique d'exécution de code à distance (CVE-2026-33017) dans Langflow est massivement exploitée pour déployer des mineurs Monero sur des instances exposées. Les administrateurs doivent appliquer les correctifs immédiatement et vérifier les logs pour détecter toute activité suspecte.</p>
+<a href="https://thehackernews.com/2026/06/langflow-rce-exploited-to-deploy-monero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 1er Juillet 2026</h2>
+<h3>Argo CD vulnérable à une faille non corrigée dans repo-server</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille non corrigée dans le composant repo-server d'Argo CD permet à un attaquant non authentifié d'exécuter du code arbitraire, sous réserve d'accès au port interne du composant. Cette vulnérabilité peut mener à une prise de contrôle complète du cluster Kubernetes.</p>
+<a href="https://thehackernews.com/2026/07/unpatched-argo-cd-repo-server-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Adobe corrige 7 failles critiques dans ColdFusion et Campaign Classic</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Adobe publie des correctifs pour 7 vulnérabilités critiques (CVSS 10.0) dans ColdFusion et Campaign Classic, incluant des risques d'exécution de code arbitraire, d'escalade de privilèges et de lecture de fichiers. Les administrateurs doivent appliquer les mises à jour sans délai.</p>
+<a href="https://thehackernews.com/2026/07/adobe-patches-7-cvss-100-flaws-in.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Citrix corrige 6 failles dans NetScaler ADC et Gateway</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Citrix publie des correctifs pour 6 vulnérabilités dans NetScaler ADC et Gateway, permettant des lectures de fichiers arbitraires ou des attaques par déni de service. Ces failles, si exploitées, peuvent compromettre la disponibilité des services critiques.</p>
+<a href="https://thehackernews.com/2026/07/citrix-patches-six-netscaler-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mercredi 2 Juillet 2026</h2>
-<h3>NetNut : Réseau de Proxys Résidentiels Disrupté par Google</h3>
+<h3>Intune : gestion des vulnérabilités et mises à jour automatisées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google, en collaboration avec le FBI, a significativement réduit la capacité du réseau NetNut (2M+ appareils domestiques) utilisé pour des attaques DDoS. Les administrateurs doivent surveiller les tentatives de rebond via des appareils compromis dans leurs réseaux.</p>
-<a href="https://thehackernews.com/2026/07/google-disrupts-netnut-residential.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft annonce de nouvelles fonctionnalités dans Intune pour juin 2026, incluant un agent IA pour hiérarchiser les CVE et des mises à jour automatiques des applications. Ces outils simplifient la gestion des correctifs et réduisent la surface d'attaque des environnements Windows.</p>
+<a href="https://www.it-connect.fr/intune-nouveautes-de-juin-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Citrix Bleed 2 : Exploité par des Groupes de Ransomware</h3>
+<hr />
+<h3>Ornith 1.0 : IA open source dépassant Claude Opus 4.7</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Anubis exploite CVE-2025-5777 (Citrix Bleed 2) pour obtenir un accès initial, combiné à des techniques BYOVD et de vol d'identifiants. Les équipes sécurité doivent appliquer les correctifs Citrix et auditer les accès RDP/VPN.</p>
-<a href="https://thehackernews.com/2026/07/ransomware-groups-turn-to-citrix-bleed.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : DeepReinforce publie Ornith-1.0, une IA open source pour le développement logiciel, surpassant en performance Claude Opus 4.7. Avec une version de 397B paramètres, elle offre des capacités avancées pour l'automatisation des tâches DevOps et l'optimisation des pipelines CI/CD.</p>
+<a href="https://www.it-connect.fr/ornith-1-0-ia-open-source-qui-depasse-claude-opus-4-7/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Technitium DNS Server : Bloquer les Publicités et Héberger son DNS</h3>
+<hr />
+<h2>Jeudi 3 Juillet 2026</h2>
+<h3>OpenVPN 2.7.5 corrige 7 failles critiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Technitium DNS Server permet de déployer un serveur DNS local avec blocage des pubs, récursion native et gestion de zones personnalisées. Idéal pour les environnements critiques ou les réseaux domestiques, il réduit la dépendance aux DNS tiers et améliore la confidentialité.</p>
-<a href="https://www.it-connect.fr/technitium-dns-server/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : OpenVPN 2.7.5 corrige 7 vulnérabilités, dont des use-after-free, des fuites mémoire et des débordements de tampon. Plusieurs failles peuvent entraîner un crash du serveur VPN, compromettant la disponibilité des services. Une mise à jour immédiate est recommandée.</p>
+<a href="https://www.it-connect.fr/openvpn-7-failles-corrigees-risque-de-crash-du-serveur/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Umbrij Malware : Abus d'OAuth pour Accéder à Gmail</h3>
+<hr />
+<h3>Google Chrome 151 corrige 382 failles</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware Umbrij, lié à ToddyCat, abuse des API Google pour accéder aux emails d'entreprises hébergés sur Gmail. Les administrateurs doivent revoyer les permissions OAuth et surveiller les activités anormales dans les logs Google Workspace.</p>
-<a href="https://thehackernews.com/2026/07/toddycat-linked-umbrij-malware-abuses.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Google publie Chrome 151 avec un correctif record de 382 vulnérabilités, dont 15 critiques. Ce correctif massif, largement porté par l'IA, renforce la sécurité du navigateur face aux attaques par exécution de code ou déni de service.</p>
+<a href="https://www.it-connect.fr/google-chrome-151-382-failles-corrigees-ia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Identity Lifecycle Management et Agents IA</h3>
+<hr />
+<h3>Bad Epoll : faille Linux critique permettant une élévation de privilèges</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les modèles d'identité actuels ne couvrent pas les agents IA autonomes, créant des failles de gouvernance. Les administrateurs doivent adapter leurs politiques IAM pour inclure les identités non humaines et limiter leurs permissions via des approches Zero Trust.</p>
-<a href="https://thehackernews.com/2026/07/identity-lifecycle-management.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique dans le noyau Linux (CVE-2026-46242) nommée Bad Epoll permet à un utilisateur non privilégié d'obtenir les droits root. Cette vulnérabilité affecte les systèmes Linux, serveurs et Android, et nécessite une mise à jour immédiate du noyau.</p>
+<a href="https://thehackernews.com/2026/07/new-bad-epoll-linux-kernel-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>JADEPUFFER : Premier Ransomware Entièrement Automatisé par IA</h3>
+<hr />
+<h3>PamStealer : malware macOS volant les mots de passe via PAM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Sysdig a identifié un ransomware piloté par un agent IA (JADEPUFFER) exécutant toutes les étapes : intrusion, vol de données et chiffrement. Les équipes DevSecOps doivent intégrer des outils de détection comportementale pour contrer ces attaques autonomes.</p>
-<a href="https://thehackernews.com/2026/07/ai-agent-exploits-langflow-rce-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : PamStealer, un infostealer macOS déguisé en outil légitime (Maccy), valide le mot de passe de l'utilisateur via PAM avant de voler les cookies et identifiants. Les administrateurs doivent surveiller les processus suspects et sensibiliser les utilisateurs aux risques de faux outils.</p>
+<a href="https://www.it-connect.fr/pamstealer-infostealer-macos-maccy-pam/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Project Aion : démonstration d'un OS 100% IA par Microsoft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une fuite révèle Project Aion, un OS expérimental de Microsoft où l'IA (Copilot) remplace le menu Démarrer et pilote l'ensemble du système. Cette démonstration illustre l'évolution future des environnements de travail, avec des implications majeures pour l'administration système.</p>
+<a href="https://www.it-connect.fr/project-aion-os-ia-microsoft/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
