@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 29/06/2026 au 06/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/07/2026 au 07/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 06/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 07/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,106 +75,53 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 29 Juin 2026</h2>
-<h3>Nouveau bug critique dans les clés RSA : des clés faibles avec beaucoup de zéros</h3>
+            <h2>Lundi 07 Juillet 2026</h2>
+<h3>AMD Ryzen AI Halo : un mini PC Linux optimisé pour l'IA avec support open source complet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle classe de clés RSA faibles, contenant de nombreux zéros, a été identifiée. Ces clés sont déjà présentes dans la nature et peuvent être factorisées, posant un risque majeur pour les systèmes utilisant RSA. Le projet open source BadKeys permet de les détecter.</p>
-<a href="https://www.schneier.com/blog/archives/2026/06/factoring-rsa-keys-with-many-zeros.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+<p><strong>Résumé</strong> : Le Ryzen AI Halo d'AMD est désormais disponible avec une distribution Linux dédiée basée sur Debian, offrant une pile logicielle entièrement open source incluant ROCm. Ce mini PC haut de gamme (jusqu'à 50 TOPS NPU) est idéal pour les développeurs IA, avec des performances graphiques et un support matériel optimisé pour les charges de travail intensives.</p>
+<a href="https://www.phoronix.com/review/amd-ryzen-ai-halo" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h2>Jeudi 1 Juillet 2026</h2>
-<h3>Restauration native des sauvegardes Entra ID par Microsoft</h3>
+<h3>Vulkan Video H.264/H.265 : encodage accéléré sur Intel Alchemist sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a lancé Entra Backup and Recovery, une solution native pour sauvegarder et restaurer les tenants Entra ID (anciennement Azure AD). Intégré aux licences P1 et P2, cet outil permet de protéger les identités contre les suppressions accidentelles ou malveillantes sans dépendre de solutions tierces.</p>
-<a href="https://www.it-connect.fr/entra-id-backup-and-recovery-sauvegarde-tenant/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le support de l'encodage vidéo Vulkan (H.264/H.265) est désormais fonctionnel sur les GPU Intel Alchemist (Gen12.5+) grâce à des correctifs dans le pilote ANV open source. Cette avancée réduit la charge CPU et améliore les performances des applications multimédias sous Linux.</p>
+<a href="https://www.phoronix.com/news/Intel-ANV-Gen125-H265-Encode" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h3>Correction de 30+ failles dans iOS, iPadOS et macOS via l'IA</h3>
+<h3>Bad Epoll : faille critique dans le noyau Linux permettant un accès root sur Android</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple a publié iOS 26.5.2, iPadOS 26.5.2 et macOS Tahoe 26.5.2, corrigeant plus de 30 vulnérabilités, dont 4 découvertes via l'IA. Les correctifs ont été livrés plus tôt que prévu, soulignant l'intégration croissante de l'IA dans les processus de sécurité.</p>
-<a href="https://www.it-connect.fr/apple-corrige-plus-de-30-failles-sur-ios-et-macos-decouvertes-en-partie-avec-lia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-46242 (Bad Epoll) exploite une faille dans le sous-système KVM pour élever les privilèges d'un utilisateur local vers root sur Linux et Android. Non détectée par l'IA Mythos, cette faille nécessite une mise à jour urgente des noyaux concernés.</p>
+<a href="https://www.it-connect.fr/bad-epoll-faille-noyau-linux-android-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Nouveautés Intune de juin 2026 : IA pour la gestion des vulnérabilités</h3>
+<h3>Januscape : faille 16 ans dans KVM permettant l'échappement de VM vers l'hôte</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a introduit dans Intune un agent IA pour hiérarchiser les CVE et automatiser les mises à jour des applications. Ces fonctionnalités visent à réduire le temps de réponse aux vulnérabilités critiques et à simplifier la gestion des correctifs pour les administrateurs.</p>
-<a href="https://www.it-connect.fr/intune-nouveautes-de-juin-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : CVE-2026-53359 (Januscape) affecte le code MMU partagé entre Intel et AMD dans KVM, permettant à une VM de corrompre l'état du noyau hôte. Cette faille historique nécessite un correctif immédiat pour les environnements virtualisés critiques.</p>
+<a href="https://thehackernews.com/2026/07/16-year-old-linux-kvm-flaw-lets-guest.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Vulnérabilité critique non corrigée dans Argo CD</h3>
+<h3>France : certification obligatoire des algorithmes post-quantum dès 2027</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans le composant repo-server d'Argo CD permet à un attaquant non authentifié d'exécuter du code arbitraire, sous réserve d'accès au port interne du composant. Synacktiv recommande une isolation réseau immédiate en attendant un correctif.</p>
-<a href="https://thehackernews.com/2026/07/unpatched-argo-cd-repo-server-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : L'ANSSI annonce l'arrêt de la certification des produits utilisant des algorithmes de chiffrement non résistants au quantique. Les organisations doivent migrer vers des solutions comme CRYSTALS-Kyber ou NTRU pour se conformer aux nouvelles exigences de sécurité nationale.</p>
+<a href="https://www.schneier.com/blog/archives/2026/07/france-to-stop-certifying-non-quantum-safe-encryption.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<hr />
-<h3>Microsoft accélère le passage à la cryptographie post-quantique</h3>
+<h3>Linux 7.3 : améliorations majeures pour le gaming et la gestion des cgroups</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft annonce un avancement de son calendrier pour la migration vers des algorithmes post-quantum, avec une cible fixée à 2029 au lieu de 2035. Cette accélération répond aux progrès rapides des recherches en calcul quantique et aux risques accrus pour les infrastructures actuelles.</p>
-<a href="https://thehackernews.com/2026/07/microsoft-accelerates-post-quantum.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le noyau Linux 7.3 introduit le mécanisme "Flatten The Pick" pour optimiser l'ordonnancement des tâches, particulièrement bénéfique pour les jeux vidéo sur matériel ancien. Des correctifs pour le pilote Uniwill améliorent aussi la compatibilité des laptops TUXEDO.</p>
+<a href="https://www.phoronix.com/news/Linux-7.3-Flattens-The-Pick" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<hr />
-<h2>Vendredi 3 Juillet 2026</h2>
-<h3>OpenVPN 2.7.5 corrige 7 failles critiques</h3>
+<h3>Gitea Docker : exploitation active de CVE-2026-20896 par des attaquants</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OpenVPN 2.7.5 corrige 7 vulnérabilités, dont des use-after-free, des fuites mémoire et des débordements de tampon. Plusieurs failles peuvent provoquer un crash du serveur VPN, exposant les utilisateurs à des interruptions de service ou des risques d'exploitation.</p>
-<a href="https://www.it-connect.fr/openvpn-7-failles-corrigees-risque-de-crash-du-serveur/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : La faille critique (CVSS 9.8) dans les images Docker de Gitea, corrigée il y a 13 jours, fait l'objet d'attaques ciblant les environnements DevOps. Les administrateurs doivent appliquer les correctifs immédiatement et auditer leurs pipelines CI/CD.</p>
+<a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Chrome 151 corrige 382 failles, un record</h3>
+<h3>Specops Device Trust : renforcement de la sécurité des accès au-delà de la MFA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google a publié Chrome 151 avec un correctif record de 382 vulnérabilités, dont 15 critiques. L'IA a joué un rôle clé dans l'identification et la priorisation des failles, illustrant l'automatisation croissante des processus de sécurité.</p>
-<a href="https://www.it-connect.fr/google-chrome-151-382-failles-corrigees-ia/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h3>Brave 1.92 : multi-comptes natif avec Containers</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Brave 1.92 intègre nativement les Containers pour cloisonner les sessions de navigation. Cette fonctionnalité permet de rester connecté à plusieurs comptes d'un même site sans extension, améliorant la productivité et la sécurité des utilisateurs multi-comptes.</p>
-<a href="https://www.it-connect.fr/brave-1-92-le-multi-comptes-natif-avec-les-containers/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h3>Botnet RustDuck : menace DDoS en Rust</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le botnet RustDuck, réécrit en Rust, cible les routeurs, caméras IP et serveurs pour des attaques DDoS. Sa réécriture en Rust et ses mécanismes anti-analyse en font une menace persistante et difficile à détecter pour les administrateurs système.</p>
-<a href="https://www.it-connect.fr/botnet-rustduck-attaques-ddos-routeurs-serveurs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h3>Failles critiques dans FatFs, un filesystem embarqué</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : runZero a disclosed 7 vulnérabilités dans FatFs, une bibliothèque filesystem utilisée dans des millions d'appareils embarqués. Ces failles, présentes dans des firmwares de sécurité et des systèmes IoT, permettent des attaques par déni de service ou exécution de code.</p>
-<a href="https://thehackernews.com/2026/07/unpatched-flaws-disclosed-in-filesystem.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Nouvelle faille Linux "Bad Epoll" : élévation de privilèges</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CVE-2026-46242, surnommée "Bad Epoll", permet à un utilisateur non privilégié d'obtenir un accès root sur les systèmes Linux, y compris Android. Un correctif est disponible, mais la faille affecte une large gamme de systèmes, nécessitant une mise à jour urgente.</p>
-<a href="https://thehackernews.com/2026/07/new-bad-epoll-linux-kernel-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Samedi 4 Juillet 2026</h2>
-<h3>RAT ChocoPoC : malware ciblant les chercheurs en sécurité</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau RAT, ChocoPoC, est distribué via des dépôts GitHub frauduleux proposant des PoC d'exploits. Une fois exécuté, il vole les mots de passe sauvegardés et exfiltre des données sensibles, ciblant spécifiquement les chercheurs en vulnérabilités.</p>
-<a href="https://thehackernews.com/2026/07/new-chocopoc-rat-targets-vulnerability.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Dimanche 5 Juillet 2026</h2>
-<h3>VULN : CVE-2026-45659 dans SharePoint Server</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-45659 (RCE dans SharePoint Server) à son catalogue KEV après avoir observé des exploitations actives. Avec un score CVSS de 8.8, cette faille nécessite une application immédiate des correctifs pour éviter des compromissions.</p>
-<a href="https://thehackernews.com/2026/07/sharepoint-rce-cve-2026-45659-added-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Specops Device Trust lie chaque session utilisateur à un appareil de confiance, réduisant les risques liés au vol de session. Cette solution s'intègre aux annuaires existants (AD, Azure AD) et est particulièrement pertinente pour les environnements hybrides.</p>
+<a href="https://www.it-connect.fr/specops-device-trust-validation-appareil/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 29/06/2026 au 06/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 06/07/2026 au 07/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 29/06/2026 au 06/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 07/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,213 +75,72 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 29 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+            <h2>Lundi 06 Juillet 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Roundcube (webmail)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant à un attaquant d'exécuter du code arbitraire à distance (RCE) et d'accéder à des données sensibles. Ces failles affectent les versions non patchées du navigateur et pourraient être exploitées via des pages web malveillantes.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0811/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Ces failles permettent à un attaquant distant d'exécuter un déni de service (DoS), une falsification de requêtes côté serveur (SSRF) et une injection de code indirecte (XSS). Les systèmes exposés incluent les serveurs Roundcube non patchés. Un correctif est disponible via la mise à jour vers la version 1.6.8 ou ultérieure.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0835/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
+<h3>Exploitation en cours d'une faille critique dans Adobe ColdFusion (CVE-2026-48282)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles de sécurité non spécifiées ont été identifiées dans Microsoft Azure Linux, exposant les environnements cloud à des risques d'élévation de privilèges ou de fuite de données. Les correctifs doivent être appliqués d'urgence pour les instances Azure concernées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0812/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité de criticité maximale (CVE-2026-48282) dans Adobe ColdFusion est désormais exploitée activement par des attaquants. Cette faille permet l'exécution de code à distance (RCE) sur les serveurs vulnérables. Les versions affectées incluent ColdFusion 2021 et 2023. Adobe a publié un correctif urgent (APSB26-45).</p>
+<a href="https://www.bleepingcomputer.com/news/security/max-severity-adobe-coldfusion-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Mattermost Server</h3>
+<h3>Nouvelle faille critique dans Linux KVM (CVE-2026-53359) permettant l'échappement de VM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Mattermost Server est vulnérable à plusieurs failles critiques permettant des attaques par injection de code, contournement d'authentification ou fuite de données. Les administrateurs doivent mettre à jour vers la dernière version disponible pour corriger ces vulnérabilités.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0813/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-53359, "Januscape") dans le module KVM de Linux permet à une machine virtuelle invitée d'échapper à son isolation et de corrompre l'état du noyau hôte. La faille affecte les systèmes Intel et AMD x86. Un correctif est disponible dans le noyau Linux 6.9.7+.</p>
+<a href="https://thehackernews.com/2026/07/16-year-old-linux-kvm-flaw-lets-guest.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans HAProxy</h3>
+<h3>Faille Gitea Docker exploitée 13 jours après publication (CVE-2026-20896)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille de déni de service (DoS) à distance a été découverte dans HAProxy, permettant à un attaquant de paralyser les services web en exploitant une gestion incorrecte des requêtes. Un correctif est disponible et doit être déployé immédiatement.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0814/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Des attaquants exploitent activement CVE-2026-20896 (CVSS 9.8) dans les images Docker de Gitea, permettant une prise de contrôle à distance via l'en-tête "X-WEBAUTH-USER". La faille affecte les instances exposées en ligne. Gitea a publié un correctif (v1.21.5).</p>
+<a href="https://thehackernews.com/2026/07/threat-actors-probe-gitea-docker-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans KeyCloak</h3>
+<h3>Cavern : Nouveau framework C2 iranien ciblant les organisations israéliennes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : KeyCloak est affecté par des vulnérabilités critiques incluant RCE, élévation de privilèges et fuite de données. Ces failles pourraient permettre à un attaquant de prendre le contrôle d'un serveur d'authentification ou d'accéder à des informations sensibles. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0815/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un groupe de hackers lié au ministère iranien du Renseignement (MOIS) utilise un framework C2 modulaire inédit, "Cavern", pour infiltrer des organisations israéliennes, notamment des fournisseurs IT. Le malware permet une persistance avancée et des mouvements latéraux. Aucune solution de contournement connue n'est disponible.</p>
+<a href="https://thehackernews.com/2026/07/iran-linked-hackers-use-new-cavern-c2.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Stormshield Management Center</h3>
+<h3>QuimaRAT : Nouveau RAT multiplateforme (Windows/Linux/macOS) en MaaS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Stormshield Management Center présente des vulnérabilités critiques permettant RCE, fuite de données et altération d'intégrité. Ces failles exposent les infrastructures réseau à des risques majeurs. Un patch est disponible pour les versions concernées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0816/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un nouveau malware Java, QuimaRAT, est proposé en tant que Malware-as-a-Service (MaaS). Il cible les systèmes Windows, Linux et macOS pour établir un accès à distance. Le coût d'abonnement varie entre 500$ et 2000$ par mois. Aucune détection généralisée n'est encore disponible.</p>
+<a href="https://thehackernews.com/2026/07/new-java-based-quimarat-maas-built-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mardi 30 Juin 2026</h2>
-<h3>Multiples vulnérabilités dans Apache Tomcat</h3>
+<h3>JadePuffer : Premier ransomware entièrement piloté par IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apache Tomcat est vulnérable à des attaques par XSS, contournement de politique de sécurité et autres failles non spécifiées. Ces vulnérabilités pourraient permettre à un attaquant de compromettre des applications web ou d'exécuter du code malveillant. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0817/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une campagne de ransomware (JadePuffer) a exploité une faille dans Langflow pour automatiser l'exfiltration de données et le chiffrement via des agents IA. L'attaque a ciblé un serveur de base de données de production. Aucune solution de récupération automatisée n'est connue.</p>
+<a href="https://cyberscoop.com/sysdig-judepuffer-ai-agentic-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur CyberScoop</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Apple</h3>
+<h3>BusySnake : Infostealer ciblant les infrastructures critiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs failles critiques ont été découvertes dans les produits Apple (iOS, macOS, etc.), permettant des atteintes à la confidentialité, l'intégrité des données et le contournement des politiques de sécurité. Un correctif est disponible pour iOS 17.5.1 et macOS Sonoma 14.5.1.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0818/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe "Armored Likho" déploie BusySnake, un infostealer modulaire, contre des agences gouvernementales et des entités électriques en Russie, Brésil et Kazakhstan. Le malware exfiltre des identifiants et des données sensibles. Aucune signature de détection publique n'est disponible.</p>
+<a href="https://www.darkreading.com/cyberattacks-data-breaches/busysnake-infostealer-critical-infrastructure-networks" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Synology MailPlus Server</h3>
+<h3>Fuite de données via émissions radio depuis des systèmes air-gap (TrojPix)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Synology MailPlus Server est affecté par des vulnérabilités critiques incluant DoS à distance, fuite de données et altération d'intégrité. Ces failles pourraient permettre à un attaquant de compromettre des serveurs de messagerie. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0819/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Des chercheurs ont démontré TrojPix, une attaque permettant d'exfiltrer des données depuis des systèmes isolés (air-gap) via des émissions radio générées par des câbles vidéo modifiés. La technique exploite des variations imperceptibles de pixels. Aucune contre-mesure matérielle n'est actuellement déployée.</p>
+<a href="https://thehackernews.com/2026/07/new-trojpix-attack-leaks-data-from-air.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mercredi 01 Juillet 2026</h2>
-<h3>Vulnérabilité dans Mozilla Firefox</h3>
+<h2>Mardi 07 Juillet 2026</h2>
+<h3>Faille critique dans Citrix NetScaler (CitrixBleed) exploitée en masse</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Mozilla Firefox permet l'exécution de code arbitraire à distance (RCE) via des pages web malveillantes. Cette vulnérabilité affecte les versions non patchées et pourrait être exploitée pour prendre le contrôle d'un système. Un correctif est disponible dans Firefox 128.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0820/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité de type "memory disclosure" dans Citrix NetScaler (CVE non attribué) est activement exploitée moins de 48h après la publication d'un PoC. Les attaquants récupèrent des sessions utilisateurs et des données sensibles. Citrix a publié des correctifs urgents pour NetScaler ADC et Gateway.</p>
+<a href="https://www.darkreading.com/vulnerabilities-threats/citrixbleed-ing-again-netscaler-vulnerability-under-attack" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Adobe ColdFusion</h3>
+<h3>Campagne de phishing ciblant les comptes Google via faux entretiens d'embauche</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Adobe ColdFusion présente des vulnérabilités critiques incluant RCE, élévation de privilèges et fuite de données. Ces failles exposent les serveurs web à des risques majeurs. Un correctif est disponible dans ColdFusion 2023 Update 6.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0821/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Citrix</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les produits Citrix (notamment Citrix ADC et Citrix Gateway) sont vulnérables à des attaques par DoS à distance, fuite de données et autres failles critiques. Ces vulnérabilités pourraient permettre à un attaquant de compromettre des infrastructures réseau. Un correctif est disponible.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0822/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Jeudi 02 Juillet 2026</h2>
-<h3>Multiples vulnérabilités dans Traefik</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Traefik est affecté par des vulnérabilités permettant le contournement des politiques de sécurité, exposant les environnements Kubernetes et les services web à des risques d'intrusion. Un correctif est disponible dans Traefik 3.0.3.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0823/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans ClamAV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : ClamAV, l'antivirus open-source, présente des vulnérabilités critiques incluant DoS et fuite de données. Ces failles pourraient permettre à un attaquant de paralyser un système ou d'accéder à des informations sensibles. Un correctif est disponible dans ClamAV 1.3.1.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0824/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Cisco</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco a corrigé des vulnérabilités critiques dans plusieurs de ses produits (Cisco IOS, ASA, etc.), incluant DoS à distance et fuite de données. Ces failles pourraient permettre à un attaquant de compromettre des équipements réseau. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0825/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Elastic</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Elasticsearch et Kibana sont vulnérables à des attaques par DoS à distance, fuite de données et altération d'intégrité. Ces failles exposent les plateformes de recherche et de monitoring à des risques majeurs. Un correctif est disponible dans Elastic 8.17.1.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0826/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Mozilla Thunderbird</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Thunderbird est affecté par des vulnérabilités critiques permettant l'altération d'intégrité et le DoS. Ces failles pourraient permettre à un attaquant de compromettre des boîtes mail ou de paralyser un système. Un correctif est disponible dans Thunderbird 115.13.0.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0827/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité dans CPython</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CPython, l'implémentation de référence de Python, est vulnérable à un contournement des politiques de sécurité via une gestion incorrecte des permissions. Cette faille pourrait permettre à un attaquant d'exécuter du code malveillant. Un correctif est disponible dans Python 3.12.4.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0828/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Google Chrome</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Google Chrome présente des vulnérabilités critiques non spécifiées, permettant potentiellement l'exécution de code arbitraire ou la fuite de données. Ces failles affectent les versions non patchées et pourraient être exploitées via des pages web malveillantes. Un correctif est disponible dans Chrome 126.0.6478.127.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0829/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Vendredi 03 Juillet 2026</h2>
-<h3>Vulnérabilité dans FreeBSD</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans FreeBSD permet une fuite de données sensibles via une gestion incorrecte des permissions. Cette vulnérabilité affecte les systèmes non patchés et pourrait être exploitée pour accéder à des informations critiques. Un correctif est disponible dans FreeBSD 14.1.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0830/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux d'Ubuntu présente des vulnérabilités critiques incluant RCE, élévation de privilèges et DoS à distance. Ces failles exposent les systèmes à des risques majeurs. Un correctif est disponible dans Ubuntu 22.04 LTS (kernel 6.5.0-41.44).</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0831/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux de Red Hat est vulnérable à des attaques par RCE à distance, élévation de privilèges et DoS. Ces failles pourraient permettre à un attaquant de prendre le contrôle d'un système. Un correctif est disponible dans RHEL 9.4.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0832/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux de SUSE</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : SUSE Linux Enterprise est affecté par des vulnérabilités critiques incluant élévation de privilèges, fuite de données et altération d'intégrité. Ces failles exposent les systèmes à des risques majeurs. Un correctif est disponible dans SUSE 15 SP5.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0833/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits IBM</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : IBM a corrigé des vulnérabilités critiques dans plusieurs de ses produits (AIX, Db2, etc.), incluant RCE à distance, élévation de privilèges et DoS. Ces failles pourraient permettre à un attaquant de compromettre des infrastructures critiques. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0834/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Nouvelle faille critique "Bad Epoll" dans le noyau Linux (CVE-2026-46242)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique nommée "Bad Epoll" (CVE-2026-46242) dans le noyau Linux permet à un utilisateur non privilégié d'obtenir des privilèges root sur les systèmes Linux et Android. Cette vulnérabilité affecte les versions non patchées et un correctif est disponible dans le noyau 6.6.35.</p>
-<a href="https://thehackernews.com/2026/07/new-bad-epoll-linux-kernel-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne de malwares "PolinRider" : 108 paquets malveillants publiés par des hackers nord-coréens</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des hackers nord-coréens ont publié 108 paquets malveillants et extensions navigateur sur npm, Packagist, Go et Chrome, dans le cadre de la campagne "PolinRider". Ces paquets, liés à la campagne "Contagious Interview", visent à voler des données de développeurs et à propager des malwares.</p>
-<a href="https://thehackernews.com/2026/07/north-korean-hackers-publish-108.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fuite de données chez Medtronic liée au groupe ShinyHunters</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Medtronic a notifié ses clients d'une fuite de données impliquant des informations personnelles exposées par le groupe ShinyHunters. Cette violation affecte des milliers de clients et met en lumière les risques liés aux fuites de données dans le secteur médical.</p>
-<a href="https://www.bleepingcomputer.com/news/security/medtronic-notifies-customers-impacted-by-shinyhunters-data-breach/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne "FortiBleed" liée aux ransomwares INC et Lynx</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La campagne "FortiBleed" de vol de credentials a été liée aux opérations de ransomware INC et Lynx. Les credentials volés via cette campagne ont été utilisés pour des intrusions ultérieures dans des réseaux d'entreprises.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fortibleed-credential-theft-campaign-linked-to-lynx-ransomware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 04 Juillet 2026</h2>
-<h3>Ransomware JadePuffer : une attaque entièrement automatisée par IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware JadePuffer est le premier cas documenté d'une attaque entièrement automatisée par un agent de langage modèle (LLM). L'IA a géré l'ensemble de l'attaque, de l'intrusion initiale au chiffrement des données, en passant par la propagation latérale.</p>
-<a href="https://www.bleepingcomputer.com/news/security/jadepuffer-ransomware-used-ai-agent-to-automate-entire-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Paiement de 1 million de dollars à un groupe de ransomware par une entité gouvernementale américaine</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une entité gouvernementale américaine a payé environ 1 million de dollars au groupe Kairos pour éviter la fuite de fichiers volés. Cette transaction, révélée par une étude de Ransom-ISAC, montre l'ampleur des extorsions par ransomware ciblant les institutions publiques.</p>
-<a href="https://thehackernews.com/2026/07/us-government-entity-paid-kairos-group.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne "NetNut" : 2 millions d'appareils infectés déconnectés par une opération conjointe</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une opération conjointe impliquant Google et le FBI a permis de déconnecter le réseau proxy résidentiel NetNut, qui comptait 2 millions d'appareils infectés (smart TV, boîtiers streaming, etc.). Ce réseau était utilisé pour des activités malveillantes à grande échelle.</p>
-<a href="https://www.bleepingcomputer.com/news/security/netnut-proxy-network-disrupted-2-million-infected-devices-cut-off/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Faille critique dans FatFs : 7 vulnérabilités non corrigées dans des millions d'appareils embarqués</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La bibliothèque FatFs, utilisée dans des millions d'appareils embarqués, présente 7 vulnérabilités non corrigées permettant des attaques par exécution de code ou fuite de données. Ces failles affectent les systèmes de fichiers FAT et exFAT.</p>
-<a href="https://thehackernews.com/2026/07/unpatched-flaws-disclosed-in-filesystem.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Nouveau framework malveillant "Avalon" avec capacités de ransomware CrownX</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un nouveau framework malveillant nommé "Avalon" a été découvert, combinant vol de credentials, mouvement latéral, accès à distance et chiffrement de données via le ransomware CrownX. Ce malware est distribué via des chaînes d'attaques par phishing multi-étapes.</p>
-<a href="https://thehackernews.com/2026/07/new-avalon-malware-framework-packs.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une campagne de phishing imite plus de 30 grandes marques (Adobe, Netflix, Coca-Cola, OpenAI) pour voler les identifiants Google de professionnels du marketing via de faux entretiens d'embauche. Les liens malveillants redirigent vers des pages de connexion frauduleuses. Google n'a pas encore déployé de blocage spécifique.</p>
+<a href="https://www.bleepingcomputer.com/news/security/phishing-poses-as-big-brand-job-interview-to-steal-google-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
