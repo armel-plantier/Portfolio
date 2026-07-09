@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/07/2026 au 09/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/07/2026 au 10/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 09/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 10/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,87 +75,111 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mardi 06 Juillet 2026</h2>
-<h3>FatFs : 7 failles non patchées menacent des millions de systèmes embarqués</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Sept vulnérabilités critiques non corrigées dans FatFs, une bibliothèque logicielle omniprésente dans les systèmes embarqués, exposent des millions d'appareils IoT à des risques d'exécution de code arbitraire ou de déni de service. Les correctifs sont difficiles à déployer en raison de la nature statique de nombreux firmwares.</p>
-<a href="https://www.it-connect.fr/fatfs-sept-failles-sans-correctif-appareils-iot/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Bad Epoll : la faille Linux qui donne un accès root sur Android</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Bad Epoll (CVE-2026-46242) est une faille critique du noyau Linux exploitable localement pour obtenir un accès root sur Android et Linux. Cette vulnérabilité, passée inaperçue même auprès de solutions d'IA comme Mythos, permet une élévation de privilèges complète sur des systèmes non patchés.</p>
-<a href="https://www.it-connect.fr/bad-epoll-faille-noyau-linux-android-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Dawarich : l’alternative open source et auto-hébergée à Google Timeline</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Dawarich propose une solution open source pour remplacer Google Timeline, permettant aux utilisateurs de stocker et visualiser leurs données de localisation en auto-hébergement. Idéal pour les administrateurs système soucieux de confidentialité et de souveraineté des données.</p>
-<a href="https://www.it-connect.fr/dawarich-alternative-auto-hebergee-google-timeline/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
+            <h2>Mercredi 07 Juillet 2026</h2>
 <h3>Januscape : 16 ans dans l’ombre pour cette faille KVM qui menace le cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Januscape (CVE-2026-53359), une faille use-after-free dans KVM restée 16 ans sans correction, permet à une VM Intel/AMD de planter son hôte ou de s'en échapper. Cette vulnérabilité critique impacte la sécurité des environnements cloud et virtualisés.</p>
+<p><strong>Résumé</strong> : Januscape (CVE-2026-53359), une faille use-after-free découverte dans KVM après 16 ans d'existence, permet à une machine virtuelle (Intel/AMD) de planter son hôte ou d'en sortir. Critique pour les environnements cloud et virtualisés, elle nécessite une mise à jour urgente du noyau Linux.</p>
 <a href="https://www.it-connect.fr/januscape-faille-kvm-evasion-vm-hote/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>France to Stop Certifying Non-Quantum-Safe Encryption</h3>
+<h3>Proton 11.0 : Valve améliore la compatibilité des jeux sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'ANSSI accélère sa transition vers le chiffrement post-quantique en refusant désormais de certifier les produits utilisant des algorithmes non résistants aux attaques quantiques. Une mesure cruciale pour anticiper l'ère des ordinateurs quantiques.</p>
-<a href="https://www.schneier.com/blog/archives/2026/07/france-to-stop-certifying-non-quantum-safe-encryption.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+<p><strong>Résumé</strong> : Proton 11.0, basé sur Wine 11, apporte des correctifs pour des jeux EA, un meilleur support VR et une compatibilité élargie sous Linux. Idéal pour les administrateurs gérant des postes de travail hybrides ou des serveurs gaming.</p>
+<a href="https://www.it-connect.fr/proton-11-0-compatibilite-jeux-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h2>Mercredi 07 Juillet 2026</h2>
-<h3>Windows 11 26H2 : la sauvegarde des paramètres activée par défaut sur les PC</h3>
+<h3>Windows 11 : Cloud Rebuild réinstalle votre PC depuis le cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Avec Windows 11 26H2, Microsoft active par défaut la sauvegarde des paramètres utilisateur sur les PC d'entreprise, facilitant la restauration des configurations. Une fonctionnalité à surveiller pour les administrateurs système, notamment pour les déploiements massifs.</p>
+<p><strong>Résumé</strong> : Microsoft teste Cloud Rebuild sur Windows 11, permettant une réinstallation complète de l'OS et des pilotes via Windows Update, même si le PC ne démarre plus. Solution pratique pour les administrateurs en télémaintenance.</p>
+<a href="https://www.it-connect.fr/windows-11-cloud-rebuild-reinstallation-cloud/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Windows 11 26H2 : sauvegarde des paramètres activée par défaut</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Avec Windows 11 26H2, Microsoft active par défaut la sauvegarde des paramètres sur les PC d'entreprise (hors UE). Utile pour la reprise après sinistre, mais à surveiller pour les politiques de confidentialité.</p>
 <a href="https://www.it-connect.fr/windows-11-26h2-windows-backup-organizations-active-par-defaut/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>CERT/CC Warns of Hidden Admin Backdoor in Tenda Router Firmware</h3>
+<h3>CISA ajoute 4 failles activement exploitées à son catalogue KEV</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT/CC alerte sur une porte dérobée administrative non documentée dans plusieurs versions du firmware des routeurs Tenda. Cette vulnérabilité permet un accès privilégié aux interfaces de gestion via une authentification cachée.</p>
+<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-48282 (Adobe), CVE-2026-50746 (Joomla), CVE-2026-50747 et CVE-2026-50748 (Langflow) à son catalogue KEV. Priorité absolue pour les correctifs sur les systèmes exposés.</p>
+<a href="https://thehackernews.com/2026/07/cisa-adds-4-actively-exploited-adobe.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CERT/CC alerte sur une porte dérobée admin dans les routeurs Tenda</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs firmwares Tenda contiennent une porte dérobée non documentée permettant un accès admin non autorisé. Recommandation : mettre à jour ou remplacer les équipements concernés.</p>
 <a href="https://thehackernews.com/2026/07/certcc-warns-of-hidden-admin-backdoor.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>BeyondTrust Patches Critical Auth Bypass Flaws in Remote Support and PRA</h3>
+<h3>Iran-Linked Hackers utilisent le framework Cavern C2 contre Israël</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : BeyondTrust corrige deux vulnérabilités critiques (CVE-2026-XXXX) dans ses solutions Remote Support et Privileged Remote Access, permettant une élévation de privilèges non authentifiée. Les correctifs doivent être appliqués en urgence pour les environnements exposés.</p>
-<a href="https://thehackernews.com/2026/07/beyondtrust-patches-critical-auth.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Open Source Experience 2026 : appel à stands et retour sur l’édition 2025</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'événement Open Source Experience 2026 se tiendra les 9-10 décembre à Paris (Porte de Versailles). L'appel à stands est ouvert, avec un retour sur l'édition 2025 mettant en avant l'évolution des communautés open source et des enjeux DevOps.</p>
-<a href="https://linuxfr.org/news/open-source-experience-2026-appel-a-stands-et-retour-sur-l-edition-2025-osxp2026" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
+<p><strong>Résumé</strong> : Un groupe iranien (MOIS) cible des organisations israéliennes avec Cavern, un nouveau framework modulaire C2. Surveillance accrue des logs réseau recommandée pour les infrastructures critiques.</p>
+<a href="https://thehackernews.com/2026/07/iran-linked-hackers-use-new-cavern-c2.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Jeudi 08 Juillet 2026</h2>
-<h3>Proton 11.0 est disponible : Valve muscle encore la compatibilité des jeux sous Linux</h3>
+<h3>RoguePlanet : Microsoft corrige la zero-day de Defender</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Proton 11.0, basé sur Wine 11, améliore significativement la compatibilité des jeux sous Linux avec des correctifs pour des titres EA, un meilleur support VR et des optimisations pour les jeux classiques. Un outil indispensable pour les administrateurs gérant des postes Linux gaming.</p>
-<a href="https://www.it-connect.fr/proton-11-0-compatibilite-jeux-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft a corrigé RoguePlanet (CVE-2026-50656), une faille zero-day dans Defender permettant une élévation de privilèges SYSTEM. Mise à jour immédiate requise pour Windows 10/11.</p>
+<a href="https://www.it-connect.fr/microsoft-corrige-faille-zero-day-rogueplanet-defender/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Sécurité Active Directory : auditer les délégations LAPS et détecter les failles ACL</h3>
+<h3>Sécurité Active Directory : auditer les délégations LAPS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une mauvaise configuration des délégations LAPS peut exposer les mots de passe admin locaux. Cet article détaille comment auditer les ACL, identifier les accès à risque et corriger les vulnérabilités pour renforcer la sécurité d'Active Directory.</p>
+<p><strong>Résumé</strong> : Une délégation LAPS mal configurée expose les mots de passe admin locaux. Guide pratique pour auditer les ACL et corriger les risques via des outils comme BloodHound.</p>
 <a href="https://www.it-connect.fr/audit-laps-delegation-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>GitHub 'Verified' Commits Can Be Rewritten Into New Hashes Without Breaking Signatures</h3>
+<h3>Ubiquiti corrige des failles critiques dans UniFi OS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une recherche révèle qu'il est possible de réécrire un commit signé GitHub en un nouveau hash tout en conservant une signature valide, contournant ainsi la vérification d'intégrité. Une faille critique pour la chaîne d'approvisionnement logicielle.</p>
-<a href="https://thehackernews.com/2026/07/github-verified-commits-can-be.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Ubiquiti a patché CVE-2026-50746 (CVSS 9.8) et autres failles dans UniFi Connect, Talk, Access et Protect. Priorité pour les environnements utilisant ces solutions réseau.</p>
+<a href="https://thehackernews.com/2026/07/ubiquiti-patches-critical-unifi-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Ghost Phishing Wave Is Breaking Traditional Email Security</h3>
+<h3>GitHub Copilot contourne les restrictions de sécurité en code</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle campagne de "ghost phishing" (EvilTokens) exploite une faille dans les solutions de sécurité email traditionnelles en masquant les pages malveillantes jusqu'à leur activation dans le navigateur de la victime. Une menace difficile à détecter pour les administrateurs.</p>
-<a href="https://thehackernews.com/2026/07/new-ghost-phishing-wave-is-breaking.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une étude révèle que GitHub Copilot peut exécuter des requêtes dangereuses en les décomposant en étapes inoffensives dans l'éditeur. Recommandation : surveiller les logs des agents IA.</p>
+<a href="https://thehackernews.com/2026/07/github-copilot-refuses-harmful-requests.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>France arrête la certification des chiffrement non résistants au quantique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'ANSSI accélère la transition vers le post-quantique en stoppant la certification des produits utilisant des algorithmes non résistants. Planification nécessaire pour les infrastructures sensibles.</p>
+<a href="https://www.schneier.com/blog/archives/2026/07/france-to-stop-certifying-non-quantum-safe-encryption.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
+</div>
+
+<hr />
+<h2>Vendredi 09 Juillet 2026</h2>
+<h3>GhostLock : faille Linux de 15 ans offrant un accès root</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GhostLock (CVE-2026-43499) affecte le noyau Linux depuis 2011, permettant à un utilisateur local d'obtenir les droits root. Mise à jour urgente du noyau requise pour toutes les distributions majeures.</p>
+<a href="https://www.it-connect.fr/ghostlock-faille-linux-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>HTTP QUERY : première nouvelle méthode HTTP depuis 2010</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le RFC 10008 officialise QUERY, une méthode HTTP combinant les avantages de GET (safe) et POST (corps de requête). Intégration à prévoir pour les APIs modernes.</p>
+<a href="https://www.it-connect.fr/methode-http-query-rfc-10008/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>npm 12 désactive les scripts d'installation par défaut</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : npm 12 désactive les scripts d'installation par défaut pour réduire les risques de supply chain. Impact majeur sur les pipelines CI/CD utilisant des dépendances non vérifiées.</p>
+<a href="https://thehackernews.com/2026/07/npm-12-disables-install-scripts-by.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GhostApproval : failles symlink dans les agents IA de codage</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Wiz révèle que 6 outils IA (Claude Code, Cursor, etc.) sont vulnérables à des attaques symlink permettant l'exécution de code malveillant via des dépôts piégés.</p>
+<a href="https://thehackernews.com/2026/07/ghostapproval-symlink-flaws-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>DuckDuckGo bloque les publicités YouTube par défaut</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le navigateur DuckDuckGo bloque désormais les publicités YouTube via les listes uBlock Origin, améliorant la confidentialité et les performances pour les utilisateurs.</p>
+<a href="https://www.it-connect.fr/duckduckgo-navigateur-bloque-publicites-youtube/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
