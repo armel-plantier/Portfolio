@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 06/07/2026 au 10/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 06/07/2026 au 11/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 10/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 11/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,117 +75,295 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 07 Juillet 2026</h2>
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+            <h2>Dimanche 06 Juillet 2026</h2>
+<h3>Multiples vulnérabilités dans Roundcube</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Edge permettent une exécution de code arbitraire à distance, une élévation de privilèges et une atteinte à la confidentialité des données. Un correctif est attendu dans les prochaines mises à jour.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0840/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Ces failles permettent à un attaquant distant de provoquer un déni de service (DoS), une falsification de requêtes côté serveur (SSRF) et une injection de code indirecte à distance (XSS), exposant les utilisateurs à des risques d'exécution de code arbitraire et de vol de données. Les versions vulnérables ne sont pas précisées, mais un correctif est attendu sous 48h.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0835/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
+<hr />
+<h3>Multiples vulnérabilités dans OpenSSH</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectent OpenSSH, dont certaines permettent un contournement de la politique de sécurité, un déni de service (DoS) et des problèmes non documentés par l'éditeur. Ces failles pourraient être exploitées pour élever des privilèges ou exécuter du code arbitraire sur les systèmes exposés. Un correctif urgent est recommandé pour toutes les versions impactées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0836/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilité dans PostgreSQL JDBC</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille de sécurité critique dans le pilote JDBC de PostgreSQL permet à un attaquant de contourner les politiques de sécurité, potentiellement en accédant à des données sensibles ou en exécutant des requêtes SQL non autorisées. Cette vulnérabilité affecte les applications Java utilisant ce pilote pour interagir avec des bases de données PostgreSQL. Un correctif est disponible depuis le 06/07/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0837/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h2>Lundi 07 Juillet 2026</h2>
 <h3>Multiples vulnérabilités dans SPIP</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SPIP est affecté par des vulnérabilités permettant une atteinte à la confidentialité des données, une injection SQL (SQLi) et une injection de code indirecte à distance (XSS). Un correctif est disponible via une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : SPIP, un CMS populaire en France, est affecté par plusieurs vulnérabilités critiques, dont des injections SQL (SQLi) et des XSS, permettant une atteinte à la confidentialité et à l'intégrité des données. Un attaquant pourrait exploiter ces failles pour voler des sessions, injecter du code malveillant ou prendre le contrôle du site. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0838/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
+<hr />
 <h3>Vulnérabilité dans Mozilla Firefox pour iOS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Firefox pour iOS permet un contournement de la politique de sécurité. Mozilla a déployé un correctif dans la dernière version.</p>
+<p><strong>Résumé</strong> : Une faille de sécurité critique dans Firefox pour iOS permet à un attaquant de contourner les politiques de sécurité, potentiellement en exécutant du code arbitraire ou en accédant à des données sensibles. Cette vulnérabilité affecte les utilisateurs mobiles et nécessite une mise à jour urgente de l'application. Un correctif est disponible depuis le 07/07/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0839/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft Edge est touché par plusieurs vulnérabilités critiques, dont une permettant l'exécution de code arbitraire à distance (RCE), une élévation de privilèges et une fuite de données. Ces failles pourraient être exploitées via des pages web malveillantes ou des pièces jointes infectées. Un correctif est disponible via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0840/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Microsoft Azure Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités non documentées affectent Microsoft Azure Linux, permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Ces failles pourraient compromettre l'intégrité des machines virtuelles ou des conteneurs hébergés sur Azure. Microsoft n'a pas encore publié de correctif, mais une mise à jour est attendue sous 72h.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0841/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Postfix</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Postfix, un serveur de messagerie SMTP populaire, est affecté par des vulnérabilités critiques permettant un déni de service (DoS) et des problèmes de sécurité non documentés. Ces failles pourraient être exploitées pour interrompre les services de messagerie ou exécuter du code arbitraire. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0842/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans PHP</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans PHP permettent à un attaquant de provoquer des problèmes de sécurité non spécifiés, potentiellement en exécutant du code arbitraire ou en accédant à des données sensibles. Ces failles affectent les applications web utilisant PHP et nécessitent une mise à jour urgente. Un correctif est disponible depuis le 07/07/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0843/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilité dans Synacor Zimbra Collaboration</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille XSS critique dans Zimbra Collaboration permet à un attaquant d'injecter du code malveillant dans les interfaces web, exposant les utilisateurs à des risques de vol de sessions ou d'exécution de code. Cette vulnérabilité affecte les versions non patchées et nécessite une mise à jour urgente. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0844/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
 <h2>Mardi 08 Juillet 2026</h2>
 <h3>Multiples vulnérabilités dans les produits Foxit</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Foxit est vulnérable à des failles critiques permettant une exécution de code arbitraire à distance, une élévation de privilèges et une fuite de données. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Foxit, éditeur de logiciels PDF, est touché par plusieurs vulnérabilités critiques permettant l'exécution de code arbitraire à distance (RCE), une élévation de privilèges et une fuite de données. Ces failles pourraient être exploitées via des fichiers PDF malveillants. Un correctif est disponible pour toutes les versions impactées.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0845/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits HPE Aruba Networking</h3>
+<hr />
+<h3>Multiples vulnérabilités dans HPE Aruba Networking</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : HPE Aruba Networking expose des systèmes à des attaques par déni de service à distance, des fuites de données et des contournements de sécurité. Des correctifs sont publiés.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits HPE Aruba Networking permettent un déni de service à distance (DoS), une fuite de données et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour compromettre les infrastructures réseau critiques. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0846/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
+<hr />
 <h3>Multiples vulnérabilités dans Joomla!</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Joomla! est touché par des vulnérabilités critiques (atteinte à la confidentialité, intégrité des données et XSS). Une mise à jour urgente est recommandée.</p>
+<p><strong>Résumé</strong> : Joomla!, un CMS largement utilisé, est affecté par des vulnérabilités critiques permettant une fuite de données, une altération de données et des XSS. Ces failles pourraient être exploitées pour prendre le contrôle de sites web ou voler des informations sensibles. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0847/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Hackers exploit Roundcube flaw to spy on academic researchers</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un groupe lié à la Chine exploite une faille Roundcube pour voler des identifiants et déployer des backdoors sur des serveurs universitaires américains et canadiens. Un correctif existe.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-roundcube-flaw-to-spy-on-academic-researchers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Mount Royal University confirms breach as hackers claim attack</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L’université Mount Royal (Canada) confirme une intrusion ayant conduit au vol et à la suppression de données. La source de l’attaque reste indéterminée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/mount-royal-university-confirms-breach-as-hackers-claim-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fake Paysafe, Skrill SDKs on NPM and PyPi steal credentials</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des paquets malveillants sur NPM et PyPi, imitant Paysafe et Skrill, volent les identifiants des développeurs. Les dépôts officiels ont été nettoyés.</p>
-<a href="https://www.bleepingcomputer.com/news/security/fake-paysafe-skrill-sdks-on-npm-and-pypi-steal-credentials/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 09 Juillet 2026</h2>
 <h3>Multiples vulnérabilités dans Google Chrome</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Google Chrome est affecté par des vulnérabilités non détaillées, mais critiques. Une mise à jour est disponible via Chrome Update.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Google Chrome permettent à un attaquant de provoquer des problèmes de sécurité non spécifiés, potentiellement en exécutant du code arbitraire ou en accédant à des données sensibles. Ces failles affectent les utilisateurs de Chrome et nécessitent une mise à jour urgente. Un correctif est disponible depuis le 09/07/2026.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0848/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
+<hr />
 <h3>Multiples vulnérabilités dans Wireshark</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Wireshark présente des failles permettant un déni de service à distance et une fuite de données. Un correctif est publié.</p>
+<p><strong>Résumé</strong> : Wireshark, un outil d'analyse réseau, est touché par des vulnérabilités critiques permettant un déni de service à distance (DoS) et une fuite de données. Ces failles pourraient être exploitées pour interrompre les analyses réseau ou voler des informations sensibles. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0849/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
+<hr />
 <h3>Multiples vulnérabilités dans GitLab</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GitLab souffre de vulnérabilités critiques (XSS, fuite de données, contournement de sécurité). Une mise à jour urgente est nécessaire.</p>
+<p><strong>Résumé</strong> : GitLab est affecté par des vulnérabilités critiques permettant une fuite de données, des XSS et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour voler des tokens d'accès ou injecter du code malveillant dans les dépôts. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0850/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Juniper Networks</h3>
+<hr />
+<h3>Multiples vulnérabilités dans Traefik</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Juniper Networks expose ses utilisateurs à des risques d’exécution de code arbitraire, déni de service et fuite de données. Des correctifs sont disponibles.</p>
+<p><strong>Résumé</strong> : Traefik, un reverse proxy et load balancer, est touché par des vulnérabilités critiques permettant un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour accéder à des services internes ou exécuter du code arbitraire. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0851/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Juniper Networks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Juniper Networks est affecté par des vulnérabilités critiques permettant une exécution de code arbitraire, un déni de service à distance (DoS) et une fuite de données. Ces failles pourraient compromettre les infrastructures réseau critiques. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0852/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Palo Alto Networks</h3>
+<hr />
+<h3>Multiples vulnérabilités dans Palo Alto Networks</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Palo Alto Networks est vulnérable à des attaques par exécution de code arbitraire, élévation de privilèges et déni de service. Des correctifs sont publiés.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Palo Alto Networks permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service à distance (DoS). Ces failles pourraient être exploitées pour compromettre les pare-feux et les solutions de sécurité. Un correctif est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0853/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>AssuranceAmerica data breach exposes records of 6.9 million drivers</h3>
+<hr />
+<h3>Vulnérabilité dans Microsoft Edge (répétée)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L’assureur américain AssuranceAmerica révèle une fuite de données impactant 6,9 millions de conducteurs. Les données exposées incluent des informations personnelles sensibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/assuranceamerica-data-breach-exposes-records-of-69-million-drivers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille de sécurité critique dans Microsoft Edge permet à un attaquant de contourner les politiques de sécurité, potentiellement en exécutant du code arbitraire ou en accédant à des données sensibles. Cette vulnérabilité affecte les utilisateurs de Edge et nécessite une mise à jour urgente. Un correctif est disponible via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0854/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Microsoft patches RoguePlanet Defender zero-day vulnerability</h3>
+<hr />
+<h2>Jeudi 10 Juillet 2026</h2>
+<h3>Multiples vulnérabilités dans Progress MOVEit Transfer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft corrige CVE-2026-50656, une faille zero-day dans Defender permettant une élévation de privilèges (SYSTEM). Le correctif est intégré dans les dernières mises à jour.</p>
-<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-patches-rogueplanet-defender-zero-day-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Progress MOVEit Transfer, une solution de transfert de fichiers sécurisés, est affectée par des vulnérabilités critiques permettant une élévation de privilèges, une fuite de données et des XSS. Ces failles pourraient être exploitées pour accéder à des fichiers sensibles ou exécuter du code malveillant. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0856/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>New GigaWiper Windows Backdoor Bundles Disk Wiping, Fake Ransomware, and Spyware</h3>
+<hr />
+<h3>Vulnérabilité dans NetApp ONTAP 9</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GigaWiper est un nouveau backdoor Windows combinant destruction de disque, faux ransomware et spyware. Microsoft a analysé et documenté cette menace.</p>
-<a href="https://thehackernews.com/2026/07/new-gigawiper-windows-backdoor-bundles.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique dans NetApp ONTAP 9 permet à un attaquant de provoquer un déni de service à distance (DoS) et une altération de données. Cette vulnérabilité affecte les systèmes de stockage NetApp et nécessite une mise à jour urgente. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0857/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>GodDamn Ransomware Uses PoisonX Driver to Disable Endpoint Defenses</h3>
+<hr />
+<h3>Vulnérabilité dans CPython</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware GodDamn utilise le driver PoisonX pour désactiver les solutions de sécurité. Symantec recommande une mise à jour immédiate des systèmes.</p>
-<a href="https://thehackernews.com/2026/07/goddamn-ransomware-uses-poisonx-driver.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique dans CPython, l'implémentation de référence de Python, permet à un attaquant de provoquer un déni de service à distance (DoS). Cette vulnérabilité affecte les applications Python et nécessite une mise à jour urgente. Un correctif est disponible depuis le 10/07/2026.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0858/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans Suricata</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Suricata, un moteur de détection d'intrusions (IDS/IPS), est touché par des vulnérabilités critiques permettant à un attaquant de provoquer des problèmes de sécurité non spécifiés. Ces failles pourraient compromettre les capacités de détection des attaques réseau. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0859/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans les produits Siemens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits Siemens permettent une exécution de code arbitraire, une élévation de privilèges et un déni de service à distance (DoS). Ces failles pourraient compromettre les systèmes industriels et les infrastructures critiques. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0860/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans le noyau Linux d'Ubuntu</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux d'Ubuntu permettent une élévation de privilèges, une fuite de données et un contournement des politiques de sécurité. Ces failles pourraient être exploitées pour compromettre les systèmes Linux. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0861/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans le noyau Linux de Debian LTS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux de Debian LTS permettent une élévation de privilèges, une fuite de données et un déni de service (DoS). Ces failles pourraient compromettre les systèmes Debian. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0862/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux de Red Hat permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et un déni de service à distance (DoS). Ces failles pourraient compromettre les systèmes Red Hat. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0863/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans le noyau Linux de SUSE</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans le noyau Linux de SUSE permettent une fuite de données, une altération de données et un contournement des politiques de sécurité. Ces failles pourraient compromettre les systèmes SUSE. Un correctif est disponible via les mises à jour du noyau.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0864/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités dans les produits IBM</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits IBM permettent un déni de service à distance (DoS), une fuite de données et une falsification de requêtes côté serveur (SSRF). Ces failles pourraient compromettre les infrastructures IBM. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0865/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>AssuranceAmerica : 6,99 millions de clients exposés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'assureur américain AssuranceAmerica a confirmé une fuite de données massive affectant 6,99 millions de clients, exposant des permis de conduire et des informations personnelles. Cette violation, non chiffrée, pourrait entraîner des risques d'usurpation d'identité et de phishing ciblé. Aucune preuve d'exploitation n'a été signalée pour l'instant.</p>
+<a href="https://www.zataz.com/assuranceamerica-699-millions-de-clients-exposes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<hr />
+<h3>LHDN : 10 millions de dossiers fiscaux en vente</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le fisc malaisien (LHDN) est victime d'une fuite massive revendiquant la vente de 10 millions de dossiers fiscaux, incluant des données personnelles et financières sensibles. Cette violation, si confirmée, représente un risque cyber critique pour les contribuables malaisiens. Aucune confirmation officielle n'a été publiée.</p>
+<a href="https://www.zataz.com/lhdn-10-millions-de-dossiers-fiscaux-en-vente/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<hr />
+<h3>Nayax visée par un « Syndicate » du cybercrime</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe de paiement Nayax a été ciblé par une revendication attribuée à un "Syndicate" du cybercrime, exposant potentiellement les données de 1 milliard de cartes bancaires et des informations clients. Cette attaque pourrait avoir des répercussions mondiales sur les systèmes de paiement. Aucune confirmation officielle n'a été publiée.</p>
+<a href="https://www.zataz.com/nayax-visee-par-un-syndicate-du-cybercrime/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<hr />
+<h3>New U-Boot flaws could enable stealthy firmware attacks</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Six vulnérabilités critiques dans U-Boot, le chargeur de démarrage utilisé dans des millions d'appareils (routeurs, caméras, serveurs), permettent des attaques furtives du firmware. Ces failles pourraient permettre l'exécution de code malveillant au démarrage, contournant les protections de sécurité et installant des malwares persistants. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-u-boot-flaws-could-enable-stealthy-firmware-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Ryuk ransomware member pleads guilty in the US, faces 15 years in prison</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un membre arménien du groupe de ransomware Ryuk a plaidé coupable aux États-Unis pour avoir déployé le malware contre des entreprises américaines, chiffrant leurs systèmes. Condamné à 15 ans de prison, cette affaire marque un tournant dans la lutte contre les groupes de ransomware organisés. Aucune rançon n'a été récupérée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ryuk-ransomware-member-pleads-guilty-in-the-us-faces-15-years-in-prison/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Progress urges ShareFile admins to shut down servers over “credible” threat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Progress Software a ordonné aux administrateurs ShareFile de **désactiver immédiatement** leurs serveurs Storage Zone Controllers en raison d'une menace externe "crédible". Cette mesure préventive vise à éviter une exploitation potentielle de vulnérabilités non divulguées. Aucune preuve d'exploitation n'a été signalée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/progress-urges-sharefile-customers-to-shut-down-servers-over-credible-threat/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Hackers exploit critical auth bypass in Gitea Docker image</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants exploitent activement une faille critique d'authentification dans l'image Docker officielle de Gitea, permettant de se faire passer pour n'importe quel utilisateur, y compris les administrateurs. Cette vulnérabilité affecte les instances auto-hébergées de Gitea et nécessite une mise à jour urgente de l'image Docker.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-auth-bypass-in-gitea-docker-image/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>URGENT - Progress Tells ShareFile Customers to Shut Down Storage Zone Controllers Over Security Threat</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Progress Software a ordonné aux clients ShareFile de **désactiver immédiatement** leurs serveurs Storage Zone Controllers en raison d'une menace externe "crédible". Cette mesure préventive vise à éviter une exploitation potentielle de vulnérabilités non divulguées. Aucune preuve d'exploitation n'a été signalée.</p>
+<a href="https://thehackernews.com/2026/07/urgent-progress-tells-sharefile.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Injective Labs GitHub Compromise Pushes Wallet-Key-Stealing npm Packages</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont compromis le dépôt GitHub d'Injective Labs SDK pour publier un package npm malveillant (@injectivelabs/sdk-ts@1.20.21) volant les clés privées et phrases de récupération des portefeuilles cryptographiques. Cette attaque ciblée affecte les développeurs utilisant ce package. Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/07/injective-labs-github-compromise-pushes.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Six New U-Boot Flaws Could Let Malicious Images Crash Devices or Run Code at Boot</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Six nouvelles vulnérabilités dans U-Boot, le chargeur de démarrage utilisé dans des millions d'appareils (routeurs, caméras, serveurs), permettent des attaques furtives du firmware. Quatre failles peuvent planter un appareil, tandis que les deux autres permettent l'exécution de code au démarrage, contournant les protections de sécurité. Un correctif est disponible.</p>
+<a href="https://thehackernews.com/2026/07/six-new-u-boot-flaws-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Zimbra urges customers to patch critical web client XSS flaw</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Zimbra a urgent ses clients de corriger une faille XSS critique dans le **Classic Web Client**, permettant l'injection de code malveillant dans les interfaces web. Cette vulnérabilité affecte les versions non patchées de Zimbra Collaboration et expose les utilisateurs à des risques de vol de sessions ou d'exécution de code. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/zimbra-urges-customers-to-patch-critical-web-client-xss-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
