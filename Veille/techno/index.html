@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/07/2026 au 11/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 06/07/2026 au 12/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 11/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 12/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,81 +75,103 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 09 Juillet 2026</h2>
-<h3>GhostLock : faille Linux critique depuis 15 ans</h3>
+            <h2>Lundi 07 Juillet 2026</h2>
+<h3>GhostLock : cette faille Linux vieille de 15 ans offre un accès root sur la majorité des distributions</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-43499) dans le noyau Linux, découverte via IA, permet à un utilisateur local d'obtenir les privilèges root sur la majorité des distributions. Présente depuis 2011, cette vulnérabilité affecte les systèmes non patchés et nécessite une mise à jour immédiate du noyau.</p>
+<p><strong>Résumé</strong> : Découverte à l'aide d'une IA, GhostLock (CVE-2026-43499) est une faille du noyau Linux présente depuis 2011. Elle permet à un utilisateur local de devenir root, exposant ainsi des millions de systèmes à une élévation de privilèges critique. Les distributions majeures (Ubuntu, Debian, RHEL, etc.) sont vulnérables sauf mise à jour immédiate.</p>
 <a href="https://www.it-connect.fr/ghostlock-faille-linux-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>HTTP QUERY : nouvelle méthode HTTP depuis 2010</h3>
+<hr />
+<h2>Mardi 08 Juillet 2026</h2>
+<h3>Proton 11.0 est disponible : Valve muscle encore la compatibilité des jeux sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le RFC 10008 officialise la méthode HTTP QUERY, combinant les avantages de GET (safe) et POST (corps de requête). Cette évolution simplifie les interactions API et réduit les risques liés aux requêtes POST traditionnelles. Les administrateurs doivent adapter leurs proxys et règles de filtrage.</p>
-<a href="https://www.it-connect.fr/methode-http-query-rfc-10008/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>npm 12 désactive les scripts d'installation par défaut</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : GitHub annonce npm 12 avec les scripts d'installation désactivés par défaut pour réduire les risques de supply chain. Les tokens d'accès granulaires (GAT) sont également dépréciés. Cette mise à jour impacte les pipelines CI/CD et nécessite une révision des workflows.</p>
-<a href="https://thehackernews.com/2026/07/npm-12-disables-install-scripts-by.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Proton 11.0 améliore la compatibilité des jeux sous Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Valve publie Proton 11.0 basé sur Wine 11, avec des corrections pour des jeux EA, un meilleur support VR et des optimisations pour les titres récents. Cette version est cruciale pour les environnements hybrides Linux/Windows en entreprise.</p>
+<p><strong>Résumé</strong> : Valve a publié Proton 11.0, basé sur Wine 11, avec des améliorations majeures pour la compatibilité des jeux Windows sous Linux. Cette version corrige des bugs critiques dans des titres populaires, renforce le support VR et optimise les performances. Un outil indispensable pour les administrateurs gérant des postes Linux gaming ou hybrides.</p>
 <a href="https://www.it-connect.fr/proton-11-0-compatibilite-jeux-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft corrige la zero-day RoguePlanet dans Defender</h3>
+<h3>Sécurité Active Directory : auditer les délégations LAPS et détecter les failles ACL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé CVE-2026-50656, une faille d'escalade de privilèges dans le moteur de protection de Defender. Un correctif urgent est recommandé pour éviter les attaques SYSTEM. Attention aux effets de bord signalés sur certains systèmes.</p>
-<a href="https://thehackernews.com/2026/07/microsoft-patches-rogueplanet-defender.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une mauvaise délégation LAPS (Local Administrator Password Solution) peut exposer les mots de passe admin locaux. Cet article propose une méthode concrète pour auditer les ACL, identifier les accès à risque et corriger les configurations vulnérables. Essentiel pour les équipes DevOps/Sécurité gérant des environnements Active Directory.</p>
+<a href="https://www.it-connect.fr/audit-laps-delegation-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>npm 12 désactive les scripts d'installation par défaut pour réduire les risques de supply chain</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GitHub annonce npm 12 avec les scripts d'installation (comme `preinstall`) désactivés par défaut. Cette mesure réduit les risques de malware via des paquets npm compromis. Les administrateurs doivent adapter leurs pipelines CI/CD et former les équipes aux nouvelles bonnes pratiques.</p>
+<a href="https://thehackernews.com/2026/07/npm-12-disables-install-scripts-by.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA ajoute 4 failles activement exploitées (Adobe, Joomla, Langflow) à son catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté 4 vulnérabilités à son catalogue KEV, dont une faille critique (CVE-2026-48282, score CVSS 10.0) dans un logiciel Adobe. Les administrateurs doivent prioriser les correctifs pour ces failles déjà exploitées en attaque réelle.</p>
+<a href="https://thehackernews.com/2026/07/cisa-adds-4-actively-exploited-adobe.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mercredi 09 Juillet 2026</h2>
+<h3>HTTP QUERY : la première méthode ajoutée à HTTP depuis 2010</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le RFC 10008 officialise la méthode HTTP QUERY, combinant les avantages de POST (corps de requête) et GET (safe/idempotent). Cette évolution simplifie les APIs et réduit les risques de fuites de données. Les administrateurs DevOps doivent évaluer l'impact sur leurs services web.</p>
+<a href="https://www.it-connect.fr/methode-http-query-rfc-10008/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>GhostApproval : des failles de liens symboliques dans les assistants IA permettent l'exécution de code malveillant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Wiz révèle que 6 assistants IA populaires (dont GitHub Copilot) sont vulnérables à des attaques via des dépôts malveillants exploitant des liens symboliques. Un attaquant peut remplacer un fichier inoffensif par un fichier critique (ex: `.bashrc`). Les équipes DevOps doivent auditer leurs workflows CI/CD.</p>
+<a href="https://thehackernews.com/2026/07/ghostapproval-symlink-flaws-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>France accélère la transition vers le chiffrement post-quantum</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'ANSSI annonce l'arrêt de la certification des produits utilisant un chiffrement non résistant aux attaques quantiques. Les administrateurs doivent planifier la migration vers des algorithmes comme CRYSTALS-Kyber ou SIKE pour sécuriser les infrastructures critiques.</p>
+<a href="https://www.schneier.com/blog/archives/2026/07/france-to-stop-certifying-non-quantum-safe-encryption.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
 <hr />
 <h2>Jeudi 10 Juillet 2026</h2>
-<h3>Chatto passe en open source</h3>
+<h3>Microsoft prévient : l’IA va faire gonfler vos Patch Tuesday</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Hendrik Mans publie Chatto, une messagerie d'équipe auto-hébergée en un seul binaire, alternative à Teams/Slack/Discord. Idéal pour les environnements sensibles ou les infrastructures sans dépendances lourdes. Le code est disponible sur GitHub.</p>
+<p><strong>Résumé</strong> : Microsoft utilise désormais l'IA (via son système MDASH) pour détecter des failles dans Windows, augmentant le volume de correctifs du Patch Tuesday. Les administrateurs doivent anticiper une charge accrue et automatiser les tests de compatibilité.</p>
+<a href="https://www.it-connect.fr/microsoft-ia-plus-de-mises-a-jour-securite-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Chatto passe en open source : un seul binaire pour remplacer Teams, Slack et Discord ?</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Hendrik Mans publie Chatto, une messagerie d'équipe auto-hébergée en un seul binaire Go. Idéal pour les équipes DevOps cherchant une alternative légère et sécurisée aux solutions SaaS. Le projet est disponible sur GitHub et supporte les protocoles Matrix/Element.</p>
 <a href="https://www.it-connect.fr/chatto-messagerie-equipe-open-source-auto-hebergee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft 365 : attaques par passkey Entra</h3>
+<h3>DEBULL : ce kit de phishing détourne le device code de Microsoft 365 pour contourner le MFA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants utilisent des appels téléphoniques pour inciter les victimes à enregistrer une passkey Entra, tout en enregistrant la leur. Cette technique contourne le MFA et nécessite une sensibilisation des utilisateurs et une surveillance des logs Azure AD.</p>
-<a href="https://www.it-connect.fr/vishing-passkey-entra-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : ZeroBEC découvre DEBULL, un kit de phishing exploitant les codes d'appareil Microsoft 365 pour pirater des comptes sans voler de mot de passe. Les administrateurs doivent renforcer la surveillance des logs MFA et désactiver les codes d'appareil non autorisés.</p>
+<a href="https://www.it-connect.fr/debull-device-code-phishing-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Progress ShareFile : vulnérabilité critique</h3>
+<h3>Microsoft corrige la zero-day RoguePlanet qui donnait les privilèges SYSTEM</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Progress Software demande l'arrêt immédiat des Storage Zone Controllers ShareFile en raison d'une menace externe crédible. Les comptes concernés sont temporairement désactivés. Une mise à jour urgente est nécessaire pour les environnements cloud partagés.</p>
-<a href="https://thehackernews.com/2026/07/urgent-progress-tells-sharefile.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Microsoft a corrigé RoguePlanet (CVE-2026-50656), une faille critique dans Defender permettant une élévation de privilèges SYSTEM. Les administrateurs doivent appliquer le correctif urgent et vérifier les logs pour détecter d'éventuelles exploitations.</p>
+<a href="https://www.it-connect.fr/microsoft-corrige-faille-zero-day-rogueplanet-defender/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Injective Labs : compromission GitHub et malware npm</h3>
+<h3>Hackers Weaponize Balochistan Police Portal dans des campagnes d'espionnage multi-groupes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants ont compromis le dépôt GitHub d'Injective Labs pour publier un package npm malveillant (@injectivelabs/sdk-ts@1.20.21) volant les clés privées de portefeuilles crypto. Une alerte sur les dépendances tierces est recommandée.</p>
-<a href="https://thehackernews.com/2026/07/injective-labs-github-compromise-pushes.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>DuckDuckGo bloque les publicités YouTube par défaut</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le navigateur DuckDuckGo bloque désormais les publicités vidéo YouTube sur iOS, Windows et macOS via les listes uBlock Origin. Une fonctionnalité utile pour réduire la bande passante et améliorer la confidentialité en entreprise.</p>
-<a href="https://www.it-connect.fr/duckduckgo-navigateur-bloque-publicites-youtube/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Des acteurs chinois et indiens exploitent une faille dans un portail policier pakistanais pour mener des attaques d'espionnage contre des organisations gouvernementales. Les administrateurs doivent surveiller les connexions suspectes vers des IP asiatiques et auditer les logs Apache/Nginx.</p>
+<a href="https://thehackernews.com/2026/07/hackers-weaponize-balochistan-police.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Vendredi 11 Juillet 2026</h2>
-<h3>DEBULL : kit de phishing par device code Microsoft 365</h3>
+<h3>Compromised jscrambler 8.14.0 npm Release Drops Rust Infostealer During Install</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : ZeroBEC a identifié DEBULL, un outil de phishing exploitant le flux de code appareil de Microsoft 365 pour pirater des comptes sans voler de mot de passe. Les administrateurs doivent surveiller les tentatives de connexion suspectes via les logs Azure AD.</p>
-<a href="https://www.it-connect.fr/debull-device-code-phishing-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le paquet npm jscrambler 8.14.0 a été compromis et installe un infostealer Rust (Windows/macOS/Linux) via un hook `preinstall`. Les administrateurs doivent vérifier les dépendances npm et bloquer les paquets suspects via des outils comme `npm audit` ou des politiques de registry privé.</p>
+<a href="https://thehackernews.com/2026/07/compromised-jscrambler-8140-npm-release.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CISA ajoute 4 vulnérabilités à son catalogue KEV</h3>
+<h3>Critical Zimbra Flaw Could Let Crafted Emails Run Malicious Code in User Sessions</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-48282 (Adobe), CVE-2026-50746 (Joomla), et deux autres à son catalogue KEV, toutes exploitées activement. Les administrateurs doivent prioriser les correctifs pour ces composants critiques.</p>
-<a href="https://thehackernews.com/2026/07/cisa-adds-4-actively-exploited-adobe.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille XSS stockée dans Zimbra (Classic Web Client) permet l'exécution de code arbitraire via des emails malveillants. Zimbra recommande une mise à jour urgente. Les administrateurs doivent tester les correctifs et surveiller les tentatives d'exploitation.</p>
+<a href="https://thehackernews.com/2026/07/critical-zimbra-flaw-could-let-crafted_0483473395.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
