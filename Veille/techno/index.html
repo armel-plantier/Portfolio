@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 06/07/2026 au 13/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 13/07/2026 au 14/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 06/07/2026 au 13/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 14/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,93 +75,54 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 09 Juillet 2026</h2>
-<h3>GhostLock : faille Linux de 15 ans permettant un accès root</h3>
+            <h2>Dimanche 13 Juillet 2026</h2>
+<h3>Microsoft 365 : rappel d'e-mails inter-tenant disponible dès août 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-43499) découverte via IA dans le noyau Linux depuis 2011 permet à un utilisateur local d'obtenir des privilèges root sur la majorité des distributions. Cette vulnérabilité affecte les systèmes non patchés et nécessite une attention immédiate pour les administrateurs.</p>
-<a href="https://www.it-connect.fr/ghostlock-faille-linux-acces-root/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft déploiera en août 2026 la fonctionnalité de rappel d'e-mails inter-tenant sur Exchange Online. Les administrateurs pourront configurer une liste d'autorisation pour permettre ou bloquer le rappel de messages envoyés à d'autres organisations. Une évolution majeure pour la gestion des communications externes.</p>
+<a href="https://www.it-connect.fr/exchange-online-rappel-message-inter-tenant/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>HTTP QUERY : première nouvelle méthode HTTP depuis 2010</h3>
+<h3>Debian 13.6 : correctifs de sécurité et mise à jour de fwupd</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le RFC 10008 officialise la méthode HTTP QUERY, combinant les avantages des requêtes POST (corps de requête) et GET (safe). Cette évolution impacte les développeurs et administrateurs gérant des APIs, offrant une alternative plus sécurisée pour les requêtes idempotentes.</p>
-<a href="https://www.it-connect.fr/methode-http-query-rfc-10008/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Debian 13.6 apporte des correctifs de sécurité critiques et met à jour fwupd pour accompagner l'expiration du certificat UEFI Secure Boot. Une mise à jour essentielle pour maintenir la sécurité des systèmes Debian, notamment dans les environnements critiques.</p>
+<a href="https://www.it-connect.fr/debian-13-6-les-nouveautes/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>npm 12 désactive les scripts d'installation par défaut</h3>
+<h3>Graviton5 vs Xeon Granite Rapids et EPYC Turin : benchmarks AWS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GitHub annonce npm 12 avec les scripts d'installation désactivés par défaut pour réduire les risques de supply chain. Les tokens d'accès granulaires (GAT) sont également dépréciés, renforçant la sécurité des environnements Node.js.</p>
-<a href="https://thehackernews.com/2026/07/npm-12-disables-install-scripts-by.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Les nouveaux processeurs AWS Graviton5 surpassent les Intel Xeon Granite Rapids mais restent en retrait face aux AMD EPYC Turin. Une analyse pertinente pour les administrateurs cloud cherchant à optimiser les coûts et performances sur AWS M9g.</p>
+<a href="https://www.phoronix.com/review/graviton5-epyc-xeon" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>GhostApproval : vulnérabilités symlink dans les agents IA</h3>
+<h3>Cloud Hypervisor 53 : snapshot/Restore Daemon optimisé</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Wiz révèle des failles dans six assistants IA (Claude Code, Cursor, etc.) permettant à un dépôt malveillant d'exécuter du code via des liens symboliques. Les administrateurs doivent surveiller les dépendances et les permissions des outils de développement.</p>
-<a href="https://thehackernews.com/2026/07/ghostapproval-symlink-flaws-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Cloud Hypervisor 53 introduit un démon externalisé pour les snapshots et restaurations, améliorant les performances et la sécurité des machines virtuelles. Un outil clé pour les environnements cloud modernes et sécurisés.</p>
+<a href="https://www.phoronix.com/news/Cloud-Hypervisor-53" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Proton 11.0 améliore la compatibilité des jeux Linux</h3>
+<h3>Forg365 : nouvelle menace PhaaS ciblant Microsoft 365</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Valve publie Proton 11.0 basé sur Wine 11, avec des correctifs pour des jeux EA, un meilleur support VR et des optimisations pour les titres récents. Idéal pour les administrateurs gérant des postes de travail Linux gaming ou hybrides.</p>
-<a href="https://www.it-connect.fr/proton-11-0-compatibilite-jeux-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une nouvelle offre PhaaS (Phishing-as-a-Service) nommée Forg365 combine device code phishing, AitM et IA pour voler des sessions Microsoft 365. Une menace à surveiller pour les administrateurs de tenants cloud.</p>
+<a href="https://thehackernews.com/2026/07/forg365-phaas-targets-microsoft-365.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Jeudi 10 Juillet 2026</h2>
-<h3>RoguePlanet : Microsoft corrige la zero-day de Defender</h3>
+<h3>Raspberry Pi 5 : pilote IOMMU en cours de portage vers le noyau Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a patché CVE-2026-50656, une faille critique dans Microsoft Defender permettant une élévation de privilèges SYSTEM. Les administrateurs doivent appliquer le correctif rapidement pour éviter les attaques exploitant cette vulnérabilité.</p>
-<a href="https://www.it-connect.fr/microsoft-corrige-faille-zero-day-rogueplanet-defender/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le pilote IOMMU du Raspberry Pi 5, jusqu'alors absent du noyau principal, est en cours d'adaptation pour une intégration upstream. Une avancée majeure pour les utilisateurs de ce SBC dans des environnements embarqués critiques.</p>
+<a href="https://www.phoronix.com/news/Raspberry-Pi-5-IOMMU-Driver" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Chatto : messagerie open source auto-hébergée en un seul binaire</h3>
+<h3>ModHeader retiré : extension Chrome/Edge infectée par un collecteur de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Chatto, un outil de messagerie d'équipe auto-hébergé, est désormais open source. Son architecture monolithique simplifie le déploiement et la maintenance, offrant une alternative légère à Slack ou Teams pour les environnements sensibles.</p>
-<a href="https://www.it-connect.fr/chatto-messagerie-equipe-open-source-auto-hebergee/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Google et Microsoft ont retiré l'extension ModHeader (1,6M d'installations) après la découverte d'un collecteur de données dormant dans sa version store. Un rappel sur les risques des extensions tierces et l'importance de la validation des dépendances.</p>
+<a href="https://thehackernews.com/2026/07/google-and-microsoft-pull-modheader.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Microsoft 365 : attaques par passkey Entra via vishing</h3>
+<h2>Lundi 14 Juillet 2026</h2>
+<h3>Open Printer : imprimante open source sans DRM et réparable</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants utilisent des appels téléphoniques pour inciter les victimes à enregistrer une passkey Entra, tout en enregistrant la leur. Les administrateurs doivent sensibiliser les utilisateurs et renforcer les politiques MFA.</p>
-<a href="https://www.it-connect.fr/vishing-passkey-entra-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>DEBULL : kit de phishing exploitant les device codes Microsoft 365</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : ZeroBEC a identifié DEBULL, un kit de phishing contournant le MFA en exploitant les device codes Microsoft 365. Les administrateurs doivent surveiller les activités inhabituelles et configurer des alertes pour les connexions via device code.</p>
-<a href="https://www.it-connect.fr/debull-device-code-phishing-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Microsoft : l'IA va augmenter le volume des Patch Tuesday</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft annonce que son système MDASH, basé sur l'IA, découvre davantage de failles dans Windows, augmentant le volume des correctifs. Les administrateurs doivent anticiper une charge accrue de tests et de déploiements.</p>
-<a href="https://www.it-connect.fr/microsoft-ia-plus-de-mises-a-jour-securite-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h2>Vendredi 11 Juillet 2026</h2>
-<h3>jscrambler 8.14.0 : package npm compromis avec infostealer</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le package jscrambler 8.14.0 sur npm contenait un hook malveillant exécutant un infostealer multiplateforme (Windows/macOS/Linux) lors de l'installation. Les administrateurs doivent vérifier les dépendances et bloquer les installations suspectes.</p>
-<a href="https://thehackernews.com/2026/07/compromised-jscrambler-8140-npm-release.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Zimbra : faille critique XSS dans le client web classique</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité XSS stockée dans Zimbra permet l'exécution de code arbitraire via des emails spécialement conçus. Les administrateurs doivent appliquer les correctifs urgents pour éviter les compromissions.</p>
-<a href="https://thehackernews.com/2026/07/critical-zimbra-flaw-could-let-crafted_0483473395.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Progress ShareFile : interruption des Storage Zone Controllers</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Progress Software demande aux utilisateurs de ShareFile de désactiver les serveurs Storage Zone Controllers en raison d'une menace de sécurité externe. Les administrateurs doivent suivre les recommandations et surveiller les logs pour détecter des activités suspectes.</p>
-<a href="https://thehackernews.com/2026/07/urgent-progress-tells-sharefile.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Injective Labs : compromission GitHub et packages npm malveillants</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants ont compromis le dépôt GitHub d'Injective Labs pour publier des packages npm volant les clés privées de portefeuilles crypto. Les administrateurs doivent auditer les dépendances et utiliser des outils comme Snyk ou Dependabot.</p>
-<a href="https://thehackernews.com/2026/07/injective-labs-github-compromise-pushes.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Open Printer, projet open source, propose une imprimante utilisant des cartouches HP rechargeables sans DRM et supportant les formats A4/A3. Une solution durable pour les entreprises cherchant à réduire les coûts et l'impact environnemental.</p>
+<a href="https://www.it-connect.fr/open-printer-imprimante-open-source-reparable-sans-drm/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
