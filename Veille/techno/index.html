@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 13/07/2026 au 16/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 13/07/2026 au 17/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 16/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 17/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,147 +75,216 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mardi 15 Juillet 2026</h2>
-<h3>LegacyHive : la zero-day Windows publiée juste après le Patch Tuesday de juillet</h3>
+            <h2>Lundi 14 Juillet 2026</h2>
+<h3>Frame : une interface graphique open source et moderne pour FFmpeg</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Nightmare Eclipse a publié LegacyHive, une zero-day dans le service de profils utilisateur de Windows (User Profile Service), exploitable même sur des machines à jour. Cette vulnérabilité permet une élévation de privilèges et nécessite une action immédiate des administrateurs pour appliquer des contournements ou surveiller les tentatives d'exploitation.</p>
-<a href="https://www.it-connect.fr/legacyhive-zero-day-windows-user-profile-service/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Frame propose une interface graphique open source pour FFmpeg, permettant de convertir des vidéos et audios sans ligne de commande sur Windows, Linux et macOS. Cet outil simplifie les tâches de transcodage pour les administrateurs système et les utilisateurs non techniques.</p>
+<a href="https://www.it-connect.fr/frame-interface-graphique-ffmpeg/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft Patch Tuesday Juillet 2026 : 622 failles corrigées dont 3 zero-day actives</h3>
+<hr />
+<h3>Des pirates utilisent un script PowerShell généré par IA contre l’Active Directory</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé un record de 622 vulnérabilités, dont 3 zero-day exploitées en attaque (CVE-2026-XXXX, CVE-2026-XXXX, CVE-2026-XXXX). Les administrateurs doivent prioriser les correctifs pour Windows, Exchange, et les composants critiques comme le User Profile Service, avec une attention particulière aux systèmes exposés.</p>
+<p><strong>Résumé</strong> : Début juin 2026, une cyberattaque a utilisé un script PowerShell vraisemblablement généré par IA pour énumérer un Active Directory. Cette technique illustre l'évolution des menaces et l'importance de renforcer la détection des comportements anormaux dans les environnements Windows.</p>
+<a href="https://www.it-connect.fr/cyberattaque-2026-script-powershell-ia-enumeration-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Pixels de suivi dans les e-mails : ce que change la CNIL et comment bloquer le pistage</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Depuis le 14 juillet 2026, la CNIL exige un consentement explicite pour les pixels de suivi dans les e-mails. Les administrateurs système doivent vérifier les politiques de leur messagerie et configurer des solutions de blocage (comme des extensions navigateur ou des filtres SMTP) pour se conformer.</p>
+<a href="https://www.it-connect.fr/pixels-de-suivi-emails-cnil-consentement/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Telegram : les liens t.me hors service dans le monde entier</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le domaine court t.me de Telegram a été suspendu au niveau du registre .me, rendant les liens inutilisables. Bien que la messagerie fonctionne, cette interruption impacte les workflows automatisés et les intégrations dépendantes de ces liens. Une solution temporaire consiste à utiliser des liens directs vers les canaux.</p>
+<a href="https://www.it-connect.fr/telegram-liens-t-me-hors-service-serverhold/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Grok Build : l’outil de SpaceXAI expédiait vos dépôts de code chez Google</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Grok Build 0.2.93, un outil CLI de SpaceXAI, envoyait automatiquement les dépôts Git complets (historique inclus) et les fichiers sensibles (.env) vers un bucket Google Cloud. Les administrateurs doivent auditer les outils de développement internes et bloquer les transferts non autorisés de données.</p>
+<a href="https://www.it-connect.fr/grok-build-cli-xai-upload-depots-google-cloud/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Microsoft Patches Record 622 Flaws, Including Two Zero-Days Under Active Attack</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé 622 vulnérabilités en juillet 2026, dont deux zero-days activement exploitées. Les administrateurs doivent prioriser les mises à jour critiques (notamment CVE-2026-XXXX) pour éviter les attaques par élévation de privilèges ou exécution de code à distance.</p>
 <a href="https://thehackernews.com/2026/07/microsoft-patches-record-622-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Firefox, Chrome, Adobe et VMware corrigent des failles critiques</h3>
+<hr />
+<h3>SAP Patches CVSS 9.9 NetWeaver ABAP Flaw That Could Expose or Modify Data</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les mises à jour de Firefox (CVE-2026-15718, CVE-2026-15719), Chrome, Adobe et VMware corrigent des vulnérabilités critiques permettant l'exécution de code arbitraire. Les administrateurs doivent appliquer ces correctifs rapidement, surtout pour les navigateurs et les environnements virtualisés critiques.</p>
-<a href="https://thehackernews.com/2026/07/firefox-chrome-adobe-and-vmware-updates.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : SAP a corrigé CVE-2026-44747 (score CVSS 9.9), une faille critique dans NetWeaver ABAP permettant l'accès ou la modification non autorisée de données. Les administrateurs SAP doivent appliquer le correctif immédiatement et auditer les droits d'accès aux systèmes critiques.</p>
+<a href="https://thehackernews.com/2026/07/sap-patches-cvss-99-netweaver-abap-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Apple rachète SigLens, la plateforme open source d'observabilité qui concurrence Splunk</h3>
+<hr />
+<h3>Researchers Say Claude for Chrome Flaw Lets Rogue Extensions Trigger Gmail Reads</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple a acquis SigScalr, éditeur de SigLens, une solution open source d'observabilité et de logs temps réel. Cette acquisition pourrait impacter les stratégies de monitoring des entreprises, notamment celles utilisant des stacks open source pour remplacer Splunk ou ELK.</p>
-<a href="https://www.it-connect.fr/apple-rachat-siglens-sigscalr-observabilite-open-source/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une faille dans l'extension Claude for Chrome permet à des extensions malveillantes d'accéder aux e-mails Gmail et aux documents Google Docs. Les administrateurs doivent restreindre les extensions non approuvées via des politiques de groupe (GPO) ou des solutions EDR.</p>
+<a href="https://thehackernews.com/2026/07/claude-for-chrome-flaw-lets-other.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Cursor : faille critique permettant l'exécution de code via des dépôts clonés</h3>
+<hr />
+<h3>RabbitMQ Flaws Could Leak OAuth Secrets and Expose Cross-Tenant Queue Metadata</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans l'éditeur de code Cursor (Windows) permet l'exécution automatique de fichiers nommés `git.exe` dans un dépôt cloné, sans avertissement. Les administrateurs doivent désactiver l'exécution automatique ou surveiller les activités suspectes dans les IDE utilisés par les développeurs.</p>
-<a href="https://thehackernews.com/2026/07/cursor-flaw-lets-malicious-cloned-repositories-trigger-windows-code-execution" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>SonicWall SMA 1000 : deux zero-day exploitées en attaque</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux zero-day (CVE-2026-15409 et CVE-2026-XXXX) affectant les appliances SonicWall SMA 1000 sont exploitées en attaque, dont une permettant l'exécution de commandes arbitraires avec privilèges admin. Les administrateurs doivent appliquer les correctifs disponibles ou isoler les appliances concernées.</p>
-<a href="https://thehackernews.com/2026/07/two-sonicwall-sma-1000-zero-days.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Grok Build 0.2.93 : fuite de dépôts Git complets vers Google Cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Grok Build, l'outil CLI de SpaceXAI, envoyait des dépôts Git entiers (historique complet, fichiers `.env`) vers un bucket Google Cloud, pas seulement les fichiers modifiés. Les administrateurs doivent vérifier les versions utilisées et bloquer les flux sortants non autorisés.</p>
-<a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>148 packages npm déguisés en proxys étudiants : un botnet DDoS via navigateurs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de 148 packages npm, se faisant passer pour des proxys étudiants, a transformé les navigateurs des visiteurs en botnet DDoS pendant deux semaines. Les administrateurs doivent scanner leurs environnements Node.js et bloquer les packages suspects.</p>
-<a href="https://thehackernews.com/2026/07/148-npm-packages-disguised-as-student.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>RabbitMQ : failles critiques exposant des secrets OAuth et métadonnées cross-tenant</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités dans RabbitMQ (CVE-2026-XXXX, CVE-2026-XXXX) permettent la fuite de secrets OAuth et l'exposition de files d'attente cross-tenant. Les administrateurs doivent mettre à jour RabbitMQ et auditer les configurations d'accès.</p>
+<p><strong>Résumé</strong> : Deux vulnérabilités dans RabbitMQ (CVE-2026-XXXX) permettent de fuiter des secrets OAuth et de contourner les limites de tenants. Les administrateurs doivent mettre à jour RabbitMQ et configurer des ACL strictes pour les files d'attente sensibles.</p>
 <a href="https://thehackernews.com/2026/07/rabbitmq-flaws-could-leak-oauth-secrets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Lundi 14 Juillet 2026</h2>
-<h3>Frame : interface graphique open source pour FFmpeg</h3>
+<h3>11 Old Microsoft-Signed Linux UEFI Shims Could Let Attackers Bypass Secure Boot</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Frame propose une interface graphique moderne pour FFmpeg, permettant de convertir des vidéos/audios sans ligne de commande sur Windows, Linux et macOS. Idéal pour les administrateurs cherchant à simplifier les tâches multimédias dans leurs scripts ou interfaces utilisateur.</p>
-<a href="https://www.it-connect.fr/frame-interface-graphique-ffmpeg/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Pixels de suivi dans les e-mails : la CNIL impose le consentement depuis le 14/07/2026</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CNIL exige désormais un consentement explicite pour les pixels de suivi dans les e-mails. Les administrateurs doivent configurer leurs solutions de messagerie (Exchange, M365) pour bloquer ces trackers ou informer les utilisateurs des risques liés à la télémétrie.</p>
-<a href="https://www.it-connect.fr/pixels-de-suivi-emails-cnil-consentement/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>SAP NetWeaver ABAP : faille critique CVSS 9.9 corrigée</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : SAP a corrigé CVE-2026-44747, une vulnérabilité critique (CVSS 9.9) dans SAP NetWeaver ABAP permettant l'exposition ou la modification de données. Les administrateurs SAP doivent appliquer le correctif immédiatement et auditer les accès aux systèmes concernés.</p>
-<a href="https://thehackernews.com/2026/07/sap-patches-cvss-99-netweaver-abap-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>11 shims UEFI signés par Microsoft vulnérables au contournement de Secure Boot</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : 11 applications UEFI signées par Microsoft (anciennes versions) permettent de contourner Secure Boot. Les administrateurs doivent vérifier les versions des shims installés et mettre à jour les firmwares des machines concernées.</p>
+<p><strong>Résumé</strong> : 11 shims UEFI signés par Microsoft (jamais révoqués) permettent de contourner Secure Boot sur Linux/Windows. Les administrateurs doivent vérifier les signatures des shims et appliquer les correctifs de révocation via les outils de leur distribution (ex: `mokutil` pour Ubuntu).</p>
 <a href="https://thehackernews.com/2026/07/11-old-microsoft-signed-linux-uefi.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Forg365 : nouvelle PhaaS ciblant Microsoft 365 avec phishing par code device et AitM</h3>
+<hr />
+<h2>Mardi 15 Juillet 2026</h2>
+<h3>LegacyHive : la zero-day Windows publiée juste après le Patch Tuesday de juillet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Forg365 combine phishing par code device, attaques AitM (Adversary-in-the-Middle) et IA pour voler des sessions Microsoft 365. Les administrateurs doivent activer MFA, surveiller les activités suspectes et configurer des politiques anti-phishing renforcées.</p>
-<a href="https://thehackernews.com/2026/07/forg365-phaas-targets-microsoft-365.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Meta dépose un brevet pour un IA écoutant en continu et analysant les émotions</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Meta a breveté une IA capable d'écouter en continu les conversations et d'analyser les émotions de l'utilisateur via l'intonation. Les administrateurs doivent évaluer les risques liés à l'utilisation de tels outils dans les environnements professionnels et les politiques de confidentialité.</p>
-<a href="https://thehackernews.com/2026/07/meta-files-patent-for-ai-that-can.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>MemGhost : attaque persistante par "faux souvenirs" dans les agents IA via un seul e-mail</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une attaque (MemGhost) permet d'injecter des "faux souvenirs" dans un agent IA via un seul e-mail, modifiant son comportement futur. Les administrateurs doivent sécuriser les accès aux boîtes mail des agents IA et auditer les logs de conversation.</p>
-<a href="https://thehackernews.com/2026/07/new-memghost-attack-plants-persistent.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CrashStealer : nouveau malware macOS utilisant un dropper notarié pour contourner Gatekeeper</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CrashStealer, un voleur d'informations macOS, utilise un dropper notarié pour passer les contrôles Gatekeeper. Les administrateurs doivent surveiller les activités suspectes sur les postes macOS et bloquer les binaires non signés ou notariés de manière inattendue.</p>
-<a href="https://thehackernews.com/2026/07/crashstealer-macos-malware-uses.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Google et Microsoft retirent ModHeader après découverte d'un collecteur de données dormant</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les extensions ModHeader (1,6M d'installations) pour Chrome/Edge contenaient un collecteur de données dormant de l'historique de navigation. Les administrateurs doivent auditer les extensions installées et bloquer celles non approuvées.</p>
-<a href="https://thehackernews.com/2026/07/google-and-microsoft-pull-modheader.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : LegacyHive est une zero-day dans le service de profils utilisateur de Windows, publiée après le Patch Tuesday. Elle permet une élévation de privilèges et fonctionne même sur des machines à jour. Les administrateurs doivent surveiller les logs du service `ProfSvc` et appliquer les correctifs urgents.</p>
+<a href="https://www.it-connect.fr/legacyhive-zero-day-windows-user-profile-service/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <hr />
-<h2>Dimanche 13 Juillet 2026</h2>
-<h3>Windows 11 KB5101650 et Windows 10 KB5099539 : mises à jour de juillet 2026</h3>
+<h3>Windows 11 KB5101650 : la mise à jour de juillet 2026 est là et elle est bloquée sur certains PC Dell</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les mises à jour KB5101650 (Windows 11) et KB5099539 (Windows 10 ESU) corrigent des vulnérabilités critiques (OLE Automation, durcissement TDI/RDP). Les administrateurs doivent tester et déployer ces correctifs rapidement, en surveillant les rapports de blocage (ex : sur certains PC Dell).</p>
+<p><strong>Résumé</strong> : La mise à jour KB5101650 pour Windows 11 bloque l'installation sur certains PC Dell en raison d'une incompatibilité matérielle. Les administrateurs doivent vérifier les logs d'installation (`CBS.log`) et contacter le support Dell si nécessaire. Une solution temporaire consiste à désinstaller les pilotes problématiques.</p>
 <a href="https://www.it-connect.fr/windows-11-kb5101650-mise-a-jour-de-juillet-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>NIS 2 : la France traînée devant la CJUE pour son retard de transposition</h3>
+<hr />
+<h3>Windows 10 KB5099539 : le point sur la mise à jour ESU de juillet 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La Commission européenne a saisi la CJUE contre la France pour non-transposition de la directive NIS 2, avec des risques d'amendes forfaitaires et d'astreintes journalières. Les administrateurs doivent anticiper les impacts réglementaires sur la cybersécurité des infrastructures critiques.</p>
-<a href="https://www.it-connect.fr/nis2-transposition-france-saisine-cjue/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : KB5099539 corrige des vulnérabilités OLE Automation, renforce le TDI (Transport Driver Interface) et améliore la sécurité RDP. Les administrateurs doivent tester la mise à jour en environnement de staging avant déploiement, surtout pour les systèmes critiques.</p>
+<a href="https://www.it-connect.fr/windows-10-kb5099539-mise-a-jour-esu-juillet-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>IBM optimise les LLM avec des fractions continues pour réduire les coûts de calcul</h3>
+<hr />
+<h3>Microsoft dévoile son plus gros Patch Tuesday de l’histoire avec 570 failles et 3 zero-day</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : IBM Research propose une méthode basée sur les fractions continues pour optimiser les transformateurs des LLM, réduisant les coûts de calcul et d'inférence. Les administrateurs DevOps peuvent explorer cette approche pour optimiser les déploiements d'IA dans leurs infrastructures.</p>
-<a href="https://www.silicon.fr/data-ia-1372/ibm-cofrgenet-228271" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Le Patch Tuesday de juillet 2026 corrige 570 vulnérabilités, dont 3 zero-days activement exploitées (CVE-2026-XXXX). Les administrateurs doivent prioriser les correctifs pour Exchange Server, Windows Hyper-V et le noyau Windows pour limiter les risques d'exécution de code.</p>
+<a href="https://www.it-connect.fr/patch-tuesday-juillet-2026-570-failles-de-securite-corrigees-dont-3-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>AI Gigafactories : le consortium Æther officialise sa candidature européenne</h3>
+<hr />
+<h3>GDID Windows : impossible à supprimer, mais pas à bloquer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le consortium Æther, basé dans le Grand Est, officialise sa candidature pour les AI Gigafactories européennes, en concurrence avec AION. Les administrateurs doivent suivre les annonces liées aux infrastructures IA locales pour anticiper les besoins en énergie et en refroidissement.</p>
-<a href="https://www.silicon.fr/business-1367/ai-gigafactories-aether-aion-228257" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+<p><strong>Résumé</strong> : Le GDID (Global Device Identifier) de Windows ne peut pas être supprimé, mais peut être bloqué via des règles de pare-feu ou des modifications du registre. Les administrateurs doivent documenter cette configuration pour éviter les fuites de données vers Microsoft.</p>
+<a href="https://www.it-connect.fr/gdid-windows-impossible-supprimer/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Veille communautaire sur les IA de mai 2026 (LinuxFr.org)</h3>
+<hr />
+<h3>Firefox, Chrome, Adobe, and VMware Updates Fix Multiple Critical Security Flaws</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : LinuxFr.org publie une veille mensuelle sur les avancées des IA en mai 2026, incluant des outils open source, des benchmarks et des analyses techniques. Les administrateurs peuvent y trouver des ressources pour évaluer les solutions IA adaptées à leurs besoins.</p>
-<a href="https://linuxfr.org/news/veille-communautaire-sur-des-intelligences-artificielles-du-mois-de-mai-2026" class="btn-source" target="_blank">🔗 Lire sur LinuxFr.org</a>
+<p><strong>Résumé</strong> : Firefox et Chrome corrigent des vulnérabilités critiques (CVE-2026-XXXX) permettant l'exécution de code à distance. Adobe et VMware publient également des correctifs urgents. Les administrateurs doivent mettre à jour les navigateurs et les applications critiques immédiatement.</p>
+<a href="https://thehackernews.com/2026/07/firefox-chrome-adobe-and-vmware-updates.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>SASE Has An AI Blind Spot. Inspecting Packets Is No Longer Enough.</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les solutions SASE traditionnelles (inspection de paquets) sont inefficaces face aux workflows modernes utilisant l'IA et les SaaS. Les administrateurs doivent adopter des outils de sécurité basés sur l'identité, le comportement et l'analyse des logs pour couvrir les nouveaux vecteurs d'attaque.</p>
+<a href="https://thehackernews.com/2026/07/sase-has-ai-blind-spot-inspecting.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Researcher Drops New Windows Zero-Day PoC Hours After Microsoft Patch Tuesday</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un chercheur a publié un PoC pour une nouvelle zero-day (LegacyHive) dans le service de profils utilisateur de Windows, quelques heures après le Patch Tuesday. Les administrateurs doivent surveiller les logs du service `ProfSvc` et appliquer les correctifs de contournement si nécessaire.</p>
+<a href="https://thehackernews.com/2026/07/researcher-drops-new-windows-zero-day.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Two SonicWall SMA 1000 Zero-Days Exploited, One Could Enable Admin Commands</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : SonicWall corrige deux zero-days (CVE-2026-15409 et CVE-2026-XXXX) dans ses appliances SMA 1000, dont une permettant l'exécution de commandes admin. Les administrateurs doivent mettre à jour les appliances et vérifier les logs pour détecter les tentatives d'exploitation.</p>
+<a href="https://thehackernews.com/2026/07/two-sonicwall-sma-1000-zero-days.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Compromised AsyncAPI npm Packages Deliver Multi-Stage Botnet Malware</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Quatre packages npm compromis dans l'espace de noms `@asyncapi` distribuent un chargeur de botnet multi-étapes. Les administrateurs doivent auditer les dépendances npm et utiliser des outils comme `npm audit` ou `Snyk` pour détecter les packages malveillants.</p>
+<a href="https://thehackernews.com/2026/07/compromised-asyncapi-npm-packages.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mercredi 16 Juillet 2026</h2>
+<h3>Traefik Manager : administrer son reverse proxy Traefik depuis une interface web</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Traefik Manager est une interface web open source pour gérer Traefik (routes, certificats, configuration) via Docker Compose. Cet outil simplifie l'administration des reverse proxies pour les administrateurs système, surtout dans les environnements Kubernetes ou Docker Swarm.</p>
+<a href="https://www.it-connect.fr/traefik-manager-interface-web-reverse-proxy/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Age of Empires II : une faille permettait de prendre le contrôle d’un PC via une partie multijoueur</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé une faille RCE (CVE-2026-50663) dans Age of Empires II: Definitive Edition, permettant une prise de contrôle à distance via un salon multijoueur. Les administrateurs doivent s'assurer que les joueurs utilisent la dernière version du jeu.</p>
+<a href="https://www.it-connect.fr/age-of-empires-ii-faille-rce-cve-2026-50663/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Secure Boot : 11 shims signés par Microsoft permettaient de contourner la protection</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : ESET a identifié 11 shims UEFI signés par Microsoft (jamais révoqués) permettant de contourner Secure Boot. Les administrateurs doivent vérifier les signatures des shims et appliquer les correctifs de révocation via les outils de leur distribution (ex: `mokutil`).</p>
+<a href="https://www.it-connect.fr/secure-boot-11-shims-signes-microsoft-eset/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Firefox va passer à une nouvelle version majeure toutes les 2 semaines dès septembre</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mozilla accélère le rythme des mises à jour de Firefox avec une nouvelle version majeure tous les 15 jours à partir de septembre 2026. Les administrateurs doivent planifier les tests de compatibilité et adapter leurs politiques de déploiement pour le canal ESR.</p>
+<a href="https://www.it-connect.fr/firefox-version-majeure-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Proton VPN : 458 réquisitions judiciaires depuis 2017, et toujours zéro donnée transmise</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le rapport de transparence de Proton VPN montre que 458 réquisitions judiciaires ont été refusées depuis 2017, faute de logs. Cet exemple illustre l'importance de l'absence de journalisation pour la protection de la vie privée des utilisateurs.</p>
+<a href="https://www.it-connect.fr/proton-vpn-rapport-transparence-458-demandes-refusees/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>n8n Token Exchange Flaw Could Let Attackers Log In as Users From Another Issuer</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans n8n (CVE-2026-XXXX) permet à un attaquant de se connecter en tant qu'utilisateur d'un autre issuer JWT. Les administrateurs doivent mettre à jour n8n et configurer des politiques strictes pour les issuer JWT autorisés.</p>
+<a href="https://thehackernews.com/2026/07/n8n-token-exchange-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>New TELEPUZ Malware Spreads via ClickFix to Steal Data and Run Commands</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : TELEPUZ est un malware modulaire se propageant via des sites infectés avec des leurres ClickFix. Il vole des données et exécute des commandes à distance. Les administrateurs doivent surveiller les processus suspects et bloquer les domaines malveillants via des solutions EDR.</p>
+<a href="https://thehackernews.com/2026/07/new-telepuz-malware-spreads-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>New ClickLock macOS Stealer Kills Apps Every 210ms Until Victims Type Their Password</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : ClickLock Stealer est un nouveau malware macOS qui tue les applications de la victime toutes les 210ms jusqu'à ce qu'elle saisisse son mot de passe. Les administrateurs doivent sensibiliser les utilisateurs et configurer des politiques de mot de passe robustes.</p>
+<a href="https://thehackernews.com/2026/07/new-clicklock-macos-stealer-kills-apps.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>20+ Hijacked Government Websites Became an Attack Channel</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plus de 20 sites gouvernementaux brésiliens ont été détournés pour diffuser des malwares via une campagne PhantomEnigma. Les administrateurs doivent surveiller les modifications de contenu et bloquer les domaines suspects via des solutions DNS ou proxy.</p>
+<a href="https://thehackernews.com/2026/07/20-hijacked-government-websites.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>OpenAI’s GPT-Red Automates Prompt Injection Testing to Harden GPT-5.6 Sol</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GPT-Red est un modèle d'OpenAI conçu pour automatiser les tests de prompt injection et renforcer la sécurité de GPT-5.6. Les administrateurs peuvent utiliser cet outil pour auditer les applications basées sur l'IA et identifier les vulnérabilités avant déploiement.</p>
+<a href="https://thehackernews.com/2026/07/openais-gpt-red-automates-prompt.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
