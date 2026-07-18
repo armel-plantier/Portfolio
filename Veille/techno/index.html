@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 13/07/2026 au 18/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 13/07/2026 au 19/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 18/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 19/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,75 +75,134 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 16 Juillet 2026</h2>
-<h3>Traefik Manager : administrer son reverse proxy Traefik depuis une interface web</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Traefik Manager est une interface web open source permettant de gérer un reverse proxy Traefik via Docker Compose. Elle simplifie la configuration des routes, certificats et paramètres avancés, réduisant la complexité pour les administrateurs système.</p>
-<a href="https://www.it-connect.fr/traefik-manager-interface-web-reverse-proxy/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Secure Boot : 11 shims signés par Microsoft permettaient de contourner la protection</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : ESET a identifié 11 shims UEFI signés par Microsoft et jamais révoqués, permettant de contourner Secure Boot sur Linux ou Windows. Une faille critique pour les systèmes critiques nécessitant une protection renforcée.</p>
-<a href="https://www.it-connect.fr/secure-boot-11-shims-signes-microsoft-eset/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Firefox va passer à une nouvelle version majeure toutes les 2 semaines dès septembre</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Mozilla accélère le rythme des mises à jour de Firefox avec des versions majeures toutes les deux semaines à partir de septembre 2026. Une évolution majeure pour la sécurité et les administrateurs gérant des environnements ESR.</p>
-<a href="https://www.it-connect.fr/firefox-version-majeure-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<hr />
-<h2>Jeudi 17 Juillet 2026</h2>
-<h3>New wp2shell WordPress Core Flaw Lets Unauthenticated Attackers Run Code</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (wp2shell) dans le cœur de WordPress permet une exécution de code à distance sans authentification. Les versions 6.9 et 7.0 sont concernées, mais des correctifs forcés via auto-update ont été déployés.</p>
-<a href="https://thehackernews.com/2026/07/new-wp2shell-wordpress-core-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>OpenSSL HollowByte Flaw Could Freeze Server Memory with 11-Byte TLS Requests</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La faille HollowByte dans OpenSSL permet de saturer la mémoire d'un serveur avec seulement 11 octets via une requête TLS malveillante. Un correctif a été publié en juin sans CVE ni annonce officielle, nécessitant une mise à jour urgente.</p>
-<a href="https://thehackernews.com/2026/07/openssl-hollowbyte-flaw-could-freeze.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Seven Malicious Vite npm Packages Use Blockchain C2 to Deliver a RAT</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de supply chain attaque (ViteVenom) cible l'écosystème Vite avec 7 paquets npm malveillants utilisant une C2 blockchain pour déployer un RAT. Une menace pour les environnements de développement frontend.</p>
-<a href="https://thehackernews.com/2026/07/seven-malicious-vite-npm-packages-use.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>New NadMesh Botnet Hunts Exposed AI Services for Cloud Keys and Kubernetes Tokens</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le botnet NadMesh cible les services AI exposés (ComfyUI, Ollama, n8n) pour voler des clés AWS et tokens Kubernetes. Une menace pour les infrastructures cloud mal configurées.</p>
-<a href="https://thehackernews.com/2026/07/new-nadmesh-botnet-hunts-exposed-ai.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CISA Adds Exploited SharePoint RCE Zero-Day CVE-2026-58644 to KEV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté une faille RCE zero-day dans SharePoint (CVE-2026-58644) à son catalogue KEV, imposant une correction sous 48h pour les agences fédérales américaines.</p>
-<a href="https://thehackernews.com/2026/07/cisa-adds-exploited-sharepoint-rce-zero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
+            <h2>Vendredi 13 Juillet 2026</h2>
 <h3>Microsoft dévoile son plus gros Patch Tuesday de l’histoire avec 570 failles et 3 zero-day</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé 570 vulnérabilités en juillet 2026, dont 3 zero-day exploitées activement. Un record historique nécessitant une application prioritaire des correctifs.</p>
+<p><strong>Résumé</strong> : Microsoft a corrigé 570 vulnérabilités lors de son Patch Tuesday de juillet 2026, dont 3 zero-day exploitées activement. Parmi les correctifs critiques, des failles dans Windows, Office, SharePoint et Azure. Les administrateurs doivent prioriser les mises à jour pour limiter les risques d'exploitation.</p>
 <a href="https://www.it-connect.fr/patch-tuesday-juillet-2026-570-failles-de-securite-corrigees-dont-3-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
+<hr />
+<h2>Samedi 14 Juillet 2026</h2>
+<h3>Microsoft Patches Record 622 Flaws, Including Two Zero-Days Under Active Attack</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft a corrigé 622 vulnérabilités lors de son Patch Tuesday, dont deux zero-day déjà exploitées. Ce record dépasse largement les précédents mois, avec des correctifs critiques pour Windows, Exchange et Azure. Les administrateurs doivent appliquer ces mises à jour sans délai pour éviter des attaques massives.</p>
+<a href="https://thehackernews.com/2026/07/microsoft-patches-record-622-flaws.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Dimanche 15 Juillet 2026</h2>
 <h3>LegacyHive : la zero-day Windows publiée juste après le Patch Tuesday de juillet</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Nightmare Eclipse a publié LegacyHive, une zero-day dans le service de profils utilisateur de Windows, fonctionnant même sur les machines à jour. Une menace critique pour les environnements professionnels.</p>
+<p><strong>Résumé</strong> : Une nouvelle zero-day (LegacyHive) a été publiée dans le service de profils utilisateur de Windows, fonctionnant même sur des machines à jour. Cette vulnérabilité permet une élévation de privilèges et nécessite une attention immédiate des administrateurs pour appliquer les correctifs ou appliquer des contournements.</p>
 <a href="https://www.it-connect.fr/legacyhive-zero-day-windows-user-profile-service/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <hr />
-<h2>Vendredi 18 Juillet 2026</h2>
-<h3>Frame : une interface graphique open source et moderne pour FFmpeg</h3>
+<h3>Secure Boot : 11 shims signés par Microsoft permettaient de contourner la protection</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Frame offre une interface graphique open source pour FFmpeg, simplifiant la conversion vidéo/audio sans ligne de commande. Un outil pratique pour les administrateurs système manipulant des médias.</p>
-<a href="https://www.it-connect.fr/frame-interface-graphique-ffmpeg/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : ESET a identifié 11 shims UEFI signés par Microsoft et jamais révoqués, permettant de contourner Secure Boot sur Linux et Windows. Les administrateurs doivent vérifier la présence de ces binaires et appliquer les correctifs Microsoft pour éviter des attaques par rootkit.</p>
+<a href="https://www.it-connect.fr/secure-boot-11-shims-signes-microsoft-eset/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Firefox va passer à une nouvelle version majeure toutes les 2 semaines dès septembre</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mozilla accélère le rythme des mises à jour de Firefox avec des versions majeures toutes les deux semaines à partir de septembre 2026. Cette cadence impacte aussi le canal ESR, nécessitant une adaptation des politiques de déploiement pour les administrateurs.</p>
+<a href="https://www.it-connect.fr/firefox-version-majeure-toutes-les-2-semaines/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Firefox, Chrome, Adobe, and VMware Updates Fix Multiple Critical Security Flaws</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Firefox, Chrome, Adobe et VMware ont publié des correctifs critiques pour des vulnérabilités exploitées activement. Les administrateurs doivent mettre à jour rapidement ces logiciels pour éviter des attaques par exécution de code à distance ou élévation de privilèges.</p>
+<a href="https://thehackernews.com/2026/07/firefox-chrome-adobe-and-vmware-updates.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Lundi 16 Juillet 2026</h2>
+<h3>Traefik Manager : administrer son reverse proxy Traefik depuis une interface web</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Traefik Manager est une interface web open source pour administrer Traefik via Docker Compose. Elle simplifie la gestion des routes, certificats et configurations, idéale pour les administrateurs cherchant à automatiser et sécuriser leurs reverse proxies.</p>
+<a href="https://www.it-connect.fr/traefik-manager-interface-web-reverse-proxy/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Windows 11 KB5101650 : la mise à jour de juillet 2026 est là et elle est bloquée sur certains PC Dell</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La mise à jour KB5101650 pour Windows 11 de juillet 2026 introduit des correctifs mais est bloquée sur certains PC Dell. Les administrateurs doivent vérifier la compatibilité matérielle avant déploiement et surveiller les rapports de bugs.</p>
+<a href="https://www.it-connect.fr/windows-11-kb5101650-mise-a-jour-de-juillet-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>OpenSSL HollowByte Flaw Could Freeze Server Memory with 11-Byte TLS Requests</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (HollowByte) dans OpenSSL permet de saturer la mémoire d'un serveur avec des requêtes TLS de seulement 11 octets. Les administrateurs doivent appliquer le correctif d'urgence pour éviter des attaques par déni de service.</p>
+<a href="https://thehackernews.com/2026/07/openssl-hollowbyte-flaw-could-freeze.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Seven Malicious Vite npm Packages Use Blockchain C2 to Deliver a RAT</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Sept packages npm malveillants ciblant l'écosystème Vite ont été découverts. Ils utilisent une infrastructure de commande et contrôle basée sur la blockchain pour livrer un RAT. Les administrateurs doivent scanner leurs dépendances et bloquer ces packages.</p>
+<a href="https://thehackernews.com/2026/07/seven-malicious-vite-npm-packages-use.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>New NadMesh Botnet Hunts Exposed AI Services for Cloud Keys and Kubernetes Tokens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le botnet NadMesh cible les services AI exposés (ComfyUI, Ollama, etc.) pour voler des clés AWS et des tokens Kubernetes. Les administrateurs doivent sécuriser leurs instances AI et surveiller les activités suspectes.</p>
+<a href="https://thehackernews.com/2026/07/new-nadmesh-botnet-hunts-exposed-ai.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>New Agent Data Injection Attack Can Make AI Agents Misclick or Run Attacker Commands</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle attaque par injection de données permet de manipuler les agents IA pour qu'ils exécutent des commandes malveillantes ou cliquent sur des liens dangereux. Les administrateurs doivent durcir leurs environnements AI et surveiller les interactions suspectes.</p>
+<a href="https://thehackernews.com/2026/07/new-agent-data-injection-attack-can.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Zoom Patches Critical Windows Flaw That Could Enable Account Takeover</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Zoom a corrigé une faille critique (CVE-2026-53412) dans son client Windows, permettant une prise de contrôle de compte. Les administrateurs doivent mettre à jour Zoom Workplace pour éviter des attaques par exécution de code à distance.</p>
+<a href="https://thehackernews.com/2026/07/zoom-patches-critical-windows-flaw-that.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Cursor Flaw Lets Malicious Cloned Repositories Trigger Windows Code Execution</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Cursor permet d'exécuter du code arbitraire via des dépôts clonés malveillants. Les administrateurs doivent désactiver l'exécution automatique de `git.exe` dans Cursor ou utiliser des alternatives sécurisées.</p>
+<a href="https://thehackernews.com/2026/07/cursor-flaw-lets-malicious-cloned.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 17 Juillet 2026</h2>
+<h3>wp2shell : une faille critique expose des millions de sites WordPress</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille RCE pré-authentifiée (wp2shell) dans le cœur de WordPress expose des millions de sites. Les mises à jour sont forcées en urgence. Les administrateurs doivent appliquer les correctifs immédiatement pour éviter des compromissions massives.</p>
+<a href="https://www.it-connect.fr/wordpress-wp2shell-rce-critique-coeur-cms/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>New wp2shell WordPress Core Flaw Lets Unauthenticated Attackers Run Code</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille wp2shell dans WordPress permet une exécution de code à distance sans authentification. Les administrateurs doivent appliquer les correctifs et vérifier les objets persistants dans le cache pour détecter d'éventuelles compromissions.</p>
+<a href="https://thehackernews.com/2026/07/new-wp2shell-wordpress-core-flaw-lets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>E.U. Orders Google to Open Android Mic, Camera and Screen to Rival AI Assistants</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'UE impose à Google d'ouvrir l'accès au microphone, à la caméra et à l'écran d'Android aux assistants IA concurrents. Les administrateurs doivent surveiller les permissions des applications et ajuster les politiques de sécurité pour se conformer aux nouvelles réglementations.</p>
+<a href="https://thehackernews.com/2026/07/eu-orders-google-to-open-android-mic.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>CISA Adds Exploited SharePoint RCE Zero-Day CVE-2026-58644 to KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA a ajouté une zero-day dans SharePoint (CVE-2026-58644) à son catalogue KEV, exigeant une correction immédiate pour les agences fédérales. Les administrateurs doivent prioriser ce correctif pour éviter des attaques par exécution de code à distance.</p>
+<a href="https://thehackernews.com/2026/07/cisa-adds-exploited-sharepoint-rce-zero.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
