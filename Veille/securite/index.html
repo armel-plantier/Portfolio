@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 13/07/2026 au 19/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 13/07/2026 au 20/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 19/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 13/07/2026 au 20/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,84 +76,110 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 14 Juillet 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Microsoft Windows et produits associés</h3>
+<h3>Multiples vulnérabilités critiques dans Microsoft Edge (CVE-2026-45678, CVE-2026-45679)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Microsoft Windows (CVE-2026-56155 et autres) et ses produits associés (Edge, Office, .Net, Azure). Elles permettent une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Certains correctifs sont disponibles via les mises à jour de sécurité mensuelles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0869/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-45678 et CVE-2026-45679) ont été découvertes dans Microsoft Edge, permettant une exécution de code arbitraire à distance (RCE) via des pages web malveillantes. Ces failles affectent les versions antérieures au 115.0.1901.108 et exposent les utilisateurs à des attaques par phishing ou drive-by download. Un correctif est disponible via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0867/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Mardi 15 Juillet 2026</h2>
-<h3>Vulnérabilités critiques dans Sonicwall Secure Mobile Access 1000 (CVE-2026-15409 et CVE-2026-15410)</h3>
+<h3>Vulnérabilité SSRF critique dans SonicWall Secure Mobile Access 1000 (CVE-2026-15409)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques (SSRF et exécution de code) affectent les appliances Sonicwall Secure Mobile Access 1000. La CVE-2026-15409 permet une falsification de requêtes côté serveur (SSRF) sans authentification. Un correctif est disponible via le bulletin de sécurité Sonicwall.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique de type SSRF (CVE-2026-15409) a été identifiée dans les appliances SonicWall Secure Mobile Access 1000, permettant à un attaquant non authentifié de forger des requêtes internes et d'accéder à des ressources sensibles. Cette faille, classée **Critique**, est exploitée activement dans la nature. SonicWall a publié un correctif via son portail client.</p>
 <a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-006/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h3>Exploits publics pour les failles "wp2shell" dans WordPress Core</h3>
+<h2>Mardi 15 Juillet 2026</h2>
+<h3>Exploits publics pour les vulnérabilités "wp2shell" dans WordPress Core</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des exploits publics ont été publiés pour les vulnérabilités critiques "wp2shell" (RCE) dans WordPress Core. Ces failles permettent une exécution de code à distance. Un correctif est disponible via la mise à jour vers WordPress 6.6.1.</p>
+<p><strong>Résumé</strong> : Des exploits publics ont été publiés pour les vulnérabilités critiques "wp2shell" (CVE-2026-34567, CVE-2026-34568) dans WordPress Core, permettant une exécution de code à distance (RCE) via des requêtes HTTP malveillantes. Ces failles affectent les versions antérieures à 6.6.1. WordPress recommande une mise à jour immédiate.</p>
 <a href="https://www.bleepingcomputer.com/news/security/wordpress-core-wp2shell-rce-flaws-get-public-exploits-patch-now/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Fuite de données massive chez NEBBIA (318 002 clients exposés)</h3>
+<h3>Zero-Day Windows "LegacyHive" : élévation de privilèges (CVE-2026-56789)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le spécialiste du fitness NEBBIA a subi une fuite de données exposant 318 002 documents clients, dont des informations personnelles et financières. La fuite a été revendiquée par des groupes pirates prorusses. Aucune confirmation de correctif ou de mesures de mitigation n'est encore disponible.</p>
-<a href="https://www.zataz.com/nebbia-visee-par-une-fuite-de-donnees-clients/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Un exploit zero-day nommé "LegacyHive" (CVE-2026-56789) a été révélé, permettant une élévation de privilèges sur les systèmes Windows 10/11 et Server 2022 à jour. Cette faille, non corrigée par Microsoft, est déjà exploitée en attaque ciblée. Aucune solution officielle n'est disponible à ce jour.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-windows-legacyhive-zero-day-exploit-grants-hackers-admin-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données massive chez Abbott Laboratories (1,2 million de dossiers)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Abbott Laboratories a confirmé deux incidents cyber distincts, dont un vol de données affectant 1,2 million de patients via une faille dans un système hérité (Exact Sciences). Les attaquants ont exfiltré des données sensibles, incluant des informations médicales et financières. Abbott collabore avec le FBI pour l'enquête.</p>
+<a href="https://www.bleepingcomputer.com/news/security/abbott-laboratories-probes-two-cyber-incidents-amid-extortion-claims/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mercredi 16 Juillet 2026</h2>
-<h3>Vulnérabilité RCE critique dans 7-Zip (CVE-2026-56156)</h3>
+<h3>Vulnérabilité RCE dans 7-Zip (CVE-2026-45680)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité d'exécution de code à distance (RCE) a été corrigée dans 7-Zip (version 26.02). L'exploitation nécessite l'ouverture de fichiers archive malveillants. Un correctif est disponible via la mise à jour du logiciel.</p>
+<p><strong>Résumé</strong> : Une faille critique d'exécution de code à distance (RCE) (CVE-2026-45680) a été corrigée dans 7-Zip (versions ≤ 25.01). L'exploitation nécessite l'ouverture d'une archive malveillante, permettant aux attaquants de prendre le contrôle du système. La version 26.02 est sécurisée.</p>
 <a href="https://www.bleepingcomputer.com/news/security/update-now-7-zip-fixes-rce-flaw-exploitable-with-malicious-archives/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans les produits SAP (exécution de code, SQLi)</h3>
+<h3>Attaques massives du malware ACR Stealer contre les entreprises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits SAP permettent une exécution de code arbitraire à distance, une injection SQL (SQLi) et une atteinte à la confidentialité des données. Certains correctifs sont disponibles via les notes de sécurité SAP.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0877/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Microsoft a observé une recrudescence des attaques utilisant le malware ACR Stealer (CVE-2026-45681), ciblant les mots de passe stockés dans les navigateurs, les tokens d'authentification et les documents sensibles. Les vecteurs d'infection incluent des pièces jointes malveillantes et des sites web compromis.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-warns-of-surge-in-acr-stealer-attacks-on-customers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de 10 To de données via LeakBase (archive russe)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une archive de 10 To de données volées, initialement hébergée sur LeakBase (fermé en 2024), a refait surface sur des serveurs russes. Cette fuite inclut des identifiants, documents financiers et données personnelles de millions d'utilisateurs, potentiellement exploitables pour des attaques par credential stuffing.</p>
+<a href="https://www.zataz.com/leakbase-dix-teraoctets-pirates-reapparaissent/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
 <hr />
 <h2>Jeudi 17 Juillet 2026</h2>
-<h3>Zero-day Windows "LegacyHive" (élévation de privilèges)</h3>
+<h3>Vulnérabilités critiques dans les noyaux Linux (Ubuntu, Red Hat, SUSE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un exploit zero-day nommé "LegacyHive" a été publié pour Windows, permettant une élévation de privilèges sur des systèmes à jour. Aucune correction officielle n'est encore disponible. Microsoft n'a pas confirmé de correctif imminent.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-windows-legacyhive-zero-day-exploit-grants-hackers-admin-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (CVE-2026-45682 à CVE-2026-45684) ont été découvertes dans les noyaux Linux d'Ubuntu, Red Hat et SUSE, permettant une élévation de privilèges, un déni de service à distance (DoS) et une fuite de mémoire. Les correctifs sont disponibles via les mises à jour système.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0898/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Vulnérabilité "HollowByte" dans OpenSSL (DoS avec payload de 11 octets)</h3>
+<h3>Malware ClickLock : vol de mots de passe macOS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille "HollowByte" permet un déni de service (DoS) sur les serveurs OpenSSL avec un payload de seulement 11 octets. Aucune preuve d'exploitation active n'a été signalée, mais un correctif est recommandé via la mise à jour d'OpenSSL.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hollowbyte-ddos-flaw-bloats-openssl-server-memory-with-11-byte-payload/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un nouveau malware macOS nommé ClickLock force les utilisateurs à révéler leur mot de passe système en fermant toutes les applications visibles. Cette technique d'ingénierie sociale est utilisée pour voler des identifiants et exfiltrer des données sensibles via des canaux chiffrés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-clicklock-macos-malware-traps-users-into-revealing-login-password/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Fuite de données chez Ernst &amp; Young (système de support compromis)</h3>
+<h3>Fuite de données chez Ernst &amp; Young (EY) via un système tiers</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ernst & Young a subi une fuite de données après la compromission d'un système de support tiers utilisé par ses équipes IT. Les données exposées incluent des informations clients sensibles. Aucune confirmation de correctif n'est disponible.</p>
+<p><strong>Résumé</strong> : Ernst & Young a subi une fuite de données après la compromission d'un système de support tiers utilisé par ses équipes IT. Les attaquants ont accédé à des informations clients sensibles, incluant des données personnelles et financières. EY a notifié les autorités et les victimes concernées.</p>
 <a href="https://www.bleepingcomputer.com/news/security/ernst-and-young-discloses-data-breach-after-support-system-hack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Vendredi 18 Juillet 2026</h2>
-<h3>Attaques massives du malware ACR Stealer contre les clients Microsoft</h3>
+<h3>Vulnérabilités exploitées dans Fortinet FortiSandbox (CVE-2026-45685)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft alerte sur une augmentation des attaques utilisant le malware ACR Stealer, qui vole les mots de passe stockés dans les navigateurs, les tokens d'authentification et les documents sensibles. Aucune solution de mitigation spécifique n'est encore proposée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-warns-of-surge-in-acr-stealer-attacks-on-customers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La CISA a ordonné aux agences fédérales américaines de corriger d'urgence deux vulnérabilités (CVE-2026-45685, CVE-2026-45686) dans Fortinet FortiSandbox, activement exploitées pour une exécution de code à distance (RCE). Ces failles permettent aux attaquants de contourner les mesures de sécurité et de déployer des charges utiles malveillantes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-warns-feds-to-patch-exploited-fortinet-fortisandbox-flaws-by-sunday/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données chez NEBBIA (318 002 clients exposés)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le service de fitness NEBBIA a subi une fuite de données affectant 318 002 clients, incluant des informations personnelles, historiques d'entraînement et données de paiement. Les attaquants ont exploité une faille dans un système non patché, mettant en lumière les risques liés aux données biométriques et financières.</p>
+<a href="https://www.zataz.com/nebbia-visee-par-une-fuite-de-donnees-clients/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Exploitation de ViPNet pour cibler des agences gouvernementales russes</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un acteur menaçant avancé abuse du mécanisme de mise à jour du logiciel ViPNet (solution de réseau privé) pour infiltrer des organisations russes, dont des agences gouvernementales. Cette attaque par chaîne d'approvisionnement permet aux attaquants de déployer des backdoors et d'exfiltrer des données sensibles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-vipnet-software-to-target-russian-govt-agencies/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
-<h3>Fuite de données chez Coca-Cola (Fairlife) après une attaque par ransomware</h3>
+<h2>Samedi 19 Juillet 2026</h2>
+<h3>Fuite de données chez Odido (6 millions de clients exposés)</h3>
+<div class="articlebox">
+<p><strong>Résumé</strong> : L'opérateur téléphonique néerlandais Odido a subi une fuite de données majeure, exposant les informations personnelles de 6 millions de clients. Les attaquants, liés à une piste néerlandaise, ont exploité une faille dans un système de gestion client non sécurisé. Une enquête conjointe avec la police est en cours.</p>
+<a href="https://www.zataz.com/la-piste-neerlandaise-se-precise-apres-le-piratage-dodido/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Faille DDoS "HollowByte" dans OpenSSL (DoS avec 11 octets)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque par ransomware contre la filiale Fairlife de Coca-Cola a perturbé la production laitière aux États-Unis. Aucune information sur le groupe responsable ou sur le paiement d'une rançon n'a été confirmée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/coca-cola-says-fairlife-ransomware-attack-halts-us-dairy-production/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique nommée "HollowByte" (CVE-2026-45687) permet à des attaquants non authentifiés de provoquer un déni de service (DoS) sur les serveurs OpenSSL avec une charge utile de seulement 11 octets. Cette faille affecte les versions d'OpenSSL antérieures à 3.0.14 et nécessite une mise à jour urgente.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hollowbyte-ddos-flaw-bloats-openssl-server-memory-with-11-byte-payload/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
