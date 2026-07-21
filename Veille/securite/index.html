@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 20/07/2026 au 21/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 20/07/2026 au 22/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/07/2026 au 21/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/07/2026 au 22/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,65 +75,121 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 21 Juillet 2026</h2>
-<h3>Multiples vulnérabilités critiques dans WordPress (CVE-2026-60137 &amp; CVE-2026-63030)</h3>
+            <h2>Lundi 20 Juillet 2026</h2>
+<h3>Multiples vulnérabilités critiques dans WordPress (wp2shell)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques (CVE-2026-60137 : injection SQL et CVE-2026-63030 : contournement de politique de sécurité) dans WordPress permettent une exécution de code à distance et un accès non autorisé. Une preuve de concept publique existe, et des attaques en chaîne sont déjà observées en temps réel. Un correctif a été publié le 17 juillet 2026.</p>
-<a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-007/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques (CVE-2026-60137 et CVE-2026-63030) dans WordPress permettent une exécution de code à distance (RCE) et un contournement de la politique de sécurité. Exploitées en chaîne, elles permettent l'installation de webshells et de plugins malveillants. Un correctif est disponible via WordPress 6.6.1. Une preuve de concept publique est déjà exploitée massivement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-wp2shell-wordpress-flaws-exploited-to-install-webshells/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation active de zero-days dans SonicWall SMA1000 (CVE-2026-15409 &amp; CVE-2026-15410)</h3>
+<h3>Fuite de données chez Estée Lauder via une faille Oracle E-Business</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les vulnérabilités zero-day CVE-2026-15409 et CVE-2026-15410 dans SonicWall SMA1000 ont été exploitées pendant des semaines par le groupe UTA0533 pour installer un malware personnalisé sur des appliances VPN vulnérables. Un correctif est désormais disponible.</p>
-<a href="https://www.securityweek.com/sonicwall-zero-days-exploited-to-deliver-custom-malware-for-weeks-before-patch/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Fuite de données chez Estée Lauder via une faille Oracle E-Business Suite</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Estée Lauder a subi une fuite de données après l'exploitation d'une vulnérabilité dans Oracle E-Business Suite, utilisée pour ses opérations RH. Les attaquants ont compromis des données clients, bien que le nombre exact de victimes ne soit pas précisé.</p>
+<p><strong>Résumé</strong> : Estée Lauder a subi une fuite de données après l'exploitation d'une faille non spécifiée dans Oracle E-Business Suite, utilisé pour les opérations RH. Les données exposées concernent des employés. Oracle a publié un correctif, mais la faille a été exploitée avant sa mise à jour.</p>
 <a href="https://www.bleepingcomputer.com/news/security/est-e-lauder-discloses-data-breach-via-oracle-e-business-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaques par ransomware JadePuffer ciblant les actifs IA (EncForge)</h3>
+<h3>Campagne FakeGit : 7 600 dépôts GitHub malveillants diffusent SmartLoader</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe JadePuffer a déployé un nouveau ransomware, EncForge, conçu pour chiffrer des ensembles de données d'entraînement, des bases de vecteurs et des points de contrôle de modèles IA. Les attaques visent spécifiquement les infrastructures utilisant des agents IA autonomes.</p>
+<p><strong>Résumé</strong> : Une campagne massive (FakeGit) utilise 7 600 dépôts GitHub malveillants pour diffuser le malware SmartLoader et StealC. Plus de 14 millions de téléchargements ont été enregistrés. Les dépôts imitent des outils IA ou MCP pour tromper les utilisateurs. Aucune correction n'est disponible pour l'instant.</p>
+<a href="https://www.bleepingcomputer.com/news/security/fakegit-campaign-uses-7-600-github-repos-to-push-smartloader-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans SonicWall SMA1000 exploitée en zero-day</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Deux vulnérabilités zero-day dans SonicWall SMA1000 (CVE-2026-XXXX) ont été exploitées pendant des semaines pour installer des malwares personnalisés sur des appliances VPN vulnérables. Un correctif est désormais disponible via SonicWall.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sonicwall-sma1000-flaws-exploited-as-zero-days-to-push-custom-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Nouvelle faille 7-Zip (CVE-2026-14266) permettant l'exécution de code</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-14266) dans 7-Zip permet l'exécution de code arbitraire lors de l'extraction d'archives XZ malveillantes. Un débordement de tampon heap est exploité. Un correctif est disponible depuis le 25 juin 2026 (version 26.02).</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-7-zip-vulnerability-could-let-crafted-xz-archives-run-code-during-extraction/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Vol de 23,7 millions de dollars en crypto via une attaque hors chaîne sur Ostium</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La plateforme Ostium a subi un vol de 23,75 millions de dollars après la compromission de son infrastructure hors chaîne utilisée pour alimenter les prix du protocole. L'attaque a ciblé les liquidités des fournisseurs sans exploiter de vulnérabilité logicielle.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-steal-237-million-in-crypto-from-ostium-in-off-chain-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite revendiquée au Rassemblement national sans preuve publique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un pirate affirme avoir volé des données internes au Rassemblement national et menace de les vendre. Aucune preuve publique ne permet de valider l'authenticité de la fuite à ce stade. L'incident reste en cours d'investigation.</p>
+<a href="https://www.zataz.com/fuite-revendiquee-au-rassemblement-national/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Attaque autonome contre Hugging Face via un agent IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Hugging Face a subi une attaque menée par un agent IA autonome, révélant les risques des pipelines de données et des outils d'IA. L'incident a été détecté et neutralisé, mais les détails techniques restent limités.</p>
+<a href="https://www.zataz.com/hugging-face-frappe-par-un-agent-cyber-autonome/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Faille critique dans Apple Hide My Email exposant les adresses réelles</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans le service Hide My Email d'Apple permettait de révéler les adresses e-mail réelles des utilisateurs dans les logs Mail. Un correctif a été déployé le 3 juillet 2026, mettant fin à la vulnérabilité.</p>
+<a href="https://thehackernews.com/2026/07/apple-fixes-hide-my-email-bug-that.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille critique dans AWS Kiro permettant l'exécution de code via une page web</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans AWS Kiro (IDE agentique) permet à une page web malveillante de réécrire sa configuration et d'exécuter du code arbitraire sans validation. Un correctif est en cours de déploiement par AWS.</p>
+<a href="https://thehackernews.com/2026/07/aws-kiro-flaw-let-poisoned-web-page.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 21 Juillet 2026</h2>
+<h3>Exploitation active de CVE-2026-50522 dans Microsoft SharePoint</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille critique CVE-2026-50522 (CVSS 9.8) dans Microsoft SharePoint est activement exploitée pour voler des clés de machine et maintenir un accès persistant. Un correctif a été publié en juillet 2026, mais les attaquants exploitent la faille avant la mise à jour.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-sharepoint-rce-flaw-exploited-to-steal-machine-keys/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Qilin ransomware exploite une faille d'authentification dans Palo Alto PAN-OS</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Qilin exploite une faille critique (non-CVE) dans Palo Alto PAN-OS GlobalProtect pour déployer son ransomware. La faille permet un contournement de l'authentification. Un correctif est disponible depuis juin 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-globalprotect-vpn-bug-now-exploited-in-ransomware-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Anubis ransomware revendique l'attaque contre Coca-Cola Fairlife</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Anubis revendique l'attaque contre la filiale laitière Coca-Cola Fairlife et menace de publier des données volées si une rançon n'est pas payée d'ici le 27 juillet 2026. Aucune preuve publique de la fuite n'est encore disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/anubis-ransomware-claims-coca-cola-fairlife-attack-threatens-data-leak/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans ServiceNow AI Platform (CVE-2026-6875) exploitée</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-6875 (CVSS 9.5) dans la plateforme AI de ServiceNow est exploitée pour une exécution de code non authentifiée. Un correctif est disponible, mais l'exploitation en cours nécessite une application immédiate.</p>
+<a href="https://thehackernews.com/2026/07/critical-servicenow-ai-platform-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Zimbra corrige des vulnérabilités critiques (SNMP et XSS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Zimbra a corrigé 9 vulnérabilités, dont une injection de commande SNMP critique et 4 XSS, dans la version 10.1.20. Les correctifs sont disponibles, mais les organisations doivent appliquer les mises à jour rapidement pour éviter les exploitations.</p>
+<a href="https://thehackernews.com/2026/07/zimbra-patches-critical-snmp-command.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille LegacyHive zero-day dans Windows : correctifs non officiels disponibles</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un zero-day dans Windows (LegacyHive) permet une élévation de privilèges. Des correctifs non officiels ont été publiés en attendant une mise à jour officielle de Microsoft. La faille est activement exploitée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/windows-legacyhive-zero-day-flaw-gets-free-unofficial-patches/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Coinbase Cartel menace Caterpillar avec une stratégie d'extorsion publique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Coinbase Cartel menace Caterpillar via une campagne d'extorsion cyber publique, exposant une stratégie de double extorsion. Aucune preuve d'exploitation n'est encore disponible, mais la menace est prise au sérieux.</p>
+<a href="https://www.zataz.com/coinbase-cartel-menace-caterpillar/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Faille HollowGraph : malware utilisant Microsoft 365 pour le C2</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le malware HollowGraph utilise les événements Microsoft 365 (calendrier) comme canal de commande et contrôle (C2) pour exfiltrer des données. Aucune correction n'est disponible, mais Microsoft recommande de surveiller les activités suspectes dans les logs 365.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-hollowgraph-malware-uses-microsoft-graph-for-stealthy-c2-comms/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>JadePuffer cible les actifs IA avec le ransomware EncForge</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe JadePuffer déploie un nouveau ransomware (EncForge) ciblant spécifiquement les fichiers de modèles IA (jeux de données, bases vectorielles, checkpoints). L'attaque utilise des agents IA autonomes pour maximiser l'impact.</p>
 <a href="https://www.bleepingcomputer.com/news/security/jadepuffer-agentic-attacks-now-target-ai-model-data-with-ransomware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>HollowGraph : malware utilisant Microsoft 365 Calendar pour exfiltrer des données</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware HollowGraph abuse des calendriers Microsoft 365 (événements datés à 2050) pour établir un canal de commande et contrôle (C2) et exfiltrer des fichiers volés sous forme d'attachements. La détection est rendue difficile par l'utilisation de l'API Microsoft Graph.</p>
-<a href="https://thehackernews.com/2026/07/hollowgraph-malware-hides-c2-and-stolen.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne FakeGit : 7 600 dépôts GitHub malveillants distribuant SmartLoader</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne massive (FakeGit) a compromis près de 7 600 dépôts GitHub, dont 800 se faisant passer pour des serveurs MCP ou des compétences IA, pour distribuer le malware SmartLoader. Les victimes sont principalement des développeurs ciblant des environnements AI.</p>
-<a href="https://thehackernews.com/2026/07/fakegit-campaign-uses-7600-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Vulnérabilité critique dans ServiceNow (CVE-2026-6875) exploitée en attaque</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille d'exécution de code à distance (CVE-2026-6875) dans la plateforme AI de ServiceNow est activement exploitée par des attaquants. La vulnérabilité permet une prise de contrôle complète des instances affectées. Un correctif est attendu sous peu.</p>
-<a href="https://www.bleepingcomputer.com/news/security/critical-servicenow-code-execution-flaw-now-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Fuite de données chez Ernst &amp; Young via une plateforme tierce</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Ernst & Young a subi une fuite de données affectant des informations personnelles et financières de clients, après une compromission d'une plateforme de gestion tierce. Les données incluent noms, adresses, numéros de sécurité sociale et cartes bancaires.</p>
-<a href="https://www.securityweek.com/ernst-young-data-breach-affects-personal-financial-information/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Chrome 150 corrige des vulnérabilités critiques de sécurité mémoire</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La mise à jour Chrome 150 résout six vulnérabilités critiques et haute gravité, dont des failles de type *use-after-free* permettant une exécution de code arbitraire. Les correctifs sont urgents pour les environnements exposés à des attaques web.</p>
-<a href="https://www.securityweek.com/chrome-150-update-patches-severe-memory-safety-bugs/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Cruciferra Crypter : nouveau malware utilisant le <em>process ghosting</em> pour échapper à la détection</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le crypter Cruciferra combine le *process ghosting* et 90 chiffrements personnalisés pour masquer ses charges utiles et contourner les solutions EDR/AV. Il est utilisé par plusieurs acteurs malveillants pour des attaques ciblées.</p>
-<a href="https://www.infosecurity-magazine.com/news/cruciferra-crypter-process-ghosting/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
         </div>
     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 20/07/2026 au 21/07/2026</title>
+    <title>Veille Techno | Updates & Outils — 20/07/2026 au 22/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/07/2026 au 21/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/07/2026 au 22/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,53 +75,85 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 20 Juillet 2026</h2>
-<h3>1Password for Claude : Connexion sécurisée sans partage de mots de passe</h3>
+            <h2>Lundi 21 Juillet 2026</h2>
+<h3>Faille critique dans NGINX : CVE-2026-42533 menace la stabilité des serveurs web</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : 1Password intègre une fonctionnalité permettant à l'IA Claude de se connecter à vos comptes via un navigateur sans jamais exposer vos identifiants ou codes MFA. Cette approche repose sur des tokens temporaires générés côté client, réduisant significativement les risques liés aux accès automatisés par IA.</p>
-<a href="https://www.it-connect.fr/1password-for-claude-connexion-sans-mot-de-passe/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>CVE-2026-42533 : Faille critique dans NGINX pouvant entraîner un crash ou une exécution de code</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : F5 a corrigé une vulnérabilité critique (CVE-2026-42533) dans NGINX affectant le module `map` avec les expressions régulières. La faille permet un déni de service ou potentiellement une exécution de code à distance via des requêtes malveillantes. Une mise à jour immédiate est recommandée pour les environnements de production.</p>
+<p><strong>Résumé</strong> : F5 a corrigé la CVE-2026-42533, une faille critique dans NGINX qui peut faire planter les workers et, dans certains cas, permettre une exécution de code à distance. Cette vulnérabilité affecte les configurations utilisant des expressions régulières dans les directives `map` ou `server`. Une mise à jour immédiate est fortement recommandée pour les administrateurs exploitant NGINX en production.</p>
 <a href="https://www.it-connect.fr/nginx-cve-2026-42533-faille-critique-map-regex/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>7-Zip 26.02 : Correction d'une RCE via des archives XZ malveillantes</h3>
+<h3>Google lance Gemini 3.5 Flash Cyber pour la détection et correction automatisée de vulnérabilités</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 26.02 de 7-Zip corrige CVE-2026-14266, une vulnérabilité de débordement de tampon dans le décodage XZ. Bien que non exploitée massivement, cette faille permet l'exécution de code arbitraire lors de l'extraction d'archives spécifiquement conçues. La mise à jour doit être appliquée manuellement.</p>
+<p><strong>Résumé</strong> : Google DeepMind annonce la disponibilité de Gemini 3.5 Flash Cyber, un modèle IA spécialisé dans l'identification, la validation et le patching rapide de vulnérabilités logicielles. Exclusivement disponible via Vertex AI, cet outil s'intègre aux pipelines DevSecOps pour accélérer la réponse aux incidents de sécurité. Idéal pour les équipes cherchant à automatiser la chasse aux CVE.</p>
+<a href="https://thehackernews.com/2026/07/google-launches-gemini-35-flash-cyber.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Microsoft et Mistral AI renforcent leur partenariat pour des infrastructures IA industrielles</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft et Mistral AI étendent leur collaboration pour intégrer modèles d'IA, infrastructures de calcul et capacités de déploiement à l'échelle industrielle. Ce partenariat vise à fournir aux entreprises des solutions clés en main pour l'entraînement et l'inférence de modèles, avec un accent sur la souveraineté des données et la performance. Pertinent pour les architectes cloud cherchant à moderniser leurs stacks IA.</p>
+<a href="https://www.silicon.fr/business-1367/microsoft-et-mistral-ai-passent-a-lechelle-industrielle-avec-un-partenariat-centre-sur-linfrastructure-228406" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Cryptsetup 2.8.7 corrige les impacts de la dépréciation hâtive de AF_ALG dans Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La version 2.8.7 de cryptsetup est publiée pour résoudre les problèmes causés par la dépréciation récente de l'interface AF_ALG dans le noyau Linux. Cette mise à jour est critique pour les systèmes utilisant le chiffrement de disque (LUKS), évitant des dysfonctionnements potentiels lors du montage de volumes chiffrés. À appliquer sans délai sur les serveurs et postes critiques.</p>
+<a href="https://www.phoronix.com/news/Cryptsetup-2.8.7-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Canonical officialise l'Enterprise Store pour les déploiements Ubuntu hors ligne</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Canonical annonce officiellement l'Enterprise Store, une solution pour gérer les déploiements Ubuntu dans des environnements air-gapped ou avec accès réseau restreint. Cet outil facilite la distribution de paquets, mises à jour et correctifs sans dépendre des dépôts en ligne, répondant aux besoins des infrastructures critiques ou réglementées. Une avancée majeure pour les administrateurs système en milieu sensible.</p>
+<a href="https://www.phoronix.com/news/Ubuntu-Enterprise-Store" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h2>Mardi 22 Juillet 2026</h2>
+<h3>Faille RCE dans SharePoint : CVE-2026-50522 activement exploitée après publication d'un PoC</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-50522 (CVSS 9.8) dans Microsoft SharePoint Server, corrigée lors du Patch Tuesday de juillet 2026, est désormais exploitée activement. Cette faille de désérialisation de données non fiables permet une exécution de code à distance. Les administrateurs doivent appliquer le correctif sans délai et auditer les logs pour détecter d'éventuelles compromissions.</p>
+<a href="https://thehackernews.com/2026/07/critical-sharepoint-rce-cve-2026-50522.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Zimbra corrige 9 vulnérabilités dont une injection de commande SNMP critique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Zimbra publie des correctifs pour 9 vulnérabilités, dont une injection de commande critique via SNMP (CVE non attribuée) et 4 XSS. La faille SNMP permet une exécution de code à distance sur les serveurs de messagerie. Une mise à jour vers Zimbra 10.1.20 est impérative pour les environnements exposés en DMZ.</p>
+<a href="https://thehackernews.com/2026/07/zimbra-patches-critical-snmp-command.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>7-Zip 26.02 corrige CVE-2026-14266, une faille de débordement de tampon XZ</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La version 26.02 de 7-Zip corrige CVE-2026-14266, un débordement de tampon dans le décodage XZ qui permet une exécution de code arbitraire lors de l'extraction de fichiers malveillants. Contrairement à d'autres outils, 7-Zip ne se met pas à jour automatiquement : une installation manuelle est requise. Priorité absolue pour les postes de travail et serveurs manipulant des archives.</p>
 <a href="https://www.it-connect.fr/7-zip-26-02-faille-rce-cve-2026-14266/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>FakeGit : Campagne massive de 7 600 dépôts GitHub malveillants distribuant SmartLoader</h3>
+<h3>Stratis Storage intégré à Anaconda pour Fedora 45</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'attaque (FakeGit) a infiltré 7 600 dépôts GitHub, dont 800 se faisant passer pour des outils IA ou des serveurs MCP. Ces dépôts distribuent le malware SmartLoader, capable de compromettre les machines des développeurs. Une vigilance accrue est nécessaire lors de l'import de dépendances externes.</p>
-<a href="https://thehackernews.com/2026/07/fakegit-campaign-uses-7600-github.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le projet Stratis Storage, solution de gestion de stockage avancée pour Linux, est approuvé pour intégration dans l'installateur Anaconda de Fedora 45. Cette intégration simplifie le déploiement de volumes stratifiés (thin provisioning, snapshots) et améliore la résilience des systèmes de fichiers. Pertinent pour les administrateurs cherchant à optimiser le stockage sur des serveurs bare-metal.</p>
+<a href="https://www.phoronix.com/news/Fedora-45-Approves-Stratis" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>NetworkManager 1.58 : Support de 464XLAT et GENEVE pour une gestion réseau avancée</h3>
+<h3>AWS Kiro vulnérable à une réécriture de configuration via page web malveillante</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NetworkManager 1.58 introduit le support de 464XLAT (IPv6 transition) et GENEVE (overlay networks), améliorant la gestion des réseaux hybrides et des tunnels. Cette version facilite la configuration des environnements cloud et conteneurisés sous Linux, avec des performances optimisées.</p>
-<a href="https://www.phoronix.com/news/NetworkManager-1.58" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Une faille dans AWS Kiro, l'IDE agentique d'AWS, permet à une page web malveillante de réécrire sa configuration et d'exécuter du code arbitraire sans validation utilisateur. Cette vulnérabilité met en lumière les risques des outils "agentic" dans les environnements de développement cloud. Les équipes DevOps doivent restreindre les permissions de Kiro et surveiller les activités suspectes.</p>
+<a href="https://thehackernews.com/2026/07/aws-kiro-flaw-let-poisoned-web-page.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Intel étend les options mémoire pour les serveurs Xeon 6 avec des BIOS mis à jour</h3>
+<h3>Trois nouvelles vulnérabilités Snap affectant Ubuntu depuis 10 ans</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel annonce l'élargissement des compatibilités mémoire (RDIMM/MRDIMM) pour les serveurs Xeon 6 et Xeon 6+ via des mises à jour BIOS. Cette évolution permet d'optimiser les coûts et les performances des infrastructures existantes, en attendant les processeurs Diamond Rapids.</p>
-<a href="https://www.phoronix.com/news/Intel-More-Xeon-6-MRDIMMs" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Canonical révèle trois nouvelles vulnérabilités dans Snap, dont deux classées "high impact". La troisième affecte toutes les versions d'Ubuntu depuis 16.04 LTS. Ces failles permettent une élévation de privilèges ou une exécution de code via des paquets Snap malveillants. Une mise à jour immédiate de `snapd` est nécessaire pour tous les systèmes Ubuntu en production.</p>
+<a href="https://www.phoronix.com/news/Ubuntu-Snap-Three-More-Vulns" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Firefox 153 : Décodage vidéo Vulkan et support expérimental de JPEG-XL</h3>
+<h3>Point-in-time Restore : restauration rapide de Windows 11 après incident</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 153 (ESR) ajoute le décodage vidéo accéléré par Vulkan et une prise en charge expérimentale de JPEG-XL. Ces améliorations optimisent les performances multimédias et réduisent la latence pour les applications web gourmandes en ressources graphiques.</p>
-<a href="https://www.phoronix.com/news/Firefox-153-Downloads" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La fonctionnalité Point-in-time Restore permet de restaurer Windows 11 en quelques minutes après un incident (malware, corruption, mise à jour problématique). Cette solution, basée sur des snapshots VSS, offre une alternative aux réinstallations complètes. Les administrateurs système peuvent l'activer via PowerShell ou les outils de gestion Microsoft pour réduire les temps d'indisponibilité.</p>
+<a href="https://www.it-connect.fr/point-in-time-restore-windows-11/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>KNOD : Mécanisme d'offloading réseau vers les GPU AMD dans le noyau Linux</h3>
+<h3>HollowByte : faille DoS silencieuse dans OpenSSL (11 octets)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les patches KNOD (Kernel Network Offload Direct) permettent une accélération matérielle du traitement réseau directement sur les GPU AMD, sans dépendre de ROCm ou d'autres bibliothèques utilisateur. Cette innovation réduit la charge CPU et améliore le débit pour les charges de travail réseau intensives.</p>
-<a href="https://www.phoronix.com/news/KNOD-Network-Offload-AMD-GPUs" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La faille HollowByte, corrigée depuis OpenSSL 4.0.1, permet de saturer la mémoire d'un serveur avec un paquet de seulement 11 octets. Aucune CVE n'a été attribuée, et le correctif a été déployé discrètement. Les administrateurs doivent vérifier la version d'OpenSSL et appliquer les mises à jour pour éviter des attaques par déni de service ciblé.</p>
+<a href="https://www.it-connect.fr/openssl-hollowbyte-faille-dos-11-octets/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
