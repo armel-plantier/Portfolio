@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 20/07/2026 au 27/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/07/2026 au 28/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 20/07/2026 au 27/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/07/2026 au 28/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,101 +75,84 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 21 Juillet 2026</h2>
-<h3>Vulnérabilités critiques dans Check Point (CVE-2026-16232 activement exploitée)</h3>
+            <h2>Dimanche 27 Juillet 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Atlassian (CVE non attribués)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR alerte sur des vulnérabilités critiques dans les produits Check Point, dont la CVE-2026-16232, activement exploitée par des attaquants. Ces failles permettent une élévation de privilèges et un contournement des politiques de sécurité, exposant les infrastructures à des risques d'intrusion et de compromission.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0912/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Atlassian (Jira, Confluence, Bitbucket), permettant une exécution de code arbitraire à distance (RCE), une élévation de privilèges et des attaques par déni de service (DoS). Les systèmes exposés incluent les versions non patchées des solutions Atlassian. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0934/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Mardi 22 Juillet 2026</h2>
-<h3>Exploitation de vulnérabilités dans Microsoft SharePoint (CVE-2026-50522 et CVE-2026-58644)</h3>
+<h3>Exploit public pour une faille vBulletin pré-authentifiée (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé deux vulnérabilités critiques (CVE-2026-50522 et CVE-2026-58644) dans SharePoint, permettant à un attaquant non authentifié d'exécuter du code arbitraire à distance. Ces failles, publiées lors du Patch Tuesday de juillet 2026, nécessitent une application immédiate des correctifs pour éviter des compromissions massives.</p>
-<a href="https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-008/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un exploit public a été publié pour une vulnérabilité d'exécution de code à distance (RCE) non authentifiée dans vBulletin (CVE non encore attribuée). L'attaque exploite une injection PHP via la fonction `eval()` et ne nécessite aucun compte utilisateur. Les serveurs non patchés sont vulnérables. Un correctif est disponible via les mises à jour vBulletin.</p>
+<a href="https://thehackernews.com/2026/07/public-exploit-released-for-patched.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Campagne de malvertising SourTrade : malware construit dans le navigateur</h3>
+<h3>Zero-day exploité dans Arista VeloCloud Orchestrator (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de malvertising nommée SourTrade utilise des pages web malveillantes (Solana, Luno, TradingView) pour injecter du JavaScript dans les navigateurs des victimes. Ce code assemble un exécutable malveillant directement en mémoire, contournant les solutions de sécurité traditionnelles et rendant la détection plus complexe.</p>
-<a href="https://thehackernews.com/2026/07/malvertising-sends-malware-in-pieces.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Arista a corrigé une vulnérabilité critique de type *command injection* (CVE non attribuée) dans VeloCloud Orchestrator (déploiements on-premises), activement exploitée en attaque. La faille permet une exécution de code à distance avec privilèges élevés. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<a href="https://www.bleepingcomputer.com/news/security/arista-patches-velocloud-orchestrator-zero-day-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Clop ransomware cible Windchill et FlexPLM pour des attaques par vol de données</h3>
+<h3>Botnet Dysphoria infecte 200 000 appareils (DDoS et relais)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Clop (Cl0p) exploite des instances exposées de PTC Windchill et FlexPLM pour des attaques par vol de données et extorsion. Les attaquants ciblent des systèmes critiques en ingénierie et gestion de la chaîne logistique, avec un risque élevé de fuite de données sensibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/clop-ransomware-targets-windchill-flexplm-in-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le botnet Dysphoria a compromis environ 200 000 appareils dans le monde, utilisés pour des attaques DDoS et comme relais de trafic. Les appareils IoT et les routeurs non sécurisés sont les principales cibles. Aucune solution de désinfection universelle n'est disponible, une mise à jour des firmwares et une segmentation réseau sont recommandées.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-dysphoria-ddos-botnet-spreads-to-200k-devices-worldwide/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Mercredi 23 Juillet 2026</h2>
-<h3>Vulnérabilités dans Oracle Database Server et Java SE (multiples CVE)</h3>
+<h3>Exploit Certighost pour compromettre les domaines Windows (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le CERT-FR rapporte des vulnérabilités critiques dans Oracle Database Server et Oracle Java SE, permettant des attaques par déni de service, atteinte à la confidentialité et intégrité des données. Ces failles, non détaillées, nécessitent une mise à jour urgente des systèmes concernés.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0914/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Database)</a>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0915/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR (Java SE)</a>
+<p><strong>Résumé</strong> : Un proof-of-concept (PoC) pour l'exploit *Certighost* (CVE non attribuée) permet à un attaquant authentifié de compromettre un domaine Active Directory via une faille dans les services de certificats. Les systèmes Windows Server 2016 et ultérieurs sont vulnérables. Microsoft n'a pas encore publié de correctif.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-certighost-poc-exploit-lets-attackers-hijack-windows-domains/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Dolphin X : nouveau malware RAT utilisant l'IA pour cibler les victimes</h3>
+<h3>Campagne de ransomware Fairlife contre Coca-Cola (Anubis)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Dolphin X, un nouveau cheval de Troie d'accès à distance (RAT), intègre une fonctionnalité d'IA pour classer et prioriser les victimes en fonction de leur valeur. Cette approche permet aux cybercriminels d'optimiser leurs attaques et de maximiser l'impact des compromissions.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-dolphin-x-malware-uses-ai-to-rank-high-value-targets/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le groupe de ransomware Anubis a revendiqué une attaque contre Fairlife (filiale de Coca-Cola), entraînant le vol de données sensibles. L'attaque a exploité une vulnérabilité non divulguée dans les systèmes de l'entreprise. Coca-Cola a confirmé l'incident et travaille avec des experts en cybersécurité pour évaluer l'impact.</p>
+<a href="https://www.bleepingcomputer.com/news/security/coca-cola-confirms-data-theft-in-fairlife-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Jeudi 24 Juillet 2026</h2>
-<h3>Fuite de données chez OnTrac après une intrusion réseau</h3>
+<h3>Fuite de données chez Ernst &amp; Young (ShinyHunters)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OnTrac, une entreprise de livraison, a subi une intrusion dans son réseau, entraînant une fuite potentielle de données personnelles de ses clients. L'incident souligne les risques liés aux attaques par compromission de la chaîne logistique et aux fuites de données sensibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ontrac-notifies-customers-of-data-breach-after-network-hack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le groupe d'extorsion ShinyHunters a revendiqué une fuite de données chez Ernst & Young (EY), affirmant avoir obtenu des identifiants via une attaque par chaîne d'approvisionnement. Les données exposées incluent des informations sensibles de clients. EY n'a pas encore confirmé l'étendue de la violation.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ernst-and-young-data-breach-claimed-by-shinyhunters-extortion-gang/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Attaques par DNS hijacking sur les réseaux Wi-Fi d'hôtels pour voler des comptes Microsoft 365</h3>
+<h3>Vulnérabilité PTC Windchill exploitée en campagne de ransomware</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants modifient les paramètres DNS des réseaux Wi-Fi d'hôtels et centres de conférence pour rediriger les utilisateurs vers de faux portails de connexion Microsoft 365. Cette technique permet de voler les identifiants et d'accéder à des comptes professionnels sensibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-hijack-hotel-wi-fi-dns-to-steal-microsoft-365-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille critique de désérialisation non sécurisée (CVE non attribuée) dans PTC Windchill est activement exploitée pour déployer des ransomwares. L'attaque permet une exécution de code à distance sans authentification. Un correctif est disponible via les mises à jour PTC.</p>
+<a href="https://www.securityweek.com/ptc-windchill-vulnerability-exploited-in-ransomware-campaign/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h3>GitHub et PyPI renforcent la sécurité de la chaîne d'approvisionnement avec des défenses temporelles</h3>
+<h3>Malware MedusaHVNC utilise des bureaux Windows cachés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GitHub et PyPI (Python Package Index) ont introduit un mécanisme basé sur le temps dans l'outil Dependabot pour protéger contre les attaques de la chaîne d'approvisionnement. Cette fonctionnalité limite l'impact des attaques en retardant l'installation des dépendances suspectes.</p>
-<a href="https://www.bleepingcomputer.com/news/security/github-pypi-add-time-absed-defenses-against-supply-chain-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le malware-as-a-service MedusaHVNC lance des navigateurs légitimes sur un bureau Windows invisible, offrant un accès distant persistant et furtif aux systèmes compromis. Les entreprises utilisant des environnements Windows sont les principales cibles. Aucune solution de détection universelle n'est disponible.</p>
+<a href="https://www.securityweek.com/medusahvnc-malware-uses-hidden-windows-desktops-to-evade-detection/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Vendredi 25 Juillet 2026</h2>
-<h3>Attaques ClickFix sur les forums Steam pour infecter les joueurs avec des cryptomineurs XMRig</h3>
+<h3>Campagne malveillante SourTrade injecte des malwares via navigateur</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent les forums de discussion Steam avec des attaques ClickFix, prétendant offrir des correctifs pour des problèmes de jeu ou d'ordinateur. En réalité, ces liens infectent les victimes avec des cryptomineurs XMRig, exploitant leurs ressources système à des fins lucratives.</p>
-<a href="https://www.bleepingcomputer.com/news/security/steam-forum-clickfix-attacks-infect-gamers-with-xmrig-cryptominers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : La campagne *SourTrade* utilise des publicités malveillantes imitant des sites de cryptomonnaies et de trading pour injecter des infostealers directement dans le navigateur des victimes. Les utilisateurs sont redirigés vers des faux sites où des scripts malveillants s'exécutent. Aucune solution de blocage universelle n'existe.</p>
+<a href="https://www.infosecurity-magazine.com/news/malvertising-builds-malware-in/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
 </div>
 
-<hr />
-<h3>ShinyHunters exploite des fuites de données pour des campagnes de sextorsion à 2 000 $</h3>
+<h2>Lundi 28 Juillet 2026</h2>
+<h3>Multiples vulnérabilités dans GLPI (élévation de privilèges et SQLi)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters, connu pour ses fuites de données, utilise les adresses e-mail exposées pour envoyer des e-mails de sextorsion exigeant 2 000 $ en Bitcoin. Cette campagne illustre l'exploitation croissante des données personnelles pour des attaques psychologiques et financières.</p>
-<a href="https://www.bleepingcomputer.com/news/security/shinyhunters-data-leaks-fuel-2-000-sextortion-email-scam/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans GLPI, permettant une élévation de privilèges, une atteinte à l'intégrité des données et des injections SQL (SQLi). Les systèmes exposés incluent les versions non patchées de GLPI. Un correctif est disponible via les mises à jour officielles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0935/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Samedi 26 Juillet 2026</h2>
-<h3>Pirate cible 24 responsables politiques français dans une campagne contre Chat Control</h3>
+<h3>Vulnérabilité dans Traefik permettant un contournement de politique de sécurité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un attaquant expose les données personnelles de 24 responsables politiques français pour dénoncer la politique Chat Control et le scan des communications privées. Cette fuite met en lumière les tensions entre sécurité nationale et vie privée, ainsi que les risques liés aux fuites ciblées.</p>
-<a href="https://www.zataz.com/chat-control-un-pirate-cible-24-responsables-politiques-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Une faille dans Traefik (CVE non attribuée) permet à un attaquant de contourner les politiques de sécurité, potentiellement en accédant à des ressources restreintes. Les versions non patchées sont vulnérables. Un correctif est disponible via les mises à jour Traefik.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0936/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Fuites massives de données chez les pompiers français (SDIS et Pompiers.fr)</h3>
+<h3>Multiples vulnérabilités dans Microsoft Edge (confidentialité et sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs Services Départementaux d'Incendie et de Secours (SDIS) et le site Pompiers.fr sont victimes de fuites de données, incluant des documents internes et des accès administrateur. Ces incidents soulignent les vulnérabilités des infrastructures critiques et les risques pour les données sensibles.</p>
-<a href="https://www.zataz.com/des-donnees-de-pompiers-francais-exposees-en-serie/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant une atteinte à la confidentialité des données, un contournement des politiques de sécurité et des problèmes non spécifiés par l'éditeur. Les utilisateurs de Microsoft Edge sont invités à appliquer les correctifs via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0937/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
         </div>
     </div>
