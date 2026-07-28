@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 27/07/2026 au 28/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/07/2026 au 29/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/07/2026 au 28/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/07/2026 au 29/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,83 +76,126 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Dimanche 27 Juillet 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Atlassian (CVE non attribués)</h3>
+<h3>Multiples vulnérabilités critiques dans Atlassian (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Atlassian (Jira, Confluence, Bitbucket), permettant une exécution de code arbitraire à distance (RCE), une élévation de privilèges et des attaques par déni de service (DoS). Les systèmes exposés incluent les versions non patchées des solutions Atlassian. Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques découvertes dans les produits Atlassian (Jira, Confluence, Bitbucket) permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et des attaques par déni de service (DoS). Les versions non patchées sont exposées à des attaques massives. Un correctif est disponible via les mises à jour officielles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0934/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploit public pour une faille vBulletin pré-authentifiée (CVE-2026-XXXX)</h3>
+<h3>Vulnérabilité critique dans Traefik (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un exploit public a été publié pour une vulnérabilité d'exécution de code à distance (RCE) non authentifiée dans vBulletin (CVE non encore attribuée). L'attaque exploite une injection PHP via la fonction `eval()` et ne nécessite aucun compte utilisateur. Les serveurs non patchés sont vulnérables. Un correctif est disponible via les mises à jour vBulletin.</p>
-<a href="https://thehackernews.com/2026/07/public-exploit-released-for-patched.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille dans Traefik (reverse proxy et load balancer) permet un contournement des politiques de sécurité via une manipulation des en-têtes HTTP. Les systèmes exposés à Internet sont particulièrement vulnérables. Un patch est disponible dans la version 3.0.0-beta5 et ultérieure.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0936/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Zero-day exploité dans Arista VeloCloud Orchestrator (CVE-2026-XXXX)</h3>
+<h3>Exploitation active d'une faille zero-day dans FastJson (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Arista a corrigé une vulnérabilité critique de type *command injection* (CVE non attribuée) dans VeloCloud Orchestrator (déploiements on-premises), activement exploitée en attaque. La faille permet une exécution de code à distance avec privilèges élevés. Les correctifs sont disponibles via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Des attaquants ciblent des entreprises américaines en exploitant une vulnérabilité zero-day dans la bibliothèque Java FastJson (RCE sans interaction utilisateur). Les attaques permettent une exécution de code à distance avec des privilèges élevés. Aucun correctif public n'est encore disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-target-us-firms-in-fastjson-rce-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Arista corrige une faille zero-day dans VeloCloud Orchestrator (CVE-2026-16812)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Arista a corrigé une vulnérabilité critique (score CVSS 10.0) dans VeloCloud Orchestrator, permettant une injection de commande OS sans authentification. Les attaques en cours exploitent cette faille pour compromettre les environnements cloud. Un patch est disponible via la version 5.4.3.</p>
 <a href="https://www.bleepingcomputer.com/news/security/arista-patches-velocloud-orchestrator-zero-day-exploited-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Botnet Dysphoria infecte 200 000 appareils (DDoS et relais)</h3>
+<h3>Nouvelle variante du botnet Dysphoria infecte 200 000 appareils</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le botnet Dysphoria a compromis environ 200 000 appareils dans le monde, utilisés pour des attaques DDoS et comme relais de trafic. Les appareils IoT et les routeurs non sécurisés sont les principales cibles. Aucune solution de désinfection universelle n'est disponible, une mise à jour des firmwares et une segmentation réseau sont recommandées.</p>
+<p><strong>Résumé</strong> : Le botnet Dysphoria, désormais doté de C2 basé sur blockchain et de relais victimes, a atteint 200 000 appareils compromis. Il est utilisé pour des attaques DDoS et du trafic relayé. Aucune solution de désinfection n'est actuellement disponible.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-dysphoria-ddos-botnet-spreads-to-200k-devices-worldwide/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Exploit public pour une faille critique dans vBulletin (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un exploit public permet une exécution de code à distance (RCE) pré-authentification dans vBulletin via une injection PHP dans le rendu des templates. Les serveurs non patchés sont immédiatement compromis. Un correctif est disponible dans la version 5.8.3.</p>
+<a href="https://www.bleepingcomputer.com/news/security/vbulletin-fixes-critical-pre-auth-rce-flaw-with-public-exploit/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de données chez Coca-Cola via une attaque ransomware Fairlife</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le géant Coca-Cola confirme le vol de données lors d'une attaque ransomware ciblant sa filiale Fairlife (produits laitiers). Les attaquants ont exfiltré des informations sensibles avant le chiffrement. Aucune information sur le montant de la rançon n'a été divulguée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/coca-cola-confirms-data-theft-in-fairlife-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite massive de 719 517 comptes via Click to Pray</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : L'application Click to Pray expose les données personnelles de 719 517 utilisateurs via une faille de sécurité basique. Les risques incluent du phishing ciblé et de l'usurpation d'identité. Aucune confirmation d'un correctif n'a été publiée.</p>
+<a href="https://www.zataz.com/click-to-pray-expose-les-donnees-de-719-517-fideles/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<h3>Fuite de 15 176 comptes via GraphQL chez Suitable AI</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique dans l'API GraphQL de Suitable AI expose les données de 15 176 candidats et des failles de sécurité à grande échelle. Les attaquants pourraient exploiter ces vulnérabilités pour des attaques en chaîne. Aucun correctif n'est annoncé.</p>
+<a href="https://www.zataz.com/suitable-ai-15-176-comptes-exposes-via-graphql/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
 <h3>Exploit Certighost pour compromettre les domaines Windows (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un proof-of-concept (PoC) pour l'exploit *Certighost* (CVE non attribuée) permet à un attaquant authentifié de compromettre un domaine Active Directory via une faille dans les services de certificats. Les systèmes Windows Server 2016 et ultérieurs sont vulnérables. Microsoft n'a pas encore publié de correctif.</p>
+<p><strong>Résumé</strong> : Un exploit PoC pour la vulnérabilité Certighost (Active Directory Certificate Services) permet à un attaquant authentifié de prendre le contrôle d'un domaine Windows. Les environnements non patchés sont exposés à des attaques de privilèges élevés. Un correctif Microsoft est disponible.</p>
 <a href="https://www.bleepingcomputer.com/news/security/new-certighost-poc-exploit-lets-attackers-hijack-windows-domains/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Campagne de ransomware Fairlife contre Coca-Cola (Anubis)</h3>
+<hr />
+<h2>Lundi 28 Juillet 2026</h2>
+<h3>Multiples vulnérabilités dans les produits Apple (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Anubis a revendiqué une attaque contre Fairlife (filiale de Coca-Cola), entraînant le vol de données sensibles. L'attaque a exploité une vulnérabilité non divulguée dans les systèmes de l'entreprise. Coca-Cola a confirmé l'incident et travaille avec des experts en cybersécurité pour évaluer l'impact.</p>
-<a href="https://www.bleepingcomputer.com/news/security/coca-cola-confirms-data-theft-in-fairlife-ransomware-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles critiques dans iOS, macOS et Safari permettent une exécution de code arbitraire, une élévation de privilèges et une fuite de données. Les versions non mises à jour sont vulnérables. Des correctifs sont disponibles via iOS 18.1, macOS Sequoia 15.1 et Safari 18.1.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0938/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données chez Ernst &amp; Young (ShinyHunters)</h3>
+<h3>Vulnérabilités critiques dans Samba (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe d'extorsion ShinyHunters a revendiqué une fuite de données chez Ernst & Young (EY), affirmant avoir obtenu des identifiants via une attaque par chaîne d'approvisionnement. Les données exposées incluent des informations sensibles de clients. EY n'a pas encore confirmé l'étendue de la violation.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Samba (CVE-2026-XXXX) permettent un déni de service à distance, une fuite de données et un contournement des politiques de sécurité. Les serveurs exposés à Internet sont prioritairement ciblés. Des correctifs sont disponibles dans la version 4.20.0.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0939/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuite de données chez Ernst &amp; Young revendiquée par ShinyHunters</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe d'extorsion ShinyHunters revendique une fuite de données chez Ernst & Young, obtenue via une attaque par chaîne d'approvisionnement. Les attaquants affirment avoir compromis des identifiants système. Aucune confirmation officielle n'a été publiée.</p>
 <a href="https://www.bleepingcomputer.com/news/security/ernst-and-young-data-breach-claimed-by-shinyhunters-extortion-gang/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité PTC Windchill exploitée en campagne de ransomware</h3>
+<h3>Fuite de 1,26 million de données médicales chez MCBS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique de désérialisation non sécurisée (CVE non attribuée) dans PTC Windchill est activement exploitée pour déployer des ransomwares. L'attaque permet une exécution de code à distance sans authentification. Un correctif est disponible via les mises à jour PTC.</p>
-<a href="https://www.securityweek.com/ptc-windchill-vulnerability-exploited-in-ransomware-campaign/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : La société de facturation médicale MCBS confirme une fuite de données affectant 1,26 million de personnes, suite à une intrusion en 2025. Les informations exposées incluent des données de santé sensibles. Aucun détail sur les mesures de protection n'a été communiqué.</p>
+<a href="https://www.bleepingcomputer.com/news/security/data-breach-at-medical-billing-firm-mcbs-affects-126-million-people/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Malware MedusaHVNC utilise des bureaux Windows cachés</h3>
+<h3>Faille critique dans OpenWrt (CVE-2026-53921)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le malware-as-a-service MedusaHVNC lance des navigateurs légitimes sur un bureau Windows invisible, offrant un accès distant persistant et furtif aux systèmes compromis. Les entreprises utilisant des environnements Windows sont les principales cibles. Aucune solution de détection universelle n'est disponible.</p>
-<a href="https://www.securityweek.com/medusahvnc-malware-uses-hidden-windows-desktops-to-evade-detection/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (score CVSS 9.8) dans le DHCPv6 d'OpenWrt permet une exécution de code à distance en tant que root. Les appareils non patchés sont exposés à des attaques immédiates. Un correctif est disponible dans la version 24.10.8.</p>
+<a href="https://thehackernews.com/2026/07/critical-openwrt-dhcpv6-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Campagne malveillante SourTrade injecte des malwares via navigateur</h3>
+<h3>Faille critique dans TeamCity (CVE-2026-63077)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La campagne *SourTrade* utilise des publicités malveillantes imitant des sites de cryptomonnaies et de trading pour injecter des infostealers directement dans le navigateur des victimes. Les utilisateurs sont redirigés vers des faux sites où des scripts malveillants s'exécutent. Aucune solution de blocage universelle n'existe.</p>
-<a href="https://www.infosecurity-magazine.com/news/malvertising-builds-malware-in/" class="btn-source" target="_blank">🔗 Lire sur Infosecurity Magazine</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (score CVSS 9.8) dans JetBrains TeamCity permet une exécution de code arbitraire sans authentification. Les environnements non mis à jour sont immédiatement compromis. Un correctif est disponible dans la version 2026.07.</p>
+<a href="https://thehackernews.com/2026/07/critical-teamcity-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h2>Lundi 28 Juillet 2026</h2>
-<h3>Multiples vulnérabilités dans GLPI (élévation de privilèges et SQLi)</h3>
+<h3>24 650 contrôleurs BMC exposent des hachages de mots de passe IPMI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans GLPI, permettant une élévation de privilèges, une atteinte à l'intégrité des données et des injections SQL (SQLi). Les systèmes exposés incluent les versions non patchées de GLPI. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0935/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plus de 24 650 contrôleurs BMC (Baseboard Management Controller) exposés à Internet fuient des hachages de mots de passe IPMI via une faille vieille de 20 ans. Les attaquants peuvent exploiter ces données pour des attaques de force brute. Aucun correctif universel n'est disponible.</p>
+<a href="https://thehackernews.com/2026/07/24650-internet-exposed-bmcs-disclose.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans Traefik permettant un contournement de politique de sécurité</h3>
+<h3>Nimbus Manticore cible le Moyen-Orient avec de nouvelles malwares</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Traefik (CVE non attribuée) permet à un attaquant de contourner les politiques de sécurité, potentiellement en accédant à des ressources restreintes. Les versions non patchées sont vulnérables. Un correctif est disponible via les mises à jour Traefik.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0936/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Le groupe iranien Nimbus Manticore déploie de nouveaux malwares (NightLedger, Turned Victim Systems) dans des attaques ciblant le Moyen-Orient, l'Afrique et l'Asie du Sud. Les attaques impliquent des techniques d'évasion avancées. Aucune solution de détection spécifique n'est encore largement déployée.</p>
+<a href="https://thehackernews.com/2026/07/nimbus-manticore-deploys-nightledger.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Microsoft Edge (confidentialité et sécurité)</h3>
+<h3>Fuite de données chez KomikoAI : courriels et prompts exposés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant une atteinte à la confidentialité des données, un contournement des politiques de sécurité et des problèmes non spécifiés par l'éditeur. Les utilisateurs de Microsoft Edge sont invités à appliquer les correctifs via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0937/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une fuite de données chez KomikoAI expose les courriels, identifiants et prompts d'utilisateurs d'un professionnel de l'IA. Les attaquants pourraient exploiter ces données pour des attaques ciblées ou du spear-phishing. Aucune information sur un correctif n'a été publiée.</p>
+<a href="https://www.zataz.com/komikoai-une-fuite-relie-courriels-et-prompts/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<h3>Fuite de 1,8 million de dollars en Bitcoin via une fausse application Sparrow Wallet</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une fausse application Sparrow Wallet sur l'App Store a permis le vol de 1,8 million de dollars en Bitcoin à trois utilisateurs. Apple est poursuivi pour négligence. Aucune mesure corrective n'a été annoncée par Apple.</p>
+<a href="https://www.bleepingcomputer.com/news/apple/apple-sued-over-fake-app-store-crypto-wallet-app-stealing-18m-in-bitcoin/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
