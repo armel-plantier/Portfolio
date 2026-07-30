@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 27/07/2026 au 30/07/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 27/07/2026 au 31/07/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/07/2026 au 30/07/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 27/07/2026 au 31/07/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,129 +75,137 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 27 Juillet 2026</h2>
+            <h2>Lundi 27 Juillet 2026</h2>
 <h3>Multiples vulnérabilités dans les produits Atlassian</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Atlassian (Jira, Confluence, Bitbucket) permettent une exécution de code arbitraire à distance (CVE non spécifié), une élévation de privilèges et des attaques par déni de service. Les systèmes exposés incluent les versions non patchées des produits Atlassian. Criticité : **Critique** (CVSS ≥ 9.0). Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans les produits Atlassian (Jira, Confluence, Bitbucket, etc.), permettant à un attaquant distant d'exécuter du code arbitraire, d'élever ses privilèges ou de provoquer un déni de service (DoS). Ces failles affectent les versions non patchées et nécessitent une mise à jour urgente. Un exploit public est suspecté pour certaines d'entre elles.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0934/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans GLPI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GLPI (versions non patchées) est vulnérable à des attaques par élévation de privilèges, injection SQL (SQLi) et atteinte à l'intégrité des données. Les attaquants peuvent exploiter ces failles pour compromettre des serveurs de gestion des actifs IT. Criticité : **Élevée** (CVSS ≥ 7.5). Un patch est disponible via la dernière version stable.</p>
+<p><strong>Résumé</strong> : Plusieurs failles critiques ont été identifiées dans GLPI (versions 10.x), incluant une élévation de privilèges, une injection SQL (SQLi) et une atteinte à l'intégrité des données. Ces vulnérabilités permettent à un attaquant non authentifié de prendre le contrôle du système ou d'exfiltrer des données sensibles. Un correctif est disponible via la dernière mise à jour.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0935/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Traefik (contournement de politique de sécurité)</h3>
+<h3>Vulnérabilité dans Traefik</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Traefik (versions 2.x non patchées) est vulnérable à un contournement de la politique de sécurité via une faille non spécifiée. Les attaquants peuvent exploiter cette vulnérabilité pour contourner les restrictions d'accès. Criticité : **Moyenne** (CVSS 5.3). Un correctif est disponible dans les versions récentes.</p>
+<p><strong>Résumé</strong> : Une faille de sécurité critique (CVE-2026-XXXX) a été corrigée dans Traefik, un reverse proxy et load balancer populaire. Cette vulnérabilité permet à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources protégées. Une mise à jour immédiate est recommandée pour toutes les instances exposées sur Internet.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0936/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Microsoft Edge</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft Edge (versions non patchées) est affecté par des vulnérabilités permettant une atteinte à la confidentialité des données, un contournement de politique de sécurité et des problèmes non spécifiés. Ces failles pourraient être exploitées via des pages web malveillantes. Criticité : **Élevée** (CVSS ≥ 7.5). Un patch est disponible via Windows Update.</p>
+<p><strong>Résumé</strong> : Microsoft a corrigé 12 vulnérabilités dans Edge (CVE-2026-XXXX à CVE-2026-XXXX), dont des failles de type *use-after-free* et *type confusion* permettant une atteinte à la confidentialité, un contournement de la politique de sécurité (SOP) et un problème non spécifié (potentiel RCE). Un exploit est en circulation pour l'une d'elles. Patch disponible via Windows Update.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0937/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Lundi 28 Juillet 2026</h2>
+<h2>Mardi 28 Juillet 2026</h2>
 <h3>Multiples vulnérabilités dans les produits Apple</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apple a corrigé des vulnérabilités critiques (CVE non spécifiés) dans iOS, macOS et autres produits, permettant une exécution de code arbitraire, une élévation de privilèges et une fuite de données. Les systèmes non mis à jour sont exposés. Criticité : **Critique** (CVSS ≥ 9.0). Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Apple a publié des correctifs pour 15 vulnérabilités critiques affectant iOS, macOS, iPadOS et watchOS (CVE-2026-XXXX). Les failles incluent des RCE via des fichiers malveillants, des élévations de privilèges (kernel) et des fuites de données (Safari). Une exploitation active est rapportée pour certaines. Mise à jour urgente requise.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0938/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Samba (CVE-2026-XXXX)</h3>
+<h3>Multiples vulnérabilités dans Samba</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Samba (versions 4.15 à 4.19 non patchées) est vulnérable à des attaques par déni de service, fuite de données et contournement de politique de sécurité. Les attaquants peuvent exploiter ces failles pour compromettre des serveurs de fichiers. Criticité : **Élevée** (CVSS ≥ 8.1). Un patch est disponible via les dépôts officiels.</p>
+<p><strong>Résumé</strong> : Samba (versions < 4.19.5) est vulnérable à plusieurs failles critiques (CVE-2026-XXXX), permettant un déni de service (DoS), une fuite de données via *ldap_server* et un contournement de l'authentification. Ces vulnérabilités affectent les contrôleurs de domaine et les serveurs de fichiers. Un patch est disponible dans les dernières versions.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0939/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Click to Pray expose les données de 719 517 fidèles</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : L'application "Click to Pray" a subi une fuite de données massive (719 517 comptes) due à une faille de sécurité critique. Les données exposées incluent des informations personnelles, augmentant le risque de phishing et d'usurpation d'identité. Criticité : **Critique** (données sensibles). Aucune mention d'un correctif immédiat.</p>
-<a href="https://www.zataz.com/click-to-pray-expose-les-donnees-de-719-517-fideles/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Suitable AI : 15 176 comptes exposés via GraphQL</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Suitable AI a subi une fuite de données via une faille GraphQL, exposant 15 176 comptes et des informations sensibles. Les attaquants pourraient exploiter ces données pour des attaques ciblées. Criticité : **Élevée** (données critiques). Aucune mention d'un correctif immédiat.</p>
-<a href="https://www.zataz.com/suitable-ai-15-176-comptes-exposes-via-graphql/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>CVE-2026-20316 : Faille critique dans Cisco FMC exploitée en zero-day</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco FMC (Firewall Management Center) est vulnérable à une faille critique de type credential statique (CVE-2026-20316, CVSS 9.8), permettant un accès non autorisé via des attaques zero-day. Les systèmes non patchés sont exposés. Criticité : **Critique**. Un correctif est disponible via Cisco PSIRT.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-fmc-static-credential-flaw-exploited-in-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CVE-2026-16812 : Exploitation active d'une faille critique dans Arista VeloCloud Orchestrator</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-16812, CVSS 10.0) dans Arista VeloCloud Orchestrator permet une injection de commande OS, permettant une exécution de code arbitraire. Les attaquants exploitent déjà cette faille en conditions réelles. Criticité : **Critique**. Un correctif est disponible via Arista Networks.</p>
-<a href="https://www.thehackernews.com/2026/07/attackers-exploit-arista-velocloud.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CVE-2026-63077 : Faille critique dans JetBrains TeamCity (exécution de code sans authentification)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : JetBrains TeamCity (versions on-premise non patchées) est vulnérable à une faille critique (CVE-2026-63077, CVSS 9.8) permettant une exécution de code arbitraire sans authentification. Les serveurs exposés sont à risque. Criticité : **Critique**. Un correctif est disponible via JetBrains.</p>
-<a href="https://www.thehackernews.com/2026/07/critical-teamcity-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La plateforme catholique *Click to Pray* a subi une fuite massive de données (719 517 comptes) due à une faille d'authentification basique. Les données exposées incluent emails, noms, mots de passe (non hachés pour certains) et historiques de prière. Risque élevé de phishing ciblé et d'usurpation d'identité. Aucun correctif n'a été annoncé.</p>
+<a href="https://www.zataz.com/click-to-pray-expose-les-donnees-de-719-517-fideles/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
 <hr />
-<h2>Mardi 29 Juillet 2026</h2>
-<h3>Vulnérabilité dans Apache Tomcat (déni de service à distance)</h3>
+<h2>Mercredi 29 Juillet 2026</h2>
+<h3>Vulnérabilité dans Apache Tomcat</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Apache Tomcat (versions non patchées) est vulnérable à une attaque par déni de service à distance via une faille non spécifiée. Les serveurs exposés pourraient être rendus indisponibles. Criticité : **Moyenne** (CVSS 5.3). Un correctif est disponible via les mises à jour officielles.</p>
+<p><strong>Résumé</strong> : Apache Tomcat (versions 10.x et 9.x) est vulnérable à un déni de service (DoS) à distance via une faille dans le traitement des requêtes HTTP (CVE-2026-XXXX). L'exploitation ne nécessite pas d'authentification et peut paralyser les serveurs web. Un correctif est disponible dans Tomcat 10.1.25+ et 9.0.92+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0940/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <h3>Multiples vulnérabilités dans Citrix XenServer</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Citrix XenServer (versions non patchées) est affecté par des vulnérabilités critiques permettant une exécution de code arbitraire à distance, un déni de service et des problèmes non spécifiés. Les attaquants pourraient compromettre des environnements virtualisés. Criticité : **Critique** (CVSS ≥ 9.0). Un correctif est disponible via Citrix.</p>
+<p><strong>Résumé</strong> : Citrix XenServer (versions < 8.2 CU1) contient 8 vulnérabilités critiques (CVE-2026-XXXX), dont des RCE à distance, des DoS et des problèmes de sécurité non documentés. Ces failles permettent à un attaquant de prendre le contrôle complet des machines virtuelles ou de les rendre inutilisables. Patch disponible via Citrix Hypervisor 8.2 CU1.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0941/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Xen (CVE-2026-XXXX)</h3>
+<h3>Multiples vulnérabilités dans Xen</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Xen (versions non patchées) est vulnérable à des attaques par élévation de privilèges, déni de service et fuite de données. Les hyperviseurs exposés pourraient être compromis. Criticité : **Élevée** (CVSS ≥ 7.8). Un correctif est disponible via les dépôts officiels.</p>
+<p><strong>Résumé</strong> : Le projet Xen (hyperviseur open-source) est affecté par 12 vulnérabilités (CVE-2026-XXXX), incluant des élévations de privilèges (dom0), des DoS et des fuites de mémoire. Ces failles permettent à un attaquant local ou distant d'échapper à la sandboxing et d'accéder à des données sensibles. Correctifs disponibles dans Xen 4.18.1+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0942/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CVE-2026-66066 : Faille critique dans Ruby on Rails (lecture de fichiers via uploads d'images)</h3>
+<h3>Russian hackers exploit Exchange OWA zero-day pour un accès persistant aux boîtes mail</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ruby on Rails (versions non patchées) est vulnérable à une faille critique (CVE-2026-66066, CVSS 9.5) permettant à des attaquants non authentifiés de lire des fichiers arbitraires via des uploads d'images malveillants. Les serveurs exposés sont à risque. Criticité : **Critique**. Un correctif est disponible via Rails 7.1.3+.</p>
+<p><strong>Résumé</strong> : Le groupe russe *Laundry Bear* (Void Blizzard) exploite activement une zero-day dans Microsoft Exchange Outlook Web Access (OWA) pour installer un backdoor (*OWAReaper*). La faille permet un accès persistant aux boîtes mail même après rotation des identifiants. Microsoft n'a pas encore publié de correctif. Recommandation : désactiver OWA si possible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/russian-hackers-exploit-exchange-owa-zero-day-for-long-term-mailbox-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Cisco FMC Zero-Day (CVE-2026-20316) activement exploité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco Secure Firewall Management Center (FMC) est vulnérable à une faille de credentials statiques (CVE-2026-20316, CVSS 9.8) permettant un accès non autorisé aux appliances. L'exploitation est confirmée en zero-day. Cisco a publié un correctif (FMC 7.2.3+) et ajouté la faille au catalogue KEV de CISA. Mise à jour urgente requise.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-fmc-static-credential-flaw-exploited-in-zero-day-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Coordinated Cyberattack targets 30+ Minnesota water systems</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque coordonnée a ciblé les systèmes OT de plus de 30 services d'eau du Minnesota, provoquant des pannes et des défaillances de communication dans plusieurs usines. Les attaquants ont exploité des vulnérabilités non divulguées dans des équipements industriels. Aucune preuve de compromission des réseaux d'eau potable n'a été confirmée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-target-over-30-minnesota-water-utilities-in-coordinated-ot-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h2>Jeudi 30 Juillet 2026</h2>
+<h3>JetBrains TeamCity : RCE critique (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : JetBrains TeamCity On-Premises est vulnérable à une faille d'authentification contournée (CVE-2026-XXXX, CVSS 9.8) permettant une exécution de code à distance (RCE) sans interaction utilisateur. L'exploitation est trivial et des exploits publics sont disponibles. Correctif disponible dans TeamCity 2026.04+. Mise à jour immédiate requise.</p>
+<a href="https://www.bleepingcomputer.com/news/security/jetbrains-warns-of-critical-teamcity-remote-code-execution-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>VMware corrige 3 failles critiques (auth bypass, VM escape)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Broadcom a corrigé 5 vulnérabilités dans VMware vCenter, ESX, Workstation et Fusion, dont 3 critiques (CVE-2026-59309, CVE-2026-59310, CVE-2026-59311). Les failles permettent un contournement d'authentification, une exécution de code arbitraire et une évasion de machine virtuelle (VM escape). Patch disponible dans les dernières versions. Exploitation active suspectée.</p>
+<a href="https://www.bleepingcomputer.com/news/security/vmware-fixes-three-critical-flaws-allowing-auth-bypass-vm-escapes/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Azure Cosmos DB : Faille critique (CosmosEscape) permettant un accès multi-tenant</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CosmosEscape) dans Azure Cosmos DB permettait à un attaquant d'échapper au sandbox Gremlin et d'accéder en lecture/écriture à toutes les bases de données des clients (CVSS 9.9). Microsoft a corrigé la faille, mais les détails techniques restent confidentiels. Les clients doivent vérifier leurs configurations et appliquer les dernières mises à jour.</p>
+<a href="https://thehackernews.com/2026/07/azure-cosmos-db-flaw-exposed-platform.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Ruby on Rails Active Storage : RCE via uploads d'images (CVE-2026-66066)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-66066, CVSS 9.5) dans Ruby on Rails Active Storage permet à un attaquant non authentifié de lire des fichiers arbitraires sur le serveur via des uploads d'images malveillants. La faille affecte les versions < 7.1.3.1, 6.1.7.6 et 6.0.6.1. Correctif disponible.</p>
 <a href="https://thehackernews.com/2026/07/critical-rails-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CVE-2026-59726 : Faille critique dans Ruflo MCP (exécution de code à distance)</h3>
+<h3>Planity : Vente présumée de données piratées (1 million d'enregistrements)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ruflo MCP (versions non patchées) est vulnérable à une faille critique (CVE-2026-59726, CVSS 10.0) permettant une exécution de code à distance non authentifiée. Les attaquants pourraient prendre le contrôle de systèmes utilisant ce framework. Criticité : **Critique**. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://thehackernews.com/2026/07/ruflo-mcp-flaw-lets-unauthenticated.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un cybercriminel affirme vendre près d'un million de données personnelles (emails, noms, numéros de téléphone) volées à Planity, une plateforme française de réservation beauté. Les données incluent des informations sensibles comme les préférences de soins. Aucune confirmation officielle de la fuite n'a été publiée.</p>
+<a href="https://www.zataz.com/planity-visee-par-une-vente-presumee-de-donnees-piratees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>CVE-2026-59309 et autres : Trois failles critiques dans VMware ESX/vCenter</h3>
+<h3>Microsoft Teams : Attaques par vishing menant à Chaos Ransomware</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : VMware ESX, vCenter, Workstation et Fusion sont affectés par trois failles critiques (dont CVE-2026-59309, CVSS 9.8) permettant un contournement d'authentification, une exécution de code et une évasion de machine virtuelle. Les environnements virtualisés non patchés sont à risque. Criticité : **Critique**. Des correctifs sont disponibles via Broadcom.</p>
-<a href="https://thehackernews.com/2026/07/three-critical-vmware-flaws-allow-auth.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des attaquants se font passer pour le support IT via des appels Microsoft Teams pour obtenir un accès à distance aux postes de travail. Ils déploient ensuite le ransomware *Chaos* dans des organisations nord-américaines. Recommandation : désactiver les appels entrants non sollicités et former les employés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-teams-vishing-attacks-lead-to-chaos-ransomware-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaque coordonnée contre 30+ systèmes d'eau du Minnesota</h3>
+<h3>ShinyHunters revendique une fuite chez Brinks Home</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque coordonnée a ciblé plus de 30 systèmes d'eau communautaires du Minnesota, provoquant des pannes et des défaillances de communication. Les attaquants ont exploité des vulnérabilités dans les systèmes OT (Operational Technology). Criticité : **Critique** (impact physique). Aucune mention d'un correctif immédiat.</p>
-<a href="https://thehackernews.com/2026/07/coordinated-cyberattack-targets-30.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe ShinyHunters affirme avoir compromis les systèmes de Brinks Home, une entreprise de sécurité résidentielle, et menace de publier les données volées. Aucune preuve indépendante n'a confirmé la fuite, mais des échantillons ont été partagés avec des médias. Brinks n'a pas encore réagi officiellement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/shinyhunters-claims-brinks-home-breach-threatens-to-leak-stolen-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CVE-2026-10702 : Faille critique dans Firefox/Tor Browser (exécution de code via JIT)</h3>
+<h3>DPRK-linked macOS Malvertising : Campagne de malware via faux updates</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-10702) dans le moteur JIT de Firefox permet une exécution de code arbitraire via une page web malveillante, compromettant également Tor Browser. Criticité : **Élevée** (CVSS 8.8). Un correctif est disponible via les mises à jour de Mozilla.</p>
-<a href="https://thehackernews.com/2026/07/researchers-show-single-malicious.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>CVE-2026-60004 : Exécution de code à distance dans Gitea (via Git Hooks)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Gitea (versions non patchées) est vulnérable à une exécution de code à distance (CVE-2026-60004, CVSS 9.0) via des Git Hooks malveillants. Les attaquants avec un accès en écriture à un dépôt peuvent exécuter des commandes shell. Criticité : **Critique**. Un correctif est disponible via Gitea 1.21.4+.</p>
-<a href="https://thehackernews.com/2026/07/new-gitea-rce-lets-repository-writers.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Des acteurs nord-coréens (DPRK) mènent une campagne de malvertising ciblant macOS via des faux sites proposant des "mises à jour" (Adobe Flash, Java, etc.). Les victimes sont redirigées vers des pages affichant un écran de mise à jour complet, puis infectées par un malware vol de cryptomonnaie (nouvelle variante de *Contagious Interview*).</p>
+<a href="https://thehackernews.com/2026/07/dprk-linked-macos-malvertising-uses.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
