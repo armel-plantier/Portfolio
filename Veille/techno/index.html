@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 03/08/2026 au 04/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 03/08/2026 au 05/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 03/08/2026 au 04/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 03/08/2026 au 05/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,54 +75,121 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 03 Août 2026</h2>
-<h3>INC Ransomware exploite activement les vulnérabilités SonicWall SMA 1000</h3>
+            <h2>Lundi 03 Août 2026</h2>
+<h3>CISA ajoute une faille exploitée dans N-able N-central au catalogue KEV après des compromissions clients</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe INC Ransomware est désormais le principal acteur exploitant les vulnérabilités critiques (CVE-2026-XXXX) des appliances VPN SonicWall SMA 1000. Une accélération des attaques a été observée, ciblant les infrastructures exposées pour des campagnes de ransomware. Les administrateurs doivent appliquer les correctifs urgents et auditer leurs VPN exposés.</p>
-<a href="https://thehackernews.com/2026/08/inc-ransomware-emerges-as-dominant.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-18577 (authentification contournée) à son catalogue KEV après des attaques actives exploitant une faille dans N-able N-central. Les attaquants ont pu prendre le contrôle des serveurs N-central et accéder aux systèmes clients gérés. Une mise à jour incomplète a été corrigée dans la version 2026.3.1.7.</p>
+<a href="https://thehackernews.com/2026/08/cisa-adds-exploited-n-able-n-central.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Fuite de l'outil DarkSword : menace persistante sur iOS</h3>
+<h3>N-able corrige une faille critique dans N-central après une première tentative de patch incomplète</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un acteur menaçant chinois exploite une version fuite de l'outil DarkSword pour déployer le malware GHOSTBLADE sur des appareils iOS. Plus de 100 domaines malveillants ont été identifiés, nécessitant une mise à jour urgente des appareils et une surveillance renforcée des connexions réseau.</p>
-<a href="https://thehackernews.com/2026/08/chinese-threat-actor-uses-leaked.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>N-able corrige une faille d'authentification incomplète dans N-central</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : N-able a publié un correctif partiel (CVE-2026-18577) pour une faille d'authentification dans N-central, mais les attaquants ont contourné la première correction. Les serveurs N-central non mis à jour (versions < 2026.3.1.7) restent exposés à des attaques RCE. Une mise à jour immédiate est requise.</p>
+<p><strong>Résumé</strong> : N-able a reconnu que sa première correction de CVE-2026-18577 était insuffisante, permettant aux attaquants de contourner l'authentification et d'obtenir un accès administratif distant. La version 2026.3.1.7, publiée début août 2026, corrige définitivement le problème.</p>
 <a href="https://thehackernews.com/2026/08/n-able-says-attackers-take-over-n.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Linux 7.3 intègre FailFS et améliore la gestion des périphériques</h3>
+<h3>Faille critique dans cPanel permet d'exécuter du SQL en tant que root sur la base de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La prochaine version du noyau Linux 7.3 intègre FailFS, un pseudo-système de fichiers conçu pour tester la résilience des applications. Des améliorations matérielles sont également prévues avec le support des contrôleurs Realtek RTL8261C/D (10GbE) et MCTP-over-USB v1.1 pour la gestion des firmwares.</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-Expects-FailFS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans cPanel (CVE non encore attribuée) permet à un client hébergé d'exécuter des requêtes SQL avec les droits root de la base de données, franchissant la frontière entre un compte utilisateur et l'identité administrative du serveur. Un correctif a été déployé en urgence.</p>
+<a href="https://thehackernews.com/2026/08/new-cpanel-critical-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>GNOME Boxes améliore significativement l'expérience de virtualisation</h3>
+<h3>INC Ransomware exploite activement les vulnérabilités SonicWall SMA 1000</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GNOME Boxes, l'interface graphique pour libvirt/QEMU, prépare une version majeure avec une gestion simplifiée des machines virtuelles, une meilleure intégration Wayland et des performances optimisées. Idéal pour les administrateurs cherchant une solution de virtualisation légère et moderne.</p>
-<a href="https://www.phoronix.com/news/GNOME-Boxes-2026" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le groupe INC Ransomware est désormais le principal acteur exploitant les failles récemment découvertes dans les appliances VPN SonicWall SMA 1000. Resecurity a observé une accélération des attaques depuis leur publication, avec des impacts potentiels majeurs sur les infrastructures critiques.</p>
+<a href="https://thehackernews.com/2026/08/inc-ransomware-emerges-as-dominant.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>OVHcloud et Scaleway reconnus dans le Magic Quadrant des infrastructures IA</h3>
+<h3>Google supprime 3 workflows IA de son ADK après une faille de prompt injection</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Gartner intègre pour la première fois OVHcloud et Scaleway dans son Magic Quadrant dédié aux infrastructures cloud pour l'IA. Ces acteurs européens offrent des solutions compétitives pour le déploiement de modèles d'IA, avec une attention particulière à la souveraineté des données.</p>
+<p><strong>Résumé</strong> : Google a retiré trois workflows d'agents IA de son Agent Development Kit (ADK) après qu'une issue publique sur GitHub ait permis une manipulation par prompt injection. Un agent de triage pouvait déclencher un agent privilégié de correction de code, exposant un risque de sécurité majeur.</p>
+<a href="https://thehackernews.com/2026/08/google-deletes-3-adk-ai-workflows-after.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Vulnérabilités critiques dans Hugging Face Diffusers permettent l'exécution de code arbitraire</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois failles de haute gravité (CVE-2026-XXXX) dans la bibliothèque Hugging Face Diffusers permettent à des dépôts de modèles malveillants d'exécuter du code arbitraire sur les machines qui les chargent. Cela expose la chaîne d'approvisionnement IA à des risques de sécurité critiques.</p>
+<a href="https://thehackernews.com/2026/08/hugging-face-diffusers-flaws-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>L'UE teste un cloud sécurisé Thales pour ses projets d'armement</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La Commission européenne évalue pendant un an une solution cloud sécurisée développée par Thales pour protéger les données sensibles des projets d'armement. Cette initiative s'inscrit dans le cadre des efforts de souveraineté numérique européenne.</p>
+<a href="https://www.silicon.fr/cybersecurite-1371/bruxelles-teste-le-cloud-securise-de-thales-pour-ses-projets-darmement-228667" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Gartner intègre OVHcloud et Scaleway dans son Magic Quadrant des infrastructures IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Pour la première fois, OVHcloud et Scaleway apparaissent dans le Magic Quadrant dédié aux infrastructures cloud pour l'IA, reflétant leur montée en puissance dans le secteur. Cette reconnaissance souligne leur capacité à répondre aux besoins des charges de travail IA modernes.</p>
 <a href="https://www.silicon.fr/data-ia-1372/infrastructure-ia-cloud-magic-quadrant-2026-228633" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h3>zlib-rs 0.6.7 optimise les performances avec LoongArch et corrige des vulnérabilités</h3>
+<h3>Appel d'offres pour les gigafactories IA : critères et engagements des États membres</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La bibliothèque zlib-rs, réécrite en Rust, sort en version 0.6.7 avec des optimisations LoongArch (LSX) et un correctif pour une faille Use-After-Free. Cette version vise à égaler les performances de zlib-ng tout en améliorant la sécurité des applications dépendantes.</p>
-<a href="https://www.phoronix.com/news/zlib-rs-0.6.7" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : L'appel d'offres pour les gigafactories d'IA a été publié, détaillant les critères d'évaluation, les mécanismes de financement et les engagements des États membres. Ce projet vise à renforcer la souveraineté technologique européenne dans le domaine de l'IA.</p>
+<a href="https://www.silicon.fr/data-ia-1372/ai-gigafactories-appel-offres-gigafabriques-2026-228646" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
 
-<h2>Lundi 04 Août 2026</h2>
-<h3>Google Password Manager vulnérable aux attaques par malware sur les comptes passkey</h3>
+<h3>Linux 7.3 intègre FailFS, un système de fichiers de test pour simuler des défaillances</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs en sécurité ont démontré que des malwares sous Windows peuvent compromettre les comptes protégés par passkey via Google Password Manager, sans interaction utilisateur. Les administrateurs doivent renforcer la détection des malwares et évaluer l'utilisation des passkeys dans leur organisation.</p>
-<a href="https://thehackernews.com/2026/08/google-password-manager-attacks-could.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Linux 7.3 devrait inclure FailFS, un système de fichiers minimal conçu pour simuler des défaillances et tester la résilience des applications. Ce nouvel outil s'ajoute à NULLFS et vise à améliorer la robustesse des systèmes Linux.</p>
+<a href="https://www.phoronix.com/news/Linux-7.3-Expects-FailFS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h2>Mardi 04 Août 2026</h2>
+<h3>WAPT Server vulnérable à une faille d'authentification (CVE-2026-33591)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-33591) dans WAPT Server permet à un attaquant non authentifié de contourner l'authentification via un paquet forgé. Cette vulnérabilité expose les infrastructures Windows gérées par WAPT à des risques de prise de contrôle.</p>
+<a href="https://www.it-connect.fr/wapt-server-cve-2026-33591/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Gufw : interface graphique pour gérer UFW sous Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Gufw propose une interface graphique intuitive pour configurer et gérer le pare-feu UFW sous Linux. Cet outil élimine le besoin de manipuler la ligne de commande, facilitant la gestion des règles de sécurité pour les administrateurs système.</p>
+<a href="https://www.it-connect.fr/gufw-interface-graphique-ufw-linux/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Le kit PhaaS Greatness ajoute le phishing par code device pour contourner la MFA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le kit PhaaS Greatness intègre désormais une fonctionnalité de phishing par code device, exploitant le flux OAuth 2.0 Device Authorization Grant pour contourner l'authentification multifactorielle (MFA) et voler des tokens. Cette technique représente une menace croissante pour les entreprises.</p>
+<a href="https://thehackernews.com/2026/08/greatness-phaas-adds-device-code.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Un ver npm lié à Keyv infecte des centaines de packages et installe des hooks malveillants</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un ver npm malveillant, initialement présent dans keyv@6.0.0, s'est propagé à 353 versions infectées réparties sur 79 noms de packages. Il installe des hooks dans VS Code et installe des outils comme Claude Code, compromettant la chaîne d'approvisionnement logicielle.</p>
+<a href="https://thehackernews.com/2026/08/keyv-linked-npm-worm-poisons-hundreds.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne malveillante : fausses mises à jour Adobe/Zoom installant ScreenConnect</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne multi-vagues utilise des leurres sociaux (fausses mises à jour Adobe/Zoom, documents métiers) pour déployer ScreenConnect, un outil de gestion à distance (RMM). Les attaquants obtiennent ainsi un accès persistant aux systèmes ciblés.</p>
+<a href="https://thehackernews.com/2026/08/fake-adobe-and-zoom-updates-install.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>NVIDIA devient sponsor premium de LVFS/fwupd pour les mises à jour firmware Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : NVIDIA a rejoint le programme de sponsors premium de LVFS (Linux Vendor Firmware Service) et fwupd, facilitant les mises à jour sécurisées des firmware GPU sous Linux. Cette initiative améliore la gestion des correctifs pour les administrateurs système.</p>
+<a href="https://www.phoronix.com/news/NVIDIA-Premier-Sponsor-LVFS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>FFmpeg 9.0 : accélération Vulkan, WebP animé et support AMF AMD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FFmpeg 9.0 introduit une accélération Vulkan, le support des images WebP animées et une meilleure intégration avec les encodeurs AMF d'AMD. Ces améliorations optimisent le traitement multimédia pour les infrastructures modernes.</p>
+<a href="https://www.phoronix.com/news/FFmpeg-9.0-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Wild Linker 0.10 : support de l'index GDB et atténuation des problèmes de performance Btrfs</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Wild Linker 0.10, un linker rapide écrit en Rust, ajoute le support des index GDB et des optimisations pour atténuer les problèmes de performance liés à Btrfs. Cet outil est idéal pour les environnements de développement et de production exigeants.</p>
+<a href="https://www.phoronix.com/news/Wild-Linker-0.10" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Linux 7.3 améliore la récupération des GPU AMD Kaveri et Hawaii</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Linux 7.3 introduit des améliorations pour la récupération des GPU AMD Kaveri et Hawaii (série GFX7), avec un meilleur support des réinitialisations logicielles. Ces correctifs augmentent la stabilité des systèmes équipés de ces cartes graphiques.</p>
+<a href="https://www.phoronix.com/news/AMD-GFX7-Soft-Reset-Linux-7.3" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
