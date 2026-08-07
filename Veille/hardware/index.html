@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hardware | Serveurs & Composants — 03/08/2026 au 06/08/2026</title>
+    <title>Veille Hardware | Serveurs & Composants — 03/08/2026 au 07/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%2310b981%22>HW</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🖥️ Hardware</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Serveurs & Composants</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles architectures, vulnérabilités firmware et tendances datacenter</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 03/08/2026 au 06/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 03/08/2026 au 07/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,81 +75,91 @@
             <a href="/Veille/hardware" class='active'>🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mercredi 03 Août 2026</h2>
-<h3>AMD Helios Architecture Deep Dive : L'union du matériel AMD et Broadcom pour les datacenters</h3>
+            <h2>Vendredi 07 Août 2026</h2>
+<h3>Vulnérabilité Zapscape : Évasion de machine virtuelle KVM et élévation de privilèges sous Linux</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD dévoile l'architecture Helios, une solution rackscale combinant jusqu'à 72 accélérateurs Instinct MI455X pour former un système unifié. Cette architecture cible les charges de travail IA/ML à grande échelle, avec une intégration matérielle optimisée entre les composants AMD et les solutions réseau Broadcom. L'impact pour les entreprises inclut une réduction des latences inter-nœuds et une meilleure scalabilité pour les clusters AI.</p>
-<a href="https://www.servethehome.com/amd-helios-architecture-deep-dive-amd-broadcom-hardware-combined/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
-</div>
-
-<h3>Lexar commercialise des barrettes DDR5 32 Go avec puces mémoire chinoises CXMT</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Lexar lance une barrette DDR5 32 Go utilisant des puces CXMT (ChangXin Memory Technologies), vendue 3 999 yuans (~592 USD). Cette initiative s'inscrit dans la stratégie de diversification des approvisionnements face aux pénuries de mémoire, mais soulève des questions sur la qualité et la compatibilité à long terme pour les infrastructures critiques.</p>
-<a href="https://www.tomshardware.com/pc-components/ddr5/lexar-lists-32gb-ddr5-memory-with-homegrown-chinese-chips-3-999-yuan-usd592-price-undercuts-hopes-for-cheaper-cxmt-powered-ram" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Nvidia RTX 50 : Hausse des prix jusqu'à 30 % en Corée du Sud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les prix des cartes RTX 50 en Corée du Sud ont augmenté de 20 à 30 %, poussant le modèle RTX 5090 au-delà de 5 100 USD. Cette hausse, attribuée aux coûts des wafers TSMC et des modules GDDR7 (20 USD par puce), impacte directement les budgets des entreprises pour les postes de travail GPU-intensifs.</p>
-<a href="https://www.tomshardware.com/pc-components/gpus/in-a-troubling-sign-nvidia-rtx-50-series-prices-jump-up-to-30-percent-in-south-korea-tsmc-wafer-hikes-and-usd20-gddr7-modules-push-rtx-5090-past-usd5-100" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Co-Packaged Optics (CPO) : Feuille de route des fondeurs pour l'IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : TSMC, Intel, Samsung et GlobalFoundries détaillent leurs stratégies CPO pour remplacer les interconnexions cuivre par de l'optique intégrée. Ces technologies visent à réduire la consommation énergétique des datacenters AI de 30 à 50 %, un enjeu critique pour les hyperscalers comme Microsoft et Meta.</p>
-<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/co-packaged-optics-cpo-foundry-roadmaps-breaking-down-tsmc-intel-samsung-and-globalfoundries-approach-to-next-generation-scale-up-connectivity" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Une nouvelle vulnérabilité critique, Zapscape, permet une évasion de machine virtuelle (guest-to-host) et une élévation de privilèges locale (LPE) sur les systèmes Linux utilisant KVM x86 depuis 2020. Cette faille, liée à une modification du noyau en 2020, exploite un problème dans la gestion des permissions de /dev/kvm sur certaines distributions, posant un risque majeur pour les infrastructures virtualisées d'entreprise.</p>
+<a href="https://www.phoronix.com/news/Linux-Zapscape-Vulnerability" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
 <hr />
-<h2>Jeudi 04 Août 2026</h2>
-<h3>Kioxia et SanDisk présentent la NAND 3D la plus dense au monde (332 couches)</h3>
+<h2>Jeudi 06 Août 2026</h2>
+<h3>Samsung dévoile trois technologies mémoire de nouvelle génération pour datacenters IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les deux acteurs dévoilent la BiCS10, une mémoire 3D QLC avec 332 couches actives et un débit de 4 800 MT/s. Cette technologie, prévue pour 2027, permettra des SSD de 100+ To avec une densité de 37 Gbit/mm², réduisant les coûts de stockage pour les datacenters.</p>
-<a href="https://www.tomshardware.com/pc-components/ssds/kioxia-and-sandisk-demonstrate-the-worlds-highest-density-3d-nand-flash-332-active-layers-and-up-to-4-800-mt-s-interface" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Samsung a présenté lors du FMS 2026 trois innovations mémoire ciblant les datacenters IA : zHBM (High Bandwidth Memory), zNAND-O (NAND optimisé) et BV-NAND, toutes reposant sur des techniques avancées de *wafer bonding*. Ces technologies visent à répondre aux besoins en bande passante et en densité des charges de travail IA, avec un impact potentiel sur les architectures serveurs nécessitant des mémoires ultra-rapides et énergivores.</p>
+<a href="https://www.tomshardware.com/pc-components/dram/samsung-debuts-three-next-generation-memory-technologies-for-ai-data-centers-zhbm-znand-o-and-bv-nand-all-rely-on-advanced-wafer-bonding-technologies" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Spécification HBF : Jusqu'à 3 To/s de bande passante pour les GPU</h3>
+<hr />
+<h3>AMD annonce l'acquisition de Taalas pour des puces d'inférence IA spécifiques aux modèles</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SanDisk et SK hynix introduisent la spécification HBF, permettant des empilements NAND 16-Hi et un débit de 3 To/s via UCIe. Bien que seulement 4 entreprises (dont Nvidia) s'intéressent à cette tech, elle pourrait révolutionner les architectures mémoire des accélérateurs AI.</p>
-<a href="https://www.tomshardware.com/pc-components/ssds/sandisk-and-sk-hynix-unveil-hbf-spec-up-to-16-hi-nand-stacks-3-tb-s-bandwidth-ucie" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : AMD a annoncé l'acquisition de Taalas, une startup spécialisée dans les puces d'inférence IA *model-specific*, conçues pour accélérer des modèles individuels. Cette acquisition s'inscrit dans la stratégie d'AMD pour renforcer sa position sur le marché des accélérateurs IA dédiés, avec un impact direct sur les infrastructures d'entreprise nécessitant des solutions optimisées pour des modèles d'IA spécifiques.</p>
+<a href="https://www.servethehome.com/amd-to-acquire-taalas-for-model-specific-ai-inference-chips/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
 </div>
 
-<h3>Texas impose un moratoire sur 1 800 datacenters en raison de la demande électrique</h3>
+<hr />
+<h3>SSD NVMe DapuStor R6060 de 512 To présenté au FMS 2026</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le gouverneur du Texas a gelé les demandes de nouveaux datacenters après avoir identifié 474 GW de besoins électriques (5x la demande record actuelle). Cette décision, liée à des audits incomplets sur la consommation d'eau et d'énergie, pourrait retarder des projets comme ceux d'Amazon et Meta.</p>
+<p><strong>Résumé</strong> : DapuStor a dévoilé au FMS 2026 le SSD NVMe R6060 au format E2, offrant une capacité record de 512 To par unité. Cette innovation, bien que principalement destinée aux datacenters hyperscale, pourrait révolutionner les architectures de stockage d'entreprise en réduisant drastiquement le nombre de disques nécessaires pour les charges de travail gourmandes en stockage (IA, big data).</p>
+<a href="https://www.servethehome.com/gigantic-dapustor-r6060-512tb-e2-nvme-ssd-shown-at-fms-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<hr />
+<h3>Correction critique pour Btrfs : restauration de l'infrastructure de correctifs silencieux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le noyau Linux 7.2 a rétabli l'infrastructure de correctifs *fixup worker* pour Btrfs, supprimée lors de la fenêtre de merge 7.2 en raison d'une mauvaise évaluation des risques. Cette restauration est cruciale pour éviter les pertes de données silencieuses (*silent data loss*) sur les systèmes de fichiers Btrfs, largement utilisés dans les environnements virtualisés et les datacenters.</p>
+<a href="https://www.phoronix.com/news/Btrfs-Restores-Fixup-Worker" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h2>Mercredi 05 Août 2026</h2>
+<h3>AMD Helios : architecture rackscale combinant CPU et accélérateurs IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : AMD a détaillé l'architecture Helios, son premier système rackscale, combinant jusqu'à 72 accélérateurs Instinct MI455X pour agir comme une seule unité de calcul. Cette architecture vise à répondre aux besoins des datacenters IA en offrant une scalabilité horizontale et une intégration matérielle optimisée, avec un impact majeur sur les infrastructures nécessitant des performances IA massives.</p>
+<a href="https://www.servethehome.com/amd-helios-architecture-deep-dive-amd-broadcom-hardware-combined/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<hr />
+<h3>Frore LiquidJet : refroidissement avancé pour GPU Nvidia Rubin avec gain de performance</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Frore affirme que sa technologie LiquidJet peut réduire les températures des GPU Nvidia Rubin de 10°C et améliorer les performances de 15 % grâce à un refroidissement par coldplate. Cette solution, déjà envisagée par les hyperscalers, pourrait devenir un standard pour les datacenters IA où l'efficacité énergétique et thermique est critique.</p>
+<a href="https://www.tomshardware.com/pc-components/liquid-cooling/frore-claims-its-liquidjet-can-drop-nvidia-rubin-gpu-temperatures-by-10-c-can-also-boost-performance-by-15-percent-as-hyperscalers-eye-using-delidded-gpus-in-production-environments" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
+<h3>Texas impose un moratoire sur 1 800 projets de datacenters en raison de la demande électrique</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le gouverneur du Texas a ordonné un moratoire sur les demandes de datacenters, exigeant une évaluation des besoins en électricité (474 GW demandés, soit 5 fois la demande record actuelle). Cette décision, prise après que seulement 28 opérateurs sur 377 aient répondu à une demande d'information, pourrait ralentir l'expansion des infrastructures IA dans l'État et impacter les plans des hyperscalers.</p>
 <a href="https://www.tomshardware.com/tech-industry/data-centers/texas-slams-on-the-breaks-for-1-800-data-centers-power-grid-requirements-are-five-times-higher-than-peak-record-demand-474-gigawatts-of-power-requests-are-now-subject-to-new-moratorium" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
+<hr />
+<h3>Kioxia et Sandisk présentent la NAND 3D la plus dense au monde (332 couches)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Kioxia et Sandisk ont dévoilé la BiCS10, une mémoire 3D QLC NAND avec 332 couches actives et une interface jusqu'à 4 800 MT/s. Cette innovation, avec une densité de plus de 37 Gbit/mm², pourrait réduire les coûts de stockage et améliorer les performances des SSD pour les datacenters, notamment pour les charges de travail IA nécessitant un accès rapide aux données.</p>
+<a href="https://www.tomshardware.com/pc-components/ssds/kioxia-and-sandisk-demonstrate-the-worlds-highest-density-3d-nand-flash-332-active-layers-and-up-to-4-800-mt-s-interface" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
+<h2>Mardi 04 Août 2026</h2>
+<h3>Spécification HBF : jusqu'à 3 To/s de bande passante pour les GPU avec empilements NAND</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Sandisk et SK hynix ont présenté la spécification HBF, permettant des empilements NAND jusqu'à 16-Hi avec une bande passante théorique de 3 To/s et une intégration via UCIe. Bien que seulement quatre entreprises s'intéressent actuellement à cette technologie, elle pourrait révolutionner les architectures serveurs en offrant des mémoires ultra-rapides pour les GPU, réduisant les goulots d'étranglement dans les charges de travail IA.</p>
+<a href="https://www.tomshardware.com/pc-components/ssds/sandisk-and-sk-hynix-unveil-hbf-spec-up-to-16-hi-nand-stacks-3-tb-s-bandwidth-ucie" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
 <h3>Les États-Unis envisagent d'interdire les transceivers optiques chinois dans les datacenters</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La FCC prépare une interdiction des transceivers optiques chinois, suspectés de pouvoir exfiltrer des données ou installer des malwares. Cette mesure, qui ciblerait des composants clés comme ceux de Huawei ou Inphi, pourrait perturber les chaînes d'approvisionnement des hyperscalers américains.</p>
+<p><strong>Résumé</strong> : La FCC prépare un projet de loi pour interdire les transceivers optiques chinois dans les datacenters américains, les jugeant vulnérables aux cyberattaques (vol de données, installation de malware). Cette mesure, si elle est adoptée, pourrait forcer les entreprises à remplacer des milliers de composants réseau critiques, avec un impact majeur sur les coûts et les délais de déploiement.</p>
 <a href="https://www.tomshardware.com/tech-industry/data-centers/us-mulling-ban-on-key-chinese-networking-tech-in-data-center-component-crackdown-white-house-wants-to-impose-restrictions-in-2026-china-says-it-will-respond-if-necessary" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
 <hr />
-<h2>Vendredi 05 Août 2026</h2>
-<h3>DapuStor présente le SSD NVMe E2 512 To au FMS 2026</h3>
+<h3>AMD double ses revenus datacenter en un an, mais le gaming chute de 31 %</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : DapuStor a dévoilé le R6060, un SSD NVMe au format E2 (110x75 mm) offrant 512 To de capacité. Cette solution, conçue pour les datacenters hyperscale, utilise une interface PCIe 6.0 x8 et vise à réduire les coûts de stockage pour les charges de travail IA/big data.</p>
-<a href="https://www.servethehome.com/gigantic-dapustor-r6060-512tb-e2-nvme-ssd-shown-at-fms-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
-</div>
-
-<h3>Frore LiquidJet : Refroidissement des GPU Nvidia Rubin avec gain de 15 % de performance</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Frore annonce que sa technologie LiquidJet (coldplate liquide) peut réduire les températures des GPU Nvidia Rubin de 10°C et améliorer l'efficacité énergétique de 15 %. Cette solution, déjà testée par des hyperscalers, pourrait devenir un standard pour les racks AI refroidis par liquide.</p>
-<a href="https://www.tomshardware.com/pc-components/liquid-cooling/frore-claims-its-liquidjet-can-drop-nvidia-rubin-gpu-temperatures-by-10-c-can-also-boost-performance-by-15-percent-as-hyperscalers-eye-using-delidded-gpus-in-production-environments" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>AMD double son chiffre d'affaires datacenter en un an</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : AMD rapporte une croissance de 100 % de ses revenus datacenter au T2 2026, portée par les ventes d'accélérateurs Instinct MI325X et MI300. Cependant, le segment gaming chute de 31 %, reflétant la saturation du marché des PC grand public et la priorité donnée aux infrastructures AI.</p>
+<p><strong>Résumé</strong> : AMD a annoncé des revenus records au T2 2026, avec une croissance de 100 % pour sa division datacenter, tirée par la demande en accélérateurs IA et serveurs. Cependant, le segment gaming a chuté de 31 %, reflétant une baisse de la demande des consommateurs et une pression sur les marges. Cette divergence souligne l'importance croissante des infrastructures IA pour les entreprises.</p>
 <a href="https://www.tomshardware.com/tech-industry/amd-doubles-data-center-revenue-year-over-year-but-gaming-revenue-plunged-by-31-percent-ceo-lisa-su-says-prices-have-weighed-on-consumer-demand-but-is-optimistic-about-client-market" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>Cloudflare open-source Cloudflare OS : Un OS pour agents IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cloudflare lance Cloudflare OS, une plateforme open-source conçue pour orchestrer des agents IA et des applications distribuées. Cette solution, compatible avec les environnements multi-cloud, pourrait concurrencer les frameworks comme Kubernetes pour les charges de travail IA légères.</p>
-<a href="https://www.phoronix.com/news/Cloudflare-OS" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
