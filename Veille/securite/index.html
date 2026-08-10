@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 03/08/2026 au 10/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 11/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 03/08/2026 au 10/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 11/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,289 +75,65 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 03 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Papercut</h3>
+            <h2>Lundi 11 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Roundcube (CVE non assignés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Papercut, un logiciel d'impression et de gestion de documents. Ces failles permettent à un attaquant distant de contourner les politiques de sécurité et d'accéder à des données sensibles, compromettant ainsi la confidentialité des informations. Un correctif est disponible via la mise à jour vers la dernière version du logiciel.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0959/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Certaines permettent une exécution de code arbitraire à distance (RCE), une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF). Un attaquant pourrait exploiter ces failles pour compromettre des serveurs de messagerie et voler des informations sensibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0987/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans Microsoft Edge</h3>
+<h3>Vulnérabilité critique dans Synology Assistant (CVE non assigné)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans Microsoft Edge, permettant à un attaquant distant d'exécuter du code arbitraire, d'accéder à des données sensibles ou de modifier des informations sans autorisation. Ces failles affectent la confidentialité et l'intégrité des données des utilisateurs. Microsoft a publié un correctif urgent via Windows Update.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0960/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique permet à un attaquant d'accéder à des données sensibles, de modifier des informations et de provoquer un déni de service (DoS) dans Synology Assistant. Ce logiciel est largement utilisé pour la gestion des NAS Synology, ce qui expose les infrastructures de stockage à des risques élevés.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0988/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Vulnérabilité dans Microsoft Office</h3>
+<h3>Exploitation active de failles critiques dans Progress LoadMaster (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Microsoft Office permet à un attaquant distant d'exécuter du code arbitraire via des fichiers malveillants, compromettant ainsi les systèmes infectés. Cette vulnérabilité est classée comme critique en raison de son potentiel d'exploitation massive. Un correctif est disponible dans les dernières mises à jour de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0961/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : CISA confirme l'exploitation active d'une vulnérabilité critique (command injection) dans Progress Kemp LoadMaster. Cette faille permet à un attaquant non authentifié d'exécuter des commandes arbitraires à distance. Un correctif est disponible, mais de nombreuses organisations restent vulnérables.</p>
+<a href="https://www.securityweek.com/cisa-urges-immediate-patching-of-exploited-progress-loadmaster-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Mardi 04 Août 2026</h2>
-<h3>Multiples vulnérabilités dans les produits Tenable</h3>
+<h3>Fuite de données massive chez Cars.no : 148 288 automobilistes exposés</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Tenable, notamment Nessus et Tenable.sc. Ces failles permettent une exécution de code arbitraire à distance, une injection SQL et une atteinte à l'intégrité des données. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0962/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une fuite revendiquée expose les noms, numéros de téléphone et plaques d'immatriculation de 148 288 automobilistes norvégiens. Les données pourraient être utilisées pour des campagnes de phishing ciblées ou des arnaques liées aux véhicules. Aucune confirmation officielle de la source de la fuite n'a été publiée.</p>
+<a href="https://www.zataz.com/cars-no-une-fuite-revendiquee-expose-148-288-automobilistes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans Google Android</h3>
+<h3>Nouveau ransomware StormEncryptor lié à des acteurs chinois (CVE non assigné)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités non spécifiées ont été identifiées dans Google Android, permettant à un attaquant d'exploiter des failles de sécurité non documentées pour compromettre des appareils mobiles. Google a publié des correctifs dans sa mise à jour mensuelle de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0963/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Microsoft Threat Intelligence révèle que le groupe Storm-1175, associé à la Chine, déploie un nouveau ransomware nommé StormEncryptor. Ce malware marque un changement par rapport à Medusa, utilisé précédemment par le même groupe. Aucune information sur les vecteurs d'infection n'a été divulguée.</p>
+<a href="https://thehackernews.com/2026/08/china-linked-hackers-deploy-new.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans Traefik</h3>
+<h3>Faille critique non corrigée dans Metabase (CVE non assigné)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Traefik, un reverse proxy et load balancer. Ces failles permettent à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources protégées. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0964/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique dans Metabase, une plateforme d'analyse de données, permet à des attaquants non authentifiés d'obtenir un accès administratif à distance. Cette faille est exploitée en tant que zero-day depuis plusieurs semaines. Un correctif a été publié le 10/08/2026.</p>
+<a href="https://www.securityweek.com/metabase-patches-vulnerability-exploited-as-zero-day/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h3>Vulnérabilité dans les produits Check Point</h3>
+<h3>Attaques ciblant les systèmes d'eau aux États-Unis : implication iranienne suspectée</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans les produits Check Point permet à un attaquant distant d'exécuter du code arbitraire et de contourner les politiques de sécurité. Cette vulnérabilité affecte les appliances de sécurité réseau de l'éditeur. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0965/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Des attaques contre des systèmes de distribution d'eau dans au moins 12 États américains ont été observées. Les attaquants, probablement liés à l'Iran, ciblent des automates programmables industriels (PLC) exposés sur Internet. Aucune interruption de service n'a été signalée pour l'instant.</p>
+<a href="https://www.securityweek.com/new-jersey-alabama-join-states-targeted-in-water-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans LibreNMS</h3>
+<h3>Fuite Firebase expose les kiosques Pokémon et données sensibles (217 machines)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans LibreNMS, un outil de surveillance réseau. Ces failles permettent une exécution de code arbitraire à distance, une falsification de requêtes côté serveur (SSRF) et une injection de code indirecte (XSS). Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0966/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une fuite présumée dans une base de données Firebase expose les configurations de 217 kiosques Pokémon connectés, ainsi que des données de paiement et du code source. Cette exposition pourrait permettre des attaques physiques ou logiques sur les bornes interactives.</p>
+<a href="https://www.zataz.com/des-kiosques-pokemon-exposes-par-une-fuite-firebase/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<hr />
-<h2>Mercredi 05 Août 2026</h2>
-<h3>Multiples vulnérabilités dans les produits Veeam</h3>
+<h3>Faux mail AR24 avec CAPTCHA : vol d'identifiants en cours</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Veeam, notamment Veeam Backup & Replication. Ces failles permettent une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Veeam a publié des correctifs urgents.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0968/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une campagne de phishing imitant les notifications AR24 utilise un CAPTCHA pour valider les victimes en temps réel. Les identifiants de messagerie sont volés via un faux formulaire de connexion. Les utilisateurs sont invités à vérifier les notifications officielles avant toute action.</p>
+<a href="https://www.zataz.com/une-fausse-lettre-ar24-vole-les-identifiants-mail/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans HPE Aruba Networking EdgeConnect SD-WAN Orchestrator</h3>
+<h3>Vulnérabilités critiques dans ClamAV (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans HPE Aruba Networking EdgeConnect SD-WAN Orchestrator, permettant à un attaquant d'accéder à des données sensibles, de modifier des informations et de contourner les politiques de sécurité. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0969/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans Google Pixel</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Google Pixel, permettant à un attaquant d'élever ses privilèges et d'exploiter des failles non documentées. Google a publié des correctifs dans sa mise à jour mensuelle de sécurité.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0970/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Vulnérabilité dans Mozilla Firefox pour Android</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Mozilla Firefox pour Android permet à un attaquant d'accéder à des données sensibles des utilisateurs. Cette vulnérabilité affecte la confidentialité des informations personnelles. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0971/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Jeudi 06 Août 2026</h2>
-<h3>Vulnérabilité dans Sonicwall SonicOS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Sonicwall SonicOS permet à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources protégées. Cette vulnérabilité affecte les appliances de sécurité réseau de l'éditeur. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0972/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans les produits Nextcloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Nextcloud, permettant à un attaquant d'accéder à des données sensibles et de contourner les politiques de sécurité. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0973/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans les produits Wallix</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans les produits Wallix, permettant à un attaquant d'élever ses privilèges et de contourner les politiques de sécurité. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0974/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans les produits Cisco</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits Cisco, permettant une exécution de code arbitraire à distance, un déni de service et une atteinte à la confidentialité des données. Cisco a publié des correctifs urgents.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0975/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans KeyCloak</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans KeyCloak, permettant à un attaquant d'élever ses privilèges, de provoquer un déni de service et d'accéder à des données sensibles. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0976/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Vendredi 07 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Progress Telerik</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Progress Telerik, permettant une exécution de code arbitraire à distance, un déni de service et une atteinte à la confidentialité des données. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0977/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans Google Chrome</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques non documentées ont été identifiées dans Google Chrome, permettant à un attaquant d'exploiter des failles de sécurité non corrigées. Google a publié un correctif urgent via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0978/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans WordPress</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans WordPress, permettant à un attaquant d'élever ses privilèges, d'accéder à des données sensibles et de falsifier des requêtes côté serveur (SSRF). Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0979/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Vulnérabilité dans Apple macOS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Apple macOS permet à un attaquant de contourner les politiques de sécurité et d'accéder à des ressources protégées. Apple a publié un correctif urgent via la mise à jour vers la dernière version.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0980/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans le noyau Linux de Debian</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans le noyau Linux de Debian, permettant à un attaquant d'élever ses privilèges, d'atteindre l'intégrité des données et de provoquer un déni de service. Un correctif est disponible via la mise à jour vers la dernière version du noyau.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0981/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans le noyau Linux de Red Hat, permettant une exécution de code arbitraire, une élévation de privilèges et un déni de service à distance. Un correctif est disponible via la mise à jour vers la dernière version du noyau.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0983/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Multiples vulnérabilités dans les produits IBM</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans les produits IBM, permettant une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service à distance. IBM a publié des correctifs urgents.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0986/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Metabase Zero-Day Exploité en Milieu Sauvage</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVSS 10.0) non documentée dans Metabase permet à un attaquant non authentifié d'accéder à des instances administratives sans authentification. Exploitée en milieu sauvage, cette vulnérabilité a déjà compromis des données clients. Un correctif est disponible, mais une exploitation active est confirmée.</p>
-<a href="https://thehackernews.com/2026/08/metabase-zero-day-exploited-in-wild.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Nearly 800 Paquets npm Malveillants Livrant un RAT et Infostealer Multiplateforme</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne massive a publié près de 800 paquets npm malveillants, utilisant des noms de paquets générés aléatoirement ou des typosquattings. Ces paquets livrent un malware multiplateforme (Windows, macOS, Linux) capable d'exfiltrer des données et d'installer un RAT. Les paquets ont été retirés, mais une analyse est nécessaire.</p>
-<a href="https://thehackernews.com/2026/08/nearly-800-malicious-npm-packages.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>ClickFix Attaques Livrant un Stealer macOS Ciblant les Portefeuilles Crypto</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaques ClickFix ciblent les utilisateurs macOS pour livrer un malware Go capable de voler des cryptomonnaies, des mots de passe stockés dans les navigateurs, des données Apple Keychain et des identifiants en cache. Le malware analyse l'hôte avant de procéder à l'exfiltration. Un correctif n'est pas applicable, une vigilance accrue est recommandée.</p>
-<a href="https://thehackernews.com/2026/08/clickfix-attacks-deliver-macos-stealer.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Attaques TONTOU CPU Contournant les Correctifs Spectre v2 et Exfiltrant des Hashes Linux</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle attaque CPU, TONTOU, contourne les correctifs Spectre v2 et permet d'exfiltrer des secrets, notamment des hashs de mots de passe Linux. Cette faille affecte les systèmes Linux et nécessite une mise à jour urgente du noyau pour appliquer les correctifs matériels et logiciels.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-tontou-cpu-attack-bypasses-spectre-v2-fixes-leaks-linux-password-hashes/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 08 Août 2026</h2>
-<h3>Un Milliard d'Identifiants Français Exposés sur le Darkweb</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une fuite massive de données révèle que 1,7 milliard d'identifiants uniques français sont stockés dans un cloud pirate. Cette exposition massive augmente considérablement le risque de cyberattaques ciblant les utilisateurs français, notamment via des attaques par force brute ou phishing. Une vérification immédiate des identifiants est recommandée.</p>
-<a href="https://www.zataz.com/un-milliard-didentifiants-francais-sur-le-darkweb/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h3>Rançongiciels : 43 Revendications Ciblant la France en Un Mois</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : En un mois, 43 attaques par rançongiciels ont été revendiquées contre des entités françaises, principalement par les groupes The Gentlemen et Qilin. Ces attaques ciblent des secteurs variés, augmentant la pression sur les organisations locales. Une réponse coordonnée et des sauvegardes robustes sont essentielles.</p>
-<a href="https://www.zataz.com/rancongiciels-43-revendications-ciblent-la-france/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h3>Qilin Menace de Publier des Données du Stade Français</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de rançongiciels Qilin revendique une attaque contre le Stade Français et menace de publier des données sensibles d'ici le 15 août 2026. Des pièces d'identité ont déjà été exposées. Une négociation rapide et une évaluation des données compromises sont cruciales pour limiter l'impact.</p>
-<a href="https://www.zataz.com/qilin-menace-de-publier-des-donnees-du-stade-francais/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h3>Levi Strauss Signale une Cyberattaque par Ingénierie Sociale</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Levi Strauss a subi une cyberattaque par ingénierie sociale, permettant aux attaquants d'exfiltrer des données internes après avoir compromis trois employés. Cette attaque souligne l'importance de la formation des employés et de la mise en place de contrôles stricts pour prévenir les intrusions via des vecteurs humains.</p>
-<a href="https://www.zataz.com/levi-strauss-signale-une-cyberattaque/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h3>Hackers Breach TrueConf pour Trojaniser les Installeurs Clients avec des Backdoors</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe hacktiviste Head Mare a exploité des vulnérabilités dans des serveurs TrueConf non corrigés pour remplacer les installeurs clients par des versions malveillantes contenant des backdoors. Cette attaque permet une prise de contrôle à distance des systèmes compromis. Une mise à jour urgente des serveurs TrueConf est nécessaire.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-breach-trueconf-to-trojanize-client-installers-with-backdoors/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Metabase SQLi Zero-Day Exploité pour Voler des Données Clients</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique de type SQL injection dans Metabase a été exploitée en zero-day pour compromettre des instances clients, notamment Framework et Tally, et voler des données sensibles. Cette vulnérabilité permet un accès non autorisé aux bases de données. Un correctif est disponible, mais une exploitation active est confirmée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/framework-tally-disclose-metabase-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>N-able Issues N-central Hotfix 2 pour Contrer les Attaques en Cours</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : N-able a publié un correctif urgent (Hotfix 2) pour N-central après la découverte d'une exploitation en cours d'une faille de sécurité récemment révélée. Les attaquants ont réussi à atteindre des systèmes gérés et à persister. Ce correctif est essentiel pour prévenir une compromission généralisée.</p>
-<a href="https://thehackernews.com/2026/08/n-central-attackers-reach-managed.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Progress Kemp LoadMaster Flaw Ajouté au Catalogue KEV de CISA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté une faille critique (CVE-2026-80xx) dans Progress Kemp LoadMaster à son catalogue KEV après 792 tentatives d'exploitation en milieu sauvage. Cette vulnérabilité permet à un attaquant distant d'exécuter du code arbitraire. Un correctif est disponible, et une application immédiate est fortement recommandée.</p>
-<a href="https://thehackernews.com/2026/08/progress-kemp-loadmaster-flaw-hits-cisa.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Swiss Government SharePoint Breach Compromised 200 Comptes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le bureau informatique fédéral suisse a subi une intrusion via des vulnérabilités dans Microsoft SharePoint, compromettant environ 200 comptes. Cette attaque démontre la nécessité de corriger rapidement les vulnérabilités dans les solutions cloud critiques et de renforcer les contrôles d'accès.</p>
-<a href="https://www.bleepingcomputer.com/news/security/swiss-government-sharepoint-breach-compromised-200-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>New CSS Attacks Can Break Webmail Defenses to Steal Passwords and Tokens</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle classe d'attaques CSS permet à un attaquant de contourner les défenses des webmails (Outlook, Gmail, Proton Mail, etc.) pour voler des mots de passe, des tokens et prendre le contrôle de comptes tiers. Ces attaques exploitent des failles dans l'interface des webmails et nécessitent une mise à jour des navigateurs et des fournisseurs de messagerie.</p>
-<a href="https://thehackernews.com/2026/08/new-css-attacks-can-break-webmail.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Atlassian Rovo Peut Être Trompé pour Envoyer des Données Jira et Confluence à des Attaquants</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Atlassian Rovo, un assistant IA, peut être manipulé via des instructions contrôlées par un attaquant pour collecter et exfiltrer des données Jira ou Confluence auxquelles un utilisateur connecté a accès. Deux firmes de sécurité ont confirmé cette faille, et un correctif partiel est disponible.</p>
-<a href="https://thehackernews.com/2026/08/atlassian-rovo-can-be-tricked-into.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Un Pirate Plaide Coupable Après 165 Piratages</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un pirate canadien a plaidé coupable pour avoir compromis 165 organisations via des attaques cloud, volé des données massives et extorqué des millions de dollars. Cette affaire souligne l'importance de la cybersécurité proactive et de la réponse aux incidents pour limiter les dommages.</p>
-<a href="https://www.zataz.com/un-pirate-plaide-coupable-apres-165-piratages/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Cisco alerte sur des vulnérabilités critiques dans ClamAV, l'antivirus open-source. Les failles permettent à des attaquants distants non authentifiés de provoquer un déni de service (DoS) ou d'accéder à des données sensibles. Des preuves de concept (PoC) sont déjà publiques.</p>
+<a href="https://www.securityweek.com/cisco-warns-of-high-severity-clamav-vulnerabilities-with-public-poc/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>
