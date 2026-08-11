@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 10/08/2026 au 11/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 10/08/2026 au 12/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 11/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 12/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,42 +75,91 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Dimanche 10 Août 2026</h2>
-<h3>Python intègre désormais une bibliothèque de cryptographie post-quantique</h3>
+            <h2>Lundi 10 août 2026</h2>
+<h3>Python intègre désormais une bibliothèque de chiffrement post-quantique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Python propose désormais une bibliothèque de cryptographie post-quantique (PQC) directement installable via pip, facilitant l'intégration de mécanismes résistants aux attaques quantiques pour les développeurs. Cette initiative, soutenue par des acteurs comme Sovereign Tech Fund, permet de sécuriser les applications Python contre les futures menaces quantiques sans modification complexe du code existant.</p>
+<p><strong>Résumé</strong> : Python propose désormais une bibliothèque de chiffrement post-quantique directement installable via pip, facilitant l'intégration de ces algorithmes dans les projets existants. Cette initiative, soutenue par des acteurs comme Sovereign Tech Fund, permet aux développeurs de sécuriser leurs applications contre les futures menaces quantiques sans complexité supplémentaire.</p>
 <a href="https://www.schneier.com/blog/archives/2026/08/python-now-has-a-post-quantum-encryption-library.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
 </div>
 
-<h3>Fedora CoreOS active systemd-oomd et zRAM par défaut pour optimiser la gestion mémoire</h3>
+<h3>Fedora CoreOS active systemd-oomd et zRAM par défaut</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Fedora CoreOS 45 activera par défaut systemd-oomd (gestion avancée des OOM killer) et le swap sur zRAM pour améliorer la stabilité des conteneurs. Ces changements réduisent les risques de crashes liés à la mémoire et optimisent les performances sur les systèmes légers, essentiels pour les environnements cloud et edge.</p>
+<p><strong>Résumé</strong> : Fedora CoreOS 45 activera par défaut systemd-oomd et le swap sur zRAM, optimisant la gestion de la mémoire et réduisant les risques de saturation des systèmes conteneurisés. Ces changements améliorent la stabilité et les performances des environnements cloud natifs, essentiels pour les déploiements DevOps.</p>
 <a href="https://www.phoronix.com/news/Fedora-CoreOS-OOMD-zRAM-Swap" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Qt introduit un sous-module Edge AI pour l'IA embarquée et la vision par ordinateur</h3>
+<h3>Qt introduit un sous-module Edge AI pour la vision artificielle</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Qt annonce un nouveau sous-module Edge AI pour intégrer des modèles d'IA légers directement dans les applications Qt, avec un focus initial sur la vision par ordinateur. Cette évolution permet de déployer des fonctionnalités d'IA locale sur des dispositifs embarqués, réduisant la dépendance au cloud et améliorant la latence.</p>
+<p><strong>Résumé</strong> : Qt annonce un nouveau sous-module Edge AI pour intégrer des fonctionnalités de vision artificielle directement dans ses outils de développement. Cette évolution permet aux développeurs de créer des interfaces utilisateur intelligentes avec des capacités de traitement local, réduisant la dépendance aux services cloud.</p>
 <a href="https://www.phoronix.com/news/Qt-Edge-AI-Module-Coming" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>OpenAI suspend temporairement le développement d'Astra en raison de ses capacités avancées en cybersécurité</h3>
+<h3>Meta publie Muse Glimmer, un modèle agentique open-source de 30 milliards de paramètres</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OpenAI a interrompu certaines activités internes liées à son modèle Astra après une évaluation interne révélant des capacités avancées en codage agentique et cybersécurité. Cette pause vise à analyser les risques potentiels liés à l'automatisation des tâches de sécurité, un domaine historiquement sensible.</p>
-<a href="https://thehackernews.com/2026/08/openais-next-ai-model-astra-shows-cyber.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Meta a released Muse Glimmer, un modèle de langage open-source sous licence Apache 2.0, conçu pour des workflows agentiques locaux et toujours actifs. Ce modèle de 30 milliards de paramètres cible les environnements nécessitant une exécution locale et sécurisée, comme les infrastructures DevOps.</p>
+<a href="https://www.phoronix.com/news/Meta-Muse-Glimmer" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Nouvelles attaques sur les passkeys : récupération de clés privées synchronisées et contournement de l'authentification MFA</h3>
+<h3>Nouvelles attaques sur les passkeys : récupération de clés privées synchronisées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois recherches distinctes ont démontré des vulnérabilités dans les passkeys, permettant de récupérer des clés privées synchronisées ou de contourner l'authentification MFA résistante au phishing. Ces attaques exploitent des failles dans la gestion des authentifiants par Windows, mettant en lumière les limites des solutions modernes de gestion des identités.</p>
+<p><strong>Résumé</strong> : Trois recherches distinctes ont révélé des failles permettant de contourner les protections des passkeys, en exploitant des matériaux d'authentification signés exposés par Windows. Ces attaques ciblent les mécanismes de synchronisation des clés privées, mettant en péril la résistance au phishing des solutions MFA.</p>
 <a href="https://thehackernews.com/2026/08/new-passkey-attacks-can-recover-synced.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h2>Lundi 11 Août 2026</h2>
-<h3>Meta publie Muse Glimmer, un modèle agentique open source de 30 milliards de paramètres</h3>
+<hr />
+<h2>Mercredi 11 août 2026</h2>
+<h3>Microsoft corrige 398 vulnérabilités, dont un zero-day dans un pilote Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Meta a publié Muse Glimmer, un modèle de langage open source (Apache 2.0) de 30 milliards de paramètres conçu pour des workflows agentiques locaux. Ce modèle cible les déploiements autonomes et légers, idéal pour les environnements edge ou les systèmes embarqués nécessitant une IA locale sans dépendance cloud.</p>
-<a href="https://www.phoronix.com/news/Meta-Muse-Glimmer" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Microsoft a publié ses mises à jour mensuelles de sécurité, incluant la correction d'un zero-day dans un pilote noyau Windows (CVE-2026-XXXX). Ce bug, déjà exploité en attaque, permet une élévation de privilèges SYSTEM à partir d'un accès local. Une priorité absolue pour les administrateurs système.</p>
+<a href="https://thehackernews.com/2026/08/microsoft-patches-398-flaws-including.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Intel publie des microcodes 20260811 corrigeant 8 vulnérabilités</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Intel a publié une mise à jour de microcode pour ses processeurs, incluant des correctifs pour 8 vulnérabilités de sécurité. Ces mises à jour couvrent des générations allant jusqu'à Core Gen10 et introduisent des correctifs pour les nouveaux processeurs Bartlett Lake et Wildcat Lake.</p>
+<a href="https://www.phoronix.com/news/Intel-CPU-Microcode-20260811" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Flatpak 1.19 corrige 9 vulnérabilités de sécurité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Flatpak 1.19 est sorti avec 9 correctifs de sécurité, incluant des failles découvertes dans ce système de sandboxing et de distribution d'applications. Ces mises à jour sont cruciales pour maintenir la sécurité des environnements Linux conteneurisés et des postes de travail.</p>
+<a href="https://www.phoronix.com/news/Flatpak-1.19-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>OpenAI lance GPT-5.6-Cyber avec des garde-fous réduits pour la recherche d'exploits</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenAI a dévoilé GPT-5.6-Cyber, un modèle spécialisé dans la cybersécurité, la recherche de vulnérabilités et les tests d'intrusion. Conçu pour améliorer les capacités en sécurité offensive, ce modèle pourrait être utilisé pour automatiser des audits de sécurité, mais soulève des questions éthiques.</p>
+<a href="https://thehackernews.com/2026/08/openai-launches-gpt-56-cyber-with.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Mozilla révoque la clé de signature Linux de Firefox et Thunderbird après une fuite</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mozilla a révoqué la clé de signature utilisée pour les versions Linux de Firefox et Thunderbird après qu'une copie non chiffrée de cette clé ait été commise par erreur dans un dépôt privé. Cette clé est essentielle pour vérifier l'intégrité des téléchargements, une faille critique pour la sécurité.</p>
+<a href="https://thehackernews.com/2026/08/mozilla-revokes-firefox-and-thunderbird.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>OpenAI propose une application desktop ChatGPT pour Linux</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenAI a annoncé la disponibilité de son application desktop ChatGPT pour Linux, actuellement en version preview. Cette application permet une intégration native avec les environnements Linux, facilitant l'accès aux fonctionnalités d'IA générative directement depuis le poste de travail.</p>
+<a href="https://www.phoronix.com/news/ChatGPT-Desktop-Linux-Preview" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Linux 7.3 apporte des optimisations pour les anciens processeurs Intel</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Linux 7.3 inclut une optimisation de KCFI (Kernel Control Flow Integrity) bénéficiant aux anciens processeurs Intel, améliorant la sécurité et les performances sans nécessiter de matériel récent. Une avancée majeure pour les infrastructures legacy.</p>
+<a href="https://www.phoronix.com/news/Linux-7.3-KCFI-Optimization" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Rusticl supporte désormais cl_ext_float_atomics dans Mesa</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le pilote Rusticl (OpenCL pour Mesa) supporte désormais cl_ext_float_atomics, améliorant la compatibilité avec les GPU modernes et les charges de travail HPC. Cette mise à jour est essentielle pour les environnements nécessitant des calculs flottants avancés.</p>
+<a href="https://www.phoronix.com/news/Rusticl-cl_ext_float_atomics" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>FastFlowLM 1.0 intégré à ROCm pour les modèles de langage sur NPU AMD</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : FastFlowLM 1.0, une solution open-source pour exécuter des modèles de langage sur les NPU AMD Ryzen AI, est désormais intégrée à l'écosystème ROCm. Cette version supporte les modèles de vision, audio et MoE, optimisant les performances des charges de travail IA locales.</p>
+<a href="https://www.phoronix.com/news/FastFlowLM-1.0" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>

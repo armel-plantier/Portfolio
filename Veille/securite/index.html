@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 11/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 12/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 11/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 12/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,65 +75,151 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 11 Août 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Roundcube (CVE non assignés)</h3>
+            <h2>Lundi 10 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Roundcube (CVE non attribués)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Certaines permettent une exécution de code arbitraire à distance (RCE), une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF). Un attaquant pourrait exploiter ces failles pour compromettre des serveurs de messagerie et voler des informations sensibles.</p>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques découvertes dans Roundcube permettent une exécution de code arbitraire à distance (RCE), une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF). Ces failles affectent les versions non patchées et exposent les serveurs de messagerie à des attaques massives.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0987/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité critique dans Synology Assistant (CVE non assigné)</h3>
+<h3>Vulnérabilité dans Synology Assistant (CVE non attribué)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique permet à un attaquant d'accéder à des données sensibles, de modifier des informations et de provoquer un déni de service (DoS) dans Synology Assistant. Ce logiciel est largement utilisé pour la gestion des NAS Synology, ce qui expose les infrastructures de stockage à des risques élevés.</p>
+<p><strong>Résumé</strong> : Une faille dans Synology Assistant permet une atteinte à la confidentialité et à l'intégrité des données, ainsi qu'un déni de service. Cette vulnérabilité pourrait être exploitée pour accéder à des informations sensibles ou perturber les services NAS.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0988/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Exploitation active de failles critiques dans Progress LoadMaster (CVE-2026-XXXX)</h3>
+<h3>Multiples vulnérabilités dans HPE Aruba Networking Private 5G Core (CVE non attribués)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CISA confirme l'exploitation active d'une vulnérabilité critique (command injection) dans Progress Kemp LoadMaster. Cette faille permet à un attaquant non authentifié d'exécuter des commandes arbitraires à distance. Un correctif est disponible, mais de nombreuses organisations restent vulnérables.</p>
-<a href="https://www.securityweek.com/cisa-urges-immediate-patching-of-exploited-progress-loadmaster-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans HPE Aruba Networking Private 5G Core permettent une élévation de privilèges et un contournement des politiques de sécurité. Ces failles exposent les infrastructures 5G privées à des attaques ciblant les réseaux critiques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0989/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données massive chez Cars.no : 148 288 automobilistes exposés</h3>
+<h3>Fuite de données chez Cars.no expose 148 288 automobilistes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une fuite revendiquée expose les noms, numéros de téléphone et plaques d'immatriculation de 148 288 automobilistes norvégiens. Les données pourraient être utilisées pour des campagnes de phishing ciblées ou des arnaques liées aux véhicules. Aucune confirmation officielle de la source de la fuite n'a été publiée.</p>
-<a href="https://www.zataz.com/cars-no-une-fuite-revendiquee-expose-148-288-automobilistes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une fuite revendiquée expose les noms, numéros de téléphone et plaques d'immatriculation de 148 288 automobilistes norvégiens. Les données pourraient être utilisées pour des campagnes de phishing ciblées et des escroqueries liées aux véhicules.</p>
+<a href="https://www.zataz.com/cars-no-une-fuite-revendiquee-expose-148-288-automobilistes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Nouveau ransomware StormEncryptor lié à des acteurs chinois (CVE non assigné)</h3>
+<h3>Deux pirates revendiquent le piratage d’un professionnel du Cloud français</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft Threat Intelligence révèle que le groupe Storm-1175, associé à la Chine, déploie un nouveau ransomware nommé StormEncryptor. Ce malware marque un changement par rapport à Medusa, utilisé précédemment par le même groupe. Aucune information sur les vecteurs d'infection n'a été divulguée.</p>
+<p><strong>Résumé</strong> : Deux pirates revendiquent avoir compromis un professionnel du cloud français, accédant à 159 instances contenant des données clients. Cette intrusion pourrait avoir des répercussions sur des milliers d'utilisateurs.</p>
+<a href="https://www.zataz.com/deux-pirates-revendiquent-le-piratage-de-pro-du-cloud/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Fuite Firebase expose des kiosques Pokémon et 217 machines connectées</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une fuite présumée dans Firebase expose des kiosques Pokémon, des données de paiement, du code source et l'accès à 217 machines connectées. Les attaquants pourraient exploiter ces informations pour des attaques physiques ou logiques.</p>
+<a href="https://www.zataz.com/des-kiosques-pokemon-exposes-par-une-fuite-firebase/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>Fausse lettre AR24 vole les identifiants mail via phishing</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne de phishing utilisant une fausse lettre AR24 et un CAPTCHA vole les identifiants de messagerie. Les victimes sont redirigées vers un site frauduleux pour valider leurs informations.</p>
+<a href="https://www.zataz.com/une-fausse-lettre-ar24-vole-les-identifiants-mail/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+</div>
+
+<h3>StormEncryptor : nouveau ransomware lié à la Chine exploitant une faille N-central</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Storm-1175, lié à la Chine, déploie un nouveau ransomware, StormEncryptor, après avoir exploité une faille dans N-central. Cette attaque marque un changement par rapport à l'utilisation précédente de Medusa.</p>
 <a href="https://thehackernews.com/2026/08/china-linked-hackers-deploy-new.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Faille critique non corrigée dans Metabase (CVE non assigné)</h3>
+<h3>Fuite de données pour la FF Handball : 1,3 million de lignes exposées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Metabase, une plateforme d'analyse de données, permet à des attaquants non authentifiés d'obtenir un accès administratif à distance. Cette faille est exploitée en tant que zero-day depuis plusieurs semaines. Un correctif a été publié le 10/08/2026.</p>
-<a href="https://www.securityweek.com/metabase-patches-vulnerability-exploited-as-zero-day/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Un pirate revendique avoir volé 1,3 million de lignes de données à la Fédération Française de Handball. Cette fuite pourrait contenir des informations sensibles sur les membres et les activités du club.</p>
+<a href="https://www.zataz.com/une-nouvelle-fuite-pour-la-ff-handball/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
 </div>
 
-<h3>Attaques ciblant les systèmes d'eau aux États-Unis : implication iranienne suspectée</h3>
+<h3>Kimsuky utilise une pile IA hors ligne pour automatiser le phishing et le développement de malwares</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaques contre des systèmes de distribution d'eau dans au moins 12 États américains ont été observées. Les attaquants, probablement liés à l'Iran, ciblent des automates programmables industriels (PLC) exposés sur Internet. Aucune interruption de service n'a été signalée pour l'instant.</p>
-<a href="https://www.securityweek.com/new-jersey-alabama-join-states-targeted-in-water-cyberattacks/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Le groupe nord-coréen Kimsuky a développé une pile IA hors ligne pour automatiser la création de malwares et améliorer ses campagnes de phishing. Cette infrastructure permet une exécution plus rapide et plus discrète des attaques.</p>
+<a href="https://thehackernews.com/2026/08/kimsuky-builds-offline-ai-stack-that.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Fuite Firebase expose les kiosques Pokémon et données sensibles (217 machines)</h3>
+<hr />
+<h2>Mardi 11 Août 2026</h2>
+<h3>Multiples vulnérabilités dans Postfix (CVE non attribués)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une fuite présumée dans une base de données Firebase expose les configurations de 217 kiosques Pokémon connectés, ainsi que des données de paiement et du code source. Cette exposition pourrait permettre des attaques physiques ou logiques sur les bornes interactives.</p>
-<a href="https://www.zataz.com/des-kiosques-pokemon-exposes-par-une-fuite-firebase/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans Postfix permettent un déni de service à distance, un contournement des politiques de sécurité et des problèmes de sécurité non spécifiés. Ces failles affectent les serveurs de messagerie utilisant Postfix.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0993/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Faux mail AR24 avec CAPTCHA : vol d'identifiants en cours</h3>
+<h3>Vulnérabilité dans CPython (CVE non attribuée)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne de phishing imitant les notifications AR24 utilise un CAPTCHA pour valider les victimes en temps réel. Les identifiants de messagerie sont volés via un faux formulaire de connexion. Les utilisateurs sont invités à vérifier les notifications officielles avant toute action.</p>
-<a href="https://www.zataz.com/une-fausse-lettre-ar24-vole-les-identifiants-mail/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une faille dans CPython permet un déni de service à distance. Cette vulnérabilité pourrait être exploitée pour perturber les services Python critiques, notamment dans les environnements cloud et les applications web.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0994/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans ClamAV (CVE-2026-XXXX)</h3>
+<h3>Multiples vulnérabilités dans SPIP (CVE non attribuées)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco alerte sur des vulnérabilités critiques dans ClamAV, l'antivirus open-source. Les failles permettent à des attaquants distants non authentifiés de provoquer un déni de service (DoS) ou d'accéder à des données sensibles. Des preuves de concept (PoC) sont déjà publiques.</p>
-<a href="https://www.securityweek.com/cisco-warns-of-high-severity-clamav-vulnerabilities-with-public-poc/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans SPIP permettent une exécution de code arbitraire à distance (RCE), une injection SQL (SQLi) et une falsification de requêtes côté serveur (SSRF). Ces failles exposent les sites web utilisant SPIP à des attaques massives.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0995/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Vulnérabilité dans Docker (CVE non attribuée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille dans Docker permet une atteinte à l'intégrité des données. Cette vulnérabilité pourrait être exploitée pour modifier ou corrompre des conteneurs, affectant ainsi les environnements de développement et de production.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0996/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans OpenSSH (CVE non attribuées)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans OpenSSH permettent des problèmes de sécurité non spécifiés. Ces failles pourraient être exploitées pour compromettre des serveurs et des infrastructures critiques.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0997/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits SAP (CVE non attribuées)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques dans les produits SAP permettent une exécution de code arbitraire à distance (RCE), une élévation de privilèges et une atteinte à la confidentialité des données. Ces failles exposent les entreprises utilisant SAP à des attaques ciblées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0998/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>DeadLock Ransomware utilise la blockchain pour résister aux takedowns d'infrastructure</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le ransomware DeadLock utilise une infrastructure décentralisée basée sur la blockchain pour protéger ses communications avec les victimes et ses activités de fuite de données. Cette approche rend les attaques plus résistantes aux interventions des autorités.</p>
+<a href="https://www.bleepingcomputer.com/news/security/deadlock-ransomware-uses-blockchain-to-resist-infrastructure-takedown/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Sandworm cible les professionnels IT avec un client VPN WireGuard trojanisé</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Sandworm, associé à la Russie, cible les administrateurs système et les professionnels IT avec des offres d'emploi frauduleuses pour distribuer un client VPN WireGuard trojanisé. Cette attaque permet une compromission à distance des systèmes ciblés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sandworm-hackers-target-it-pros-with-trojanized-wireguard-vpn-client/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Cisco corrige une faille VPN ASA/FTD exploitée pour planter les appareils (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cisco corrige une vulnérabilité de haute criticité (CVE-2026-XXXX) dans les logiciels ASA et FTD, permettant un déni de service à distance. Cette faille est activement exploitée pour planter les appareils affectés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-asa-and-ftd-vpn-flaw-exploited-to-crash-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Microsoft corrige 400 failles dont 3 zero-days dans son Patch Tuesday d'août 2026</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft publie son Patch Tuesday d'août 2026, corrigeant 400 failles, dont 3 zero-days activement exploitées. Ces correctifs sont critiques pour la sécurité des systèmes Windows et des applications associées.</p>
+<a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-august-2026-patch-tuesday-fixes-400-flaws-3-zero-days/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>CISA confirme l'exploitation d'une faille Microsoft SharePoint dans des attaques par ransomware</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA confirme que des gangs de ransomware exploitent activement une faille critique (CVE-2026-XXXX) dans Microsoft SharePoint, permettant une exécution de code à distance. Cette faille est exploitée depuis juillet 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-microsoft-sharepoint-flaw-now-exploited-in-ransomware-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Gunra Ransomware exploite des failles Fortinet et Schneider Electric pour cibler les infrastructures critiques</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Les agences de cybersécurité des États-Unis et de la Corée du Sud alertent sur le ransomware Gunra, qui exploite des failles dans Fortinet et Schneider Electric pour cibler les infrastructures critiques, notamment dans les secteurs de la santé, des services financiers et gouvernementaux.</p>
+<a href="https://thehackernews.com/2026/08/gunra-ransomware-exploits-fortinet-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Mozilla révise sa clé GPG pour les signatures Firefox après une exposition accidentelle</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Mozilla a dû révoquer et remplacer la clé GPG utilisée pour signer les versions Linux de Firefox et Thunderbird après qu'elle ait été accidentellement exposée dans un dépôt privé. Cette faille aurait pu permettre la distribution de versions malveillantes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/mozilla-updates-gpg-signing-key-for-signing-firefox-thunderbird-releases-after-exposure/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Vulnérabilité critique dans un pilote Windows en cours d'exploitation (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft corrige une faille critique (CVE-2026-XXXX) dans un pilote Windows du noyau, permettant une élévation de privilèges à SYSTEM. Cette vulnérabilité est activement exploitée dans des attaques ciblées.</p>
+<a href="https://thehackernews.com/2026/08/microsoft-patches-398-flaws-including.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
