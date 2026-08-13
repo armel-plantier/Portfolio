@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 13/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 14/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 13/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 14/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,117 +75,196 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Vendredi 10 Août 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Roundcube</h3>
+            <h2>Lundi 10 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Roundcube (Webmail)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Roundcube, un client webmail open-source. Certaines permettent une exécution de code arbitraire à distance (CWE-94), une atteinte à la confidentialité des données et une falsification de requêtes côté serveur (SSRF). Ces failles affectent les versions non patchées et exposent les serveurs de messagerie à des attaques massives. Un correctif est disponible via la mise à jour vers la version 1.6.6.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques (dont CVE non spécifiées) affectent Roundcube, permettant une exécution de code arbitraire à distance (RCE), une fuite de données et une falsification de requêtes côté serveur (SSRF). Ces failles exposent les serveurs de messagerie à des attaques massives. Un correctif est disponible via la mise à jour vers la dernière version stable.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0987/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité dans Synology Assistant</h3>
+<hr />
+<h3>Vulnérabilité critique dans Synology Assistant (Confidentialité et intégrité des données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans Synology Assistant permet à un attaquant de compromettre la confidentialité et l'intégrité des données, ainsi que de provoquer un déni de service. Cette vulnérabilité, non attribuée à un CVE spécifique, affecte les versions antérieures à 7.0.5. Synology recommande une mise à jour immédiate.</p>
+<p><strong>Résumé</strong> : Une faille (CVE non attribuée) dans Synology Assistant permet à un attaquant d'accéder à des données sensibles, de modifier des fichiers et de provoquer un déni de service. La criticité est élevée en raison de l'impact sur les sauvegardes et les systèmes NAS. Synology a publié un correctif urgent.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0988/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Fuite de données chez Cars.no : 148 288 automobilistes exposés</h3>
+<hr />
+<h3>Multiples vulnérabilités dans HPE Aruba Private 5G Core (Élévation de privilèges)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un pirate revendique le vol de données sensibles (noms, numéros de téléphone, plaques d'immatriculation) de 148 288 automobilistes norvégiens via une fuite non corrigée. Les données exposées pourraient être utilisées pour des campagnes de phishing ciblées ou du chantage. Aucune confirmation officielle de la part de Cars.no n'a été publiée.</p>
-<a href="https://www.zataz.com/cars-no-une-fuite-revendiquee-expose-148-288-automobilistes/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Exploitation d'un pro du Cloud Français : 159 instances compromises</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux pirates revendiquent le piratage d'un professionnel français du cloud, accédant à 159 instances contenant des données clients. L'attaque exploite probablement des identifiants faibles ou des vulnérabilités non patchées. Aucune information sur les victimes ou les données volées n'a été divulguée.</p>
-<a href="https://www.zataz.com/deux-pirates-revendiquent-le-piratage-de-pro-du-cloud/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
-</div>
-
-<h3>Fuite Firebase chez les kiosques Pokémon</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une fuite présumée dans Firebase expose les kiosques Pokémon connectés, incluant des données de paiement, du code source et des accès à 217 machines. Les attaquants pourraient manipuler les terminaux ou voler des informations sensibles. Aucune confirmation de Nintendo ou des opérateurs n'a été publiée.</p>
-<a href="https://www.zataz.com/des-kiosques-pokemon-exposes-par-une-fuite-firebase/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ.COM</a>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans HPE Aruba Private 5G Core permettent une élévation de privilèges et un contournement des politiques de sécurité. Ces vulnérabilités ciblent les infrastructures critiques des entreprises. HPE a corrigé les issues dans les dernières versions.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0989/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Samedi 11 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Postfix</h3>
+<h3>Vulnérabilité dans SonicWall Global VPN Client (Déni de service)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des failles critiques dans Postfix (serveur SMTP) permettent un déni de service à distance, un contournement de politique de sécurité et des problèmes non spécifiés. Ces vulnérabilités affectent les versions antérieures à 3.8.5. Un correctif est disponible via les dépôts officiels.</p>
+<p><strong>Résumé</strong> : Une faille (CVE non attribuée) dans SonicWall Global VPN Client permet à un attaquant distant de provoquer un crash du service VPN, entraînant un déni de service. La criticité est moyenne, mais l'impact est critique pour les entreprises dépendantes des connexions sécurisées. Un patch est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0990/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans VMware Tanzu Greenplum (RCE et DoS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités (dont CVE-2026-XXXX) dans VMware Tanzu Greenplum permettent une exécution de code arbitraire à distance et un déni de service. Ces failles affectent les bases de données critiques. VMware a publié des correctifs urgents pour toutes les versions supportées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0991/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h2>Mardi 11 Août 2026</h2>
+<h3>Multiples vulnérabilités dans Postfix (DoS et contournement de sécurité)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des failles (dont CVE-2026-XXXX) dans Postfix permettent un déni de service à distance, un contournement des politiques de sécurité et des problèmes non spécifiés. Ces vulnérabilités exposent les serveurs de messagerie à des attaques disruptives. Un correctif est disponible via les dépôts officiels.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0993/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilité critique dans CPython (CVE-2026-XXXX)</h3>
+<hr />
+<h3>Vulnérabilité critique dans CPython (Déni de service à distance)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans CPython (interpréteur Python) permet un déni de service à distance via une manipulation de paquets réseau malveillants. La vulnérabilité, non encore attribuée à un CVE officiel, affecte les versions 3.11.x et antérieures. Une mise à jour est recommandée.</p>
+<p><strong>Résumé</strong> : Une faille (CVE-2026-XXXX) dans CPython permet à un attaquant distant de provoquer un crash de l'interpréteur Python via une entrée malveillante. La criticité est élevée en raison de l'impact sur les applications critiques. Un correctif est disponible dans les dernières versions de Python.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0994/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans SPIP (CWE-89, CWE-94)</h3>
+<hr />
+<h3>Multiples vulnérabilités critiques dans SPIP (RCE, SQLi et SSRF)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SPIP, un CMS populaire, est affecté par des failles critiques permettant une exécution de code arbitraire à distance, des injections SQL et des SSRF. Ces vulnérabilités, non attribuées à des CVE spécifiques, impactent les versions antérieures à 4.2.3. Un correctif est disponible.</p>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans SPIP permettent une exécution de code arbitraire à distance, une injection SQL et une falsification de requêtes côté serveur (SSRF). Ces vulnérabilités exposent les sites web à des attaques massives. Un correctif urgent est disponible.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0995/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Sandworm cible les pros IT avec un VPN WireGuard trojanisé</h3>
+<hr />
+<h3>Vulnérabilité dans Docker (Atteinte à l'intégrité des données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe russe Sandworm (APT44) utilise des offres d'emploi falsifiées pour distribuer un client VPN WireGuard trojanisé. L'attaque cible les administrateurs système pour voler des identifiants et déployer des backdoors. Aucune attribution officielle n'a été confirmée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/sandworm-hackers-target-it-pros-with-trojanized-wireguard-vpn-client/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>DeadLock Ransomware utilise la blockchain pour résister aux takedowns</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le ransomware DeadLock exploite une infrastructure décentralisée basée sur la blockchain pour échapper aux saisies. Les attaquants communiquent avec les victimes et fuient les données via des services blockchain, rendant les takedowns traditionnels inefficaces. Aucune clé de déchiffrement n'est disponible.</p>
-<a href="https://www.bleepingcomputer.com/news/security/deadlock-ransomware-uses-blockchain-to-resist-infrastructure-takedown/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille (CVE non attribuée) dans Docker permet à un attaquant de modifier des données critiques au sein des conteneurs. La criticité est élevée en raison de l'impact sur les environnements cloud et DevOps. Docker a publié un correctif dans sa dernière version.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0996/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
 <hr />
-<h2>Dimanche 12 Août 2026</h2>
-<h3>Exploitation active de CVE-2026-68820 (Windows Zero-Day) par Lazarus</h3>
+<h3>Multiples vulnérabilités critiques dans OpenSSH (Problèmes de sécurité non spécifiés)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Lazarus (Corée du Nord) exploite activement une vulnérabilité zero-day dans Windows (CVE-2026-68820) pour cibler des entreprises de défense et aérospatiales en France, Allemagne, Brésil et Inde. La faille permet une élévation de privilèges SYSTEM et le déploiement de backdoors. Microsoft a publié un correctif dans le Patch Tuesday d'août 2026.</p>
-<a href="https://www.bleepingcomputer.com/news/security/lazarus-hackers-exploited-windows-zero-day-to-target-defense-firms/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités (dont CVE-2026-XXXX) dans OpenSSH permettent des attaques non spécifiées, potentiellement critiques. Ces failles affectent les serveurs SSH utilisés dans le monde entier. Un correctif est disponible dans les dernières versions d'OpenSSH.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0997/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>737 extensions Chrome VPN malveillantes interceptent le trafic</h3>
+<hr />
+<h3>Multiples vulnérabilités critiques dans les produits SAP (RCE, élévation de privilèges et fuite de données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus de 737 extensions VPN et proxy sur le Chrome Web Store routent le trafic utilisateur via des proxys SOCKS5 contrôlés par un seul acteur. Ces extensions, principalement ciblant les utilisateurs russophones, interceptent les données sensibles. Google a supprimé la majorité d'entre elles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hundreds-of-fake-chrome-vpn-extensions-route-traffic-through-a-proxy/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans les produits SAP permettent une exécution de code arbitraire à distance, une élévation de privilèges et une fuite de données sensibles. Ces vulnérabilités ciblent les entreprises utilisant SAP. SAP a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0998/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CVE-2026-20349 (Cisco ASA/FTD) exploitée en attaque DoS</h3>
+<hr />
+<h2>Mercredi 12 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Microsoft Edge (Exécution de code arbitraire)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-20349, CVSS 8.6) dans Cisco ASA et FTD est activement exploitée pour provoquer un déni de service à distance. La vulnérabilité, liée à une vérification insuffisante des erreurs, permet de crasher les appliances. Cisco a publié un correctif.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisco-warns-of-asa-and-ftd-vpn-flaw-exploited-to-crash-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans Microsoft Edge permettent une exécution de code arbitraire à distance et des problèmes de sécurité non spécifiés. Ces vulnérabilités exposent les utilisateurs à des attaques via le navigateur. Microsoft a publié des correctifs via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0999/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CVE-2026-71362 (Adobe Commerce) exploitée pour voler des comptes clients</h3>
+<hr />
+<h3>Multiples vulnérabilités critiques dans Microsoft Office (RCE, élévation de privilèges et fuite de données)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-71362) dans Adobe Commerce et Magento permet à des attaquants de détourner des comptes clients. La faille, non corrigée dans certaines versions, expose les données de paiement et les identifiants. Adobe a publié un correctif urgent.</p>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans Microsoft Office permettent une exécution de code arbitraire à distance, une élévation de privilèges et une fuite de données sensibles. Ces vulnérabilités ciblent les entreprises et les utilisateurs finaux. Microsoft a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1000/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilité critique dans Microsoft Windows (CVE-2026-68820 - RCE et DoS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-68820) dans Microsoft Windows permet une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Cette vulnérabilité est activement exploitée. Microsoft a publié un correctif urgent via Windows Update.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1001/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans Microsoft .NET (RCE, élévation de privilèges et DoS)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans Microsoft .NET permettent une exécution de code arbitraire à distance, une élévation de privilèges et un déni de service. Ces vulnérabilités affectent les applications .NET. Microsoft a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1002/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans Microsoft Azure (Élévation de privilèges et fuite de données)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans Microsoft Azure permettent une élévation de privilèges, une fuite de données sensibles et un contournement des politiques de sécurité. Ces vulnérabilités ciblent les infrastructures cloud. Microsoft a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1003/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Multiples vulnérabilités critiques dans les produits Intel (Élévation de privilèges et fuite de données)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans les produits Intel permettent une élévation de privilèges, une fuite de données sensibles et un déni de service. Ces vulnérabilités affectent les processeurs et chipsets Intel. Intel a publié des correctifs urgents.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1005/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Vulnérabilité critique dans les produits Cisco (CVE-2026-20349 - DoS activement exploitée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-20349) dans les produits Cisco permet un déni de service à distance. Cette vulnérabilité est activement exploitée par des attaquants. Cisco a publié un correctif urgent pour toutes les versions affectées.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1010/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<hr />
+<h3>Exploitation active de CVE-2026-71362 dans Adobe Commerce (RCE et vol de comptes)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-71362) dans Adobe Commerce et Magento permet une exécution de code arbitraire à distance et le vol de comptes clients. Des attaques sont en cours. Adobe a publié un correctif urgent pour toutes les versions affectées.</p>
 <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-adobe-commerce-flaw-to-hijack-customer-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>CVE-2026-59310 (VMware vCenter) exploitée pour un accès persistant</h3>
+<hr />
+<h2>Jeudi 13 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Progress MOVEit WAF (RCE, élévation de privilèges et contournement de sécurité)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-59310, CVSS 9.8) dans VMware vCenter permet une traversée de répertoire (directory traversal) et un accès persistant à distance. Les attaquants exploitent cette vulnérabilité pour compromettre les environnements virtualisés. Un correctif est disponible.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-vmware-vcenter.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs failles (dont CVE-2026-XXXX) dans Progress MOVEit WAF permettent une exécution de code arbitraire à distance, une élévation de privilèges et un contournement des politiques de sécurité. Ces vulnérabilités exposent les serveurs web à des attaques massives. Un correctif urgent est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1011/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>CVE-2026-48362 (Adobe ColdFusion) patchée avec un score CVSS 10.0</h3>
+<hr />
+<h3>Exploitation active de CVE-2026-59310 dans VMware vCenter (RCE et accès persistant)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Adobe a corrigé trois vulnérabilités critiques (dont CVE-2026-48362, CVSS 10.0) dans ColdFusion, Commerce et Campaign Classic. Ces failles permettent une exécution de code arbitraire et une élévation de privilèges. Les correctifs doivent être appliqués immédiatement.</p>
-<a href="https://thehackernews.com/2026/08/adobe-patches-three-cvss-100-coldfusion.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-59310) dans VMware vCenter permet une exécution de code arbitraire à distance et est activement exploitée pour déployer des outils de persistance (reverse SSH). Plus de 360 IP victimes ont été recensées, dont en France. VMware a publié un correctif urgent.</p>
+<a href="https://www.zataz.com/vmware-vcenter-des-serveurs-francais-compromis/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>CVE-2026-58231 (SAP Commerce Cloud) permet une exécution de code</h3>
+<hr />
+<h3>Fuite de données confirmée à la DGFiP (Fisc français)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-58231, CVSS 10.0) dans SAP Commerce Cloud permet à un attaquant non authentifié d'exécuter du code arbitraire. La vulnérabilité affecte le Data Hub Adapter et expose les environnements d'entreprise. SAP a publié un correctif.</p>
-<a href="https://thehackernews.com/2026/08/sap-commerce-cloud-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une cyberattaque contre la DGFiP (Direction Générale des Finances Publiques) a exposé des données sensibles de milliers de victimes. Une seconde fuite a été revendiquée par les attaquants. L'incident est en cours d'investigation.</p>
+<a href="https://www.zataz.com/fisc-un-acces-illegitime-confirme-a-expose-des-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>ShieldBreak : Zero-Day dans Microsoft Defender (CVE-2026-XXXX)</h3>
+<hr />
+<h3>Cl0p revendique des attaques contre Philips et Shell</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un chercheur a publié un PoC pour une nouvelle faille zero-day (ShieldBreak) dans Microsoft Defender, permettant une élévation de privilèges SYSTEM malgré les correctifs du Patch Tuesday. La vulnérabilité contourne les protections et expose les systèmes Windows. Aucune correction officielle n'est encore disponible.</p>
-<a href="https://thehackernews.com/2026/08/shieldbreak-zero-day-poc-claims.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Le groupe de ransomware Cl0p revendique des attaques contre Philips et Shell, avec une compromission confirmée chez Philips. Une enquête est en cours chez Shell pour confirmer l'étendue de la fuite de données.</p>
+<a href="https://www.zataz.com/cl0p-cible-philips-et-shell-deux-geants-europeens/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+</div>
+
+<hr />
+<h3>Exploitation active de CVE-2026-55040 dans Microsoft SharePoint (Authentification contournée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-55040, CVSS 9.1) dans Microsoft SharePoint permet un contournement de l'authentification après la publication d'un PoC. Des attaques sont en cours. Microsoft a publié un correctif urgent.</p>
+<a href="https://thehackernews.com/2026/08/attackers-exploit-sharepoint.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Lazarus exploite un zero-day Windows pour déployer un backdoor (CVE non attribuée)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Lazarus (Corée du Nord) exploite un zero-day dans Microsoft Windows pour obtenir un accès SYSTEM et déployer un backdoor ciblant des entreprises de défense et aérospatiales en France, Allemagne, Brésil et Inde. Microsoft a publié un correctif urgent.</p>
+<a href="https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h3>Akira désactive les EDR via le mode sans échec pour voler des données</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe de ransomware Akira désactive les solutions EDR en redémarrant les machines en mode sans échec avec réseau, permettant le vol de données sans chiffrement. Cette technique contourne les protections modernes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/akira-hackers-disable-edr-with-safe-mode-steal-data-but-fail-to-encrypt/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<hr />
+<h3>Trésor expose les données de 14 000 clients après une attaque sur ShipMonk</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trezor a révélé une fuite de données affectant près de 14 000 clients après le piratage de ShipMonk, son fournisseur logistique. Les données exposées incluent des informations personnelles et de portefeuille.</p>
+<a href="https://www.bleepingcomputer.com/news/security/trezor-discloses-data-breach-affecting-nearly-14-000-customers/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
