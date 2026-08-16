@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 10/08/2026 au 16/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 10/08/2026 au 17/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 16/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 17/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -78,114 +78,98 @@
             <h2>Lundi 10 Août 2026</h2>
 <h3>Python obtient une bibliothèque de chiffrement post-quantique</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Python intègre désormais une bibliothèque de chiffrement post-quantique (PQC) directement installable via pip, facilitant l'adoption de ces algorithmes résistants aux attaques quantiques. Développée avec le soutien de la Sovereign Tech Fund, cette solution permet aux développeurs de sécuriser leurs applications Python contre les futures menaces quantiques sans complexité supplémentaire.</p>
+<p><strong>Résumé</strong> : Python intègre désormais une bibliothèque de chiffrement post-quantique (PQC) via `pip`, facilitant l'adoption de ces algorithmes pour sécuriser les applications critiques. Cette intégration, soutenue par des acteurs comme Sovereign Tech Fund, permet aux développeurs de protéger leurs données contre les futures menaces quantiques sans complexité supplémentaire.</p>
 <a href="https://www.schneier.com/blog/archives/2026/08/python-now-has-a-post-quantum-encryption-library.html" class="btn-source" target="_blank">🔗 Lire sur Schneier on Security</a>
-</div>
-
-<h3>Nouvelles attaques par passkey : récupération de clés privées synchronisées</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Trois recherches distinctes ont révélé des vulnérabilités dans les passkeys, permettant de récupérer des clés privées synchronisées ou de contourner l'authentification multi-facteurs résistante au phishing. Ces attaques exploitent des failles dans la gestion des clés par Windows, mettant en lumière les limites des solutions MFA actuelles face aux nouvelles techniques d'exfiltration.</p>
-<a href="https://thehackernews.com/2026/08/new-passkey-attacks-can-recover-synced.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Adobe corrige trois vulnérabilités critiques (CVSS 10.0) dans ColdFusion et Campaign Classic</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Adobe a publié des correctifs urgents pour des failles critiques (CVE-2026-48362, CVE-2026-58231, CVE-2026-59310) dans ColdFusion, Commerce et Campaign Classic. Ces vulnérabilités permettent l'exécution de code arbitraire et l'escalade de privilèges, nécessitant une application immédiate des mises à jour pour les environnements exposés.</p>
-<a href="https://thehackernews.com/2026/08/adobe-patches-three-cvss-100-coldfusion.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Kimsuky développe une pile IA hors ligne pour automatiser le phishing et le développement de malwares</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe nord-coréen Kimsuky a déployé une infrastructure IA autonome, connectée à des outils de recherche documentaire locaux, pour automatiser la génération de malwares et améliorer l'efficacité de ses campagnes de phishing. Cette évolution marque un changement vers des opérations plus discrètes et moins dépendantes des services cloud externes.</p>
-<a href="https://thehackernews.com/2026/08/kimsuky-builds-offline-ai-stack-that.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mardi 11 Août 2026</h2>
-<h3>Microsoft corrige 398 vulnérabilités, dont un zero-day dans un pilote Windows sous attaque active</h3>
+<h3>Microsoft corrige 398 failles dont un zero-day dans le pilote Windows</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le Patch Tuesday d'août 2026 inclut la correction de 398 vulnérabilités, dont CVE-2026-XXXX (non encore numérotée) dans un pilote réseau Windows. Cette faille, déjà exploitée en attaque, permet une élévation de privilèges SYSTEM à partir d'un accès initial limité, nécessitant une application urgente des correctifs.</p>
+<p><strong>Résumé</strong> : Microsoft a publié ses mises à jour mensuelles incluant un correctif pour un zero-day (CVE-2026-XXXX) dans un pilote noyau Windows, exploité activement. Cette faille permet une élévation de privilèges (SYSTEM) via des opérations réseau. Les administrateurs doivent prioriser ce patch pour éviter les attaques ciblées.</p>
 <a href="https://thehackernews.com/2026/08/microsoft-patches-398-flaws-including.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Zoom : vulnérabilités critiques dans l'outil d'annotation permettant le hijacking de clients</h3>
+<hr />
+<h3>Mozilla révoque sa clé de signature Linux après une fuite dans un dépôt privé</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des failles dans l'outil d'annotation de Zoom permettent à un participant malveillant de prendre le contrôle du client d'un autre utilisateur ou même du présentateur. Ces vulnérabilités, non corrigées à ce jour, exposent les utilisateurs à des risques de prise de contrôle à distance lors de réunions.</p>
-<a href="https://thehackernews.com/2026/08/zoom-annotation-flaws-could-let-meeting.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Mozilla révoque la clé de signature Linux de Firefox et Thunderbird après une fuite</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Mozilla a dû révoquer la clé GPG utilisée pour signer les binaires Linux de Firefox et Thunderbird après qu'une copie non chiffrée de cette clé ait été commise dans un dépôt privé. Cette erreur compromet la chaîne de confiance pour les utilisateurs Linux, nécessitant une régénération et redistribution des clés.</p>
+<p><strong>Résumé</strong> : Mozilla a invalidé la clé GPG utilisée pour signer les binaires Firefox et Thunderbird sous Linux après qu'elle ait été accidentellement commise dans un dépôt privé. Cet incident rappelle l'importance de sécuriser les artefacts de build et d'utiliser des mécanismes de rotation automatique des clés.</p>
 <a href="https://thehackernews.com/2026/08/mozilla-revokes-firefox-and-thunderbird.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Mercredi 12 Août 2026</h2>
-<h3>Lazarus exploite un zero-day Windows pour obtenir un accès SYSTEM et déployer un backdoor</h3>
+<h3>OpenAI lance GPT-5.6-Cyber avec des garde-fous réduits pour la recherche de vulnérabilités</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Lazarus (Corée du Nord) exploite activement une faille zero-day non corrigée dans Windows pour déployer un backdoor ciblant les secteurs de la défense et de l'aérospatial en France, Allemagne, Brésil et Inde. Cette campagne souligne l'importance de la segmentation réseau et de la détection des comportements anormaux.</p>
-<a href="https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : OpenAI a dévoilé un modèle spécialisé pour la cybersécurité, optimisé pour l'analyse de vulnérabilités et les tests d'intrusion. Bien que conçu pour aider les professionnels, sa capacité à contourner les restrictions soulève des questions sur son usage éthique et la nécessité de contrôles stricts en entreprise.</p>
+<a href="https://thehackernews.com/2026/08/openai-launches-gpt-56-cyber-with.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
+<hr />
 <h3>737 extensions VPN Chrome interceptent le trafic des utilisateurs russophones</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne massive de 737 extensions VPN/proxy sur le Chrome Web Store a été identifiée comme redirigeant le trafic des utilisateurs russophones via des proxys contrôlés par des attaquants. Ces extensions, principalement destinées à contourner la censure, exposent les utilisateurs à des risques de vol de données.</p>
+<p><strong>Résumé</strong> : Une campagne massive de 737 extensions VPN gratuites sur le Chrome Web Store a été identifiée comme redirigeant le trafic via des proxys malveillants. Les administrateurs système doivent auditer les extensions installées et privilégier les solutions open source ou vérifiées.</p>
 <a href="https://thehackernews.com/2026/08/737-chrome-vpn-extensions-caught.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité critique dans VMware vCenter (CVE-2026-59310) exploitée en attaque</h3>
+<hr />
+<h3>Adobe corrige trois vulnérabilités critiques (CVSS 10.0) dans ColdFusion et Campaign Classic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité de traversée de répertoire (CVE-2026-59310, CVSS 9.8) dans VMware vCenter est activement exploitée pour obtenir un accès persistant à distance. Les administrateurs doivent appliquer les correctifs immédiatement et vérifier les logs pour détecter d'éventuelles compromissions.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-vmware-vcenter.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Adobe a patché des failles permettant l'exécution de code arbitraire et l'escalade de privilèges dans ColdFusion et Campaign Classic. Ces correctifs sont critiques pour les environnements d'entreprise utilisant ces solutions, souvent ciblés par des attaques automatisées.</p>
+<a href="https://thehackernews.com/2026/08/adobe-patches-three-cvss-100-coldfusion.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Jeudi 13 Août 2026</h2>
-<h3>Arcane : solution open source complète pour la gestion de conteneurs Docker</h3>
+<h3>Arcane : une solution open source pour gérer les conteneurs Docker</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Arcane propose une alternative open source et gratuite à Docker Desktop pour la gestion des conteneurs, incluant des fonctionnalités avancées d'orchestration, de monitoring et de sécurité. Idéal pour les environnements DevOps nécessitant une solution légère et auto-hébergée.</p>
+<p><strong>Résumé</strong> : Arcane propose une interface unifiée pour déployer, surveiller et gérer les conteneurs Docker, avec des fonctionnalités avancées comme le scaling automatique et la journalisation centralisée. Idéal pour les équipes DevOps cherchant à simplifier l'orchestration sans Kubernetes.</p>
 <a href="https://www.it-connect.fr/tuto-arcane-docker-gestion-conteneurs/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Partage de fichiers entre hôte et VM Vagrant : méthodes pratiques</h3>
+<hr />
+<h3>Web-Check : outil OSINT pour analyser les sites web</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux méthodes sont détaillées pour transférer des fichiers entre un hôte et une VM Vagrant : l'utilisation du plugin `vagrant-scp` et la configuration des dossiers partagés (`synced_folder`). Ces techniques sont essentielles pour les workflows de développement et de test.</p>
-<a href="https://www.it-connect.fr/vagrant-transferer-fichiers-hote-vm/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Web-Check automatise l'analyse de sécurité d'un site web (en-têtes, certificats, ports ouverts, etc.) et peut être auto-hébergé. Utile pour les audits de surface d'attaque ou la veille sur des infrastructures tierces.</p>
+<a href="https://www.it-connect.fr/web-check-outil-osint-analyse-site-web/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
 <hr />
 <h2>Vendredi 14 Août 2026</h2>
-<h3>GNOME 51 Beta : améliorations mineures mais significatives</h3>
+<h3>Des attaquants exploitent une faille d'authentification dans Microsoft SharePoint (CVE-2026-55040)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La bêta de GNOME 51 introduit des améliorations mineures mais utiles à travers l'écosystème, incluant des optimisations de performance, des corrections de bugs et des mises à jour de l'interface utilisateur. Une version à tester pour les environnements de bureau Linux critiques.</p>
-<a href="https://www.phoronix.com/news/GNOME-51-Beta" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>D7VK 2.1 : performances accrues pour les anciennes APIs Direct3D</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : D7VK 2.1 améliore les temps de chargement et les performances pour les APIs Direct3D 7/6/5/3 via Vulkan, optimisant les applications legacy sous Linux/Wine. Une mise à jour pertinente pour les environnements nécessitant une compatibilité rétroactive.</p>
-<a href="https://www.phoronix.com/news/D7VK-2.1" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Une faille critique de contournement d'authentification dans SharePoint (CVSS 9.1) est activement exploitée après la publication d'un PoC. Les administrateurs doivent appliquer le correctif immédiatement et vérifier les logs pour détecter les accès non autorisés.</p>
+<a href="https://thehackernews.com/2026/08/attackers-exploit-sharepoint.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
 <h2>Samedi 15 Août 2026</h2>
-<h3>KDE Plasma 6.8 : réglage fin des vitesses souris/touchpad</h3>
+<h3>GNOME 51 Beta disponible avec des améliorations mineures</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plasma 6.8 introduit un contrôle granular des vitesses de souris et touchpad, améliorant l'expérience utilisateur sur les environnements KDE. Une fonctionnalité pratique pour les administrateurs gérant des postes de travail avec des périphériques variés.</p>
-<a href="https://www.phoronix.com/news/Plasma-6.8-Tune-Mouse-Speeds" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La bêta de GNOME 51 apporte des optimisations de performance et des corrections de bugs, notamment pour Wayland et les environnements de bureau. Les administrateurs Linux peuvent tester cette version pour anticiper les migrations futures.</p>
+<a href="https://www.phoronix.com/news/GNOME-51-Beta" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>AMD publie 109 correctifs pour la prise en charge RAS sur GFX 12.1</h3>
+<hr />
+<h2>Dimanche 16 Août 2026</h2>
+<h3>GIMP travaille sur un nouveau format de fichier après 30 ans de XCF</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : AMD a publié un ensemble massif de 109 correctifs pour implémenter la prise en charge RAS (Reliability, Availability, Serviceability) sur ses GPU GFX 12.1. Ces améliorations sont cruciales pour les environnements critiques nécessitant une haute disponibilité graphique.</p>
-<a href="https://www.phoronix.com/news/AMD-GFX12.1-RAS-Patch-Series" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le projet GIMP développe un format de fichier moderne pour remplacer le XCF vieillissant, avec une meilleure compatibilité et des métadonnées avancées. Une évolution attendue pour les workflows de design et d'édition d'images.</p>
+<a href="https://www.phoronix.com/news/GIMP-New-File-Format-2026" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Debian vote sur l'utilisation des LLM dans le projet</h3>
+<hr />
+<h3>Linux 7.3 introduit <code>binfmt_misc</code> pour exécuter des programmes BPF dynamiquement</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les développeurs Debian votent actuellement sur l'acceptation de l'utilisation des modèles de langage (LLM) dans le cadre du projet. Cette décision pourrait influencer les futures contributions automatisées et les processus de développement open source.</p>
-<a href="https://www.phoronix.com/news/Debian-Votes-On-LLM-Usage" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Le noyau Linux 7.3 permettra d'utiliser des programmes BPF pour choisir dynamiquement l'environnement d'exécution via `binfmt_misc`. Cette fonctionnalité ouvre la voie à des mécanismes de sandboxing avancés et à une meilleure isolation des processus.</p>
+<a href="https://www.phoronix.com/news/Linux-7.3-binfmt-misc" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<hr />
+<h3>AVX-512 améliore les performances du RAID Linux jusqu'à 43%</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une optimisation AVX-512 pour les fonctions de XOR dans le RAID Linux (xor_gen) booste les performances de 41% à 43% sur des CPU modernes comme le Ryzen 9 9950X. Une avancée majeure pour les serveurs de stockage haute performance.</p>
+<a href="https://www.phoronix.com/news/AVX-512-xor-gen-v4" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
         </div>
     </div>
