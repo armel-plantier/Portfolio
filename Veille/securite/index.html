@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 10/08/2026 au 17/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 17/08/2026 au 18/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 10/08/2026 au 17/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 18/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,111 +75,59 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 11 Août 2026</h2>
-<h3>Multiples vulnérabilités dans OpenSSH</h3>
+            <h2>Lundi 18 Août 2026</h2>
+<h3>Vulnérabilité critique dans SPIP (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans OpenSSH, permettant à un attaquant distant d'exécuter du code arbitraire ou de provoquer un déni de service. Ces failles affectent les versions non patchées et nécessitent une mise à jour urgente. Un correctif est disponible via les dépôts officiels.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-0997/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique (exécution de code arbitraire à distance) a été découverte dans SPIP, un CMS largement utilisé. Les attaquants peuvent exploiter cette faille pour prendre le contrôle des serveurs web. Un correctif est disponible via la mise à jour vers la version 4.2.8.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1033/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h2>Mardi 12 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Microsoft Windows (CVE-2026-68820)</h3>
+<h3>Exploit zero-day dans Microsoft Defender (CVE-2026-69414)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé une faille critique (CVE-2026-68820) dans Windows permettant une exécution de code à distance (RCE), une élévation de privilèges et un déni de service. D'autres vulnérabilités ont été patchées dans le cadre du Patch Tuesday. Les systèmes non mis à jour sont exposés à des attaques actives.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1001/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Microsoft travaille sur un correctif pour "ShieldBreak", une vulnérabilité zero-day (CVE-2026-69414) permettant une exécution de code arbitraire dans Microsoft Defender. La faille est activement exploitée en attaque ciblée. Un patch est en cours de déploiement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/microsoft-working-on-defender-patch-for-shieldbreak-zero-day/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Vulnérabilité critique dans Cisco (CVE-2026-20349) exploitée activement</h3>
+<h3>Fuite massive de données Azure (3,6M de comptes)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cisco a confirmé l'exploitation active de la vulnérabilité CVE-2026-20349 dans plusieurs de ses produits, permettant un déni de service à distance. Les correctifs sont disponibles, mais des milliers d'appareils restent vulnérables. Une mise à jour immédiate est recommandée.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1010/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Un acteur menaçant revendique le vol de 3,6 millions d'enregistrements de comptes Azure appartenant à des entreprises du Fortune 500, obtenus via des identifiants compromis. Les données incluent des informations d'employés et des accès sensibles. Aucune confirmation officielle de Microsoft.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hacker-claims-36-million-azure-account-records-stolen-from-major-companies/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Max severity SAP Commerce Cloud exploitée (CVE-2026-XXXX)</h3>
+<h3>Fuite de données de l'Éducation nationale française</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique de type RCE dans SAP Commerce Cloud (CVE-2026-XXXX) est désormais exploitée par des attaquants. Le correctif a été publié il y a trois jours, mais les organisations non patchées sont déjà ciblées. Une priorité absolue pour les environnements SAP.</p>
-<a href="https://www.bleepingcomputer.com/news/security/max-severity-sap-commerce-cloud-flaw-now-targeted-in-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Un pirate revendique une intrusion dans les systèmes de l'Éducation nationale, exposant potentiellement des millions de données d'élèves et d'enseignants. Les autorités n'ont pas confirmé l'incident, mais une enquête est en cours.</p>
+<a href="https://www.zataz.com/education-nationale-un-pirate-annonce-une-fuite-qui-exposerait-des-millions-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
 </div>
 
-<h3>VMware vCenter : CVE-2026-59310 exploitée massivement</h3>
+<h3>Exploit critique dans GitLab (GraphQL)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La vulnérabilité CVE-2026-59310 dans VMware vCenter est activement exploitée, avec plus de 360 IP victimes dont des serveurs en France. Elle permet une exécution de code à distance. VMware a publié un correctif, mais de nombreuses instances restent non mises à jour.</p>
-<a href="https://www.zataz.com/vmware-vcenter-des-serveurs-francais-compromis/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une faille critique (non-CVE) dans GitLab permet à un attaquant non authentifié de modifier ou supprimer des projets publics et des données utilisateurs via une requête GraphQL malveillante. GitLab a publié des correctifs pour les versions CE/EE.</p>
+<a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Mercredi 13 Août 2026</h2>
-<h3>Cl0p exploite PTC Windchill et cible Philips/Shell</h3>
+<h3>Fuite de données de l'administration fiscale française (678K individus)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Cl0p revendique avoir compromis près de 50 entreprises via une faille critique dans PTC Windchill et FlexPLM. Les cibles incluent Philips (compromission confirmée) et Shell (enquête en cours). Les données volées pourraient être monétisées ou utilisées pour du chantage.</p>
-<a href="https://www.zataz.com/cl0p-industrialise-ses-attaques-via-ptc-windchill/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : La DGFiP (France) confirme une fuite de données affectant 678 000 personnes après une intrusion via des identifiants compromis. Les données volées incluent des informations fiscales personnelles. Un audit de sécurité est en cours.</p>
+<a href="https://www.bleepingcomputer.com/news/security/french-tax-authority-data-breach-affects-678-000-individuals/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite de données chez EVA : 1 million d'euros de cartes cadeaux générées</h3>
+<h3>Ransomware Clop : Philips et GE en investigation</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une base de données attribuée à un professionnel des jeux VR (EVA) a été exposée, révélant des données sensibles de clients. Un pirate a généré 1 million d'euros de cartes cadeaux frauduleuses. La fuite inclut des informations personnelles et financières.</p>
-<a href="https://www.zataz.com/eva-visee-par-une-nouvelle-fuite-de-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Les géants Philips et GE enquêtent sur des revendications du groupe Clop affirmant avoir volé des données via une exploitation de vulnérabilités non patchées. Aucune confirmation sur l'étendue des fuites ou le chiffrement.</p>
+<a href="https://www.bleepingcomputer.com/news/security/philips-and-ge-investigating-clop-ransomware-data-theft-claims/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Fuite confirmée à la DGFiP : données fiscales exposées</h3>
+<h3>Exploit critique dans VMware vCenter (CVE-2026-59310)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un accès illégitime à des systèmes de la DGFiP (Direction Générale des Finances Publiques) a exposé des données sensibles. Des milliers de victimes sont évoquées, et une seconde fuite a été revendiquée. Une enquête est en cours pour identifier l'origine de l'intrusion.</p>
-<a href="https://www.zataz.com/fisc-un-acces-illegitime-confirme-a-expose-des-donnees/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
+<p><strong>Résumé</strong> : Une vulnérabilité de traversée de répertoire (CVE-2026-59310, score CVSS 9.8) dans VMware vCenter est exploitée par un acteur APT sino-néxus pour déployer un ransomware dérivé de Babuk. Un correctif est disponible depuis juillet 2026.</p>
+<a href="https://thehackernews.com/2026/08/suspected-china-nexus-actor-exploits.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Magento ciblé quelques heures après la publication d'un correctif</h3>
+<h3>Faille critique dans Forminator WordPress (CVE-2026-15748)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Magento a été massivement ciblé peu après la divulgation d'une faille critique. Les attaquants exploitent la vulnérabilité pour accéder aux comptes clients. Les organisations utilisant Magento doivent appliquer le correctif immédiatement pour éviter des compromissions.</p>
-<a href="https://www.zataz.com/magento-vise-quelques-heures-apres-la-divulgation-dun-correctif/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<hr />
-<h2>Jeudi 14 Août 2026</h2>
-<h3>RingCentral : fuite de données de 1,6 million de comptes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters a volé les données personnelles de 1,6 million de comptes RingCentral après une intrusion en juillet. Les informations exposées incluent noms, adresses e-mail et numéros de téléphone. Les victimes sont invitées à surveiller les tentatives de phishing.</p>
-<a href="https://www.bleepingcomputer.com/news/security/ringcentral-data-breach-exposed-info-of-16-million-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Apple alerte sur des attaques par spyware mercenaires</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Apple a envoyé des notifications "Threat Notification" à certains utilisateurs, les alertant d'attaques par spyware mercenaires ciblant leurs iPhones. Ces attaques sophistiquées visent des personnalités spécifiques et exploitent des vulnérabilités zero-day.</p>
-<a href="https://www.bleepingcomputer.com/news/apple/apple-sends-new-threat-notification-alerts-over-mercenary-spyware-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Exploitation active d'une faille macOS Screen Sharing</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le NCSC néerlandais alerte sur l'exploitation active d'une vulnérabilité d'authentification dans macOS Screen Sharing, permettant le déploiement de mineurs de Monero. Un code d'exploitation public est disponible, augmentant le risque d'attaques automatisées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-macos-screen-sharing-flaw-to-deploy-monero-miner/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Vulnérabilité critique dans OpenSSL (DoS)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille de déni de service à distance (DoS) a été découverte dans OpenSSL. Bien que moins critique qu'une RCE, elle peut paralyser des services critiques. Un correctif est disponible dans les dernières versions d'OpenSSL.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1026/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Vendredi 15 Août 2026</h2>
-<h3>Evooo1Bot : nouveau botnet Linux ciblant les routeurs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le botnet Evooo1Bot, basé sur Mirai, infecte les routeurs Linux pour en faire des relais SOCKS5. Il cible les appareils exposés sur Internet et pourrait être utilisé pour du trafic frauduleux ou des attaques DDoS. Une mise à jour des firmwares est recommandée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-evooo1bot-linux-botnet-turns-routers-into-traffic-relay-nodes/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 16 Août 2026</h2>
-<h3>Attaques DDoS massives contre Threema</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le service de messagerie sécurisée Threema a subi plusieurs attaques DDoS cette semaine, provoquant des perturbations majeures. Aucune fuite de données n'a été signalée, mais la disponibilité du service a été fortement impactée. Threema recommande de renforcer les protections réseau.</p>
-<a href="https://www.bleepingcomputer.com/news/security/large-scale-ddos-attacks-disrupted-threema-secure-messaging-service/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>AmnesiaStealer : nouveau malware macOS avec contrôle à distance</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : AmnesiaStealer, un nouveau malware macOS, vole les sessions de navigateur via un module de contrôle à distance. Il cible les utilisateurs via des attaques ClickFix et peut exfiltrer des données sensibles. Les victimes doivent vérifier leurs extensions et processus suspects.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-amnesiastealer-macos-malware-hijacks-browser-sessions-via-remote-control/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Le plugin WordPress Forminator (600K+ installations) est vulnérable à une exécution de code arbitraire (CVE-2026-15748, score 9.8) via des uploads PHP malveillants. Un correctif est disponible dans la version 1.28.0.</p>
+<a href="https://thehackernews.com/2026/08/forminator-wordpress-flaw-can-enable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
