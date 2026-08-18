@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 17/08/2026 au 18/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 17/08/2026 au 19/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 18/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 19/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,53 +75,111 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 18 août 2026</h2>
-<h3>Panne mondiale de GitHub : 20% d'erreurs sur les services critiques</h3>
+            <h2>Lundi 17 août 2026</h2>
+<h3>Panne mondiale de GitHub</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : GitHub subit une panne mondiale le 17 août 2026, affectant 20% des requêtes sur le web, l'API, GitHub Actions, Copilot et les pull requests. Microsoft confirme l'incident sans fournir de détails techniques immédiats. Les administrateurs système doivent anticiper des retards dans les pipelines CI/CD et des perturbations dans les workflows automatisés.</p>
+<p><strong>Résumé</strong> : GitHub subit une panne mondiale le 17 août 2026, avec 20 % d'erreurs sur le web, l'API, GitHub Actions, Copilot et les pull requests. Les équipes de Microsoft investiguent activement. Une panne de cette ampleur impacte directement les workflows CI/CD et les équipes DevOps.</p>
 <a href="https://www.it-connect.fr/panne-mondiale-github-lundi-17-aout-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Proton VPN migre vers Rust pour un cœur WireGuard optimisé</h3>
+<h3>Retard de la CU1 d'Exchange Server SE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Proton VPN remplace wireguard-go par un nouvel implémentation écrite en Rust pour ses applications, améliorant la sécurité et les performances. Le projet inclut aussi muon, un outil anti-censure. Cette migration est cruciale pour les administrateurs cherchant à sécuriser les communications VPN avec des stacks modernes et maintenables.</p>
-<a href="https://www.it-connect.fr/proton-vpn-nouveau-coeur-wireguard-rust-protun/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Microsoft explique le retard de la CU1 d'Exchange Server SE par la saturation de ses équipes due aux remontées de failles détectées par ses outils d'IA. Aucune date de sortie n'est encore annoncée, ce qui peut impacter les plans de mise à jour des administrateurs.</p>
+<a href="https://www.it-connect.fr/exchange-server-se-microsoft-explique-pourquoi-la-cu1-narrive-toujours-pas/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>Microsoft Entra Cloud Sync : synchronisation des appareils en préversion</h3>
+<h3>Microsoft Entra Cloud Sync : synchronisation des appareils</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft ajoute une fonctionnalité Device Sync à Entra Cloud Sync, permettant la synchronisation des objets ordinateur depuis Active Directory vers Entra ID. Cette évolution simplifie la gestion des identités hybrides et réduit les risques de divergence entre les environnements on-prem et cloud.</p>
+<p><strong>Résumé</strong> : Microsoft ajoute une fonctionnalité à Entra Cloud Sync : la synchronisation des objets ordinateur de l'Active Directory vers Entra ID, appelée Device Sync. Cette évolution simplifie la gestion des appareils hybrides et renforce l'intégration entre AD et le cloud.</p>
 <a href="https://www.it-connect.fr/microsoft-entra-cloud-sync-la-synchronisation-des-appareils/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>GitLab corrige une faille GraphQL critique permettant la suppression de projets publics</h3>
+<h3>Synology lance la gamme neo+ sans mémoire ECC</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-XXXX) dans GitLab permet à un attaquant non authentifié de modifier ou supprimer des projets publics et des données utilisateurs via une requête GraphQL malveillante. Les administrateurs doivent appliquer les correctifs immédiatement pour éviter des pertes de données irréversibles.</p>
+<p><strong>Résumé</strong> : Synology dévoile les DS1825neo+, DS1525neo+, DS925neo+ et DS725neo+ avec 4 Go de DDR4 non-ECC, une première pour la marque. Ces NAS moins chers ciblent les petites entreprises, mais leur absence de mémoire ECC peut poser des questions sur la fiabilité des données critiques.</p>
+<a href="https://www.it-connect.fr/synology-diskstation-neo-plus-nas-memoire-non-ecc/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Vulnérabilité critique dans GitLab GraphQL</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GitLab corrige une faille critique (CVE non précisée) permettant à un attaquant non authentifié de modifier ou supprimer des projets publics et des données utilisateur via une requête GraphQL. Une mise à jour urgente est recommandée pour les instances auto-hébergées.</p>
 <a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Linux 7.3 : améliorations majeures pour la gestion de la vRAM et le SMP</h3>
+<h3>Faille SSRF dans MLflow exploitable pour voler des secrets cloud</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.3 introduit des optimisations pour la gestion de la mémoire vidéo (vRAM) et des améliorations SMP visant à réduire la latence et améliorer les performances temps réel. Ces changements sont particulièrement pertinents pour les environnements virtualisés et les serveurs gaming.</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-Improving-vRAM-Mgmt" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques (CVE non précisées) dans MLflow, une plateforme open-source pour l'IA, permettent une attaque SSRF pour voler des identifiants cloud et des secrets. Les attaques sont déjà en cours, nécessitant une mise à jour immédiate.</p>
+<a href="https://thehackernews.com/2026/08/attackers-exploit-mlflow-ssrf-flaw-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Linux 7.3 : améliorations majeures pour les systèmes de fichiers et le noyau</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Linux 7.3 introduit des optimisations pour EXT4, XFS (FALLOC_FL_WRITE_ZEROES) et IOmap, améliorant les performances des systèmes de fichiers. Le noyau ajoute aussi le support Rust pour PowerPC, des améliorations SMP pour réduire la latence, et un nouveau pilote watchdog pour Lenovo.</p>
+<a href="https://www.phoronix.com/news/IOmap-Linux-7.3-Faster" class="btn-source" target="_blank">🔗 Lire sur Phoronix (IOmap)</a>
+<a href="https://www.phoronix.com/news/XFS-FALLOC-FL-WRITE-ZEROES" class="btn-source" target="_blank">🔗 Lire sur Phoronix (XFS)</a>
+<a href="https://www.phoronix.com/news/Linux-7.3-PowerPC-Rust" class="btn-source" target="_blank">🔗 Lire sur Phoronix (Rust)</a>
+</div>
+
+<h3>Firefox 154 : gestion des IA et optimisations</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Firefox 154 ajoute une action rapide "Gérer l'IA" pour contrôler les interactions avec les modèles de langage intégrés. Le navigateur continue d'évoluer pour mieux gérer les fonctionnalités liées à l'IA tout en maintenant la sécurité.</p>
+<a href="https://www.phoronix.com/news/Firefox-154-Released" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+</div>
+
+<h3>Vulnérabilités dans Microsoft Copilot Personal</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois failles dans Microsoft Copilot Personal (CVE non précisées) permettent à un attaquant d'exfiltrer des données d'applications connectées via un simple clic sur un lien malveillant. Une mise à jour est nécessaire pour les utilisateurs de cette fonctionnalité.</p>
+<a href="https://thehackernews.com/2026/08/microsoft-copilot-personal-flaws-could.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h3>FFmpeg optimise l'encodage H.265 avec Vulkan</h3>
+<h2>Mercredi 18 août 2026</h2>
+<h3>ResetNightmare : faille Kerberos dans Active Directory</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : FFmpeg 7.3 intègre des optimisations pour l'encodage H.265/HEVC via Vulkan, offrant des performances comparables à l'encodage H.264. Cette avancée est idéale pour les administrateurs gérant des pipelines multimédias ou des services de streaming nécessitant une compression efficace.</p>
-<a href="https://www.phoronix.com/news/FFmpeg-Faster-HEVC-Encode" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La faille ResetNightmare (CVE-2026-27912) permet de réinitialiser le mot de passe de n'importe quel compte Active Directory via Kerberos. Cette vulnérabilité critique nécessite une application urgente des correctifs Microsoft pour éviter des prises de contrôle de domaine.</p>
+<a href="https://www.it-connect.fr/resetnightmare-cve-2026-27912-kerberos-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<hr />
-<h3>KTransformers 0.7 : support AVX-512 pour les serveurs AMD EPYC</h3>
+<h3>ShieldBreak : zero-day dans Microsoft Defender</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La version 0.7 de KTransformers étend le support AVX-512, optimisant les inférences LLM sur les serveurs AMD EPYC. Cette mise à jour est cruciale pour les administrateurs déployant des charges de travail IA/ML sur des infrastructures modernes.</p>
-<a href="https://www.phoronix.com/news/KTransformers-0.7" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : La faille zero-day ShieldBreak (CVE-2026-69414) contourne le patch RoguePlanet de Microsoft Defender. Microsoft travaille sur un correctif, mais les administrateurs doivent surveiller les mises à jour et renforcer les règles de sécurité en attendant.</p>
+<a href="https://www.it-connect.fr/shieldbreak-zero-day-defender-cve-2026-69414/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Patch Tuesday août 2026 : 421 failles dont 3 zero-day</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Microsoft corrige 421 vulnérabilités en août 2026, dont 3 zero-day. L'une d'elles (exploitée par Lazarus) permet le déploiement du rootkit FudModule. Une application immédiate des correctifs est cruciale pour éviter des attaques ciblées.</p>
+<a href="https://www.it-connect.fr/patch-tuesday-aout-2026-421-failles-corrigees-3-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Proton VPN migre vers Rust pour son cœur WireGuard</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Proton VPN remplace wireguard-go par un nouveau socle logiciel écrit en Rust pour améliorer la sécurité et les performances de ses applications. Cette migration renforce aussi la lutte contre la censure via l'outil muon.</p>
+<a href="https://www.it-connect.fr/proton-vpn-nouveau-coeur-wireguard-rust-protun/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>NetApp acquiert JetStream Software pour la cyber-résilience</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : NetApp renforce son offre de reprise après sinistre pour les environnements VMware avec l'acquisition de JetStream Software. Cette intégration permet aux administrateurs de mieux protéger les données critiques dans des environnements hybrides.</p>
+<a href="https://www.silicon.fr/data-ia-1372/netapp-acquiert-jetstream-software-228733" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
+</div>
+
+<h3>Vulnérabilité dans SafePal exposant les données de 40 000 clients</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : SafePal révèle qu'une faille d'autorisation dans un plugin de suivi des commandes a exposé les données personnelles (noms, adresses, numéros de téléphone) de 39 798 clients. Tous les utilisateurs concernés ont été notifiés par email.</p>
+<a href="https://thehackernews.com/2026/08/safepal-hardware-wallet-maker-says-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>CISA ajoute une faille Ray activement exploitée au catalogue KEV</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : CISA ajoute une faille critique dans Ray (CVE non précisée) à son catalogue KEV, signalant une exploitation active. Ray est un framework open-source pour le calcul distribué, souvent utilisé en IA/ML. Une mise à jour immédiate est recommandée.</p>
+<a href="https://thehackernews.com/2026/08/cisa-flags-actively-exploited-ray-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne TWINLOOT exploitant SharePoint et Teams</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La campagne TWINLOOT utilise un implant Python pour abuser de SharePoint et Teams afin de voler des identifiants et se déplacer latéralement dans les réseaux. Ce malware exploite les services Microsoft légitimes pour échapper à la détection.</p>
+<a href="https://thehackernews.com/2026/08/twinloot-abuses-sharepoint-and-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
