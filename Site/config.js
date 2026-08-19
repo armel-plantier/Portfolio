@@ -74,6 +74,12 @@ projects: [
     // --- 5. EXPÉRIENCES ---
 experiences: [
         {
+            date: "17/08/2026 - 17/08/2027",
+            role: "Alternance",
+            company: "Malakoff Humanis",
+            longDescription: ""
+        },
+        {
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
@@ -86,6 +92,22 @@ experiences: [
             company: "Ellix Informatique",
             photo: "images.jpg",
             longDescription: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS) \n Serveur Graylog (Centralisation des logs) \n Active Directory (GPO, Audits, UO) \n Routeur Netgate (pfSense) \n Serveur DHCP (Windows & Debian)"
+        }
+    ],
+
+    // --- 5b. FORMATIONS ---
+    formations: [
+        {
+            date: "17/08/2026 - 17/08/2027",
+            role: "Licence STS (Sécurité des Réseaux et Cybersécurité)",
+            company: "CaenSup Sainte Ursule, Caen",
+            longDescription: ""
+        },
+        {
+            date: "2024 - 2026",
+            role: "BTS SIO option SISR",
+            company: "CaenSup Sainte Ursule, Caen",
+            longDescription: ""
         }
     ],
 

@@ -629,14 +629,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
-    const expList = document.getElementById("exp-list");
     const EXP_LIMIT = 5;
-    if(expList && config.experiences) {
-        config.experiences.forEach((exp, index) => {
+    function renderTimeline(listEl, data, limit) {
+        if (!listEl || !data) return;
+        data.forEach((exp, index) => {
             const li = document.createElement("li"); li.className = "timeline-item";
-            if (index >= EXP_LIMIT) li.classList.add("hidden-item");
+            if (index >= limit) li.classList.add("hidden-item");
 
-            const lines = exp.longDescription.split('\n');
+            const lines = (exp.longDescription || "").split('\n');
             const listHtml = lines.map(line => {
                 const cleanLine = line.trim();
                 if (!cleanLine) return '';
@@ -657,10 +657,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h4 class="timeline-title">${escapeHTML(exp.role)}</h4>
                 <ul class="timeline-missions">${listHtml}</ul>
             `;
-            expList.appendChild(li);
+            listEl.appendChild(li);
         });
-        if (config.experiences.length > EXP_LIMIT) createToggleBtn(expList, EXP_LIMIT, "Voir la suite");
+        if (data.length > limit) createToggleBtn(listEl, limit, "Voir la suite");
     }
+    renderTimeline(document.getElementById("exp-list"), config.experiences, EXP_LIMIT);
+    renderTimeline(document.getElementById("formation-list"), config.formations, EXP_LIMIT);
 
     // --- 9. COMPETENCES (SANS POINTS BLANCS) ---
     const compList = document.getElementById("comp-list");
@@ -1692,8 +1694,8 @@ function toggleGlobalPDF(url) {
     // =========================================================
     // 2. TIMELINE PARCOURS — design enrichi
     // =========================================================
-    function enhanceTimeline() {
-        const expList = document.getElementById('exp-list');
+    function enhanceTimeline(listId) {
+        const expList = document.getElementById(listId || 'exp-list');
         if (!expList) return;
         if (expList.classList.contains('timeline-enhanced')) return;
         expList.classList.add('timeline-enhanced');
@@ -1824,7 +1826,8 @@ function toggleGlobalPDF(url) {
         // Les rendus des sections se font dans le DOMContentLoaded principal
         // Petit délai pour s'assurer que tout est en place
         setTimeout(() => {
-            try { enhanceTimeline(); } catch(e) { console.warn('timeline:', e); }
+            try { enhanceTimeline('exp-list'); } catch(e) { console.warn('timeline:', e); }
+            try { enhanceTimeline('formation-list'); } catch(e) { console.warn('timeline formations:', e); }
             try { wireEmailCopyToast(); } catch(e) {}
             // Inject company photos after enhanceTimeline has rebuilt the DOM
             try {
