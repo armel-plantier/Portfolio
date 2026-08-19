@@ -292,6 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="copy-link-btn" data-no-hint="true" title="Copier le lien">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 </button>
+                <div class="card-thumb" data-pdf-url="${fullPdfUrl}"></div>
                 <div class="card-header">
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
@@ -301,7 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div id="${vid}" class="pdf-container"></div>
             `;
-            
+
+            div.querySelector('.card-thumb').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+            if (window.observePdfThumb) window.observePdfThumb(div.querySelector('.card-thumb'));
+
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
                 fetch(apiUrl).then(res => res.json()).then(data => {
@@ -574,6 +578,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <button class="copy-link-btn proc-copy-btn" data-no-hint="true" title="Copier le lien">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
                 </button>
+                <div class="card-thumb" data-pdf-url="${fullPdfUrl}"></div>
                 <div class="card-header">
                     <div class="icon">${renderedIcon}</div>
                     <div class="meta">
@@ -584,7 +589,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div id="${vid}" class="pdf-container"></div>
             `;
 
+            div.querySelector('.card-thumb').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
             div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
+            if (window.observePdfThumb) window.observePdfThumb(div.querySelector('.card-thumb'));
             div.querySelector('.proc-copy-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
                 const slug = proc.title

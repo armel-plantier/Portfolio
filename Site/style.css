@@ -321,12 +321,36 @@ body.light-mode .project-card { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
     box-shadow: 0 0 0 1px var(--primary), 0 15px 40px rgba(0,0,0,0.3);
 }
 
-.card-header { 
-    padding: 30px; 
-    cursor: pointer; 
-    display: flex; 
-    gap: 20px; 
-    align-items: flex-start; 
+.card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+.card-thumb:not(.thumb-loaded) {
+    background: linear-gradient(100deg, var(--card) 30%, rgba(99, 102, 241, 0.08) 50%, var(--card) 70%);
+    background-size: 200% 100%;
+    animation: thumbShimmer 1.6s ease-in-out infinite;
+}
+@keyframes thumbShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.card-thumb.thumb-failed { display: none; }
+.card-thumb .thumb-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    display: block;
+    animation: thumbFadeIn 0.3s ease;
+}
+@keyframes thumbFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.card-header {
+    padding: 30px;
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
     flex-grow: 1;
 }
 
