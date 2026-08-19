@@ -1126,7 +1126,7 @@ function openProjectModal(proj, dateStr = "") {
     if(modal && titleEl && descEl && tagsEl) {
         titleEl.innerText = proj.title;
         let dateHtml = dateStr ? `<div class="modal-date-display" style="margin-bottom:10px; font-size:0.8rem; opacity:0.7;">📅 Ajouté le : ${dateStr}</div>` : "";
-        descEl.innerHTML = dateHtml + (proj.longDescription || "");
+        descEl.innerHTML = dateHtml + escapeHTML(proj.longDescription || "");
         tagsEl.innerHTML = (proj.tags || []).map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('') || "Aucun tag";
         modal.style.display = "flex";
     }

@@ -1,0 +1,4 @@
+Documents/Keepass/
+*.kdbx
+*.env
+.env.*
