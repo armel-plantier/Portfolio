@@ -78,7 +78,7 @@ experiences: [
             role: "Alternance",
             company: "Malakoff Humanis",
             photo: "malakoff-humanis.jpg",
-            longDescription: ""
+            longDescription: "Alternance réalisée dans le cadre de la Licence STS (Sécurité des Réseaux et Cybersécurité)"
         },
         {
             date: "Décembre 2025 - Février 2026",
@@ -107,7 +107,7 @@ experiences: [
         },
         {
             date: "2024 - 2026",
-            role: "BTS SIO option SISR",
+            role: "BTS SIO option SISR — Diplômé",
             company: "CaenSup Sainte Ursule, Caen",
             photo: "caensup.jpg",
             longDescription: ""
