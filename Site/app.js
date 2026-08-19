@@ -58,17 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeBtn = document.getElementById("theme-toggle");
     const body = document.body;
     
-    // Si aucun thème enregistré, on suit la préférence système
+    // Sombre par défaut, sauf si l'utilisateur a explicitement choisi le clair
     const savedTheme = localStorage.getItem("theme");
-    if (!savedTheme) {
-        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-        if (prefersLight) {
-            body.classList.add("light-mode");
-            if(themeBtn) themeBtn.innerText = "🌙";
-        }
-    } else if (savedTheme === "light") {
+    if (savedTheme === "light") {
         body.classList.add("light-mode");
-        if(themeBtn) themeBtn.innerText = "🌙"; 
+        if(themeBtn) themeBtn.innerText = "🌙";
     }
     
     if (themeBtn) {

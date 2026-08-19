@@ -2,12 +2,11 @@
   var btn = document.getElementById("theme-toggle");
   if (!btn) return;
   var theme = localStorage.getItem("theme");
-  var prefersLight = !theme && window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-  if (theme === "light" || prefersLight) {
+  if (theme === "light") {
     document.body.classList.add("light-mode");
     btn.innerText = "🌙";
   } else {
-    btn.innerText = "🌙";
+    btn.innerText = "☀️";
   }
   btn.addEventListener("click", function() {
     document.body.classList.toggle("light-mode");
