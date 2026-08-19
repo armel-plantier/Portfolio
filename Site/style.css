@@ -323,7 +323,7 @@ body.light-mode .project-card { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 
 .card-thumb {
     width: 100%;
-    aspect-ratio: 16 / 6;
+    aspect-ratio: 16 / 5;
     cursor: pointer;
     position: relative;
     overflow: hidden;

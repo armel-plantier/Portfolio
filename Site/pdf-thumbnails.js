@@ -3,8 +3,8 @@
     if (typeof pdfjsLib === 'undefined') return;
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdfjs/pdf.worker.min.js';
 
-    const CACHE_PREFIX = 'pdfthumb:v1:';
-    const THUMB_WIDTH = 320;
+    const CACHE_PREFIX = 'pdfthumb:v2:';
+    const THUMB_WIDTH = 640;
 
     function cacheGet(url) {
         try { return localStorage.getItem(CACHE_PREFIX + url); } catch (e) { return null; }
@@ -29,7 +29,7 @@
         const ctx = canvas.getContext('2d');
         await page.render({ canvasContext: ctx, viewport }).promise;
 
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.78);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
         cacheSet(url, dataUrl);
         return dataUrl;
     }
