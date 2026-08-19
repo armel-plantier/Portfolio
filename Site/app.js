@@ -845,8 +845,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => r.json()).then(d => {
+        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => {
+            if (!r.ok) throw new Error('GitHub API error ' + r.status);
+            return r.json();
+        }).then(d => {
             const date = new Date(d.pushed_at);
+            if (isNaN(date.getTime())) throw new Error('Invalid pushed_at');
             updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
         }).catch(() => { updateEl.innerText = "System Ready"; });
     }
@@ -1829,23 +1833,24 @@ function toggleGlobalPDF(url) {
             try { enhanceTimeline('exp-list'); } catch(e) { console.warn('timeline:', e); }
             try { enhanceTimeline('formation-list'); } catch(e) { console.warn('timeline formations:', e); }
             try { wireEmailCopyToast(); } catch(e) {}
-            // Inject company photos after enhanceTimeline has rebuilt the DOM
-            try {
-                if (config.experiences) {
-                    const items = document.querySelectorAll('#exp-list .timeline-item');
-                    config.experiences.forEach((exp, i) => {
-                        if (!exp.photo || !items[i]) return;
-                        const badge = items[i].querySelector('.tl-badge');
-                        if (!badge) return;
-                        const img = document.createElement('img');
-                        img.src = 'assets/' + exp.photo;
-                        img.alt = exp.company || '';
-                        img.style.cssText = 'align-self: stretch; height: 100%; width: 56px; min-height: 52px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;';
-                        img.onerror = function() { this.remove(); };
-                        badge.replaceWith(img);
-                    });
-                }
-            } catch(e) { console.warn('photo inject:', e); }
+            // Inject company/school photos after enhanceTimeline has rebuilt the DOM
+            function injectTimelinePhotos(listId, data) {
+                if (!data) return;
+                const items = document.querySelectorAll('#' + listId + ' .timeline-item');
+                data.forEach((exp, i) => {
+                    if (!exp.photo || !items[i]) return;
+                    const badge = items[i].querySelector('.tl-badge');
+                    if (!badge) return;
+                    const img = document.createElement('img');
+                    img.src = 'assets/' + exp.photo;
+                    img.alt = exp.company || '';
+                    img.style.cssText = 'align-self: stretch; height: 100%; width: 56px; min-height: 52px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;';
+                    img.onerror = function() { this.remove(); };
+                    badge.replaceWith(img);
+                });
+            }
+            try { injectTimelinePhotos('exp-list', config.experiences); } catch(e) { console.warn('photo inject:', e); }
+            try { injectTimelinePhotos('formation-list', config.formations); } catch(e) { console.warn('photo inject formations:', e); }
         }, 400);
     };
 

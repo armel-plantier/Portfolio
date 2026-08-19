@@ -77,6 +77,7 @@ experiences: [
             date: "17/08/2026 - 17/08/2027",
             role: "Alternance",
             company: "Malakoff Humanis",
+            photo: "malakoff-humanis.jpg",
             longDescription: ""
         },
         {
@@ -101,12 +102,14 @@ experiences: [
             date: "17/08/2026 - 17/08/2027",
             role: "Licence STS (Sécurité des Réseaux et Cybersécurité)",
             company: "CaenSup Sainte Ursule, Caen",
+            photo: "caensup.jpg",
             longDescription: ""
         },
         {
             date: "2024 - 2026",
             role: "BTS SIO option SISR",
             company: "CaenSup Sainte Ursule, Caen",
+            photo: "caensup.jpg",
             longDescription: ""
         }
     ],
