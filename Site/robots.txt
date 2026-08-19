@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin.html
 Disallow: /confirmation.html
 
 Sitemap: https://armel-plantier.com/sitemap.xml
