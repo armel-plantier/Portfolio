@@ -26,11 +26,10 @@ jobs:
         python-version: '3.12'
     - name: 📦 Installation des dépendances
       run: |
-        pip install --no-cache-dir "mistralai==1.2.5" feedparser markdown requests
+        pip install --no-cache-dir "mistralai==1.2.5" feedparser markdown
     - name: 🧠 Exécution de l'IA (Script Python)
       env:
         MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-        BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
       run: python Veille/veille.py
     - name: 🚀 Commit de la nouvelle veille
       run: |

@@ -6,7 +6,7 @@
  *   - Bypass complet pour les PDF et API GitHub (pas de cache)
  */
 
-const VERSION = 'v1.3.2';
+const VERSION = 'v1.4.0';
 const STATIC_CACHE = `portfolio-static-${VERSION}`;
 const RUNTIME_CACHE = `portfolio-runtime-${VERSION}`;
 
@@ -64,7 +64,6 @@ self.addEventListener('fetch', (event) => {
         url.hostname === 'docs.google.com' ||
         url.hostname === 'challenges.cloudflare.com' ||
         url.hostname.includes('cloudflareinsights') ||
-        url.hostname.includes('sibforms') ||
         url.pathname.endsWith('.pdf')
     ) {
         return; // laisse le navigateur gérer

@@ -14,7 +14,6 @@ sys.path = [p for p in sys.path if os.path.abspath(p) != SCRIPT_DIR]
 from mistralai import Mistral
 from datetime import datetime, timedelta
 import markdown
-import requests
 import time
 
 # ==============================================================================
@@ -398,99 +397,7 @@ for cat in CATEGORIES:
 
 
 # ==============================================================================
-# 5. NEWSLETTER COMBINÉE VIA BREVO
-# ==============================================================================
-
-BREVO_API_KEY = os.environ.get("BREVO_API_KEY")
-
-if BREVO_API_KEY:
-    print(f"\n{'='*60}")
-    print("  📬  Préparation de la newsletter combinée...")
-    print(f"{'='*60}")
-
-    def section_newsletter(cat, contenu_html):
-        c = cat["couleur"]
-        return f"""
-        <div style="margin-bottom: 40px;">
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid {c};">
-                <span style="font-size:1.4rem;">{cat["emoji"]}</span>
-                <div>
-                    <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:{c};">{cat["nom"]}</div>
-                    <div style="font-size:1.1rem; font-weight:700; color:#f1f5f9;">{cat["titre_page"]}</div>
-                </div>
-            </div>
-            <div style="padding-left: 4px;">{contenu_html}</div>
-            <div style="text-align:right; margin-top:10px;">
-                <a href="https://armel-plantier.com/Veille/{cat['id']}"
-                   style="font-size:0.82rem; color:{c}; text-decoration:none; font-weight:600;">
-                    Voir toute la veille {cat["nom"]} →
-                </a>
-            </div>
-        </div>
-        """
-
-    corps_newsletter = "".join(
-        section_newsletter(r["cat"], r["html"]) for r in resultats.values()
-    )
-
-    mail_html = f"""
-    <html>
-    <body style="font-family: Arial, sans-serif; background-color: #0b0d14; padding: 20px; color: #f1f5f9;">
-        <div style="max-width: 680px; margin: 0 auto; background: #151925; padding: 36px; border-radius: 12px; border-top: 5px solid #6366f1;">
-            <h1 style="font-size:1.5rem; color:#f1f5f9; margin-bottom:4px;">🔍 Veille Cyber & Tech</h1>
-            <p style="color:#94a3b8; font-size:0.9rem; margin-top:0; margin-bottom:32px;">
-                Semaine du <strong style="color:#6366f1;">{str_lundi}</strong> au <strong style="color:#6366f1;">{str_aujourdhui}</strong>
-                &nbsp;·&nbsp; Généré automatiquement par IA
-            </p>
-            {corps_newsletter}
-            <hr style="border:none; border-top:1px solid #2d3748; margin:32px 0;">
-            <p style="text-align:center; font-size:12px; color:#64748b;">
-                Généré par le Portfolio de
-                <a href="https://armel-plantier.com" style="color:#6366f1; text-decoration:none;">Armel Plantier</a>.<br>
-                <a href="{{{{ unsubscribe }}}}" style="color:#64748b; text-decoration:underline;">Se désabonner</a>
-            </p>
-        </div>
-    </body>
-    </html>
-    """
-
-    LIST_ID = 2
-    SENDER_EMAIL = "newsletter@armel-plantier.com"
-    headers = {
-        "accept": "application/json",
-        "api-key": BREVO_API_KEY,
-        "content-type": "application/json",
-    }
-
-    payload = {
-        "name": f"Veille Cyber & Tech — {str_aujourdhui}",
-        "subject": f"🔍 Veille Cyber & Tech : semaine du {str_lundi}",
-        "sender": {"name": "Armel Plantier", "email": SENDER_EMAIL},
-        "htmlContent": mail_html,
-        "recipients": {"listIds": [LIST_ID]},
-    }
-
-    r_create = requests.post("https://api.brevo.com/v3/emailCampaigns", json=payload, headers=headers)
-
-    if r_create.status_code == 201:
-        campaign_id = r_create.json().get("id")
-        print(f"  → Campagne #{campaign_id} créée. Envoi en cours...")
-        r_send = requests.post(
-            f"https://api.brevo.com/v3/emailCampaigns/{campaign_id}/sendNow",
-            headers=headers,
-        )
-        if r_send.status_code == 204:
-            print("  ✅ Newsletter combinée envoyée avec succès !")
-        else:
-            print(f"  ❌ Erreur envoi : {r_send.text}")
-    else:
-        print(f"  ❌ Erreur création campagne : {r_create.text}")
-else:
-    print("\n⚠️  Pas de clé BREVO trouvée — newsletter ignorée.")
-
-
-# ==============================================================================
-# 6. RÉSUMÉ FINAL
+# 5. RÉSUMÉ FINAL
 # ==============================================================================
 
 print(f"\n{'='*60}")
