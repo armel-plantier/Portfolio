@@ -28,8 +28,6 @@ const renderIcon = (iconString) => {
         window.history.replaceState({}, '', '/?proc=' + encodeURIComponent(segments[1]));
     } else if (segments[0] === 'projet-technova' && segments[1]) {
         window.history.replaceState({}, '', '/?proj=' + encodeURIComponent(segments[1]));
-    } else if (segments[0] === 'documents-ef3' && segments[1]) {
-        window.history.replaceState({}, '', '/?e6=' + encodeURIComponent(segments[1]));
     }
 })();
 
@@ -88,14 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 2. REMPLISSAGE PROFIL ---
     document.title = `${config.profile.name} | Portfolio`;
-    const avatarEl = document.getElementById("profile-avatar");
-    if(avatarEl) avatarEl.src = config.profile.avatar;
     const faviconEl = document.getElementById("favicon-link");
     if(faviconEl && config.profile.favicon) faviconEl.href = config.profile.favicon;
-    const nameEl = document.getElementById("profile-name");
-    if(nameEl) nameEl.innerText = config.profile.name;
-    const statusEl = document.getElementById("profile-status");
-    if(statusEl) statusEl.innerText = config.profile.status;
+    const heroNameEl = document.getElementById("hero-name");
+    if(heroNameEl) heroNameEl.innerText = config.profile.name;
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
     const footerEl = document.getElementById("footer-copy");
@@ -831,98 +825,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
     }
 
-    // --- DOCUMENTS EF3 ---
-    const ef3Grid = document.getElementById('ef3-grid');
-    const EF3_LIMIT = 6;
-    const EF3_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/`;
-
-    if (ef3Grid && config.documentsEF3 && config.documentsEF3.length > 0) {
-        // Badge compteur
-        const ef3Title = document.querySelector('#documents-ef3 h3');
-        if (ef3Title) {
-            const badge = document.createElement('span');
-            badge.className = 'section-count-badge';
-            badge.textContent = config.documentsEF3.length;
-            ef3Title.appendChild(badge);
-        }
-
-        ef3Grid.innerHTML = '';
-
-        config.documentsEF3.forEach((doc, index) => {
-            const fullUrl = (doc.type === 'link' || doc.path.startsWith('http'))
-                ? doc.path
-                : EF3_BASE_URL + doc.path.split('/').map(p => encodeURIComponent(p)).join('/');
-
-            const card = document.createElement('div');
-            card.className = 'e6-card';
-            card.style.cursor = 'pointer';
-            card.dataset.index = index;
-            if (index >= EF3_LIMIT) card.classList.add('hidden-item');
-
-            const badgeLabel = doc.type === 'link' ? 'LIEN' : 'PDF';
-            const cardAction = doc.type === 'link'
-                ? `<div class="e6-card-dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>`
-                : `<div class="e6-card-dl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>`;
-
-            card.innerHTML = `
-                <div class="e6-card-icon">${doc.icon}</div>
-                <div class="e6-card-body">
-                    <h4>${escapeHTML(doc.title)}</h4>
-                    <p>${escapeHTML(doc.description)}</p>
-                </div>
-                <span class="e6-card-badge">${badgeLabel}</span>
-                ${cardAction}
-            `;
-
-            card.addEventListener('click', () => {
-                if (doc.type === 'link') {
-                    window.open(fullUrl, '_blank', 'noopener,noreferrer');
-                } else {
-                    openPDFModal(fullUrl, doc.title);
-                }
-            });
-
-            ef3Grid.appendChild(card);
-        });
-
-        if (config.documentsEF3.length > EF3_LIMIT) createToggleBtn(ef3Grid, EF3_LIMIT, 'Voir la suite');
-
-        // --- RECHERCHE EF3 ---
-        const e6Search = document.getElementById('ef3-search');
-        const e6CountEl = document.getElementById('ef3-search-count');
-        if (e6Search) {
-            const allCards = Array.from(ef3Grid.querySelectorAll('.e6-card'));
-            const updateCount = (visible) => {
-                if (e6CountEl) {
-                    e6CountEl.textContent = visible < allCards.length ? `${visible} / ${allCards.length}` : '';
-                }
-            };
-            const loadMoreContainer = ef3Grid.parentNode.querySelector('.load-more-container');
-            e6Search.addEventListener('input', () => {
-                const q = e6Search.value.trim().toLowerCase();
-                const isFiltering = q.length > 0;
-                let visible = 0;
-                allCards.forEach((card, i) => {
-                    const text = card.textContent.toLowerCase();
-                    const match = !isFiltering || text.includes(q);
-                    if (isFiltering) {
-                        card.classList.remove('hidden-item');
-                        card.style.display = match ? '' : 'none';
-                    } else {
-                        card.style.display = '';
-                        if (i >= EF3_LIMIT) card.classList.add('hidden-item');
-                        else card.classList.remove('hidden-item');
-                    }
-                    if (match && (!card.classList.contains('hidden-item') || isFiltering)) visible++;
-                });
-                if (loadMoreContainer) loadMoreContainer.style.display = isFiltering ? 'none' : '';
-                updateCount(visible);
-            });
-        }
-
-    } else if (ef3Grid) {
-        ef3Grid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucun document disponible pour le moment.</p>';
-    }
 
     // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");
@@ -1025,60 +927,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     }
 
-
-    // --- OUVERTURE AUTO VIA URL (?e6=) ---
-    const ef3Param = urlParams.get('e6');
-    if (ef3Param) {
-        const makeSlugEF3 = (str) => str
-            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replace(/[\u2019\u2018'`\(\)\u2014\u2013]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/[^a-z0-9\-]/g, '')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '');
-
-        const paramSlugEF3 = makeSlugEF3(decodeURIComponent(ef3Param));
-        const EF3_BASE_URL_AUTO = 'https://raw.githubusercontent.com/' + config.profile.githubUser + '/' + config.profile.githubRepo + '/main/Documents/';
-
-        const tryOpenEF3 = () => {
-            const docs = config.documentsEF3 || [];
-            for (const doc of docs) {
-                const docSlug = makeSlugEF3(doc.title);
-                console.log('[EF3] compare:', docSlug, '===', paramSlugEF3, '->', docSlug === paramSlugEF3);
-                if (docSlug === paramSlugEF3) {
-                    const fullUrl = doc.path.startsWith('http')
-                        ? doc.path
-                        : EF3_BASE_URL_AUTO + doc.path.split('/').map(function(p) { return encodeURIComponent(p); }).join('/');
-                    const section = document.getElementById('documents-ef3');
-                    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    openPDFModal(fullUrl, doc.title);
-                    window.history.replaceState({}, '', '/');
-                    return true;
-                }
-            }
-            return false;
-        };
-
-        // Attendre que openPDFModal soit prête (définie plus bas dans le fichier mais hoistée)
-        console.log('[EF3] param détecté:', ef3Param, '| slug:', paramSlugEF3);
-        setTimeout(function() {
-            console.log('[EF3] setTimeout fired, docs:', (config.documentsEF3||[]).length);
-            if (!tryOpenEF3()) {
-                console.warn('[EF3] tryOpenEF3 failed on first try, starting interval');
-                var wait = setInterval(function() {
-                    if (tryOpenEF3()) {
-                        console.log('[EF3] tryOpenEF3 success via interval');
-                        clearInterval(wait);
-                    }
-                }, 400);
-                setTimeout(function() {
-                    console.warn('[EF3] gave up after 6s');
-                    clearInterval(wait);
-                }, 6000);
-            }
-        }, 1200);
-    }
 
     initCursorHint();
 
@@ -1467,7 +1315,7 @@ function toggleGlobalPDF(url) {
                 });
             });
             // Sections (nav interne)
-            ['projets','parcours','competences','certifications','procedures','veille','documents-ef3'].forEach(sec => {
+            ['projets','parcours','competences','certifications','procedures','veille'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
                 const h = el.querySelector('h3');
@@ -1728,13 +1576,12 @@ function toggleGlobalPDF(url) {
                     .replace(/[^a-z0-9\-]/g, '')
                     .replace(/-+/g, '-')
                     .replace(/^-|-$/g, '');
-                // Détecter si c'est une procédure, un doc E6, ou un projet
+                // Détecter si c'est une procédure ou un projet
                 const isProc = (config.procedures || []).some(p => p.title && p.title.toLowerCase() === title.toLowerCase());
-                const isE6doc = (config.documentsEF3 || []).some(d => d.title && d.title.toLowerCase() === title.toLowerCase());
-                const path = isProc ? '/procedures/' : isE6doc ? '/documents-ef3/' : '/projet-technova/';
-                // E6 et procédures → query param direct (pas de pretty URL = pas de 404)
-                const url = (isE6doc || isProc)
-                    ? window.location.origin + '/?' + (isE6doc ? 'e6' : 'proc') + '=' + encodeURIComponent(slug)
+                const path = isProc ? '/procedures/' : '/projet-technova/';
+                // Procédures → query param direct (pas de pretty URL = pas de 404)
+                const url = isProc
+                    ? window.location.origin + '/?proc=' + encodeURIComponent(slug)
                     : window.location.origin + path + slug;
 
                 navigator.clipboard.writeText(url).then(() => {
