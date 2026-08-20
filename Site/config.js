@@ -8,6 +8,7 @@ const config = {
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
         { title: "Procédures", link: "#procedures" },
+        { title: "Projets Perso", link: "#projets-perso" },
         { title: "Veille", link: "#veille" }
     ],
 
@@ -400,6 +401,29 @@ experiences: [
     tags: ["Administration Système", "Windows"]
 },
     ],
+
+// --- 7b2. PROJETS PERSO ---
+    // Pour ajouter un projet perso : remplis un bloc ci-dessous.
+    // "github" et "demo" sont optionnels : laisse une chaîne vide "" si non applicable.
+    // "icon" est optionnel (SVG ou chemin d'image) : sans lui, une icône générique est utilisée.
+    personalProjects: [
+        {
+            // TODO: remplace cette description et ces tags par les vrais détails de CapitalBoard
+            title: "CapitalBoard",
+            description: "Description à compléter — présente ici ton projet CapitalBoard en une phrase.",
+            tags: ["À compléter"],
+            github: "",
+            demo: "https://capitalboard.fr"
+        }
+        // {
+        //     title: "Nom du projet",
+        //     description: "Description courte du projet et de son objectif.",
+        //     tags: ["Python", "Docker"],
+        //     github: "https://github.com/armel-plantier/nom-du-repo",
+        //     demo: ""
+        // }
+    ],
+
 // --- 7. CERTIFICATIONS ---
     certifications: [
         { 

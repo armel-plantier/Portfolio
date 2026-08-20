@@ -635,6 +635,58 @@ document.addEventListener("DOMContentLoaded", () => {
         procedureGrid.innerHTML = '<p style="color: var(--muted); font-style: italic;">Aucune procédure disponible pour le moment.</p>';
     }
 
+    // --- PROJETS PERSO (cartes type GitHub : titre, description, stack, liens) ---
+    const persoGrid = document.getElementById('perso-project-grid');
+    const persoEmptyMsg = document.getElementById('perso-project-empty');
+    const githubIconSvg = `<svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`;
+    const defaultPersoIconSvg = `<svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+
+    if (persoGrid && config.personalProjects && config.personalProjects.length > 0) {
+        if (persoEmptyMsg) persoEmptyMsg.style.display = 'none';
+
+        const persoTitle = document.querySelector('#projets-perso h3');
+        if (persoTitle) {
+            const badge = document.createElement('span');
+            badge.className = 'section-count-badge';
+            badge.textContent = config.personalProjects.length;
+            persoTitle.appendChild(badge);
+        }
+
+        config.personalProjects.forEach((proj) => {
+            let cardTagsHTML = '';
+            if (proj.tags && proj.tags.length > 0) {
+                cardTagsHTML = '<div class="tags-container">';
+                proj.tags.forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
+                cardTagsHTML += '</div>';
+            }
+
+            let linksHTML = '';
+            if (proj.github) {
+                linksHTML += `<a href="${escapeHTML(proj.github)}" target="_blank" rel="noopener noreferrer" class="perso-link-btn">${githubIconSvg} GitHub</a>`;
+            }
+            if (proj.demo) {
+                linksHTML += `<a href="${escapeHTML(proj.demo)}" target="_blank" rel="noopener noreferrer" class="perso-link-btn perso-link-demo"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Démo</a>`;
+            }
+
+            const div = document.createElement('div');
+            div.className = 'project-card perso-card';
+            div.innerHTML = `
+                <div class="card-header" style="cursor: default;">
+                    <div class="icon">${proj.icon ? renderIcon(proj.icon) : defaultPersoIconSvg}</div>
+                    <div class="meta">
+                        <h4>${escapeHTML(proj.title)}</h4>
+                        <p>${escapeHTML(proj.description || '')}</p>
+                        ${cardTagsHTML}
+                    </div>
+                </div>
+                ${linksHTML ? `<div class="perso-card-links">${linksHTML}</div>` : ''}
+            `;
+            persoGrid.appendChild(div);
+        });
+    } else if (persoGrid) {
+        if (persoEmptyMsg) persoEmptyMsg.style.display = 'block';
+    }
+
     // --- 8. PARCOURS (AVEC POINTS VIOLETS AUTOMATIQUES) ---
     const EXP_LIMIT = 5;
     function renderTimeline(listEl, data, limit) {
@@ -1323,8 +1375,20 @@ function toggleGlobalPDF(url) {
                     }
                 });
             });
+            (config.personalProjects || []).forEach(p => {
+                items.push({
+                    type: 'Projet Perso',
+                    icon: '💻',
+                    title: p.title,
+                    desc: p.description || '',
+                    tags: p.tags || [],
+                    action: () => {
+                        window.open(p.github || p.demo || '#', '_blank', 'noopener,noreferrer');
+                    }
+                });
+            });
             // Sections (nav interne)
-            ['projets','parcours','competences','certifications','procedures','veille'].forEach(sec => {
+            ['projets','parcours','competences','certifications','procedures','projets-perso','veille'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
                 const h = el.querySelector('h3');

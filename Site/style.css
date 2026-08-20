@@ -452,6 +452,40 @@ body.light-mode .card-header .icon { background: rgba(99, 102, 241, 0.05); }
     .tags-container { padding-right: 40px; }
 }
 
+/* PROJETS PERSO (cartes GitHub) */
+.perso-card .card-header { flex-grow: 0; }
+.perso-card-links {
+    display: flex;
+    gap: 12px;
+    padding: 0 30px 25px;
+    flex-wrap: wrap;
+}
+.perso-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(99, 102, 241, 0.06);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.perso-link-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-2px); }
+.perso-link-btn.perso-link-demo { background: rgba(16, 185, 129, 0.08); }
+.perso-link-btn.perso-link-demo:hover { background: #10b981; border-color: #10b981; }
+.perso-project-empty {
+    text-align: center; color: var(--muted); font-style: italic; padding: 30px;
+    background: rgba(255,255,255,0.02); border-radius: 12px;
+    border: 1px dashed var(--border);
+}
+@media (max-width: 900px) {
+    .perso-project-grid { grid-template-columns: 1fr; }
+}
+
 .hidden-item { display: none !important; }
 .pdf-container { display: none; border-top: 1px solid var(--border); background: var(--card); overflow: hidden; border-radius: 0 0 16px 16px; }
 .pdf-container iframe { display: block; width: 100%; border: none; background-color: var(--card); }
