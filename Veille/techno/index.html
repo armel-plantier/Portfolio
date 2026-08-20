@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 17/08/2026 au 20/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 17/08/2026 au 21/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 20/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 21/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,177 +75,117 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Mardi 19 août 2026</h2>
-<h3>Microsoft Defender : correction d'un bug bloquant l'analyse à 80%</h3>
+            <h2>Lundi 18 Août 2026</h2>
+<h3>ResetNightmare : cette faille Kerberos permet de prendre le contrôle du domaine Active Directory</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé un bug critique dans Defender qui empêchait l'analyse complète des systèmes Windows 10/11. Le problème, apparu le 18 août, était lié à une mise à jour des signatures et a été résolu rapidement. Un rappel important pour les administrateurs devant s'assurer de la protection intégrale des postes.</p>
-<a href="https://www.it-connect.fr/defender-plantage-analyse-rapide-mise-a-jour-signatures/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-27912) dans Kerberos, surnommée ResetNightmare, permet à un attaquant de réinitialiser le mot de passe de n'importe quel compte Active Directory sans privilèges élevés. Cette vulnérabilité contourne les mécanismes de sécurité classiques et expose les infrastructures critiques à des prises de contrôle totales. Les administrateurs doivent appliquer les correctifs Microsoft dès que possible.</p>
+<a href="https://www.it-connect.fr/resetnightmare-cve-2026-27912-kerberos-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Thunderbird 154 : intégration de Microsoft Graph pour Microsoft 365</h3>
+<h3>ShieldBreak : cette faille zero-day menace Windows, Microsoft prépare un patch</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Thunderbird 154 active la prise en charge de Microsoft Graph pour les comptes Microsoft 365, six semaines avant la fin du support d'EWS. Une évolution majeure pour les utilisateurs hybrides ou en migration vers Graph API, simplifiant l'accès aux données Exchange.</p>
+<p><strong>Résumé</strong> : Nightmare Eclipse a révélé ShieldBreak (CVE-2026-69414), une faille zero-day dans Microsoft Defender qui contourne le patch RoguePlanet. Cette vulnérabilité permet une exécution de code à distance (RCE) et nécessite une intervention urgente. Microsoft travaille sur un correctif, mais les systèmes non patchés sont exposés à des attaques ciblées.</p>
+<a href="https://www.it-connect.fr/shieldbreak-zero-day-defender-cve-2026-69414/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>CISA Flags Actively Exploited Ray Flaw That Can Trigger Browser-Based RCE</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La CISA a ajouté une faille critique dans Ray (CVE-2026-XXXX) à son catalogue KEV, confirmant une exploitation active. Ray est un framework de calcul distribué utilisé dans les environnements cloud et IA. La vulnérabilité permet une exécution de code à distance via le navigateur, exposant les clusters de données sensibles.</p>
+<a href="https://thehackernews.com/2026/08/cisa-flags-actively-exploited-ray-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>GitLab GraphQL Flaw Could Let Unauthenticated Attackers Delete Public Projects</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : GitLab a corrigé une faille critique (CVE-2026-XXXX) dans son API GraphQL qui permet à un attaquant non authentifié de modifier ou supprimer des projets publics et des données utilisateurs. Cette vulnérabilité affecte les instances Community et Enterprise Edition, nécessitant une mise à jour immédiate pour éviter des pertes de données.</p>
+<a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Snowflake GitHub Actions Flaw Lets Crafted Issues Trigger Command Injection</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Wiz a découvert une vulnérabilité d'injection de commandes dans les workflows GitHub Actions de Snowflake (via le dépôt snowflakedb/snowflake-connector-net). Un attaquant peut exploiter cette faille en créant une issue malveillante pour exécuter du code arbitraire dans les pipelines CI/CD, compromettant ainsi les environnements cloud.</p>
+<a href="https://thehackernews.com/2026/08/snowflake-github-actions-flaw-lets_0330881554.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<hr />
+<h2>Mardi 19 Août 2026</h2>
+<h3>Thunderbird 154 active Microsoft Graph pour les comptes Microsoft 365</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Thunderbird 154 introduit la prise en charge native de Microsoft Graph pour les comptes Microsoft 365, remplaçant le protocole EWS obsolète. Cette mise à jour améliore la compatibilité et la sécurité des clients mail, mais nécessite une configuration manuelle pour les utilisateurs existants. Les administrateurs doivent tester la migration avant le blocage d'EWS prévu dans 6 semaines.</p>
 <a href="https://www.it-connect.fr/thunderbird-154-microsoft-graph-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Cloudflare Workers : fuite Spectre exploitable à 12 bits/seconde</h3>
+<h3>Windows 11 : WMIC a bel et bien totalement disparu des versions 24H2 et 25H2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs ont démontré une attaque Spectre contre Cloudflare Workers, permettant de voler des JWT à un rythme de 12 bits/seconde. Une menace pour les environnements serverless, nécessitant une mise à jour des configurations de sécurité côté Cloudflare.</p>
+<p><strong>Résumé</strong> : Microsoft a définitivement retiré WMIC (Windows Management Instrumentation Command-line) des versions 24H2 et 25H2 de Windows 11, ainsi que des builds Insider. Les administrateurs doivent migrer vers des alternatives comme PowerShell ou les outils modernes de gestion système (WinRM, PSRemoting) pour éviter des ruptures de compatibilité dans les scripts legacy.</p>
+<a href="https://www.it-connect.fr/windows-11-wmic-supprime-24h2-25h2/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<h3>Cloudflare Workers Spectre Attack Leaks JWT From Co-Located Worker</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des chercheurs ont démontré une attaque Spectre à distance contre Cloudflare Workers, permettant d'exfiltrer des JWT (JSON Web Tokens) entre Workers co-localisés à un débit de 12 bits/seconde. Cette vulnérabilité exploite les fuites de cache CPU et nécessite une isolation renforcée des Workers sensibles.</p>
 <a href="https://thehackernews.com/2026/08/cloudflare-workers-spectre-attack-leaks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>OpenAI suspend l'entraînement RL Frontier pour renforcer la sécurité</h3>
+<h3>OpenAI Pauses Frontier RL Training as It Tightens Defenses Against Unsafe AI Behavior</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : OpenAI a interrompu l'entraînement RL de ses modèles IA pendant deux semaines pour renforcer les défenses contre les comportements dangereux. Une mesure proactive face aux risques liés à l'évolution des capacités des modèles, pertinente pour les équipes DevOps gérant des pipelines ML.</p>
+<p><strong>Résumé</strong> : OpenAI a suspendu temporairement l'entraînement de ses modèles RL Frontier pour renforcer les garde-fous contre les comportements IA non sûrs, suite à l'incident Hugging Face. Cette pause illustre les défis de sécurité liés aux agents autonomes et la nécessité de frameworks de monitoring robustes dans les environnements de production.</p>
 <a href="https://thehackernews.com/2026/08/openai-pauses-frontier-rl-training-as.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Linux 7.3 : optimisations majeures du gestionnaire de mémoire</h3>
+<h3>Critical macOS, SharePoint, vCenter, and Microsoft IKE Flaws Under Active Exploitation</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.3 intègre des optimisations significatives du sous-système MM (1 250 commits), avec des gains de performance notables. Les administrateurs système bénéficieront de latences réduites et d'une meilleure gestion des ressources, surtout sur les serveurs à haute charge.</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-MM" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Go 1.27 : méthodes génériques et améliorations SIMD</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Go 1.27 introduit les méthodes génériques et des optimisations SIMD, améliorant les performances des applications critiques. Une mise à jour à déployer rapidement pour les services backend et les outils DevOps écrits en Go.</p>
-<a href="https://www.phoronix.com/news/Go-1.27" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>Btrfs : gains de performance de 3x à 5x dans Linux 7.3</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les améliorations de Btrfs dans Linux 7.3 offrent des gains de performance spectaculaires (jusqu'à 5x) pour les opérations de fichiers. Idéal pour les environnements de stockage à haute disponibilité ou les NAS critiques.</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-Btrfs" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>SilkParasite : campagne d'espionnage ciblant l'Asie centrale</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'espionnage utilisant cinq nouveaux RATs (dont DriveSilkRAT et NomadRAT) a été détectée contre des gouvernements d'Asie centrale. Les administrateurs doivent surveiller les indicateurs de compromission (IOC) et renforcer les politiques de segmentation réseau.</p>
-<a href="https://thehackernews.com/2026/08/silkparasite-espionage-campaign-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Modular Mojo : langage open-source après acquisition par Qualcomm</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le langage Mojo, développé par Modular (fondé par Chris Lattner), est désormais open-source après son rachat par Qualcomm. Une opportunité pour les équipes DevOps cherchant des alternatives performantes à Python/C++ pour le calcul intensif.</p>
-<a href="https://www.phoronix.com/news/Modular-Mojo-Open-Source" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
-</div>
-
-<h3>CISA : 4 vulnérabilités critiques sous exploitation active</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté 4 vulnérabilités critiques à son catalogue KEV, dont CVE-2026-65400 (macOS), CVE-2026-27912 (Kerberos), et des failles dans SharePoint/vCenter. Une priorité absolue pour les correctifs d'urgence sur les infrastructures critiques.</p>
+<p><strong>Résumé</strong> : La CISA a ajouté 4 vulnérabilités critiques à son catalogue KEV, dont CVE-2026-65400 (macOS), CVE-2026-XXXX (SharePoint), CVE-2026-XXXX (vCenter) et CVE-2026-XXXX (Microsoft IKE). Ces failles sont activement exploitées et nécessitent une application immédiate des correctifs pour éviter des compromissions massives.</p>
 <a href="https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Lundi 18 août 2026</h2>
-<h3>ResetNightmare (CVE-2026-27912) : faille Kerberos dans Active Directory</h3>
+<h2>Mercredi 20 Août 2026</h2>
+<h3>Firefox 154 est disponible : WebSockets sous contrôle, GeForce NOW et 58 failles corrigées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cette faille permet de réinitialiser le mot de passe de n'importe quel compte AD, compromettant l'intégralité du domaine. Une urgence pour les administrateurs Windows, avec un correctif attendu dans le Patch Tuesday d'août.</p>
-<a href="https://www.it-connect.fr/resetnightmare-cve-2026-27912-kerberos-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Firefox 154 introduit des protections étendues pour les WebSockets (contrôle du réseau local), corrige 58 vulnérabilités et ajoute le support natif de GeForce NOW. Cette version améliore la sécurité des communications web et la compatibilité avec les services cloud gaming, tout en renforçant la protection contre les attaques réseau.</p>
+<a href="https://www.it-connect.fr/firefox-154-websockets-reseau-local-securite-geforce-now/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Patch Tuesday août 2026 : 421 failles corrigées dont 3 zero-day</h3>
+<h3>Rust Supply Chain Attack Puts Build-Time Malware in Crates with 245 Million Downloads</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a corrigé 421 vulnérabilités, dont une zero-day (CVE-2026-XXXX) exploitée par Lazarus pour déployer le rootkit FudModule. Une mise à jour critique pour tous les systèmes Windows, Exchange et Defender.</p>
-<a href="https://www.it-connect.fr/patch-tuesday-aout-2026-421-failles-corrigees-3-zero-day/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Le projet Rust a supprimé 3 crates malveillants de crates.io après qu'un compte compromis ait publié des versions contenant un script de build malicieux. Ce payload téléchargeait et exécutait un code à distance pendant la compilation, affectant potentiellement des millions de projets. Les administrateurs doivent vérifier les dépendances Rust et utiliser des outils comme `cargo-audit`.</p>
+<a href="https://thehackernews.com/2026/08/rust-supply-chain-attack-puts-build.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>ShieldBreak : zero-day contournant les protections Defender</h3>
+<h3>Suspected Russian Hackers Abuse Google OAuth and WhatsApp Linking to Hijack Accounts</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Nightmare Eclipse a révélé ShieldBreak, une faille zero-day exploitant une lacune dans le patch RoguePlanet de Defender. Microsoft travaille sur un correctif, mais une surveillance renforcée des logs Defender est recommandée en attendant.</p>
-<a href="https://www.it-connect.fr/shieldbreak-zero-day-defender-cve-2026-69414/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Trois groupes de cyberespionnage russes exploitent des flux d'authentification légitimes (Google OAuth, WhatsApp) pour cibler des individus dans les secteurs académique, aérospatial et gouvernemental. Cette attaque contourne les mécanismes de sécurité traditionnels en abusant des services cloud populaires. Les administrateurs doivent surveiller les activités anormales dans les logs OAuth.</p>
+<a href="https://thehackernews.com/2026/08/suspected-russian-hackers-abuse-google.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Linux 7.3 : améliorations du scheduler pour les CPU hybrides</h3>
+<h3>ThreatsDay: Gogs 10.0 RCE, n8n Workflow-to-RCE, $10M Reward, GLM-5.3 AI Exploit and More</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.3 intègre des optimisations du scheduler pour les CPU hybrides (ex: Intel Thread Director), réduisant la latence et améliorant les performances des jeux. Pertinent pour les postes de travail et serveurs modernes.</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-Scheduler" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Cette édition de ThreatsDay recense des vulnérabilités critiques dans Gogs 10.0 (RCE), n8n (exécution de code via workflows), ainsi qu'un exploit pour GLM-5.3 (IA). Un reward de 10M$ est offert pour des informations sur les attaques ciblant les infrastructures critiques. Les administrateurs doivent prioriser les correctifs pour ces outils DevOps/IA.</p>
+<a href="https://thehackernews.com/2026/08/threatsday-gogs-100-rce-n8n-workflow-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>TWINLOOT : framework Python exploitant SharePoint et Teams</h3>
+<h3>Critical NetScaler Flaw Can Bypass Authentication on Certain Gateway and AAA Servers</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ce malware utilise les services Microsoft (SharePoint, Teams) comme infrastructure C2 pour voler des identifiants et se déplacer latéralement. Une menace à surveiller via les logs Azure AD et les outils EDR.</p>
-<a href="https://thehackernews.com/2026/08/twinloot-abuses-sharepoint-and-teams-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Citrix a corrigé une faille critique (CVE-2026-XXXX) dans NetScaler ADC et Gateway permettant un contournement d'authentification. Cette vulnérabilité affecte les déploiements managés par le client et expose les accès aux réseaux internes. Les administrateurs doivent appliquer les mises à jour immédiatement pour éviter des intrusions.</p>
+<a href="https://thehackernews.com/2026/08/critical-netscaler-flaw-can-bypass.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>GitLab : faille GraphQL permettant la suppression de projets publics</h3>
+<h3>Attackers Exploit Zimbra SNMP Flaw for Unauthenticated Remote Code Execution</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-XXXX) permet à un attaquant non authentifié de supprimer des projets publics ou des données utilisateur. Une mise à jour immédiate de GitLab est nécessaire pour les instances auto-hébergées.</p>
-<a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : CERT Polska a alerté sur une exploitation active de CVE-2026-73570 (Zimbra Collaboration), une faille d'injection de commandes via SNMP permettant une exécution de code à distance sans authentification. Cette vulnérabilité affecte les serveurs Zimbra et nécessite une mise à jour urgente pour éviter des compromissions.</p>
+<a href="https://thehackernews.com/2026/08/attackers-exploit-zimbra-snmp-flaw-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>MLflow : exploitation d'une faille SSRF pour voler des secrets cloud</h3>
+<h3>CoSnitch : Copilot a lui-même livré la faille qui permet de voler vos données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans MLflow (plateforme ML open-source) permettent une attaque SSRF pour exfiltrer des identifiants cloud. Les équipes DevOps doivent auditer leurs déploiements MLflow et appliquer les correctifs.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-mlflow-ssrf-flaw-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La faille CoSnitch (CVE-2026-24301) dans Microsoft Copilot Personal permet d'exfiltrer des données (emails, localisation) via un simple clic sur un lien malveillant. Ironiquement, l'IA elle-même a révélé cette vulnérabilité aux chercheurs. Les administrateurs doivent désactiver les fonctionnalités sensibles de Copilot et surveiller les accès anormaux.</p>
+<a href="https://www.it-connect.fr/cosnitch-cve-2026-24301-copilot-personal-faille-un-clic/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Evooo1Bot : botnet Linux exploitant des failles connues</h3>
+<h3>Microsoft 365 : environ 171 000 associations auraient perdu leurs données OneDrive</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Ce botnet transforme les appareils Linux en proxies SOCKS5 via des failles connues (ex: CVE-2021-XXXX). Une menace pour les infrastructures exposées, nécessitant une mise à jour des services réseau et une surveillance des connexions sortantes.</p>
-<a href="https://thehackernews.com/2026/08/evooo1bot-linux-botnet-exploits-known.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>SafePal : fuite de données de 40 000 clients via une faille d'authentification</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans un plugin de suivi des commandes a exposé les données personnelles de 39 798 clients. Un rappel pour les équipes DevOps de valider la sécurité des plugins tiers et des intégrations e-commerce.</p>
-<a href="https://thehackernews.com/2026/08/safepal-hardware-wallet-maker-says-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Dimanche 17 août 2026</h2>
-<h3>Panne mondiale de GitHub : 20% d'erreurs sur le web et l'API</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : GitHub a subi une panne mondiale le 17 août, affectant les pull requests, Actions et Copilot. Une interruption critique pour les équipes DevOps, soulignant l'importance de la redondance et des plans de continuité (SLA).</p>
-<a href="https://www.it-connect.fr/panne-mondiale-github-lundi-17-aout-2026/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Exchange Server SE : retard de la CU1 dû à la saturation des équipes</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft explique le retard de la première mise à jour cumulative (CU1) d'Exchange Server SE par une surcharge des équipes, causée par les failles remontées par leurs outils d'IA. Une situation à surveiller pour les administrateurs Exchange.</p>
-<a href="https://www.it-connect.fr/exchange-server-se-microsoft-explique-pourquoi-la-cu1-narrive-toujours-pas/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Proton VPN migre vers Rust pour son cœur WireGuard</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Proton a réécrit son implémentation WireGuard en Rust (protun) pour améliorer la sécurité et la performance. Une évolution à suivre pour les administrateurs VPN cherchant des alternatives aux stacks traditionnelles.</p>
-<a href="https://www.it-connect.fr/proton-vpn-nouveau-coeur-wireguard-rust-protun/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Microsoft Entra Cloud Sync : synchronisation des appareils en préversion</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La nouvelle fonctionnalité "Device Sync" permet de synchroniser les objets ordinateur AD vers Entra ID. Une étape clé pour les migrations hybrides vers le cloud Microsoft, à tester dès maintenant.</p>
-<a href="https://www.it-connect.fr/microsoft-entra-cloud-sync-la-synchronisation-des-appareils/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Synology neo+ : NAS moins chers sans mémoire ECC</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Synology lance quatre NAS (DS1825neo+ etc.) avec 4 Go de DDR4 non-ECC, réduisant les coûts mais sacrifiant la fiabilité mémoire. À réserver aux usages non critiques ou avec des sauvegardes renforcées.</p>
-<a href="https://www.it-connect.fr/synology-diskstation-neo-plus-nas-memoire-non-ecc/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>GitLab GraphQL : faille critique permettant la suppression de projets</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique (CVE-2026-XXXX) dans GitLab permet à un attaquant non authentifié de supprimer des projets publics ou des données utilisateur. Une mise à jour immédiate est requise pour les instances auto-hébergées.</p>
-<a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Forminator WordPress : RCE non authentifié via upload PHP malveillant</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le plugin WordPress Forminator (600k+ installations) est vulnérable à une RCE (CVE-2026-15748, score 9.8). Une urgence pour les administrateurs WordPress, avec un correctif disponible.</p>
-<a href="https://thehackernews.com/2026/08/forminator-wordpress-flaw-can-enable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Cavern C2 : framework utilisant DNS et Google Apps Script</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le framework C2 Cavern (utilisé par des acteurs iraniens) se cache dans le trafic DNS et Google Apps Script pour éviter la détection. Une menace avancée nécessitant une analyse comportementale des flux réseau.</p>
-<a href="https://thehackernews.com/2026/08/cavern-c2-uses-dns-and-google-apps.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>MCP Servers : risques d'exposition des secrets d'entreprise</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Les serveurs MCP (Model Context Protocol) peuvent exposer des secrets via des fichiers de configuration en clair, des permissions excessives ou des injections de prompts. Une vigilance accrue est nécessaire pour les équipes adoptant les agents IA.</p>
-<a href="https://thehackernews.com/2026/08/how-mcp-servers-can-expose-enterprise.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Après l'arrêt d'une offre gratuite Microsoft 365 pour les associations, des milliers d'espaces OneDrive ont été effacés des tenants. Cette suppression massive soulève des questions sur la gestion des données et les obligations de sauvegarde. Les administrateurs doivent vérifier les politiques de rétention et les sauvegardes externes.</p>
+<a href="https://www.it-connect.fr/microsoft-365-associations-perte-donnees-onedrive-arret-offre-gratuite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
