@@ -412,6 +412,7 @@ experiences: [
             title: "CapitalBoard",
             description: "Description à compléter — présente ici ton projet CapitalBoard en une phrase.",
             tags: ["À compléter"],
+            icon: "assets/capitalboard.png",
             github: "",
             demo: "https://capitalboard.fr"
         }

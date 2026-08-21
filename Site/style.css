@@ -2502,3 +2502,18 @@ body.light-mode .doc-share-menu { box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16)
     .doc-btn .doc-btn-label { display: none; }   /* barre en pictogrammes seuls */
     .doc-share-menu { min-width: 184px; }
 }
+
+
+/* Carte perso dont l'icône est un logo bitmap : il remplit la pastille
+   comme une icône d'application, au lieu de flotter dans un fond teinté. */
+.perso-card .icon:has(img) {
+    background: none !important;
+    border-radius: 14px;
+    overflow: hidden;
+}
+.perso-card .icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 14px;
+}
