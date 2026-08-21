@@ -403,16 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 title: proj.title
             });
 
-            if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
-                const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
-                fetch(apiUrl).then(res => res.json()).then(data => {
-                    if (data && data.length > 0) {
-                        const commitDate = new Date(data[0].commit.author.date);
-                        const formattedDate = commitDate.toLocaleDateString('fr-FR');
-                        const b = document.getElementById(btnId); if(b) b.setAttribute('data-date', formattedDate);
-                    }
-                }).catch(() => {});
-            }
+            const projDate = docDate('Documents/Projet/' + proj.path);
+            if (projDate) div.querySelector(`#${btnId}`)?.setAttribute('data-date', projDate);
 
             const infoB = div.querySelector(`#${btnId}`);
             if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
@@ -698,18 +690,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 title: proc.title
             });
 
-            // Récupération date du dernier commit via GitHub API
-            if (config.profile.githubUser && config.profile.githubRepo) {
-                const commitUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Proc%C3%A9dures/${encodeURIComponent(proc.path)}&page=1&per_page=1`;
-                fetch(commitUrl).then(r => r.json()).then(commits => {
-                    if (commits && commits.length > 0) {
-                        const date = new Date(commits[0].commit.author.date);
-                        const formatted = date.toLocaleDateString('fr-FR');
-                        const btn = document.getElementById(btnId);
-                        if (btn) btn.setAttribute('data-date', formatted);
-                    }
-                }).catch(() => {});
-            }
+            const procDate = docDate('Documents/Procédures/' + proc.path);
+            if (procDate) div.querySelector(`#${btnId}`)?.setAttribute('data-date', procDate);
 
             // Bouton info → modale
             const infoB = div.querySelector(`#${btnId}`);
@@ -1028,7 +1010,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
     }
 
-    // --- 13. GITHUB API FOOTER ---
+    // --- 13. PIED DE PAGE : date du dernier déploiement ---
     const updateEl = document.getElementById("last-update");
     // Sans date à afficher, on retire la mention et son séparateur plutôt que
     // de laisser un texte de remplissage dans le pied de page.
@@ -1037,17 +1019,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (sep && sep.classList.contains('separator')) sep.remove();
         updateEl.remove();
     };
-    if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
-        fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => {
-            if (!r.ok) throw new Error('GitHub API error ' + r.status);
-            return r.json();
-        }).then(d => {
-            const date = new Date(d.pushed_at);
-            if (isNaN(date.getTime())) throw new Error('Invalid pushed_at');
-            updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
-        }).catch(dropLastUpdate);
-    } else if (updateEl) {
-        dropLastUpdate();
+    if (updateEl) {
+        const raw = (window.DOC_DATES || {}).__repo;
+        const d = raw ? new Date(raw) : null;
+        if (d && !isNaN(d.getTime())) {
+            updateEl.innerHTML = `Maj : ${d.toLocaleDateString('fr-FR')} ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
+        } else {
+            dropLastUpdate();
+        }
     }
 
     // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
@@ -1245,6 +1224,22 @@ function buildDocCardHTML(opts) {
         </div>
         <div id="${opts.viewerId}" class="pdf-container"></div>
     `;
+}
+
+/**
+ * Date de dernière modification d'un document, au format fr-FR.
+ * Les dates sont calculées par le workflow de déploiement (git log) et
+ * livrées dans doc-dates.js. Elles étaient auparavant demandées à l'API
+ * GitHub à l'exécution : 41 requêtes par chargement de page, pour un
+ * quota anonyme de 60 par heure et par IP, donc des 403 en cascade.
+ * @param {string} repoPath chemin du fichier dans le dépôt
+ * @returns {string} date formatée, ou "" si inconnue
+ */
+function docDate(repoPath) {
+    const raw = (window.DOC_DATES || {})[repoPath];
+    if (!raw) return "";
+    const d = new Date(raw);
+    return isNaN(d.getTime()) ? "" : d.toLocaleDateString('fr-FR');
 }
 
 /**

@@ -25,6 +25,45 @@ jobs:
     steps:
     - name: 📥 Récupération du code
       uses: actions/checkout@v4
+      with:
+        # Historique complet : les dates des documents sont lues avec git log,
+        # un clone superficiel ne les contiendrait pas.
+        fetch-depth: 0
+
+    - name: 🗓️ Dates de dernière modification des documents
+      run: |
+        python3 - << 'PY'
+        import json, os, subprocess
+
+        def last_commit(path=None):
+            cmd = ["git", "log", "-1", "--format=%cI"]
+            if path:
+                cmd += ["--", path]
+            try:
+                return subprocess.check_output(cmd, text=True).strip()
+            except subprocess.CalledProcessError:
+                return ""
+
+        dates = {}
+        for root, _, files in os.walk("Documents"):
+            for name in files:
+                if not name.lower().endswith(".pdf"):
+                    continue
+                path = os.path.join(root, name).replace("\\", "/")
+                d = last_commit(path)
+                if d:
+                    dates[path] = d
+
+        dates["__repo"] = last_commit()
+
+        with open("Site/doc-dates.js", "w", encoding="utf-8") as fh:
+            fh.write("// Généré au déploiement — ne pas modifier à la main.\n")
+            fh.write("window.DOC_DATES = " + json.dumps(dates, ensure_ascii=False, separators=(",", ":")) + ";\n")
+
+        print(f"{len(dates) - 1} dates de documents injectées")
+        PY
+
+
 
     - name: 📁 Préparation de la structure du site
       run: |
