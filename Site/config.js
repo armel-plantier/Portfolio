@@ -20,7 +20,7 @@ const config = {
 		avatar: "assets/avatar.png",
 		name: "Armel Plantier",
         typewriterText: "Étudiant Licence Sécurité des Réseaux - Cybersécurité",
-        bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité et l'automatisation par IA",
+        bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité, tout en me formant à l'IA en parallèle",
 
         emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
         turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
