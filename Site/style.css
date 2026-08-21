@@ -657,121 +657,156 @@ body.light-mode .timeline-company { background: #f9fafb; }
 .cert-pdf-viewer { display: none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 10px; background: var(--card); width: 100%; height: 500px; }
 .cert-pdf-viewer iframe { display: block; width: 100%; border: none; background-color: var(--card); }
 
-/* --- COMPETENCES --- */
-.comp-card-container { 
-    background: var(--card); 
-    border-radius: 14px; 
-    border: 1px solid var(--border); 
-    overflow: hidden; 
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    height: fit-content; 
-    cursor: pointer;
-}
-.comp-card-container:hover {
-    border-color: var(--primary);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.08);
-}
-.comp-card-container.open {
-    border-color: var(--primary);
+/* --- COMPETENCES : onglets verticaux, couleur par domaine --- */
+.comp-tabs {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 18px;
+    align-items: start;
+    width: 100%;
 }
 
-.comp-header { 
-    padding: 16px 20px; 
-    display: flex; 
-    align-items: center; 
-    gap: 14px; 
-    font-weight: 600; 
-    transition: background 0.2s;
-}
-.comp-header:hover { background: rgba(255,255,255,0.02); }
-body.light-mode .comp-header:hover { background: #f9fafb; }
+.comp-tablist { display: grid; gap: 6px; }
 
-/* BADGE COUNT */
-.comp-count {
-    margin-left: auto;
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
+.comp-tab {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
     color: var(--muted);
-    background: rgba(255,255,255,0.05);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.86rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.comp-tab:hover { background: rgba(99, 102, 241, 0.07); color: var(--text); }
+.comp-tab:focus-visible { outline: 2px solid var(--comp-accent, var(--primary)); outline-offset: 2px; }
+.comp-tab.active {
+    background: var(--card);
+    border-color: var(--comp-accent, var(--primary));
+    color: var(--text);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+body.light-mode .comp-tab.active { box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06); }
+
+.comp-tab-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: color-mix(in srgb, var(--comp-accent, var(--primary)) 14%, transparent);
+    transition: background 0.2s ease;
+}
+/* Tes icônes sont multicolores : on renforce la teinte sans passer à l'aplat,
+   qui les rendrait illisibles. */
+.comp-tab.active .comp-tab-icon {
+    background: color-mix(in srgb, var(--comp-accent, var(--primary)) 32%, transparent);
+}
+.comp-tab-icon svg, .comp-tab-icon img {
+    width: 18px !important;
+    height: 18px !important;
+    object-fit: contain;
+}
+.comp-tab-name { min-width: 0; }
+
+/* Panneau : en-tête à la couleur du domaine */
+.comp-panel {
+    background: var(--card);
     border: 1px solid var(--border);
-    padding: 3px 10px;
-    border-radius: 999px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-height: 230px;
+}
+body.light-mode .comp-panel { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+
+.comp-panel-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    background: var(--comp-accent, var(--primary));
+    border-bottom: 1px solid var(--border);
+}
+.comp-panel-head h4 {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.08rem;
+    line-height: 1.3;
+    color: #fff;
+}
+.comp-panel-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.18);
+}
+.comp-panel-icon svg, .comp-panel-icon img {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain;
+}
+.comp-panel-count {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
     white-space: nowrap;
 }
 
-/* BOUTON FLÈCHE (COMPETENCES) */
-.comp-toggle {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    padding: 0;
-}
-.comp-toggle svg {
-    width: 14px; height: 14px;
-    transition: transform 0.25s ease;
-}
-.comp-card-container.open .comp-toggle {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-}
-.comp-card-container.open .comp-toggle svg {
-    transform: rotate(180deg);
-}
-.comp-toggle:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-/* DROPDOWN (max-height smooth transition) */
-.comp-dropdown-menu { 
-    padding: 0 20px;
-    background: rgba(0,0,0,0.1);
-    border-top: 0px solid var(--border);
+.comp-panel-list {
     list-style: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease, border-top-width 0.3s ease;
+    padding: 22px 24px;
+    margin: 0;
+    display: grid;
+    gap: 11px;
 }
-.comp-card-container.open .comp-dropdown-menu {
-    max-height: 400px;
-    padding: 14px 20px;
-    border-top: 1px solid var(--border);
+.comp-panel-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
 }
-body.light-mode .comp-dropdown-menu { background-color: #ffffff !important; color: #333333; }
-body.light-mode .comp-card-container.open .comp-dropdown-menu { border-top: 1px solid #f3f4f6; }
-body.light-mode .comp-dropdown-menu li { color: #4b5563 !important; }
-
-.comp-dropdown-menu li { 
-    margin-bottom: 9px; 
-    font-size: 0.88rem; 
-    color: var(--muted); 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 10px;
-    line-height: 1.5;
-}
-.comp-dropdown-menu li:last-child { margin-bottom: 0; }
-.comp-dropdown-menu li::before { 
-    content: ''; 
-    width: 6px; height: 6px; 
-    background: var(--primary); 
-    border-radius: 50%; 
-    opacity: 0.65; 
-    flex-shrink: 0; 
-    margin-top: 7px; 
+.comp-panel-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--comp-accent, var(--primary));
 }
 
+@media (max-width: 820px) {
+    .comp-tabs { grid-template-columns: 1fr; }
+    .comp-tablist {
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        scrollbar-width: thin;
+    }
+    .comp-tab-name { white-space: nowrap; }
+}
 /* CURSOR HINT */
 #cursor-hint {
     position: fixed; top: 0; left: 0; pointer-events: none; padding: 8px 14px;
@@ -857,8 +892,6 @@ body.light-mode .hero-title { text-shadow: none; }
     object-fit: contain; 
 }
 
-.comp-card-container .cert-icon-box svg, 
-.comp-card-container .cert-icon-box img,
 .cert-card-container .cert-icon-box svg,
 .cert-card-container .cert-icon-box img { 
     width: 35px !important; 
@@ -2692,3 +2725,12 @@ body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 
 }
 .profil-fact.has-logo dt { align-self: end; }
 .profil-fact.has-logo dd { align-self: start; }
+
+@media print {
+    /* Les cinq domaines sont dépliés dans le panneau : la colonne d'onglets
+       ne sert plus à rien sur papier. */
+    .comp-tablist { display: none !important; }
+    .comp-tabs { grid-template-columns: 1fr !important; }
+    .comp-panel { border: 1px solid #ddd !important; box-shadow: none !important; }
+    .comp-panel-head { break-inside: avoid; break-after: avoid; }
+}
