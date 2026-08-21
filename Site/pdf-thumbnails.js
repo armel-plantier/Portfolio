@@ -60,10 +60,10 @@
             container.appendChild(img);
             container.classList.add('thumb-loaded');
 
-            // Pastille "n p." sur les cartes document
+            // Pastille "n pages" sur les cartes document
             const pagesEl = container.querySelector('.doc-thumb-pages');
             if (pagesEl && entry.pages) {
-                pagesEl.textContent = entry.pages + ' p.';
+                pagesEl.textContent = entry.pages + (entry.pages > 1 ? ' pages' : ' page');
                 pagesEl.hidden = false;
             }
         }).catch(function () {

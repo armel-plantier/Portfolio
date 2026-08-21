@@ -6,7 +6,7 @@
  *   - Bypass complet pour les PDF et API GitHub (pas de cache)
  */
 
-const VERSION = 'v1.7.5';
+const VERSION = 'v1.7.6';
 const STATIC_CACHE = `portfolio-static-${VERSION}`;
 const RUNTIME_CACHE = `portfolio-runtime-${VERSION}`;
 
