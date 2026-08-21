@@ -272,39 +272,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 cardTagsHTML += '</div>';
             }
 
-            const div = document.createElement("div"); 
-            div.className = "project-card interactive-card"; 
-            div.setAttribute('data-hint', 'Voir le PDF 📄'); 
-            
+            const div = document.createElement("div");
+            div.className = "project-card interactive-card doc-card";
+            div.setAttribute('data-hint', 'Voir le PDF 📄');
+
             // Attributs pour faciliter le filtrage JS
             div.setAttribute('data-title', escapeHTML(proj.title || ""));
             div.setAttribute('data-desc', escapeHTML(proj.longDescription || ""));
-            div.setAttribute('data-tags', JSON.stringify(proj.tags || [])); 
+            div.setAttribute('data-tags', JSON.stringify(proj.tags || []));
 
             if (index >= PROJECT_LIMIT) div.classList.add("hidden-item");
 
             const renderedIcon = renderIcon(proj.icon);
-            div.innerHTML = `
-                <span id="${badgeId}" class="badge-container-abs"></span>
-                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button>
-                <button class="copy-link-btn" data-no-hint="true" title="Copier le lien">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                </button>
-                <div class="card-thumb" data-pdf-url="${fullPdfUrl}"></div>
-                <div class="card-header">
-                    <div class="icon">${renderedIcon}</div>
-                    <div class="meta">
-                        <h4>${escapeHTML(proj.title)}</h4>
-                        ${cardTagsHTML}
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
+            div.innerHTML = buildDocCardHTML({
+                pdfUrl: fullPdfUrl,
+                iconHTML: renderedIcon,
+                title: proj.title,
+                desc: proj.longDescription || "",
+                tagsHTML: cardTagsHTML,
+                badgeId: badgeId,
+                infoBtnId: btnId,
+                viewerId: vid
+            });
 
-            div.querySelector('.card-thumb').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
-            if (window.observePdfThumb) window.observePdfThumb(div.querySelector('.card-thumb'));
+            wireDocCard(div, {
+                viewerId: vid,
+                pdfUrl: fullPdfUrl,
+                shareUrl: window.location.origin + '/projet-technova/' + slugifyDoc(proj.title),
+                title: proj.title
+            });
 
             if (config.profile.githubUser && config.profile.githubRepo && proj.path) {
                 const apiUrl = `https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}/commits?path=Documents/Projet/${proj.path}&page=1&per_page=1`;
@@ -317,20 +313,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }).catch(() => {});
             }
 
-            div.querySelector('.card-header').addEventListener("click", () => { togglePDF(vid, fullPdfUrl); });
-            div.querySelector('.copy-link-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                const slug = proj.title
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // accents → ascii
-                    .toLowerCase()
-                    .replace(/[''\(\)]/g, '')       // apostrophes, parenthèses
-                    .replace(/\s+/g, '-')            // espaces → tirets
-                    .replace(/[^a-z0-9\-]/g, '')    // reste → supprimé
-                    .replace(/-+/g, '-')              // tirets multiples → un seul
-                    .replace(/^-|-$/g, '');           // tirets en début/fin
-                const link = window.location.origin + '/projet-technova/' + slug;
-                copyToClipboard(link, e.currentTarget);
-            });
             const infoB = div.querySelector(`#${btnId}`);
             if(infoB) infoB.addEventListener("click", (e) => { e.stopPropagation(); openProjectModal(proj, infoB.getAttribute('data-date') || ""); });
 
@@ -563,47 +545,29 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const div = document.createElement('div');
-            div.className = 'project-card interactive-card';
+            div.className = 'project-card interactive-card doc-card';
             div.setAttribute('data-hint', 'Voir le PDF 📄');
             div.setAttribute('data-tags', JSON.stringify(proc.tags || []));
             div.setAttribute('data-desc', escapeHTML(proc.longDescription || proc.description || ""));
             div.dataset.index = index;
             if (index >= PROC_LIMIT) div.classList.add('hidden-item');
 
-            div.innerHTML = `
-                <span id="${badgeId}" class="badge-container-abs"></span>
-                <button class="info-btn" id="${btnId}" title="Plus d'infos" data-no-hint="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                </button>
-                <button class="copy-link-btn proc-copy-btn" data-no-hint="true" title="Copier le lien">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                </button>
-                <div class="card-thumb" data-pdf-url="${fullPdfUrl}"></div>
-                <div class="card-header">
-                    <div class="icon">${renderedIcon}</div>
-                    <div class="meta">
-                        <h4>${escapeHTML(proc.title)}</h4>
-                        ${cardTagsHTML}
-                    </div>
-                </div>
-                <div id="${vid}" class="pdf-container"></div>
-            `;
+            div.innerHTML = buildDocCardHTML({
+                pdfUrl: fullPdfUrl,
+                iconHTML: renderedIcon,
+                title: proc.title,
+                desc: proc.longDescription || proc.description || "",
+                tagsHTML: cardTagsHTML,
+                badgeId: badgeId,
+                infoBtnId: btnId,
+                viewerId: vid
+            });
 
-            div.querySelector('.card-thumb').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
-            div.querySelector('.card-header').addEventListener('click', () => { togglePDF(vid, fullPdfUrl); });
-            if (window.observePdfThumb) window.observePdfThumb(div.querySelector('.card-thumb'));
-            div.querySelector('.proc-copy-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                const slug = proc.title
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                    .toLowerCase()
-                    .replace(/[''\(\)]/g, '')
-                    .replace(/\s+/g, '-')
-                    .replace(/[^a-z0-9\-]/g, '')
-                    .replace(/-+/g, '-')
-                    .replace(/^-|-$/g, '');
-                const link = window.location.origin + '/procedures/' + slug;
-                copyToClipboard(link, e.currentTarget);
+            wireDocCard(div, {
+                viewerId: vid,
+                pdfUrl: fullPdfUrl,
+                shareUrl: window.location.origin + '/procedures/' + slugifyDoc(proc.title),
+                title: proc.title
             });
 
             // Récupération date du dernier commit via GitHub API
@@ -937,7 +901,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearInterval(waitAndOpenProj);
                     const section = document.getElementById('projets');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    setTimeout(() => { (card.querySelector('.doc-read-btn') || card.querySelector('.card-header')).click(); }, 600);
                     window.history.replaceState({}, '', '/');
                 }
             });
@@ -971,7 +935,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.style.display = 'flex';
                     const section = document.getElementById('procedures');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    setTimeout(() => { card.querySelector('.card-header').click(); }, 600);
+                    setTimeout(() => { (card.querySelector('.doc-read-btn') || card.querySelector('.card-header')).click(); }, 600);
                     window.history.replaceState({}, '', '/');
                 }
             });
@@ -1021,7 +985,7 @@ function initCursorHint() {
     document.addEventListener("mousemove", (e) => { hintEl.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`; });
     document.querySelectorAll('.interactive-card').forEach(el => {
         el.addEventListener("mouseenter", () => { if (!el.classList.contains('expanded')) { hintEl.innerText = el.getAttribute('data-hint') || "Voir"; hintEl.classList.add("visible"); } });
-        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
+        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn, .doc-card-actions') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
         el.addEventListener("mouseleave", () => hintEl.classList.remove("visible"));
         el.addEventListener("click", () => hintEl.classList.remove("visible"));
     });
@@ -1047,6 +1011,142 @@ function copyToClipboard(text, btn) {
         btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
         btn.classList.add('copied');
         setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+// === CARTES DOCUMENT (projets & procédures) ===
+// Preview A4 à gauche, barre d'actions Lire / Partager / Infos à droite.
+
+const DOC_ICONS = {
+    read:  '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>',
+    share: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>',
+    info:  '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+    link:  '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>',
+    linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11.1 22 14.2V21h-4v-6c0-1.5-.03-3.4-2.1-3.4-2.1 0-2.42 1.6-2.42 3.3V21h-4z"/></svg>',
+    mail:  '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>'
+};
+
+// Titre → slug d'URL (accents, apostrophes et ponctuation retirés)
+function slugifyDoc(title) {
+    return (title || "")
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[''\(\)]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9\-]/g, '')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+}
+
+/**
+ * Contenu HTML d'une carte document.
+ * @param {{pdfUrl:string, iconHTML:string, title:string, desc:string,
+ *          tagsHTML:string, badgeId:string, infoBtnId:string, viewerId:string}} opts
+ */
+function buildDocCardHTML(opts) {
+    const safeTitle = escapeHTML(opts.title);
+    return `
+        <div class="card-thumb" data-pdf-url="${opts.pdfUrl}" role="button" tabindex="0" aria-label="Lire le PDF : ${safeTitle}">
+            <span class="doc-thumb-fallback" aria-hidden="true">${opts.iconHTML || ''}</span>
+            <span class="doc-thumb-pages" hidden></span>
+        </div>
+        <div class="doc-card-body">
+            <div class="doc-card-top meta">
+                <h4>${safeTitle}</h4>
+                <span id="${opts.badgeId}" class="badge-container-abs"></span>
+            </div>
+            ${opts.desc ? `<p class="doc-card-desc">${escapeHTML(opts.desc)}</p>` : ''}
+            ${opts.tagsHTML || ''}
+            <div class="doc-card-actions">
+                <button class="doc-btn doc-btn-main doc-read-btn" type="button" data-no-hint="true">
+                    ${DOC_ICONS.read}<span class="doc-btn-label">Lire</span>
+                </button>
+                <div class="doc-share">
+                    <button class="doc-btn doc-share-btn" type="button" data-no-hint="true" aria-haspopup="true" aria-expanded="false">
+                        ${DOC_ICONS.share}<span class="doc-btn-label">Partager</span>
+                    </button>
+                    <div class="doc-share-menu" role="menu">
+                        <button class="doc-share-item" type="button" role="menuitem" data-share="copy">${DOC_ICONS.link}Copier le lien</button>
+                        <button class="doc-share-item" type="button" role="menuitem" data-share="linkedin">${DOC_ICONS.linkedin}Partager sur LinkedIn</button>
+                        <button class="doc-share-item" type="button" role="menuitem" data-share="mail">${DOC_ICONS.mail}Envoyer par mail</button>
+                        <div class="doc-share-sep"></div>
+                        <p class="doc-share-hint">Lien direct vers le document.</p>
+                    </div>
+                </div>
+                <button class="doc-btn doc-btn-icon doc-info-btn" type="button" id="${opts.infoBtnId}" title="Plus d'infos" aria-label="Plus d'infos" data-no-hint="true">
+                    ${DOC_ICONS.info}
+                </button>
+            </div>
+        </div>
+        <div id="${opts.viewerId}" class="pdf-container"></div>
+    `;
+}
+
+// Ferme tous les menus Partager ouverts
+function closeAllDocShare() {
+    document.querySelectorAll('.doc-share.open').forEach(wrap => {
+        wrap.classList.remove('open');
+        wrap.closest('.doc-card')?.classList.remove('share-open');
+        wrap.querySelector('.doc-share-btn')?.setAttribute('aria-expanded', 'false');
+    });
+}
+document.addEventListener('click', () => closeAllDocShare());
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllDocShare(); });
+
+/**
+ * Branche les interactions d'une carte document.
+ * @param {HTMLElement} card
+ * @param {{viewerId:string, pdfUrl:string, shareUrl:string, title:string}} opts
+ */
+function wireDocCard(card, opts) {
+    const open = () => togglePDF(opts.viewerId, opts.pdfUrl);
+    const thumb = card.querySelector('.card-thumb');
+
+    thumb.addEventListener('click', open);
+    thumb.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+    card.querySelector('.doc-card-top h4').addEventListener('click', open);
+    card.querySelector('.doc-read-btn').addEventListener('click', (e) => { e.stopPropagation(); open(); });
+    if (window.observePdfThumb) window.observePdfThumb(thumb);
+
+    // --- Partager ---
+    const wrap = card.querySelector('.doc-share');
+    const shareBtn = wrap.querySelector('.doc-share-btn');
+
+    shareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // Au doigt, on préfère la feuille de partage du système quand elle existe
+        if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
+            navigator.share({ title: opts.title, url: opts.shareUrl }).catch(() => {});
+            return;
+        }
+        const willOpen = !wrap.classList.contains('open');
+        closeAllDocShare();
+        wrap.classList.toggle('open', willOpen);
+        card.classList.toggle('share-open', willOpen);
+        shareBtn.setAttribute('aria-expanded', String(willOpen));
+    });
+
+    wrap.querySelectorAll('.doc-share-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            switch (item.dataset.share) {
+                case 'copy':
+                    navigator.clipboard.writeText(opts.shareUrl)
+                        .then(() => window.showToast && window.showToast('Lien copié dans le presse-papier', 'success'))
+                        .catch(() => window.showToast && window.showToast('Copie impossible', 'error'));
+                    break;
+                case 'linkedin':
+                    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(opts.shareUrl), '_blank', 'noopener');
+                    break;
+                case 'mail':
+                    window.location.href = 'mailto:?subject=' + encodeURIComponent(opts.title)
+                        + '&body=' + encodeURIComponent(opts.title + '\n' + opts.shareUrl);
+                    break;
+            }
+            closeAllDocShare();
+        });
     });
 }
 

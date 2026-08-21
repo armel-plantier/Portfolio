@@ -3,19 +3,30 @@
     if (typeof pdfjsLib === 'undefined') return;
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdfjs/pdf.worker.min.js';
 
-    const CACHE_PREFIX = 'pdfthumb:v2:';
+    const CACHE_PREFIX = 'pdfthumb:v3:';
+    const OLD_PREFIXES = ['pdfthumb:v1:', 'pdfthumb:v2:'];
     const THUMB_WIDTH = 640;
 
+    // Purge des anciens caches (format sans nombre de pages)
+    try {
+        Object.keys(localStorage)
+            .filter(k => OLD_PREFIXES.some(p => k.startsWith(p)))
+            .forEach(k => localStorage.removeItem(k));
+    } catch (e) { /* localStorage indisponible : rien à purger */ }
+
     function cacheGet(url) {
-        try { return localStorage.getItem(CACHE_PREFIX + url); } catch (e) { return null; }
+        try {
+            const raw = localStorage.getItem(CACHE_PREFIX + url);
+            return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
     }
-    function cacheSet(url, dataUrl) {
-        try { localStorage.setItem(CACHE_PREFIX + url, dataUrl); } catch (e) { /* quota pleine : tant pis, pas de cache */ }
+    function cacheSet(url, entry) {
+        try { localStorage.setItem(CACHE_PREFIX + url, JSON.stringify(entry)); } catch (e) { /* quota plein : tant pis, pas de cache */ }
     }
 
     async function renderThumb(url) {
         const cached = cacheGet(url);
-        if (cached) return cached;
+        if (cached && cached.img) return cached;
 
         const pdf = await pdfjsLib.getDocument({ url }).promise;
         const page = await pdf.getPage(1);
@@ -29,9 +40,9 @@
         const ctx = canvas.getContext('2d');
         await page.render({ canvasContext: ctx, viewport }).promise;
 
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-        cacheSet(url, dataUrl);
-        return dataUrl;
+        const entry = { img: canvas.toDataURL('image/jpeg', 0.92), pages: pdf.numPages };
+        cacheSet(url, entry);
+        return entry;
     }
 
     function mountThumb(container) {
@@ -40,14 +51,21 @@
         const url = container.dataset.pdfUrl;
         if (!url) return;
 
-        renderThumb(url).then(function (dataUrl) {
+        renderThumb(url).then(function (entry) {
             const img = document.createElement('img');
-            img.src = dataUrl;
+            img.src = entry.img;
             img.alt = '';
             img.loading = 'lazy';
             img.className = 'thumb-img';
             container.appendChild(img);
             container.classList.add('thumb-loaded');
+
+            // Pastille "n p." sur les cartes document
+            const pagesEl = container.querySelector('.doc-thumb-pages');
+            if (pagesEl && entry.pages) {
+                pagesEl.textContent = entry.pages + ' p.';
+                pagesEl.hidden = false;
+            }
         }).catch(function () {
             container.classList.add('thumb-failed');
         });
