@@ -408,10 +408,9 @@ experiences: [
     // "icon" est optionnel (SVG ou chemin d'image) : sans lui, une icône générique est utilisée.
     personalProjects: [
         {
-            // TODO: remplace ces tags par les vrais détails de CapitalBoard
             title: "CapitalBoard",
-            description: "Application open source pour piloter et analyser son portefeuille d'investissement.",
-            tags: ["À compléter"],
+            description: "Application open source pour piloter et analyser son portefeuille d'investissement. Le projet évolue en continu.",
+            tags: ["En développement"],
             icon: "assets/capitalboard.png",
             github: "",
             demo: "https://capitalboard.fr"
