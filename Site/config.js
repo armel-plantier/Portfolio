@@ -20,7 +20,7 @@ const config = {
 		avatar: "assets/avatar.png",
 		name: "Armel Plantier",
         typewriterText: "Étudiant Licence Sécurité des Réseaux - Cybersécurité",
-        bio: "Passionné par l'architecture réseau, le durcissement système et la cybersécurité, j'aime construire des environnements robustes, automatisés et sécurisés dès la conception",
+        bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité",
 
         emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
         turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
