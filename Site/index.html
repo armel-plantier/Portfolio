@@ -427,7 +427,19 @@
 
         <section id="procedures" class="section-wrapper">
             <h3>Procédures</h3>
-            <div id="procedure-grid" class="grid"></div>
+            <button type="button" id="procs-entry" class="docs-entry" aria-haspopup="dialog">
+                <span class="docs-entry-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                </span>
+                <span class="docs-entry-text">
+                    <span class="docs-entry-title">Parcourir la bibliothèque</span>
+                    <span class="docs-entry-sub" id="procs-entry-sub">Procédures techniques au format PDF</span>
+                </span>
+                <span class="docs-entry-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+            </button>
+            <div class="docs-entry-tags" id="procs-entry-tags"></div>
         </section>
 
         <section id="projets-perso" class="section-wrapper">
@@ -594,6 +606,24 @@
                         <button id="copy-email-btn" title="Copier et fermer">Copier</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup de la bibliothèque de procédures (la grille y est injectée par app.js) -->
+    <div id="procs-modal" class="pdf-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="procs-modal-title">
+        <div class="pdf-modal-overlay"></div>
+        <div class="pdf-modal-content" role="document">
+            <div class="pdf-modal-header">
+                <h3 class="pdf-modal-title" id="procs-modal-title">Procédures</h3>
+                <div class="pdf-modal-actions">
+                    <button type="button" class="pdf-modal-close" id="procs-modal-close" aria-label="Fermer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="docs-modal-body">
+                <div id="procedure-grid" class="grid"></div>
             </div>
         </div>
     </div>

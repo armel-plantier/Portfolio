@@ -301,37 +301,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (grid && config.projects) {
         // POPUP DES DOCUMENTS : ouverte depuis la carte TechNova des projets perso
-        const docsModal = document.getElementById('docs-modal');
-        if (docsModal) {
-            let lastDocsTrigger = null;
-            const openDocs = (trigger) => {
-                lastDocsTrigger = trigger instanceof HTMLElement ? trigger : null;
-                docsModal.classList.add('open');
-                docsModal.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('pdf-modal-open');
-                // Les cartes n'ont jamais croisé le viewport tant que la popup
-                // était masquée : on lève l'animation d'apparition à la main.
-                docsModal.querySelectorAll('.project-card').forEach(c => c.classList.add('card-revealed'));
-                document.getElementById('docs-modal-close')?.focus();
-            };
-            const closeDocs = () => {
-                docsModal.classList.remove('open');
-                docsModal.setAttribute('aria-hidden', 'true');
-                // On ne rend le défilement que si aucune autre popup n'est ouverte
-                if (!document.querySelector('.pdf-modal.open')) document.body.classList.remove('pdf-modal-open');
-                lastDocsTrigger?.focus();
-            };
-            window.openDocsModal = openDocs;
-
-            document.getElementById('docs-modal-close')?.addEventListener('click', closeDocs);
-            docsModal.querySelector('.pdf-modal-overlay')?.addEventListener('click', closeDocs);
-            document.addEventListener('keydown', (e) => {
-                // Échap ferme d'abord le lecteur PDF s'il est ouvert par-dessus
-                if (e.key === 'Escape' && docsModal.classList.contains('open') && !document.getElementById('pdf-modal')?.classList.contains('open')) {
-                    closeDocs();
-                }
-            });
-        }
+        const docsPopup = wireDocsPopup('docs-modal', 'docs-modal-close');
+        if (docsPopup) window.openDocsModal = docsPopup.open;
 
         // 1. EXTRAIRE LES TAGS UNIQUES
         const allTags = new Set();
@@ -538,7 +509,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- PROCEDURES (Chargement statique depuis config.procedures) ---
     const procedureGrid = document.getElementById('procedure-grid');
-    const PROC_LIMIT = 4;
+    // La grille vit dans une popup dédiée : on y affiche tout, sans pagination.
+    const PROC_LIMIT = (config.procedures || []).length;
     const PROC_BASE_URL = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Proc%C3%A9dures/`;
 
     if (procedureGrid && config.procedures && config.procedures.length > 0) {
@@ -551,6 +523,33 @@ document.addEventListener("DOMContentLoaded", () => {
             badge.className = 'section-count-badge';
             badge.textContent = config.procedures.length;
             procTitle.appendChild(badge);
+        }
+
+        // POINT D'ENTRÉE : la section n'affiche qu'une carte, la bibliothèque
+        // complète s'ouvrant en popup avec sa recherche et ses filtres.
+        const procsPopup = wireDocsPopup('procs-modal', 'procs-modal-close');
+        if (procsPopup) window.openProcsModal = procsPopup.open;
+
+        const procsEntry = document.getElementById('procs-entry');
+        const procsSub = document.getElementById('procs-entry-sub');
+        const procsTags = document.getElementById('procs-entry-tags');
+        const nProcs = config.procedures.length;
+
+        if (procsSub) {
+            procsSub.textContent = `${nProcs} procédure${nProcs > 1 ? 's' : ''} technique${nProcs > 1 ? 's' : ''} au format PDF`;
+        }
+        if (procsTags) {
+            // Répartition par thème : elle dit l'ampleur du travail mieux
+            // qu'une poignée de cartes.
+            const counts = {};
+            config.procedures.forEach(p => (p.tags || []).forEach(t => { counts[t] = (counts[t] || 0) + 1; }));
+            procsTags.innerHTML = Object.entries(counts)
+                .sort((a, b) => b[1] - a[1])
+                .map(([tag, n]) => `<span class="project-tag">${escapeHTML(tag)} · ${n}</span>`)
+                .join('');
+        }
+        if (procsEntry && procsPopup) {
+            procsEntry.addEventListener('click', (e) => procsPopup.open(e.currentTarget));
         }
 
         // --- CONTRÔLES : recherche + filtre par tag ---
@@ -1113,6 +1112,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.style.display = 'flex';
                     const section = document.getElementById('procedures');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // La grille est dans la popup : on l'ouvre pour que la
+                    // fermeture du PDF ramène sur la bibliothèque.
+                    if (window.openProcsModal) window.openProcsModal();
                     setTimeout(() => { (card.querySelector('.doc-read-btn') || card.querySelector('.card-header')).click(); }, 600);
                     window.history.replaceState({}, '', '/');
                 }
@@ -1258,6 +1260,46 @@ function buildDocCardHTML(opts) {
         </div>
         <div id="${opts.viewerId}" class="pdf-container"></div>
     `;
+}
+
+/**
+ * Câble une popup de bibliothèque de documents (projets, procédures).
+ * La grille et ses contrôles vivent dedans ; la section n'affiche qu'un
+ * point d'entrée. Renvoie { open, close } ou null si la popup est absente.
+ */
+function wireDocsPopup(modalId, closeBtnId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return null;
+    let lastTrigger = null;
+
+    const open = (trigger) => {
+        lastTrigger = trigger instanceof HTMLElement ? trigger : null;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('pdf-modal-open');
+        // Les cartes n'ont jamais croisé le viewport tant que la popup était
+        // masquée : on lève l'animation d'apparition à la main.
+        modal.querySelectorAll('.project-card').forEach(c => c.classList.add('card-revealed'));
+        document.getElementById(closeBtnId)?.focus();
+    };
+
+    const close = () => {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        // On ne rend le défilement que si aucune autre popup n'est ouverte
+        if (!document.querySelector('.pdf-modal.open')) document.body.classList.remove('pdf-modal-open');
+        lastTrigger?.focus();
+    };
+
+    document.getElementById(closeBtnId)?.addEventListener('click', close);
+    modal.querySelector('.pdf-modal-overlay')?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+        // Échap ferme d'abord le lecteur PDF s'il est ouvert par-dessus
+        if (e.key === 'Escape' && modal.classList.contains('open')
+            && !document.getElementById('pdf-modal')?.classList.contains('open')) close();
+    });
+
+    return { open, close };
 }
 
 // Ferme tous les menus Partager ouverts
