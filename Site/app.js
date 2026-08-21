@@ -909,136 +909,109 @@ document.addEventListener("DOMContentLoaded", () => {
         showComp(0);
     }
 
-    // --- 10. CERTIFICATIONS ---
-    const certSection = document.getElementById("certifications"); 
+    // --- 10. CERTIFICATIONS (Root-Me en vedette, attestations en rangées) ---
     const certList = document.getElementById("cert-list");
-    const CERT_LIMIT = 5;
     const certBaseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Certifs/`;
-    
-    // 1. CRÉATION DU LECTEUR GLOBAL (Injecté avant la liste)
-    let globalViewer = document.getElementById("global-cert-viewer");
-    if (!globalViewer && certList) {
-        globalViewer = document.createElement("div");
-        globalViewer.id = "global-cert-viewer";
-        certList.parentNode.insertBefore(globalViewer, certList);
-    }
 
-    if(certList && config.certifications) {
-        config.certifications.forEach((cert, index) => {
-            const li = document.createElement("li"); li.className = "cert-card-container";
-            if (index >= CERT_LIMIT) li.classList.add("hidden-item");
-            
-            const issuer = cert.issuer ? cert.issuer : "Certification"; 
-            const fullPdfUrl = cert.pdf ? certBaseUrl + cert.pdf : null;
-            
-            // Icône
-            const iconDisplay = cert.icon ? renderIcon(cert.icon) : "🏆"; 
-            
-            let buttonsHtml = '';
-            if (cert.url) buttonsHtml += `<a href="${cert.url}" target="_blank" class="cert-btn link-btn" title="Site officiel">🔗</a>`;
-            
-            li.innerHTML = `
-                <div class="cert-header-row">
-                    <div class="cert-icon-box">${iconDisplay}</div>
-                    <div class="cert-info">
-                        <span class="cert-name">${escapeHTML(cert.name)}</span>
-                        <span class="cert-issuer">${escapeHTML(issuer)}</span>
+    if (certList && config.certifications) {
+        const isFeatured = c => c.issuer === "root-me.org" && c.rootmeStats;
+        const featured = config.certifications.find(isFeatured);
+        const others = config.certifications.filter(c => !isFeatured(c));
+
+        const linkBtn = (cert, label) => cert.url
+            ? `<a class="cert-btn-ghost" href="${escapeHTML(cert.url)}" target="_blank" rel="noopener noreferrer">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                   ${escapeHTML(label)}
+               </a>`
+            : '';
+
+        // ── Bloc vedette : les statistiques Root-Me, toujours visibles ──
+        if (featured) {
+            const s = featured.rootmeStats;
+            const themes = s.themes || [];
+            const maxCount = themes.reduce((m, t) => Math.max(m, t.count), 1);
+            const maj = s.updated_at
+                ? new Date(s.updated_at).toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" })
+                : "";
+            const rank = (s.top_percent !== null && s.top_percent !== undefined)
+                ? { value: `Top ${s.top_percent}%`, label: "Classement mondial" }
+                : { value: `#${(s.position || 0).toLocaleString("fr-FR")}`, label: "Classement mondial" };
+
+            const hero = document.createElement("article");
+            hero.className = "cert-hero";
+            hero.innerHTML = `
+                <div class="cert-hero-top">
+                    <span class="cert-hero-logo">${renderIcon(featured.icon)}</span>
+                    <div class="cert-hero-id">
+                        <h4>${escapeHTML(featured.name)}</h4>
+                        <span>${escapeHTML(featured.issuer)}${s.rang ? ` · rang « ${escapeHTML(s.rang)} »` : ''}</span>
                     </div>
-                    <div class="cert-actions">${buttonsHtml}</div>
+                    ${linkBtn(featured, "Profil public")}
                 </div>
+                <div class="cert-nums">
+                    <div class="cert-num"><b>${s.total}</b><span>Challenges résolus</span></div>
+                    <div class="cert-num"><b>${s.score}</b><span>Points</span></div>
+                    <div class="cert-num"><b>${rank.value}</b><span>${rank.label}</span></div>
+                </div>
+                ${themes.length ? `<div class="cert-themes">${themes.map(t => `
+                    <div class="cert-theme">
+                        <span class="cert-theme-name">${escapeHTML(t.name)}</span>
+                        <span class="cert-bar"><i style="width:${Math.round(t.count / maxCount * 100)}%"></i></span>
+                        <b>${t.count}</b>
+                    </div>`).join('')}</div>` : ''}
+                ${maj ? `<p class="cert-upd"><span class="cert-upd-dot"></span>Mis à jour automatiquement le ${maj}</p>` : ''}
             `;
-            
-            if (cert.pdf) {
-                const act = li.querySelector('.cert-actions');
-                const pBtn = document.createElement("button"); 
-                pBtn.className = "cert-btn pdf-btn"; 
-                pBtn.innerHTML = "📄";
-                pBtn.addEventListener("click", (e) => { 
-                    document.querySelectorAll('.pdf-btn').forEach(b => b.style.background = '');
-                    pBtn.style.background = 'var(--primary)';
-                    pBtn.style.color = 'white';
-                    toggleGlobalPDF(fullPdfUrl); 
-                });
-                act.appendChild(pBtn);
-            }
+            certList.appendChild(hero);
+        }
 
-            // ── Root-Me : stats dépliables au clic ───────────────────────────
-            if (cert.issuer === "root-me.org" && cert.rootmeStats) {
-                const stats = cert.rootmeStats;
-                if (stats.themes && stats.themes.length > 0) {
-                    const maxCount = stats.themes[0].count;
+        // ── Rangées : aperçu de l'attestation à gauche, identité à droite ──
+        if (others.length) {
+            const rows = document.createElement("div");
+            rows.className = "cert-rows";
 
-                    // Chevron
-                    const headerRow = li.querySelector(".cert-header-row");
-                    const chevron = document.createElement("span");
-                    chevron.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
-                    chevron.style.cssText = "display:flex;align-items:center;color:var(--muted);transition:transform 0.3s ease;margin-left:6px;flex-shrink:0;";
-                    headerRow.appendChild(chevron);
+            others.forEach(cert => {
+                const pdfUrl = cert.pdf ? certBaseUrl + encodeURIComponent(cert.pdf) : null;
+                const row = document.createElement("article");
+                row.className = "cert-row";
+                row.innerHTML = `
+                    <div class="cert-thumb card-thumb${pdfUrl ? '' : ' cert-thumb-empty'}"${pdfUrl ? ` data-pdf-url="${pdfUrl}" role="button" tabindex="0" aria-label="Voir l'attestation ${escapeHTML(cert.name)}"` : ''}>
+                        <span class="cert-thumb-fallback" aria-hidden="true">${renderIcon(cert.icon)}</span>
+                    </div>
+                    <div class="cert-row-body">
+                        <div class="cert-row-head">
+                            <span class="cert-row-logo">${renderIcon(cert.icon)}</span>
+                            <div class="cert-row-id">
+                                <h4>${escapeHTML(cert.name)}</h4>
+                                <span>${escapeHTML(cert.issuer || "Certification")}</span>
+                            </div>
+                        </div>
+                        <div class="cert-row-actions">
+                            ${pdfUrl ? `<button type="button" class="cert-btn-main">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                                Voir l'attestation
+                            </button>` : ''}
+                            ${linkBtn(cert, "Site officiel")}
+                        </div>
+                    </div>
+                `;
 
-                    const statsDiv = document.createElement("div");
-                    statsDiv.className = "rootme-stats";
-                    statsDiv.style.display = "none";
-
-                    // Badges
-                    const badgeRow = document.createElement("div");
-                    badgeRow.className = "rootme-badges";
-                    const topBadge = (stats.top_percent !== null && stats.top_percent !== undefined)
-                        ? `<span class="rootme-badge rootme-badge-top">Top ${stats.top_percent}%</span>`
-                        : `<span class="rootme-badge rootme-badge-top">\uD83C\uDF0D #${stats.position.toLocaleString("fr-FR")}</span>`;
-                    badgeRow.innerHTML = topBadge
-                        + (stats.rang ? `<span class="rootme-badge rootme-badge-rang">${escapeHTML(stats.rang)}</span>` : "")
-                        + (stats.score ? `<span class="rootme-badge rootme-badge-score">${stats.score} pts</span>` : "");
-                    statsDiv.appendChild(badgeRow);
-
-                    // Total + date
-                    const header = document.createElement("div");
-                    header.className = "rootme-stats-header";
-                    const totalEl = document.createElement("span");
-                    totalEl.className = "rootme-total";
-                    totalEl.textContent = `${stats.total} challenges r\u00E9solus`;
-                    header.appendChild(totalEl);
-                    statsDiv.appendChild(header);
-
-                    // Themes : nom + nb challenges realises (moved before date)
-
-                    // Themes : nom + nb challenges realises
-                    stats.themes.forEach(t => {
-                        const row = document.createElement("div");
-                        row.className = "rootme-bar-row";
-                        row.innerHTML = `<span class="rootme-bar-label" title="${escapeHTML(t.name)}">${escapeHTML(t.name)}</span><span class="rootme-bar-count">${t.count} chall réalisé${t.count > 1 ? "s" : ""}</span>`;
-                        statsDiv.appendChild(row);
+                if (pdfUrl) {
+                    const open = () => openPDFModal(pdfUrl, cert.name);
+                    const thumb = row.querySelector('.cert-thumb');
+                    thumb.addEventListener('click', open);
+                    thumb.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
                     });
-
-                    // MAJ date en bas
-                    if (stats.updated_at) {
-                        const updRow = document.createElement("div");
-                        updRow.className = "rootme-upd-row";
-                        const dateStr = new Date(stats.updated_at)
-                            .toLocaleDateString("fr-FR", { day: "2-digit", month: "short", year: "numeric" });
-                        updRow.innerHTML = `<span class="rootme-upd-dot"></span><span class="rootme-upd-text">MAJ : ${dateStr}</span>`;
-                        statsDiv.appendChild(updRow);
-                    }
-
-                    li.appendChild(statsDiv);
-
-                    // Toggle
-                    let expanded = false;
-                    li.style.cursor = "pointer";
-                    li.addEventListener("click", (e) => {
-                        if (e.target.closest("a, button")) return;
-                        expanded = !expanded;
-                        statsDiv.style.display = expanded ? "" : "none";
-                        chevron.style.transform = expanded ? "rotate(180deg)" : "rotate(0deg)";
-                    });
+                    row.querySelector('.cert-btn-main').addEventListener('click', open);
+                    if (window.observePdfThumb) window.observePdfThumb(thumb);
                 }
-            }
-            // ─────────────────────────────────────────────────────────────────
 
-            certList.appendChild(li);
-        });
-        if (config.certifications.length > CERT_LIMIT) createToggleBtn(certList, CERT_LIMIT, "Voir la suite");
+                rows.appendChild(row);
+            });
+
+            certList.appendChild(rows);
+        }
     }
-
 
     // --- 11. MACHINE A ECRIRE ---
     const textEl = document.getElementById("typewriter-area");

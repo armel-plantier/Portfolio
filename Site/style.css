@@ -626,37 +626,6 @@ body.light-mode .timeline-company { background: #f9fafb; }
 }
 
 
-
-/* CERTIFS & COMPETENCES */
-.cert-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; }
-@media (min-width: 768px) { .cert-list { grid-template-columns: repeat(2, 1fr); } }
-.cert-card-container { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; display: flex; flex-direction: column; transition: all 0.3s ease; overflow: hidden; }
-.cert-card-container:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-.cert-header-row { display: flex; align-items: center; gap: 15px; width: 100%; }
-
-.cert-icon-box { 
-    width: 45px; 
-    height: 45px; 
-    background: transparent; 
-    color: var(--primary); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.4rem; 
-    flex-shrink: 0; 
-}
-
-.cert-info { flex-grow: 1; }
-.cert-name { display: block; font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: var(--text); }
-.cert-issuer { display: block; font-size: 0.85rem; color: var(--muted); }
-.cert-actions { display: flex; gap: 8px; }
-.cert-btn { width: 35px; height: 35px; border-radius: 50%; border: 1px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.2s; font-size: 0.9rem; text-decoration: none; cursor: pointer; }
-.cert-btn:hover { color: #fff; border-color: transparent; }
-.cert-btn.link-btn:hover { background: var(--primary); }
-.cert-btn.pdf-btn:hover { background: #10b981; } 
-.cert-pdf-viewer { display: none; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 10px; background: var(--card); width: 100%; height: 500px; }
-.cert-pdf-viewer iframe { display: block; width: 100%; border: none; background-color: var(--card); }
-
 /* --- COMPETENCES : onglets verticaux, couleur par domaine --- */
 .comp-tabs {
     display: grid;
@@ -845,7 +814,7 @@ body.light-mode .email-box { color: #333; border-color: #ccc; }
 .legal-text strong { color: var(--text); }
 .cloudflare-badge { margin-top: 20px; padding: 10px; background: rgba(244, 129, 32, 0.1); border: 1px solid rgba(244, 129, 32, 0.3); border-radius: 8px; display: flex; align-items: center; gap: 10px; color: #F48120; font-weight: 600; font-size: 0.9rem; }
 
-body.light-mode .project-card, body.light-mode .cert-card-container, body.light-mode .comp-card-container { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-color: #e5e7eb; }
+body.light-mode .project-card, body.light-mode .cert-row { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); border-color: #e5e7eb; }
 body.light-mode .skill-tag { background: #ffffff; border-color: #e5e7eb; color: #4b5563; }
 body.light-mode .cert-icon-box { background: transparent; color: #4f46e5; }
 body.light-mode .hero-title { text-shadow: none; }
@@ -869,7 +838,7 @@ body.light-mode .hero-title { text-shadow: none; }
     a[href]::after { content: " (" attr(href) ")"; font-size: 0.8rem; color: #666; }
     .container { max-width: 100%; padding: 0; margin: 0; }
     h1, h3 { color: #000 !important; page-break-after: avoid; }
-    .project-card, .cert-card-container, .comp-card-container { border: 1px solid #ddd; box-shadow: none; break-inside: avoid; margin-bottom: 20px; }
+    .project-card, .cert-row, .cert-hero, .comp-panel { border: 1px solid #ddd; box-shadow: none; break-inside: avoid; margin-bottom: 20px; }
     .hidden-item, .comp-dropdown-menu { display: block !important; border: none; padding-left: 0; }
 }
 
@@ -892,11 +861,6 @@ body.light-mode .hero-title { text-shadow: none; }
     object-fit: contain; 
 }
 
-.cert-card-container .cert-icon-box svg,
-.cert-card-container .cert-icon-box img { 
-    width: 35px !important; 
-    height: 35px !important; 
-}
 
 #exp-list p, .timeline-content p { white-space: pre-line; }
 
@@ -1349,132 +1313,6 @@ body.light-mode .veille-how-item { background: rgba(0,0,0,0.02); }
 }
 
 /* ─── ROOT-ME BARRES DE PROGRESSION ─── */
-.rootme-stats {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.rootme-stats-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
-}
-
-.rootme-total {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.rootme-updated {
-    font-size: 0.72rem;
-    color: var(--muted);
-}
-
-.rootme-bar-row {
-    display: grid;
-    grid-template-columns: 110px 1fr 28px;
-    align-items: center;
-    gap: 8px;
-}
-
-.rootme-bar-label {
-    font-size: 0.73rem;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.rootme-bar-track {
-    height: 6px;
-    background: var(--border);
-    border-radius: 99px;
-    overflow: hidden;
-}
-
-.rootme-bar-fill {
-    height: 100%;
-    border-radius: 99px;
-    background: linear-gradient(90deg, var(--primary), #818cf8);
-    width: 0%;
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.rootme-bar-count {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--text);
-    text-align: right;
-}
-
-body.light-mode .rootme-bar-track {
-    background: #e5e7eb;
-}
-
-/* ─── ROOT-ME BADGES (top %, rang, score) ─── */
-.rootme-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.rootme-badge {
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 20px;
-}
-
-.rootme-badge-top {
-    background: rgba(99, 102, 241, 0.15);
-    color: var(--primary);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-}
-
-.rootme-badge-rang {
-    background: rgba(234, 179, 8, 0.12);
-    color: #a16207;
-    border: 1px solid rgba(234, 179, 8, 0.3);
-    text-transform: capitalize;
-}
-
-.rootme-badge-score {
-    background: rgba(34, 197, 94, 0.1);
-    color: #15803d;
-    border: 1px solid rgba(34, 197, 94, 0.25);
-}
-
-body.light-mode .rootme-badge-rang { color: #854d0e; }
-body.light-mode .rootme-badge-score { color: #166534; }
-
-/* MAJ date row */
-.rootme-upd-row {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-}
-.rootme-upd-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #22c55e;
-    flex-shrink: 0;
-}
-.rootme-upd-text {
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-weight: 500;
-}
 
 /* ==========================================================
    MODAL PDF PLEIN ÉCRAN
@@ -1730,13 +1568,15 @@ body.light-mode #cmdk-fab {
 
 /* --- CARD REVEAL (animation apparition cartes) --- */
 .project-card:not(.card-revealed).card-reveal-init,
-.cert-list li:not(.card-revealed).card-reveal-init {
+.cert-row:not(.card-revealed).card-reveal-init,
+.cert-hero:not(.card-revealed).card-reveal-init {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .project-card.card-revealed,
-.cert-list li.card-revealed {
+.cert-row.card-revealed,
+.cert-hero.card-revealed {
     opacity: 1;
     transform: translateY(0);
 }
@@ -1923,7 +1763,7 @@ body.light-mode .cmdk-footer { background: rgba(0,0,0,0.02); }
 
 /* --- Respect des préférences "motion" --- */
 @media (prefers-reduced-motion: reduce) {
-    #scroll-progress, #back-to-top, .project-card, .cert-list li, .cmdk-content, .pdf-modal-content {
+    #scroll-progress, #back-to-top, .project-card, .cert-row, .cmdk-content, .pdf-modal-content {
         transition: none !important;
         animation: none !important;
     }
@@ -2733,4 +2573,196 @@ body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 
     .comp-tabs { grid-template-columns: 1fr !important; }
     .comp-panel { border: 1px solid #ddd !important; box-shadow: none !important; }
     .comp-panel-head { break-inside: avoid; break-after: avoid; }
+}
+
+
+/* ============================================================
+   CERTIFICATIONS — Root-Me en vedette, attestations en rangées
+   ============================================================ */
+.cert-layout { display: grid; gap: 18px; width: 100%; }
+
+/* --- Bloc vedette --- */
+.cert-hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid #ef4444;
+    border-radius: 18px;
+    padding: 26px;
+}
+.cert-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 100% at 0% 0%, rgba(239, 68, 68, 0.16), transparent 62%);
+}
+.cert-hero > * { position: relative; z-index: 1; }
+
+.cert-hero-top { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.cert-hero-logo {
+    width: 46px; height: 46px; flex-shrink: 0;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: rgba(239, 68, 68, 0.14);
+}
+.cert-hero-logo svg, .cert-hero-logo img { width: 26px !important; height: 26px !important; object-fit: contain; }
+.cert-hero-id { flex: 1; min-width: 0; }
+.cert-hero-id h4 { font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--text); }
+.cert-hero-id span { font-size: 0.8rem; color: var(--muted); }
+
+.cert-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cert-num {
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.22);
+    border-radius: 12px;
+    padding: 14px;
+}
+.cert-num b {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.55rem;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+.cert-num span {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.cert-themes { display: grid; gap: 9px; margin-top: 18px; }
+.cert-theme {
+    display: grid;
+    grid-template-columns: 110px 1fr 34px;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.8rem;
+}
+.cert-theme-name { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cert-theme b { text-align: right; color: var(--text); }
+.cert-bar { height: 7px; border-radius: 4px; background: rgba(255, 255, 255, 0.07); overflow: hidden; }
+body.light-mode .cert-bar { background: rgba(15, 23, 42, 0.08); }
+.cert-bar i { display: block; height: 100%; border-radius: 4px; background: #ef4444; }
+
+.cert-upd {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.73rem; color: var(--muted); margin-top: 16px;
+}
+.cert-upd-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--badge-bg);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* --- Rangées d'attestations --- */
+.cert-rows { display: grid; gap: 14px; }
+.cert-row {
+    display: flex;
+    align-items: stretch;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s, box-shadow 0.3s;
+}
+body.light-mode .cert-row { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+.cert-row:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.16);
+}
+
+.cert-thumb {
+    position: relative;
+    flex: 0 0 190px;
+    width: 190px;
+    aspect-ratio: 1.414 / 1;
+    overflow: hidden;
+    background: #fff;
+    border-right: 1px solid var(--border);
+    border-bottom: none;
+    cursor: pointer;
+}
+.cert-thumb.cert-thumb-empty { cursor: default; background: var(--card); }
+/* Attestation illisible ou absente : on garde la colonne et le logo */
+.cert-row .cert-thumb.thumb-failed { display: block; }
+.cert-thumb .thumb-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cert-row:hover .cert-thumb .thumb-img { transform: scale(1.04); }
+.cert-thumb-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0.4;
+    pointer-events: none;
+}
+.cert-thumb-fallback svg, .cert-thumb-fallback img { width: 40px !important; height: 40px !important; object-fit: contain; }
+.cert-thumb.thumb-loaded .cert-thumb-fallback { display: none; }
+
+.cert-row-body {
+    flex: 1;
+    min-width: 0;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.cert-row-head { display: flex; align-items: center; gap: 13px; }
+.cert-row-logo {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: grid; place-items: center;
+    border-radius: 11px;
+    background: rgba(99, 102, 241, 0.10);
+}
+body.light-mode .cert-row-logo { background: rgba(99, 102, 241, 0.05); }
+.cert-row-logo svg, .cert-row-logo img { width: 24px !important; height: 24px !important; object-fit: contain; }
+.cert-row-id { min-width: 0; }
+.cert-row-id h4 { font-family: 'Outfit', sans-serif; font-size: 1.05rem; line-height: 1.3; color: var(--text); }
+.cert-row-id span { font-size: 0.8rem; color: var(--muted); }
+
+.cert-row-actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+.cert-btn-main, .cert-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.cert-btn-main { border: 1px solid var(--primary); background: var(--primary); color: #fff; }
+.cert-btn-main:hover { background: #5457e0; border-color: #5457e0; transform: translateY(-2px); }
+.cert-btn-ghost { border: 1px solid var(--border); background: transparent; color: var(--muted); }
+.cert-btn-ghost:hover { border-color: var(--primary); color: var(--primary); background: rgba(99, 102, 241, 0.08); }
+.cert-hero-top .cert-btn-ghost { flex-shrink: 0; }
+
+@media (max-width: 760px) {
+    .cert-nums { grid-template-columns: 1fr; }
+    .cert-row { flex-direction: column; }
+    .cert-thumb { flex-basis: auto; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .cert-theme { grid-template-columns: 84px 1fr 30px; }
+}
+
+/* Pas de PDF, ou rendu impossible : on coupe l'animation de chargement,
+   qui sinon tournerait indéfiniment derrière le logo de repli. */
+.cert-thumb.cert-thumb-empty,
+.cert-thumb.thumb-failed {
+    animation: none;
+    background: var(--card);
 }
