@@ -233,17 +233,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const formation = (config.formations || [])[0];
         const alternance = (config.experiences || []).find(e => /alternance/i.test(e.role || ""));
 
-        // Logo de l'école / de l'entreprise, repris des photos de la timeline
-        const withLogo = (photo, label, text) => photo
-            ? `<span class="profil-val"><img class="profil-logo" src="assets/${escapeHTML(photo)}" alt="${escapeHTML(label)}" onerror="this.remove()">${escapeHTML(text)}</span>`
-            : escapeHTML(text);
-
+        // Le logo (repris des photos de la timeline) est passé en variable CSS :
+        // il devient une tuile de tête alignée sur toute la hauteur du bloc,
+        // sans casser la structure dt/dd de la liste de définitions.
         const facts = [];
-        if (formation) facts.push(["Formation", withLogo(formation.photo, formation.company || "", formation.role), true]);
-        if (alternance) facts.push(["Alternance", withLogo(alternance.photo, alternance.company || "", alternance.company), true]);
-        if (p.location) facts.push(["Localisation", p.location]);
+        if (formation) facts.push({ label: "Formation", value: formation.role, logo: formation.photo });
+        if (alternance) facts.push({ label: "Alternance", value: alternance.company, logo: alternance.photo });
+        if (p.location) facts.push({ label: "Localisation", value: p.location });
         if (p.availability) {
-            facts.push(["Disponibilité", `<span class="profil-dispo"><span class="profil-pulse"></span>${escapeHTML(p.availability)}</span>`, true]);
+            facts.push({
+                label: "Disponibilité",
+                value: `<span class="profil-dispo"><span class="profil-pulse"></span>${escapeHTML(p.availability)}</span>`,
+                raw: true
+            });
         }
 
         const paragraphs = (p.text || "")
@@ -259,10 +261,10 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="profil-facts">
                 <dl>
-                    ${facts.map(([label, value, raw]) => `
-                        <div class="profil-fact">
-                            <dt>${escapeHTML(label)}</dt>
-                            <dd>${raw ? value : escapeHTML(value)}</dd>
+                    ${facts.map(f => `
+                        <div class="profil-fact${f.logo ? ' has-logo' : ''}"${f.logo ? ` style="--profil-logo:url('assets/${encodeURI(f.logo)}')"` : ''}>
+                            <dt>${escapeHTML(f.label)}</dt>
+                            <dd>${f.raw ? f.value : escapeHTML(f.value)}</dd>
                         </div>`).join('')}
                 </dl>
                 ${p.cvUrl ? `
