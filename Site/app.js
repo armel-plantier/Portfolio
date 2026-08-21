@@ -190,7 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
     const baseUrl = `https://raw.githubusercontent.com/${config.profile.githubUser}/${config.profile.githubRepo}/main/Documents/Projet/`;
-    const PROJECT_LIMIT = 4; 
+    // La grille vit dans une popup dédiée : on y affiche tout, sans pagination.
+    const PROJECT_LIMIT = (config.projects || []).length;
 
     if (grid && config.projects) {
         // BADGE COMPTEUR
@@ -200,6 +201,43 @@ document.addEventListener("DOMContentLoaded", () => {
             badge.className = 'section-count-badge';
             badge.textContent = config.projects.length;
             projTitle.appendChild(badge);
+        }
+
+        // POPUP DES DOCUMENTS : la section n'affiche qu'un point d'entrée
+        const docsModal = document.getElementById('docs-modal');
+        const docsEntry = document.getElementById('projects-entry');
+        const docsCount = document.getElementById('projects-entry-count');
+        if (docsCount) {
+            docsCount.textContent = config.projects.length + (config.projects.length > 1 ? ' procédures' : ' procédure');
+        }
+        if (docsModal && docsEntry) {
+            const openDocs = () => {
+                docsModal.classList.add('open');
+                docsModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('pdf-modal-open');
+                // Les cartes n'ont jamais croisé le viewport tant que la popup
+                // était masquée : on lève l'animation d'apparition à la main.
+                docsModal.querySelectorAll('.project-card').forEach(c => c.classList.add('card-revealed'));
+                document.getElementById('docs-modal-close')?.focus();
+            };
+            const closeDocs = () => {
+                docsModal.classList.remove('open');
+                docsModal.setAttribute('aria-hidden', 'true');
+                // On ne rend le défilement que si aucune autre popup n'est ouverte
+                if (!document.querySelector('.pdf-modal.open')) document.body.classList.remove('pdf-modal-open');
+                docsEntry.focus();
+            };
+            window.openDocsModal = openDocs;
+
+            docsEntry.addEventListener('click', openDocs);
+            document.getElementById('docs-modal-close')?.addEventListener('click', closeDocs);
+            docsModal.querySelector('.pdf-modal-overlay')?.addEventListener('click', closeDocs);
+            document.addEventListener('keydown', (e) => {
+                // Échap ferme d'abord le lecteur PDF s'il est ouvert par-dessus
+                if (e.key === 'Escape' && docsModal.classList.contains('open') && !document.getElementById('pdf-modal')?.classList.contains('open')) {
+                    closeDocs();
+                }
+            });
         }
 
         // 1. EXTRAIRE LES TAGS UNIQUES
@@ -910,6 +948,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearInterval(waitAndOpenProj);
                     const section = document.getElementById('projets');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // La grille est dans la popup : on l'ouvre pour que la fermeture
+                    // du PDF ramène le visiteur sur la liste des documents.
+                    if (window.openDocsModal) window.openDocsModal();
                     setTimeout(() => { (card.querySelector('.doc-read-btn') || card.querySelector('.card-header')).click(); }, 600);
                     window.history.replaceState({}, '', '/');
                 }
