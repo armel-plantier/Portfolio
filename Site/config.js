@@ -7,7 +7,6 @@ const config = {
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
         { title: "Procédures", link: "#procedures" },
-        { title: "Projet TechNova", link: "#projets" },
         { title: "Projets Perso", link: "#projets-perso" },
         { title: "Veille", link: "#veille" }
     ],

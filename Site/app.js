@@ -194,24 +194,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const PROJECT_LIMIT = (config.projects || []).length;
 
     if (grid && config.projects) {
-        // BADGE COMPTEUR
-        const projTitle = document.querySelector('#projets h3');
-        if (projTitle) {
-            const badge = document.createElement('span');
-            badge.className = 'section-count-badge';
-            badge.textContent = config.projects.length;
-            projTitle.appendChild(badge);
-        }
-
-        // POPUP DES DOCUMENTS : la section n'affiche qu'un point d'entrée
+        // POPUP DES DOCUMENTS : ouverte depuis la carte TechNova des projets perso
         const docsModal = document.getElementById('docs-modal');
-        const docsEntry = document.getElementById('projects-entry');
-        const docsCount = document.getElementById('projects-entry-count');
-        if (docsCount) {
-            docsCount.textContent = config.projects.length + (config.projects.length > 1 ? ' procédures' : ' procédure');
-        }
-        if (docsModal && docsEntry) {
-            const openDocs = () => {
+        if (docsModal) {
+            let lastDocsTrigger = null;
+            const openDocs = (trigger) => {
+                lastDocsTrigger = trigger instanceof HTMLElement ? trigger : null;
                 docsModal.classList.add('open');
                 docsModal.setAttribute('aria-hidden', 'false');
                 document.body.classList.add('pdf-modal-open');
@@ -225,11 +213,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 docsModal.setAttribute('aria-hidden', 'true');
                 // On ne rend le défilement que si aucune autre popup n'est ouverte
                 if (!document.querySelector('.pdf-modal.open')) document.body.classList.remove('pdf-modal-open');
-                docsEntry.focus();
+                lastDocsTrigger?.focus();
             };
             window.openDocsModal = openDocs;
 
-            docsEntry.addEventListener('click', openDocs);
             document.getElementById('docs-modal-close')?.addEventListener('click', closeDocs);
             docsModal.querySelector('.pdf-modal-overlay')?.addEventListener('click', closeDocs);
             document.addEventListener('keydown', (e) => {
@@ -646,11 +633,41 @@ document.addEventListener("DOMContentLoaded", () => {
     if (persoGrid && config.personalProjects && config.personalProjects.length > 0) {
         if (persoEmptyMsg) persoEmptyMsg.style.display = 'none';
 
+        // Carte TechNova : elle ouvre la popup des documents au lieu d'un lien externe
+        const technovaCount = (config.projects || []).length;
+        if (technovaCount > 0) {
+            const technovaTags = [...new Set((config.projects || []).flatMap(p => p.tags || []))].slice(0, 3);
+            const card = document.createElement('div');
+            card.className = 'project-card perso-card';
+            card.innerHTML = `
+                <div class="card-header" style="cursor: default;">
+                    <div class="icon">
+                        <svg viewBox="0 0 24 24" width="26" height="26" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    </div>
+                    <div class="meta">
+                        <h4>Projets TechNova</h4>
+                        <p>Simulation d'une refonte complète de l'architecture réseau d'une PME, documentée pas à pas.</p>
+                        <div class="tags-container">${technovaTags.map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('')}</div>
+                    </div>
+                </div>
+                <div class="perso-card-links">
+                    <button type="button" class="perso-link-btn perso-link-demo" id="projects-entry" aria-haspopup="dialog">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                        Voir les ${technovaCount} documents
+                    </button>
+                </div>
+            `;
+            card.querySelector('#projects-entry').addEventListener('click', (e) => {
+                if (window.openDocsModal) window.openDocsModal(e.currentTarget);
+            });
+            persoGrid.appendChild(card);
+        }
+
         const persoTitle = document.querySelector('#projets-perso h3');
         if (persoTitle) {
             const badge = document.createElement('span');
             badge.className = 'section-count-badge';
-            badge.textContent = config.personalProjects.length;
+            badge.textContent = config.personalProjects.length + (technovaCount > 0 ? 1 : 0);
             persoTitle.appendChild(badge);
         }
 
@@ -946,7 +963,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const paramSlug = decodeURIComponent(projParam).toLowerCase();
                 if (cardSlug === paramSlug) {
                     clearInterval(waitAndOpenProj);
-                    const section = document.getElementById('projets');
+                    const section = document.getElementById('projets-perso');
                     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     // La grille est dans la popup : on l'ouvre pour que la fermeture
                     // du PDF ramène le visiteur sur la liste des documents.
