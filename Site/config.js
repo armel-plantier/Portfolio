@@ -3,6 +3,7 @@ const config = {
 // --- 1. NAVIGATION ---
     navigation: [
         { title: "Accueil", link: "#" },
+        { title: "Mon profil", link: "#profil" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
@@ -28,6 +29,20 @@ const config = {
     social: {
         github: "https://github.com/armel-plantier",
         linkedin: "https://fr.linkedin.com/in/armel-plantier",
+    },
+
+    // --- 2b. SECTION "MON PROFIL" ---
+    // TODO (données de test) : remplace le titre, le texte, la localisation et
+    // la disponibilité. La formation et l'alternance affichées à droite sont
+    // reprises automatiquement de formations[] et experiences[] : rien à saisir.
+    // cvUrl : chemin vers ton CV (ex. "assets/cv-armel-plantier.pdf").
+    // Laissé vide, le bouton de téléchargement n'apparaît pas.
+    profileSection: {
+        heading: "Étudiant en cybersécurité, en alternance",
+        text: "Après un BTS SIO option SISR, je poursuis en Licence Sécurité des Réseaux et Cybersécurité, en alternance chez Malakoff Humanis. Mon terrain, c'est l'infrastructure : construire des réseaux propres, les superviser, et réduire leur surface d'attaque.\n\nJe documente systématiquement ce que je monte — les procédures de ce site en sont le résultat — et j'automatise ce qui peut l'être, de la collecte de logs à ma veille hebdomadaire.",
+        location: "Caen, Normandie",
+        availability: "Septembre 2027",
+        cvUrl: ""
     },
 
 

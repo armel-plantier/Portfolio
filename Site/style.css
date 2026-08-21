@@ -2545,3 +2545,97 @@ button.perso-link-btn {
 @media (max-width: 640px) {
     .docs-modal-body { padding: 18px; }
 }
+
+
+/* ============================================================
+   SECTION "MON PROFIL" — texte à gauche, faits à droite
+   ============================================================ */
+.profil-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.profil-text, .profil-facts {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+
+.profil-text { padding: 30px; }
+.profil-text h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    color: var(--text);
+}
+.profil-text p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    margin: 0 0 14px;
+}
+.profil-text p:last-child { margin-bottom: 0; }
+
+.profil-facts { padding: 26px; display: flex; flex-direction: column; }
+.profil-facts dl { margin: 0; }
+.profil-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+.profil-fact:last-child { border-bottom: none; }
+.profil-fact dt {
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+}
+.profil-fact dd { margin: 0; font-size: 0.9rem; color: var(--text); }
+
+.profil-dispo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--badge-bg);
+    font-weight: 600;
+}
+.profil-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--badge-bg);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    flex-shrink: 0;
+}
+
+.profil-cv {
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--primary);
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.profil-cv:hover { background: #5457e0; border-color: #5457e0; transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+    .profil-grid { grid-template-columns: 1fr; }
+    .profil-text { padding: 24px; }
+    .profil-facts { padding: 22px; }
+}

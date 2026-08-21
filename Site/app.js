@@ -186,6 +186,51 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- 6b. MON PROFIL (texte à gauche, faits à droite) ---
+    const profilEl = document.getElementById("profil-content");
+    if (profilEl && config.profileSection) {
+        const p = config.profileSection;
+        // Formation et alternance viennent des sections existantes : une seule
+        // source de vérité, elles suivent toute mise à jour du parcours.
+        const formation = (config.formations || [])[0];
+        const alternance = (config.experiences || []).find(e => /alternance/i.test(e.role || ""));
+
+        const facts = [];
+        if (formation) facts.push(["Formation", formation.role]);
+        if (alternance) facts.push(["Alternance", alternance.company]);
+        if (p.location) facts.push(["Localisation", p.location]);
+        if (p.availability) {
+            facts.push(["Disponibilité", `<span class="profil-dispo"><span class="profil-pulse"></span>${escapeHTML(p.availability)}</span>`, true]);
+        }
+
+        const paragraphs = (p.text || "")
+            .split(/\n\s*\n/)
+            .filter(Boolean)
+            .map(t => `<p>${escapeHTML(t.trim())}</p>`)
+            .join('');
+
+        profilEl.innerHTML = `
+            <div class="profil-text">
+                ${p.heading ? `<h4>${escapeHTML(p.heading)}</h4>` : ''}
+                ${paragraphs}
+            </div>
+            <div class="profil-facts">
+                <dl>
+                    ${facts.map(([label, value, raw]) => `
+                        <div class="profil-fact">
+                            <dt>${escapeHTML(label)}</dt>
+                            <dd>${raw ? value : escapeHTML(value)}</dd>
+                        </div>`).join('')}
+                </dl>
+                ${p.cvUrl ? `
+                    <a class="profil-cv" href="${escapeHTML(p.cvUrl)}" download>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>
+                        Télécharger mon CV
+                    </a>` : ''}
+            </div>
+        `;
+    }
+
     // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
     const grid = document.getElementById("project-grid");
     const path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
