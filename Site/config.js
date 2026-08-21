@@ -426,7 +426,7 @@ experiences: [
             description: "Application open source pour piloter et analyser son portefeuille d'investissement. Le projet évolue en continu.",
             tags: ["En développement"],
             icon: "assets/capitalboard.png",
-            github: "",
+            github: "https://github.com/arrmel-capitalboard/Capital-Board",
             demo: "https://capitalboard.fr"
         }
         // {
