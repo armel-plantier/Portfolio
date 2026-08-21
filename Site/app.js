@@ -195,9 +195,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const formation = (config.formations || [])[0];
         const alternance = (config.experiences || []).find(e => /alternance/i.test(e.role || ""));
 
+        // Logo de l'école / de l'entreprise, repris des photos de la timeline
+        const withLogo = (photo, label, text) => photo
+            ? `<span class="profil-val"><img class="profil-logo" src="assets/${escapeHTML(photo)}" alt="${escapeHTML(label)}" onerror="this.remove()">${escapeHTML(text)}</span>`
+            : escapeHTML(text);
+
         const facts = [];
-        if (formation) facts.push(["Formation", formation.role]);
-        if (alternance) facts.push(["Alternance", alternance.company]);
+        if (formation) facts.push(["Formation", withLogo(formation.photo, formation.company || "", formation.role), true]);
+        if (alternance) facts.push(["Alternance", withLogo(alternance.photo, alternance.company || "", alternance.company), true]);
         if (p.location) facts.push(["Localisation", p.location]);
         if (p.availability) {
             facts.push(["Disponibilité", `<span class="profil-dispo"><span class="profil-pulse"></span>${escapeHTML(p.availability)}</span>`, true]);

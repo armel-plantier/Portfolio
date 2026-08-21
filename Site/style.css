@@ -2639,3 +2639,15 @@ body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 
     .profil-text { padding: 24px; }
     .profil-facts { padding: 22px; }
 }
+
+/* Logo de l'école / de l'entreprise dans les faits du profil */
+.profil-val { display: flex; align-items: center; gap: 10px; }
+.profil-logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: #fff;
+}
