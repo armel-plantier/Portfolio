@@ -21,6 +21,44 @@ const renderIcon = (iconString) => {
     }
 };
 
+// --- POSITION DE DÉFILEMENT AU CHARGEMENT ---
+// Un rechargement doit repartir de l'accroche. Deux choses l'en empêchent :
+// la restauration automatique du navigateur, qui vise une position calculée
+// avant que le JS n'injecte le contenu, et l'ancre que le menu laisse dans
+// l'URL. Une ancre partagée est honorée une fois, puis retirée de l'URL pour
+// que le rechargement suivant reparte du haut lui aussi.
+(function () {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    const cleanHash = () => history.replaceState({}, '', window.location.pathname + window.location.search);
+
+    window.addEventListener('load', function () {
+        const hash = window.location.hash;
+        let target = null;
+        if (hash && hash.length > 1) {
+            try { target = document.querySelector(hash); } catch (e) { target = null; }
+        }
+        if (!target) { window.scrollTo(0, 0); if (hash) cleanHash(); return; }
+        // Le contenu est injecté par JS et l'écran de vérification bloque le
+        // défilement : on attend qu'il disparaisse avant de viser l'ancre.
+        let tries = 0;
+        (function goToTarget() {
+            const splash = document.getElementById('splash-screen');
+            const blocked = splash && splash.offsetParent !== null;
+            if (blocked && tries++ < 40) { setTimeout(goToTarget, 150); return; }
+            // 'instant' : au chargement on se place, on n'anime pas (html a scroll-behavior: smooth)
+            target.scrollIntoView({ block: 'start', behavior: 'instant' });
+            cleanHash();
+        })();
+    });
+
+    // Le menu interne navigue par ancre : on nettoie l'URL une fois le saut fait.
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a[href^="#"]');
+        if (link && link.getAttribute('href').length > 1) setTimeout(cleanHash, 800);
+    });
+})();
+
 // --- GESTION DES URLs DIRECTES (bypass Cloudflare 404) ---
 (function() {
     var segments = window.location.pathname.split('/').filter(Boolean);
