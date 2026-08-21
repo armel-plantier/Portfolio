@@ -408,9 +408,9 @@ experiences: [
     // "icon" est optionnel (SVG ou chemin d'image) : sans lui, une icône générique est utilisée.
     personalProjects: [
         {
-            // TODO: remplace cette description et ces tags par les vrais détails de CapitalBoard
+            // TODO: remplace ces tags par les vrais détails de CapitalBoard
             title: "CapitalBoard",
-            description: "Description à compléter — présente ici ton projet CapitalBoard en une phrase.",
+            description: "Application de suivi de portefeuille, opensource",
             tags: ["À compléter"],
             icon: "assets/capitalboard.png",
             github: "",
