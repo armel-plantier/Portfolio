@@ -867,6 +867,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 13. GITHUB API FOOTER ---
     const updateEl = document.getElementById("last-update");
+    // Sans date à afficher, on retire la mention et son séparateur plutôt que
+    // de laisser un texte de remplissage dans le pied de page.
+    const dropLastUpdate = () => {
+        const sep = updateEl.previousElementSibling;
+        if (sep && sep.classList.contains('separator')) sep.remove();
+        updateEl.remove();
+    };
     if(updateEl && config.profile.githubUser && config.profile.githubRepo) {
         fetch(`https://api.github.com/repos/${config.profile.githubUser}/${config.profile.githubRepo}`).then(r => {
             if (!r.ok) throw new Error('GitHub API error ' + r.status);
@@ -875,7 +882,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const date = new Date(d.pushed_at);
             if (isNaN(date.getTime())) throw new Error('Invalid pushed_at');
             updateEl.innerHTML = `Maj : ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
-        }).catch(() => { updateEl.innerText = "System Ready"; });
+        }).catch(dropLastUpdate);
+    } else if (updateEl) {
+        dropLastUpdate();
     }
 
     // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
