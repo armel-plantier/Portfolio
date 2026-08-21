@@ -1,7 +1,7 @@
 {
-  "name": "Armel Plantier | Portfolio",
+  "name": "Armel Plantier | Sécurité des réseaux & cybersécurité",
   "short_name": "Armel P.",
-  "description": "Portfolio d'étudiant Administrateur Système. Projets, Labs et Certifications.",
+  "description": "Portfolio d'Armel Plantier, étudiant en Licence Sécurité des Réseaux et Cybersécurité. Projets réseau, procédures techniques, certifications et veille.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,7 +9,11 @@
   "background_color": "#06080f",
   "theme_color": "#6366f1",
   "lang": "fr",
-  "categories": ["education", "productivity", "portfolio"],
+  "categories": [
+    "education",
+    "productivity",
+    "portfolio"
+  ],
   "icons": [
     {
       "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='38' fill='%23151925'/><text x='96' y='125' font-family='Arial, sans-serif' font-weight='bold' font-size='96' text-anchor='middle' fill='%236366f1'>AP</text></svg>",
@@ -26,9 +30,14 @@
   ],
   "shortcuts": [
     {
-      "name": "Projets",
-      "short_name": "Projets",
-      "url": "/#projets"
+      "name": "Mon profil",
+      "short_name": "Profil",
+      "url": "/#profil"
+    },
+    {
+      "name": "Procédures",
+      "short_name": "Procédures",
+      "url": "/#procedures"
     },
     {
       "name": "Certifications",
@@ -36,9 +45,9 @@
       "url": "/#certifications"
     },
     {
-      "name": "Veille Cyber",
+      "name": "Veille automatisée",
       "short_name": "Veille",
-      "url": "/veille/"
+      "url": "/Veille/"
     }
   ]
 }
