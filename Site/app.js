@@ -267,13 +267,29 @@ document.addEventListener("DOMContentLoaded", () => {
                             <dd>${f.raw ? f.value : escapeHTML(f.value)}</dd>
                         </div>`).join('')}
                 </dl>
-                ${p.cvUrl ? `
-                    <a class="profil-cv" href="${escapeHTML(p.cvUrl)}" download>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>
-                        Télécharger mon CV
-                    </a>` : ''}
+                <div class="profil-actions">
+                    <button type="button" class="profil-btn profil-btn-main" id="profil-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 6 10-6"/></svg>
+                        Me contacter
+                    </button>
+                    ${p.cvUrl ? `
+                        <a class="profil-btn" href="${escapeHTML(p.cvUrl)}" download>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>
+                            Mon CV
+                        </a>` : `
+                        <span class="profil-btn is-disabled" aria-disabled="true" title="Le CV sera ajouté prochainement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>
+                            CV bientôt disponible
+                        </span>`}
+                </div>
             </div>
         `;
+
+        // On réutilise le déclencheur du hero : même modale, même captcha,
+        // une seule logique de dévoilement de l'adresse.
+        profilEl.querySelector('#profil-contact')?.addEventListener('click', () => {
+            document.getElementById('email-trigger')?.click();
+        });
     }
 
     // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---

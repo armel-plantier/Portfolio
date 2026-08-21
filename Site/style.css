@@ -2616,23 +2616,51 @@ body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 
     flex-shrink: 0;
 }
 
-.profil-cv {
-    margin-top: 18px;
+.profil-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+}
+.profil-btn {
+    flex: 1 1 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 11px 18px;
+    padding: 11px 16px;
     border-radius: 10px;
-    border: 1px solid var(--primary);
-    background: var(--primary);
-    color: #fff;
+    border: 1px solid var(--border);
+    background: rgba(99, 102, 241, 0.06);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
+    line-height: 1;
     text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
-.profil-cv:hover { background: #5457e0; border-color: #5457e0; transform: translateY(-2px); }
+.profil-btn svg { flex-shrink: 0; }
+.profil-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-2px); }
+.profil-btn-main { background: var(--primary); border-color: var(--primary); color: #fff; }
+.profil-btn-main:hover { background: #5457e0; border-color: #5457e0; }
+/* CV pas encore déposé : présent mais clairement inactif */
+.profil-btn.is-disabled {
+    background: transparent;
+    color: var(--muted);
+    border-style: dashed;
+    cursor: not-allowed;
+}
+.profil-btn.is-disabled:hover {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--border);
+    transform: none;
+}
 
 @media (max-width: 900px) {
     .profil-grid { grid-template-columns: 1fr; }
