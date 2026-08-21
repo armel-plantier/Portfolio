@@ -636,7 +636,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Carte TechNova : elle ouvre la popup des documents au lieu d'un lien externe
         const technovaCount = (config.projects || []).length;
         if (technovaCount > 0) {
-            const technovaTags = [...new Set((config.projects || []).flatMap(p => p.tags || []))].slice(0, 3);
             const card = document.createElement('div');
             card.className = 'project-card perso-card';
             card.innerHTML = `
@@ -645,7 +644,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="meta">
                         <h4>Projets TechNova</h4>
                         <p>Simulation d'une refonte complète de l'architecture réseau d'une PME, documentée pas à pas.</p>
-                        <div class="tags-container">${technovaTags.map(t => `<span class="project-tag">${escapeHTML(t)}</span>`).join('')}</div>
                     </div>
                 </div>
                 <div class="perso-card-links">
@@ -669,14 +667,9 @@ document.addEventListener("DOMContentLoaded", () => {
             persoTitle.appendChild(badge);
         }
 
+        // Les tags ne sont plus affichés sur ces cartes, mais restent dans
+        // config.js : la palette Cmd+K s'en sert pour la recherche.
         config.personalProjects.forEach((proj) => {
-            let cardTagsHTML = '';
-            if (proj.tags && proj.tags.length > 0) {
-                cardTagsHTML = '<div class="tags-container">';
-                proj.tags.forEach(tag => { cardTagsHTML += `<span class="project-tag">${escapeHTML(tag)}</span>`; });
-                cardTagsHTML += '</div>';
-            }
-
             let linksHTML = '';
             if (proj.github) {
                 linksHTML += `<a href="${escapeHTML(proj.github)}" target="_blank" rel="noopener noreferrer" class="perso-link-btn">${githubIconSvg} GitHub</a>`;
@@ -693,7 +686,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="meta">
                         <h4>${escapeHTML(proj.title)}</h4>
                         <p>${escapeHTML(proj.description || '')}</p>
-                        ${cardTagsHTML}
                     </div>
                 </div>
                 ${linksHTML ? `<div class="perso-card-links">${linksHTML}</div>` : ''}
