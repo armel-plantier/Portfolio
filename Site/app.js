@@ -959,7 +959,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="cert-bar"><i style="width:${Math.round(t.count / maxCount * 100)}%"></i></span>
                         <b>${t.count}</b>
                     </div>`).join('')}</div>` : ''}
-                ${maj ? `<p class="cert-upd"><span class="cert-upd-dot"></span>Mis à jour automatiquement le ${maj}</p>` : ''}
+                ${maj ? `<p class="cert-upd"><span class="cert-upd-dot"></span>Synchronisé chaque jour · dernière mise à jour le ${maj}</p>` : ''}
             `;
             certList.appendChild(hero);
         }
