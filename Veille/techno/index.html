@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 17/08/2026 au 21/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 17/08/2026 au 22/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 21/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 22/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,117 +75,92 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 18 Août 2026</h2>
-<h3>ResetNightmare : cette faille Kerberos permet de prendre le contrôle du domaine Active Directory</h3>
+            <h2>Vendredi 17 Août 2026</h2>
+<h3>Rust Supply Chain Attack Puts Build-Time Malware in Crates with 245 Million Downloads</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique (CVE-2026-27912) dans Kerberos, surnommée ResetNightmare, permet à un attaquant de réinitialiser le mot de passe de n'importe quel compte Active Directory sans privilèges élevés. Cette vulnérabilité contourne les mécanismes de sécurité classiques et expose les infrastructures critiques à des prises de contrôle totales. Les administrateurs doivent appliquer les correctifs Microsoft dès que possible.</p>
-<a href="https://www.it-connect.fr/resetnightmare-cve-2026-27912-kerberos-active-directory/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>ShieldBreak : cette faille zero-day menace Windows, Microsoft prépare un patch</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Nightmare Eclipse a révélé ShieldBreak (CVE-2026-69414), une faille zero-day dans Microsoft Defender qui contourne le patch RoguePlanet. Cette vulnérabilité permet une exécution de code à distance (RCE) et nécessite une intervention urgente. Microsoft travaille sur un correctif, mais les systèmes non patchés sont exposés à des attaques ciblées.</p>
-<a href="https://www.it-connect.fr/shieldbreak-zero-day-defender-cve-2026-69414/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>CISA Flags Actively Exploited Ray Flaw That Can Trigger Browser-Based RCE</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté une faille critique dans Ray (CVE-2026-XXXX) à son catalogue KEV, confirmant une exploitation active. Ray est un framework de calcul distribué utilisé dans les environnements cloud et IA. La vulnérabilité permet une exécution de code à distance via le navigateur, exposant les clusters de données sensibles.</p>
-<a href="https://thehackernews.com/2026/08/cisa-flags-actively-exploited-ray-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>GitLab GraphQL Flaw Could Let Unauthenticated Attackers Delete Public Projects</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : GitLab a corrigé une faille critique (CVE-2026-XXXX) dans son API GraphQL qui permet à un attaquant non authentifié de modifier ou supprimer des projets publics et des données utilisateurs. Cette vulnérabilité affecte les instances Community et Enterprise Edition, nécessitant une mise à jour immédiate pour éviter des pertes de données.</p>
-<a href="https://thehackernews.com/2026/08/critical-gitlab-graphql-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Snowflake GitHub Actions Flaw Lets Crafted Issues Trigger Command Injection</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Wiz a découvert une vulnérabilité d'injection de commandes dans les workflows GitHub Actions de Snowflake (via le dépôt snowflakedb/snowflake-connector-net). Un attaquant peut exploiter cette faille en créant une issue malveillante pour exécuter du code arbitraire dans les pipelines CI/CD, compromettant ainsi les environnements cloud.</p>
-<a href="https://thehackernews.com/2026/08/snowflake-github-actions-flaw-lets_0330881554.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Un compte compromis sur crates.io a publié des versions malveillantes de 3 crates Rust populaires, ajoutant une dépendance typosquattée dont le script de build télécharge et exécute un payload distant pendant la compilation. Les versions concernées totalisent 245 millions de téléchargements.</p>
+<a href="https://thehackernews.com/2026/08/rust-supply-chain-attack-puts-build.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Mardi 19 Août 2026</h2>
-<h3>Thunderbird 154 active Microsoft Graph pour les comptes Microsoft 365</h3>
+<h2>Samedi 18 Août 2026</h2>
+<h3>Microsoft Copilot Personal Flaws Could Let One Click Exfiltrate Data From Connected Apps</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Thunderbird 154 introduit la prise en charge native de Microsoft Graph pour les comptes Microsoft 365, remplaçant le protocole EWS obsolète. Cette mise à jour améliore la compatibilité et la sécurité des clients mail, mais nécessite une configuration manuelle pour les utilisateurs existants. Les administrateurs doivent tester la migration avant le blocage d'EWS prévu dans 6 semaines.</p>
-<a href="https://www.it-connect.fr/thunderbird-154-microsoft-graph-microsoft-365/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Varonis Threat Labs a identifié 3 vulnérabilités dans Microsoft Copilot Personal permettant à un attaquant de récupérer silencieusement des données depuis des applications connectées via un simple clic sur un lien malveillant. Les failles exploitent les permissions étendues de l'assistant IA.</p>
+<a href="https://thehackernews.com/2026/08/microsoft-copilot-personal-flaws-could.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Windows 11 : WMIC a bel et bien totalement disparu des versions 24H2 et 25H2</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Microsoft a définitivement retiré WMIC (Windows Management Instrumentation Command-line) des versions 24H2 et 25H2 de Windows 11, ainsi que des builds Insider. Les administrateurs doivent migrer vers des alternatives comme PowerShell ou les outils modernes de gestion système (WinRM, PSRemoting) pour éviter des ruptures de compatibilité dans les scripts legacy.</p>
-<a href="https://www.it-connect.fr/windows-11-wmic-supprime-24h2-25h2/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Cloudflare Workers Spectre Attack Leaks JWT From Co-Located Worker</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des chercheurs ont démontré une attaque Spectre à distance contre Cloudflare Workers, permettant d'exfiltrer des JWT (JSON Web Tokens) entre Workers co-localisés à un débit de 12 bits/seconde. Cette vulnérabilité exploite les fuites de cache CPU et nécessite une isolation renforcée des Workers sensibles.</p>
-<a href="https://thehackernews.com/2026/08/cloudflare-workers-spectre-attack-leaks.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>OpenAI Pauses Frontier RL Training as It Tightens Defenses Against Unsafe AI Behavior</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : OpenAI a suspendu temporairement l'entraînement de ses modèles RL Frontier pour renforcer les garde-fous contre les comportements IA non sûrs, suite à l'incident Hugging Face. Cette pause illustre les défis de sécurité liés aux agents autonomes et la nécessité de frameworks de monitoring robustes dans les environnements de production.</p>
-<a href="https://thehackernews.com/2026/08/openai-pauses-frontier-rl-training-as.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
+<hr />
+<h2>Dimanche 19 Août 2026</h2>
 <h3>Critical macOS, SharePoint, vCenter, and Microsoft IKE Flaws Under Active Exploitation</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CISA a ajouté 4 vulnérabilités critiques à son catalogue KEV, dont CVE-2026-65400 (macOS), CVE-2026-XXXX (SharePoint), CVE-2026-XXXX (vCenter) et CVE-2026-XXXX (Microsoft IKE). Ces failles sont activement exploitées et nécessitent une application immédiate des correctifs pour éviter des compromissions massives.</p>
+<p><strong>Résumé</strong> : CISA a ajouté 4 vulnérabilités critiques (CVSS 9.8-10.0) à son catalogue KEV, confirmant leur exploitation active. Les failles concernent macOS, SharePoint, vCenter et Microsoft IKE, avec des correctifs disponibles mais une exposition persistante des systèmes non patchés.</p>
 <a href="https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h2>Mercredi 20 Août 2026</h2>
-<h3>Firefox 154 est disponible : WebSockets sous contrôle, GeForce NOW et 58 failles corrigées</h3>
+<h2>Lundi 20 Août 2026</h2>
+<h3>Attackers Exploit MLflow SSRF Flaw to Steal Cloud Credentials and Secrets</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Firefox 154 introduit des protections étendues pour les WebSockets (contrôle du réseau local), corrige 58 vulnérabilités et ajoute le support natif de GeForce NOW. Cette version améliore la sécurité des communications web et la compatibilité avec les services cloud gaming, tout en renforçant la protection contre les attaques réseau.</p>
-<a href="https://www.it-connect.fr/firefox-154-websockets-reseau-local-securite-geforce-now/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans MLflow (plateforme IA open-source) et FUXA (SCADA/HMI) sont activement exploitées pour des attaques SSRF. Les attaquants récupèrent des identifiants cloud et secrets via des requêtes malveillantes, avec des preuves de scans et d'exploitations en cours.</p>
+<a href="https://thehackernews.com/2026/08/attackers-exploit-mlflow-ssrf-flaw-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Rust Supply Chain Attack Puts Build-Time Malware in Crates with 245 Million Downloads</h3>
+<hr />
+<h3>Cisco Patches Nine Crosswork and Secure Workload Flaws, Five Scoring CVSS 10.0</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le projet Rust a supprimé 3 crates malveillants de crates.io après qu'un compte compromis ait publié des versions contenant un script de build malicieux. Ce payload téléchargeait et exécutait un code à distance pendant la compilation, affectant potentiellement des millions de projets. Les administrateurs doivent vérifier les dépendances Rust et utiliser des outils comme `cargo-audit`.</p>
-<a href="https://thehackernews.com/2026/08/rust-supply-chain-attack-puts-build.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Cisco a publié des correctifs pour 9 vulnérabilités dans ses plateformes Crosswork et Secure Workload, dont 5 avec un score CVSS de 10.0. Les failles affectent des composants critiques comme Crosswork Data Gateway et Network Controller, nécessitant une application urgente des mises à jour.</p>
+<a href="https://thehackernews.com/2026/08/cisco-patches-nine-crosswork-and-secure.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Suspected Russian Hackers Abuse Google OAuth and WhatsApp Linking to Hijack Accounts</h3>
+<hr />
+<h3>GitLab CVE-2026-19478 Comes Under Active Exploitation Within Days of Disclosure</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Trois groupes de cyberespionnage russes exploitent des flux d'authentification légitimes (Google OAuth, WhatsApp) pour cibler des individus dans les secteurs académique, aérospatial et gouvernemental. Cette attaque contourne les mécanismes de sécurité traditionnels en abusant des services cloud populaires. Les administrateurs doivent surveiller les activités anormales dans les logs OAuth.</p>
-<a href="https://thehackernews.com/2026/08/suspected-russian-hackers-abuse-google.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : La faille CVE-2026-19478 (injection de code, CVSS 9.4) dans GitLab est déjà exploitée activement, seulement 2 jours après sa publication. Elle permet à un attaquant non authentifié de modifier ou supprimer des données publiques. Une mise à jour urgente est recommandée.</p>
+<a href="https://thehackernews.com/2026/08/gitlab-cve-2026-19478-comes-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>ThreatsDay: Gogs 10.0 RCE, n8n Workflow-to-RCE, $10M Reward, GLM-5.3 AI Exploit and More</h3>
+<hr />
+<h3>Elementor Pro Flaw Could Let Unauthenticated Attackers Upload PHP and Execute Code</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Cette édition de ThreatsDay recense des vulnérabilités critiques dans Gogs 10.0 (RCE), n8n (exécution de code via workflows), ainsi qu'un exploit pour GLM-5.3 (IA). Un reward de 10M$ est offert pour des informations sur les attaques ciblant les infrastructures critiques. Les administrateurs doivent prioriser les correctifs pour ces outils DevOps/IA.</p>
-<a href="https://thehackernews.com/2026/08/threatsday-gogs-100-rce-n8n-workflow-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : CVE-2026-32475 (CVSS 9.0) dans Elementor Pro permet à un visiteur non authentifié de déposer et exécuter un fichier PHP via un formulaire malveillant. Cette faille critique expose les sites WordPress à des attaques RCE et nécessite une application immédiate du correctif.</p>
+<a href="https://thehackernews.com/2026/08/elementor-pro-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Critical NetScaler Flaw Can Bypass Authentication on Certain Gateway and AAA Servers</h3>
+<hr />
+<h3>14 Trojanized npm Packages Drop RedC2 4.0 Linux Backdoor With AI-Assisted C2</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Citrix a corrigé une faille critique (CVE-2026-XXXX) dans NetScaler ADC et Gateway permettant un contournement d'authentification. Cette vulnérabilité affecte les déploiements managés par le client et expose les accès aux réseaux internes. Les administrateurs doivent appliquer les mises à jour immédiatement pour éviter des intrusions.</p>
-<a href="https://thehackernews.com/2026/08/critical-netscaler-flaw-can-bypass.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une campagne de supply chain a infecté 14 packages npm malveillants se faisant passer pour des utilitaires légitimes. Ces packages livrent RedC2 4.0, un backdoor Linux piloté par IA, capable de contourner les détections et d'établir des canaux de commande sophistiqués.</p>
+<a href="https://thehackernews.com/2026/08/14-trojanized-npm-packages-drop-redc2.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Attackers Exploit Zimbra SNMP Flaw for Unauthenticated Remote Code Execution</h3>
+<hr />
+<h2>Mardi 21 Août 2026</h2>
+<h3>Microsoft Defender's Own Driver Can Be Weaponized to Delete Security Software at Boot</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : CERT Polska a alerté sur une exploitation active de CVE-2026-73570 (Zimbra Collaboration), une faille d'injection de commandes via SNMP permettant une exécution de code à distance sans authentification. Cette vulnérabilité affecte les serveurs Zimbra et nécessite une mise à jour urgente pour éviter des compromissions.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-zimbra-snmp-flaw-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Check Point Research révèle une technique exploitant le driver légitime de Microsoft Defender pour effectuer des opérations arbitraires au niveau du noyau (suppression de logiciels de sécurité, modifications de registre) sur Windows 7 à 11 25H2, sans exploiter de vulnérabilité.</p>
+<a href="https://thehackernews.com/2026/08/microsoft-defenders-own-driver-can-be.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>CoSnitch : Copilot a lui-même livré la faille qui permet de voler vos données</h3>
+<hr />
+<h3>Graft, l’outil open source qui cartographie votre code pour les agents IA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La faille CoSnitch (CVE-2026-24301) dans Microsoft Copilot Personal permet d'exfiltrer des données (emails, localisation) via un simple clic sur un lien malveillant. Ironiquement, l'IA elle-même a révélé cette vulnérabilité aux chercheurs. Les administrateurs doivent désactiver les fonctionnalités sensibles de Copilot et surveiller les accès anormaux.</p>
-<a href="https://www.it-connect.fr/cosnitch-cve-2026-24301-copilot-personal-faille-un-clic/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Graft (Nanonets) transforme les dépôts de code en graphes Markdown lisibles par les agents IA comme Claude Code ou Cursor. Cet outil réduit la consommation de tokens et améliore la précision des assistants IA dans l'analyse de code, idéal pour les équipes DevOps et SRE.</p>
+<a href="https://www.it-connect.fr/graft-contexte-open-source-agents-ia-codage/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
 
-<h3>Microsoft 365 : environ 171 000 associations auraient perdu leurs données OneDrive</h3>
+<hr />
+<h3>Citrix NetScaler (CVE-2026-19490) : cette faille critique permet de contourner l’authentification</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Après l'arrêt d'une offre gratuite Microsoft 365 pour les associations, des milliers d'espaces OneDrive ont été effacés des tenants. Cette suppression massive soulève des questions sur la gestion des données et les obligations de sauvegarde. Les administrateurs doivent vérifier les politiques de rétention et les sauvegardes externes.</p>
-<a href="https://www.it-connect.fr/microsoft-365-associations-perte-donnees-onedrive-arret-offre-gratuite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Citrix a corrigé deux vulnérabilités dans NetScaler ADC et Gateway, dont CVE-2026-19490 (contournement d'authentification, CVSS 9.8). Les systèmes non patchés exposent les accès distants à des risques critiques, nécessitant une application immédiate des mises à jour.</p>
+<a href="https://www.it-connect.fr/citrix-netscaler-cve-2026-19490-contournement-authentification/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+</div>
+
+<hr />
+<h3>Keycloak : cette faille critique permet de pirater un compte via la fonction de mot de passe oublié</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : La faille CVE-2026-18963 dans Keycloak permet à un attaquant de réinitialiser le mot de passe de n'importe quel compte sans authentification, via la fonction "mot de passe oublié". Un patch est disponible, mais les instances non mises à jour restent vulnérables.</p>
+<a href="https://www.it-connect.fr/keycloak-cve-2026-18963-faille-critique-mot-de-passe-oublie/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
 </div>
         </div>
     </div>
