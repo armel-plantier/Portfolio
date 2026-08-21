@@ -410,7 +410,7 @@ experiences: [
         {
             // TODO: remplace ces tags par les vrais détails de CapitalBoard
             title: "CapitalBoard",
-            description: "Tableau de bord open source pour suivre son portefeuille d'investissement.",
+            description: "Application open source pour piloter et analyser son portefeuille d'investissement.",
             tags: ["À compléter"],
             icon: "assets/capitalboard.png",
             github: "",
