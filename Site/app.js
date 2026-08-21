@@ -375,8 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const div = document.createElement("div");
-            div.className = "project-card interactive-card doc-card";
-            div.setAttribute('data-hint', 'Voir le PDF 📄');
+            div.className = "project-card doc-card";
 
             // Attributs pour faciliter le filtrage JS
             div.setAttribute('data-title', escapeHTML(proj.title || ""));
@@ -675,8 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const div = document.createElement('div');
-            div.className = 'project-card interactive-card doc-card';
-            div.setAttribute('data-hint', 'Voir le PDF 📄');
+            div.className = 'project-card doc-card';
             div.setAttribute('data-tags', JSON.stringify(proc.tags || []));
             div.setAttribute('data-desc', escapeHTML(proc.longDescription || proc.description || ""));
             div.dataset.index = index;
@@ -1133,7 +1131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    initCursorHint();
 
     // --- BOUTON RETOUR EN HAUT ---
     const backToTop = document.getElementById('back-to-top');
@@ -1159,18 +1156,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // --- FONCTIONS AUXILIAIRES ---
-function initCursorHint() {
-    let hintEl = document.getElementById("cursor-hint");
-    if (!hintEl) { hintEl = document.createElement("div"); hintEl.id = "cursor-hint"; document.body.appendChild(hintEl); }
-    document.addEventListener("mousemove", (e) => { hintEl.style.transform = `translate(${e.clientX + 15}px, ${e.clientY + 15}px)`; });
-    document.querySelectorAll('.interactive-card').forEach(el => {
-        el.addEventListener("mouseenter", () => { if (!el.classList.contains('expanded')) { hintEl.innerText = el.getAttribute('data-hint') || "Voir"; hintEl.classList.add("visible"); } });
-        el.addEventListener("mousemove", (e) => { if (e.target.closest('.info-btn, .doc-card-actions') || el.classList.contains('expanded')) hintEl.classList.remove("visible"); else hintEl.classList.add("visible"); });
-        el.addEventListener("mouseleave", () => hintEl.classList.remove("visible"));
-        el.addEventListener("click", () => hintEl.classList.remove("visible"));
-    });
-}
-
 function openProjectModal(proj, dateStr = "") {
     const modal = document.getElementById("project-modal");
     const titleEl = document.getElementById("modal-project-title");
