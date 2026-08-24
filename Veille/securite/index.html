@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 17/08/2026 au 24/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 24/08/2026 au 25/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 24/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 25/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -75,165 +75,72 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Lundi 18 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Typo3</h3>
+            <h2>Lundi 24 Août 2026</h2>
+<h3>Multiples vulnérabilités critiques dans Metabase</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Typo3, permettant à un attaquant de contourner la politique de sécurité et potentiellement d'exécuter du code arbitraire. Les versions affectées ne sont pas précisées, mais un correctif est disponible dans la dernière mise à jour.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1036/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques (atteinte à la confidentialité, injection SQL et faille non spécifiée) ont été découvertes dans Metabase, un outil open-source d'analyse de données. Ces failles pourraient permettre à un attaquant d'exfiltrer des données sensibles ou de compromettre des systèmes connectés. Un correctif est attendu sous peu.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1075/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans GitLab</h3>
+<h3>Multiples vulnérabilités dans LibreNMS</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques affectant GitLab permettent une atteinte à l'intégrité des données et une injection de requêtes illégitimes (CSRF). Les versions concernées incluent GitLab CE/EE avant 16.11.6, 16.10.9 et 16.9.11. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1037/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques (atteinte à la confidentialité et contournement de politique de sécurité) ont été identifiées dans LibreNMS, un outil de supervision réseau. Ces failles pourraient permettre à un attaquant d'accéder à des données sensibles ou de contourner les mesures de sécurité. Un patch est en cours de déploiement.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1076/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Zabbix</h3>
+<h3>Faille non corrigée dans les routeurs Calix GS7 XGS expose les appareils internes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Zabbix est touché par des vulnérabilités critiques permettant un déni de service (DoS), une atteinte à la confidentialité et à l'intégrité des données. Les versions vulnérables incluent Zabbix 6.0.x avant 6.0.29, 6.4.x avant 6.4.15 et 7.0.x avant 7.0.1. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1039/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une vulnérabilité non corrigée dans les routeurs Calix GS7 XGS (utilisés par plusieurs fournisseurs d'accès américains) permet à des attaquants distants et non authentifiés de créer des règles de redirection de ports, exposant ainsi des appareils locaux à Internet. La criticité est élevée, aucun correctif n'est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/unpatched-calix-flaw-lets-hackers-bypass-nat-to-expose-internal-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Apple</h3>
+<h3>Exploitation active d'une faille critique dans Zimbra Collaboration Suite (CVE-2026-73570)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les produits Apple (iOS, macOS, etc.) permettent une exécution de code arbitraire, une élévation de privilèges et un DoS à distance. Les correctifs sont disponibles via les mises à jour iOS 17.6.1, macOS Sonoma 14.6.1 et autres. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1038/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : CISA a ordonné aux agences gouvernementales américaines de corriger sous 72h une faille critique (CVE-2026-73570) dans Zimbra Collaboration Suite, déjà exploitée en attaque. Cette vulnérabilité permet une prise de contrôle totale des communications d'un utilisateur. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-urgent-patching-of-actively-exploited-zimbra-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h2>Mardi 19 Août 2026</h2>
-<h3>Multiples vulnérabilités dans Synacor Zimbra Collaboration</h3>
+<h3>Faille critique de réinitialisation de mot de passe dans Keycloak (CVE-2026-XXXX)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Zimbra Collaboration est vulnérable à des attaques permettant une exécution de code arbitraire à distance (RCE), une falsification de requêtes côté serveur (SSRF) et une injection XSS. Les versions affectées incluent Zimbra 10.x avant 10.0.9. Les correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1041/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille critique dans Keycloak (CVE-2026-XXXX) permet à un attaquant non authentifié de prendre le contrôle de n'importe quel compte en forçant une réinitialisation de mot de passe. Red Hat a publié un correctif urgent pour cette faille d'identité et gestion d'accès.</p>
+<a href="https://thehackernews.com/2026/08/critical-keycloak-password-reset-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans les produits Axis</h3>
+<h3>Campagne Operation QUICSILVER : livraison d'un backdoor Go via des invitations de cérémonie de remise de diplômes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Les caméras et dispositifs Axis sont vulnérables à des attaques RCE, une élévation de privilèges et un DoS à distance. Les correctifs sont disponibles pour les versions affectées (non précisées). Niveau de criticité : **Élevé**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1042/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une campagne d'espionnage ciblant le gouvernement et le secteur IT du Myanmar utilise des leurres (invitations de cérémonie) pour déployer un backdoor Go nommé QUICAgent. Les attaquants exploitent des techniques d'ingénierie sociale pour compromettre les cibles. Aucune information sur un correctif n'est disponible.</p>
+<a href="https://thehackernews.com/2026/08/operation-quicsilver-targets-myanmar.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Vulnérabilité dans Apereo CAS</h3>
+<h3>WordlistLoader et SynkLoader : nouvelles familles de malwares distribuant Amatera et volant des mots de passe</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique dans Apereo CAS (Central Authentication Service) permet un contournement de la politique de sécurité, exposant les sessions utilisateurs. Un correctif est disponible dans la version 6.6.14+. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1043/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Deux nouvelles familles de malwares, WordlistLoader et SynkLoader, sont utilisées pour livrer des charges utiles comme Amatera Stealer et voler des mots de passe Windows. Ces outils, probablement vendus à des groupes de ransomware, utilisent des techniques d'évasion avancées. Aucun correctif spécifique n'est mentionné.</p>
+<a href="https://thehackernews.com/2026/08/wordlistloader-delivers-amatera-via.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Python</h3>
+<h3>ToxicPanda évolue en menace majeure pour les entreprises</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Python est affecté par des vulnérabilités permettant une atteinte à la confidentialité des données, un contournement de sécurité et des problèmes non spécifiés. Les versions vulnérables incluent Python 3.11.x avant 3.11.10 et 3.12.x avant 3.12.4. Des correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1044/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : La dernière version du Trojan bancaire ToxicPanda intègre de nouvelles fonctionnalités (vol de données étendu, ciblage d'applications critiques) et cible désormais les entreprises. Cette évolution en fait une menace majeure pour les infrastructures critiques. Aucun correctif n'est disponible pour cette version.</p>
+<a href="https://www.darkreading.com/mobile-security/toxicpanda-banking-trojan-matures-enterprise-threat" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Oracle Database Server</h3>
+<h3>91 vulnérabilités corrigées dans le framework Spring</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle Database Server est vulnérable à des attaques RCE, DoS et des fuites de données. Les correctifs sont disponibles via le Critical Patch Update d'août 2026. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1047/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : 91 vulnérabilités (dont des failles critiques) ont été corrigées dans le framework Spring, un composant majeur des applications Java. Ces correctifs s'ajoutent à plus de 200 vulnérabilités patchées en 2026, soulignant l'urgence de mettre à jour les systèmes concernés.</p>
+<a href="https://www.securityweek.com/91-vulnerabilities-patched-in-spring-application-framework/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<h3>Multiples vulnérabilités dans Oracle Java SE</h3>
+<h3>Fuite de données chez Apollo Global : informations personnelles exposées</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Oracle Java SE est touché par des vulnérabilités critiques permettant une RCE, un DoS et des fuites de données. Les correctifs sont disponibles via le CPU d'août 2026. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1048/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Une faille de sécurité chez Apollo Global a exposé des informations personnelles, probablement dans le cadre d'une campagne ciblant les grandes entreprises financières. L'impact exact et la criticité des données fuitées restent à préciser. Aucune information sur un correctif n'est disponible.</p>
+<a href="https://www.securityweek.com/personal-information-exposed-in-apollo-global-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
 
-<hr />
-<h2>Mercredi 20 Août 2026</h2>
-<h3>Multiples vulnérabilités dans les produits Splunk</h3>
+<h2>Mardi 25 Août 2026</h2>
+<h3>Attaque iranienne contre une centrale électrique britannique : 4 jours d'interruption</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Splunk est vulnérable à des attaques RCE, une élévation de privilèges et des fuites de données. Les versions affectées incluent Splunk Enterprise avant 9.1.2. Les correctifs sont disponibles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1056/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Ceph</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Ceph est vulnérable à des attaques d'élévation de privilèges, des fuites de données et des contournements de sécurité. Les correctifs sont disponibles pour les versions affectées. Niveau de criticité : **Élevé**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1057/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans les produits Cisco</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco est touché par des vulnérabilités critiques permettant une RCE, une élévation de privilèges et des fuites de données. Les correctifs sont disponibles pour les versions affectées. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1058/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans Microsoft Windows</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Windows est vulnérable à des attaques d'élévation de privilèges et des fuites de données. Les correctifs sont disponibles via les mises à jour du 20 août 2026. Niveau de criticité : **Élevé**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1060/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h2>Jeudi 21 Août 2026</h2>
-<h3>Vulnérabilité dans SPIP (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans SPIP permet une exécution de code arbitraire à distance (RCE). L'éditeur confirme une exploitation active. Les correctifs sont disponibles dans la version 4.2.13+. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1063/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Multiples vulnérabilités dans le noyau Linux de Red Hat</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux de Red Hat est vulnérable à des attaques RCE, une élévation de privilèges et un DoS à distance. Les correctifs sont disponibles via les mises à jour du noyau. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1065/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Vulnérabilité dans Microsoft Entra ID (CVE-2026-69836)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique dans Microsoft Entra ID (anciennement Azure AD) permet une exécution de code arbitraire à distance. Microsoft confirme une exploitation active. Un correctif est disponible via les mises à jour d'août 2026. Niveau de criticité : **Critique**.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1074/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>SynkLoader : Nouveau malware distribué via Microsoft Teams</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une nouvelle famille de malware, SynkLoader, est distribuée via des campagnes de phishing sur Microsoft Teams. Elle vole des identifiants via un faux écran de verrouillage. Les correctifs pour Teams sont disponibles, mais la vigilance est requise.</p>
-<a href="https://www.bleepingcomputer.com/news/security/new-synkloader-malware-pushed-in-microsoft-teams-phishing-campaign/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>CISA ordonne de patcher les vulnérabilités TrueConf Server</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CISA ordonne aux agences fédérales américaines de patcher deux vulnérabilités critiques dans TrueConf Server (CVE-2026-XXXX et CVE-2026-XXXX), activement exploitées. Les correctifs sont disponibles dans la version 5.3.1+. Niveau de criticité : **Critique**.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cisa-orders-feds-to-patch-actively-exploited-trueconf-server-flaws/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Vendredi 22 Août 2026</h2>
-<h3>LockBit 5.0 menace de publier des données d’Actua</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ransomware LockBit 5.0 menace de publier les données de plus de 100 000 personnes issues d'Actua, une entreprise française. Aucune preuve de fuite n'a encore été confirmée, mais la menace est crédible.</p>
-<a href="https://www.zataz.com/lockbit-5-0-menace-de-publier-des-donnees-dactua/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>Ransomware : 2026 dépasse déjà le nombre de victimes de 2025</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : En août 2026, le nombre de victimes de ransomware en France a déjà dépassé le total de 2025 (181 victimes). Les groupes Cl0p, LockBit et BlackCat sont les plus actifs. Aucune solution miracle n'existe, mais la prévention reste cruciale.</p>
-<a href="https://www.zataz.com/ransomware-avec-181-victimes-2026-depasse-deja-toute-lannee-2025/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>ShinyHunters revendique un piratage de Logitech et Streamlabs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe ShinyHunters revendique le vol de données chez Logitech et Streamlabs, mettant en danger les comptes des streameurs. Aucune confirmation officielle n'a été faite, mais la menace est prise au sérieux.</p>
-<a href="https://www.zataz.com/shinyhunters-menace-logitech-et-streamlabs/" class="btn-source" target="_blank">🔗 Lire sur ZATAZ</a>
-</div>
-
-<h3>Hundreds of leaked AWS keys give full control over corporate accounts</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plus de 9 300 clés AWS exposées publiquement entre 2022 et 2026 sont toujours actives, donnant un contrôle total sur des comptes corporate. Une urgence de rotation des clés est recommandée.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hundreds-of-leaked-aws-keys-give-full-control-over-corporate-accounts/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h2>Samedi 23 Août 2026</h2>
-<h3>ToxicPanda : Nouveau malware Android utilisant les permissions VPN</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le malware ToxicPanda pour Android a évolué pour cibler 349 applications et exécuter 167 commandes à distance. Il utilise les permissions VPN pour bloquer l'accès à Google Play et éviter la détection. Niveau de criticité : **Élevé**.</p>
-<a href="https://www.bleepingcomputer.com/news/security/toxicpanda-android-malware-uses-vpn-permissions-to-block-google-play/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Hackers infect Android car head units with proxy botnet malware</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une attaque par chaîne d'approvisionnement cible les unités de tête Android des voitures via une application de mise à jour légitime. Le malware transforme les dispositifs en botnet proxy ou les utilise pour de la fraude publicitaire.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-infect-android-car-head-units-with-proxy-botnet-malware/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Des hackers liés à l'Iran ont compromis une centrale électrique britannique pendant 4 jours, causant des perturbations opérationnelles réelles. Cette attaque souligne la vulnérabilité des infrastructures critiques et la nécessité de renforcer les mesures de cybersécurité dans le secteur énergétique.</p>
+<a href="https://www.securityweek.com/iran-linked-hackers-shut-down-uk-power-plant-for-four-days/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
 </div>
         </div>
     </div>

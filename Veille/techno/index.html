@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Techno | Updates & Outils — 17/08/2026 au 24/08/2026</title>
+    <title>Veille Techno | Updates & Outils — 24/08/2026 au 25/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%236366f1%22>TECH</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">💻 Techno</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Updates & Outils</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles releases, outils émergents et évolutions DevOps/Infra</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 17/08/2026 au 24/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 25/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   class='active'>💻 Techno</a>
@@ -75,107 +75,35 @@
             <a href="/Veille/hardware" >🖥️ Hardware</a>
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h2>Vendredi 22 Août 2026</h2>
-<h3>TikTok Agrees to $400 Million Settlement in U.S. Child Privacy Lawsuit</h3>
+            <h2>Lundi 24 Août 2026</h2>
+<h3>Critique de sécurité majeure dans Keycloak permettant la prise de contrôle de comptes</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : TikTok accepte de payer 400 millions de dollars pour régler un procès aux États-Unis accusant la plateforme d'avoir violé les lois sur la protection de la vie privée des enfants. 300 millions sont versés immédiatement avec un paiement supplémentaire de 100 millions sous conditions.</p>
-<a href="https://thehackernews.com/2026/08/tiktok-agrees-to-400-million-settlement.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Une faille critique (CVE non précisée) dans Keycloak, l'outil open source d'identité et d'accès, permet à un attaquant non authentifié de forcer la réinitialisation des mots de passe et de prendre le contrôle de n'importe quel compte. Cette vulnérabilité impacte directement les environnements de production utilisant Keycloak pour l'authentification centralisée. Une mise à jour urgente est recommandée.</p>
+<a href="https://thehackernews.com/2026/08/critical-keycloak-password-reset-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h2>Jeudi 21 Août 2026</h2>
-<h3>Citrix NetScaler : Contournement d'authentification critique (CVE-2026-19490)</h3>
+<h3>Améliorations majeures du pilote ath11k pour WiFi 6 sous Linux (latence divisée par 7)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Citrix corrige deux vulnérabilités dans NetScaler ADC et Gateway, dont la CVE-2026-19490 permettant un contournement d'authentification à distance. Les administrateurs doivent appliquer les correctifs sans délai pour éviter les compromissions.</p>
-<a href="https://www.it-connect.fr/citrix-netscaler-cve-2026-19490-contournement-authentification/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Un patch en cours de développement pour le pilote ath11k du noyau Linux réduit la latence de 7x et améliore le débit de 2,2x sur les chipsets Qualcomm WiFi 6. Cette optimisation est cruciale pour les environnements exigeants en temps réel (VoIP, streaming, IoT industriel) et les serveurs nécessitant une faible latence réseau.</p>
+<a href="https://www.phoronix.com/news/ath11k-7x-Lower-Latency" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Keycloak : Faille critique de réinitialisation de mot de passe (CVE-2026-18963)</h3>
+<h3>Restrictions renforcées sur AF_ALG dans Linux 7.3 pour des raisons de sécurité</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : La CVE-2026-18963 permet à un attaquant de réinitialiser le mot de passe de n'importe quel compte Keycloak sans authentification. Un patch est disponible, mais une vérification des instances exposées est nécessaire.</p>
-<a href="https://www.it-connect.fr/keycloak-cve-2026-18963-faille-critique-mot-de-passe-oublie/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
+<p><strong>Résumé</strong> : Linux 7.3 restreint davantage l'interface AF_ALG, utilisée pour accéder aux API cryptographiques du noyau, en supprimant des fonctionnalités comme le zero-copy et l'offloading. Cette décision répond à des problèmes de maintenance et de sécurité, mais peut impacter les applications legacy dépendantes de ces fonctionnalités.</p>
+<a href="https://www.phoronix.com/news/Linux-7.3-AF-ALG-Restrictions" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>GitLab : Exploitation active de la faille CVE-2026-19478</h3>
+<h3>Mozilla officialise le support de JPEG-XL dans Firefox 157</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux jours après la publication du correctif, la faille critique CVE-2026-19478 (injection de code) est déjà exploitée en conditions réelles. Les instances GitLab doivent être mises à jour immédiatement.</p>
-<a href="https://thehackernews.com/2026/08/gitlab-cve-2026-19478-comes-under.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Après une phase expérimentale, Mozilla annonce le déploiement officiel du support de JPEG-XL dans Firefox 157. Ce format d'image moderne offre une meilleure compression sans perte et des performances supérieures, ce qui est pertinent pour les infrastructures web et les applications gourmandes en bande passante.</p>
+<a href="https://www.phoronix.com/news/Firefox-JPEG-XL-2026-Plans" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
 </div>
 
-<h3>Elementor Pro : Exécution de code à distance non authentifiée (CVE-2026-32475)</h3>
+<h3>Nouvelle architecture "AI Gateway" pour gérer les infrastructures IA en entreprise</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Un visiteur anonyme peut déposer et exécuter un fichier PHP via un formulaire Elementor Pro, permettant une RCE non authentifiée. Les sites WordPress utilisant ce plugin doivent être mis à jour vers la dernière version.</p>
-<a href="https://thehackernews.com/2026/08/elementor-pro-flaw-could-let.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Graft : Outil open source pour cartographier le code pour les agents IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Graft, développé par Nanonets, transforme les dépôts de code en graphes Markdown lisibles par des agents IA comme Claude Code. Utile pour optimiser l'utilisation des tokens et améliorer la compréhension contextuelle.</p>
-<a href="https://www.it-connect.fr/graft-contexte-open-source-agents-ia-codage/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Endstate : Sauvegarde et restauration des applications Windows</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Endstate est un outil open source permettant de sauvegarder les applications et leurs configurations Windows dans un fichier, puis de les restaurer sur un nouveau PC. Idéal pour les migrations ou les sauvegardes de postes de travail.</p>
-<a href="https://www.it-connect.fr/endstate-sauvegarder-restaurer-applications-windows/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Cisco corrige 9 vulnérabilités critiques dans Crosswork et Secure Workload</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cisco publie des correctifs pour 9 failles, dont 5 avec un score CVSS de 10.0, affectant Crosswork et Secure Workload. Les administrateurs doivent appliquer les mises à jour pour éviter les compromissions critiques.</p>
-<a href="https://thehackernews.com/2026/08/cisco-patches-nine-crosswork-and-secure.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mercredi 20 Août 2026</h2>
-<h3>Rust : Attaque de la chaîne d'approvisionnement avec 245 millions de téléchargements</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le projet Rust supprime 3 crates malveillantes de crates.io après qu'un compte compromis a ajouté une dépendance typosquattée exécutant un payload distant lors de la compilation. Impact majeur sur les environnements CI/CD.</p>
-<a href="https://thehackernews.com/2026/08/rust-supply-chain-attack-puts-build.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Microsoft 365 : Perte de données pour 171 000 associations après l'arrêt d'une offre gratuite</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : L'arrêt d'une offre Microsoft 365 gratuite pour les associations a entraîné la suppression de milliers d'espaces OneDrive. Les administrateurs doivent vérifier les sauvegardes et les droits d'accès.</p>
-<a href="https://www.it-connect.fr/microsoft-365-associations-perte-donnees-onedrive-arret-offre-gratuite/" class="btn-source" target="_blank">🔗 Lire sur IT-Connect</a>
-</div>
-
-<h3>Zimbra : Exploitation active de la faille SNMP (CVE-2026-73570)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La CVE-2026-73570 (injection de commandes) est exploitée en conditions réelles pour une RCE non authentifiée. Les instances Zimbra doivent être mises à jour immédiatement.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-zimbra-snmp-flaw-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Microsoft Defender : Pilote légitime détourné pour supprimer des logiciels de sécurité</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une technique utilise le pilote de remédiation au démarrage de Microsoft Defender pour effectuer des opérations arbitraires au niveau du noyau, contournant les protections. Impact sur Windows 7 à 11 25H2.</p>
-<a href="https://thehackernews.com/2026/08/microsoft-defenders-own-driver-can-be.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>MLflow : Exploitation de la faille SSRF pour voler des identifiants cloud</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités critiques dans MLflow (plateforme IA open source) sont exploitées pour voler des secrets cloud via une SSRF. Les instances exposées doivent être mises à jour ou isolées.</p>
-<a href="https://thehackernews.com/2026/08/attackers-exploit-mlflow-ssrf-flaw-to.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h2>Mardi 19 Août 2026</h2>
-<h3>CISA ajoute 4 vulnérabilités critiques à son catalogue KEV</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA alerte sur l'exploitation active de failles critiques dans macOS, SharePoint, vCenter et Microsoft IKE (CVE-2026-65400, CVE-2026-65401, CVE-2026-65402, CVE-2026-65403). Les correctifs doivent être appliqués en priorité.</p>
-<a href="https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>SilkParasite : Campagne d'espionnage ciblant les gouvernements d'Asie centrale</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne d'espionnage utilisant 7 familles de RAT (dont 5 inédites) cible les gouvernements d'Asie centrale. Les administrateurs doivent surveiller les activités suspectes sur les réseaux gouvernementaux.</p>
-<a href="https://thehackernews.com/2026/08/silkparasite-espionage-campaign-targets.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>OpenAI suspend l'entraînement RL pour renforcer la sécurité des IA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : OpenAI interrompt temporairement l'entraînement RL de ses modèles pour renforcer les défenses contre les comportements non sûrs, après un incident de fuite de données similaire à celui de Hugging Face.</p>
-<a href="https://thehackernews.com/2026/08/openai-pauses-frontier-rl-training-as.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Face à la prolifération des modèles IA et des agents, une nouvelle couche d'infrastructure appelée "AI Gateway" émerge pour centraliser la gouvernance, le monitoring et la sécurité des flux IA. Cette solution pourrait devenir un standard pour les entreprises gérant des centaines de modèles en production.</p>
+<a href="https://www.silicon.fr/data-ia-1372/ai-gateway-la-prochaine-bataille-des-infrastructures-ia-228784" class="btn-source" target="_blank">🔗 Lire sur Silicon.fr</a>
 </div>
         </div>
     </div>
