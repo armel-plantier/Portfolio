@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Hardware | Serveurs & Composants — 24/08/2026 au 25/08/2026</title>
+    <title>Veille Hardware | Serveurs & Composants — 24/08/2026 au 26/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%2310b981%22>HW</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🖥️ Hardware</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Serveurs & Composants</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">Nouvelles architectures, vulnérabilités firmware et tendances datacenter</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 25/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 26/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" >🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,64 +76,120 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 24 Août 2026</h2>
-<h3>Intel Xeon 7 'Diamond Rapids' : jusqu'à 256 cœurs P-core et 1,28 To de cache L3</h3>
+<h3>Intel Xeon 7 'Diamond Rapids' : jusqu'à 256 cœurs P et 1,28 To de cache L3</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Intel a dévoilé ses futurs Xeon 7 'Diamond Rapids' (2027) avec jusqu'à 256 cœurs P-core, 1,28 To de cache L3 et l'intégration d'AVX 10.2. Le processeur abandonne l'EMIB au profit de l'UCIe-S pour une meilleure scalabilité. Cette architecture cible les charges de travail AI/ML et HPC, avec un impact majeur sur les infrastructures d'entreprise nécessitant des performances extrêmes.</p>
+<p><strong>Résumé</strong> : Intel a dévoilé ses futurs Xeon 7 'Diamond Rapids' lors de Hot Chips 2026, avec une configuration maximale de 256 cœurs P (Performance) et 1,28 To de cache L3. Ces CPU de nouvelle génération, gravés en 18A, intègrent l'AVX 10.2 et utilisent l'interconnexion UCIe-S au lieu d'EMIB, optimisant ainsi les performances pour les charges de travail intensives en calcul.</p>
 <a href="https://www.tomshardware.com/pc-components/cpus/intel-xeon-7-diamond-rapids-comes-with-up-to-256-p-cores-1-28-gb-of-last-level-cache-next-gen-18a-p-cpu-also-brings-avx-10-2-and-uses-ucie-s-instead-of-emib" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>SK hynix pousse le HBM5 avec hybrid bonding pour l'IA, mais bute sur la limite physique des 775 µm</h3>
+<h3>IBM révolutionne les mainframes avec un cœur dual-ISA ARM/z-Architecture</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : SK hynix annonce que les mémoires HBM5 en hybrid bonding ne pourront pas dépasser 775 µm d'épaisseur (épaisseur standard d'un wafer 300 mm), limitant leur densité. Cette contrainte technique impacte les performances des serveurs AI, notamment pour les modèles Nvidia Rubin, et pourrait retarder les déploiements massifs de GPU haute performance.</p>
-<a href="https://www.tomshardware.com/tech-industry/semiconductors/sk-hynix-says-hybrid-bonding-wont-be-ready-for-hbm4e-as-ai-memory-runs-into-a-775-micron-ceiling" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
-</div>
-
-<h3>IBM présente le premier cœur dual-ISA (ARM + z/Architecture) à 5,7 GHz pour mainframes AI</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : IBM dévoile un cœur CPU dual-ISA natif exécutant simultanément ARM et z/Architecture sur un même die, cadencé à 5,7 GHz. Ce processeur 2 nm pour mainframes intègre 11 cœurs et vise à unifier les écosystèmes legacy et AI. Une avancée majeure pour les datacenters critiques nécessitant compatibilité et performance.</p>
+<p><strong>Résumé</strong> : IBM a présenté le premier cœur dual-ISA au monde, capable d'exécuter nativement à la fois des instructions ARM et z/Architecture. Ce processeur, gravé en 2 nm et doté de 11 cœurs cadencés à 5,7 GHz, vise à étendre la compatibilité logicielle des mainframes tout en renforçant leurs capacités IA.</p>
 <a href="https://www.tomshardware.com/pc-components/cpus/ibms-first-dual-isa-core-natively-executes-arm-and-z-architecture-in-the-same-core-all-cores-run-at-5-7-ghz-base-frequency-next-gen-mainframe-ai-processor-is-built-on-2nm-node-with-11-cores" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Arm AGI : premier CPU data center complet pour l'IA agentique, basé sur Neoverse V3</h3>
+<h3>SK hynix pousse le bonding hybride jusqu'à HBM5 malgré des limites physiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Arm présente son CPU AGI (Agentic AI) pour datacenters, premier design commercial complet de la firme. Basé sur des cœurs Neoverse V3, il cible les serveurs AI autonomes. Cette architecture pourrait concurrencer Intel et AMD dans les infrastructures cloud dédiées à l'IA générative et aux agents autonomes.</p>
-<a href="https://www.servethehome.com/arms-agi-data-center-cpu-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+<p><strong>Résumé</strong> : SK hynix a annoncé étendre son procédé MR-MUF (hybrid bonding) jusqu'à HBM5, malgré une contrainte physique : l'épaisseur maximale des cubes HBM est limitée à 775 microns. Cette avancée, bien que temporairement bloquée pour HBM4E, promet d'améliorer les performances des mémoires IA pour les GPU Nvidia Rubin.</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/sk-hynix-says-hybrid-bonding-wont-be-ready-for-hbm4e-as-ai-memory-runs-into-a-775-micron-ceiling" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>NVIDIA Vera : CPU maison à 88 cœurs pour l'architecture Olympus et les charges AI</h3>
+<h3>Nvidia Vera : un CPU 88 cœurs pour les datacenters "agentiques"</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : NVIDIA détaille Vera, son CPU maison pour serveurs, avec 88 cœurs par puce et l'architecture Olympus. Conçu pour les workloads AI, il s'intègre dans l'écosystème CUDA. Cette annonce renforce la position de NVIDIA dans les datacenters, en concurrence directe avec les solutions x86 et Arm.</p>
-<a href="https://www.servethehome.com/nvidia-vera-cpu-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+<p><strong>Résumé</strong> : Nvidia a détaillé son CPU Vera, un processeur 88 cœurs optimisé pour les charges de travail agentiques et l'inférence IA. Avec 1,2 To/s de bande passante mémoire via SoCAMM2 et des caches optimisés, il cible les datacenters de nouvelle génération. SpaceXAI utilisera des versions autonomes en orbite pour Grok.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/hot-chips-2026-nvidia-breaks-down-88-core-vera-cpu-spatial-multithreading-benchmarked-1-2-tb-s-socamm2-memory-agentic-workloads-detailed-and-more" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Fujitsu Monaka : CPU Arm hautement efficace pour datacenters et workloads AI</h3>
+<h3>Micron alerte sur le "silicon penalty" croissant des HBM face au DDR5</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Fujitsu présente Monaka, un CPU Arm optimisé pour les datacenters et l'AI, conçu pour une efficacité énergétique maximale. Cette solution s'adresse aux entreprises cherchant à réduire leur empreinte carbone tout en maintenant des performances élevées pour les tâches intensives.</p>
-<a href="https://www.servethehome.com/fujitsus-arm-based-monaka-data-center-cpu-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+<p><strong>Résumé</strong> : Lors de Hot Chips 2026, Micron a révélé que le différentiel de silicium entre HBM et DDR5 s'aggrave à chaque génération. Les HBM consomment désormais 3x plus de silicium que le DDR5, aggravant la pénurie et faisant exploser les coûts, ce qui menace la scalabilité des infrastructures IA.</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/micron-says-the-silicon-gap-between-hbm-and-ddr5-is-widening-with-every-generation" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Marvell recycle le DDR4 en mémoire CXL pour pallier la pénurie de DRAM</h3>
+<h3>Chine restreint les exportations de germanium et quartz vers Taïwan</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Marvell propose une infrastructure mémoire AI en trois niveaux, incluant le recyclage de DDR4 en mémoire CXL. Face à la pire pénurie de DRAM depuis des années, cette solution permet aux entreprises de prolonger la durée de vie de leurs équipements tout en optimisant les performances des charges AI.</p>
+<p><strong>Résumé</strong> : La Chine a réduit ses exportations de germanium, quartz et aimants vers Taïwan, des matériaux critiques pour la fabrication de semi-conducteurs, l'optique et la robotique. Cette mesure pourrait perturber les chaînes d'approvisionnement des datacenters et des équipements industriels.</p>
+<a href="https://www.tomshardware.com/tech-industry/china-strategically-slows-exports-of-critical-materials-used-in-semiconductor-fabrication-to-taiwan-germanium-and-quartz-exports-to-the-region-also-threaten-optical-and-robotics-supply-chain" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Marvell propose le recyclage DDR4 pour les mémoires CXL</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Marvell a introduit une infrastructure mémoire IA en trois niveaux, incluant le recyclage de DDR4 pour les modules CXL. Cette solution vise à atténuer la pénurie de DRAM tout en réduisant les coûts, dans un contexte où les prix de la mémoire restent historiquement élevés.</p>
 <a href="https://www.tomshardware.com/pc-components/dram/marvell-sells-cxl-memory-recycling-into-the-worst-dram-shortage-in-years" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Kyoto University : transistor SiC fonctionnant à 600°C compatible avec les fabs standards</h3>
+<h3>Kyoto University développe un transistor SiC fonctionnant à 600°C</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une équipe de Kyoto University a développé un transistor en carbure de silicium (SiC) capable de fonctionner à 600°C, utilisant des procédés standards d'implantation ionique. Cette avancée pourrait révolutionner les datacenters en environnement extrême (pétrole, aérospatial) et réduire les coûts de refroidissement.</p>
+<p><strong>Résumé</strong> : Une équipe de Kyoto University a conçu un transistor en carbure de silicium (SiC) capable de fonctionner à 600°C, compatible avec les procédés de fabrication standard. Cette avancée pourrait révolutionner les environnements extrêmes (datacenters sous-marins, aérospatial) en réduisant les besoins en refroidissement.</p>
 <a href="https://www.tomshardware.com/tech-industry/kyoto-university-demonstrates-a-sic-transistor-that-runs-at-600c-using-standard-ion-implantation" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Linux 7.3 : restrictions majeures sur AF_ALG pour des raisons de sécurité</h3>
+<h3>Neuf personnes inculpées pour export illégal de GPU Nvidia B300 vers la Chine</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le noyau Linux 7.3 restreint fortement AF_ALG, l'interface utilisateur pour accéder aux API cryptographiques du kernel. Des fonctionnalités comme le zero-copy et l'offloading sont supprimées, impactant les applications nécessitant des opérations cryptographiques performantes (VPN, stockage chiffré).</p>
-<a href="https://www.phoronix.com/news/Linux-7.3-AF-ALG-Restrictions" class="btn-source" target="_blank">🔗 Lire sur Phoronix</a>
+<p><strong>Résumé</strong> : Taïwan a inculpé neuf individus pour l'exportation illégale de serveurs équipés de GPU Nvidia B300 vers la Chine, via une stratégie en cinq points pour contourner les contrôles douaniers. Cette affaire souligne les tensions géopolitiques autour des technologies IA et les risques de sanctions pour les entreprises.</p>
+<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nine-indicted-by-taiwan-over-illegal-export-of-nvidia-b300-gpus-to-china-details-reveal-five-point-strategy-to-exploit-and-avoid-customs-controls" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
 
-<h3>Neuf personnes inculpées à Taïwan pour export illégal de GPU Nvidia B300 vers la Chine</h3>
+<h3>Samsung présente LPDDR5X-PIM : mémoire IA avec logique intégrée</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Neuf individus ont été inculpés pour avoir exporté illégalement des serveurs équipés de GPU Nvidia B300 vers la Chine, contournant les contrôles douaniers. Cette affaire met en lumière les tensions géopolitiques autour des semi-conducteurs et les risques juridiques pour les entreprises opérant en Asie.</p>
-<a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/nine-indicted-by-taiwan-over-illegal-export-of-nvidia-b300-gpus-to-china-details-reveal-five-point-strategy-to-exploit-and-avoid-customs-controls" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+<p><strong>Résumé</strong> : Samsung a dévoilé la première LPDDR5X-PIM (Processing-in-Memory) lors de Hot Chips 2026, intégrant des unités logiques directement dans la mémoire pour accélérer les inférences IA. Jusqu'à 3,01x plus rapide que la LPDDR5X standard, cette solution cible les charges de travail gourmandes en bande passante.</p>
+<a href="https://www.tomshardware.com/pc-components/dram/hot-chips-2026-samsung-makes-lpddr5x-smart-with-logic-unit-in-memory-lpddr5x-pim-is-3-01x-faster-than-lpddr5x-in-ai-inference-with-8x-the-bandwidth" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<hr />
+<h2>Mardi 25 Août 2026</h2>
+<h3>OpenAI dévoile le Jalapeño ASIC : 700W pour surpasser le Nvidia GB300</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : OpenAI a présenté son premier ASIC maison, le Jalapeño, lors de Hot Chips 2026. Avec une consommation de 700W, il revendique jusqu'à 1,9x de débit par kW et 3,6x moins de latence que le Nvidia GB300, co-développé avec Broadcom. Ce processeur cible les datacenters dédiés à l'IA générative.</p>
+<a href="https://www.tomshardware.com/tech-industry/semiconductors/openai-says-its-jalapeno-chip-beats-nvidias-gb300-in-first-published-benchmarks" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Nvidia Spectrum-X : architecture réseau multi-plan pour les datacenters IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Nvidia a détaillé Spectrum-X, une architecture réseau Ethernet multi-plan conçue pour les "AI Factories". Cette solution vise à optimiser les performances des clusters IA en réduisant la latence et en améliorant l'efficacité des transferts de données entre GPU et CPU.</p>
+<a href="https://www.servethehome.com/nvidia-spectrum-x-ethernet-multiplane-network-architecture-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>Nvidia BlueField-4 DPU : accélération des réseaux et sécurité</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le BlueField-4 DPU de Nvidia, présenté lors de Hot Chips 2026, intègre des améliorations majeures pour le traitement des réseaux et la sécurité. Ce processeur programmable vise à réduire la charge des CPU hôtes tout en offrant une accélération matérielle pour les tâches critiques des datacenters.</p>
+<a href="https://www.servethehome.com/nvidia-bluefield-4-processor-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>Broadcom Thor Ultra : NIC 800GbE pour les infrastructures IA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Broadcom a dévoilé le Thor Ultra, une carte réseau 800GbE optimisée pour les charges de travail IA. Cette NIC intègre des fonctionnalités avancées comme le traitement des paquets en hardware et une latence ultra-faible, essentielle pour les datacenters scalables.</p>
+<a href="https://www.servethehome.com/broadcom-thor-ultra-ethernet-nic-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>XCENA MX1 : mémoire computationnelle CXL avec 3072 cœurs RISC-V</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : XCENA et Samsung ont présenté le MX1, un module mémoire computationnelle CXL combinant un contrôleur mémoire et 3072 cœurs RISC-V. Cette solution permet de traiter les données directement en mémoire, réduisant la charge des CPU et améliorant l'efficacité des datacenters.</p>
+<a href="https://www.servethehome.com/xcena-mx1-cxl-computational-memory-device-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>Meta MTIA : accélérateurs IA personnalisés pour l'inférence</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Meta a détaillé sa famille d'accélérateurs IA MTIA lors de Hot Chips 2026, avec un roadmap ambitieux prévoyant 4 générations de processeurs en deux ans. Ces puces visent à optimiser les coûts et les performances des charges de travail d'inférence pour les datacenters de Meta.</p>
+<a href="https://www.servethehome.com/metas-mtia-custom-ai-silicon-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>Nvidia Groq 3 LPU : accélération des phases de décodage pour l'inférence</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Nvidia a intégré les LPU (Language Processing Units) de Groq à sa famille Vera Rubin pour réduire la latence des phases de décodage dans l'inférence IA. Ces processeurs spécialisés offrent une alternative aux GPU traditionnels pour les tâches de traitement du langage.</p>
+<a href="https://www.servethehome.com/nvidias-groq-3-lpu-accelerators-for-heterogeneous-ai-compute-at-hot-chips-2026/" class="btn-source" target="_blank">🔗 Lire sur ServeTheHome</a>
+</div>
+
+<h3>Apple lance les puces M6 et M5 Ultra en 2 nm</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Apple a annoncé ses nouvelles puces M6 et M5 Ultra, gravées en 2 nm, lors du lancement de nouveaux Mac Mini et Mac Studio. Le M6 intègre 12 cœurs et vise à améliorer l'efficacité énergétique, tandis que le M5 Ultra combine quatre dies pour des performances extrêmes.</p>
+<a href="https://www.tomshardware.com/pc-components/cpus/apple-launches-new-m6-and-m5-ultra-apple-silicon-chips-debuting-in-new-mac-mini-and-mac-studio" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
+</div>
+
+<h3>Prix de la RAM DDR5 en hausse : 32 Go à 400$</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le prix de la RAM DDR5 6000 a atteint 400$, un niveau historiquement élevé qui rend les configurations DIY et les serveurs d'entreprise plus coûteux. Cette tendance reflète la pénurie persistante de mémoire et les coûts élevés des semi-conducteurs.</p>
+<a href="https://www.tomshardware.com/pc-components/ddr5/32gb-of-ddr5-6000-ram-now-costs-usd400-the-latest-price-hike-puts-diy-pc-building-further-out-of-reach-than-ever-before" class="btn-source" target="_blank">🔗 Lire sur Tom's Hardware</a>
 </div>
         </div>
     </div>
