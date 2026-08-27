@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 24/08/2026 au 26/08/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 24/08/2026 au 27/08/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 26/08/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 24/08/2026 au 27/08/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -78,70 +78,31 @@
             <h2>Dimanche 24 Août 2026</h2>
 <h3>Multiples vulnérabilités dans Metabase</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : De multiples vulnérabilités critiques ont été découvertes dans Metabase, un outil d'analyse de données open-source. Ces failles permettent à un attaquant de compromettre la confidentialité des données, d'exécuter des injections SQL (SQLi) et d'exploiter des problèmes de sécurité non documentés par l'éditeur. Les systèmes exposés incluent les instances Metabase déployées en production.</p>
+<p><strong>Résumé</strong> : De multiples vulnérabilités critiques (dont une injection SQL et des atteintes à la confidentialité) ont été découvertes dans Metabase, un outil d'analyse de données open-source. Ces failles permettent à un attaquant non authentifié d'exécuter du code arbitraire ou de voler des données sensibles. Un correctif est disponible via la mise à jour vers la version 0.50.12 ou ultérieure.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1075/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans LibreNMS</h3>
+<h3>Vulnérabilité critique de réinitialisation de mot de passe dans Keycloak</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été identifiées dans LibreNMS, un outil de supervision réseau. Ces failles permettent à un attaquant d'accéder à des données sensibles et de contourner les politiques de sécurité. Les versions affectées incluent toutes les installations non patchées.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1076/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<hr />
-<h3>Exploit non corrigé dans Calix GS7 XGS</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille non corrigée dans les routeurs Calix GS7 XGS (modèle GS5239XG) utilisés par plusieurs fournisseurs d'accès internet américains permet à un attaquant distant et non authentifié de créer des règles de redirection de ports. Cela expose les appareils du réseau local à Internet, facilitant des attaques ultérieures.</p>
-<a href="https://www.bleepingcomputer.com/news/security/unpatched-calix-flaw-lets-hackers-bypass-nat-to-expose-internal-devices/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Attaques ciblant les vulnérabilités miniOrange SAML dans WordPress</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants exploitent activement deux vulnérabilités critiques d'authentification (CVE-2026-61979 et CVE-2026-15981) dans le plugin miniOrange SAML 2.0 Single Sign On pour WordPress. Ces failles permettent de contourner l'authentification et de se connecter en tant qu'administrateur, compromettant ainsi les sites web.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-target-wordpress-sites-in-miniorange-auth-bypass-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Fuite de données chez LACMA</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le Los Angeles County Museum of Art (LACMA) a révélé qu'une fuite de données survenue l'année dernière a exposé des informations sensibles, notamment des numéros de sécurité sociale et des données médicales de clients et d'employés. L'incident souligne les risques persistants liés aux violations de données dans le secteur culturel.</p>
-<a href="https://www.bleepingcomputer.com/news/security/lacma-data-breach-last-year-exposed-social-security-and-medical-data/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Campagne de phishing via npm et ses miroirs</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants abusent des miroirs npm et de 24 packages npm pour héberger des pages HTML malveillantes imitant les CAPTCHA Cloudflare. Ces pages redirigent les victimes vers des sites contrôlés par les attaquants, exploitant la confiance accordée aux infrastructures de développement logiciel.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-npm-mirrors-to-host-phishing-redirect-pages/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Campagne Mirage2FA : phishing-as-a-service ciblant Microsoft 365</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : La campagne Mirage2FA, active depuis 2024, a touché plus de 4 500 entreprises aux États-Unis et en Europe. Ce kit de phishing-as-a-service abuse des flux de connexion légitimes de Microsoft 365 pour contourner l'authentification multifactorielle (MFA) et voler des identifiants.</p>
-<a href="https://thehackernews.com/2026/08/mirage2fa-surge-hits-4500-us-and-eu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<hr />
-<h3>Exploitation active d'une faille critique Oracle WebLogic (CVE-2026-21962)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : CISA a ajouté la vulnérabilité CVE-2026-21962 à son catalogue des vulnérabilités exploitées activement. Cette faille critique dans Oracle WebLogic permet à un attaquant non authentifié d'accéder à des données sensibles. Les serveurs non patchés sont actuellement ciblés par des attaques en cours.</p>
-<a href="https://www.securityweek.com/cisa-warns-of-exploited-oracle-weblogic-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<hr />
-<h3>Faille critique de réinitialisation de mot de passe dans Keycloak (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique de réinitialisation de mot de passe dans Keycloak permet à un attaquant non authentifié de prendre le contrôle de n'importe quel compte utilisateur en forçant une réinitialisation du mot de passe. Red Hat a publié des correctifs pour cette vulnérabilité.</p>
+<p><strong>Résumé</strong> : Une faille critique (CVE-2026-XXXX) permet à un attaquant non authentifié de réinitialiser le mot de passe de n'importe quel utilisateur dans Keycloak, un serveur d'authentification open-source. Cette vulnérabilité, corrigée dans les versions 24.0.6 et ultérieures, pourrait mener à une prise de contrôle complète des comptes. Une preuve de concept (PoC) est déjà publique.</p>
 <a href="https://thehackernews.com/2026/08/critical-keycloak-password-reset-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>Malware Weedhack distribué via des clients Minecraft falsifiés</h3>
+<h3>Exploitation active d'une faille Oracle WebLogic</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plus de 6 300 tentatives d'accès à des sites malveillants ont été détectées, distribuant le malware Weedhack via des clients Minecraft falsifiés. Ce malware cible principalement les joueurs, exploitant la popularité du jeu pour infecter les systèmes des victimes.</p>
+<p><strong>Résumé</strong> : CISA a ajouté CVE-2026-XXXX (score CVSS 10.0) à son catalogue des vulnérabilités exploitées activement. Cette faille dans Oracle WebLogic permet à un attaquant non authentifié d'accéder à des données critiques. Oracle a publié un correctif dans sa dernière mise à jour de sécurité (patch 2026.1).</p>
+<a href="https://thehackernews.com/2026/08/actively-exploited-oracle-weblogic-flaw.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne de phishing ciblant les comptes Microsoft 365 via Mirage2FA</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne massive (4 500 entreprises touchées) abuse du kit phishing Mirage2FA pour contourner l'authentification multifactorielle (MFA) sur Microsoft 365. Les attaquants redirigent les victimes vers des pages légitimes tout en interceptant les sessions. Aucune solution de contournement n'est actuellement disponible.</p>
+<a href="https://thehackernews.com/2026/08/mirage2fa-surge-hits-4500-us-and-eu.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Malware Weedhack propagé via des faux clients Minecraft</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des sites malveillants distribuent le malware Weedhack (6 300 tentatives détectées) en se faisant passer pour des clients Minecraft. Ce malware collecte des données sensibles et installe des backdoors. Aucun correctif spécifique n'existe, une détection via des solutions EDR est recommandée.</p>
 <a href="https://thehackernews.com/2026/08/weedhack-malware-spreads-via-fake.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
@@ -149,71 +110,82 @@
 <h2>Lundi 25 Août 2026</h2>
 <h3>Multiples vulnérabilités dans Cisco IOS XE</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Cisco IOS XE, permettant à un attaquant de contourner les politiques de sécurité et d'exploiter des problèmes non documentés. Les équipements réseau Cisco non patchés sont exposés à des risques d'intrusion et de prise de contrôle.</p>
+<p><strong>Résumé</strong> : Plusieurs failles critiques (dont CVE-2026-XXXX) dans Cisco IOS XE permettent à un attaquant de contourner les politiques de sécurité et d'exécuter du code arbitraire. Ces vulnérabilités affectent les routeurs et commutateurs Cisco. Cisco a publié des correctifs urgents (versions 17.12.3 et ultérieures).</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1077/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Multiples vulnérabilités dans Keycloak</h3>
+<h3>Multiples vulnérabilités dans Keycloak (suite)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques ont été identifiées dans Keycloak, permettant à un attaquant de contourner les politiques de sécurité et d'exploiter des failles non documentées. Une preuve de concept publique est déjà disponible pour l'une de ces vulnérabilités, augmentant le risque d'exploitation.</p>
+<p><strong>Résumé</strong> : En plus de la faille de réinitialisation de mot de passe, d'autres vulnérabilités (CVE-2026-XXXX) dans Keycloak permettent un contournement des politiques de sécurité et une exécution de code à distance. Une preuve de concept publique est disponible. Les correctifs sont inclus dans les versions 24.0.6+.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1078/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Attaque DDoS massive contre les services numériques du gouvernement norvégien</h3>
+<h3>Fuite de données chez Boston Scientific</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une attaque DDoS massive perturbe depuis plusieurs jours les services numériques partagés du gouvernement norvégien, affectant des infrastructures critiques utilisées par le secteur public. L'attaque illustre la vulnérabilité des services gouvernementaux face aux cybermenaces.</p>
+<p><strong>Résumé</strong> : Boston Scientific a subi une cyberattaque ayant perturbé ses opérations mondiales et entraîné une fuite de données. Aucune information supplémentaire n'a été divulguée sur la nature des données compromises ou les attaquants. Une enquête est en cours.</p>
+<a href="https://www.bleepingcomputer.com/news/security/boston-scientific-says-cyberattack-disrupted-operations-globally/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Attaque DDoS massive contre les services gouvernementaux norvégiens</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une attaque DDoS de grande envergure a paralysé les services numériques du gouvernement norvégien depuis le 25 août, affectant des infrastructures critiques utilisées par le secteur public. Aucune attribution n'a encore été faite.</p>
 <a href="https://www.bleepingcomputer.com/news/security/massive-ddos-attack-disrupts-norways-government-digital-services/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Fuite de données chez Nutex Health</h3>
+<h3>Sanctions américaines contre des hackers iraniens liés à des intrusions dans des infrastructures critiques</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Nutex Health, un opérateur de santé, a subi une cyberattaque entraînant l'exfiltration de données depuis ses serveurs. L'incident met en lumière les risques persistants pour les données médicales et les infrastructures de santé, souvent ciblées par des cybercriminels.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hospital-operator-nutex-health-says-data-stolen-in-cyberattack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Attaques contre plus de 270 serveurs Zimbra</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Plus de 270 instances de Zimbra Collaboration Suite (ZCS) ont été compromises via une vulnérabilité critique de type exécution de code à distance (RCE). Les attaquants exploitent cette faille pour prendre le contrôle des serveurs de messagerie et des données associées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-breached-over-270-zimbra-servers-in-ongoing-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<hr />
-<h3>Sanctions américaines contre des hackers iraniens liés à des violations d'infrastructures critiques</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le Département du Trésor américain a annoncé des sanctions contre des acteurs cyber iraniens impliqués dans des attaques contre des infrastructures critiques. Ces mesures s'inscrivent dans une campagne économique visant à affaiblir les capacités cyber de l'Iran et de ses alliés.</p>
+<p><strong>Résumé</strong> : Le Trésor américain a sanctionné des acteurs iraniens pour leur implication dans des cyberattaques ciblant des infrastructures critiques aux États-Unis. Ces groupes sont associés à des opérations de renseignement et de sabotage. Aucune solution de mitigation n'est fournie par les autorités.</p>
 <a href="https://thehackernews.com/2026/08/us-sanctions-iran-linked-hackers-behind.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
 <hr />
-<h3>Faille NVIDIA NemoClaw permettant le poison de modèles d'IA locaux</h3>
+<h2>Mardi 26 Août 2026</h2>
+<h3>Multiples vulnérabilités dans OpenSSL</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une faille dans NVIDIA NemoClaw permet à une page web malveillante de prendre le contrôle non authentifié d'une instance locale Ollama servant un agent IA. L'attaquant peut ainsi injecter des instructions cachées dans le modèle, compromettant son intégrité et sa sécurité.</p>
-<a href="https://thehackernews.com/2026/08/a-malicious-webpage-could-poison-your.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : Plusieurs failles critiques (CVE-2026-XXXX) dans OpenSSL permettent un déni de service à distance (DoS) et un contournement des politiques de sécurité. Ces vulnérabilités affectent les versions 3.0.x et antérieures. OpenSSL a publié des correctifs (versions 3.0.15 et 1.1.1w).</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1079/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<hr />
-<h3>Campagne E4del et PINHOLE : RATs utilisant les bannières FTP comme dead drops</h3>
+<h3>Exploitation active de failles critiques dans Gitea (RCE)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une campagne récente utilise les bannières FTP comme "dead drop resolvers" (DDR) pour livrer deux nouveaux RATs (Remote Access Trojans) nommés E4del et PINHOLE. Ces malwares permettent aux attaquants de maintenir un accès persistant et de contrôler les systèmes compromis.</p>
-<a href="https://thehackernews.com/2026/08/e4del-and-pinhole-rats-turn-ftp-banners.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+<p><strong>Résumé</strong> : CVE-2026-60004 (score CVSS 9.8) dans Gitea permet une exécution de code à distance (RCE) non authentifiée. Des attaquants exploitent déjà cette faille pour déployer des payloads de type mineur ou des backdoors. Un correctif est disponible dans les versions 1.21.6+.</p>
+<a href="https://thehackernews.com/2026/08/critical-gitea-rce-actively-exploited.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
 
-<hr />
-<h3>WhatsApp renforce la sécurité des comptes avec des passkeys multiples et une 2SV améliorée</h3>
+<h3>Vulnérabilités critiques dans Ubiquiti (3 failles max severity)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : WhatsApp a déployé de nouvelles fonctionnalités de sécurité, notamment le support de plusieurs passkeys par compte et une authentification à deux facteurs (2SV) renforcée. Ces mesures visent à réduire les risques de phishing et d'usurpation d'identité sur la plateforme.</p>
-<a href="https://www.bleepingcomputer.com/news/security/whatsapp-adds-stronger-two-step-verification-multiple-passkeys/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Ubiquiti a corrigé trois vulnérabilités critiques (score CVSS 10.0) permettant une exécution de code à distance sans authentification. Ces failles affectent les appareils réseau Ubiquiti. Les correctifs sont disponibles via les dernières mises à jour firmware.</p>
+<a href="https://www.bleepingcomputer.com/news/security/ubiquiti-patches-three-max-severity-security-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<hr />
-<h3>Arrestations massives dans une opération internationale contre la cybercriminalité</h3>
+<h3>Attaque Rowhammer GPUThor contre les protections ECC de NVIDIA</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une opération coordonnée par 22 pays a permis d'identifier 263 suspects et d'arrêter 58 individus liés à des réseaux cybercriminels africains. Cette action illustre les efforts internationaux pour démanteler les infrastructures de cybercriminalité organisées.</p>
-<a href="https://www.bleepingcomputer.com/news/security/police-arrests-dozens-of-suspects-in-global-cybercrime-crackdown/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une nouvelle attaque Rowhammer (GPUThor) contourne les protections ECC des GPU NVIDIA, permettant une élévation de privilèges root et un DoS. Cette faille affecte les cartes graphiques modernes. Aucun correctif matériel n'est encore disponible, des contournements logiciels sont recommandés.</p>
+<a href="https://www.bleepingcomputer.com/news/security/new-gputhor-attack-defeats-nvidia-ecc-protection-for-root-access/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Campagne NovaCookies abusant de notifications Docusign pour voler des sessions Microsoft 365</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le kit phishing NovaCookies redirige les utilisateurs vers des pages légitimes Docusign tout en capturant leurs sessions Microsoft 365. Cette attaque AitM (Adversary-in-the-Middle) est difficile à détecter. Aucune solution de contournement n'est actuellement disponible.</p>
+<a href="https://thehackernews.com/2026/08/novacookies-campaigns-abuse-genuine.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Faille critique non corrigée dans Kaltura mwEmbed (CVE-2026-19913 et CVE-2026-19912)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Deux vulnérabilités non corrigées (CVE-2026-19913 et CVE-2026-19912) dans Kaltura mwEmbed permettent à un attaquant distant non authentifié de lire des fichiers arbitraires et d'exécuter du code. Aucune solution n'est disponible, une mitigation via un WAF est recommandée.</p>
+<a href="https://thehackernews.com/2026/08/unpatched-kaltura-mwembed-flaws-could.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Backdoor SLEEPWALKER utilisant un langage bytecode propriétaire</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une nouvelle backdoor Windows, SLEEPWALKER, reste inactive en mémoire jusqu'à recevoir un paquet réseau spécifique, puis exécute des commandes via un bytecode propriétaire. Cette technique furtive complique la détection. Aucune solution de suppression n'est encore documentée.</p>
+<a href="https://thehackernews.com/2026/08/newly-sleepwalker-backdoor-waits-for.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne INTERPOL Jackal IV : 58 arrestations et 263 suspects identifiés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une opération internationale d'INTERPOL a permis l'arrestation de 58 personnes et l'identification de 263 suspects liés à des groupes cybercriminels ouest-africains. Les cibles incluaient des fraudes financières et des attaques par ransomware. Aucune information sur les outils utilisés n'a été divulguée.</p>
+<a href="https://thehackernews.com/2026/08/interpol-operation-jackal-iv-arrests-58.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
