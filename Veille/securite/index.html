@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 31/08/2026 au 01/09/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 31/08/2026 au 02/09/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 31/08/2026 au 01/09/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 31/08/2026 au 02/09/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,58 +76,78 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 1er Septembre 2026</h2>
-<h3>Multiples vulnérabilités critiques dans Microsoft Edge</h3>
+<h3>Multiples vulnérabilités critiques dans JFrog Artifactory (CVE-2026-82329)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Plusieurs vulnérabilités critiques ont été découvertes dans Microsoft Edge, permettant une exécution de code arbitraire à distance (RCE), une atteinte à la confidentialité et une altération des données. Ces failles affectent les versions non patchées du navigateur et nécessitent une mise à jour urgente.</p>
+<p><strong>Résumé</strong> : Une vulnérabilité critique d'authentification (CVE-2026-82329, CVSS 9.8) permet à des attaquants d'obtenir un accès administrateur sur les systèmes JFrog Artifactory. Exploitée dès sa publication, cette faille expose les données sensibles et les pipelines CI/CD. Un correctif est disponible via la mise à jour vers la dernière version.</p>
+<a href="https://www.darkreading.com/application-security/attackers-pounce-critical-artifactory-flaw-disclosure" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Exploitation massive de CVE-2026-0768 dans Langflow (AI/ML)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le framework Langflow, utilisé pour développer des applications IA, est ciblé par une faille RCE non authentifiée (CVE-2026-0768, CVSS 9.8). Les attaquants volent des clés AWS/OpenAI et installent des backdoors. Les correctifs sont disponibles mais l'exploitation active persiste.</p>
+<a href="https://www.securityweek.com/hackers-start-exploiting-critical-langflow-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Fuite de données massive chez Aesto Health (9,5 millions de patients)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Aesto Health a subi une fuite de données affectant 9,5 millions de patients, incluant des informations personnelles et médicales. L'incident, lié à une compromission de son infrastructure AWS, a été découvert récemment. Aucun détail sur l'origine de l'attaque n'a été communiqué.</p>
+<a href="https://www.securityweek.com/9-5-million-impacted-by-aesto-health-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Attaques par BGP hijacking sur Virtualizor (mises à jour malveillantes)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont détourné le routage BGP pour injecter des mises à jour malveillantes dans Virtualizor, un logiciel de gestion VPS. Cette attaque a permis l'installation de backdoors sur des serveurs compromis. Un correctif est disponible depuis la version 3.1.0.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Vulnérabilités critiques dans Microsoft Exchange (22 000 serveurs exposés)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Près de 22 000 serveurs Microsoft Exchange restent vulnérables à une faille d'authentification (CVE-2026-XXXX, non encore assigné). Cette vulnérabilité permet aux attaquants de détourner des boîtes mail. Microsoft recommande une mise à jour urgente via les correctifs d'août 2026.</p>
+<a href="https://www.bleepingcomputer.com/news/security/nearly-22-000-microsoft-exchange-servers-vulnerable-to-hijack-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Aurora Ransomware utilise Cursor AI pour cibler 10 organisations</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Le groupe Aurora Ransomware exploite l'outil d'IA Cursor pour infiltrer des réseaux d'entreprises. Cette tactique, combinée à des attaques manuelles, a permis des compromissions ciblées. Aucune information sur les victimes ou les rançons n'a été divulguée.</p>
+<a href="https://thehackernews.com/2026/08/aurora-ransomware-operators-use-cursor.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Campagne ClickFix/TerminalFix : 31 organisations compromises via PowerShell</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne utilisant des faux CAPTCHA Cloudflare et des commandes PowerShell (TerminalFix) a compromis 31 organisations. Les attaquants ont établi des tunnels inversés pour exfiltrer des données. Un correctif est disponible via les mises à jour Windows récentes.</p>
+<a href="https://www.darkreading.com/endpoint-security/clickfix-campaign-comprises-31-orgs-abuses-polygon-blockchain" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+</div>
+
+<h3>Fuite de données chez Nutex Health (groupe ransomware revendiqué)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Un groupe ransomware a revendiqué une fuite de données chez Nutex Health, incluant des informations patients, employés et financières. L'incident a été notifié à la SEC, mais l'origine de l'attaque reste inconnue. Aucune rançon n'a été officiellement confirmée.</p>
+<a href="https://www.securityweek.com/ransomware-gang-claims-nutex-health-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Vulnérabilités critiques dans WatchGuard Fireware OS (CVE-2026-XXXX)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Trois vulnérabilités critiques (CVSS non assigné) dans WatchGuard Fireware OS permettent une exécution de code à distance non authentifiée via le processus iked. Les correctifs sont disponibles dans la version 12.10.1. Une exploitation active est suspectée.</p>
+<a href="https://www.securityweek.com/watchguard-patches-critical-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<h3>Attaques par jackpotting ATM : 5 Vénézuéliens plaident coupables aux États-Unis</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Cinq individus ont plaidé coupables pour des attaques par jackpotting ATM utilisant des malwares. Les attaques visaient des distributeurs automatiques aux États-Unis, avec des pertes financières estimées. Cette affaire met en lumière l'évolution des tactiques de fraude bancaire.</p>
+<a href="https://www.securityweek.com/five-venezuelans-plead-guilty-in-us-court-to-atm-jackpotting/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+</div>
+
+<hr />
+<h2>Mardi 2 Septembre 2026</h2>
+<h3>Multiples vulnérabilités dans Microsoft Edge (CERTFR-2026-AVI-1096)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Edge permettent une exécution de code à distance, une atteinte à la confidentialité et une falsification de données. Les correctifs sont disponibles via les mises à jour automatiques du navigateur. Une exploitation active est probable.</p>
 <a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1096/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans les produits Tenable</h3>
+<h3>Exploitation de PaperCut zero-days pour des attaques de vol de données</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans les solutions Tenable (Nessus, Tenable.sc) permettent une exécution de code à distance et une élévation de privilèges. Un correctif est disponible via les mises à jour officielles.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1097/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
-</div>
-
-<h3>Exploit de 74 millions de dollars sur la blockchain Cronos via Tectonic</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une attaque de manipulation de prix sur la plateforme de prêt Tectonic a permis à un attaquant de détourner 74 millions de dollars sur la blockchain Cronos. Le réseau a dû redémarrer pour restaurer son fonctionnement.</p>
-<a href="https://www.bleepingcomputer.com/news/security/cronos-blockchain-restarts-after-74-million-tectonic-exploit/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Campagne TerminalFix : attaques par tunnels inversés via PowerShell</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une variante de ClickFix, nommée TerminalFix, utilise des faux CAPTCHA Cloudflare pour inciter les victimes à exécuter des commandes PowerShell malveillantes dans Windows Terminal, établissant des tunnels inversés vers les réseaux cibles.</p>
-<a href="https://www.bleepingcomputer.com/news/security/microsoft-warns-of-terminalfix-attacks-deploying-reverse-tunnels/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Rhysida revendique une fuite de données de 5 To sur Berlin</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe de ransomware Rhysida affirme avoir exfiltré plus de 5 To de données de l'administration de Berlin, incluant des informations personnelles et des identifiants. La ville a confirmé une tentative d'extorsion mais refuse de payer.</p>
-<a href="https://www.securityweek.com/berlin-wont-pay-extortion-group-claiming-data-theft/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>ValleyRAT se cache dans un adware signé pour contourner les antivirus</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Silver Fox distribue le backdoor ValleyRAT déguisé en adware chinois signé, exploitant les exclusions antivirus pour s'exécuter sous un processus de confiance. Kaspersky a identifié cette campagne.</p>
-<a href="https://thehackernews.com/2026/08/valleyrat-backdoor-hides-in-signed.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Fire Ant (Chine) pirate des routeurs Cisco pour du cyberespionnage</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Fire Ant, lié à la Chine, a compromis des routeurs Cisco IOS XR pour établir des tunnels GRE et voler des identifiants, tout en effaçant les logs de sécurité. Cette tactique cible les infrastructures critiques.</p>
-<a href="https://thehackernews.com/2026/08/china-linked-fire-ant-hijacks-cisco.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>ServiceNow corrige 3 vulnérabilités critiques d'injection de code</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : ServiceNow a patché trois vulnérabilités critiques (CVE non attribués) permettant une exécution de code arbitraire et un accès non autorisé aux données. Les correctifs sont disponibles via les mises à jour officielles.</p>
-<a href="https://www.securityweek.com/servicenow-patches-3-critical-code-injection-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Vulnérabilité critique Ruby on Rails exploitée activement (KindaRails2Shell)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une faille critique d'arbitrary file read dans Ruby on Rails (CVE-2026-XXXX) permet aux attaquants d'extraire des secrets et d'exécuter du code à distance. Des attaques en cours ciblent cette vulnérabilité.</p>
-<a href="https://www.securityweek.com/critical-ruby-on-rails-vulnerability-in-attackers-crosshairs/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités zero-day dans PaperCut NG/MF (exploitées en août 2026) sont désormais utilisées pour des attaques de vol de données. Les correctifs ont été publiés la semaine dernière, mais de nombreux systèmes restent non patchés. Les détails techniques sont limités.</p>
+<a href="https://www.bleepingcomputer.com/news/security/recently-patched-papercut-zero-days-used-in-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
         </div>
     </div>
