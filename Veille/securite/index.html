@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veille Sécurité | Exploits & Menaces — 31/08/2026 au 02/09/2026</title>
+    <title>Veille Sécurité | Exploits & Menaces — 31/08/2026 au 03/09/2026</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23151925%22/><text x=%2250%22 y=%2265%22 font-family=%22Arial, sans-serif%22 font-weight=%22bold%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23ef4444%22>SEC</text></svg>">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
         <div class="veille-header-badge">🛡️ Sécurité</div>
         <h1 class="hero-title" style="text-align: left; margin-bottom: 10px;">Exploits & Menaces</h1>
         <p style="color: var(--muted); margin-bottom: 8px;">0-days, fuites de données, ransomwares et correctifs critiques</p>
-        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 31/08/2026 au 02/09/2026 · Généré par IA</p>
+        <p style="color: var(--muted); font-size: 0.85rem; opacity: 0.7;">Semaine du 31/08/2026 au 03/09/2026 · Généré par IA</p>
         <nav class="veille-nav">
             <a href="/Veille/securite" class='active'>🛡️ Sécurité</a>
             <a href="/Veille/techno"   >💻 Techno</a>
@@ -76,78 +76,90 @@
         </nav>
         <div class="veille-content" style="background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             <h2>Lundi 1er Septembre 2026</h2>
-<h3>Multiples vulnérabilités critiques dans JFrog Artifactory (CVE-2026-82329)</h3>
+<h3>Multiples vulnérabilités critiques dans JFrog Artifactory</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Une vulnérabilité critique d'authentification (CVE-2026-82329, CVSS 9.8) permet à des attaquants d'obtenir un accès administrateur sur les systèmes JFrog Artifactory. Exploitée dès sa publication, cette faille expose les données sensibles et les pipelines CI/CD. Un correctif est disponible via la mise à jour vers la dernière version.</p>
-<a href="https://www.darkreading.com/application-security/attackers-pounce-critical-artifactory-flaw-disclosure" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
+<p><strong>Résumé</strong> : Une vulnérabilité critique d'authentification contournée (CVE-2026-82329, CVSS 9.8) permet à des attaquants non authentifiés de créer des tokens administratifs dans JFrog Artifactory. Exploitée dès sa publication, cette faille expose des millions de dépôts à des attaques de prise de contrôle. Un correctif est disponible dans les versions récentes.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-critical-jfrog-artifactory-flaw-to-forge-admin-tokens/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation massive de CVE-2026-0768 dans Langflow (AI/ML)</h3>
+<h3>Vulnérabilité critique dans Langflow exploitant des clés AWS et OpenAI</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Le framework Langflow, utilisé pour développer des applications IA, est ciblé par une faille RCE non authentifiée (CVE-2026-0768, CVSS 9.8). Les attaquants volent des clés AWS/OpenAI et installent des backdoors. Les correctifs sont disponibles mais l'exploitation active persiste.</p>
-<a href="https://www.securityweek.com/hackers-start-exploiting-critical-langflow-vulnerability/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Une faille d'exécution de code à distance non authentifiée (CVE-2026-0768, CVSS 9.8) dans Langflow, un framework open-source pour l'IA, est activement exploitée pour voler des identifiants, tokens et clés (AWS, OpenAI). Les attaquants ciblent les environnements de développement utilisant ce framework. Un patch est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/critical-langflow-flaw-exploited-to-steal-openai-and-aws-keys/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <h3>Fuite de données massive chez Aesto Health (9,5 millions de patients)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Aesto Health a subi une fuite de données affectant 9,5 millions de patients, incluant des informations personnelles et médicales. L'incident, lié à une compromission de son infrastructure AWS, a été découvert récemment. Aucun détail sur l'origine de l'attaque n'a été communiqué.</p>
-<a href="https://www.securityweek.com/9-5-million-impacted-by-aesto-health-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Aesto Health a révélé une fuite de données affectant plus de 9,5 millions de patients, découverte récemment. Les données exposées incluent des informations sensibles, bien que le type exact de données n'ait pas été précisé. Aucune information sur un correctif n'est applicable pour cette fuite.</p>
+<a href="https://www.bleepingcomputer.com/news/security/aesto-health-says-data-breach-affects-over-95-million-patients/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Attaques par BGP hijacking sur Virtualizor (mises à jour malveillantes)</h3>
+<h3>Multiples vulnérabilités dans SPIP (exécution de code à distance)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des attaquants ont détourné le routage BGP pour injecter des mises à jour malveillantes dans Virtualizor, un logiciel de gestion VPS. Cette attaque a permis l'installation de backdoors sur des serveurs compromis. Un correctif est disponible depuis la version 3.1.0.</p>
-<a href="https://www.bleepingcomputer.com/news/security/hackers-push-malicious-virtualizor-update-in-bgp-hijacking-attack/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans SPIP permettent une exécution de code arbitraire à distance et des problèmes de sécurité non spécifiés. Ces failles affectent les installations de SPIP et nécessitent une mise à jour urgente. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1102/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
 </div>
 
-<h3>Vulnérabilités critiques dans Microsoft Exchange (22 000 serveurs exposés)</h3>
+<h3>Fuite de données chez Novocure (1 400 patients atteints de cancer)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Près de 22 000 serveurs Microsoft Exchange restent vulnérables à une faille d'authentification (CVE-2026-XXXX, non encore assigné). Cette vulnérabilité permet aux attaquants de détourner des boîtes mail. Microsoft recommande une mise à jour urgente via les correctifs d'août 2026.</p>
-<a href="https://www.bleepingcomputer.com/news/security/nearly-22-000-microsoft-exchange-servers-vulnerable-to-hijack-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
-</div>
-
-<h3>Aurora Ransomware utilise Cursor AI pour cibler 10 organisations</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Le groupe Aurora Ransomware exploite l'outil d'IA Cursor pour infiltrer des réseaux d'entreprises. Cette tactique, combinée à des attaques manuelles, a permis des compromissions ciblées. Aucune information sur les victimes ou les rançons n'a été divulguée.</p>
-<a href="https://thehackernews.com/2026/08/aurora-ransomware-operators-use-cursor.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
-</div>
-
-<h3>Campagne ClickFix/TerminalFix : 31 organisations compromises via PowerShell</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Une campagne utilisant des faux CAPTCHA Cloudflare et des commandes PowerShell (TerminalFix) a compromis 31 organisations. Les attaquants ont établi des tunnels inversés pour exfiltrer des données. Un correctif est disponible via les mises à jour Windows récentes.</p>
-<a href="https://www.darkreading.com/endpoint-security/clickfix-campaign-comprises-31-orgs-abuses-polygon-blockchain" class="btn-source" target="_blank">🔗 Lire sur Dark Reading</a>
-</div>
-
-<h3>Fuite de données chez Nutex Health (groupe ransomware revendiqué)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Un groupe ransomware a revendiqué une fuite de données chez Nutex Health, incluant des informations patients, employés et financières. L'incident a été notifié à la SEC, mais l'origine de l'attaque reste inconnue. Aucune rançon n'a été officiellement confirmée.</p>
-<a href="https://www.securityweek.com/ransomware-gang-claims-nutex-health-data-breach/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Vulnérabilités critiques dans WatchGuard Fireware OS (CVE-2026-XXXX)</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Trois vulnérabilités critiques (CVSS non assigné) dans WatchGuard Fireware OS permettent une exécution de code à distance non authentifiée via le processus iked. Les correctifs sont disponibles dans la version 12.10.1. Une exploitation active est suspectée.</p>
-<a href="https://www.securityweek.com/watchguard-patches-critical-vulnerabilities/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
-</div>
-
-<h3>Attaques par jackpotting ATM : 5 Vénézuéliens plaident coupables aux États-Unis</h3>
-<div class="article-box">
-<p><strong>Résumé</strong> : Cinq individus ont plaidé coupables pour des attaques par jackpotting ATM utilisant des malwares. Les attaques visaient des distributeurs automatiques aux États-Unis, avec des pertes financières estimées. Cette affaire met en lumière l'évolution des tactiques de fraude bancaire.</p>
-<a href="https://www.securityweek.com/five-venezuelans-plead-guilty-in-us-court-to-atm-jackpotting/" class="btn-source" target="_blank">🔗 Lire sur SecurityWeek</a>
+<p><strong>Résumé</strong> : Novocure a subi une cyberattaque en août 2026, exposant les données de plus de 1 400 patients atteints de cancer aux États-Unis, ainsi que celles d'employés non divulgués. Aucune information sur un correctif n'est applicable pour cette fuite.</p>
+<a href="https://www.bleepingcomputer.com/news/security/novocure-data-breach-affects-more-than-1-400-cancer-patients/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
 <hr />
 <h2>Mardi 2 Septembre 2026</h2>
-<h3>Multiples vulnérabilités dans Microsoft Edge (CERTFR-2026-AVI-1096)</h3>
+<h3>Exploitation active de deux zero-days dans SonicWall SMA 1000</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Des vulnérabilités critiques dans Microsoft Edge permettent une exécution de code à distance, une atteinte à la confidentialité et une falsification de données. Les correctifs sont disponibles via les mises à jour automatiques du navigateur. Une exploitation active est probable.</p>
-<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1096/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+<p><strong>Résumé</strong> : Deux vulnérabilités zero-day (CVE-2026-83548 et CVE-2026-83549) dans les appliances SonicWall SMA 1000 sont activement exploitées pour des attaques en chaîne de type RCE non authentifié. Ces failles permettent une falsification de requêtes côté serveur (SSRF) et une exécution de code à distance. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sonicwall-warns-of-actively-exploited-sma1000-zero-day-flaws/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
 </div>
 
-<h3>Exploitation de PaperCut zero-days pour des attaques de vol de données</h3>
+<h3>Vulnérabilité SQL non authentifiée dans Sangoma Switchvox (CVE-2026-9586)</h3>
 <div class="article-box">
-<p><strong>Résumé</strong> : Deux vulnérabilités zero-day dans PaperCut NG/MF (exploitées en août 2026) sont désormais utilisées pour des attaques de vol de données. Les correctifs ont été publiés la semaine dernière, mais de nombreux systèmes restent non patchés. Les détails techniques sont limités.</p>
-<a href="https://www.bleepingcomputer.com/news/security/recently-patched-papercut-zero-days-used-in-data-theft-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+<p><strong>Résumé</strong> : Une faille critique d'injection SQL non authentifiée (CVE-2026-9586, CVSS 9.3) dans Sangoma Switchvox est exploitée pour déployer des reverse shells. Cette vulnérabilité permet une exécution de code à distance sans authentification. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-sangoma-switchvox-flaw-to-deploy-reverse-shells/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Faille critique dans le plugin WordPress All-in-One WP Migration</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une vulnérabilité d'injection SQL dans le plugin All-in-One WP Migration permet à des attaquants non authentifiés d'exécuter du code à distance et de prendre le contrôle de sites WordPress. Des millions de sites sont potentiellement exposés. Un correctif est disponible.</p>
+<a href="https://www.bleepingcomputer.com/news/security/wordpress-backup-plugin-flaw-exposes-millions-of-sites-to-takeover-attacks/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Détection et démantèlement du botnet Sality</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une opération internationale a démantelé l'infrastructure du botnet Sality, un réseau P2P utilisé pour des attaques depuis des années. Les autorités ont neutralisé la capacité des attaquants à distribuer de nouveaux payloads malveillants. Aucune action utilisateur n'est requise.</p>
+<a href="https://www.bleepingcomputer.com/news/security/sality-botnet-infrastructure-dismantled-in-joint-global-takedown/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Fuite de comptes Dropbox via une faille de vérification d'email Lenovo</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont exploité une faille dans le processus de vérification d'email de Lenovo pour enregistrer des identifiants frauduleux et accéder à des comptes Dropbox. Les utilisateurs concernés ont été informés de l'incident. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://www.bleepingcomputer.com/news/security/dropbox-accounts-breached-through-lenovo-email-verification-flaw/" class="btn-source" target="_blank">🔗 Lire sur BleepingComputer</a>
+</div>
+
+<h3>Multiples vulnérabilités dans les produits Elastic (RCE et élévation de privilèges)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans les produits Elastic permettent une exécution de code à distance, une élévation de privilèges et une atteinte à la confidentialité des données. Ces failles affectent les installations d'Elastic et nécessitent une mise à jour urgente. Des correctifs sont disponibles.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1107/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Campagne malveillante utilisant des installateurs de logiciels falsifiés</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Une campagne active utilise des sites web falsifiés pour distribuer des installateurs malveillants de logiciels populaires. Ces faux installateurs désactivent Windows Update et affaiblissent Microsoft Defender, permettant une compromission des systèmes. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://thehackernews.com/2026/09/fake-software-installers-disable.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
+</div>
+
+<h3>Exploitation de failles dans Curl (atteinte à l'intégrité et à la confidentialité)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Plusieurs vulnérabilités dans Curl permettent une atteinte à la confidentialité des données, une atteinte à l'intégrité des données et un contournement de la politique de sécurité. Ces failles affectent les applications utilisant Curl et nécessitent une mise à jour urgente. Un correctif est disponible.</p>
+<a href="https://www.cert.ssi.gouv.fr/avis/CERTFR-2026-AVI-1108/" class="btn-source" target="_blank">🔗 Lire sur CERT-FR</a>
+</div>
+
+<h3>Fuite d'API METR et consommation de crédits IA (600 000 $)</h3>
+<div class="article-box">
+<p><strong>Résumé</strong> : Des attaquants ont volé une clé API de METR et consommé des crédits IA d'une valeur d'environ 600 000 $. Cette fuite a été découverte lors d'un incident de sécurité affectant l'organisation. Aucune information sur un correctif n'est applicable.</p>
+<a href="https://thehackernews.com/2026/09/attackers-steal-metr-api-key-and.html" class="btn-source" target="_blank">🔗 Lire sur The Hacker News</a>
 </div>
         </div>
     </div>
