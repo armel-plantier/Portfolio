@@ -38,6 +38,11 @@ str_lundi = date_lundi.strftime("%d/%m/%Y")
 
 MAX_ARTICLES = 60
 
+# Anti rate-limit : l'API Mistral renvoie des 429 sur des appels trop rapprochés
+MAX_TENTATIVES = 5           # essais maximum par catégorie
+DELAI_RETRY = 20             # secondes avant le 1er re-essai (doublé à chaque échec)
+DELAI_ENTRE_CATEGORIES = 15  # pause entre deux catégories
+
 # ==============================================================================
 # 2. DÉFINITION DES 4 CATÉGORIES
 # ==============================================================================
@@ -231,8 +236,20 @@ def recuperer_articles(flux_list):
     return articles
 
 
+def est_rate_limit(e):
+    """Détecte une erreur 429 (quota dépassé) quelle que soit sa forme."""
+    if getattr(e, "status_code", None) == 429:
+        return True
+    msg = str(e).lower()
+    return "429" in msg or "rate limit" in msg or "rate_limited" in msg
+
+
 def generer_contenu_ia(articles, cat):
-    """Appelle Mistral pour générer le contenu HTML de la veille."""
+    """Appelle Mistral pour générer le contenu HTML de la veille.
+
+    Renvoie None si la génération a définitivement échoué : l'appelant
+    conserve alors la page précédente au lieu de l'écraser.
+    """
     if not articles:
         return "<p style='color: var(--muted); text-align:center; padding: 40px 0;'>Aucun article pertinent trouvé cette semaine pour cette catégorie.</p>"
 
@@ -243,7 +260,7 @@ def generer_contenu_ia(articles, cat):
     prompt = f"""
 Tu es {cat["prompt_role"]}. Nous sommes le {str_aujourdhui}.
 {cat["prompt_consigne"]}
-P�riode couverte : du {str_lundi} au {str_aujourdhui}.
+Période couverte : du {str_lundi} au {str_aujourdhui}.
 
 RÈGLES STRICTES :
 1. SÉLECTIONNE les {nb_articles} articles les plus importants, pertinents et variés pour la catégorie "{cat_nom_prompt}". Écarte les doublons, les articles anodins ou hors-sujet.
@@ -261,16 +278,23 @@ Articles disponibles cette semaine :
 {contenu_brut}
 """
 
-    try:
-        response = client.chat.complete(
-            model="mistral-small-latest",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.3,
-        )
-        return markdown.markdown(response.choices[0].message.content)
-    except Exception as e:
-        print(f"  ❌ Erreur API Mistral : {e}")
-        return f"<p>Erreur lors de la génération du contenu : {e}</p>"
+    for tentative in range(1, MAX_TENTATIVES + 1):
+        try:
+            response = client.chat.complete(
+                model="mistral-small-latest",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+            )
+            return markdown.markdown(response.choices[0].message.content)
+        except Exception as e:
+            if tentative == MAX_TENTATIVES or not est_rate_limit(e):
+                print(f"  ❌ Erreur API Mistral : {e}")
+                return None
+            attente = DELAI_RETRY * (2 ** (tentative - 1))
+            print(f"  ⏳ Rate limit (tentative {tentative}/{MAX_TENTATIVES}) — "
+                  f"nouvel essai dans {attente}s...")
+            time.sleep(attente)
+    return None
 
 
 def generer_page_html(cat, contenu_html):
@@ -369,11 +393,16 @@ def generer_page_html(cat, contenu_html):
 # ==============================================================================
 
 resultats = {}
+echecs = []
 
-for cat in CATEGORIES:
+for index, cat in enumerate(CATEGORIES):
     print(f"\n{'='*60}")
     print(f"  {cat['emoji']}  Catégorie : {cat['nom'].upper()}")
     print(f"{'='*60}")
+
+    if index > 0:
+        print(f"  → Pause de {DELAI_ENTRE_CATEGORIES}s (anti rate-limit)...")
+        time.sleep(DELAI_ENTRE_CATEGORIES)
 
     print("  → Récupération des articles RSS...")
     articles = recuperer_articles(cat["flux"])
@@ -382,15 +411,19 @@ for cat in CATEGORIES:
     print("  → Génération IA en cours...")
     contenu_html = generer_contenu_ia(articles, cat)
 
-    resultats[cat["id"]] = {
-        "html": contenu_html,
-        "cat": cat,
-        "nb_articles": len(articles),
-    }
+    chemin = os.path.join(cat["dossier"], "index.html")
+
+    # Génération échouée : on garde la page précédente plutôt que de publier une erreur
+    if contenu_html is None:
+        echecs.append(cat["nom"])
+        print(f"  ⚠️  Génération impossible → {chemin} laissé inchangé.")
+        resultats[cat["id"]] = {"cat": cat, "nb_articles": len(articles), "ok": False}
+        continue
+
+    resultats[cat["id"]] = {"cat": cat, "nb_articles": len(articles), "ok": True}
 
     print("  → Écriture du fichier HTML...")
     os.makedirs(cat["dossier"], exist_ok=True)
-    chemin = os.path.join(cat["dossier"], "index.html")
     with open(chemin, "w", encoding="utf-8") as f:
         f.write(generer_page_html(cat, contenu_html))
     print(f"  ✅ {chemin} généré.")
@@ -405,6 +438,13 @@ print("  📊  RÉSUMÉ DE LA GÉNÉRATION")
 print(f"{'='*60}")
 for r in resultats.values():
     cat = r["cat"]
-    print(f"  {cat['emoji']} {cat['nom']:10} → {r['nb_articles']:3} articles  →  {cat['dossier']}/index.html")
+    etat = "✅ publié " if r["ok"] else "⚠️ inchangé"
+    print(f"  {cat['emoji']} {cat['nom']:10} → {r['nb_articles']:3} articles  →  {etat}  {cat['dossier']}/index.html")
 print(f"\n  Période : {str_lundi} → {str_aujourdhui}")
 print("="*60)
+
+if echecs:
+    print(f"\n  ⚠️  Catégories non régénérées : {', '.join(echecs)}")
+    # Échec total : on fait tomber le job pour que l'erreur soit visible dans Actions
+    if len(echecs) == len(CATEGORIES):
+        sys.exit("Aucune catégorie n'a pu être générée (API indisponible).")
