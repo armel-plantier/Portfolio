@@ -41,7 +41,7 @@ const config = {
     profileSection: {
         heading: "Étudiant en cybersécurité, en alternance",
         text: "Après un BTS SIO option SISR, je poursuis en Licence Sécurité des Réseaux et Cybersécurité, en alternance chez Malakoff Humanis. Mon terrain, c'est l'infrastructure : construire des réseaux propres, les superviser, et réduire leur surface d'attaque.\n\nJ'ai un attrait particulier pour la cybersécurité et l'intelligence artificielle. Je documente ce que je monte, et j'automatise ce qui peut l'être, de la collecte de logs à ma veille hebdomadaire.",
-        location: "Caen, Normandie / Paris IDF",
+        location: "Caen, Normandie / Paris, Île-de-France",
         availability: "Recherche un master / mastère 2027-2028",
         cvUrl: ""
     },
