@@ -2062,7 +2062,7 @@ function toggleGlobalPDF(url) {
                 <div class="tl-header-text">
                     <div class="tl-top-row">
                         <span class="tl-company">${companyName}</span>
-                        ${isCurrent ? '<span class="tl-current-badge"><span class="tl-pulse-dot"></span>Récent</span>' : ''}
+                        ${isCurrent ? '<span class="tl-current-badge"><span class="tl-pulse-dot"></span>En cours</span>' : ''}
                     </div>
                     <h4 class="tl-role">${roleText}</h4>
                     <div class="tl-meta">

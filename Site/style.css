@@ -1980,7 +1980,7 @@ body.light-mode .tl-dot { box-shadow: 0 0 0 4px #f3f4f6, 0 0 10px rgba(99, 102, 
     color: var(--muted);
 }
 
-/* Badge "Récent" sur l'item actuel */
+/* Badge "En cours" sur l'item actuel */
 .tl-current-badge {
     display: inline-flex;
     align-items: center;
