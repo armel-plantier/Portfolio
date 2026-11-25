@@ -1315,7 +1315,7 @@ function ensurePDFModal() {
             </div>
             <div class="pdf-modal-body">
                 <div class="pdf-modal-loader">Chargement du document...</div>
-                <iframe class="pdf-modal-iframe" title="Visionneuse PDF"></iframe>
+                <div class="pdf-modal-pages" aria-label="Pages du document"></div>
             </div>
         </div>
     `;
@@ -1333,7 +1333,8 @@ function ensurePDFModal() {
 
 function openPDFModal(url, title) {
     const modal = ensurePDFModal();
-    const iframe = modal.querySelector('.pdf-modal-iframe');
+    const pagesEl = modal.querySelector('.pdf-modal-pages');
+    const body = modal.querySelector('.pdf-modal-body');
     const loader = modal.querySelector('.pdf-modal-loader');
     const titleEl = modal.querySelector('.pdf-modal-title');
     const openBtn = modal.querySelector('#pdf-modal-open');
@@ -1343,38 +1344,56 @@ function openPDFModal(url, title) {
     openBtn.href = url;
     dlBtn.href = url;
 
-    loader.style.display = 'block';
-    loader.innerHTML = 'Chargement du document...';
-    iframe.style.opacity = '0';
-    iframe.src = `https://docs.google.com/viewer?url=${encodeURIComponent(url)}&embedded=true`;
-
-    // Nettoyer tout timeout précédent
-    if (modal._timeoutId) clearTimeout(modal._timeoutId);
-
-    const showHint = () => {
-        const hint = modal.querySelector('.pdf-hint');
-        if (hint) hint.style.display = 'block';
-    };
-
-    let loaded = false;
-    iframe.onload = () => {
-        loaded = true;
-        loader.style.display = 'none';
-        iframe.style.opacity = '1';
-        setTimeout(showHint, 500);
-    };
-
-    // Fallback : si l'iframe n'a pas chargé en 8s, afficher le hint aussi
-    modal._timeoutId = setTimeout(() => {
-        if (!loaded) {
-            loader.innerHTML = '⚠️ Le chargement a échoué, il est conseillé de cliquer sur <strong>"Nouvel onglet"</strong> ci-dessus.';
-        }
-        showHint();
-    }, 8000);
-
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('pdf-modal-open');
+
+    // Jeton : une ouverture plus récente (ou la fermeture) annule le rendu en cours
+    const token = (modal._token = (modal._token || 0) + 1);
+    pagesEl.innerHTML = '';
+    loader.style.display = 'block';
+    loader.innerHTML = 'Chargement du document...';
+
+    const fail = () => {
+        if (token !== modal._token) return;
+        loader.style.display = 'block';
+        loader.innerHTML = "⚠️ Impossible d'afficher le document ici : utilisez <strong>« Nouvel onglet »</strong> ci-dessus.";
+    };
+    if (typeof pdfjsLib === 'undefined') { fail(); return; }
+
+    // Rendu avec pdf.js : chaque page est dessinée à la taille de la fenêtre.
+    // Une page seule (attestation, souvent en paysage) tient entière à l'écran ;
+    // un document de plusieurs pages remplit la largeur et défile.
+    pdfjsLib.getDocument({ url }).promise.then(async (pdf) => {
+        if (token !== modal._token) return;
+        const pad = window.innerWidth < 640 ? 12 : 28;
+        const availW = body.clientWidth - pad * 2;
+        const availH = body.clientHeight - pad * 2;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        pagesEl.style.padding = pad + 'px';
+
+        for (let n = 1; n <= pdf.numPages; n++) {
+            const page = await pdf.getPage(n);
+            if (token !== modal._token) return;
+            const base = page.getViewport({ scale: 1 });
+            let scale = pdf.numPages === 1
+                ? Math.min(availW / base.width, availH / base.height)
+                : Math.min(availW, 1000) / base.width;
+            scale = Math.max(0.2, Math.min(scale, 3));
+
+            const viewport = page.getViewport({ scale: scale * dpr });
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-modal-page';
+            canvas.width = Math.floor(viewport.width);
+            canvas.height = Math.floor(viewport.height);
+            canvas.style.width = Math.floor(base.width * scale) + 'px';
+            canvas.style.height = Math.floor(base.height * scale) + 'px';
+            canvas.setAttribute('aria-label', `Page ${n} sur ${pdf.numPages}`);
+            pagesEl.appendChild(canvas);
+            await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+            if (n === 1 && token === modal._token) loader.style.display = 'none';
+        }
+    }).catch(fail);
 }
 
 function closePDFModal() {
@@ -1383,9 +1402,10 @@ function closePDFModal() {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('pdf-modal-open');
-    // Vider l'iframe pour stopper le chargement
-    const iframe = modal.querySelector('.pdf-modal-iframe');
-    if (iframe) iframe.src = 'about:blank';
+    // Annule le rendu en cours et libère les pages dessinées
+    modal._token = (modal._token || 0) + 1;
+    const pagesEl = modal.querySelector('.pdf-modal-pages');
+    if (pagesEl) pagesEl.innerHTML = '';
     // Réinitialiser les boutons de certifs (effet visuel actif)
     document.querySelectorAll('.pdf-btn').forEach(b => { b.style.background = ''; b.style.color = ''; });
 }

@@ -1372,14 +1372,25 @@ body.pdf-modal-open { overflow: hidden; }
 }
 body.light-mode .pdf-modal-body { background: #e5e7eb; }
 
-.pdf-modal-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    background: white;
-    transition: opacity 0.25s ease;
+/* Pages rendues par pdf.js, centrées ; défilement si plusieurs pages */
+.pdf-modal-pages {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
 }
+.pdf-modal-page {
+    display: block;
+    flex-shrink: 0;
+    margin: auto 0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+.pdf-modal-page + .pdf-modal-page { margin-top: 0; }
 
 .pdf-modal-loader {
     position: absolute;
