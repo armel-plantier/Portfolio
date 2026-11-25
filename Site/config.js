@@ -93,6 +93,7 @@ experiences: [
             date: "17/08/2026 - 17/08/2027",
             role: "Alternance · Licence STS (Sécurité des Réseaux et Cybersécurité)",
             company: "Malakoff Humanis",
+            location: "Paris",
             photo: "malakoff-humanis.jpg",
             longDescription: "Conception et déploiement d'un honeypot pour détecter et analyser les tentatives d'intrusion\nAnalyse et traitement des e-mails de phishing signalés : qualification de la menace et réponse adaptée\nGestion des demandes d'ouverture de flux réseau : étude du besoin et validation des règles de filtrage\nGestion des habilitations et des droits d'accès selon le principe du moindre privilège"
         },
@@ -100,6 +101,7 @@ experiences: [
             date: "Décembre 2025 - Février 2026",
             role: "Stage Administrateur Système et réseau (7 semaines)",
             company: "Fondation Hospitalière de la Miséricorde",
+            location: "Caen",
             photo: "images.png",
             longDescription: "Mise en place du protocole 802.1x sur 3 éphad \nMasterisation et déploiement d'images Windows 25h2 via FOG, avec automatisation de la configuration de l'administrateur local.\n WSUS : Mise à jour du script pour Windows 11 25h2"
         },
@@ -107,6 +109,7 @@ experiences: [
             date: "Mai 2025 - Juin 2025",
             role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
             company: "Ellix Informatique",
+            location: "Caen",
             photo: "images.jpg",
             longDescription: "Un serveur DNS Pi-Hole (Blocklist / Analyse DNS) \n Serveur Graylog (Centralisation des logs) \n Active Directory (GPO, Audits, UO) \n Routeur Netgate (pfSense) \n Serveur DHCP (Windows & Debian)"
         }
@@ -117,14 +120,16 @@ experiences: [
         {
             date: "17/08/2026 - 17/08/2027",
             role: "Licence STS (Sécurité des Réseaux et Cybersécurité)",
-            company: "CaenSup Sainte Ursule, Caen",
+            company: "CaenSup Sainte Ursule",
+            location: "Caen",
             photo: "caensup.jpg",
             longDescription: ""
         },
         {
             date: "2024 - 2026",
             role: "BTS SIO option SISR — Diplômé",
-            company: "CaenSup Sainte Ursule, Caen",
+            company: "CaenSup Sainte Ursule",
+            location: "Caen",
             photo: "caensup.jpg",
             longDescription: ""
         }

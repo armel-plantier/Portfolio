@@ -2048,6 +2048,8 @@ body.light-mode .tl-chip {
 
 .tl-date-chip { color: var(--text); }
 .tl-date-chip svg { color: var(--primary); }
+.tl-location-chip { color: var(--text); }
+.tl-location-chip svg { color: #f43f5e; }
 
 .tl-duration-chip {
     background: rgba(99, 102, 241, 0.08);
