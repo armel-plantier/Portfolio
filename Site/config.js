@@ -440,6 +440,15 @@ experiences: [
             github: "https://github.com/arrmel-capitalboard/Capital-Board",
             demo: "https://capitalboard.fr"
         }
+        // À décommenter (avec la virgule après le bloc CapitalBoard) une fois le lab réalisé
+        // et la procédure PDF déposée :
+        // {
+        //     title: "Lab de sécurité des LLM (OWASP Top 10 LLM)",
+        //     description: "Lab attaque / contre-mesure autour d'un LLM local : injection de prompt directe et indirecte, fuite d'informations sensibles, filtrage des entrées et sorties, journalisation dans Graylog.",
+        //     tags: ["IA", "Cybersécurité", "En cours"],
+        //     github: "",
+        //     demo: ""
+        // }
         // {
         //     title: "Nom du projet",
         //     description: "Description courte du projet et de son objectif.",
