@@ -2399,6 +2399,17 @@ body.light-mode .profil-text, body.light-mode .profil-facts { box-shadow: 0 4px 
     margin: 0 0 14px;
 }
 .profil-text p:last-child { margin-bottom: 0; }
+/* Bloc « Projet professionnel », sous le texte de présentation */
+.profil-project { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); }
+.profil-text .profil-project h5 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary);
+    color: var(--text);
+}
 
 .profil-facts { padding: 26px; display: flex; flex-direction: column; }
 .profil-facts dl { margin: 0; }

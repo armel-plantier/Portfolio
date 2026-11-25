@@ -243,16 +243,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const paragraphs = (p.text || "")
+        const toParagraphs = (txt) => (txt || "")
             .split(/\n\s*\n/)
             .filter(Boolean)
             .map(t => `<p>${escapeHTML(t.trim())}</p>`)
             .join('');
+        const paragraphs = toParagraphs(p.text);
+
+        // Bloc « Projet professionnel » optionnel, sous la présentation
+        const projectHTML = p.projectText ? `
+                <div class="profil-project">
+                    <h5>${escapeHTML(p.projectTitle || "Projet professionnel")}</h5>
+                    ${toParagraphs(p.projectText)}
+                </div>` : '';
 
         profilEl.innerHTML = `
             <div class="profil-text">
                 ${p.heading ? `<h4>${escapeHTML(p.heading)}</h4>` : ''}
                 ${paragraphs}
+                ${projectHTML}
             </div>
             <div class="profil-facts">
                 <dl>
