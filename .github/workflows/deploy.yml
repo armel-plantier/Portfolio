@@ -15,13 +15,10 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
-    concurrency:
-      group: "pages"
-      cancel-in-progress: false
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  # Construction et publication sont deux jobs distincts (schéma recommandé par
+  # GitHub) : l'artefact est finalisé à la fin du job build, sinon deploy-pages
+  # ne le trouve pas toujours (« No artifacts named github-pages »).
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -85,6 +82,16 @@ jobs:
       with:
         path: './Site'
 
+  deploy:
+    needs: build
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
     - name: 🌐 Déploiement final
       id: deployment
       uses: actions/deploy-pages@v5
