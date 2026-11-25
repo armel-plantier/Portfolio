@@ -932,10 +932,9 @@ body.light-mode .veille-section {
     box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.02);
 }
 
-/* On change la couleur de la barre de titre pour cette section */
-.veille-section h3 {
-    border-left-color: #a855f7; /* Violet plus clair */
-}
+/* Bloc veille, intégré à la section Projets Perso */
+#projets-perso .veille-section { margin-top: 30px; }
+.veille-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--text); margin: 0 0 12px; padding-left: 12px; border-left: 3px solid #a855f7; }
 
 /* Ligne de séparation lumineuse */
 .veille-divider {

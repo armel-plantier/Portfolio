@@ -861,8 +861,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
 
-        // À l'impression, les onglets n'ont plus de sens : on déplie les cinq
-        // domaines pour ne pas perdre quatre cinquièmes du contenu sur papier.
+        // À l'impression, les onglets n'ont plus de sens : on déplie tous les
+        // domaines pour ne rien perdre du contenu sur papier.
         window.addEventListener('beforeprint', () => {
             panel.innerHTML = config.competences.map((c, i) => blockHTML(c, i)).join('');
         });
@@ -1003,25 +1003,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener('scroll', () => { if (window.scrollY > 50) header.classList.add('scrolled'); else { header.classList.remove('scrolled'); header.classList.remove('menu-open'); } });
         if (menuIcon) { menuIcon.addEventListener('click', (e) => { e.stopPropagation(); header.classList.toggle('menu-open'); }); }
         document.addEventListener('click', (e) => { if (header.classList.contains('menu-open') && navCapsule && !navCapsule.contains(e.target)) { header.classList.remove('menu-open'); } });
-    }
-
-    // --- 13. PIED DE PAGE : date du dernier déploiement ---
-    const updateEl = document.getElementById("last-update");
-    // Sans date à afficher, on retire la mention et son séparateur plutôt que
-    // de laisser un texte de remplissage dans le pied de page.
-    const dropLastUpdate = () => {
-        const sep = updateEl.previousElementSibling;
-        if (sep && sep.classList.contains('separator')) sep.remove();
-        updateEl.remove();
-    };
-    if (updateEl) {
-        const raw = (window.DOC_DATES || {}).__repo;
-        const d = raw ? new Date(raw) : null;
-        if (d && !isNaN(d.getTime())) {
-            updateEl.innerHTML = `Maj : ${d.toLocaleDateString('fr-FR')} ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
-        } else {
-            dropLastUpdate();
-        }
     }
 
     // --- OUVERTURE AUTO VIA URL (?proc= ou ?proj=) ---
@@ -1670,7 +1651,7 @@ function toggleGlobalPDF(url) {
             ['projets','parcours','competences','certifications','procedures','projets-perso','veille'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
-                const h = el.querySelector('h3');
+                const h = el.querySelector('h3, .veille-title');
                 if (!h) return;
                 items.push({
                     type: 'Section',
