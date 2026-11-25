@@ -2622,6 +2622,8 @@ body.light-mode .cert-row { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
     cursor: pointer;
 }
 .cert-thumb.cert-thumb-empty { cursor: default; background: var(--card); }
+.cert-thumb.cert-thumb-logo { cursor: default; background: #fff; display: grid; place-items: center; }
+.cert-thumb-logo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 12px; }
 /* Attestation illisible ou absente : on garde la colonne et le logo */
 .cert-row .cert-thumb.thumb-failed { display: block; }
 .cert-thumb .thumb-img {
@@ -2701,6 +2703,8 @@ body.light-mode .cert-row-id .cert-status { color: #b45309; }
     animation: none;
     background: var(--card);
 }
+.cert-thumb.cert-thumb-logo { animation: none; background: #fff; }
+@media (max-width: 760px) { .cert-thumb.cert-thumb-logo { aspect-ratio: 3 / 1; } }
 
 
 /* ============================================================

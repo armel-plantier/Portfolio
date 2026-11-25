@@ -462,6 +462,18 @@ experiences: [
 	</g>
 </svg>`    },
 
+        {
+            name: "Cyberbit",
+            issuer: "cyberbit.com",
+            url: "https://www.cyberbit.com/",
+            pdf: "",
+            // Sans attestation, ce logo remplit la vignette de gauche
+            logo: "assets/cyberbit.png",
+            // Badge affiché à côté du nom (laisser "" une fois la certification obtenue)
+            status: "En cours",
+            // Logo Cyberbit : trois chevrons rouge / violet / bleu
+            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 36" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,12 15,20 6,28" stroke="#e8344e"/><polyline points="16,5 24,13 32,5" stroke="#6c2d9c"/><polyline points="42,12 33,20 42,28" stroke="#1aa3e8"/></svg>`
+        },
         { 
             name: "Pix", 
             issuer: "pix.fr", 
@@ -484,16 +496,6 @@ experiences: [
             pdf: "SecNum.pdf",
             // Icône Médaille / Gouvernementale
             icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
-        },
-        {
-            name: "Cyberbit",
-            issuer: "cyberbit.com",
-            url: "https://www.cyberbit.com/",
-            pdf: "",
-            // Badge affiché à côté du nom (laisser "" une fois la certification obtenue)
-            status: "En cours",
-            // Logo Cyberbit : trois chevrons rouge / violet / bleu
-            icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 36" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,12 15,20 6,28" stroke="#e8344e"/><polyline points="16,5 24,13 32,5" stroke="#6c2d9c"/><polyline points="42,12 33,20 42,28" stroke="#1aa3e8"/></svg>`
         }
     ]
 };

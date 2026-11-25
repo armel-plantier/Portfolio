@@ -901,8 +901,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const row = document.createElement("article");
                 row.className = "cert-row";
                 row.innerHTML = `
-                    <div class="cert-thumb card-thumb${pdfUrl ? '' : ' cert-thumb-empty'}"${pdfUrl ? ` data-pdf-url="${pdfUrl}" role="button" tabindex="0" aria-label="Voir l'attestation ${escapeHTML(cert.name)}"` : ''}>
-                        <span class="cert-thumb-fallback" aria-hidden="true">${renderIcon(cert.icon)}</span>
+                    <div class="cert-thumb card-thumb${pdfUrl ? '' : (cert.logo ? ' cert-thumb-logo' : ' cert-thumb-empty')}"${pdfUrl ? ` data-pdf-url="${pdfUrl}" role="button" tabindex="0" aria-label="Voir l'attestation ${escapeHTML(cert.name)}"` : ''}>
+                        ${!pdfUrl && cert.logo
+                            ? `<img class="cert-thumb-logo-img" src="${escapeHTML(cert.logo)}" alt="Logo ${escapeHTML(cert.name)}" loading="lazy">`
+                            : `<span class="cert-thumb-fallback" aria-hidden="true">${renderIcon(cert.icon)}</span>`}
                     </div>
                     <div class="cert-row-body">
                         <div class="cert-row-head">
