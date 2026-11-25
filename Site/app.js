@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const bannerCta = document.getElementById("search-banner-cta");
         if (banner.cta) {
             bannerCta.innerText = banner.cta;
-            // Même modale que le bouton e-mail du hero (captcha puis adresse)
+            // Même popup que le bouton e-mail du hero
             bannerCta.addEventListener("click", () => document.getElementById("email-trigger")?.click());
         } else bannerCta.remove();
         bannerEl.hidden = false;
@@ -169,52 +169,50 @@ document.addEventListener("DOMContentLoaded", () => {
     setupModal("info-trigger", "info-modal", "info-close-btn");
     setupModal("rss-trigger", "rss-modal", "rss-close-btn");
     
-    // --- GESTION SPECIFIQUE EMAIL/CAPTCHA ---
-    const emailTrigger = document.getElementById("email-trigger");
-    const captchaContainer = document.getElementById("captcha-container");
-    const emailResultArea = document.getElementById("email-result-area");
+    // --- CONTACT : popup avec l'adresse e-mail et bouton copier ---
+    const contactEmail = config.profile.email || "";
     const emailText = document.getElementById("email-text");
-    const captchaInstruction = document.getElementById("captcha-instruction");
     const copyBtn = document.getElementById("copy-email-btn");
-    let widgetId = null; let decodedEmail = ""; 
+    if (emailText) emailText.innerText = contactEmail;
 
-    if(emailTrigger) {
-        emailTrigger.addEventListener("click", () => {
-            if(captchaContainer) captchaContainer.style.display = "flex";
-            if(emailResultArea) emailResultArea.style.display = "none";
-            if(captchaInstruction) captchaInstruction.style.display = "block";
-            if(emailText) emailText.innerText = "";
-            if(copyBtn) { copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = ""; }
+    const footerEmail = document.getElementById("footer-email");
+    if (footerEmail && contactEmail) {
+        footerEmail.href = "mailto:" + contactEmail;
+        footerEmail.innerText = contactEmail;
+        footerEmail.hidden = false;
+        document.getElementById("footer-email-sep").hidden = false;
+    }
 
-            if (window.turnstile) {
-                if (widgetId !== null) turnstile.reset(widgetId);
-                else {
-                    try {
-                        widgetId = turnstile.render('#captcha-container', {
-                            sitekey: config.profile.turnstileSiteKey, 
-                            theme: localStorage.getItem("theme") === "light" ? "light" : "dark",
-                            callback: function(token) {
-                                try {
-                                    decodedEmail = atob(config.profile.emailEncoded);
-                                    if(emailText) emailText.innerText = decodedEmail;
-                                    if(captchaContainer) captchaContainer.style.display = "none";
-                                    if(captchaInstruction) captchaInstruction.style.display = "none";
-                                    if(emailResultArea) emailResultArea.style.display = "block";
-                                } catch (err) { console.error("Erreur décodage email"); }
-                            }
-                        });
-                    } catch (e) { console.error(e); if(captchaContainer) captchaContainer.innerHTML = "Erreur sécu."; }
-                }
-            }
+    const resetCopyBtn = () => {
+        if (!copyBtn) return;
+        copyBtn.innerText = "Copier"; copyBtn.style.backgroundColor = ""; copyBtn.style.borderColor = "";
+    };
+    document.getElementById("email-trigger")?.addEventListener("click", resetCopyBtn);
+
+    const copyText = (text) => {
+        if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+        // Repli pour les navigateurs sans API presse-papiers
+        return new Promise((resolve, reject) => {
+            const ta = document.createElement("textarea");
+            ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select();
+            const ok = document.execCommand("copy");
+            ta.remove();
+            ok ? resolve() : reject(new Error("copie impossible"));
         });
-        if(copyBtn) {
-            copyBtn.addEventListener("click", () => {
-                if(decodedEmail) navigator.clipboard.writeText(decodedEmail).then(() => {
-                    copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
-                    setTimeout(() => { document.getElementById("email-modal").style.display = "none"; }, 2000); 
-                });
+    };
+
+    if (copyBtn && contactEmail) {
+        copyBtn.addEventListener("click", () => {
+            copyText(contactEmail).then(() => {
+                copyBtn.innerText = "Copié ! ✅"; copyBtn.style.backgroundColor = "#10b981"; copyBtn.style.borderColor = "#10b981";
+                setTimeout(resetCopyBtn, 2000);
+            }).catch(() => {
+                // Copie refusée : on sélectionne l'adresse pour un Ctrl+C manuel
+                const range = document.createRange(); range.selectNodeContents(emailText);
+                const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
             });
-        }
+        });
     }
 
     // --- MODALE PROJET (FERMETURE) ---
@@ -296,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
-        // On réutilise le déclencheur du hero : même modale, même captcha,
+        // On réutilise le déclencheur du hero : même modale,
         // une seule logique de dévoilement de l'adresse.
         profilEl.querySelector('#profil-contact')?.addEventListener('click', () => {
             document.getElementById('email-trigger')?.click();

@@ -43,9 +43,6 @@
 </head>
 <body>
 
-    <!-- Cloudflare Turnstile : utilisé uniquement par la modale email -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
-
     <header class="app-header">
         <nav class="nav-capsule">
             <span class="menu-icon">☰</span>
@@ -281,6 +278,8 @@
         <footer>
             <div class="sys-info">
                 <span id="footer-copy"></span>
+                <span id="footer-email-sep" class="separator" hidden>|</span>
+                <a id="footer-email" class="footer-email" hidden></a>
                 <span class="separator">|</span>
                 <span id="last-update" style="font-size: 0.8rem; color: var(--primary);">Connecting to Repo...</span>
             </div>
@@ -293,14 +292,10 @@
                 <button id="modal-close-btn" class="close-btn">×</button>
             </div>
             <div class="modal-body">
-                <p id="captcha-instruction">Vérification de sécurité :</p>
-                <div id="captcha-container" style="margin: 20px auto; min-height: 65px; display: flex; justify-content: center;"></div>
-                <div id="email-result-area" style="display: none;">
-                    <p style="margin-bottom: 10px;">Mon adresse email :</p>
-                    <div class="email-box">
-                        <span id="email-text"></span>
-                        <button id="copy-email-btn" title="Copier et fermer">Copier</button>
-                    </div>
+                <p style="margin-bottom: 10px;">Mon adresse email :</p>
+                <div class="email-box">
+                    <span id="email-text"></span>
+                    <button type="button" id="copy-email-btn" title="Copier l'adresse">Copier</button>
                 </div>
             </div>
         </div>

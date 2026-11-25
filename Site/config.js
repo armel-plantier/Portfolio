@@ -30,8 +30,8 @@ const config = {
         },
         bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité, en essayant de me former en parallèle sur l'IA",
 
-        emailEncoded: "Y29udGFjdEBhcm1lbC1wbGFudGllci5jb20=",
-        turnstileSiteKey: "0x4AAAAAACWdXwpSGlIddb_k" 
+        // Adresse affichée dans la popup Contact et dans le pied de page
+        email: "armel.plantier@protonmail.com"
     },
 
     social: {
