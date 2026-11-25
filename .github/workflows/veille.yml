@@ -8,14 +8,8 @@ permissions:
   contents: write
   pages: write
   id-token: write
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 jobs:
-  build_and_deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  generate:
     runs-on: ubuntu-latest
     steps:
     - name: 📥 Récupération du code
@@ -40,21 +34,8 @@ jobs:
         git commit -m "Automated: Mise à jour de la veille 🤖"
         git pull --rebase origin main
         git push
-    - name: 📁 Préparation de la structure du site
-      run: |
-        find . -maxdepth 1 -mindepth 1 \
-          ! -name 'Site' \
-          ! -name '.github' \
-          ! -name '.git' \
-          ! -name 'README.md' \
-          ! -name 'CNAME' \
-          -exec cp -r {} Site/ \;
-    - name: ⚙️ Configuration de GitHub Pages
-      uses: actions/configure-pages@v5
-    - name: 📤 Upload de l'artéfact Site
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: './Site'
-    - name: 🌐 Déploiement final
-      id: deployment
-      uses: actions/deploy-pages@v4
+
+  # Même déploiement que pour un push manuel (dates des documents incluses)
+  deploy:
+    needs: generate
+    uses: ./.github/workflows/deploy.yml

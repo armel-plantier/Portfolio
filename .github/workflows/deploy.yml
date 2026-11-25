@@ -5,18 +5,20 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # Appelé par rootme.yml et veille.yml après leur commit automatique :
+  # un push fait avec GITHUB_TOKEN ne déclenche pas ce workflow tout seul.
+  workflow_call:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   deploy:
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -26,6 +28,9 @@ jobs:
     - name: 📥 Récupération du code
       uses: actions/checkout@v4
       with:
+        # Toujours la dernière version de main : appelé depuis un autre workflow,
+        # le SHA déclencheur ne contient pas le commit automatique qui vient d'être poussé.
+        ref: main
         # Historique complet : les dates des documents sont lues avec git log,
         # un clone superficiel ne les contiendrait pas.
         fetch-depth: 0

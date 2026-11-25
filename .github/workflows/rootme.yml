@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   update_rootme:
@@ -209,4 +211,11 @@ jobs:
         git add Site/config.js
         git diff --staged --quiet && echo "Aucune modification du score" && exit 0
         git commit -m "Automated: Mise à jour score Root-Me"
+        git pull --rebase origin main
         git push
+
+  # Le commit fait avec GITHUB_TOKEN ne relance pas deploy.yml : on l'appelle ici,
+  # sinon le nouveau score n'apparaît sur le site qu'au prochain push manuel.
+  deploy:
+    needs: update_rootme
+    uses: ./.github/workflows/deploy.yml

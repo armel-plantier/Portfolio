@@ -58,7 +58,16 @@
     </header>
 
     <div class="container">
-        
+
+        <aside id="search-banner" class="search-banner" role="note" hidden>
+            <span class="search-banner-icon" aria-hidden="true">🎓</span>
+            <div class="search-banner-body">
+                <p id="search-banner-title" class="search-banner-title"></p>
+                <p id="search-banner-text" class="search-banner-text"></p>
+            </div>
+            <button type="button" id="search-banner-cta" class="search-banner-cta"></button>
+        </aside>
+
         <section class="hero-section">
             <div class="hero-identity">
                 <!-- src assigné par app.js depuis config.profile.avatar : un attribut src vide ferait recharger la page entière comme si c'était une image -->
