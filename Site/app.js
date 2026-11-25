@@ -116,6 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if(heroAvatarEl) heroAvatarEl.src = config.profile.avatar;
     const heroNameEl = document.getElementById("hero-name");
     if(heroNameEl) heroNameEl.innerText = config.profile.name;
+    const heroStatusEl = document.getElementById("hero-status");
+    if (heroStatusEl && config.profile.statusBadge) {
+        document.getElementById("hero-status-text").innerText = config.profile.statusBadge;
+        heroStatusEl.hidden = false;
+    }
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
     const footerEl = document.getElementById("footer-copy");

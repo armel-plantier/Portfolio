@@ -134,6 +134,12 @@ body.light-mode .nav-capsule a:hover { color: var(--primary); }
 .hero-identity { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
 .hero-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); }
 .hero-name { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.hero-status { display: inline-flex; align-items: center; gap: 8px; margin-top: 4px; padding: 6px 14px; border-radius: 99px; font-size: 0.82rem; font-weight: 600; color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
+.hero-status[hidden] { display: none; }
+.hero-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; flex-shrink: 0; animation: heroStatusPulse 2s ease-out infinite; }
+@keyframes heroStatusPulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); } 70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+@media (prefers-reduced-motion: reduce) { .hero-status-dot { animation: none; } }
+body.light-mode .hero-status { color: #047857; background: rgba(16, 185, 129, 0.12); }
 .hero-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(to right, #6366f1, #a855f7); -webkit-background-clip: text; color: transparent; }
 .bio-text { max-width: 600px; margin: 0 auto 30px; color: var(--muted); line-height: 1.6; }
 @media (min-width: 1024px) { .hero-avatar { width: 68px; height: 68px; } .hero-name { font-size: 1.15rem; } .hero-title { font-size: 3.5rem; } .bio-text { font-size: 1.1rem; max-width: 700px; } }

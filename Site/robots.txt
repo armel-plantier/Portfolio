@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://armel-plantier.com/sitemap.xml
+Sitemap: https://armel-plantier.fr/sitemap.xml
