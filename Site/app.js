@@ -812,75 +812,28 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTimeline(document.getElementById("exp-list"), config.experiences, EXP_LIMIT);
     renderTimeline(document.getElementById("formation-list"), config.formations, EXP_LIMIT);
 
-    // --- 9. COMPETENCES (ONGLETS VERTICAUX, COULEUR PAR DOMAINE) ---
+    // --- 9. COMPETENCES (UN BLOC PAR DOMAINE, COULEUR PAR DOMAINE) ---
     const compList = document.getElementById("comp-list");
     // Couleur d'accent par domaine. Surchargeable dans config.js via
     // competences[].accent ; sinon la palette tourne dans cet ordre.
-    const COMP_ACCENTS = ['#6366f1', '#0ea5e9', '#8b5cf6', '#ef4444', '#10b981'];
+    const COMP_ACCENTS = ['#6366f1', '#0ea5e9', '#ef4444', '#8b5cf6', '#10b981'];
 
     if (compList && config.competences && config.competences.length) {
         const accentOf = (comp, i) => comp.accent || COMP_ACCENTS[i % COMP_ACCENTS.length];
-
-        const tabsHTML = config.competences.map((comp, i) => `
-            <button type="button" class="comp-tab" data-i="${i}" role="tab"
-                    aria-selected="${i === 0}" aria-controls="comp-panel"
-                    style="--comp-accent:${accentOf(comp, i)}">
-                <span class="comp-tab-icon">${renderIcon(comp.icon)}</span>
-                <span class="comp-tab-name">${escapeHTML(comp.name)}</span>
-            </button>`).join('');
-
-        compList.innerHTML = `
-            <div class="comp-tablist" role="tablist" aria-label="Domaines de compétences">${tabsHTML}</div>
-            <div class="comp-panel" id="comp-panel" role="tabpanel"></div>
-        `;
-
-        const panel = compList.querySelector('#comp-panel');
-        const tabs = Array.from(compList.querySelectorAll('.comp-tab'));
-        let current = 0;
-
-        const blockHTML = (comp, i) => {
+        compList.innerHTML = config.competences.map((comp, i) => {
             const n = comp.details.length;
             return `
-                <div class="comp-panel-head" style="--comp-accent:${accentOf(comp, i)}">
+            <article class="comp-panel" style="--comp-accent:${accentOf(comp, i)}">
+                <div class="comp-panel-head">
                     <span class="comp-panel-icon">${renderIcon(comp.icon)}</span>
                     <h4>${escapeHTML(comp.name)}</h4>
                     <span class="comp-panel-count">${n} item${n > 1 ? 's' : ''}</span>
                 </div>
-                <ul class="comp-panel-list" style="--comp-accent:${accentOf(comp, i)}">
+                <ul class="comp-panel-list">
                     ${comp.details.map(d => `<li>${escapeHTML(d)}</li>`).join('')}
-                </ul>`;
-        };
-
-        const showComp = (i) => {
-            current = i;
-            panel.style.setProperty('--comp-accent', accentOf(config.competences[i], i));
-            panel.innerHTML = blockHTML(config.competences[i], i);
-            tabs.forEach((t, j) => {
-                t.classList.toggle('active', j === i);
-                t.setAttribute('aria-selected', String(j === i));
-            });
-        };
-
-        // À l'impression, les onglets n'ont plus de sens : on déplie tous les
-        // domaines pour ne rien perdre du contenu sur papier.
-        window.addEventListener('beforeprint', () => {
-            panel.innerHTML = config.competences.map((c, i) => blockHTML(c, i)).join('');
-        });
-        window.addEventListener('afterprint', () => showComp(current));
-
-        tabs.forEach((t, i) => {
-            t.addEventListener('click', () => showComp(i));
-            // Flèches haut/bas pour parcourir les domaines au clavier
-            t.addEventListener('keydown', (e) => {
-                if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
-                e.preventDefault();
-                const next = (i + (e.key === 'ArrowDown' ? 1 : -1) + tabs.length) % tabs.length;
-                tabs[next].focus();
-                showComp(next);
-            });
-        });
-
-        showComp(0);
+                </ul>
+            </article>`;
+        }).join('');
     }
 
     // --- 10. CERTIFICATIONS (Root-Me en vedette, attestations en rangées) ---
