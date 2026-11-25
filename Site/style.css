@@ -2662,6 +2662,8 @@ body.light-mode .cert-row-logo { background: rgba(99, 102, 241, 0.05); }
 .cert-row-id { min-width: 0; }
 .cert-row-id h4 { font-family: 'Outfit', sans-serif; font-size: 1.05rem; line-height: 1.3; color: var(--text); }
 .cert-row-id span { font-size: 0.8rem; color: var(--muted); }
+.cert-row-id .cert-status { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 99px; font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; vertical-align: middle; color: #f59e0b; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); }
+body.light-mode .cert-row-id .cert-status { color: #b45309; }
 
 .cert-row-actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 .cert-btn-main, .cert-btn-ghost {

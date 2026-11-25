@@ -908,7 +908,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="cert-row-head">
                             <span class="cert-row-logo">${renderIcon(cert.icon)}</span>
                             <div class="cert-row-id">
-                                <h4>${escapeHTML(cert.name)}</h4>
+                                <h4>${escapeHTML(cert.name)}${cert.status ? ` <span class="cert-status">${escapeHTML(cert.status)}</span>` : ''}</h4>
                                 <span>${escapeHTML(cert.issuer || "Certification")}</span>
                             </div>
                         </div>
