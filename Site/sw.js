@@ -6,7 +6,7 @@
  *   - Bypass complet pour les PDF et API GitHub (pas de cache)
  */
 
-const VERSION = 'v1.9.3';
+const VERSION = 'v1.10.0';
 const STATIC_CACHE = `portfolio-static-${VERSION}`;
 const RUNTIME_CACHE = `portfolio-runtime-${VERSION}`;
 
@@ -17,8 +17,6 @@ const PRECACHE_URLS = [
     '/style.css',
     '/app.js',
     '/doc-dates.js',
-    '/captcha-bypass.js',
-    '/splash.js',
     '/redirect.js',
     '/manifest.json',
     '/assets/avatar.png',

@@ -39,17 +39,9 @@ const renderIcon = (iconString) => {
             try { target = document.querySelector(hash); } catch (e) { target = null; }
         }
         if (!target) { window.scrollTo(0, 0); if (hash) cleanHash(); return; }
-        // Le contenu est injecté par JS et l'écran de vérification bloque le
-        // défilement : on attend qu'il disparaisse avant de viser l'ancre.
-        let tries = 0;
-        (function goToTarget() {
-            const splash = document.getElementById('splash-screen');
-            const blocked = splash && splash.offsetParent !== null;
-            if (blocked && tries++ < 40) { setTimeout(goToTarget, 150); return; }
-            // 'instant' : au chargement on se place, on n'anime pas (html a scroll-behavior: smooth)
-            target.scrollIntoView({ block: 'start', behavior: 'instant' });
-            cleanHash();
-        })();
+        // 'instant' : au chargement on se place, on n'anime pas (html a scroll-behavior: smooth)
+        target.scrollIntoView({ block: 'start', behavior: 'instant' });
+        cleanHash();
     });
 
     // Le menu interne navigue par ancre : on nettoie l'URL une fois le saut fait.
