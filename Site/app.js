@@ -783,6 +783,8 @@ document.addEventListener("DOMContentLoaded", () => {
         data.forEach((exp, index) => {
             const li = document.createElement("li"); li.className = "timeline-item";
             if (exp.location) li.dataset.location = exp.location;
+            // Durée affichée à la place des dates (config : duration)
+            if (exp.duration) li.dataset.duration = exp.duration;
             if (index >= limit) li.classList.add("hidden-item");
 
             const lines = (exp.longDescription || "").split('\n');
@@ -2060,7 +2062,8 @@ function toggleGlobalPDF(url) {
             const dateText = dateEl.textContent.trim();
             const companyName = companyEl.textContent.trim();
             const roleText = titleEl.textContent.trim();
-            const duration = extractDuration(roleText) || extractDuration(dateText);
+            const duration = item.dataset.duration || extractDuration(roleText) || extractDuration(dateText);
+            const showDate = !item.dataset.duration;
 
             // Badge entreprise (initiales + dégradé)
             const [c1, c2] = colorFor(companyName);
@@ -2087,17 +2090,17 @@ function toggleGlobalPDF(url) {
                     </div>
                     <h4 class="tl-role">${roleText}</h4>
                     <div class="tl-meta">
-                        <span class="tl-chip tl-date-chip">
+                        ${showDate ? `<span class="tl-chip tl-date-chip">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                             ${dateText}
-                        </span>
-                        ${item.dataset.location ? `<span class="tl-chip tl-location-chip">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                            ${escapeHTML(item.dataset.location)}
                         </span>` : ''}
                         ${duration ? `<span class="tl-chip tl-duration-chip">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                            ${duration}
+                            ${escapeHTML(duration)}
+                        </span>` : ''}
+                        ${item.dataset.location ? `<span class="tl-chip tl-location-chip">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            ${escapeHTML(item.dataset.location)}
                         </span>` : ''}
                     </div>
                 </div>

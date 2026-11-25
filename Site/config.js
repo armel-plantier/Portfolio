@@ -91,6 +91,7 @@ projects: [
 experiences: [
         {
             date: "17/08/2026 - 17/08/2027",
+            duration: "1 an",
             role: "Alternance · Licence STS (Sécurité des Réseaux et Cybersécurité)",
             company: "Malakoff Humanis",
             location: "Paris",
@@ -99,7 +100,8 @@ experiences: [
         },
         {
             date: "Décembre 2025 - Février 2026",
-            role: "Stage Administrateur Système et réseau (7 semaines)",
+            duration: "7 semaines",
+            role: "Stage Administrateur Système et réseau",
             company: "Fondation Hospitalière de la Miséricorde",
             location: "Caen",
             photo: "images.png",
@@ -107,7 +109,8 @@ experiences: [
         },
         {
             date: "Mai 2025 - Juin 2025",
-            role: "Stage Administrateur Système et réseau orienté cybersécurité (5 semaines)",
+            duration: "5 semaines",
+            role: "Stage Administrateur Système et réseau orienté cybersécurité",
             company: "Ellix Informatique",
             location: "Caen",
             photo: "images.jpg",
@@ -119,6 +122,7 @@ experiences: [
     formations: [
         {
             date: "17/08/2026 - 17/08/2027",
+            duration: "1 an",
             role: "Licence STS (Sécurité des Réseaux et Cybersécurité)",
             company: "CaenSup Sainte Ursule",
             location: "Caen",
@@ -127,6 +131,7 @@ experiences: [
         },
         {
             date: "2024 - 2026",
+            duration: "2 ans",
             role: "BTS SIO option SISR — Diplômé",
             company: "CaenSup Sainte Ursule",
             location: "Caen",
