@@ -21,7 +21,7 @@ const config = {
         typewriterText: "Étudiant Licence Sécurité des Réseaux - Cybersécurité",
         // Badge affiché sous le nom dans l'en-tête (laisser "" pour le masquer)
         statusBadge: "Recherche un master / mastère 2027-2028",
-        bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité, en essayant de me former en parallèle sur l'IA",
+        bio: "En alternance chez Malakoff Humanis, je me spécialise en cybersécurité et je me forme en parallèle à la sécurité de l'IA.",
 
         // Adresse affichée dans la popup Contact et dans le pied de page
         email: "armel.plantier@protonmail.com"
