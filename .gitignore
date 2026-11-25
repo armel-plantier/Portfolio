@@ -2,3 +2,6 @@ Documents/Keepass/
 *.kdbx
 *.env
 .env.*
+
+# Maquettes locales, non publiées
+mockups/
