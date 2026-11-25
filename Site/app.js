@@ -121,20 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("hero-status-text").innerText = config.profile.statusBadge;
         heroStatusEl.hidden = false;
     }
-    const banner = config.profile.searchBanner;
-    const bannerEl = document.getElementById("search-banner");
-    if (bannerEl && banner && banner.title) {
-        document.getElementById("search-banner-title").innerText = banner.title;
-        const bannerText = document.getElementById("search-banner-text");
-        if (banner.text) bannerText.innerText = banner.text; else bannerText.remove();
-        const bannerCta = document.getElementById("search-banner-cta");
-        if (banner.cta) {
-            bannerCta.innerText = banner.cta;
-            // Même popup que le bouton e-mail du hero
-            bannerCta.addEventListener("click", () => document.getElementById("email-trigger")?.click());
-        } else bannerCta.remove();
-        bannerEl.hidden = false;
-    }
     const bioEl = document.getElementById("profile-bio");
     if(bioEl) bioEl.innerText = config.profile.bio;
     const footerEl = document.getElementById("footer-copy");

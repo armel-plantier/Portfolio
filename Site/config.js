@@ -22,12 +22,6 @@ const config = {
         typewriterText: "Étudiant Licence Sécurité des Réseaux - Cybersécurité",
         // Badge affiché sous le nom dans l'en-tête (laisser "" pour le masquer)
         statusBadge: "Recherche un master / mastère 2027-2028",
-        // Bannière en haut de page (laisser title à "" pour la masquer)
-        searchBanner: {
-            title: "Je recherche un master / mastère pour la rentrée 2027-2028",
-            text: "Formations en cybersécurité ou en sécurité des réseaux : écoles et universités, n'hésitez pas à me contacter.",
-            cta: "Me contacter"
-        },
         bio: "En alternance chez Malakoff Humanis, je me spécialise dans la cybersécurité, en essayant de me former en parallèle sur l'IA",
 
         // Adresse affichée dans la popup Contact et dans le pied de page
