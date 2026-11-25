@@ -250,18 +250,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .join('');
         const paragraphs = toParagraphs(p.text);
 
-        // Bloc « Projet professionnel » optionnel, sous la présentation
-        const projectHTML = p.projectText ? `
-                <div class="profil-project">
-                    <h5>${escapeHTML(p.projectTitle || "Projet professionnel")}</h5>
-                    ${toParagraphs(p.projectText)}
-                </div>` : '';
-
         profilEl.innerHTML = `
             <div class="profil-text">
                 ${p.heading ? `<h4>${escapeHTML(p.heading)}</h4>` : ''}
                 ${paragraphs}
-                ${projectHTML}
             </div>
             <div class="profil-facts">
                 <dl>
@@ -294,6 +286,37 @@ document.addEventListener("DOMContentLoaded", () => {
         profilEl.querySelector('#profil-contact')?.addEventListener('click', () => {
             document.getElementById('email-trigger')?.click();
         });
+    }
+
+    // --- 6c. PROJET PROFESSIONNEL (bandeau dédié) ---
+    const projetEl = document.getElementById("projet-pro");
+    const cp = config.careerProject;
+    if (projetEl && cp && cp.heading) {
+        const paras = (cp.text || "")
+            .split(/\n\s*\n/)
+            .filter(Boolean)
+            .map(t => `<p>${escapeHTML(t.trim())}</p>`)
+            .join('');
+        document.getElementById("projet-pro-content").innerHTML = `
+            <div class="projet-banner">
+                <div class="projet-main">
+                    ${cp.kicker ? `<div class="projet-kicker">${escapeHTML(cp.kicker)}</div>` : ''}
+                    <h4>${escapeHTML(cp.heading)}</h4>
+                    ${paras}
+                    <div class="projet-actions">
+                        <button type="button" class="projet-btn projet-btn-main" id="projet-contact">Me contacter</button>
+                        <a class="projet-btn" href="#parcours">Voir mon parcours</a>
+                    </div>
+                </div>
+                ${(cp.facts || []).length ? `<dl class="projet-facts">${cp.facts.map(f => `
+                    <div><dt>${escapeHTML(f.label)}</dt><dd>${escapeHTML(f.value)}</dd></div>`).join('')}
+                </dl>` : ''}
+            </div>`;
+        // Même popup de contact que le bouton du hero
+        projetEl.querySelector('#projet-contact').addEventListener('click', () => {
+            document.getElementById('email-trigger')?.click();
+        });
+        projetEl.hidden = false;
     }
 
     // --- 7. PROJETS (AVEC RECHERCHE ET FILTRE) ---
@@ -1635,7 +1658,7 @@ function toggleGlobalPDF(url) {
                 });
             });
             // Sections (nav interne)
-            ['projets','parcours','competences','certifications','procedures','projets-perso','veille'].forEach(sec => {
+            ['projet-pro','projets','parcours','competences','certifications','procedures','projets-perso','veille'].forEach(sec => {
                 const el = document.getElementById(sec);
                 if (!el) return;
                 const h = el.querySelector('h3, .veille-title');

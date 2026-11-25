@@ -4,6 +4,7 @@ const config = {
     navigation: [
         { title: "Accueil", link: "#" },
         { title: "Mon profil", link: "#profil" },
+        { title: "Projet pro", link: "#projet-pro" },
         { title: "Parcours", link: "#parcours" },
         { title: "Compétences", link: "#competences" },
         { title: "Certifs", link: "#certifications" },
@@ -38,15 +39,25 @@ const config = {
     // reprises automatiquement de formations[] et experiences[] : rien à saisir.
     // cvUrl : chemin vers ton CV (ex. "assets/cv-armel-plantier.pdf").
     // Laissé vide, le bouton affiche « CV bientôt disponible » (désactivé).
-    // projectText : bloc « Projet professionnel » sous le texte (laisser "" pour le masquer).
     profileSection: {
         heading: "Étudiant en cybersécurité, en alternance",
         text: "Après un BTS SIO option SISR, je poursuis en Licence Sécurité des Réseaux et Cybersécurité, en alternance chez Malakoff Humanis. Mon terrain, c'est l'infrastructure : construire des réseaux propres, les superviser, et réduire leur surface d'attaque.\n\nJ'ai un attrait particulier pour la cybersécurité et l'intelligence artificielle. Je documente ce que je monte, et j'automatise ce qui peut l'être, de la collecte de logs à ma veille hebdomadaire.",
-        projectTitle: "Projet professionnel",
-        projectText: "Je souhaite poursuivre en mastère cybersécurité en alternance à la rentrée 2027, idéalement avec une spécialisation en intelligence artificielle. Mon alternance chez Malakoff Humanis m'a confronté au quotidien de la sécurité opérationnelle : analyse du phishing, gestion des flux et des habilitations, conception d'un honeypot. Elle m'a aussi montré que l'IA devient à la fois un outil de défense et une nouvelle surface d'attaque. Mon objectif est de devenir ingénieur en cybersécurité, capable de sécuriser les infrastructures comme les systèmes qui intègrent de l'IA, et d'utiliser l'IA pour détecter et répondre plus vite aux incidents.",
         location: "Caen, Normandie / Paris, Île-de-France",
         availability: "Recherche un master / mastère 2027-2028",
         cvUrl: ""
+    },
+
+    // --- 2c. SECTION "PROJET PROFESSIONNEL" ---
+    // Bandeau mis en avant juste après « Mon profil ». Laisser heading à "" pour masquer la section.
+    careerProject: {
+        kicker: "Rentrée 2027 · Alternance",
+        heading: "Je cherche un mastère cybersécurité, orienté IA.",
+        text: "Mon alternance chez Malakoff Humanis m'a confronté au quotidien de la sécurité opérationnelle : analyse du phishing, gestion des flux et des habilitations, conception d'un honeypot. Elle m'a aussi montré que l'IA devient à la fois un outil de défense et une nouvelle surface d'attaque.\n\nMon objectif : devenir ingénieur en cybersécurité, capable de sécuriser les infrastructures comme les systèmes qui intègrent de l'IA, et d'utiliser l'IA pour détecter et répondre plus vite aux incidents.",
+        facts: [
+            { label: "Formation", value: "Mastère cybersécurité" },
+            { label: "Spécialisation", value: "Intelligence artificielle" },
+            { label: "Objectif", value: "Ingénieur en cybersécurité" }
+        ]
     },
 
 
