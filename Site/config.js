@@ -51,7 +51,7 @@ const config = {
     // Bandeau mis en avant juste après « Mon profil ». Laisser heading à "" pour masquer la section.
     careerProject: {
         kicker: "Rentrée 2027 · Alternance",
-        heading: "Je cherche un mastère cybersécurité, orienté IA.",
+        heading: "Je cherche un mastère en cybersécurité, avec une part d'IA.",
         text: "Mon alternance chez Malakoff Humanis m'a confronté au quotidien de la sécurité opérationnelle : analyse du phishing, gestion des flux et des habilitations, conception d'un honeypot. Elle m'a aussi montré que l'IA devient à la fois un outil de défense et une nouvelle surface d'attaque.\n\nMon objectif : devenir ingénieur en cybersécurité, capable de sécuriser les infrastructures comme les systèmes qui intègrent de l'IA, et d'utiliser l'IA pour détecter et répondre plus vite aux incidents.",
         facts: [
             { label: "Formation", value: "Mastère cybersécurité" },
